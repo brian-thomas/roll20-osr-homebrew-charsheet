@@ -1,5 +1,5 @@
-#OSR Homebrew Roll20 Character Sheet
+# OSR Homebrew Roll20 Character Sheet
 
-##About
+## About
 This is a Roll20 character sheet for my homebrew OSR game.
 It's based on Lotfp character sheet.
