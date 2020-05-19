@@ -20,6 +20,10 @@ img {
 label {
 	font-weight: normal;
 }
+h2 {
+	padding-right: 1px;
+	padding-top: 10px;
+}
 h3 {
     line-height: 27px;
     width: 100%;
@@ -32,22 +36,36 @@ h3 {
 select {
     margin-bottom: 0;
 }
-h3::after, h3::before {
+h3::after, h3::before, h4::after, h4::before {
     display: inline-block;
     height: 3px;
     content: " ";
     text-shadow: none;
     background-color: #000;
- /*   width: 80px; */
+   /*   width: 80px; */
 }
 h3::after {
     margin: 0 0 5px 20px;
 }
 h3::before {
-    margin: 0 20px 5px 0;
+	margin: 0 20px 5px 0;
+}
+h4 {
+	font-weight: normal;
+	font-size: 15px;
+	text-align: center;
+}
+.sheet-small-font {
+	font-size: 10px;
+}
+.sheet-italic-font, h4 {
+	font-style: italic;
+}
+.sheet-bold-font {
+	font-weight: bold;
 }
 .sheet-left-pad {
-	padding-left: 10px
+		padding-left: 10px
 }
 .repitem {
     display: flex;
@@ -56,23 +74,58 @@ h3::before {
     justify-content: space-between;
 }
 .sheet-flex-between {
-	  display: flex;
-	  justify-content: space-between;
+		display: flex;
+	  justify-content: space-evenly;
+}
+
+.sheet-center {
+	text-align: center;
+	align-items: center;
+	align-content: center;
+}
+.sheet-block {
+	display: block;
+	align-items: center;
+	padding: 1px;
+}
+.sheet-inline {
+	display: inline;
+	align-items: start;
+	padding: 1px;
+}
+.sheet-inline-flex {
+	display: inline-flex;
+	align-items: start;
+}
+.sheet-flow {
+	display: flow-root;
 }
 .sheet-flex {
-    display: flex;
+	  display: flex;
     align-items: start;
 }
-.sheet-noborder, .sheet-thick-border {
-	padding: 10px;
+.sheet-thin-border {
+	padding-top: 5px;
 }
-.sheet-col-1, .sheet-col-2, .sheet-thick-border {
-    box-sizing: border-box;
+.sheet-col-1, .sheet-col-2, .sheet-thick-border, .sheet-thin-border, .sheet-noborder, .sheet-thick-border-no-pad {
+	box-sizing: border-box;
 }
-.sheet-thick-border {
-    border: 4px solid;
-    overflow: auto;
-    margin-bottom: 10px;
+.sheet-thin-border {
+	border: 2px solid;
+	overflow: auto;
+	margin-bottom: 0px;
+}
+.sheet-thick-border, .sheet-thick-border-no-pad {
+	border: 4px solid;
+	overflow: auto;
+	margin-bottom: 10px;
+}
+.sheet-noborder, .sheet-thick-border, .sheet-side-padding {
+  padding-left: 5px;
+	padding-right: 5px;
+}
+.sheet-bottom-padding, .sheet-noborder, .sheet-thick-border {
+	padding-bottom: 5px;
 }
 .sheet-header-left {
 	width: 75%;
@@ -93,11 +146,40 @@ h3::before {
 	width: 31%;
 }
 .sheet-save-col {
-    flex-direction: column;
+	flex-direction: column;
 }
 .sheet-logo {
     margin: 12px auto;
     display: block;
+}
+input[type=checkbox], input[type=radio] {
+	  padding-left:5px;
+    padding-right:5px;
+    border-radius:12px;
+    -webkit-appearance:button;
+    border: double 2px #00F;
+    color:#FFF;
+    white-space: nowrap;
+    overflow:hidden;
+    width:15px;
+    height:15px;
+    vertical-align: middle;
+    border: 1px solid #111;
+		outline: inherit;
+    cursor: pointer;
+		margin-left: 3px;
+		margin-right: 3px;
+}
+input[type=checkbox]:checked, input[type=radio]:checked {
+    background-color:#800;
+    border-left-color:#06F;
+    border-right-color:#06F;
+}
+input[type=checkbox]:hover {
+    box-shadow:0px 0px 10px #1300ff;
+}
+.sheet-checkbox-round:checked {
+    background-color: black;
 }
 input {
     border-radius: 0;
@@ -128,7 +210,7 @@ input[type=number]::-webkit-inner-spin-button {
     justify-content: space-evenly;
 }
 .sheet-info-row input {
-    text-align: center;
+    text-align: left;
 }
 .sheet-info1 {
     width: 11%;
@@ -143,12 +225,22 @@ input[type=number]::-webkit-inner-spin-button {
     border: none;
     border-bottom: 1px solid;
 }
+.sheet-ability-column-value, .sheet-combat-opts-value {
+		width: 30%;
+}
+.sheet-align-left, .sheet-combat-opts-column-value {
+		text-align: left;
+}
+.sheet-align-start {
+	align-self: flex-start;
+	align-items: flex-start;
+	align-content: flex-start;
+}
 /* Abilities */
 .sheet-ability-column-value {
-    width: 30%;
-    height: 90px;
-    text-align: center;
-    font-weight: bold;
+		height: 90px;
+		text-align: center;
+		font-weight: bold;
 }
 .sheet-ability-column-modifier {
     width: 54%;
@@ -203,4 +295,60 @@ input[type=number].sheet-ability-check-value {
 .sheet-ability-check-label {
 	  text-align: center;
 		font-weight: bold;
+}
+
+span.sheet-spacer {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+/* Tabbing */
+/* Main Sheet Tabs */
+
+div[class^="sheet-section"] {
+        display: none;
+}
+
+input.sheet-tab1:checked ~ div.sheet-section-core,
+input.sheet-tab2:checked ~ div.sheet-section-skills,
+input.sheet-tab3:checked ~ div.sheet-section-spellbook,
+input.sheet-tab4:checked ~ div.sheet-section-inventory {
+        display: block;
+}
+
+input.sheet-tab {
+        width: 87px;
+        height: 20px;
+        cursor: pointer;
+        position: relative;
+        opacity: 0;
+        z-index: 9999;
+}
+
+span.sheet-tab {
+        text-align: center;
+        display: inline-block;
+        font-size: 13px;
+        background: #4a6486;
+        color: white;
+        font-weight: bold;
+        border-radius: 4px;
+        width: 87px;
+        height: 20px;
+        cursor: pointer;
+        position: relative;
+        margin-left: -90px;
+}
+
+input.sheet-tab1:checked + span.sheet-tab1,
+input.sheet-tab2:checked + span.sheet-tab2,
+input.sheet-tab3:checked + span.sheet-tab3,
+input.sheet-tab4:checked + span.sheet-tab4 {
+        background: #ab8b57;
+        color: white;
+        border-radius: 4px;
+}
+
+input.sheet-skillname {
+  width: 65px;
 }
