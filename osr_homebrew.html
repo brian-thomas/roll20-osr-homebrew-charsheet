@@ -51,14 +51,16 @@
 
 <div class="sheet-inline">
 
-  <input type="radio" name="attr_tab" class="sheet-tab sheet-tab1" value="1" title="Core Stats" checked="checked" />
+  <input type="radio" name="attr_tab" class="sheet-tab sheet-tab1" value="1" checked="checked" />
   <span class="sheet-tab sheet-tab1">Core Stats</span>
   <input type="radio" name="attr_tab" class="sheet-tab sheet-tab2" value="2" />
-  <span class="sheet-tab sheet-tab2">Skills</span>
+  <span class="sheet-tab sheet-tab2">Combat</span>
   <input type="radio" name="attr_tab" class="sheet-tab sheet-tab3" value="3" />
-  <span class="sheet-tab sheet-tab3">Spellbook</span>
+  <span class="sheet-tab sheet-tab3">Magic</span>
   <input type="radio" name="attr_tab" class="sheet-tab sheet-tab4" value="4" />
   <span class="sheet-tab sheet-tab4">Inventory</span>
+  <input type="radio" name="attr_tab" class="sheet-tab sheet-tab5" value="5" />
+  <span class="sheet-tab sheet-tab5">Notes</span>
 
   <div class="section-core">
     <span class="sheet-spacer">&nbsp;</span>
@@ -238,545 +240,545 @@
 
       <div class="sheet-col-right">
         <div class="sheet-noborder">
-          <div class="row sheet-thick-border-no-pad">
-            <h3>Combat</h3>
-            <div class="sheet-flex">
-              <div class="sheet-ability-column-value">
-                <span class="ability-check-label">Initiative</span>
-                <input class="ability-check-value inactive-color" name="attr_initiative" type="number" value="0" readonly/>
-              </div>
-              <div class="sheet-ability-column-value">
-                <input class="ability-check-value" name="attr_ac" type="number" value="10" />
-                <span class="ability-check-label">AC</span>
-              </div>
-              <div class="sheet-ability-column-value">
-                <input class="ability-check-value inactive-color" name="attr_melee_ab" type="number" value="0" readonly/>
-                <span class="ability-check-label">Melee AB</span>
-              </div>
-              <div class="sheet-ability-column-value">
-                <input class="ability-check-value inactive-color" name="attr_ranged_ab" type="number" value="0" readonly/>
-                <span class="ability-check-label">Range AB</span>
-              </div>
-              <div class="sheet-ability-column-value">
-                <input class="ability-check-value" name="attr_hit_points" type="number" value="1"/>
-                <span class="ability-check-label">HP</span>
-              </div>
-            </div>
-            <div class="sheet-thin-border">
-              <div class="sheet-bottom-padding">
-                <h4>Combat Options</h4>
-              </div>
-              <div class="sheet-flex-between">
-                <div class="sheet-col-right">
-                    <div class="sheet-flex sheet-bottom-padding">
-                      <input type="checkbox" name="attr_stnd_attack" value="1" checked/>
-                      <span class="ability-check-label">Stnd</span>
-                      <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+0 AC+0)</span>
-                    </div>
-                    <div class="sheet-bottom-padding">
-                      <div class="sheet-flex">
-                        &nbsp;&nbsp;
-                        <span class="ability-check-label">Parry</span>
-                      </div>
-                      <div class="sheet-flex">
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span><input type="radio" name="attr_parry_attack" value="ac2" checked/>AC+2</span>
-                        <span><input type="radio" name="attr_parry_attack" value="ac4"/>AC+4</span>
-                      </div>
-                    </div>
-                    <div class="sheet-flex sheet-bottom-padding">
-                      <input type="checkbox" name="attr_press_attack" value="1"/>
-                      <span class="ability-check-label">Press</span>
-                      <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2 AC-4)</span>
-                    </div>
-                    <div class="sheet-flex sheet-bottom-padding">
-                      <input type="checkbox" name="attr_defensive_attack" value="1"/>
-                      <span class="ability-check-label">Defensive</span>
-                      <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB-4 AC+2)</span>
-                    </div>
-                    <div class="sheet-flex sheet-bottom-padding">
-                      <input type="checkbox" name="attr_beserk_attack" value="1"/>
-                      <span class="ability-check-label sheet-flex-between">Beserk</span>
-                      <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+3, Dam+3, No Retreat, Will to Stop)</span>
-                    </div>
-                    <div class="sheet-flex sheet-bottom-padding">
-                      <input type="checkbox" name="attr_cleave_attack" value="1"/>
-                      <span class="ability-check-label">Cleave</span>
-                      <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB -&gt; Dam, Attk again on kill, AC-2)</span>
-                    </div>
-                </div>
-                <div class="sheet-col-left">
-                  <div class="sheet-flex sheet-bottom-padding">
-                    <input type="checkbox" name="attr_2weapon_attack" value="1"/>
-                    <span class="ability-check-label">2&nbsp;Weapon</span>
-                    <span class="sheet-small-font sheet-italic-font">&nbsp;(2nd Attk with offhand or AC+1)</span>
-                  </div>
-                  <div class="sheet-flex sheet-bottom-padding">
-                    <input type="checkbox" name="attr_rapid_strike_attack1" value="1"/>
-                    <input type="checkbox" name="attr_rapid_strike_attack2" value="1"/>
-                    <span class="ability-check-label">Rapid Strike</span>
-                    <span class="sheet-small-font sheet-italic-font">&nbsp;(Xtra Melee Attk, AC-4)</span>
-                  </div>
-                  <div class="sheet-flex sheet-bottom-padding">
-                    <input type="checkbox" name="attr_rapid_shot_attack1" value="1"/>
-                    <input type="checkbox" name="attr_rapid_shot_attack2" value="1"/>
-                    <span class="ability-check-label">Rapid Shot</span>
-                    <span class="sheet-small-font sheet-italic-font">&nbsp;(Xtra Ranged Attk, AC-4)</span>
-                  </div>
-                  <div class="sheet-flex sheet-bottom-padding">
-                    <input type="checkbox" name="attr_strong_attack" value="1"/>
-                    <span class="ability-check-label">Strong</span>
-                    <span class="sheet-small-font sheet-italic-font">&nbsp;(Dam x2, AC-2)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div class="sheet-thick-border">
-            <h3>Special</h3>
-            <div class="sheet-inline">
-              <div class="sheet-flex sheet-thin-border">
-                <div class="sheet-ability-column-modifier sheet-flex-between">
-                  <input type="checkbox" name="attr_sneak_attack" value="1"/>
-                  <span>Sneak Attack</span>
-                </div>
-                <div class="sheet-ability-column-modifier sheet-flex-between">
-                  <span class="sheet-italic-font">Extra Dam. Dice</span>
-                  <div class="sheet-flex">
-                    <span><h2>+</h2></span>
-                    <input class="ability-value" name="attr_sneak_attk_dice" type="number" value="0"/>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="sheet-flex-between">
+            <h3>Skills</h3>
+            <div class="sheet-block">
+              <div class="sheet-block">
+                <div class="sheet-thin-border sheet-bottom-padding">
+                  <h4>Core Skills</h4>
+                  <div class="sheet-flex-between">
+                    <div class="sheet-block sheet-side-padding">
 
-              <div class="sheet-flex sheet-bottom-padding">
-                <div class="sheet-flex-between sheet-bottom-padding sheet-thin-border">
-                  <div class="sheet-col-left sheet-inline">
-                    <input type="checkbox" name="attr_turn_undead1" value="1"/>
-                    <input type="checkbox" name="attr_turn_undead2" value="1"/>
-                    <input type="checkbox" name="attr_turn_undead3" value="1"/>
-                    <span class="sheet-small-font sheet-italic-font">&nbsp;(per day)</span>
+                      <div class="sheet-block-between">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Arcana</span>
+                          <input type="number" name="attr_arcana_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Arcana}} {{skillroll=[[1d20]]}} {{target=[[@{arcana_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                      <div class="sheet-block-between">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Architect</span>
+                          <input type="number" name="attr_architect_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Architect}} {{skillroll=[[1d20]]}} {{target=[[@{architect_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                      <div class="sheet-block-between">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Armory</span>
+                          <input type="number" name="attr_armory_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Armory}} {{skillroll=[[1d20]]}} {{target=[[@{armory_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                      <div class="sheet-block">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Athletics</span>
+                          <input type="number" name="attr_athletics_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Athletics}} {{skillroll=[[1d20]]}} {{target=[[@{athletics_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                      <div class="sheet-block">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Bushcraft</span>
+                          <input type="number" name="attr_bushcraft_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Bushcraft}} {{skillroll=[[1d20]]}} {{target=[[@{bushcraft_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                      <div class="sheet-block">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Languages</span>
+                          <input type="number" name="attr_languages_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Languages}} {{skillroll=[[1d20]]}} {{target=[[@{languages_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                      <div class="sheet-block">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Open&nbsp;Doors</span>
+                          <input type="number" name="attr_open_door_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=OpenDoor}} {{skillroll=[[1d20]]}} {{target=[[@{open_doors_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="sheet-block sheet-side-padding">
+                      <div class="sheet-block">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Search</span>
+                          <input type="number" name="attr_search_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Search}} {{skillroll=[[1d20]]}} {{target=[[@{search_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                      <div class="sheet-block">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Sleight of Hand</span>
+                          <input type="number" name="attr_sleight_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=SleightofHand}} {{skillroll=[[1d20]]}} {{target=[[@{sleight_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                      <div class="sheet-block">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Sneak&nbsp;Attack</span>
+                          <input type="number" name="attr_sneak_attack_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=SneakAttack}} {{skillroll=[[1d20]]}} {{target=[[@{sneack_attack_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                      <div class="sheet-block">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Stealth</span>
+                          <input type="number" name="attr_stealth_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Stealth}} {{skillroll=[[1d20]]}} {{target=[[@{stealth_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                      <div class="sheet-block">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font sheet-italic-font">Social</span>
+                          <input type="number" name="attr_social_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Social}} {{skillroll=[[1d20]]}} {{target=[[@{social_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                      <div class="sheet-block">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Theology</span>
+                          <input type="number" name="attr_theology_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Theology}} {{skillroll=[[1d20]]}} {{target=[[@{theology_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                      <div class="sheet-block">
+                        <div class="sheet-align-right">
+                          <span class="sheet-bold-font">Tinker</span>
+                          <input type="number" name="attr_tinker_skill" class="sheet-skillvalue" value="0">
+                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Tinker}} {{skillroll=[[1d20]]}} {{target=[[@{tinker_skill}]]}}" name="roll_Skill"></button>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
-                  <div class="sheet-col-right">
-                    <span class="sheet-bold-font">Turn Undead</span>
-                  </div>
-                </div>
-                <div class="sheet-flex-between sheet-bottom-padding sheet-thin-border">
-                  <div class="sheet-col-left sheet-inline">
-                    <input type="checkbox" name="attr_dispel_magic1" value="1"/>
-                    <input type="checkbox" name="attr_dispel_magic2" value="1"/>
-                    <span class="sheet-small-font sheet-italic-font">&nbsp;(per day)</span>
-                  </div>
-                  <div class="sheet-col-right">
-                    <span class="sheet-bold-font">Dispel Magic</span>
-                  </div>
-                </div>
-                <div class="sheet-flex-between sheet-bottom-padding sheet-thin-border">
-                  <div class="sheet-col-left sheet-inline">
-                    <input type="checkbox" name="attr_dispel_evil" value="1"/>
-                    &nbsp;
-                    <span class="sheet-small-font sheet-italic-font">&nbsp;(per day)</span>
-                  </div>
-                  <div class="sheet-col-right">
-                    <span class="sheet-bold-font">Dispel Evil</span>
-                  </div>
+
                 </div>
               </div>
-            </div>
+
+              <div class="sheet-thin-border">
+                <h4>Other Skills</h4>
+                <fieldset class="repeating_skills">
+                  <div class="sheet-block sheet-thin-border sheet-side-padding">
+                    <div class="sheet-align-right">
+                      <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname">
+                      <input type="number" name="attr_skillvalue" class="sheet-skillvalue" value="1">
+                      <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=@{skillname}}} {{skillroll=[[1d20]]}} {{target=[[@{skillvalue}]]}}" name="roll_Skill"></button>
+                    </div>
+                  </div>
+               </fieldset>
+             </div>
+           </div>
+
           </div>
 
-          <div class="row sheet-thick-border">
-            <h3>Weapons</h3>
-            <div class="sheet-flex-between">
-              <div class="sheet-col-right">
-                <div class="sheet-ability-column-value">
-                  <span class="ability-check-label">foo</span>
-                  <span class="ability-check-label">foo</span>
-                  <span class="ability-check-label">foo</span>
-                  <span class="ability-check-label">foo</span>
-                </div>
-              </div>
-              <div class="sheet-col-left">
-                <div class="sheet-ability-column-value">
-                  <span class="ability-check-label">foo</span>
-                  <span class="ability-check-label">foo</span>
-                  <span class="ability-check-label">foo</span>
-                  <span class="ability-check-label">foo</span>
-                </div>
-              </div>
-            </div>
-          </div>
 
         </div>
       </div>
     </div>
   </div>
 
-  <div class="sheet-section-skills">
+  <div class="sheet-section-combat">
+    <span class="sheet-spacer">&nbsp;</span>
+    <div class="sheet-thick-border-no-pad">
+      <h3>Combat</h3>
+      <div class="sheet-flex">
+        <div class="sheet-ability-column-value">
+          <span class="ability-check-label">Initiative</span>
+          <input class="ability-check-value inactive-color" name="attr_initiative" type="number" value="0" readonly/>
+        </div>
+        <div class="sheet-ability-column-value">
+          <input class="ability-check-value" name="attr_ac" type="number" value="10" />
+          <span class="ability-check-label">AC</span>
+        </div>
+        <div class="sheet-ability-column-value">
+          <input class="ability-check-value inactive-color" name="attr_melee_ab" type="number" value="0" readonly/>
+          <span class="ability-check-label">Melee AB</span>
+        </div>
+        <div class="sheet-ability-column-value">
+          <input class="ability-check-value inactive-color" name="attr_ranged_ab" type="number" value="0" readonly/>
+          <span class="ability-check-label">Range AB</span>
+        </div>
+        <div class="sheet-ability-column-value">
+          <input class="ability-check-value" name="attr_hit_points" type="number" value="1"/>
+          <span class="ability-check-label">HP</span>
+        </div>
+      </div>
+      <div class="sheet-thin-border">
+        <div class="sheet-bottom-padding">
+          <h4>Combat Options</h4>
+        </div>
+        <div class="sheet-flex-between">
+          <div class="sheet-col-right">
+            <div class="sheet-flex sheet-bottom-padding">
+              <input type="checkbox" name="attr_stnd_attack" value="1" checked/>
+              <span class="ability-check-label">Stnd</span>
+              <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+0 AC+0)</span>
+            </div>
+            <div class="sheet-bottom-padding">
+              <div class="sheet-flex">
+                &nbsp;&nbsp;
+                <span class="ability-check-label">Parry</span>
+              </div>
+              <div class="sheet-flex">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span><input type="radio" name="attr_parry_attack" value="ac2" checked/>AC+2</span>
+                <span><input type="radio" name="attr_parry_attack" value="ac4"/>AC+4</span>
+              </div>
+            </div>
+            <div class="sheet-flex sheet-bottom-padding">
+              <input type="checkbox" name="attr_press_attack" value="1"/>
+              <span class="ability-check-label">Press</span>
+              <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2 AC-4)</span>
+            </div>
+            <div class="sheet-flex sheet-bottom-padding">
+              <input type="checkbox" name="attr_defensive_attack" value="1"/>
+              <span class="ability-check-label">Defensive</span>
+              <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB-4 AC+2)</span>
+            </div>
+            <div class="sheet-flex sheet-bottom-padding">
+              <input type="checkbox" name="attr_beserk_attack" value="1"/>
+              <span class="ability-check-label sheet-flex-between">Beserk</span>
+              <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+3, Dam+3, No Retreat, Will to Stop)</span>
+            </div>
+          </div>
+          <div class="sheet-col-left">
+            <div class="sheet-flex sheet-bottom-padding">
+              <input type="checkbox" name="attr_cleave_attack" value="1"/>
+              <span class="ability-check-label">Cleave</span>
+              <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB -&gt; Dam, Attk again on kill, AC-2)</span>
+            </div>
+            <div class="sheet-flex sheet-bottom-padding">
+              <input type="checkbox" name="attr_2weapon_attack" value="1"/>
+              <span class="ability-check-label">2&nbsp;Weapon</span>
+              <span class="sheet-small-font sheet-italic-font">&nbsp;(2nd Attk with offhand or AC+1)</span>
+            </div>
+            <div class="sheet-flex sheet-bottom-padding">
+              <input type="checkbox" name="attr_rapid_strike_attack1" value="1"/>
+              <input type="checkbox" name="attr_rapid_strike_attack2" value="1"/>
+              <span class="ability-check-label">Rapid Strike</span>
+              <span class="sheet-small-font sheet-italic-font">&nbsp;(Xtra Melee Attk, AC-4)</span>
+            </div>
+            <div class="sheet-flex sheet-bottom-padding">
+              <input type="checkbox" name="attr_rapid_shot_attack1" value="1"/>
+              <input type="checkbox" name="attr_rapid_shot_attack2" value="1"/>
+              <span class="ability-check-label">Rapid Shot</span>
+              <span class="sheet-small-font sheet-italic-font">&nbsp;(Xtra Ranged Attk, AC-4)</span>
+            </div>
+            <div class="sheet-flex sheet-bottom-padding">
+              <input type="checkbox" name="attr_strong_attack" value="1"/>
+              <span class="ability-check-label">Strong</span>
+              <span class="sheet-small-font sheet-italic-font">&nbsp;(Dam x2, AC-2)</span>
+            </div>
+          </div>
+          <div class="sheet-inline sheet-side-padding">
+            <div class="sheet-flex sheet-side-padding">
+              <div class="sheet-ability-column-modifier sheet-flex-between">
+                <input type="checkbox" name="attr_sneak_attack" value="1"/>
+                <span>Sneak Attack</span>
+              </div>
+              <div class="sheet-ability-column-modifier sheet-flex-between">
+                <span class="sheet-italic-font">Extra Dam. Dice</span>
+                <div class="sheet-flex">
+                  <span><h2>+</h2></span>
+                  <input class="ability-value" name="attr_sneak_attk_dice" type="number" value="0"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sheet-thick-border">
+      <h3>Weapons</h3>
+      <div class="table-row">
+        <span class="table-cell sheet-bold-font">Notched</span>
+        <span class="table-cell">Name </span>
+        <span class="table-cell">Attack Bonus</span>
+        <span class="table-cell">Damage </span>
+        <span class="table-cell">Range </span>
+      <div>
+      <fieldset class="repeating_weapons">
+        <div class="table-row">
+          <input type="checkbox" name="attr_weapon_notched" class="table-cell" value="1"/>
+          <input type="text" name="attr_weaponname" class="sheet-skillname table-cell" data-i18n-placeholder="name">
+          <input type="number" name="attr_weapon_attack_bonus" class="sheet-skillname table-cell" data-i18n-placeholder="attack bonus">
+          <select class="sheet-info2 table-cell" name="attr_weapondam">
+            <option selected="selected" value="1d2">1d2</option>
+            <option value="1d4">1d4</option>
+            <option value="1d6">1d6</option>
+            <option value="1d8">1d8</option>
+            <option value="1d10">1d10</option>
+            <option value="1d12">1d12</option>
+            <option value="2d6">2d6</option>
+          </select>
+          <select class="sheet-info2 table-cell" name="attr_weapon_type">
+            <option selected="selected" value="melee">melee</option>
+            <option value="ranged">ranged</option>
+          </select>
+        </div>
+      </fieldset>
+                <!--
+                <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=@{skillname}}} {{skillroll=[[1d20]]}} {{target=[[@{skillvalue}]]}}" name="roll_Skill"></button>
+                -->
+    </div>
+  </div>
+
+  <div class="sheet-section-magic">
     <span class="sheet-spacer">&nbsp;</span>
     <div class="sheet-thick-border">
-      <h3>Skills</h3>
-      <!--
-      <div class="sheet-thin-border sheet-bottom-padding sheet-flex-between">
-      -->
-      <div class="sheet-flex-between sheet-align-start">
-        <div class="sheet-block">
-          <div class="sheet-thin-border sheet-bottom-padding">
-            <h4>Core Skills</h4>
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Arcana</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_arcana_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Arcana}} {{skillroll=[[1d20]]}} {{target=[[@{arcana_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
+    <h3>Magic</h3>
+      <div class="sheet-thin-border">
+        <h4>Spellcasting</h4>
+        <div class="sheet-flex-between">
+          <div class="sheet-flex-between sheet-center">
+            <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
+               <span>Spellcasting Type</span>
+            </div>
+            <select class="sheet-info4" name="attr_spellcasting_type">
+              <option selected="selected" value="none">Pick Type</option>
+              <option value="arcane">Wizard</option>
+              <option value="divine">Cleric</option>
+            </select>
+          </div>
+
+          <div class="sheet-flex">
+            <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
+              <span>Spellcasting Modifier</span>
+            </div>
+            <div class="sheet-ability-column-modifier sheet-flex-between">
+              <div class="sheet-thin-border sheet-flex sheet-side-padding">
+                <span><h2>+</h2></span>
+                <input class="ability-value" name="attr_spellcast_modifier" type="number" value="0"/>
               </div>
             </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Architect</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_architect_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Architect}} {{skillroll=[[1d20]]}} {{target=[[@{architect_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
+          </div>
+          <div class="sheet-flex">
+            <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
+              <span>Spell Save DC</span>
             </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Armory</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_armory_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Armory}} {{skillroll=[[1d20]]}} {{target=[[@{armory_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Athletics</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_athletics_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Athletics}} {{skillroll=[[1d20]]}} {{target=[[@{athletics_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Bushcraft</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_bushcraft_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Bushcraft}} {{skillroll=[[1d20]]}} {{target=[[@{bushcraft_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Languages</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_languages_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Languages}} {{skillroll=[[1d20]]}} {{target=[[@{languages_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Open&nbsp;Doors</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_open_door_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=OpenDoor}} {{skillroll=[[1d20]]}} {{target=[[@{open_doors_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Search</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_search_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Search}} {{skillroll=[[1d20]]}} {{target=[[@{search_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Sleight&nbsp;of&nbsp;Hand</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_sleight_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=SleightofHand}} {{skillroll=[[1d20]]}} {{target=[[@{sleight_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Sneak&nbsp;Attack</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_sneak_attack_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=SneakAttack}} {{skillroll=[[1d20]]}} {{target=[[@{sneack_attack_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Stealth</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_stealth_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Stealth}} {{skillroll=[[1d20]]}} {{target=[[@{stealth_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font sheet-italic-font">Social</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_social_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Social}} {{skillroll=[[1d20]]}} {{target=[[@{social_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Theology</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_theology_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Theology}} {{skillroll=[[1d20]]}} {{target=[[@{theology_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sheet-block">
-              <div class="sheet-bottom-padding">
-                  <span class="sheet-skillname sheet-bold-font">Tinker</span>
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <div class="sheet-side-padding">
-                    <input type="number" name="attr_tinker_skill" class="sheet-skillvalue" value="0">
-                  </div>
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Tinker}} {{skillroll=[[1d20]]}} {{target=[[@{tinker_skill}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
+            <div class="sheet-ability-column-modifier sheet-flex-between">
+              <div class="sheet-thin-border sheet-flex sheet-side-padding">
+                <span><h2>+</h2></span>
+                <input class="ability-value" name="attr_divine_dc" type="number" value="8"/>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="sheet-thin-border">
-          <h4>Other Skills</h4>
-          <fieldset class="repeating_skills">
-            <div class="sheet-block sheet-thin-border sheet-side-padding">
-              <div class="sheet-bottom-padding">
-                <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname">
-              </div>
-              <div class="sheet-flex">
-                <div class="sheet-col-left">
-                  <input type="number" name="attr_skillvalue" class="sheet-skillvalue">
-                </div>
-                <div class="sheet-col-right sheet-center">
-                  <div class="sheet-side-padding">
-                    <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=@{skillname}}} {{skillroll=[[1d20]]}} {{target=[[@{skillvalue}]]}}" name="roll_Skill"></button>
-                  </div>
-                </div>
-              </div>
+      <span class="sheet-spacer">&nbsp;</span>
+
+      <div class="sheet-thin-border sheet-bottom-padding">
+        <h4>Powers</h4>
+        <div class="sheet-flex-between">
+          <div class="sheet-flex-between sheet-thin-border">
+            <div class="sheet-col-left sheet-inline">
+              <input type="checkbox" name="attr_turn_undead1" value="1"/>
+              <input type="checkbox" name="attr_turn_undead2" value="1"/>
+              <input type="checkbox" name="attr_turn_undead3" value="1"/>
+              <span class="sheet-small-font sheet-italic-font">&nbsp;(per day)</span>
             </div>
+            <div class="sheet-col-right">
+              <span class="sheet-bold-font">Turn Undead</span>
+            </div>
+          </div>
+          <div class="sheet-flex-between sheet-bottom-padding sheet-thin-border">
+            <div class="sheet-col-left sheet-inline">
+              <input type="checkbox" name="attr_dispel_magic1" value="1"/>
+              <input type="checkbox" name="attr_dispel_magic2" value="1"/>
+              <span class="sheet-small-font sheet-italic-font">&nbsp;(per day)</span>
+            </div>
+            <div class="sheet-col-right">
+              <span class="sheet-bold-font">Dispel Magic</span>
+            </div>
+          </div>
+          <div class="sheet-flex-between sheet-bottom-padding sheet-thin-border">
+            <div class="sheet-col-left sheet-inline">
+              <input type="checkbox" name="attr_dispel_evil" value="1"/>
+              &nbsp;
+              <span class="sheet-small-font sheet-italic-font">&nbsp;(per day)</span>
+            </div>
+            <div class="sheet-col-right">
+              <span class="sheet-bold-font">Dispel Evil</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <span class="sheet-spacer">&nbsp;</span>
+
+      <div class="sheet-thin-border sheet-spells">
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="all" checked>
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="1">
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="2">
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="3">
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="4">
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="5">
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="6">
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="7">
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="8">
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="9">
+          <h4>Spellbook</h4>
+
+          <div class="sheet-spells-per-level sheet-flex">
+            <div class="sheet-flex">
+              <span class="sheet-italic-font sheet-side-padding">Slots / Level</span>
+            </div>
+            <div class="sheet-flex">
+              <span>1:</span>
+                <input type="number" name="attr_spells_l1" value="0">
+            </div>
+            <div class="sheet-flex">
+                <span>2:</span>
+                <input type="number" name="attr_spells_l2" value="0">
+            </div>
+            <div class="sheet-flex">
+                <span>3:</span>
+                <input type="number" name="attr_spells_l3" value="0">
+            </div>
+            <div class="sheet-flex">
+                <span>4:</span>
+                <input type="number" name="attr_spells_l4" value="0">
+            </div>
+            <div class="sheet-flex">
+                <span>5:</span>
+                <input type="number" name="attr_spells_l5" value="0">
+            </div>
+            <div class="sheet-flex">
+                <span>6:</span>
+                <input type="number" name="attr_spells_l6" value="0">
+            </div>
+                <div class="sheet-flex">
+                <span>7:</span>
+                <input type="number" name="attr_spells_l7" value="0">
+            </div>
+            <div class="sheet-flex">
+                <span>8:</span>
+                <input type="number" name="attr_spells_l8" value="0">
+            </div>
+            <div class="sheet-flex">
+                <span>9:</span>
+                <input type="number" name="attr_spells_l9" value="0">
+            </div>
+          </div>
+
+          <div class="sheet-spell-filters sheet-flex-between">
+           <span class="sheet-bold-font">Filter:</span>
+           <label class="sheet-filter-button">
+               <input type="radio" name="attr_spells_filter" value="all" checked>
+               <span data-i18n="all"></span>
+           </label>
+           <label class="sheet-filter-button">
+               <input type="radio" name="attr_spells_filter" value="1">
+               <span>1</span>
+           </label>
+           <label class="sheet-filter-button">
+               <input type="radio" name="attr_spells_filter" value="2">
+               <span>2</span>
+           </label>
+           <label class="sheet-filter-button">
+               <input type="radio" name="attr_spells_filter" value="3">
+               <span>3</span>
+           </label>
+           <label class="sheet-filter-button">
+               <input type="radio" name="attr_spells_filter" value="4">
+               <span>4</span>
+           </label>
+           <label class="sheet-filter-button">
+               <input type="radio" name="attr_spells_filter" value="5">
+               <span>5</span>
+           </label>
+           <label class="sheet-filter-button">
+               <input type="radio" name="attr_spells_filter" value="6">
+               <span>6</span>
+           </label>
+           <label class="sheet-filter-button">
+               <input type="radio" name="attr_spells_filter" value="7">
+               <span>7</span>
+           </label>
+           <label class="sheet-filter-button">
+               <input type="radio" name="attr_spells_filter" value="8">
+               <span>8</span>
+           </label>
+           <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="9">
+             <span>9</span>
+           </label>
+         </div>
+
+         <fieldset class="repeating_spells">
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="1">
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="2">
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="3">
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="4">
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="5">
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="6">
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="7">
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="8">
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="9">
+           <div class="sheet-spellcontainer sheet-side-padding">
+             <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" data-i18n-placeholder="name">
+             <span class="sheet-left-pad"> Level:</span>
+             <select class="sheet-info1 sheet-align-right sheet-spell-level" name="attr_spelllevel">
+               <option selected="selected" value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <option value="6">6</option>
+               <option value="7">7</option>
+               <option value="8">8</option>
+               <option value="9">9</option>
+             </select>
+             <!--
+             <button class="sheet-attack-button" type="roll" value="&{template:lotfp_check} {{name=@{spellname}}} {{spell=1}} {{charactername=@{character_name}}} {{type=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_Cast"></button>
+             -->
+             <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
+           </div>
          </fieldset>
-       </div>
-     </div>
-
-    </div>
-  </div>
-
-  <div class="sheet-section-spellbook">
-    <span class="sheet-spacer">&nbsp;</span>
-    <div class="sheet-flex sheet-thin-border">
-      <div class="sheet-ability-column-modifier sheet-flex-between">
-        <span>Spellcasting Modifier</span>
-      </div>
-      <div class="sheet-ability-column-modifier sheet-flex-between">
-        <div class="sheet-thin-border sheet-flex">
-          <span><h1>+</h1></span>
-          <input class="ability-value" name="attr_spellcast_modifier" type="number" value="0"/>
-        </div>
-      </div>
-    </div>
-    <div class="sheet-flex sheet-thin-border">
-      <div class="sheet-ability-column-modifier sheet-flex-between">
-        <span>Spell Save DC</span>
-      </div>
-      <div class="sheet-ability-column-modifier sheet-flex-between">
-        <div class="sheet-thin-border sheet-flex">
-          <span><h1>+</h1></span>
-          <input class="ability-value" name="attr_divine_dc" type="number" value="8"/>
-        </div>
-      </div>
-    </div>
-    <span class="sheet-spacer">&nbsp;</span>
-    <div class="row sheet-thick-border">
-      <h3>Spells</h3>
-      <div class="sheet-flex-between">
-        <div class="sheet-col-right">
-          <div class="sheet-ability-column-value">
-            <span class="ability-check-label">foo</span>
-            <span class="ability-check-label">foo</span>
-            <span class="ability-check-label">foo</span>
-            <span class="ability-check-label">foo</span>
-          </div>
-        </div>
-        <div class="sheet-col-left">
-          <div class="sheet-ability-column-value">
-            <span class="ability-check-label">foo</span>
-            <span class="ability-check-label">foo</span>
-            <span class="ability-check-label">foo</span>
-            <span class="ability-check-label">foo</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 
   <div class="sheet-section-inventory">
     <span class="sheet-spacer">&nbsp;</span>
-    <div class="row sheet-thick-border">
+    <div class="sheet-thick-border">
       <h3>Inventory</h3>
       <div class="sheet-flex-between">
-        <div class="sheet-col-right">
-          <div class="sheet-ability-column-value">
-            <span class="ability-check-label">foo</span>
-            <span class="ability-check-label">foo</span>
-            <span class="ability-check-label">foo</span>
-            <span class="ability-check-label">foo</span>
-          </div>
+        <div class="sheet-col-right sheet-block sheet-side-padding">
+          <h3>Items</h3>
+          <textarea spellcheck="false" name="attr_items" data-i18n-placeholder="items"></textarea>
         </div>
-        <div class="sheet-col-left">
-          <div class="sheet-ability-column-value">
-            <span class="ability-check-label">foo</span>
-            <span class="ability-check-label">foo</span>
-            <span class="ability-check-label">foo</span>
-            <span class="ability-check-label">foo</span>
-          </div>
+        <div class="sheet-col-left sheet-block sheet-side-padding">
+          <h3>Non-Encumbering Items</h3>
+          <textarea spellcheck="false" name="attr_non_encumber_items" data-i18n-placeholder="non_encumber_items"></textarea>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="sheet-section-notes">
+    <span class="sheet-spacer">&nbsp;</span>
+    <div class="sheet-thick-border">
+      <h3>Notes</h3>
+      <textarea spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
+    </div>
+  </div>
+
 </div>
 
 <!-- Templates -->
@@ -804,8 +806,8 @@
   </rolltemplate>
 
   <!-- Sheet Workers -->
-  <script type="text/worker">
-  on("sheet:opened", () => {
+<script type="text/worker">
+on("sheet:opened", () => {
     setAttrs({
       bonus_query: getTranslationByKey("bonus")
     });

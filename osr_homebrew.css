@@ -1,5 +1,5 @@
 .charsheet {
-	background-color: #ddd;
+	  background-color: #ddd;
     width: 842px !important;
 		min-width: 842px; /* Set the min-width so that when the window is resized the look will stay consistant */
     margin: 0 auto !important;
@@ -19,6 +19,9 @@ img {
 }
 label {
 	font-weight: normal;
+}
+input {
+	text-align: right;
 }
 h2 {
 	padding-right: 1px;
@@ -83,10 +86,12 @@ h4 {
 	align-items: center;
 	align-content: center;
 }
-.sheet-block {
+.sheet-block, .sheet-block-left {
 	display: block;
-	align-items: center;
 	padding: 1px;
+}
+.sheet-block-between {
+	justify-content: space-between;
 }
 .sheet-inline {
 	display: inline;
@@ -104,9 +109,6 @@ h4 {
 	  display: flex;
     align-items: start;
 }
-.sheet-thin-border {
-	padding-top: 5px;
-}
 .sheet-col-1, .sheet-col-2, .sheet-thick-border, .sheet-thin-border, .sheet-noborder, .sheet-thick-border-no-pad {
 	box-sizing: border-box;
 }
@@ -114,6 +116,7 @@ h4 {
 	border: 2px solid;
 	overflow: auto;
 	margin-bottom: 0px;
+	padding-top: 5px;
 }
 .sheet-thick-border, .sheet-thick-border-no-pad {
 	border: 4px solid;
@@ -134,10 +137,10 @@ h4 {
 	width: 25%;
 }
 .sheet-col-left {
-	width: 55%;
+	width: 51%;
 }
 .sheet-col-right {
-    width: 45%;
+    width: 49%;
 }
 .sheet-col-left-left{
 	width: 67%;
@@ -219,7 +222,10 @@ input[type=number]::-webkit-inner-spin-button {
     width: 20%;
 }
 .sheet-info3 {
-    width: 32%;
+	width: 32%;
+}
+.sheet-info4 {
+	width: 52%;
 }
 .sheet-bottom-line {
     border: none;
@@ -229,7 +235,12 @@ input[type=number]::-webkit-inner-spin-button {
 		width: 30%;
 }
 .sheet-align-left, .sheet-combat-opts-column-value {
-		text-align: left;
+	text-align: left;
+	align-items: flex-start;
+}
+.sheet-align-right {
+	text-align: right;
+	align-items: flex-start;
 }
 .sheet-align-start {
 	align-self: flex-start;
@@ -310,9 +321,10 @@ div[class^="sheet-section"] {
 }
 
 input.sheet-tab1:checked ~ div.sheet-section-core,
-input.sheet-tab2:checked ~ div.sheet-section-skills,
-input.sheet-tab3:checked ~ div.sheet-section-spellbook,
-input.sheet-tab4:checked ~ div.sheet-section-inventory {
+input.sheet-tab2:checked ~ div.sheet-section-combat,
+input.sheet-tab3:checked ~ div.sheet-section-magic,
+input.sheet-tab4:checked ~ div.sheet-section-inventory,
+input.sheet-tab5:checked ~ div.sheet-section-notes {
         display: block;
 }
 
@@ -343,12 +355,117 @@ span.sheet-tab {
 input.sheet-tab1:checked + span.sheet-tab1,
 input.sheet-tab2:checked + span.sheet-tab2,
 input.sheet-tab3:checked + span.sheet-tab3,
-input.sheet-tab4:checked + span.sheet-tab4 {
+input.sheet-tab4:checked + span.sheet-tab4,
+input.sheet-tab5:checked + span.sheet-tab5 {
         background: #ab8b57;
         color: white;
         border-radius: 4px;
 }
 
 input.sheet-skillname {
-  width: 65px;
+	width: inherit;
+	font-weight: bold;
+	overflow-x: auto;
+}
+
+/* Spells */
+.sheet-spells .repitem {
+    margin: 0;
+    width: 49.8%;
+    display: block;
+}
+.sheet-spellcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+    align-items: center;
+    border: 2px solid black;
+    padding: 2px;
+    justify-content: flex-start;
+    align-content: start;
+}
+.sheet-spells .repcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.sheet-spell-name {
+    width: 59%;
+    font-weight: bold;
+		text-align: left;
+}
+
+.sheet-spell-prepared,
+.sheet-spell-duration,
+.sheet-spell-range {
+	text-align: left;
+}
+.sheet-spell-level {
+    width: 6%;
+    text-align: center;
+}
+input[type=number].sheet-spell-prepared {
+    width: 23px;
+}
+.sheet-spell-duration {
+    width: 31%;
+}
+.sheet-spell-range {
+    width: 23%;
+}
+.sheet-spell-description {
+    resize: vertical;
+    box-sizing: border-box;
+    border-radius: 0;
+    height: 30px;
+    margin-bottom: 0;
+    min-height: 30px;
+}
+.sheet-spells-per-level {
+    align-items: center;
+    font-weight: bold;
+    margin: 0 0 12px;
+}
+.sheet-spells-per-level > div {
+    align-items: center;
+    width: 82px;
+}
+.sheet-spells-per-level input[type=number] {
+    border-radius: 3px;
+    width: 2em;
+    padding: 1px 4px;
+    border: 1px solid #ccc;
+}
+.sheet-spellfilter, .sheet-hidden-spell-level {
+    display: none;
+}
+.sheet-spellfilter[value="1"]:checked ~ div .sheet-hidden-spell-level[value="1"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="2"]:checked ~ div .sheet-hidden-spell-level[value="2"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="3"]:checked ~ div .sheet-hidden-spell-level[value="3"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="4"]:checked ~ div .sheet-hidden-spell-level[value="4"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="5"]:checked ~ div .sheet-hidden-spell-level[value="5"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="6"]:checked ~ div .sheet-hidden-spell-level[value="6"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="7"]:checked ~ div .sheet-hidden-spell-level[value="7"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="8"]:checked ~ div .sheet-hidden-spell-level[value="8"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="9"]:checked ~ div .sheet-hidden-spell-level[value="9"]:not(:checked) ~ .sheet-spellcontainer {
+    display: none;
+}
+.sheet-spell-filters {
+    font-size: 15px;
+    font-weight: bold;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.sheet-filter-button {
+    width: 50px;
+    font-size: 1em;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.sheet-filter-button input[type=radio] {
+    margin-right: 3px;
+}
+.sheet-filter-button span {
+    vertical-align: middle;
 }
