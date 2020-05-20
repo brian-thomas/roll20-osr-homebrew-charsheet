@@ -5,7 +5,7 @@
 
     <div class="sheet-info-name sheet-info-margin">
       <span><label>Name:</label></span>
-      <input name="attr_character_name" type="text"/>
+      <input name="attr_character_name" class="sheet-align-left" type="text"/>
      </div>
 
      <div class="sheet-info-row">
@@ -502,37 +502,59 @@
         </div>
       </div>
     </div>
+
     <div class="sheet-thick-border">
       <h3>Weapons</h3>
-      <div class="table-row">
-        <span class="table-cell sheet-bold-font">Notched</span>
-        <span class="table-cell">Name </span>
-        <span class="table-cell">Attack Bonus</span>
-        <span class="table-cell">Damage </span>
-        <span class="table-cell">Range </span>
-      <div>
-      <fieldset class="repeating_weapons">
-        <div class="table-row">
-          <input type="checkbox" name="attr_weapon_notched" class="table-cell" value="1"/>
-          <input type="text" name="attr_weaponname" class="sheet-skillname table-cell" data-i18n-placeholder="name">
-          <input type="number" name="attr_weapon_attack_bonus" class="sheet-skillname table-cell" data-i18n-placeholder="attack bonus">
-          <select class="sheet-info2 table-cell" name="attr_weapondam">
-            <option selected="selected" value="1d2">1d2</option>
-            <option value="1d4">1d4</option>
-            <option value="1d6">1d6</option>
-            <option value="1d8">1d8</option>
-            <option value="1d10">1d10</option>
-            <option value="1d12">1d12</option>
-            <option value="2d6">2d6</option>
-          </select>
-          <select class="sheet-info2 table-cell" name="attr_weapon_type">
-            <option selected="selected" value="melee">melee</option>
-            <option value="ranged">ranged</option>
-          </select>
+      <div class="table">
+        <div class="table-row sheet-flex">
+          <label class="table-cell sheet-bold-font">Notch</label>
+          <label class="table-cell sheet-bold-font">Name</label>
+          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell sheet-bold-font">Attack Bonus</label>
+          <label class="table-cell sheet-bold-font">Weapon Damage</label>
+          <label class="table-cell sheet-bold-font">Dam. Bonus</label>
+          <label class="table-cell sheet-bold-font">Weapon Type</label>
+          <label class="table-cell sheet-bold-font">Roll Attack</label>
+          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell">&nbsp;</label>
         </div>
-      </fieldset>
+        <fieldset class="repeating_weapons">
+          <div class="table-row sheet-flex-simple">
+            <input type="checkbox" name="attr_weapon_notched" class="table-cell sheet-side-padding" value="1"/>
+            &nbsp;
+            <input type="text" name="attr_weaponname" class="sheet-align-left table-cell sheet-side-padding sheet-weapon-name" data-i18n-placeholder="name">
+            &nbsp;
+            <input type="number" name="attr_weapon_attack_bonus" class="sheet-skillname table-cell sheet-inactive-color" data-i18n-placeholder="0" readonly>
+            &nbsp;
+            <select class="sheet-center table-cell sheet-info4" name="attr_weapondam">
+              <option selected="selected" value="1d2">1d2</option>
+              <option value="1d4">1d4</option>
+              <option value="1d6">1d6</option>
+              <option value="1d8">1d8</option>
+              <option value="1d10">1d10</option>
+              <option value="1d12">1d12</option>
+              <option value="2d4">2d4</option>
+              <option value="2d6">2d6</option>
+              <option value="2d8">2d8</option>
+            </select>
+            &nbsp;
+            <input type="number" name="attr_weapon_dam_bonus" class="table-cell sheet-inactive-color" data-i18n-placeholder="0" readonly>
+            &nbsp;
+            <select class="sheet-info3 table-cell" name="attr_weapon_type">
+              <option selected="selected" value="melee">melee</option>
+              <option value="ranged">ranged</option>
+            </select>
+            <button class="table-cell" type="roll" value="&{template:lotfp_check} {{name=@{weaponname}}} {{skillroll=[[1d20]]}} {{target=[[@{foobar}]]}}" name="roll_WeaponAttack"></button>
+          </div>
+        </fieldset>
+      </div>
                 <!--
-                <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=@{skillname}}} {{skillroll=[[1d20]]}} {{target=[[@{skillvalue}]]}}" name="roll_Skill"></button>
                 -->
     </div>
   </div>

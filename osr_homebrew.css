@@ -105,8 +105,11 @@ h4 {
 .sheet-flow {
 	display: flow-root;
 }
+.sheet-flex-simple {
+	display: flex;
+}
 .sheet-flex {
-	  display: flex;
+	display: flex;
     align-items: start;
 }
 .sheet-col-1, .sheet-col-2, .sheet-thick-border, .sheet-thin-border, .sheet-noborder, .sheet-thick-border-no-pad {
@@ -468,4 +471,14 @@ input[type=number].sheet-spell-prepared {
 }
 .sheet-filter-button span {
     vertical-align: middle;
+}
+
+.sheet-weapon-name {
+	width: 75%;
+    font-weight: bold;
+		text-align: left;
+	}
+.sheet-weapon-dam {
+	width: 15%;
+	text-align: center;
 }
