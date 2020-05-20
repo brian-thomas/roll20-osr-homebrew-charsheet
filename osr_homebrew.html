@@ -766,9 +766,7 @@
                <option value="8">8</option>
                <option value="9">9</option>
              </select>
-             <!--
              <button class="sheet-attack-button" type="roll" value="&{template:lotfp_check} {{name=@{spellname}}} {{spell=1}} {{charactername=@{character_name}}} {{type=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_Cast"></button>
-             -->
              <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
            </div>
          </fieldset>
@@ -780,14 +778,280 @@
     <span class="sheet-spacer">&nbsp;</span>
     <div class="sheet-thick-border">
       <h3>Inventory</h3>
-      <div class="sheet-flex-between">
-        <div class="sheet-col-right sheet-block sheet-side-padding">
-          <h3>Items</h3>
-          <textarea spellcheck="false" name="attr_items" data-i18n-placeholder="items"></textarea>
+      <div class="sheet-block">
+        <div class="sheet-flex-between sheet-bottom-padding">
+          <div class="sheet-thin-border sheet-padding">
+            <span class="sheet-bold-font">Encumberance Points:</span>
+            <input type="number" name="encumberance-points" class="sheet-inactive-color" value="0" readonly/>
+            <span class="sheet-bold-font">Encumberance Modifier:</span>
+            <input type="number" name="encumberance-modifier" class="sheet-inactive-color" value="0" readonly/>
+            <span class="sheet-bold-font">Encumberance: </span>
+            <input type="number" name="encumberance" class="sheet-inactive-color" value="0" readonly/>
+          </div>
+          <div class="sheet-thin-border sheet-padding">
+            <span class="sheet-bold-font">Movement Rate: </span>
+            <input type="number" name="movement-rate" class="sheet-inactive-color" value="0" readonly/>
+          </div>
         </div>
-        <div class="sheet-col-left sheet-block sheet-side-padding">
-          <h3>Non-Encumbering Items</h3>
-          <textarea spellcheck="false" name="attr_non_encumber_items" data-i18n-placeholder="non_encumber_items"></textarea>
+        <div class="sheet-flex-between">
+          <div class="sheet-col-right">
+            <div class="sheet-thin-border sheet-padding">
+              <div class="table sheet-fill-width">
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell">
+                    <h3>Armor:</h3>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <select name="attr_armor">
+                      <option selected="selected" value="none">Clothing / 0 Slots</option>
+                      <option value="leather">Leather / 1 Slot</option>
+                      <option value="studded_leather">Studded Leather / 1 Slot</option>
+                      <option value="chain">Chain / 1 Enc. Pts.</option>
+                      <option value="plate">Plate / 2 Enc. Pts. </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sheet-thin-border sheet-padding">
+              <h3>Ready Items</h3>
+              <div class="table sheet-fill-width">
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-header-cell sheet-item-name"><span>Item Name</span></div>
+                  <div class="table-cell sheet-table-header-cell sheet-item-dex">Min Dex.</div>
+                </div>
+                <div class="table-row sheet-table-sep-row"></div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name" data-i18n-placeholder="Primary Hand"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="3" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name" data-i18n-placeholder="Off Hand"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="4" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="6" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="6" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="6" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-table-sep-row"></div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-table-sep-row"></div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-table-sep-row"></div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-table-sep-row"></div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                </div>
+                <div class="table-row sheet-table-sep-row"></div>
+              </div>
+            </div>
+          </div>
+          <div class="sheet-col-left">
+            <div class="sheet-thin-border sheet-bottom-padding">
+              <h3>Purse (Coins/Gems)</h3>
+              <textarea spellcheck="false" name="attr_purse_items" data-i18n-placeholder="coins_gems"></textarea>
+            </div>
+            <div class="sheet-padding"></div>
+            <div class="sheet-flex-between">
+              <div class="sheet-col-right sheet-padding">
+                <div class="sheet-thin-border sheet-padding">
+                  <div class="table sheet-fill-width">
+                    <div class="table-row sheet-flex-simple">
+                      <div class="table-cell sheet-table-header-cell"><span>Container 1 </span></div>
+                      <div class="table-cell sheet-table-header-cell">
+                        <select name="attr_container_1_type" class="sheet-info5">
+                          <option selected="selected" value="none">None</option>
+                          <option value="sack">Sack</option>
+                          <option value="large_sack">Small Pack</option>
+                          <option value="small_sack">Large Pack</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="table-row sheet-table-sep-row"></div>
+                    <div class="table-row sheet-flex-simple">
+                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    </div>
+                    <div class="table-row sheet-flex-simple">
+                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    </div>
+                    <div class="table-row sheet-flex-simple">
+                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    </div>
+                    <div class="table-row sheet-flex-simple">
+                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    </div>
+                    <div class="table-row sheet-flex-simple">
+                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    </div>
+                    <div class="table-row sheet-flex-simple">
+                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    </div>
+                    <div class="table-row sheet-flex-simple">
+                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    </div>
+                    <div class="table-row sheet-flex-simple">
+                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    </div>
+                    <div class="table-row sheet-flex-simple">
+                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    </div>
+                    <div class="table-row sheet-flex-simple">
+                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="sheet-padding"></div>
+              <div class="sheet-col-left sheet-padding">
+                <div class="sheet-block">
+                  <div class="sheet-thin-border sheet-padding">
+                    <div class="table sheet-fill-width">
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-header-cell"><span>Container 2 </span></div>
+                        <div class="table-cell sheet-table-header-cell">
+                          <select name="attr_container_2_type" class="sheet-info5">
+                            <option selected="selected" value="none">None</option>
+                            <option value="sack">Sack</option>
+                            <option value="large_sack">Small Pack</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="table-row sheet-table-sep-row"></div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-table-sep-row"></div>
+                    </div>
+                  </div>
+                  <div class="sheet-padding"></div>
+                  <div class="sheet-thin-border sheet-padding">
+                    <div class="table sheet-fill-width">
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-header-cell"><span>Container 3 </span></div>
+                        <div class="table-cell sheet-table-header-cell">
+                          <select name="attr_container_3_type" class="sheet-info5">
+                            <option selected="selected" value="none">None</option>
+                            <option value="sack">Sack</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="table-row sheet-table-sep-row"></div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="sheet-padding"></div>
+            <div class="sheet-thin-border sheet-bottom-padding">
+              <h3>Non-Encumbering Items</h3>
+              <textarea spellcheck="false" name="attr_non_encumber_items" data-i18n-placeholder="non_encumber_items"></textarea>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -800,7 +1064,7 @@
       <textarea spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
     </div>
   </div>
-
+  </div>
 </div>
 
 <!-- Templates -->
