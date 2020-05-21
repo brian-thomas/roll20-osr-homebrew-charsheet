@@ -73,6 +73,13 @@ h4 {
 .sheet-left-pad {
 		padding-left: 10px
 }
+.sheet-sm-textarea {
+	height: 50px;
+		width:  180px;
+}
+.sheet-lrg-textarea {
+	height: 450px;
+}
 .repitem {
     display: flex;
     align-items: center;
