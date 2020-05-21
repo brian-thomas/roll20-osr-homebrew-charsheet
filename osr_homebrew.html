@@ -1,4 +1,3 @@
-<!-- Header -->
 <div class="sheet-flex-between">
 
   <div class="sheet-header-left sheet-noborder">
@@ -12,11 +11,23 @@
        <select class="sheet-info3" name="attr_class">
          <option selected="selected" value="fighter">Fighter</option>
          <option value="cleric">Cleric</option>
-         <option value="thief">Specialist</option>
+         <option value="specialist">Specialist</option>
          <option value="wizard">Wizard</option>
        </select>
-       <input type="text" class="sheet-info3" name="attr_level">
-       <input type="text" class="sheet-info3" name="attr_xp">
+       <select class="sheet-info3" name="attr_level">
+         <option value="0">0</option>
+         <option selected="selected" value="1">1</option>
+         <option value="2">2</option>
+         <option value="3">3</option>
+         <option value="4">4</option>
+         <option value="5">5</option>
+         <option value="6">6</option>
+         <option value="7">7</option>
+         <option value="8">8</option>
+         <option value="9">9</option>
+         <option value="10">10</option>
+       </select>
+       <input type="text" class="sheet-info3" name="attr_xp"/>
        <span><label class="sheet-info3">Class</label></span>
        <span><label class="sheet-info3">Level</label></span>
        <span><label class="sheet-info3">XP</label></span>
@@ -30,11 +41,11 @@
        </select>
        <select class="sheet-info3" name="attr_race">
           <option selected="selected" value="Human">Human</option>
-          <option value="Dwarven">Dwarven</option>
+          <option value="Dwarf">Dwarf</option>
           <option value="Elven">Elven</option>
           <option value="Halfling">Halfling</option>
        </select>
-       <input type="text" class="sheet-info3" name="attr_background">
+       <input type="text" class="sheet-info3" name="attr_background"/>
        <span><label class="sheet-info3">Alignment</label></span>
        <span><label class="sheet-info3">Race</label></span>
        <span><label class="sheet-info3">Background</label></span>
@@ -242,6 +253,10 @@
         <div class="sheet-noborder">
           <div class="sheet-thick-border">
             <h3>Skills</h3>
+            <div class="sheet-bold-font">
+              Skill Points Available: <input type="number" class="sheet-inactive-color" name="attr_skill_points" value="0" readonly/>
+              Skill Points Spent: <input type="number" class="sheet-inactive-color" name="attr_skill_points_used" value="0" readonly/>
+            </div>
             <div class="sheet-block">
               <div class="sheet-block">
                 <div class="sheet-thin-border sheet-bottom-padding">
@@ -252,7 +267,7 @@
                       <div class="sheet-block-between">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Arcana</span>
-                          <input type="number" name="attr_arcana_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_arcana_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Arcana}} {{skillroll=[[1d20]]}} {{target=[[@{arcana_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -260,7 +275,7 @@
                       <div class="sheet-block-between">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Architect</span>
-                          <input type="number" name="attr_architect_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_architect_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Architect}} {{skillroll=[[1d20]]}} {{target=[[@{architect_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -268,7 +283,7 @@
                       <div class="sheet-block-between">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Armory</span>
-                          <input type="number" name="attr_armory_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_armory_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Armory}} {{skillroll=[[1d20]]}} {{target=[[@{armory_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -276,7 +291,7 @@
                       <div class="sheet-block">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Athletics</span>
-                          <input type="number" name="attr_athletics_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_athletics_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Athletics}} {{skillroll=[[1d20]]}} {{target=[[@{athletics_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -284,7 +299,7 @@
                       <div class="sheet-block">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Bushcraft</span>
-                          <input type="number" name="attr_bushcraft_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_bushcraft_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Bushcraft}} {{skillroll=[[1d20]]}} {{target=[[@{bushcraft_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -292,7 +307,7 @@
                       <div class="sheet-block">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Languages</span>
-                          <input type="number" name="attr_languages_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_languages_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Languages}} {{skillroll=[[1d20]]}} {{target=[[@{languages_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -300,7 +315,7 @@
                       <div class="sheet-block">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Open&nbsp;Doors</span>
-                          <input type="number" name="attr_open_door_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_open_door_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=OpenDoor}} {{skillroll=[[1d20]]}} {{target=[[@{open_doors_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -310,7 +325,7 @@
                       <div class="sheet-block">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Search</span>
-                          <input type="number" name="attr_search_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_search_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Search}} {{skillroll=[[1d20]]}} {{target=[[@{search_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -318,7 +333,7 @@
                       <div class="sheet-block">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Sleight of Hand</span>
-                          <input type="number" name="attr_sleight_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_sleight_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=SleightofHand}} {{skillroll=[[1d20]]}} {{target=[[@{sleight_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -326,7 +341,7 @@
                       <div class="sheet-block">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Sneak&nbsp;Attack</span>
-                          <input type="number" name="attr_sneak_attack_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_sneak_attack_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=SneakAttack}} {{skillroll=[[1d20]]}} {{target=[[@{sneack_attack_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -334,7 +349,7 @@
                       <div class="sheet-block">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Stealth</span>
-                          <input type="number" name="attr_stealth_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_stealth_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Stealth}} {{skillroll=[[1d20]]}} {{target=[[@{stealth_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -342,7 +357,7 @@
                       <div class="sheet-block">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font sheet-italic-font">Social</span>
-                          <input type="number" name="attr_social_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_social_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Social}} {{skillroll=[[1d20]]}} {{target=[[@{social_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -350,7 +365,7 @@
                       <div class="sheet-block">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Theology</span>
-                          <input type="number" name="attr_theology_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_theology_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Theology}} {{skillroll=[[1d20]]}} {{target=[[@{theology_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -358,7 +373,7 @@
                       <div class="sheet-block">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Tinker</span>
-                          <input type="number" name="attr_tinker_skill" class="sheet-skillvalue" value="0">
+                          <input type="number" name="attr_tinker_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Tinker}} {{skillroll=[[1d20]]}} {{target=[[@{tinker_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
@@ -374,8 +389,8 @@
                 <fieldset class="repeating_skills">
                   <div class="sheet-block sheet-thin-border sheet-side-padding">
                     <div class="sheet-align-right">
-                      <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname">
-                      <input type="number" name="attr_skillvalue" class="sheet-skillvalue" value="1">
+                      <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname"/>
+                      <input type="number" name="attr_skillvalue" class="sheet-skillvalue" value="1"/>
                       <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=@{skillname}}} {{skillroll=[[1d20]]}} {{target=[[@{skillvalue}]]}}" name="roll_Skill"></button>
                     </div>
                   </div>
@@ -487,14 +502,15 @@
           <div class="sheet-inline sheet-side-padding">
             <div class="sheet-flex sheet-side-padding">
               <div class="sheet-ability-column-modifier sheet-flex-between">
-                <input type="checkbox" name="attr_sneak_attack" value="1"/>
+                <input type="number" name="attr_sneak_attack_allow" value="0" readonly hidden/>
+                <input type="checkbox" name="sneak_attack_checkbox" value="1" readonly/>
                 <span>Sneak Attack</span>
               </div>
               <div class="sheet-ability-column-modifier sheet-flex-between">
                 <span class="sheet-italic-font">Extra Dam. Dice</span>
                 <div class="sheet-flex">
                   <span><h2>+</h2></span>
-                  <input class="ability-value" name="attr_sneak_attk_dice" type="number" value="0"/>
+                  <input class="ability-value sheet-inactive-color" name="attr_sneak_attack_dice" type="number" value="0" readonly/>
                 </div>
               </div>
             </div>
@@ -528,9 +544,9 @@
           <div class="table-row sheet-flex-simple">
             <input type="checkbox" name="attr_weapon_notched" class="table-cell sheet-side-padding" value="1"/>
             &nbsp;
-            <input type="text" name="attr_weaponname" class="sheet-align-left table-cell sheet-side-padding sheet-weapon-name" data-i18n-placeholder="name">
+            <input type="text" name="attr_weaponname" class="sheet-align-left table-cell sheet-side-padding sheet-weapon-name" data-i18n-placeholder="name"/>
             &nbsp;
-            <input type="number" name="attr_weapon_attack_bonus" class="sheet-skillname table-cell sheet-inactive-color" data-i18n-placeholder="0" readonly>
+            <input type="number" name="attr_weapon_attack_bonus" class="sheet-skillname table-cell sheet-inactive-color" data-i18n-placeholder="0" readonly/>
             &nbsp;
             <select class="sheet-center table-cell sheet-info4" name="attr_weapondam">
               <option selected="selected" value="1d2">1d2</option>
@@ -544,7 +560,7 @@
               <option value="2d8">2d8</option>
             </select>
             &nbsp;
-            <input type="number" name="attr_weapon_dam_bonus" class="table-cell sheet-inactive-color" data-i18n-placeholder="0" readonly>
+            <input type="number" name="attr_weapon_dam_bonus" class="table-cell sheet-inactive-color" data-i18n-placeholder="0" readonly/>
             &nbsp;
             <select class="sheet-info3 table-cell" name="attr_weapon_type">
               <option selected="selected" value="melee">melee</option>
@@ -570,11 +586,14 @@
             <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
                <span>Spellcasting Type</span>
             </div>
+            <input class="ability-value sheet-inactive-color sheet-align-left sheet-info4" name="attr_spellcasting_type" type="text" value="None" readonly/>
+            <!--
             <select class="sheet-info4" name="attr_spellcasting_type">
               <option selected="selected" value="none">Pick Type</option>
               <option value="arcane">Wizard</option>
               <option value="divine">Cleric</option>
             </select>
+            -->
           </div>
 
           <div class="sheet-flex">
@@ -584,7 +603,7 @@
             <div class="sheet-ability-column-modifier sheet-flex-between">
               <div class="sheet-thin-border sheet-flex sheet-side-padding">
                 <span><h2>+</h2></span>
-                <input class="ability-value" name="attr_spellcast_modifier" type="number" value="0"/>
+                <input class="ability-value sheet-inactive-color" name="attr_spellcasting_mod" type="number" value="0" readonly/>
               </div>
             </div>
           </div>
@@ -594,8 +613,7 @@
             </div>
             <div class="sheet-ability-column-modifier sheet-flex-between">
               <div class="sheet-thin-border sheet-flex sheet-side-padding">
-                <span><h2>+</h2></span>
-                <input class="ability-value" name="attr_divine_dc" type="number" value="8"/>
+                <input class="ability-value sheet-inactive-color" name="attr_spellcasting_dc" type="number" value="0" readonly/>
               </div>
             </div>
           </div>
@@ -644,16 +662,16 @@
       <span class="sheet-spacer">&nbsp;</span>
 
       <div class="sheet-thin-border sheet-spells">
-          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="all" checked>
-          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="1">
-          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="2">
-          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="3">
-          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="4">
-          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="5">
-          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="6">
-          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="7">
-          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="8">
-          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="9">
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="all" checked/>
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="1"/>
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="2"/>
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="3"/>
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="4"/>
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="5"/>
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="6"/>
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="7"/>
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="8"/>
+          <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="9"/>
           <h4>Spellbook</h4>
 
           <div class="sheet-spells-per-level sheet-flex">
@@ -662,98 +680,98 @@
             </div>
             <div class="sheet-flex">
               <span>1:</span>
-                <input type="number" name="attr_spells_l1" value="0">
+                <input type="number" name="attr_spells_l1" value="0"/>
             </div>
             <div class="sheet-flex">
                 <span>2:</span>
-                <input type="number" name="attr_spells_l2" value="0">
+                <input type="number" name="attr_spells_l2" value="0"/>
             </div>
             <div class="sheet-flex">
                 <span>3:</span>
-                <input type="number" name="attr_spells_l3" value="0">
+                <input type="number" name="attr_spells_l3" value="0"/>
             </div>
             <div class="sheet-flex">
                 <span>4:</span>
-                <input type="number" name="attr_spells_l4" value="0">
+                <input type="number" name="attr_spells_l4" value="0"/>
             </div>
             <div class="sheet-flex">
                 <span>5:</span>
-                <input type="number" name="attr_spells_l5" value="0">
+                <input type="number" name="attr_spells_l5" value="0"/>
             </div>
             <div class="sheet-flex">
                 <span>6:</span>
-                <input type="number" name="attr_spells_l6" value="0">
+                <input type="number" name="attr_spells_l6" value="0"/>
             </div>
                 <div class="sheet-flex">
                 <span>7:</span>
-                <input type="number" name="attr_spells_l7" value="0">
+                <input type="number" name="attr_spells_l7" value="0"/>
             </div>
             <div class="sheet-flex">
                 <span>8:</span>
-                <input type="number" name="attr_spells_l8" value="0">
+                <input type="number" name="attr_spells_l8" value="0"/>
             </div>
             <div class="sheet-flex">
                 <span>9:</span>
-                <input type="number" name="attr_spells_l9" value="0">
+                <input type="number" name="attr_spells_l9" value="0"/>
             </div>
           </div>
 
           <div class="sheet-spell-filters sheet-flex-between">
            <span class="sheet-bold-font">Filter:</span>
            <label class="sheet-filter-button">
-               <input type="radio" name="attr_spells_filter" value="all" checked>
+               <input type="radio" name="attr_spells_filter" value="all" checked/>
                <span data-i18n="all"></span>
            </label>
            <label class="sheet-filter-button">
-               <input type="radio" name="attr_spells_filter" value="1">
+               <input type="radio" name="attr_spells_filter" value="1"/>
                <span>1</span>
            </label>
            <label class="sheet-filter-button">
-               <input type="radio" name="attr_spells_filter" value="2">
+               <input type="radio" name="attr_spells_filter" value="2"/>
                <span>2</span>
            </label>
            <label class="sheet-filter-button">
-               <input type="radio" name="attr_spells_filter" value="3">
+               <input type="radio" name="attr_spells_filter" value="3"/>
                <span>3</span>
            </label>
            <label class="sheet-filter-button">
-               <input type="radio" name="attr_spells_filter" value="4">
+               <input type="radio" name="attr_spells_filter" value="4"/>
                <span>4</span>
            </label>
            <label class="sheet-filter-button">
-               <input type="radio" name="attr_spells_filter" value="5">
+               <input type="radio" name="attr_spells_filter" value="5"/>
                <span>5</span>
            </label>
            <label class="sheet-filter-button">
-               <input type="radio" name="attr_spells_filter" value="6">
+               <input type="radio" name="attr_spells_filter" value="6"/>
                <span>6</span>
            </label>
            <label class="sheet-filter-button">
-               <input type="radio" name="attr_spells_filter" value="7">
+               <input type="radio" name="attr_spells_filter" value="7"/>
                <span>7</span>
            </label>
            <label class="sheet-filter-button">
-               <input type="radio" name="attr_spells_filter" value="8">
+               <input type="radio" name="attr_spells_filter" value="8"/>
                <span>8</span>
            </label>
            <label class="sheet-filter-button">
-             <input type="radio" name="attr_spells_filter" value="9">
+             <input type="radio" name="attr_spells_filter" value="9"/>
              <span>9</span>
            </label>
          </div>
 
          <fieldset class="repeating_spells">
-           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="1">
-           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="2">
-           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="3">
-           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="4">
-           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="5">
-           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="6">
-           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="7">
-           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="8">
-           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="9">
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="1"/>
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="2"/>
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="3"/>
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="4"/>
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="5"/>
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="6"/>
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="7"/>
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="8"/>
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="9"/>
            <div class="sheet-spellcontainer sheet-side-padding">
-             <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" data-i18n-placeholder="name">
+             <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" data-i18n-placeholder="name"/>
              <span class="sheet-left-pad"> Level:</span>
              <select class="sheet-info1 sheet-align-right sheet-spell-level" name="attr_spelllevel">
                <option selected="selected" value="1">1</option>
@@ -781,15 +799,15 @@
       <div class="sheet-block">
         <div class="sheet-flex-between sheet-bottom-padding">
           <div class="sheet-thin-border sheet-padding">
-            <span class="sheet-bold-font">Encumberance Points:</span>
-            <input type="number" name="encumberance-points" class="sheet-inactive-color" value="0" readonly/>
-            <span class="sheet-bold-font">Encumberance Modifier:</span>
-            <input type="number" name="encumberance-modifier" class="sheet-inactive-color" value="0" readonly/>
-            <span class="sheet-bold-font">Encumberance: </span>
-            <input type="number" name="encumberance" class="sheet-inactive-color" value="0" readonly/>
+            <span class="sheet-bold-font">Encumbrance Points:</span>
+            <input type="number" name="attr_encumbrance_points" class="sheet-inactive-color" value="0" readonly/>
+            <span class="sheet-bold-font">Encumbrance Modifier:</span>
+            <input type="number" name="attr_encumbrance_mod" class="sheet-inactive-color" value="0" readonly/>
+            <span class="sheet-bold-font sheet-big-font">Encumbrance: </span>
+            <input type="number" name="attr_encumbrance" class="sheet-inactive-color" value="0" readonly/>
           </div>
           <div class="sheet-thin-border sheet-padding">
-            <span class="sheet-bold-font">Movement Rate: </span>
+            <span class="sheet-bold-font sheet-big-font">Movement Rate: </span>
             <input type="number" name="movement-rate" class="sheet-inactive-color" value="0" readonly/>
           </div>
         </div>
@@ -1092,10 +1110,122 @@
   </rolltemplate>
 
   <!-- Sheet Workers -->
-<script type="text/worker">
-on("sheet:opened", () => {
-    setAttrs({
-      bonus_query: getTranslationByKey("bonus")
+  <script type="text/worker">
+  // Ability modifiers
+  const raceMods = { Human: "", Dwarf: "constitution", Halfling: "dexterity", Elven : "charisma:intelligence:dexterity" };
+  ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom'].forEach( ability => {
+    on(`sheet:opened change:class change:race change:level change:${ability}`, () => {
+          getAttrs([ability, 'class', 'race', 'level', 'skill_points'], v => {
+              const setting = {};
+              const score = parseInt(v[ability]) || 10;
+              const statrank = [1,3,5,8,12,15,17,19].findIndex(rank => score <= rank);
+              const level = parseInt(v.level);
+              const race = v.race.trim();
+              const c_class = v.class.trim();
+              const ability_mod = `${ability}_mod`
+              setting[ability_mod] = (statrank === -1 ? 4 : statrank -4) + ((raceMods[race] || '').indexOf(ability) !== -1 ? 1 : 0);
+
+              // do skill points
+              if (ability === 'intelligence') {
+                const base_int_mod = setting[ability_mod];
+                const base_points = base_int_mod + (c_class === 'specialist' ? 3 : 1);
+                setting["skill_points"] = base_points * level;
+                // spellcasting
+                if (c_class === 'wizard') {
+                  setting["spellcasting_mod"] = base_int_mod + parseInt(level/3);
+                  setting["spellcasting_dc"] = base_int_mod + 10 + parseInt(level/3);
+                }
+              }
+
+              if (ability === 'wisdom') {
+                if (c_class === 'cleric') {
+                  const base_wis_mod = setting[ability_mod];
+                  setting["spellcasting_mod"] = base_wis_mod + parseInt(level/3);
+                  setting["spellcasting_dc"] = base_wis_mod + 10 + parseInt(level/3);
+                }
+              }
+
+              // do dex-based Stats
+              if (ability === 'dexterity') {
+                const base_dex_mod = setting[ability_mod];
+                setting["initiative"] = base_dex_mod;
+                setting["ranged_ab"] = base_dex_mod + 1 + (c_class === 'fighter' ? level : 0);
+              }
+
+              if (ability === 'strength') {
+                const base_str_mod = setting[ability_mod]
+                setting["melee_ab"] = base_str_mod + 1 + (c_class === 'fighter' ? level : 0);
+                setting["encumbrance_mod"] = base_str_mod + (race === 'Dwarf' ? 1 : 0);
+              }
+
+              /*
+              setting[`${ability}_mod`] = (statrank === -1 ? 4 : statrank -4) + ((classMods[race] || '') === ability ? 1 : 0);
+              */
+              setAttrs(setting);
+            });
+        });
+      });
+
+  const abilityCheck = { strength_mod: "fortitude", dexterity_mod: "dodge", constitution_mod: "health", intelligence_mod: "perception", wisdom_mod: "willpower" };
+  ['charisma_mod', 'constitution_mod', 'dexterity_mod', 'intelligence_mod', 'strength_mod', 'wisdom_mod'].forEach(ability_mod => {
+    on(`sheet:opened change:level change:${ability_mod}`, () => {
+      getAttrs([ability_mod, 'level'], v => {
+        const setting = {};
+        const score = parseInt(v[ability_mod]) || 0;
+        const level = parseInt(v.level) || 1;
+        const checkName = abilityCheck[ability_mod];
+        setting[checkName] = score + parseInt(level/2);
+        setAttrs(setting);
+      });
     });
   });
+
+  // Class/Level stuff
+  on(`sheet:opened change:class change:level`, () => {
+    getAttrs(['class', 'level'], v => {
+      const c_class = v.class.trim();
+      const level = parseInt(v.level);
+      const setting = {};
+      setting['sneak_attack_allow'] = (c_class === 'specialist' ? 1 : 0);
+      setting['sneak_attack_dice'] = (c_class === 'specialist' ?  1 + parseInt(level/4): 0);
+      setting["spellcasting_type"] = (c_class === 'wizard' ? "Arcane" : (c_class === 'cleric' ? "Divine" : "None"));
+      setAttrs(setting);
+    });
+  });
+
+  const coreSkills = ['arcana_skill', 'architect_skill', 'armory_skill', 'athletics_skill', 'bushcraft_skill',
+                      'languages_skill', 'open_door_skill', 'search_skill', 'sleight_skill', 'sneak_attack_skill',
+                      'stealth_skill', 'social_skill', 'theology_skill', 'tinker_skill'];
+
+  coreSkills.forEach(core_skill => {
+    on(`change:${core_skill} change:repeating_skills remove:repeating_skills`, () => {
+       getAttrs(coreSkills, v => {
+         const setting = {};
+         const total = Object.values(v).reduce((m, w) => (m + (parseInt(w) || 0)), 0);
+         setting ["skill_points_used"] = total;
+         setAttrs(setting);
+       });
+    });
+  });
+
+  /*
+on('change:repeating_skills remove:repeating_skills', () => {
+  "use strict";
+  getSectionIDs('repeating_skills', idArray => {
+    getAttrs(idArray.map(id => `repeating_skills_${id}_encumbrance`), v => {
+    const total = Object.values(v).reduce((m, w) => (m + (parseInt(w) || 0)), 0);
+      setAttrs({
+        encumbrance_total: total
+      });
+    });
+  });
+});
+*/
+
+  on("sheet:opened", () => {
+    setAttrs({
+      bonus_query: getTranslationByKey("target")
+    });
+  });
+
 </script>

@@ -61,6 +61,9 @@ h4 {
 .sheet-small-font {
 	font-size: 10px;
 }
+.sheet-big-font {
+	font-size: 17px;
+}
 .sheet-italic-font, h4 {
 	font-style: italic;
 }
