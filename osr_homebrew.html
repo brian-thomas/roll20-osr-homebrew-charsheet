@@ -177,7 +177,7 @@
             </div>
           </div>
 
-          <div class="sheet-col-left-right sheet-save-col sheet-thick-border">
+          <div class="sheet-col-left-right sheet-save-col sheet-thick-border-no-pad">
             <h3>Checks</h3>
             <div class="sheet-flex-between">
               <div class="sheet-ability-column-value">
@@ -191,7 +191,6 @@
                 </button>
               </div>
             </div>
-
             <div class="sheet-flex-between">
               <div class="sheet-ability-column-value">
                 <span class="ability-check-label">Dodge</span>
@@ -813,12 +812,12 @@
       <div class="sheet-block">
         <div class="sheet-flex-between sheet-bottom-padding">
           <div class="sheet-thin-border sheet-padding">
-            <span class="sheet-bold-font">Encumbrance Points:</span>
+            <span class="sheet-bold-font sheet-left-pad">Encumbrance Points:</span>
             <input type="number" name="attr_encumbrance_points" class="sheet-inactive-color" value="0" readonly/>
             <span class="sheet-bold-font">Encumbrance Modifier:</span>
             <input type="number" name="attr_encumbrance_mod" class="sheet-inactive-color" value="0" readonly/>
             <span class="sheet-bold-font sheet-big-font">Encumbrance: </span>
-            <input type="number" name="attr_encumbrance" class="sheet-inactive-color" value="0" readonly/>
+            <input type="number" name="attr_encumbrance" class="sheet-inactive-color sheet-right-pad" value="0" readonly/>
           </div>
           <div class="sheet-thin-border sheet-padding">
             <span class="sheet-bold-font sheet-big-font">Movement Rate: </span>
@@ -1081,7 +1080,7 @@
             <div class="sheet-padding"></div>
             <div class="sheet-thin-border sheet-bottom-padding">
               <h3>Non-Encumbering Items</h3>
-              <textarea spellcheck="false" name="attr_non_encumber_items" data-i18n-placeholder="non_encumber_items"></textarea>
+              <textarea class="sheet-med-textarea" spellcheck="false" name="attr_non_encumber_items" data-i18n-placeholder="non_encumber_items"></textarea>
             </div>
           </div>
         </div>

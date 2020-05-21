@@ -71,11 +71,18 @@ h4 {
 	font-weight: bold;
 }
 .sheet-left-pad {
-		padding-left: 10px
+	padding-left: 10px
+}
+.sheet-right-pad {
+	padding-right: 10px
 }
 .sheet-sm-textarea {
 	height: 50px;
-		width:  180px;
+	width:  180px;
+}
+.sheet-med-textarea {
+	height: 180px;
+	width:  385px;
 }
 .sheet-lrg-textarea {
 	height: 450px;
