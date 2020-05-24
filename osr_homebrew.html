@@ -557,11 +557,11 @@
           <div class="table-row sheet-flex-simple">
             <input type="checkbox" name="attr_weapon_notched" class="table-cell sheet-side-padding" value="1"/>
             &nbsp;
-            <input type="text" name="attr_weaponname" class="sheet-align-left table-cell sheet-side-padding sheet-weapon-name" data-i18n-placeholder="name"/>
+            <input type="text" name="attr_weapon_name" class="sheet-align-left table-cell sheet-side-padding sheet-weapon-name" data-i18n-placeholder="name"/>
             &nbsp;
-            <input type="number" name="attr_weapon_attack_bonus" class="sheet-skillname table-cell sheet-inactive-color" data-i18n-placeholder="0" readonly/>
+            <input type="number" name="attr_weapon_attack_bonus" class="sheet-skillname table-cell sheet-inactive-color" value="0" readonly/>
             &nbsp;
-            <select class="sheet-center table-cell sheet-info4" name="attr_weapondam">
+            <select class="sheet-center table-cell sheet-info4" name="attr_weapon_dam">
               <option selected="selected" value="1d2">1d2</option>
               <option value="1d4">1d4</option>
               <option value="1d6">1d6</option>
@@ -573,7 +573,7 @@
               <option value="2d8">2d8</option>
             </select>
             &nbsp;
-            <input type="number" name="attr_weapon_dam_bonus" class="table-cell sheet-inactive-color" data-i18n-placeholder="0" readonly/>
+            <input type="number" name="attr_weapon_dam_bonus" class="table-cell sheet-inactive-color" value="0" readonly/>
             &nbsp;
             <select class="sheet-info3 table-cell" name="attr_weapon_type">
               <option selected="selected" value="melee">melee</option>
@@ -825,7 +825,7 @@
           </div>
         </div>
         <div class="sheet-flex-between">
-          <div class="sheet-col-right">
+          <div class="sheet-col-left-inv">
             <div class="sheet-thin-border sheet-padding">
               <div class="table sheet-fill-width">
                 <div class="table-row sheet-flex-simple">
@@ -833,12 +833,24 @@
                     <h3>Armor:</h3>
                   </div>
                   <div class="table-cell sheet-table-cell">
-                    <select name="attr_armor">
+                    <select name="attr_armor" class="sheet-armor-name">
                       <option selected="selected" value="none">Clothing / 0 Slots</option>
                       <option value="leather">Leather / 1 Slot</option>
-                      <option value="studded_leather">Studded Leather / 1 Slot</option>
+                      <option value="studded_leather">Std. Leather / 1 Slot</option>
                       <option value="chain">Chain / 1 Enc. Pts.</option>
                       <option value="plate">Plate / 2 Enc. Pts. </option>
+                    </select>
+                  </div>
+                </div>
+		<div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell">
+                    <h3>Shield:</h3>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <select name="attr_shield" class="sheet-armor-name">
+                      <option selected="selected" value="none">None / 0 Slots</option>
+                      <option value="small_shield">Small Shield / 1 Slot</option>
+                      <option value="small_shield">Large Shield / 1 Slot</option>
                     </select>
                   </div>
                 </div>
@@ -960,10 +972,10 @@
               </div>
             </div>
           </div>
-          <div class="sheet-col-left">
+          <div class="sheet-col-right-inv">
             <div class="sheet-thin-border sheet-bottom-padding">
               <h3>Purse (Coins/Gems)</h3>
-              <textarea spellcheck="false" name="attr_purse_items" data-i18n-placeholder="coins_gems"></textarea>
+              <textarea class="sheet-med-textarea" spellcheck="false" name="attr_purse_items" data-i18n-placeholder="coins_gems"></textarea>
             </div>
             <div class="sheet-padding"></div>
             <div class="sheet-flex-between">
@@ -977,7 +989,7 @@
                           <option selected="selected" value="none">None</option>
                           <option value="sack">Sack</option>
                           <option value="large_sack">Small Pack</option>
-                          <option value="small_sack">Large Pack</option>
+                          <option value="small_sack">Large Pack - 1 Enc. Pt.</option>
                         </select>
                       </div>
                     </div>
@@ -1026,7 +1038,7 @@
                           <select name="attr_container_2_type" class="sheet-info5">
                             <option selected="selected" value="none">None</option>
                             <option value="sack">Sack</option>
-                            <option value="large_sack">Small Pack</option>
+                            <option value="large_sack">Small Pack - 1 Enc. Pt.</option>
                           </select>
                         </div>
                       </div>
@@ -1057,7 +1069,7 @@
                         <div class="table-cell sheet-table-header-cell">
                           <select name="attr_container_3_type" class="sheet-info5">
                             <option selected="selected" value="none">None</option>
-                            <option value="sack">Sack</option>
+                            <option value="sack">Sack - 1 Enc. Pt.</option>
                           </select>
                         </div>
                       </div>
@@ -1221,8 +1233,27 @@
     });
   });
 
+  // set damage and attack bonuses on weapons
   /*
-on('change:repeating_skills remove:repeating_skills', () => {
+  const attrsToAssign = [ 'weapon_attack_bonus', 'weapon_dam_bonus' ];
+  on('change:repeating_weapons', () => {
+    "use strict";
+    getSectionIDs('repeating_weapons', idArray => {
+        const attrs = idArray.reduce((m, id) => {
+          return m.concat(attrsToAssign.map(name => `repeating_weapons_${id}_${name}`));
+        }, []);
+        getAttrs(attrs, v => {
+          const data = idArray.map(id => {
+              return attrsToAssign.reduce((m, name) => { m[name] = v[`repeating_weapons_${id}_${name}`] || -1; return m; }, {});
+          });
+          setAttrs(data);
+        });
+      });
+    });
+  */
+
+  /*
+  on('change:repeating_skills remove:repeating_skills', () => {
   "use strict";
   getSectionIDs('repeating_skills', idArray => {
     getAttrs(idArray.map(id => `repeating_skills_${id}_encumbrance`), v => {
@@ -1234,11 +1265,10 @@ on('change:repeating_skills remove:repeating_skills', () => {
   });
 });
 */
-
-  on("sheet:opened", () => {
-    setAttrs({
-      bonus_query: getTranslationByKey("target")
-    });
+on("sheet:opened", () => {
+  setAttrs({
+    bonus_query: getTranslationByKey("target")
   });
+});
 
 </script>

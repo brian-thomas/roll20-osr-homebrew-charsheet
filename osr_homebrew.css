@@ -81,8 +81,8 @@ h4 {
 	width:  180px;
 }
 .sheet-med-textarea {
-	height: 180px;
-	width:  385px;
+	height: 181px;
+	width:  490px;
 }
 .sheet-lrg-textarea {
 	height: 450px;
@@ -173,6 +173,12 @@ h4 {
 .sheet-col-left-left{
 	width: 67%;
 	}
+.sheet-col-right-inv {
+	width: 62%;
+}
+.sheet-col-left-inv {
+	width: 37%;
+}
 .sheet-col-left-right {
 	width: 31%;
 }
@@ -534,9 +540,13 @@ input[type=number].sheet-spell-prepared {
 	font-weight: bold;
 	font-size: 17px
 }
+.sheet-armor-name {
+	font-weight: bold;
+	width: 180px;
+}
 .sheet-item-name-header, .sheet-item-name {
-	width: 350px;
+	width: 250px;
 }
 .sheet-container-item {
-	width: 190px;
+	width: 240px;
 }
