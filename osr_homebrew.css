@@ -9,7 +9,6 @@
 .sheet-inactive-color {
 	background-color: #ddd;
 }
-
 .sheet-active-color {
 	background-color: #eee;
 }
@@ -362,7 +361,7 @@ input.sheet-tab2:checked ~ div.sheet-section-combat,
 input.sheet-tab3:checked ~ div.sheet-section-magic,
 input.sheet-tab4:checked ~ div.sheet-section-inventory,
 input.sheet-tab5:checked ~ div.sheet-section-notes {
-        display: block;
+	display: block;
 }
 
 input.sheet-tab {
@@ -516,6 +515,7 @@ input[type=number].sheet-spell-prepared {
 	width: 15%;
 	text-align: center;
 }
+
 /* Inventory */
 .sheet-table-cell {
 	text-align: left;
@@ -549,4 +549,190 @@ input[type=number].sheet-spell-prepared {
 }
 .sheet-container-item {
 	width: 240px;
+}
+
+div.sheet-no-dex4slots,
+div.sheet-no-dex6slots,
+div.sheet-no-dex9slots,
+div.sheet-no-dex13slots,
+div.sheet-no-dex16slots,
+div.sheet-no-dex18slots {
+	display: block;
+}
+
+div.sheet-dex4slots,
+div.sheet-dex6slots,
+div.sheet-dex9slots,
+div.sheet-dex13slots,
+div.sheet-dex16slots,
+div.sheet-dex18slots {
+	display: none;
+}
+
+input.sheet-dex-show-slots[value="4"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="5"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="6"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="7"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="8"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="9"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="10"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="11"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="12"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="13"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="14"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="15"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="16"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="17"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="18"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="19"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex4slots,
+{
+	display: none;
+}
+
+input.sheet-dex-show-slots[value="6"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="7"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="8"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="9"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="10"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="11"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="12"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="13"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="14"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="15"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="16"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="17"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="18"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="19"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex6slots,
+{
+	display: none;
+}
+
+input.sheet-dex-show-slots[value="9"] ~ div.sheet-no-dex9slots,
+input.sheet-dex-show-slots[value="10"] ~ div.sheet-no-dex9slots,
+input.sheet-dex-show-slots[value="11"] ~ div.sheet-no-dex9slots,
+input.sheet-dex-show-slots[value="12"] ~ div.sheet-no-dex9slots,
+input.sheet-dex-show-slots[value="13"] ~ div.sheet-no-dex9slots,
+input.sheet-dex-show-slots[value="14"] ~ div.sheet-no-dex9slots,
+input.sheet-dex-show-slots[value="15"] ~ div.sheet-no-dex9slots,
+input.sheet-dex-show-slots[value="16"] ~ div.sheet-no-dex9slots,
+input.sheet-dex-show-slots[value="17"] ~ div.sheet-no-dex9slots,
+input.sheet-dex-show-slots[value="18"] ~ div.sheet-no-dex9slots,
+input.sheet-dex-show-slots[value="19"] ~ div.sheet-no-dex9slots,
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex9slots,
+{
+	display: none;
+}
+
+input.sheet-dex-show-slots[value="13"] ~ div.sheet-no-dex13slots,
+input.sheet-dex-show-slots[value="14"] ~ div.sheet-no-dex13slots,
+input.sheet-dex-show-slots[value="15"] ~ div.sheet-no-dex13slots,
+input.sheet-dex-show-slots[value="16"] ~ div.sheet-no-dex13slots,
+input.sheet-dex-show-slots[value="17"] ~ div.sheet-no-dex13slots,
+input.sheet-dex-show-slots[value="18"] ~ div.sheet-no-dex13slots,
+input.sheet-dex-show-slots[value="19"] ~ div.sheet-no-dex13slots,
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex13slots,
+{
+	display: none;
+}
+
+input.sheet-dex-show-slots[value="16"] ~ div.sheet-no-dex16slots,
+input.sheet-dex-show-slots[value="17"] ~ div.sheet-no-dex16slots,
+input.sheet-dex-show-slots[value="18"] ~ div.sheet-no-dex16slots,
+input.sheet-dex-show-slots[value="19"] ~ div.sheet-no-dex16slots,
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex16slots,
+{
+	display: none;
+}
+
+input.sheet-dex-show-slots[value="18"] ~ div.sheet-no-dex18slots
+input.sheet-dex-show-slots[value="19"] ~ div.sheet-no-dex18slots
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex18slots
+{
+	display: none;
+}
+
+input.sheet-dex-show-slots[value="4"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="5"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="6"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="7"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="8"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="9"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="10"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="11"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="12"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="13"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="14"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="15"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="16"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="17"] ~ div.sheet-dex4slots,
+input.sheet-dex-show-slots[value="18"] ~ div.sheet-dex4slots
+input.sheet-dex-show-slots[value="19"] ~ div.sheet-dex4slots
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex4slots
+{
+	display: block;
+}
+
+input.sheet-dex-show-slots[value="6"] ~ div.sheet-dex6slots,
+input.sheet-dex-show-slots[value="7"] ~ div.sheet-dex6slots,
+input.sheet-dex-show-slots[value="8"] ~ div.sheet-dex6slots,
+input.sheet-dex-show-slots[value="9"] ~ div.sheet-dex6slots,
+input.sheet-dex-show-slots[value="10"] ~ div.sheet-dex6slots,
+input.sheet-dex-show-slots[value="11"] ~ div.sheet-dex6slots,
+input.sheet-dex-show-slots[value="12"] ~ div.sheet-dex6slots,
+input.sheet-dex-show-slots[value="13"] ~ div.sheet-dex6slots,
+input.sheet-dex-show-slots[value="14"] ~ div.sheet-dex6slots,
+input.sheet-dex-show-slots[value="15"] ~ div.sheet-dex6slots,
+input.sheet-dex-show-slots[value="16"] ~ div.sheet-dex6slots,
+input.sheet-dex-show-slots[value="17"] ~ div.sheet-dex6slots,
+input.sheet-dex-show-slots[value="18"] ~ div.sheet-dex6slots
+input.sheet-dex-show-slots[value="19"] ~ div.sheet-dex6slots
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex6slots
+{
+	display: block;
+}
+
+input.sheet-dex-show-slots[value="9"] ~ div.sheet-dex9slots,
+input.sheet-dex-show-slots[value="10"] ~ div.sheet-dex9slots,
+input.sheet-dex-show-slots[value="11"] ~ div.sheet-dex9slots,
+input.sheet-dex-show-slots[value="12"] ~ div.sheet-dex9slots,
+input.sheet-dex-show-slots[value="13"] ~ div.sheet-dex9slots,
+input.sheet-dex-show-slots[value="14"] ~ div.sheet-dex9slots,
+input.sheet-dex-show-slots[value="15"] ~ div.sheet-dex9slots,
+input.sheet-dex-show-slots[value="16"] ~ div.sheet-dex9slots,
+input.sheet-dex-show-slots[value="17"] ~ div.sheet-dex9slots,
+input.sheet-dex-show-slots[value="18"] ~ div.sheet-dex9slots
+input.sheet-dex-show-slots[value="19"] ~ div.sheet-dex9slots
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex9slots
+{
+	display: block;
+}
+
+input.sheet-dex-show-slots[value="13"] ~ div.sheet-dex13slots,
+input.sheet-dex-show-slots[value="14"] ~ div.sheet-dex13slots,
+input.sheet-dex-show-slots[value="15"] ~ div.sheet-dex13slots,
+input.sheet-dex-show-slots[value="16"] ~ div.sheet-dex13slots,
+input.sheet-dex-show-slots[value="17"] ~ div.sheet-dex13slots,
+input.sheet-dex-show-slots[value="18"] ~ div.sheet-dex13slots
+input.sheet-dex-show-slots[value="19"] ~ div.sheet-dex13slots
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex13slots
+{
+	display: block;
+}
+
+input.sheet-dex-show-slots[value="16"] ~ div.sheet-dex16slots,
+input.sheet-dex-show-slots[value="17"] ~ div.sheet-dex16slots,
+input.sheet-dex-show-slots[value="18"] ~ div.sheet-dex16slots
+input.sheet-dex-show-slots[value="19"] ~ div.sheet-dex16slots
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex16slots
+{
+	display: block;
+}
+
+input.sheet-dex-show-slots[value="18"] ~ div.sheet-dex18slots
+input.sheet-dex-show-slots[value="19"] ~ div.sheet-dex18slots
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
+{
+	display: block;
 }

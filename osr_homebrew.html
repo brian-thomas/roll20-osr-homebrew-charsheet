@@ -859,6 +859,7 @@
             <div class="sheet-thin-border sheet-padding">
               <h3>Ready Items</h3>
               <div class="table sheet-fill-width">
+                <input class="sheet-dex-show-slots" name="attr_dex-show-slots" type="hidden" value="18"/>
                 <div class="table-row sheet-flex-simple">
                   <div class="table-cell sheet-table-header-cell sheet-item-name"><span>Item Name</span></div>
                   <div class="table-cell sheet-table-header-cell sheet-item-dex">Min Dex.</div>
@@ -868,105 +869,225 @@
                   <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name" data-i18n-placeholder="Primary Hand"/></div>
                   <div class="table-cell sheet-table-cell"><input type="number" value="3" class="sheet-inactive-color sheet-item-dex" readonly/></div>
                 </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name" data-i18n-placeholder="Off Hand"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="4" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                <div class="sheet-dex4slots">
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name" data-i18n-placeholder="Off Hand"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="4" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
                 </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="6" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                <div class="sheet-no-dex4slots">
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name sheet-inactive-color" data-i18n-placeholder="Off Hand" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="4" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
                 </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="6" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                <div class="sheet-dex6slots">
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="6" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="6" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="6" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
                 </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="6" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-table-sep-row"></div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-table-sep-row"></div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                <div class="sheet-no-dex6slots">
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="6" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="6" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="6" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
                 </div>
                 <div class="table-row sheet-table-sep-row"></div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                <div class="sheet-dex9slots">
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
                 </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
-                </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                <div class="sheet-no-dex9slots">
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
                 </div>
                 <div class="table-row sheet-table-sep-row"></div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                <div class="sheet-dex13slots">
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
                 </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                <div class="sheet-no-dex13slots">
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="13" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
                 </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                <div class="table-row sheet-table-sep-row"></div>
+                <div class="sheet-dex16slots">
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
                 </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                <div class="sheet-no-dex16slots">
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="16" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
                 </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
-                  <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                <div class="table-row sheet-table-sep-row"></div>
+                <div class="sheet-dex18slots">
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" class="sheet-item-name"/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                </div>
+                <div class="sheet-no-dex18slots">
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
+                  <div class="table-row sheet-flex-simple">
+                    <div class="table-cell sheet-table-cell"><input type="text" value="" class="sheet-item-name sheet-inactive-color" readonly/></div>
+                    <div class="table-cell sheet-table-cell"><input type="number" value="18" class="sheet-inactive-color sheet-item-dex" readonly/></div>
+                  </div>
                 </div>
                 <div class="table-row sheet-table-sep-row"></div>
               </div>
@@ -1150,12 +1271,14 @@
               const ability_mod = `${ability}_mod`
               setting[ability_mod] = (statrank === -1 ? 4 : statrank -4) + ((raceMods[race] || '').indexOf(ability) !== -1 ? 1 : 0);
 
-              // do skill points
+              // intelligence based stuff
               if (ability === 'intelligence') {
+                // skill points
                 const base_int_mod = setting[ability_mod];
                 const base_points = base_int_mod + (c_class === 'specialist' ? 3 : 1);
                 setting["skill_points"] = base_points * level;
-                // spellcasting
+
+                // arcane spellcasting
                 if (c_class === 'wizard') {
                   setting["spellcasting_mod"] = base_int_mod + parseInt(level/3);
                   setting["spellcasting_dc"] = base_int_mod + 10 + parseInt(level/3);
@@ -1163,6 +1286,8 @@
               }
 
               if (ability === 'wisdom') {
+
+                // divine spell casting
                 if (c_class === 'cleric') {
                   const base_wis_mod = setting[ability_mod];
                   setting["spellcasting_mod"] = base_wis_mod + parseInt(level/3);
@@ -1170,11 +1295,13 @@
                 }
               }
 
-              // do dex-based Stats
+              // do dex-based stuff
               if (ability === 'dexterity') {
                 const base_dex_mod = setting[ability_mod];
                 setting["initiative"] = base_dex_mod;
                 setting["ranged_ab"] = base_dex_mod + 1 + (c_class === 'fighter' ? level : 0);
+                // for ready inventory slots
+                setting["dex-show-slots"] = score;
               }
 
               if (ability === 'strength') {
