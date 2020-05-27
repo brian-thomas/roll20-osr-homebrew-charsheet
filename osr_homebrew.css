@@ -551,6 +551,68 @@ input[type=number].sheet-spell-prepared {
 	width: 240px;
 }
 
+div.sheet-no-sack1-slots,
+div.sheet-no-sack2-slots,
+div.sheet-no-sack3-slots,
+div.sheet-no-sm-pack1-slots,
+div.sheet-no-sm-pack2-slots,
+div.sheet-no-lrg-pack-slots {
+	display: block;
+}
+
+div.sheet-sack1-slots,
+div.sheet-sack2-slots,
+div.sheet-sack3-slots,
+div.sheet-sm-pack1-slots,
+div.sheet-sm-pack2-slots,
+div.sheet-lrg-pack-slots {
+	display: none;
+}
+
+input.sheet-cont1-show-slots[value="sack"] ~ div.sheet-sack1-slots,
+input.sheet-cont2-show-slots[value="sack"] ~ div.sheet-sack2-slots,
+input.sheet-cont3-show-slots[value="sack"] ~ div.sheet-sack3-slots,
+input.sheet-cont1-show-slots[value="small_pack"] ~ div.sheet-sack1-slots,
+input.sheet-cont2-show-slots[value="small_pack"] ~ div.sheet-sack2-slots,
+input.sheet-cont1-show-slots[value="large_pack"] ~ div.sheet-sack1-slots
+{
+  display: block;
+}
+
+input.sheet-cont1-show-slots[value="small_pack"] ~ div.sheet-sm-pack1-slots,
+input.sheet-cont2-show-slots[value="small_pack"] ~ div.sheet-sm-pack2-slots,
+input.sheet-cont1-show-slots[value="large_pack"] ~ div.sheet-sm-pack1-slots
+{
+	display: block;
+}
+
+input.sheet-cont1-show-slots[value="large_pack"] ~ div.sheet-lrg-pack-slots
+{
+	display: block;
+}
+
+input.sheet-cont1-show-slots[value="sack"] ~ div.sheet-no-sack1-slots,
+input.sheet-cont2-show-slots[value="sack"] ~ div.sheet-no-sack2-slots,
+input.sheet-cont3-show-slots[value="sack"] ~ div.sheet-no-sack3-slots,
+input.sheet-cont1-show-slots[value="small_pack"] ~ div.sheet-no-sack1-slots,
+input.sheet-cont2-show-slots[value="small_pack"] ~ div.sheet-no-sack2-slots,
+input.sheet-cont1-show-slots[value="large_pack"] ~ div.sheet-no-sack1-slots
+{
+  display: none;
+}
+
+input.sheet-cont1-show-slots[value="small_pack"] ~ div.sheet-no-sm-pack1-slots,
+input.sheet-cont2-show-slots[value="small_pack"] ~ div.sheet-no-sm-pack2-slots,
+input.sheet-cont1-show-slots[value="large_pack"] ~ div.sheet-no-sm-pack1-slots
+{
+	display: none;
+}
+
+input.sheet-cont1-show-slots[value="large_pack"] ~ div.sheet-no-lrg-pack-slots
+{
+	display: none;
+}
+
 div.sheet-no-dex4slots,
 div.sheet-no-dex6slots,
 div.sheet-no-dex9slots,

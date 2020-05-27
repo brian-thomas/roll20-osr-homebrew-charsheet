@@ -821,7 +821,7 @@
           </div>
           <div class="sheet-thin-border sheet-padding">
             <span class="sheet-bold-font sheet-big-font">Movement Rate: </span>
-            <input type="number" name="movement-rate" class="sheet-inactive-color" value="0" readonly/>
+            <input type="number" name="attr_movement_rate" class="sheet-inactive-color" value="0" readonly/>
           </div>
         </div>
         <div class="sheet-flex-between">
@@ -954,6 +954,7 @@
                     <div class="table-cell sheet-table-cell"><input type="number" value="9" class="sheet-inactive-color sheet-item-dex" readonly/></div>
                   </div>
                 </div>
+                <div class="table-row sheet-table-sep-row"></div>
                 <div class="table-row sheet-table-sep-row"></div>
                 <div class="sheet-dex13slots">
                   <div class="table-row sheet-flex-simple">
@@ -1109,41 +1110,84 @@
                         <select name="attr_container_1_type" class="sheet-info5">
                           <option selected="selected" value="none">None</option>
                           <option value="sack">Sack</option>
-                          <option value="large_sack">Small Pack</option>
-                          <option value="small_sack">Large Pack - 1 Enc. Pt.</option>
+                          <option value="small_pack">Small Pack</option>
+                          <option value="large_pack">Large Pack - 1 Enc. Pt.</option>
                         </select>
                       </div>
                     </div>
+                    <input class="sheet-cont1-show-slots" name="attr_cont1_show_slots" type="hidden" value="none"/>
                     <div class="table-row sheet-table-sep-row"></div>
-                    <div class="table-row sheet-flex-simple">
-                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    <div class="sheet-sack1-slots">
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
                     </div>
-                    <div class="table-row sheet-flex-simple">
-                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    <div class="sheet-no-sack1-slots">
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                      </div>
                     </div>
-                    <div class="table-row sheet-flex-simple">
-                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    <div class="sheet-sm-pack1-slots">
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
                     </div>
-                    <div class="table-row sheet-flex-simple">
-                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    <div class="sheet-no-sm-pack1-slots">
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                      </div>
                     </div>
-                    <div class="table-row sheet-flex-simple">
-                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    <div class="sheet-lrg-pack-slots">
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      </div>
                     </div>
-                    <div class="table-row sheet-flex-simple">
-                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
-                    </div>
-                    <div class="table-row sheet-flex-simple">
-                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
-                    </div>
-                    <div class="table-row sheet-flex-simple">
-                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
-                    </div>
-                    <div class="table-row sheet-flex-simple">
-                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
-                    </div>
-                    <div class="table-row sheet-flex-simple">
-                      <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                    <div class="sheet-no-lrg-pack-slots">
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                      </div>
+                      <div class="table-row sheet-flex-simple">
+                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1159,25 +1203,49 @@
                           <select name="attr_container_2_type" class="sheet-info5">
                             <option selected="selected" value="none">None</option>
                             <option value="sack">Sack</option>
-                            <option value="large_sack">Small Pack - 1 Enc. Pt.</option>
+                            <option value="small_pack">Small Pack - 1 Enc. Pt.</option>
                           </select>
                         </div>
                       </div>
+                      <input class="sheet-cont2-show-slots" name="attr_cont2_show_slots" type="hidden" value="none"/>
                       <div class="table-row sheet-table-sep-row"></div>
-                      <div class="table-row sheet-flex-simple">
-                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      <div class="sheet-sack2-slots">
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                        </div>
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                        </div>
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                        </div>
                       </div>
-                      <div class="table-row sheet-flex-simple">
-                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      <div class="sheet-no-sack2-slots">
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                        </div>
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                        </div>
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                        </div>
                       </div>
-                      <div class="table-row sheet-flex-simple">
-                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      <div class="sheet-sm-pack2-slots">
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                        </div>
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                        </div>
                       </div>
-                      <div class="table-row sheet-flex-simple">
-                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
-                      </div>
-                      <div class="table-row sheet-flex-simple">
-                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      <div class="sheet-no-sm-pack2-slots">
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                        </div>
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                        </div>
                       </div>
                       <div class="table-row sheet-table-sep-row"></div>
                     </div>
@@ -1194,15 +1262,29 @@
                           </select>
                         </div>
                       </div>
+                      <input class="sheet-cont3-show-slots" name="attr_cont3_show_slots" type="hidden" value="none"/>
                       <div class="table-row sheet-table-sep-row"></div>
-                      <div class="table-row sheet-flex-simple">
-                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      <div class="sheet-sack3-slots">
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                        </div>
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                        </div>
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                        </div>
                       </div>
-                      <div class="table-row sheet-flex-simple">
-                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
-                      </div>
-                      <div class="table-row sheet-flex-simple">
-                        <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item"/></div>
+                      <div class="sheet-no-sack3-slots">
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                        </div>
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                        </div>
+                        <div class="table-row sheet-flex-simple">
+                          <div class="table-cell sheet-table-cell"><input type="text" class="sheet-container-item sheet-inactive-color" readonly/></div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1257,6 +1339,17 @@
 
   <!-- Sheet Workers -->
   <script type="text/worker">
+  // container update
+
+  on(`change:container_1_type change:container_2_type change:container_3_type`, () => {
+    getAttrs(['container_1_type', 'container_2_type', 'container_3_type'], v=> {
+       setAttrs( {cont1_show_slots: v.container_1_type,
+                  cont2_show_slots: v.container_2_type,
+                  cont3_show_slots: v.container_3_type});
+    });
+
+  });
+
   // Ability modifiers
   const raceMods = { Human: "", Dwarf: "constitution", Halfling: "dexterity", Elven : "charisma:intelligence:dexterity" };
   ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom'].forEach( ability => {
@@ -1376,6 +1469,8 @@
     });
   */
 
+const armor_enc = { 'chain' : 1, 'plate': 2 }
+
 // Check various inventory slots and the encumberance
 const rslots9  = [ 'rslot-9-1', 'rslot-9-2', 'rslot-9-3', 'rslot-9-4', 'rslot-9-5'];
 const rslots13 = [ 'rslot-13-1', 'rslot-13-2', 'rslot-13-3', 'rslot-13-4', 'rslot-13-5'];
@@ -1384,17 +1479,37 @@ const rslots18 = [ 'rslot-18-1', 'rslot-18-2', 'rslot-18-3', 'rslot-18-4', 'rslo
 const readySlots = rslots9.concat(rslots13.concat(rslots16.concat(rslots18)));
 
 readySlots.forEach(ready_slot => {
-  on(`change:${ready_slot}`, () => {
-    getAttrs(readySlots.concat('encumbrance_mod'), v => {
-    //getAttrs([readySlots, 'encumbrance_mod'], v => {
-       //const enc_points = Object.values(v).reduce((m, w) => (m + (w !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
+  on(`change:${ready_slot} change:race change:armor change:container_1_type change:container_2_type change:container_3_type`, () => {
+    getAttrs(readySlots.concat(['encumbrance_mod', 'race', 'armor', 'container_1_type',
+                                 'container_2_type', 'container_3_type']), v => {
+       // ugh. seems like there should be a better way to do this
        const enc_points9 = rslots9.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
        const enc_points13 = rslots13.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
        const enc_points16 = rslots16.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
        const enc_points18 = rslots18.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
-       const enc_points = enc_points9 + enc_points13 + enc_points16 + enc_points18;
-       const enc = enc_points - parseInt(v['encumbrance_mod']);
-       setAttrs( { encumbrance_points: enc_points, encumbrance: (enc > 0 ? enc : 0)} );
+
+       // Containers
+       const container_1_enc_pts = v.container_1_type === 'large_pack' ? 1 : 0;
+       const container_2_enc_pts = v.container_2_type === 'small_pack' ? 1 : 0;
+       const container_3_enc_pts = v.container_3_type === 'sack' ? 1 : 0;
+
+       // armor
+       const armor_enc_pts = armor_enc[v.armor] || 0;
+
+       // calculate encumbrance points
+       const enc_points = enc_points9 + enc_points13 + enc_points16 + enc_points18 + container_1_enc_pts + container_2_enc_pts + container_3_enc_pts + armor_enc_pts;
+
+       // calculate encumbrance
+       var enc = enc_points - parseInt(v['encumbrance_mod']);
+       enc = enc > 0 ? enc : 0;
+
+       // TODO: Calculate movement
+       const enc_move_factor = enc > 1 ? enc : 0;
+       var move_rate = (v.race === 'Dwarf' || v.race == 'Halfling') ? 35 : 40;
+       move_rate -= enc_move_factor > 0 ? (enc_move_factor -1) * 10 : 0;
+       move_rate = move_rate > 0 ? move_rate : 0;
+
+       setAttrs( { encumbrance_points: enc_points, encumbrance: enc, movement_rate: move_rate} );
      });
    });
  });
