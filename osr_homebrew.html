@@ -850,7 +850,8 @@
                     <select name="attr_shield" class="sheet-armor-name">
                       <option selected="selected" value="none">None / 0 Slots</option>
                       <option value="small_shield">Small Shield / 1 Slot</option>
-                      <option value="small_shield">Large Shield / 1 Slot</option>
+                      <option value="large_shield">Large Shield / 2 Slots</option>
+                      <option value="tower_shield">Tower Shield / 1 Enc</option>
                     </select>
                   </div>
                 </div>
@@ -1422,6 +1423,17 @@
     });
   });
 
+  // Calculate armor class
+  const armor_ac_value = {'none': 0, 'leather': 2, 'studded_leather': 4, 'chain': 6, 'plate': 8};
+  const shield_ac_value = {'none': 0, 'small_shield': 1, 'large_shield': 2, 'tower_shield': 3};
+  on(`sheet:opened change:armor change:shield change:dexterity_mod`, () => {
+    getAttrs(['armor', 'shield', 'dexterity_mod'], v => {
+      var armor_class = 10 + (v.dexterity_mod || 0) + armor_ac_value[v.armor] + shield_ac_value[v.shield];
+      setAttrs({ac : armor_class});
+
+    });
+  });
+
   // Class/Level stuff
   on(`sheet:opened change:class change:level`, () => {
     getAttrs(['class', 'level'], v => {
@@ -1469,7 +1481,10 @@
     });
   */
 
-const armor_enc = { 'chain' : 1, 'plate': 2 }
+
+
+  const armor_enc = { 'chain' : 1, 'plate': 2 }
+  const shield_enc = { 'tower_shield' : 1 }
 
 // Check various inventory slots and the encumberance
 const rslots9  = [ 'rslot-9-1', 'rslot-9-2', 'rslot-9-3', 'rslot-9-4', 'rslot-9-5'];
@@ -1479,8 +1494,8 @@ const rslots18 = [ 'rslot-18-1', 'rslot-18-2', 'rslot-18-3', 'rslot-18-4', 'rslo
 const readySlots = rslots9.concat(rslots13.concat(rslots16.concat(rslots18)));
 
 readySlots.forEach(ready_slot => {
-  on(`change:${ready_slot} change:race change:armor change:container_1_type change:container_2_type change:container_3_type`, () => {
-    getAttrs(readySlots.concat(['encumbrance_mod', 'race', 'armor', 'container_1_type',
+  on(`change:${ready_slot} change:race change:encumbrance_mod change:armor change:shield change:container_1_type change:container_2_type change:container_3_type`, () => {
+    getAttrs(readySlots.concat(['encumbrance_mod', 'race', 'armor', 'shield', 'container_1_type',
                                  'container_2_type', 'container_3_type']), v => {
        // ugh. seems like there should be a better way to do this
        const enc_points9 = rslots9.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
@@ -1495,9 +1510,12 @@ readySlots.forEach(ready_slot => {
 
        // armor
        const armor_enc_pts = armor_enc[v.armor] || 0;
+       const shield_enc_pts = shield_enc[v.shield] || 0;
 
        // calculate encumbrance points
-       const enc_points = enc_points9 + enc_points13 + enc_points16 + enc_points18 + container_1_enc_pts + container_2_enc_pts + container_3_enc_pts + armor_enc_pts;
+       const enc_points = enc_points9 + enc_points13 + enc_points16 + enc_points18
+                          + container_1_enc_pts + container_2_enc_pts + container_3_enc_pts
+                          + armor_enc_pts + shield_enc_pts;
 
        // calculate encumbrance
        var enc = enc_points - parseInt(v['encumbrance_mod']);
