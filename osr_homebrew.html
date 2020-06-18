@@ -91,7 +91,7 @@
               </div>
               <div class="sheet-ability-column-roll sheet-flex">
                 <button class="sheet-ability-button" type="roll"
-                        value="&{template:lotfp_check} {{name=^{strength}}} {{abilityroll=[[1d20+(?{@{bonus_query}|0})]]}} {{target=[[@{strength}]]}}"
+						     value="&{template:roll_check} {{name=^{strength}}} {{abilityroll=[[1d20+@{strength_mod}]]}} {{target=[[10]]}}"
                         name="roll_StrCheck"></button>
               </div>
             </div>
@@ -107,7 +107,7 @@
               </div>
               <div class="sheet-ability-column-roll sheet-flex">
                 <button class="sheet-ability-button" type="roll"
-                        value="&{template:lotfp_check} {{name=^{dexterity}}} {{abilityroll=[[1d20+(?{@{bonus_query}|0})]]}} {{target=[[@{dexterity}]]}}"
+                        value="&{template:roll_check} {{name=^{dexterity}}} {{abilityroll=[[1d20+(?{@{bonus_query}|0})]]}} {{target=[[@{dexterity}]]}}"
                         name="roll_DexCheck"></button>
               </div>
             </div>
@@ -123,7 +123,7 @@
               </div>
               <div class="sheet-ability-column-roll sheet-flex">
                 <button class="sheet-ability-button" type="roll"
-                        value="&{template:lotfp_check} {{name=^{constitution}}} {{abilityroll=[[1d20+(?{@{bonus_query}|0})]]}} {{target=[[@{constitution}]]}}"
+                        value="&{template:roll_check} {{name=^{constitution}}} {{abilityroll=[[1d20+(?{@{bonus_query}|0})]]}} {{target=[[@{constitution}]]}}"
                         name="roll_ConCheck"></button>
               </div>
             </div>
@@ -139,7 +139,7 @@
               </div>
               <div class="sheet-ability-column-roll sheet-flex">
                 <button class="sheet-ability-button" type="roll"
-                        value="&{template:lotfp_check} {{name=^{intelligence}}} {{abilityroll=[[1d20+(?{@{bonus_query}|0})]]}} {{target=[[@{intelligence}]]}}"
+                        value="&{template:roll_check} {{name=^{intelligence}}} {{abilityroll=[[1d20+(?{@{bonus_query}|0})]]}} {{target=[[@{intelligence}]]}}"
                         name="roll_IntCheck"></button>
               </div>
             </div>
@@ -155,7 +155,7 @@
               </div>
               <div class="sheet-ability-column-roll sheet-flex">
                 <button class="sheet-ability-button" type="roll"
-                        value="&{template:lotfp_check} {{name=^{wisdom}}} {{abilityroll=[[1d20+(?{@{bonus_query}|0})]]}} {{target=[[@{wisdom}]]}}"
+                        value="&{template:roll_check} {{name=^{wisdom}}} {{abilityroll=[[1d20+(?{@{bonus_query}|0})]]}} {{target=[[@{wisdom}]]}}"
                         name="roll_WisCheck"></button>
               </div>
             </div>
@@ -171,7 +171,7 @@
               </div>
               <div class="sheet-ability-column-roll sheet-flex">
                 <button class="sheet-ability-button" type="roll"
-                        value="&{template:lotfp_check} {{name=^{charisma}}} {{abilityroll=[[1d20+(?{@{bonus_query}|0})]]}} {{target=[[@{}]]}}"
+                        value="&{template:roll_check} {{name=^{charisma}}} {{abilityroll=[[1d20+(?{@{bonus_query}|0})]]}} {{target=[[@{}]]}}"
                         name="roll_ChaCheck"></button>
               </div>
             </div>
@@ -267,7 +267,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Arcana</span>
                           <input type="number" name="attr_arcana_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Arcana}} {{skillroll=[[1d20]]}} {{target=[[@{arcana_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=Arcana}} {{skillroll=[[1d20]]}} {{target=[[@{arcana_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -275,7 +275,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Architect</span>
                           <input type="number" name="attr_architect_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Architect}} {{skillroll=[[1d20]]}} {{target=[[@{architect_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=Architect}} {{skillroll=[[1d20]]}} {{target=[[@{architect_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -283,7 +283,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Armory</span>
                           <input type="number" name="attr_armory_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Armory}} {{skillroll=[[1d20]]}} {{target=[[@{armory_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=Armory}} {{skillroll=[[1d20]]}} {{target=[[@{armory_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -291,7 +291,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Athletics</span>
                           <input type="number" name="attr_athletics_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Athletics}} {{skillroll=[[1d20]]}} {{target=[[@{athletics_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=Athletics}} {{skillroll=[[1d20]]}} {{target=[[@{athletics_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -299,7 +299,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Bushcraft</span>
                           <input type="number" name="attr_bushcraft_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Bushcraft}} {{skillroll=[[1d20]]}} {{target=[[@{bushcraft_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=Bushcraft}} {{skillroll=[[1d20]]}} {{target=[[@{bushcraft_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -307,7 +307,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Languages</span>
                           <input type="number" name="attr_languages_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Languages}} {{skillroll=[[1d20]]}} {{target=[[@{languages_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=Languages}} {{skillroll=[[1d20]]}} {{target=[[@{languages_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -315,7 +315,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Open&nbsp;Doors</span>
                           <input type="number" name="attr_open_door_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=OpenDoor}} {{skillroll=[[1d20]]}} {{target=[[@{open_doors_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=OpenDoor}} {{skillroll=[[1d20]]}} {{target=[[@{open_doors_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
                     </div>
@@ -325,7 +325,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Search</span>
                           <input type="number" name="attr_search_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Search}} {{skillroll=[[1d20]]}} {{target=[[@{search_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=Search}} {{skillroll=[[1d20]]}} {{target=[[@{search_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -333,7 +333,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Sleight of Hand</span>
                           <input type="number" name="attr_sleight_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=SleightofHand}} {{skillroll=[[1d20]]}} {{target=[[@{sleight_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=SleightofHand}} {{skillroll=[[1d20]]}} {{target=[[@{sleight_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -341,7 +341,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Sneak&nbsp;Attack</span>
                           <input type="number" name="attr_sneak_attack_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=SneakAttack}} {{skillroll=[[1d20]]}} {{target=[[@{sneack_attack_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=SneakAttack}} {{skillroll=[[1d20]]}} {{target=[[@{sneack_attack_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -349,7 +349,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Stealth</span>
                           <input type="number" name="attr_stealth_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Stealth}} {{skillroll=[[1d20]]}} {{target=[[@{stealth_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=Stealth}} {{skillroll=[[1d20]]}} {{target=[[@{stealth_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -357,7 +357,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font sheet-italic-font">Social</span>
                           <input type="number" name="attr_social_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Social}} {{skillroll=[[1d20]]}} {{target=[[@{social_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=Social}} {{skillroll=[[1d20]]}} {{target=[[@{social_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -365,7 +365,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Theology</span>
                           <input type="number" name="attr_theology_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Theology}} {{skillroll=[[1d20]]}} {{target=[[@{theology_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=Theology}} {{skillroll=[[1d20]]}} {{target=[[@{theology_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -373,7 +373,7 @@
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Tinker</span>
                           <input type="number" name="attr_tinker_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=Tinker}} {{skillroll=[[1d20]]}} {{target=[[@{tinker_skill}]]}}" name="roll_Skill"></button>
+                          <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=Tinker}} {{skillroll=[[1d20]]}} {{target=[[@{tinker_skill}]]}}" name="roll_Skill"></button>
                         </div>
                       </div>
 
@@ -390,7 +390,7 @@
                     <div class="sheet-align-right">
                       <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname"/>
                       <input type="number" name="attr_skillvalue" class="sheet-skillvalue" value="1"/>
-                      <button class="sheet-skill-button" type="roll" value="&{template:lotfp_check} {{name=@{skillname}}} {{skillroll=[[1d20]]}} {{target=[[@{skillvalue}]]}}" name="roll_Skill"></button>
+                      <button class="sheet-skill-button" type="roll" value="&{template:roll_check} {{name=@{skillname}}} {{skillroll=[[1d20]]}} {{target=[[@{skillvalue}]]}}" name="roll_Skill"></button>
                     </div>
                   </div>
                </fieldset>
@@ -579,7 +579,7 @@
               <option selected="selected" value="melee">melee</option>
               <option value="ranged">ranged</option>
             </select>
-            <button class="table-cell" type="roll" value="&{template:lotfp_check} {{name=@{weaponname}}} {{skillroll=[[1d20]]}} {{target=[[@{foobar}]]}}" name="roll_WeaponAttack"></button>
+            <button class="table-cell" type="roll" value="&{template:roll_check} {{name=@{weaponname}}} {{skillroll=[[1d20]]}} {{target=[[@{foobar}]]}}" name="roll_WeaponAttack"></button>
           </div>
         </fieldset>
       </div>
@@ -797,7 +797,7 @@
                <option value="8">8</option>
                <option value="9">9</option>
              </select>
-             <button class="sheet-attack-button" type="roll" value="&{template:lotfp_check} {{name=@{spellname}}} {{spell=1}} {{charactername=@{character_name}}} {{type=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_Cast"></button>
+             <button class="sheet-attack-button" type="roll" value="&{template:roll_check} {{name=@{spellname}}} {{spell=1}} {{charactername=@{character_name}}} {{type=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_Cast"></button>
              <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
            </div>
          </fieldset>
@@ -1315,28 +1315,141 @@
 </div>
 
 <!-- Templates -->
-<rolltemplate class="rolltemplate-lotfp_check">
-  <table class="rt-table">
-      {{#abilityroll}}
-          <tr><th>{{charactername}} : {{name}} ability check</th></tr>
-          <tr><td><span class="tcat">Rolls</span>: {{abilityroll}}</td></tr>
-          <!--
-          <tr><th>{{charactername}} : {{name}} <span data-i18n="ability_check"></span></th></tr>
-          <tr><td><span class="tcat"><span data-i18n="roll"></span>: </span>{{abilityroll}}</td></tr>
-          <tr><td><span class="tcat"><span data-i18n="roll"></span>: </span>{{abilityroll}} &le; {{target}} </td></tr>
-          {{#rollLess() abilityroll target}}
-                  <tr><td class="subheader" style="color:green;"><b><span data-i18n="success"></span>!</b></td></tr>
-          {{/rollLess() abilityroll target}}
-          {{#rollTotal() abilityroll target}}
-                  <tr><td class="subheader" style="color:green;"><b><span data-i18n="success"></span>!</b></td></tr>
-          {{/rollTotal() abilityroll target}}
-          {{#rollGreater() abilityroll target}}
-                  <tr><td class="subheader" style="color:red;"><b><span data-i18n="failure"></span>.</b></td></tr>
-          {{/rollGreater() abilityroll target}}
-          -->
-      {{/abilityroll}}
-    </table>
-  </rolltemplate>
+<rolltemplate class="rolltemplate-roll_check">
+  <div class="sheet-rt-card">
+    <div class="sheet-rt-header{{#weapon}} sheet-weapon{{/weapon}}{{#spell}}  sheet-spell{{/spell}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#deathsave}} sheet-deathsave{{/deathsave}}">
+      <div class="sheet-rt-title">{{title}}</div>
+      {{#subheader}}
+      <div class="sheet-rt-subheader">{{subheader}}{{#subheaderright}} &bullet; {{subheaderright}}{{/subheaderright}}</div>
+      {{/subheader}} {{#subheader2}}
+      <div class="sheet-rt-subheader">{{subheader2}}{{#subheaderright2}} &bullet; {{subheaderright2}}{{/subheaderright2}}</div>
+      {{/subheader2}}
+    </div>
+    {{#emote}}
+    <p class="sheet-rt-emote">{{character_name}} {{emote}}</p>
+    {{/emote}}
+    <div class="sheet-main-content">
+        <!--Weapon based attacks-->
+        {{#attack}}
+        <div class="sheet-row">
+                <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Attack</div>
+                <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{attack}}{{#attackadv}} | {{attackadv}}{{/attackadv}} vs AC</div>
+        </div>
+        {{/attack}} {{#damage}}
+        <div class="sheet-row">
+                <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Damage</div>
+                <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{damage}}</div>
+        </div>
+        {{/damage}} {{#rollWasCrit() attack}}
+        <div class="sheet-row">
+                <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit</div>
+                <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{critdamage}}</div>
+        </div>
+        {{/rollWasCrit() attack}} {{#rollWasCrit() attackadv}}
+        <div class="sheet-row">
+                <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit (adv roll)</div>
+                <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{critdamage}} (if attack was made with advantage)</div>
+        </div>
+        {{/rollWasCrit() attackadv}}
+        <!--Generic section-->
+        {{#freetext}}
+        <div class="sheet-row">
+                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-key-wide">{{freetextname}}</div>
+                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{freetext}}</div>
+        </div>
+        {{/freetext}} {{#roll}}
+        <div class="sheet-row">
+                <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">{{rollname}}</div>
+                <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{roll}}{{#rolladv}} | {{rolladv}}{{/rolladv}}</div>
+        </div>
+        {{/roll}}
+        <!-- START roll option templates -->
+        <!--Simple roll (such as save/skill check or weapon attack)-->
+        {{#simple}} {{#rollhasadv}}
+        <div class="sheet-row">
+               <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Roll type</div>
+               <div class="sheet-col-7-12 sheet-padr sheet-rt-value">With advantage</div>
+        </div>
+        {{/rollhasadv}} {{#rollhasdisadv}}
+        <div class="sheet-row">
+               <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Roll type</div>
+               <div class="sheet-col-7-12 sheet-padr sheet-rt-value">With disadvantage</div>
+        </div>
+        {{/rollhasdisadv}}
+        <div class="sheet-row">
+               <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">{{rollname}}</div>
+               {{#noadvroll}}
+               <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{roll1}}</div>
+               {{/noadvroll}} {{#showadvroll}}
+               <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{roll1}} | {{roll2}}</div>
+               {{/showadvroll}} {{#rollhasadv}} {{#rollTotal() roll1 roll2}}
+               <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{roll1}} | <span class="sheet-ignored-roll">{{roll2}}</span></div>{{/rollTotal() roll1 roll2}} {{#rollGreater() roll1 roll2}}
+               <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{roll1}} | <span class="sheet-ignored-roll">{{roll2}}</span></div>{{/rollGreater() roll1 roll2}} {{#rollGreater() roll2 roll1}}
+               <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><span class="sheet-ignored-roll">{{roll1}}</span> | {{roll2}}</div>{{/rollGreater() roll2 roll1}} {{/rollhasadv}} {{#rollhasdisadv}} {{#rollTotal() roll1 roll2}}
+               <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{roll1}} | <span class="sheet-ignored-roll">{{roll2}}</span></div>{{/rollTotal() roll1 roll2}} {{#rollLess() roll1 roll2}}
+               <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{roll1}} | <span class="sheet-ignored-roll">{{roll2}}</span></div>{{/rollLess() roll1 roll2}} {{#rollLess() roll2 roll1}}
+               <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><span class="sheet-ignored-roll">{{roll1}}</span> | {{roll2}}</div>{{/rollLess() roll2 roll1}} {{/rollhasdisadv}}
+        </div>
+        {{#weapondamage}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Damage</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{weapondamage}}</div>
+        </div>
+        {{/weapondamage}} {{#weapon}} {{#noadvroll}} {{#rollWasCrit() roll1}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{weaponcritdamage}}</div>
+        </div>
+        {{/rollWasCrit() roll1}} {{/noadvroll}} {{#showadvroll}} {{#rollWasCrit() roll1}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{weaponcritdamage}}</div>
+        </div>
+        {{/rollWasCrit() roll1}} {{#rollWasCrit() roll2}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit (adv roll)</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{weaponcritdamage}}</div>
+        </div>
+        {{/rollWasCrit() roll2}} {{/showadvroll}} {{#rollhasadv}} {{#rollGreater() roll1 roll2}} {{#rollWasCrit() roll1}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{weaponcritdamage}}</div>
+        </div>
+        {{/rollWasCrit() roll1}} {{/rollGreater() roll1 roll2}} {{#rollGreater() roll2 roll1}} {{#rollWasCrit() roll2}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{weaponcritdamage}}</div>
+        </div>
+        {{/rollWasCrit() roll2}} {{/rollGreater() roll2 roll1}} {{#rollTotal() roll1 roll2}} {{#rollWasCrit() roll1}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{weaponcritdamage}}</div>
+        </div>
+        {{/rollWasCrit() roll1}} {{/rollTotal() roll1 roll2}} {{/rollhasadv}} {{#rollhasdisadv}} {{#rollLess() roll1 roll2}} {{#rollWasCrit() roll1}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{weaponcritdamage}}</div>
+        </div>
+        {{/rollWasCrit() roll1}} {{/rollLess() roll1 roll2}} {{#rollLess() roll2 roll1}} {{#rollWasCrit() roll2}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{weaponcritdamage}}</div>
+        </div>
+        {{/rollWasCrit() roll2}} {{/rollLess() roll2 roll1}} {{#rollTotal() roll1 roll2}} {{#rollWasCrit() roll1}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{weaponcritdamage}}</div>
+        </div>
+        {{/rollWasCrit() roll1}} {{/rollTotal() roll1 roll2}} {{/rollhasdisadv}} {{/weapon}} {{#math}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Math</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value sheet-no-roll-highlight">{{math}}</div>
+        </div>
+        {{/math}} {{/simple}}
+        <!-- END roll option templates -->
+    </div>
+  </div>
+</rolltemplate>
 
   <!-- Sheet Workers -->
   <script type="text/worker">
