@@ -888,7 +888,8 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 }
 
 .sheet-rolltemplate-roll_check .sheet-rt-title {
-        font-size: 1.5em;
+        font-size: 1.0em;
+	font-weight: bold;
 }
 
 .sheet-rolltemplate-roll_check .sheet-rt-subheader {}
@@ -925,7 +926,7 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 /* Saving throw header */
 
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-save {
-        background-color: #5D2828;
+        background-color: #8D2828;
 }
 
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-save:before {
