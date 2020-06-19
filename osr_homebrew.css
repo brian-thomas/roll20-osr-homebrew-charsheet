@@ -798,3 +798,215 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 {
 	display: block;
 }
+
+/* Roll Template */
+
+.sheet-col-1,
+.sheet-col-5-12,
+.sheet-col-7-12,
+.sheet-rolltemplate-roll_check .sheet-col-1,
+.sheet-rolltemplate-roll_check .sheet-col-5-12,
+.sheet-rolltemplate-roll_check .sheet-col-7-12,
+{
+        display: inline-block;
+        zoom: 1;
+        *display: inline;
+        letter-spacing: normal;
+        word-spacing: normal;
+        vertical-align: top;
+        text-rendering: auto;
+}
+
+.sheet-col-1,
+.sheet-rolltemplate-roll_check .sheet-col-1 {
+        display: block;
+}
+
+.sheet-col-5-12,
+.sheet-rolltemplate-roll_check .sheet-col-5-12 {
+        width: 41.66667%;
+}
+
+.sheet-col-7-12,
+.sheet-rolltemplate-roll_check .sheet-col-7-12 {
+        width: 58.33333%;
+}
+
+
+
+.sheet-padl,
+.sheet-rolltemplate-roll_check .sheet-padl {
+        padding-left: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+.sheet-padr,
+.sheet-rolltemplate-roll_check .sheet-padr {
+        padding-right: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+
+/* Generic header */
+
+.sheet-rolltemplate-roll_check .sheet-rt-header {
+        text-align: center;
+        position: relative;
+        color: #fff;
+        margin: 0 -10px 10px -10px;
+        padding: 5px 0;
+        background-color: #5c5c5c;
+        background-image: linear-gradient(rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
+        -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, .3);
+        -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, .3);
+        box-shadow: 0 2px 0 rgba(0, 0, 0, .3);
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header:before,
+.sheet-rolltemplate-roll_check .sheet-rt-header:after {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-color: transparent;
+        bottom: -10px;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header:before {
+        border-width: 0 10px 10px 0;
+        border-right-color: #222;
+        left: 0;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header:after {
+        border-width: 0 0 10px 10px;
+        border-left-color: #222;
+        right: 0;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-title {
+        font-size: 1.5em;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-subheader {}
+
+/* Melee header*/
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-weapon {
+	      background-color: #2C5D28;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-weapon:before {
+	      border-right-color: #375035;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-weapon:after {
+	        border-left-color: #375035;
+}
+
+/* Ability check header */
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-ability {
+        background-color: #28595D;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-ability:before {
+        border-right-color: #354E50;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-ability:after {
+        border-left-color: #354E50;
+}
+
+
+/* Saving throw header */
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-save {
+        background-color: #5D2828;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-save:before {
+        border-right-color: #503535;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-save:after {
+        border-left-color: #503535;
+}
+
+.sheet-rolltemplate-roll_check .sheet-row:nth-child(even) {
+        background-color: #E9EDEE;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-key {
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.1em;
+        -moz-text-decoration-color: #D64541;
+        text-decoration-color: #D64541;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        max-width: 120px;
+        padding: 2px 2px 2px 0px;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-key-wide {
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.1em;
+        -moz-text-decoration-color: #D64541;
+        text-decoration-color: #D64541;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 2px 2px 2px 0px
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-value {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin-top: 2px;
+}
+
+.sheet-rolltemplate-roll_check .sheet-ignored-roll .inlinerollresult {
+        opacity: 0.5;
+}
+
+.sheet-rolltemplate-roll_check .sheet-no-roll-highlight .inlinerollresult {
+        background-color: inherit;
+        border: 0;
+        padding: 0;
+        font-weight: normal;
+        cursor: help;
+        font-size: 1em;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-value .sheet-no-roll-highlight .inlinerollresult .fullfail . .sheet-rolltemplate-roll_check .sheet-rt-value .sheet-no-roll-highlight .inlinerollresult .fullcrit {
+        border: 0;
+}
+
+.sheet-rolltemplate-roll_check .sheet-main-content {}
+
+.sheet-rolltemplate-roll_check .sheet-main-content hr.sheet-roll {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        color: #D64541;
+        background-color: #D64541;
+        height: 1px;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-emote {
+        font-style: italic;
+        font-size: 11px;
+        font-family: Arial;
+        text-align: center;
+        border: green 1px dashed;
+        border-radius: 5px;
+        padding: 0px 5px;
+        margin: 0px 5px 5px 5px;
+}

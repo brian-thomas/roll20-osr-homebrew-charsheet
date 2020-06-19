@@ -90,9 +90,8 @@
                 <span class="noborder left-pad">Melee AB, Athletics, Open Doors, Encumbrance, Fortitude</span>
               </div>
               <div class="sheet-ability-column-roll sheet-flex">
-                <button class="sheet-ability-button" type="roll"
-						     value="&{template:roll_check} {{name=^{strength}}} {{abilityroll=[[1d20+@{strength_mod}]]}} {{target=[[10]]}}"
-                        name="roll_StrCheck"></button>
+                <button type="roll" class="sheet-core-save" name="roll_strength_check"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=STR Check}} {{subheader=@{character_name}}} {{save=1}} {{simple=1}} {{rollname=1d20+@{strength_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{strength_mod}]] ]]}}"></button>
               </div>
             </div>
 
@@ -1315,7 +1314,7 @@
 </div>
 
 <!-- Templates -->
-<rolltemplate class="rolltemplate-roll_check">
+<rolltemplate class="sheet-rolltemplate-roll_check">
   <div class="sheet-rt-card">
     <div class="sheet-rt-header{{#weapon}} sheet-weapon{{/weapon}}{{#spell}}  sheet-spell{{/spell}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#deathsave}} sheet-deathsave{{/deathsave}}">
       <div class="sheet-rt-title">{{title}}</div>
