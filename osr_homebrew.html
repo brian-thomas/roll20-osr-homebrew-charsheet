@@ -394,7 +394,7 @@
                     <div class="sheet-align-right">
                       <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname"/>
                       <input type="number" name="attr_skillvalue" class="sheet-skillvalue" value="1"/>
-                      <button class="sheet-skill-button" type="roll" name="roll_tinker"
+                      <button class="sheet-skill-button" type="roll" name="roll_skill"
                               value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{skillname} Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{rollname=roll: 1d20 + @{skillvalue} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{skillvalue}]] ]]}}"></button>
                     </div>
                   </div>
@@ -542,7 +542,9 @@
       <div class="table">
         <div class="table-row sheet-flex">
           <label class="table-cell sheet-bold-font">Notch</label>
+          <label class="table-cell">&nbsp;</label>
           <label class="table-cell sheet-bold-font">Name</label>
+          <label class="table-cell">&nbsp;</label>
           <label class="table-cell">&nbsp;</label>
           <label class="table-cell">&nbsp;</label>
           <label class="table-cell sheet-bold-font">Attack Bonus</label>
@@ -557,6 +559,9 @@
           <label class="table-cell">&nbsp;</label>
           <label class="table-cell">&nbsp;</label>
           <label class="table-cell">&nbsp;</label>
+          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell">&nbsp;</label>
         </div>
         <fieldset class="repeating_weapons">
           <div class="table-row sheet-flex-simple">
@@ -564,7 +569,8 @@
             &nbsp;
             <input type="text" name="attr_weapon_name" class="sheet-align-left table-cell sheet-side-padding sheet-weapon-name" data-i18n-placeholder="name"/>
             &nbsp;
-            <input type="number" name="attr_weapon_attack_bonus" class="sheet-skillname table-cell sheet-inactive-color" value="0"/>
+            <input type="number" name="attr_weapon_attack_bonus" class="sheet-weapon-param table-cell" value="0"/>
+            &nbsp;
             &nbsp;
             <select class="sheet-center table-cell sheet-info4" name="attr_weapon_dam">
               <option selected="selected" value="1d2">1d2</option>
@@ -578,18 +584,20 @@
               <option value="2d8">2d8</option>
             </select>
             &nbsp;
-            <input type="number" name="attr_weapon_dam_bonus" class="table-cell sheet-inactive-color" value="0"/>
+            &nbsp;
+            <input type="number" name="attr_weapon_dam_bonus" class="weapon-param table-cell" value="0"/>
             &nbsp;
             <select class="sheet-info3 table-cell" name="attr_weapon_type">
               <option selected="selected" value="melee">melee</option>
               <option value="ranged">ranged</option>
             </select>
-            <button class="table-cell" type="roll" value="&{template:roll_check} {{name=@{weaponname}}} {{skillroll=[[1d20]]}} {{target=[[@{foobar}]]}}" name="roll_WeaponAttack"></button>
+            &nbsp;
+            &nbsp;
+            <button class="table-cell" type="roll" name="roll_weapon_attack"
+                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}}"></button>
           </div>
         </fieldset>
       </div>
-                <!--
-                -->
     </div>
   </div>
 

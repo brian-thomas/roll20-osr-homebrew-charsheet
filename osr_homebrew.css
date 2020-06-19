@@ -507,10 +507,16 @@ input[type=number].sheet-spell-prepared {
 }
 
 .sheet-weapon-name {
-	width: 75%;
+	  width: 45%;
     font-weight: bold;
 		text-align: left;
 	}
+
+input.weapon-param {
+	font-weight: bold;
+	width: 3%;
+}
+
 .sheet-weapon-dam {
 	width: 15%;
 	text-align: center;
