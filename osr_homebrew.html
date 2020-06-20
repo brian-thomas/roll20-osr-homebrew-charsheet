@@ -428,10 +428,16 @@
     <span class="sheet-spacer">&nbsp;</span>
     <div class="sheet-thick-border-no-pad">
       <h3>Combat</h3>
-      <div class="sheet-flex">
-        <div class="sheet-ability-column-value">
-          <span class="ability-check-label">Initiative</span>
-          <input class="ability-check-value inactive-color" name="attr_initiative" type="number" value="0" readonly/>
+      <div class="sheet-flex left-pad bottom-padding">
+        <div class="sheet-thin-border sheet-flex left-pad">
+          <div class="sheet-ability-column-value">
+            <input class="ability-check-value inactive-color" name="attr_initiative" type="number" value="0" readonly/>
+            <span class="ability-check-label">Initiative Bonus</span>
+          </div>
+          <div class="sheet-flex-between left-pad">
+	    <button type="roll" class="sheet-initiative" name="roll_initiative" 
+	            value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
+          </div>
         </div>
         <div class="sheet-ability-column-value">
           <input class="ability-check-value" name="attr_ac" type="number" value="10" />
