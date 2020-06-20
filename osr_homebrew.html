@@ -436,7 +436,7 @@
           </div>
           <div class="sheet-flex-between left-pad">
 	    <button type="roll" class="sheet-initiative" name="roll_initiative" 
-	            value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
+			  value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
           </div>
         </div>
         <div class="sheet-ability-column-value">
@@ -1336,7 +1336,7 @@
 <!-- Templates -->
 <rolltemplate class="sheet-rolltemplate-roll_check">
   <div class="sheet-rt-card">
-    <div class="sheet-rt-header{{#weapon}} sheet-weapon{{/weapon}}{{#spell}}  sheet-spell{{/spell}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#deathsave}} sheet-deathsave{{/deathsave}}">
+	  <div class="sheet-rt-header{{#weapon}} sheet-weapon{{/weapon}}{{#initiative}} sheet-initiative{{/initiative}}{{#spell}} sheet-spell{{/spell}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#deathsave}} sheet-deathsave{{/deathsave}}">
       <div class="sheet-rt-title">{{title}}</div>
       {{#subheader}}
       <div class="sheet-rt-subheader">{{subheader}}{{#subheaderright}} &bullet; {{subheaderright}}{{/subheaderright}}</div>

@@ -507,10 +507,10 @@ input[type=number].sheet-spell-prepared {
 }
 
 .sheet-weapon-name {
-	  width: 45%;
-    font-weight: bold;
-		text-align: left;
-	}
+	width: 45%;
+	font-weight: bold;
+	text-align: left;
+}
 
 input.weapon-param {
 	font-weight: bold;
@@ -903,15 +903,28 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 /* Melee header*/
 
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-weapon {
-	      background-color: #2C5D28;
+	background-color: #2C5D28;
 }
 
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-weapon:before {
-	      border-right-color: #375035;
+	border-right-color: #375035;
 }
 
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-weapon:after {
-	        border-left-color: #375035;
+	border-left-color: #375035;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-initiative {
+	color: black;
+	background-color: yellow;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-initiative:before {
+	border-right-color: yellow;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-initiative:after {
+	border-left-color: yellow;
 }
 
 /* Ability check header */
