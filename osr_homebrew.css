@@ -97,33 +97,42 @@ h4 {
 	  justify-content: space-evenly;
 }
 
-.sheet-center {
+.sheet-center,
+input.sheet-center
+{
 	text-align: center;
 	align-items: center;
 	align-content: center;
 }
+
 .sheet-block, .sheet-block-left {
 	display: block;
 	padding: 1px;
 }
+
 .sheet-block-between {
 	justify-content: space-between;
 }
+
 .sheet-padding {
 	padding: 2px;
 }
+
 .sheet-inline {
 	display: inline;
 	align-items: start;
 	padding: 1px;
 }
+
 .sheet-inline-flex {
 	display: inline-flex;
 	align-items: start;
 }
+
 .sheet-flow {
 	display: flow-root;
 }
+
 .sheet-fill-width {
 	width: 100%;
 }

@@ -577,7 +577,7 @@
             &nbsp;
             <input type="text" name="attr_weapon_name" class="sheet-align-left table-cell sheet-side-padding sheet-weapon-name" data-i18n-placeholder="name"/>
             &nbsp;
-            <input type="number" name="attr_weapon_attack_bonus" class="sheet-weapon-param table-cell" value="0"/>
+            <input type="number" name="attr_weapon_attack_bonus" class="sheet-weapon-param table-cell sheet-center" value="0"/>
             &nbsp;
             &nbsp;
             <select class="sheet-center table-cell sheet-info4" name="attr_weapon_dam">
@@ -593,7 +593,7 @@
             </select>
             &nbsp;
             &nbsp;
-            <input type="number" name="attr_weapon_dam_bonus" class="weapon-param table-cell" value="0"/>
+            <input type="number" name="attr_weapon_dam_bonus" class="weapon-param table-cell sheet-center" value="0"/>
             &nbsp;
             <select class="sheet-info3 table-cell" name="attr_weapon_type">
               <option selected="selected" value="melee">melee</option>
@@ -601,8 +601,10 @@
             </select>
             &nbsp;
             &nbsp;
-            <button class="table-cell" type="roll" name="roll_weapon_attack"
-						   value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+	    <div class="sheet-center">
+              <button class="table-cell" type="roll" name="roll_weapon_attack"
+		      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+	    </div>
           </div>
         </fieldset>
       </div>
