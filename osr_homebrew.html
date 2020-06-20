@@ -820,7 +820,8 @@
                <option value="8">8</option>
                <option value="9">9</option>
              </select>
-             <button class="sheet-attack-button" type="roll" value="&{template:roll_check} {{name=@{spellname}}} {{spell=1}} {{charactername=@{character_name}}} {{type=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_Cast"></button>
+	     <button class="sheet-attack-button" type="roll" name="roll_cast_spell"
+							     value="&{template:roll_check}  {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{level=@{spelllevel}}} {{description=@{spelldescription}}}"></button>
              <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
            </div>
          </fieldset>
@@ -1340,7 +1341,7 @@
 <!-- Templates -->
 <rolltemplate class="sheet-rolltemplate-roll_check">
   <div class="sheet-rt-card">
-	  <div class="sheet-rt-header{{#weapon}} sheet-weapon{{/weapon}}{{#initiative}} sheet-initiative{{/initiative}}{{#spell}} sheet-spell{{/spell}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#deathsave}} sheet-deathsave{{/deathsave}}">
+	  <div class="sheet-rt-header{{#weapon}} sheet-weapon{{/weapon}}{{#skill}} sheet-skill{{/skill}} {{#initiative}} sheet-initiative{{/initiative}}{{#spell}} sheet-spell{{/spell}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#deathsave}} sheet-deathsave{{/deathsave}}">
       <div class="sheet-rt-title">{{title}}</div>
       {{#subheader}}
       <div class="sheet-rt-subheader">{{subheader}}{{#subheaderright}} &bullet; {{subheaderright}}{{/subheaderright}}</div>

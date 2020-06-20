@@ -951,7 +951,40 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 }
 
 
-/* Saving throw header */
+
+/* Spell header */
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-spell {
+	background-color: #45285D;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-spell:before {
+	border-right-color: #443550;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-spell {
+        background-color: #45285D;
+}
+
+
+
+/* Skill header */
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-skill:before {
+        border-right-color: blue;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-skill:after {
+        border-left-color: blue;
+}
+
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-skill {
+	background-color: blue;
+}
+
+
+
+/* Check header */
 
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-save {
         background-color: #8D2828;
