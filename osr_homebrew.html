@@ -1560,7 +1560,7 @@
   const shield_ac_value = {'none': 0, 'small_shield': 1, 'large_shield': 2, 'tower_shield': 3};
   on(`sheet:opened change:armor change:shield change:dexterity_mod`, () => {
     getAttrs(['armor', 'shield', 'dexterity_mod'], v => {
-      var armor_class = 10 + (v.dexterity_mod || 0) + armor_ac_value[v.armor] + shield_ac_value[v.shield];
+      var armor_class = 10 + v.dexterity_mod + armor_ac_value[v.armor] + shield_ac_value[v.shield];
       setAttrs({ac : armor_class});
 
     });
