@@ -339,11 +339,12 @@
                       </div>
 
                       <div class="sheet-block">
-                        <div class="sheet-align-right">
+                        <div class="sheet-align-left">
                           <span class="sheet-bold-font">Sneak&nbsp;Attack</span>
+		          <span>&nbsp;&nbsp;&nbsp;</span>
                           <input type="number" name="attr_sneak_attack_skill" class="sheet-skillvalue" value="0"/>
-                          <button class="sheet-skill-button" type="roll" name="roll_sneak_attack"
-                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Sneak Attack Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{sneak_attack_skill} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}}"></button>
+                          <!--button class="sheet-skill-button" type="roll" name="roll_sneak_attack"
+					    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Sneak Attack Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{sneak_attack_skill} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}}"></button-->
                         </div>
                       </div>
 
@@ -559,8 +560,8 @@
           <label class="table-cell sheet-bold-font">Weapon Damage</label>
           <label class="table-cell sheet-bold-font">Dam. Bonus</label>
           <label class="table-cell sheet-bold-font">Weapon Type</label>
-          <label class="table-cell sheet-bold-font">Roll Attack</label>
-          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell sheet-bold-font">Roll Std. Attck</label>
+          <label class="table-cell sheet-bold-font">Roll Sneak Attck</label>
           <label class="table-cell">&nbsp;</label>
           <label class="table-cell">&nbsp;</label>
           <label class="table-cell">&nbsp;</label>
@@ -591,6 +592,7 @@
               <option value="2d6">2d6</option>
               <option value="2d8">2d8</option>
             </select>
+            <input name="attr_weapon_sneak_attack_dam" value="0" hidden/>
             &nbsp;
             &nbsp;
             <input type="number" name="attr_weapon_dam_bonus" class="weapon-param table-cell sheet-center" value="0"/>
@@ -604,6 +606,12 @@
 	    <div class="sheet-center">
               <button class="table-cell" type="roll" name="roll_weapon_attack"
 		      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+	    </div>
+            &nbsp;
+            &nbsp;
+	    <div class="sheet-center">
+              <button class="table-cell" type="roll" name="roll_sneak_attack"
+			     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
 	    </div>
           </div>
         </fieldset>
