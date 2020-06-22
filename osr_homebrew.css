@@ -75,12 +75,16 @@ h4 {
 .sheet-right-pad {
 	padding-right: 10px
 }
-.sheet-sm-textarea {
+.sheet-tiny-textarea {
 	height: 50px;
 	width:  180px;
 }
+.sheet-sm-textarea {
+	height: 121px;
+	width:  490px;
+}
 .sheet-med-textarea {
-	height: 181px;
+	height: 221px;
 	width:  490px;
 }
 .sheet-lrg-textarea {
@@ -1081,4 +1085,3 @@ button.sheet-roll {
 button.sheet-initiative {
 	height: 3em;
 }
-
