@@ -438,12 +438,12 @@
             <span class="ability-check-label">Initiative Bonus</span>
           </div>
           <div class="sheet-flex-between left-pad">
-	    <button type="roll" class="sheet-initiative" name="roll_initiative" 
+	    <button type="roll" class="sheet-initiative" name="roll_initiative"
 			  value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
           </div>
         </div>
         <div class="sheet-ability-column-value">
-          <input class="ability-check-value" name="attr_ac" type="number" value="10" />
+          <input class="ability-check-value" name="attr_ac" type="number" value="0" />
           <span class="ability-check-label">AC</span>
         </div>
         <div class="sheet-ability-column-value">
@@ -881,7 +881,7 @@
                     </select>
                   </div>
                 </div>
-		<div class="table-row sheet-flex-simple">
+		            <div class="table-row sheet-flex-simple">
                   <div class="table-cell sheet-table-cell">
                     <h3>Shield:</h3>
                   </div>
@@ -892,6 +892,20 @@
                       <option value="large_shield">Large Shield / 2 Slots</option>
                       <option value="tower_shield">Tower Shield / 2 Slots/1 Enc</option>
                     </select>
+                  </div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell sheet-table-cell">
+                      <span class="sheet-left-pad">Armor Bonus:</span>
+                  </div>
+                  <div class="table-cell sheet-table-cell sheet-bottom-pad">
+                    <input type="number" name="attr_armor_bonus" value="0"/>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                      <span class="sheet-left-pad">Shield Bonus:</span>
+                  </div>
+                  <div class="table-cell sheet-table-cell sheet-bottom-pad">
+                      <input type="number" name="attr_shield_bonus" value="0"/>
                   </div>
                 </div>
               </div>
@@ -1578,9 +1592,11 @@
   // Calculate armor class
   const armor_ac_value = {'none': 0, 'leather': 2, 'studded_leather': 4, 'chain': 6, 'plate': 8};
   const shield_ac_value = {'none': 0, 'small_shield': 1, 'large_shield': 2, 'tower_shield': 3};
-  on(`sheet:opened change:armor change:shield change:dexterity_mod`, () => {
-    getAttrs(['armor', 'shield', 'dexterity_mod'], v => {
-      var armor_class = 10 + v.dexterity_mod + armor_ac_value[v.armor] + shield_ac_value[v.shield];
+  on(`sheet:opened change:armor change:shield change:dexterity_mod change:armor_bonus change:shield_bonus`, () => {
+    getAttrs(['armor', 'shield', 'armor_bonus', 'shield_bonus', 'dexterity_mod'], v => {
+      var armor_class = 10 + parseInt(v.dexterity_mod)
+      armor_class += parseInt(armor_ac_value[v.armor]) + parseInt(shield_ac_value[v.shield])
+      armor_class += parseInt(v.armor_bonus) + parseInt(v.shield_bonus);
       setAttrs({ac : armor_class});
 
     });
@@ -1613,27 +1629,6 @@
        });
     });
   });
-
-  // set damage and attack bonuses on weapons
-  // const attrsToAssign = [ 'weapon_attack_bonus', 'weapon_dam_bonus' ];
-  /*
-  const attrsToAssign = [ 'weapon_attack_bonus', 'weapon_dam_bonus' ];
-  on('change:repeating_weapons change:sneak_attack_dice', () => {
-    "use strict";
-    getSectionIDs('repeating_weapons', idArray => {
-        const attrs = idArray.reduce((m, id) => {
-           return m.concat(attrsToAssign.map(name => `repeating_weapons_${id}_${name}`));
-        }, []);
-        getAttrs(attrs, v => {
-          const data = idArray.map(id => {
-              return attrsToAssign.reduce((m, name) => { m[name] = v[`repeating_weapons_${id}_${name}`] || -1; return m; }, {});
-          });
-          setAttrs(data);
-        });
-      });
-    });
-  */
-
 
   const armor_enc = { 'chain' : 1, 'plate': 2 }
   const shield_enc = { 'tower_shield' : 1 }
