@@ -556,10 +556,13 @@
           <label class="table-cell">&nbsp;</label>
           <label class="table-cell">&nbsp;</label>
           <label class="table-cell">&nbsp;</label>
-          <label class="table-cell sheet-bold-font">Attack Bonus</label>
-          <label class="table-cell sheet-bold-font">Weapon Damage</label>
-          <label class="table-cell sheet-bold-font">Dam. Bonus</label>
+          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell sheet-bold-font sheet-center">Weapon Bonus</label>
           <label class="table-cell sheet-bold-font">Weapon Type</label>
+          <label class="table-cell sheet-bold-font sheet-center">Weap AB</label>
+          <label class="table-cell sheet-bold-font sheet-center">Weap Damage</label>
+          <label class="table-cell">&nbsp;</label>
+          <label class="table-cell sheet-bold-font sheet-center">Weap Dam Bonus</label>
           <label class="table-cell sheet-bold-font">Roll Std. Attck</label>
           <label class="table-cell sheet-bold-font">Roll Sneak Attck</label>
           <label class="table-cell">&nbsp;</label>
@@ -578,7 +581,14 @@
             &nbsp;
             <input type="text" name="attr_weapon_name" class="sheet-align-left table-cell sheet-side-padding sheet-weapon-name" data-i18n-placeholder="name"/>
             &nbsp;
-            <input type="number" name="attr_weapon_attack_bonus" class="sheet-weapon-param table-cell sheet-center" value="0"/>
+	    <input type="number" name="attr_weapon_bonus" class="weapon-param table-cell sheet-center" value="0"/>
+            &nbsp;
+	    <select class="sheet-info3 table-cell" name="attr_weapon_type">
+	      <option selected="selected" value="@{melee_ab}">melee</option>
+	      <option value="@{ranged_ab}">ranged</option>
+	    </select>
+            &nbsp;
+	    <input type="number" name="attr_weapon_attack_bonus" class="sheet-weapon-param inactive-color table-cell sheet-center" value="[[@{weapon_type}+[[@{weapon_bonus}]]]]" disabled="true"/>
             &nbsp;
             &nbsp;
             <select class="sheet-center table-cell sheet-info4" name="attr_weapon_dam">
@@ -595,12 +605,7 @@
             <input name="attr_weapon_sneak_attack_dam" value="0" hidden/>
             &nbsp;
             &nbsp;
-            <input type="number" name="attr_weapon_dam_bonus" class="weapon-param table-cell sheet-center" value="0"/>
-            &nbsp;
-            <select class="sheet-info3 table-cell" name="attr_weapon_type">
-              <option selected="selected" value="melee">melee</option>
-              <option value="ranged">ranged</option>
-            </select>
+	    <input type="number" name="attr_weapon_dam_bonus" class="weapon-param table-cell inactive-color sheet-center" value="@{strength_mod}" disabled="true"/>
             &nbsp;
             &nbsp;
 	    <div class="sheet-center">
@@ -613,6 +618,8 @@
               <button class="table-cell" type="roll" name="roll_sneak_attack"
 			     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
 	    </div>
+            &nbsp;
+            &nbsp;
           </div>
         </fieldset>
       </div>
@@ -1483,8 +1490,8 @@
   </div>
 </rolltemplate>
 
-  <!-- Sheet Workers -->
-  <script type="text/worker">
+<!-- Sheet Workers -->
+<script type="text/worker">
   // container update
 
   on(`change:container_1_type change:container_2_type change:container_3_type`, () => {
@@ -1608,13 +1615,14 @@
   });
 
   // set damage and attack bonuses on weapons
+  // const attrsToAssign = [ 'weapon_attack_bonus', 'weapon_dam_bonus' ];
   /*
   const attrsToAssign = [ 'weapon_attack_bonus', 'weapon_dam_bonus' ];
-  on('change:repeating_weapons', () => {
+  on('change:repeating_weapons change:sneak_attack_dice', () => {
     "use strict";
     getSectionIDs('repeating_weapons', idArray => {
         const attrs = idArray.reduce((m, id) => {
-          return m.concat(attrsToAssign.map(name => `repeating_weapons_${id}_${name}`));
+           return m.concat(attrsToAssign.map(name => `repeating_weapons_${id}_${name}`));
         }, []);
         getAttrs(attrs, v => {
           const data = idArray.map(id => {
@@ -1627,60 +1635,53 @@
   */
 
 
-
   const armor_enc = { 'chain' : 1, 'plate': 2 }
   const shield_enc = { 'tower_shield' : 1 }
 
-// Check various inventory slots and the encumberance
-const islots9  = [ 'islot-9-1', 'islot-9-2', 'islot-9-3', 'islot-9-4', 'islot-9-5'];
-const islots13 = [ 'islot-13-1', 'islot-13-2', 'islot-13-3', 'islot-13-4', 'islot-13-5'];
-const islots16 = [ 'islot-16-1', 'islot-16-2', 'islot-16-3', 'islot-16-4', 'islot-16-5'];
-const islots18 = [ 'islot-18-1', 'islot-18-2', 'islot-18-3', 'islot-18-4', 'islot-18-5'];
-const readySlots = islots9.concat(islots13.concat(islots16.concat(islots18)));
+  // Check various inventory slots and the encumberance
+  const islots9  = [ 'islot-9-1', 'islot-9-2', 'islot-9-3', 'islot-9-4', 'islot-9-5'];
+  const islots13 = [ 'islot-13-1', 'islot-13-2', 'islot-13-3', 'islot-13-4', 'islot-13-5'];
+  const islots16 = [ 'islot-16-1', 'islot-16-2', 'islot-16-3', 'islot-16-4', 'islot-16-5'];
+  const islots18 = [ 'islot-18-1', 'islot-18-2', 'islot-18-3', 'islot-18-4', 'islot-18-5'];
+  const readySlots = islots9.concat(islots13.concat(islots16.concat(islots18)));
 
-readySlots.forEach(ready_slot => {
-  on(`change:${ready_slot} change:race change:encumbrance_mod change:armor change:shield change:container_1_type change:container_2_type change:container_3_type`, () => {
-    getAttrs(readySlots.concat(['encumbrance_mod', 'race', 'armor', 'shield', 'container_1_type',
-                                 'container_2_type', 'container_3_type']), v => {
-       // ugh. seems like there should be a better way to do this
-       const enc_points9 = islots9.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
-       const enc_points13 = islots13.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
-       const enc_points16 = islots16.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
-       const enc_points18 = islots18.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
+  readySlots.forEach(ready_slot => {
+    on(`change:${ready_slot} change:race change:encumbrance_mod change:armor change:shield change:container_1_type change:container_2_type change:container_3_type`, () => {
+      getAttrs(readySlots.concat(['encumbrance_mod', 'race', 'armor', 'shield', 'container_1_type',
+                                  'container_2_type', 'container_3_type']), v => {
+        // ugh. seems like there should be a better way to do this
+        const enc_points9 = islots9.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
+        const enc_points13 = islots13.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
+        const enc_points16 = islots16.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
+        const enc_points18 = islots18.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
 
-       // Containers
-       const container_1_enc_pts = v.container_1_type === 'large_pack' ? 1 : 0;
-       const container_2_enc_pts = v.container_2_type === 'small_pack' ? 1 : 0;
-       const container_3_enc_pts = v.container_3_type === 'sack' ? 1 : 0;
+        // Containers
+        const container_1_enc_pts = v.container_1_type === 'large_pack' ? 1 : 0;
+        const container_2_enc_pts = v.container_2_type === 'small_pack' ? 1 : 0;
+        const container_3_enc_pts = v.container_3_type === 'sack' ? 1 : 0;
 
-       // armor
-       const armor_enc_pts = armor_enc[v.armor] || 0;
-       const shield_enc_pts = shield_enc[v.shield] || 0;
+        // armor
+        const armor_enc_pts = armor_enc[v.armor] || 0;
+        const shield_enc_pts = shield_enc[v.shield] || 0;
 
-       // calculate encumbrance points
-       const enc_points = enc_points9 + enc_points13 + enc_points16 + enc_points18
-                          + container_1_enc_pts + container_2_enc_pts + container_3_enc_pts
-                          + armor_enc_pts + shield_enc_pts;
+        // calculate encumbrance points
+        const enc_points = enc_points9 + enc_points13 + enc_points16 + enc_points18
+                           + container_1_enc_pts + container_2_enc_pts + container_3_enc_pts
+                           + armor_enc_pts + shield_enc_pts;
 
-       // calculate encumbrance
-       var enc = enc_points - parseInt(v['encumbrance_mod']);
-       enc = enc > 0 ? enc : 0;
+        // calculate encumbrance
+        var enc = enc_points - parseInt(v['encumbrance_mod']);
+        enc = enc > 0 ? enc : 0;
 
-       // TODO: Calculate movement
-       const enc_move_factor = enc > 1 ? enc : 0;
-       var move_rate = (v.race === 'Dwarf' || v.race == 'Halfling') ? 35 : 40;
-       move_rate -= enc_move_factor > 0 ? (enc_move_factor -1) * 10 : 0;
-       move_rate = move_rate > 0 ? move_rate : 0;
+        // TODO: Calculate movement
+        const enc_move_factor = enc > 1 ? enc : 0;
+        var move_rate = (v.race === 'Dwarf' || v.race == 'Halfling') ? 35 : 40;
+        move_rate -= enc_move_factor > 0 ? (enc_move_factor -1) * 10 : 0;
+        move_rate = move_rate > 0 ? move_rate : 0;
 
-       setAttrs( { encumbrance_points: enc_points, encumbrance: enc, movement_rate: move_rate} );
-     });
-   });
- });
-
-on("sheet:opened", () => {
-  setAttrs({
-    bonus_query: getTranslationByKey("target")
+        setAttrs( { encumbrance_points: enc_points, encumbrance: enc, movement_rate: move_rate} );
+      });
+    });
   });
-});
 
 </script>
