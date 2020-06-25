@@ -102,11 +102,15 @@ h4 {
 }
 
 .sheet-center,
-input.sheet-center
+button.sheet-center,
+input.sheet-center,
+label.sheet-center,
+span.sheet-center
 {
 	text-align: center;
 	align-items: center;
 	align-content: center;
+	justify-content: center;
 }
 
 .sheet-block, .sheet-block-left {
@@ -163,7 +167,12 @@ input.sheet-center
 	overflow: auto;
 	margin-bottom: 10px;
 }
-.sheet-noborder, .sheet-thick-border, .sheet-side-padding {
+.sheet-noborder,
+.sheet-thick-border,
+.sheet-side-padding,
+input.side-padding,
+select.side-padding
+{
   padding-left: 5px;
 	padding-right: 5px;
 }
@@ -524,20 +533,66 @@ input[type=number].sheet-spell-prepared {
     vertical-align: middle;
 }
 
-.sheet-weapon-name {
-	width: 45%;
+.sheet-rotate,
+span.sheet-rotate
+{
+  transform: rotate(90deg);
+  border: 2px solid black;
+	text-align: center;
+	padding: 0;
+}
+
+.sheet-weapon-param,
+input.sheet-weapon-param
+{
+    width: 60px;
+    text-align: center;
+}
+
+input.sheet-weapon-notch
+{
+	  align-items: center;
+    width: 130px;
+}
+
+.sheet-field-spacer
+{
+	 padding-left: 9px;
+	 padding-right: 9px;
+}
+
+.sheet-button-field-spacer
+{
+	 padding-left: 22px;
+}
+
+button[type=roll].sheet-attack-button
+{
+    width: 30px;
+    height: 28px;
+    font-size: 20px;
+    border: 2px solid black;
+    background-color: white;
+    background-image: none;
+    color: black;
+    margin-right: 0;
+    text-Shadow: none;
+}
+
+.sheet-weapon-header,
+span.sheet-weapon-header
+{
+	width: 190px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.sheet-weapon-name,
+input[type=text].sheet-weapon-name
+{
+	width: 140px;
 	font-weight: bold;
 	text-align: left;
-}
-
-input.weapon-param {
-	font-weight: bold;
-	width: 3%;
-}
-
-.sheet-weapon-dam {
-	width: 15%;
-	text-align: center;
 }
 
 /* Inventory */

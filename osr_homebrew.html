@@ -550,50 +550,47 @@
 
     <div class="sheet-thick-border">
       <h3>Weapons</h3>
-      <div class="table">
-        <div class="table-row sheet-flex">
-          <label class="table-cell sheet-bold-font">Notch</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell sheet-bold-font">Name</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell sheet-bold-font sheet-center">Weapon Bonus</label>
-          <label class="table-cell sheet-bold-font">Weapon Type</label>
-          <label class="table-cell sheet-bold-font sheet-center">Weap AB</label>
-          <label class="table-cell sheet-bold-font sheet-center">Weap Damage</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell sheet-bold-font sheet-center">Weap Dam Bonus</label>
-          <label class="table-cell sheet-bold-font">Roll Std. Attck</label>
-          <label class="table-cell sheet-bold-font">Roll Sneak Attck</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell">&nbsp;</label>
-          <label class="table-cell">&nbsp;</label>
-        </div>
-        <fieldset class="repeating_weapons">
-          <div class="table-row sheet-flex-simple">
-            <input type="checkbox" name="attr_weapon_notched" class="table-cell sheet-side-padding" value="1"/>
-            &nbsp;
-            <input type="text" name="attr_weapon_name" class="sheet-align-left table-cell sheet-side-padding sheet-weapon-name" data-i18n-placeholder="name"/>
-            &nbsp;
-	    <input type="number" name="attr_weapon_bonus" class="weapon-param table-cell sheet-center" value="0"/>
-            &nbsp;
-	    <select class="sheet-info3 table-cell" name="attr_weapon_type">
-	      <option selected="selected" value="@{melee_ab}">melee</option>
-	      <option value="@{ranged_ab}">ranged</option>
-	    </select>
-            &nbsp;
-	    <input type="number" name="attr_weapon_attack_bonus" class="sheet-weapon-param inactive-color table-cell sheet-center" value="[[@{weapon_type}+[[@{weapon_bonus}]]]]" disabled="true"/>
-            &nbsp;
-            &nbsp;
-            <select class="sheet-center table-cell sheet-info4" name="attr_weapon_dam">
+      <div class="sheet-flex">
+        <!--span class="sheet-weapon-param sheet-bold-font"> </span-->
+        <span class="sheet-field-spacer"> </span>
+        <span class="sheet-weapon-header">Name</span>
+        <span class="sheet-field-spacer"> </span>
+        <span class="sheet-weapon-param sheet-bold-font">Weapon Bonus</span>
+        <span class="sheet-field-spacer"> </span>
+        <span class="sheet-weapon-param sheet-bold-font">Weapon Type</span>
+        <span class="sheet-field-spacer"> </span>
+        <span class="sheet-weapon-param sheet-bold-font">Weapon AB</span>
+        <span class="sheet-field-spacer"> </span>
+        <span class="sheet-weapon-param sheet-bold-font">Weapon Damage</span>
+        <span class="sheet-field-spacer"> </span>
+        <span class="sheet-weapon-param sheet-bold-font">Weapon Dam Bonus</span>
+        <span class="sheet-field-spacer"> </span>
+        <span class="sheet-weapon-param sheet-bold-font">Stand. Attack</span>
+        <span class="sheet-field-spacer"> </span>
+        <span class="sheet-weapon-param sheet-bold-font">Beserk Attack</span>
+        <span class="sheet-field-spacer"> </span>
+        <span class="sheet-weapon-param sheet-bold-font">Cleave Attack</span>
+        <span class="sheet-field-spacer"> </span>
+        <span class="sheet-weapon-param sheet-bold-font">Strong Attack</span>
+        <span class="sheet-field-spacer"> </span>
+        <span class="sheet-weapon-param sheet-bold-font">Sneak Attack</span>
+      </div>
+      <fieldset class="repeating_weapons">
+        <div class="sheet-flex">
+            <!--input type="checkbox" name="attr_weapon_notched" class="sheet-center" value="1"/-->
+            <span class="sheet-field-spacer"> </span>
+            <input type="text" name="attr_weapon_name" class="weapon-name" data-i18n-placeholder="name"/>
+            <span class="sheet-field-spacer"> </span>
+            <input type="number" name="attr_weapon_bonus" class="weapon-param" value="0"/>
+            <span class="sheet-field-spacer"> </span>
+    	      <select class="weapon-param" name="attr_weapon_type">
+    	        <option selected="selected" value="@{melee_ab}">melee</option>
+    	        <option value="@{ranged_ab}">ranged</option>
+    	      </select>
+            <span class="sheet-field-spacer"> </span>
+            <input type="number" name="attr_weapon_attack_bonus" class="weapon-param inactive-color" value="[[@{weapon_type}+[[@{weapon_bonus}]]]]" disabled="true"/>
+            <span class="sheet-field-spacer"> </span>
+            <select class="sheet-weapon-param" name="attr_weapon_dam">
               <option selected="selected" value="1d2">1d2</option>
               <option value="1d4">1d4</option>
               <option value="1d6">1d6</option>
@@ -604,27 +601,26 @@
               <option value="2d6">2d6</option>
               <option value="2d8">2d8</option>
             </select>
+            <span class="sheet-field-spacer"> </span>
+            <input type="number" name="attr_weapon_attack_bonus" class="weapon-param inactive-color" value="[[@{weapon_type}+[[@{weapon_bonus}]]]]" disabled="true"/>
+            <span class="sheet-field-spacer"> </span>
             <input name="attr_weapon_sneak_attack_dam" value="0" hidden="true"/>
-            &nbsp;
-            &nbsp;
-	    <input type="number" name="attr_weapon_dam_bonus" class="weapon-param table-cell inactive-color sheet-center" value="@{strength_mod}" disabled="true"/>
-            &nbsp;
-            &nbsp;
-	    <div class="sheet-center">
-              <button class="table-cell" type="roll" name="roll_weapon_attack"
-		      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
-	    </div>
-            &nbsp;
-            &nbsp;
-	    <div class="sheet-center">
-              <button class="table-cell" type="roll" name="roll_sneak_attack"
-			     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
-	    </div>
-            &nbsp;
-            &nbsp;
-          </div>
-        </fieldset>
-      </div>
+            <button class="sheet-attack-button" type="roll" name="roll_weapon_attack"
+	                value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+            <span class="sheet-button-field-spacer"> </span>
+            <button class="sheet-attack-button" type="roll" name="roll_sneak_attack"
+		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+            <span class="sheet-button-field-spacer"> </span>
+            <button class="sheet-attack-button" type="roll" name="roll_sneak_attack"
+		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+            <span class="sheet-button-field-spacer"> </span>
+            <button class="sheet-attack-button" type="roll" name="roll_sneak_attack"
+		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+            <span class="sheet-button-field-spacer"> </span>
+            <button class="sheet-attack-button" type="roll" name="roll_sneak_attack"
+		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+        </div>
+      </fieldset>
     </div>
   </div>
 
