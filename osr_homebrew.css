@@ -579,6 +579,42 @@ button[type=roll].sheet-attack-button
     text-Shadow: none;
 }
 
+.sheet-blue-border,
+button[type=roll].sheet-blue-border
+{
+    border: 2px solid blue;
+}
+
+.sheet-green-border,
+button[type=roll].sheet-green-border
+{
+    border: 2px solid green;
+}
+
+.sheet-orange-border,
+button[type=roll].sheet-orange-border
+{
+    border: 2px solid orange;
+}
+
+.sheet-purple-border,
+button.sheet-purple-border
+{
+    border: 2px solid purple;
+}
+
+.sheet-red-border,
+button.sheet-red-border
+{
+    border: 2px solid red;
+}
+
+.sheet-yellow-border,
+button[type=roll].sheet-yellow-border
+{
+    border: 2px solid yellow;
+}
+
 .sheet-weapon-header,
 span.sheet-weapon-header
 {
