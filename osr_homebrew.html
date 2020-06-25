@@ -1628,6 +1628,28 @@
     });
   });
 
+  // keep weapons up to date
+  on(`change:sneak_attack_dice change:repeating_weapons` , function () {
+    getSectionIDs('repeating_weapons', function (ids) {
+        const fieldnames = [];
+        ids.forEach(id => {
+            fieldnames.push('repeating_weapons_' + id + '_weapon_sneak_attack_dam');
+            fieldnames.push('repeating_weapons_' + id + '_weapon_dam');
+        });
+        getAttrs([...fieldnames, 'sneak_attack_dice'], function (values) {
+            const output = {};
+            const sneak_dice = parseInt(values.sneak_attack_dice) || 0;
+
+            ids.forEach(id => {
+                const this_dam_dice = values['repeating_weapons_' + id + '_weapon_dam'];
+                const sneak_dam = sneak_dice + this_dam_dice.substring(1);
+                output['repeating_weapons_' + id + '_weapon_sneak_attack_dam'] = sneak_dam;
+            });
+            setAttrs(output);
+        });
+    });
+  });
+
   const armor_enc = { 'chain' : 1, 'plate': 2 }
   const shield_enc = { 'tower_shield' : 1 }
 
