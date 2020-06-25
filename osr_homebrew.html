@@ -602,20 +602,20 @@
               <option value="2d8">2d8</option>
             </select>
             <span class="sheet-field-spacer"> </span>
-            <input type="number" name="attr_weapon_attack_bonus" class="weapon-param inactive-color" value="[[@{weapon_type}+[[@{weapon_bonus}]]]]" disabled="true"/>
+            <input type="number" name="attr_weapon_dam_bonus" class="weapon-param inactive-color" value="[[@{strength_mod}+[[@{weapon_bonus}]]]]" disabled="true"/>
             <span class="sheet-field-spacer"> </span>
             <input name="attr_weapon_sneak_attack_dam" value="0" hidden="true"/>
             <button class="sheet-attack-button" type="roll" name="roll_weapon_attack"
 	                value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
             <span class="sheet-button-field-spacer"> </span>
-            <button class="sheet-attack-button" type="roll" name="roll_sneak_attack"
-		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+            <button class="sheet-attack-button" type="roll" name="roll_beserk_attack"
+		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Beserk Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
             <span class="sheet-button-field-spacer"> </span>
-            <button class="sheet-attack-button" type="roll" name="roll_sneak_attack"
-		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+            <button class="sheet-attack-button" type="roll" name="roll_cleave_attack"
+		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
             <span class="sheet-button-field-spacer"> </span>
-            <button class="sheet-attack-button" type="roll" name="roll_sneak_attack"
-		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+            <button class="sheet-attack-button" type="roll" name="roll_strong_attack"
+		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Strong Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
             <span class="sheet-button-field-spacer"> </span>
             <button class="sheet-attack-button" type="roll" name="roll_sneak_attack"
 		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
