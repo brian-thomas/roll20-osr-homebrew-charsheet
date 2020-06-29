@@ -343,10 +343,8 @@
                       <div class="sheet-block">
                         <div class="sheet-align-left">
                           <span class="sheet-bold-font">Sneak&nbsp;Attack</span>
-		          <span>&nbsp;&nbsp;&nbsp;</span>
+		                      <span>&nbsp;&nbsp;&nbsp;</span>
                           <input type="number" name="attr_sneak_attack_skill" class="sheet-skillvalue" value="0"/>
-                          <!--button class="sheet-skill-button" type="roll" name="roll_sneak_attack"
-					    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Sneak Attack Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{sneak_attack_skill} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}}"></button-->
                         </div>
                       </div>
 
@@ -503,7 +501,7 @@
             <div class="sheet-flex sheet-bottom-padding">
               <input type="checkbox" name="attr_cleave_attack" value="1"/>
               <span class="ability-check-label">Cleave</span>
-              <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB -&gt; Dam, Attk again on kill, AC-2)</span>
+              <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB -&gt; Dam, xtra dam to adj foe on kill, AC-2)</span>
             </div>
             <div class="sheet-flex sheet-bottom-padding">
               <input type="checkbox" name="attr_2weapon_attack" value="1"/>
@@ -531,8 +529,7 @@
           <div class="sheet-inline sheet-side-padding">
             <div class="sheet-flex sheet-side-padding">
               <div class="sheet-ability-column-modifier sheet-flex-between">
-                <input type="number" name="attr_sneak_attack_allow" value="0" readonly="true" hidden="true"/>
-                <input type="checkbox" name="sneak_attack_checkbox" value="1" readonly="true"/>
+                <input class="inactive-color" type="checkbox" name="attr_sneak_attack_checkbox" value="1" readonly="true"/>
                 <span>Sneak Attack</span>
               </div>
               <div class="sheet-ability-column-modifier sheet-flex-between">
@@ -550,6 +547,7 @@
 
     <div class="sheet-thick-border">
       <h3>Weapons</h3>
+      <input type="number" name="attr_sneak_attack_allow" value="0" readonly="true" hidden="true"/>
       <div class="sheet-flex">
         <!--span class="sheet-weapon-param sheet-bold-font"> </span-->
         <span class="sheet-field-spacer"> </span>
@@ -606,19 +604,19 @@
             <span class="sheet-field-spacer"> </span>
             <input name="attr_weapon_sneak_attack_dam" value="0" hidden="true"/>
             <button class="sheet-attack-button" type="roll" name="roll_weapon_attack"
-	                value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
             <span class="sheet-button-field-spacer"> </span>
             <button class="sheet-attack-button sheet-yellow-border" type="roll" name="roll_beserk_attack"
-		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Beserk Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+		                value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Beserk Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 3 ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + 3 ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 3 [Attk], @{weapon_dam} + @{weapon_dam_bonus} + 3 [Dam] }}"></button>
             <span class="sheet-button-field-spacer"> </span>
             <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_cleave_attack"
-		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+		                value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}]]  ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_attack_bonus} [Dam] }}"></button>
             <span class="sheet-button-field-spacer"> </span>
             <button class="sheet-attack-button sheet-green-border" type="roll" name="roll_strong_attack"
-		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Strong Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b> Strong Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam} + @{weapon_dam_bonus} [Dam] }}"></button>
             <span class="sheet-button-field-spacer"> </span>
             <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_sneak_attack"
-		              value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+		                value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
         </div>
       </fieldset>
     </div>
@@ -1607,8 +1605,14 @@
       const level = parseInt(v.level) || 1;
       const setting = {};
       setting['sneak_attack_allow'] = (c_class === 'specialist' ? 1 : 0);
+      setting['sneak_attack_checkbox'] = setting['sneak_attack_allow'];
       setting['sneak_attack_dice'] = (c_class === 'specialist' ?  1 + parseInt(level/4): 0);
       setting["spellcasting_type"] = (c_class === 'wizard' ? "Arcane" : (c_class === 'cleric' ? "Divine" : "None"));
+
+      setting['press_attack'] = (c_class === 'fighter' ? 1 : 0);
+      setting['defensive_attack'] = (c_class === 'fighter' ? 1 : 0);
+      setting['parry_attack'] = (c_class === 'fighter' ? 'ac4' : 'ac2');
+
       setAttrs(setting);
     });
   });
