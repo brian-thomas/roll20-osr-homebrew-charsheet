@@ -6,13 +6,6 @@
     line-height: 18px;
 }
 
-.sheet-inactive-color {
-	background-color: #ddd;
-}
-.sheet-active-color {
-	background-color: #eee;
-}
-
 img {
 	height: 60%;
 }
@@ -57,6 +50,30 @@ h4 {
 	font-size: 15px;
 	text-align: center;
 }
+
+.sheet-inactive-color,
+input[type=checkbox]:not(:checked).sheet-inactive-color,
+input[type=radio]:not(:checked).sheet-inactive-color
+{
+	background-color: #ddd;
+}
+
+.sheet-active-color
+{
+	background-color: #eee;
+}
+
+input[type=checkbox]:not(:checked),
+input[type=radio]:not(:checked)
+{
+	background-color: #eee;
+}
+
+input[type="checkbox"][readonly],
+input[type="radio"][readonly] {
+  pointer-events: none;
+}
+
 .sheet-small-font {
 	font-size: 10px;
 }
@@ -218,7 +235,7 @@ input[type=checkbox], input[type=radio] {
     border: double 2px #00F;
     color:#FFF;
     white-space: nowrap;
-    overflow:hidden;
+    overflow: hidden;
     width:15px;
     height:15px;
     vertical-align: middle;
@@ -233,6 +250,7 @@ input[type=checkbox]:checked, input[type=radio]:checked {
     border-left-color:#06F;
     border-right-color:#06F;
 }
+
 input[type=checkbox]:hover {
     box-shadow:0px 0px 10px #1300ff;
 }
@@ -545,8 +563,14 @@ span.sheet-rotate
 .sheet-weapon-param,
 input.sheet-weapon-param
 {
-    width: 60px;
-    text-align: center;
+	 width: 60px;
+   text-align: center;
+}
+
+.sheet-weapon-param-empty,
+{
+	 width: 60px;
+	 margin-left: 3px;
 }
 
 input.sheet-weapon-notch
@@ -629,6 +653,30 @@ input[type=text].sheet-weapon-name
 	width: 140px;
 	font-weight: bold;
 	text-align: left;
+}
+
+div.sheet-sneak_attack_section,
+div.sheet-weapon_sneak_attack_section
+{
+	display: none;
+}
+
+div.sheet-no_sneak_attack_section,
+div.sheet-weapon_no_sneak_attack_section
+{
+	display: none;
+}
+
+input.sheet-sneak_attack_enabled:checked ~ div.sheet-sneak_attack_section,
+input.sheet-weapon_sneak_attack_enabled:checked ~ div.sheet-weapon_sneak_attack_section
+{
+  display: block;
+}
+
+input.sheet-sneak_attack_enabled:not(:checked) ~ div.sheet-no_sneak_attack_section,
+input.sheet-weapon_sneak_attack_enabled:not(:checked) ~ div.sheet-weapon_no_sneak_attack_section
+{
+  display: block;
 }
 
 /* Inventory */
