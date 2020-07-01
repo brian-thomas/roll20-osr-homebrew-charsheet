@@ -494,14 +494,14 @@
             <div class="sheet-flex sheet-bottom-padding">
               <input type="checkbox" name="attr_beserk_attack" value="1"/>
               <span class="ability-check-label sheet-flex-between">Beserk</span>
-              <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+3, Dam+3, No Retreat, Will to Stop)</span>
+              <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB +3+Fghtr/4, Dam +3+Fghtr/4, No Retreat, Will to Stop)</span>
             </div>
           </div>
           <div class="sheet-col-left">
             <div class="sheet-flex sheet-bottom-padding">
               <input type="checkbox" name="attr_cleave_attack" value="1"/>
               <span class="ability-check-label">Cleave</span>
-              <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB -&gt; Dam, xtra dam to adj foe on kill, AC-2)</span>
+              <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB/2 -&gt; Dam, Attack adj foe on kill, AC-2)</span>
             </div>
             <div class="sheet-flex sheet-bottom-padding">
               <input type="checkbox" name="attr_2weapon_attack" value="1"/>
@@ -650,7 +650,7 @@
 
           <div class="sheet-weapon_cleave_attack_section">
             <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_cleave_attack"
-	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}]]  ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_attack_bonus} [Dam] }}"></button>
+	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]]  ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + [[@{weapon_attack_bonus}/2]] [Dam] }}"></button>
           </div>
 
           <div class="sheet-weapon_strong_attack_section">
