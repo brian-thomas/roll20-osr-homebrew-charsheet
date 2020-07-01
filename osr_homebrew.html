@@ -554,6 +554,8 @@
         <input type="checkbox" class="sheet-press_attack_enabled" name="attr_press_attack_enabled" value="1" hidden="true"/>
         <input type="checkbox" class="sheet-sneak_attack_enabled" name="attr_sneak_attack_enabled" value="1" hidden="true"/>
         <input type="checkbox" class="sheet-strong_attack_enabled" name="attr_strong_attack_enabled" value="1" hidden="true"/>
+        <input type="number" name="attr_beserk_attack_mod" value="2" hidden="true"/>
+
         <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font">Notches</span>
         <span class="sheet-weapon-name sheet-bold-font">Name</span>
         <span class="sheet-weapon-param-name sheet-bold-font">Add. Bonus</span>
@@ -643,7 +645,7 @@
 
           <div class="sheet-weapon_beserk_attack_section">
             <button class="sheet-attack-button sheet-yellow-border" type="roll" name="roll_beserk_attack"
-	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Beserk Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 3 ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + 3 ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 3 [Attk], @{weapon_dam} + @{weapon_dam_bonus} + 3 [Dam] }}"></button>
+	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Beserk Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + [[@{beserk_attack_mod}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{beserk_attack_mod}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + @{beserk_attack_mod} [Attk], @{weapon_dam} + @{weapon_dam_bonus} + @{beserk_attack_mod} [Dam] }}"></button>
           </div>
 
           <div class="sheet-weapon_cleave_attack_section">
@@ -1657,6 +1659,8 @@
       setting['defensive_attack'] = (c_class === 'fighter' ? 1 : 0);
       setting['parry_attack'] = (c_class === 'fighter' ? 'ac4' : 'ac2');
 
+      setting['beserk_attack_mod'] = (c_class === 'fighter' ?  3 + parseInt(level/4): 0);
+
       setAttrs(setting);
     });
   });
@@ -1680,7 +1684,7 @@
   const combatOpts = ['press_attack', 'defensive_attack', 'beserk_attack', 'cleave_attack', 'strong_attack' ];
 
   combatOpts.forEach(combat_opt => {
-    on(`change:${combat_opt} change:sneak_attack_dice change:repeating_weapons` , function () {
+    on(`change:${combat_opt} change:sneak_attack_dice change:repeating_weapons change:level` , function () {
       getSectionIDs('repeating_weapons', function (ids) {
           const fieldnames = [];
           ids.forEach(id => {
