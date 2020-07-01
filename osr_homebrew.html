@@ -13,6 +13,7 @@
          <option value="cleric">Cleric</option>
          <option value="specialist">Specialist</option>
          <option value="wizard">Wizard</option>
+         <option value="multiclass">Multiclass</option>
        </select>
        <select class="sheet-info3" name="attr_level">
          <option value="0">0</option>
@@ -635,11 +636,11 @@
                   value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
 
           <div class="sheet-weapon_press_attack_section">
-            <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_weapon_attack"
+            <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_press_attack"
                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 2 ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
           </div>
           <div class="sheet-weapon_defense_attack_section">
-            <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_weapon_attack"
+            <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_defense_attack"
                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Defensive Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] -4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
           </div>
 
@@ -888,8 +889,6 @@
 
   <div class="sheet-section-inventory">
     <span class="sheet-spacer">&nbsp;</span>
-    <div class="sheet-thick-border">
-      <h3>Inventory</h3>
       <div class="sheet-block">
         <div class="sheet-flex-between sheet-bottom-padding">
           <div class="sheet-thin-border sheet-padding">
@@ -905,6 +904,8 @@
             <input type="number" name="attr_movement_rate" class="sheet-inactive-color" value="0" readonly="true"/>
           </div>
         </div>
+        <div class="sheet-thick-border">
+        <h3>Inventory</h3>
         <div class="sheet-flex-between">
           <div class="sheet-col-left-inv">
             <div class="sheet-thin-border sheet-padding">
@@ -941,13 +942,13 @@
                       <span class="sheet-left-pad">Armor Bonus:</span>
                   </div>
                   <div class="table-cell sheet-table-cell sheet-bottom-pad">
-                    <input type="number" class="sheet-purple-border" name="attr_armor_bonus" value="0"/>
+                    <input type="number" class="center sheet-purple-border" name="attr_armor_bonus" value="0"/>
                   </div>
                   <div class="table-cell sheet-table-cell">
                       <span class="sheet-left-pad">Shield Bonus:</span>
                   </div>
                   <div class="table-cell sheet-table-cell sheet-bottom-pad">
-                      <input type="number" class="sheet-purple-border" name="attr_shield_bonus" value="0"/>
+                      <input type="number" class="center sheet-purple-border" name="attr_shield_bonus" value="0"/>
                   </div>
                 </div>
               </div>
