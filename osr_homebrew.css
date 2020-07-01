@@ -358,8 +358,9 @@ input[type=number].sheet-ability-value {
     display: block;
     margin: 6px auto;
 }
+
 button[type=roll].sheet-ability-button {
-    width: 40px;
+	width: 40px;
     height: 40px;
     font-size: 26px;
     background-color: white;
@@ -560,47 +561,98 @@ span.sheet-rotate
 	padding: 0;
 }
 
-.sheet-weapon-param,
-input.sheet-weapon-param
+.sheet-weapon-name,
+span.sheet-weapon-name,
+input[type=text].sheet-weapon-name
 {
-	 width: 60px;
-   text-align: center;
+	width: 150px;
+	font-weight: bold;
+	font-size: 14px;
+	text-align: center;
+	align-self: left;
+	align-items: start;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
-.sheet-weapon-param-empty,
+span.sheet-weapon-name
 {
-	 width: 60px;
-	 margin-left: 3px;
+	margin-right: 1px;
+}
+
+.sheet-weapon-param,
+select.sheet-weapon-param,
+input[type=text].sheet-weapon-param,
+input[type=number].sheet-weapon-param
+{
+	 display: inline-flex;
+   text-align: center;
+	 font-size: 12px;
+	 margin-left: 10px;
+	 margin-right: 10px;
+}
+
+.sheet-weapon-param,
+input[type=text].sheet-weapon-param,
+input[type=number].sheet-weapon-param
+{
+	width: 30px;
+}
+
+.sheet-weapon-param-name,
+span.sheet-weapon-param-name,
+span.sheet-weapon-param-select-name
+{
+	display: inline-flex;
+	width: 50px;
+	font-size: 12px;
+	text-align: center;
+	align-items: start;
+	align-content: center;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+select.sheet-weapon-param,
+span.sheet-weapon-param-select-name
+{
+	text-align: center;
+	width: 70px;
 }
 
 input.sheet-weapon-notch
 {
-	  align-items: center;
+	align-items: center;
     width: 130px;
 }
 
-.sheet-field-spacer
+button.sheet-attack-disabled,
+button[type=roll].sheet-attack-disabled,
+button[type=roll].sheet-attack-button
 {
-	 padding-left: 9px;
-	 padding-right: 9px;
+	width: 30px;
+	height: 28px;
+	border: 2px solid black;
+	/* font-size: 12px; */
+	margin-right: 10px;
+	margin-left: 10px;
+	text-shadow: none;
+	background-image: none;
 }
 
-.sheet-button-field-spacer
+button[type=roll].sheet-attack-disabled::before,
+button[type=roll].sheet-attack-disabled::after,
+button[type=roll].sheet-attack-disabled
 {
-	 padding-left: 22px;
+	background-image: none;
+	background-color: #000;
+	color: #000;
 }
 
 button[type=roll].sheet-attack-button
 {
-    width: 30px;
-    height: 28px;
-    font-size: 20px;
-    border: 2px solid black;
     background-color: white;
-    background-image: none;
     color: black;
-    margin-right: 0;
-    text-Shadow: none;
 }
 
 .sheet-blue-border,
@@ -636,45 +688,54 @@ button.sheet-red-border
 .sheet-yellow-border,
 button[type=roll].sheet-yellow-border
 {
-    border: 2px solid yellow;
+	border: 2px solid yellow;
 }
 
-.sheet-weapon-header,
-span.sheet-weapon-header
-{
-	width: 190px;
-	font-weight: bold;
-	text-align: center;
-}
 
-.sheet-weapon-name,
-input[type=text].sheet-weapon-name
-{
-	width: 140px;
-	font-weight: bold;
-	text-align: left;
-}
-
+div.sheet-beserk_attack_section,
+div.sheet-cleave_attack_section,
+div.sheet-strong_attack_section,
 div.sheet-sneak_attack_section,
-div.sheet-weapon_sneak_attack_section
+div.sheet-weapon_beserk_attack_section,
+div.sheet-weapon_cleave_attack_section,
+div.sheet-weapon_sneak_attack_section,
+div.sheet-weapon_strong_attack_section
 {
 	display: none;
 }
 
+div.sheet-no_beserk_attack_section,
+div.sheet-no_cleave_attack_section,
 div.sheet-no_sneak_attack_section,
-div.sheet-weapon_no_sneak_attack_section
+div.sheet-no_strong_attack_section,
+div.sheet-weapon_no_beserk_attack_section,
+div.sheet-weapon_no_cleave_attack_section,
+div.sheet-weapon_no_sneak_attack_section,
+div.sheet-weapon_no_strong_attack_section
 {
 	display: none;
 }
 
+input.sheet-beserk_attack_enabled:checked ~ div.sheet-beserk_attack_section,
+input.sheet-cleave_attack_enabled:checked ~ div.sheet-cleave_attack_section,
 input.sheet-sneak_attack_enabled:checked ~ div.sheet-sneak_attack_section,
-input.sheet-weapon_sneak_attack_enabled:checked ~ div.sheet-weapon_sneak_attack_section
+input.sheet-strong_attack_enabled:checked ~ div.sheet-strong_attack_section,
+input.sheet-weapon_beserk_attack_enabled:checked ~ div.sheet-weapon_beserk_attack_section,
+input.sheet-weapon_cleave_attack_enabled:checked ~ div.sheet-weapon_cleave_attack_section,
+input.sheet-weapon_sneak_attack_enabled:checked ~ div.sheet-weapon_sneak_attack_section,
+input.sheet-weapon_strong_attack_enabled:checked ~ div.sheet-weapon_strong_attack_section
 {
   display: block;
 }
 
+input.sheet-beserk_attack_enabled:not(:checked) ~ div.sheet-no_beserk_attack_section,
+input.sheet-cleave_attack_enabled:not(:checked) ~ div.sheet-no_cleave_attack_section,
 input.sheet-sneak_attack_enabled:not(:checked) ~ div.sheet-no_sneak_attack_section,
-input.sheet-weapon_sneak_attack_enabled:not(:checked) ~ div.sheet-weapon_no_sneak_attack_section
+input.sheet-strong_attack_enabled:not(:checked) ~ div.sheet-no_strong_attack_section,
+input.sheet-weapon_beserk_attack_enabled:not(:checked) ~ div.sheet-weapon_no_beserk_attack_section,
+input.sheet-weapon_cleave_attack_enabled:not(:checked) ~ div.sheet-weapon_no_cleave_attack_section,
+input.sheet-weapon_sneak_attack_enabled:not(:checked) ~ div.sheet-weapon_no_sneak_attack_section,
+input.sheet-weapon_strong_attack_enabled:not(:checked) ~ div.sheet-weapon_no_strong_attack_section
 {
   display: block;
 }
