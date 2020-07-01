@@ -556,8 +556,8 @@ input[type=number].sheet-spell-prepared {
 span.sheet-rotate
 {
   transform: rotate(90deg);
-  border: 2px solid black;
 	text-align: center;
+	align-items: flex-start;
 	padding: 0;
 }
 
@@ -565,10 +565,10 @@ span.sheet-rotate
 span.sheet-weapon-name,
 input[type=text].sheet-weapon-name
 {
-	width: 150px;
+	width: 160px;
 	font-weight: bold;
 	font-size: 14px;
-	text-align: center;
+	text-align: left;
 	align-self: left;
 	align-items: start;
 	margin-left: 5px;
@@ -582,14 +582,21 @@ span.sheet-weapon-name
 
 .sheet-weapon-param,
 select.sheet-weapon-param,
+select.sheet-weapon-notches,
 input[type=text].sheet-weapon-param,
 input[type=number].sheet-weapon-param
 {
 	 display: inline-flex;
    text-align: center;
 	 font-size: 12px;
-	 margin-left: 10px;
-	 margin-right: 10px;
+	 margin-left: 9px;
+	 margin-right: 9px;
+}
+
+select.sheet-weapon-notches
+{
+	text-align: center;
+	width: 40px;
 }
 
 .sheet-weapon-param,
@@ -609,8 +616,8 @@ span.sheet-weapon-param-select-name
 	text-align: center;
 	align-items: start;
 	align-content: center;
-	margin-left: 5px;
-	margin-right: 5px;
+	margin-left: 3px;
+	margin-right: 4px;
 }
 
 select.sheet-weapon-param,
@@ -618,12 +625,6 @@ span.sheet-weapon-param-select-name
 {
 	text-align: center;
 	width: 70px;
-}
-
-input.sheet-weapon-notch
-{
-	align-items: center;
-    width: 130px;
 }
 
 button.sheet-attack-disabled,
@@ -634,8 +635,8 @@ button[type=roll].sheet-attack-button
 	height: 28px;
 	border: 2px solid black;
 	color: #f00;
-	margin-right: 10px;
-	margin-left: 10px;
+	margin-right: 8px;
+	margin-left: 8px;
 	text-shadow: none;
 	background-image: none;
 }
@@ -680,7 +681,7 @@ button.sheet-purple-border
 }
 
 .sheet-red-border,
-button.sheet-red-border
+button[type=roll].sheet-red-border
 {
     border: 2px solid red;
 }

@@ -552,7 +552,7 @@
         <input type="checkbox" class="sheet-cleave_attack_enabled" name="attr_cleave_attack_enabled" value="1" hidden="true"/>
         <input type="checkbox" class="sheet-sneak_attack_enabled" name="attr_sneak_attack_enabled" value="1" hidden="true"/>
         <input type="checkbox" class="sheet-strong_attack_enabled" name="attr_strong_attack_enabled" value="1" hidden="true"/>
-        <!--span class="sheet-weapon-param sheet-bold-font"> </span-->
+        <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font">Notches</span>
         <span class="sheet-weapon-name sheet-bold-font">Name</span>
         <span class="sheet-weapon-param-name sheet-bold-font">Add. Bonus</span>
         <span class="sheet-weapon-param-select-name sheet-bold-font">Type</span>
@@ -593,7 +593,12 @@
           <input type="checkbox" class="sheet-weapon_sneak_attack_enabled" name="attr_weapon_sneak_attack_enabled" value="1" hidden="true"/>
           <input name="attr_weapon_sneak_attack_dam" value="0" hidden="true"/>
 
-            <!--input type="checkbox" name="attr_weapon_notched" class="sheet-center" value="1"/-->
+            <select class="sheet-weapon-notches" name="attr_weapon_notches">
+              <option selected="selected" value="0">--</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
             <input type="text" name="attr_weapon_name" class="weapon-name" data-i18n-placeholder="name"/>
 
             <input type="number" name="attr_weapon_bonus" class="weapon-param sheet-purple-border" value="0"/>
@@ -619,7 +624,7 @@
 
             <input type="number" name="attr_weapon_dam_bonus" class="weapon-param inactive-color" value="[[@{strength_mod}+[[@{weapon_bonus}]]]]" disabled="true"/>
 
-            <button class="sheet-attack-button" type="roll" name="roll_weapon_attack"
+            <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_weapon_attack"
                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
 
             <div class="sheet-weapon_beserk_attack_section">
