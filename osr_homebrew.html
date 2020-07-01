@@ -550,6 +550,8 @@
       <div class="sheet-inline-flex">
         <input type="checkbox" class="sheet-beserk_attack_enabled" name="attr_beserk_attack_enabled" value="1" hidden="true"/>
         <input type="checkbox" class="sheet-cleave_attack_enabled" name="attr_cleave_attack_enabled" value="1" hidden="true"/>
+        <input type="checkbox" class="sheet-defense_attack_enabled" name="attr_defense_attack_enabled" value="1" hidden="true"/>
+        <input type="checkbox" class="sheet-press_attack_enabled" name="attr_press_attack_enabled" value="1" hidden="true"/>
         <input type="checkbox" class="sheet-sneak_attack_enabled" name="attr_sneak_attack_enabled" value="1" hidden="true"/>
         <input type="checkbox" class="sheet-strong_attack_enabled" name="attr_strong_attack_enabled" value="1" hidden="true"/>
         <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font">Notches</span>
@@ -559,17 +561,27 @@
         <span class="sheet-weapon-param-name sheet-bold-font">Attk Bonus</span>
         <span class="sheet-weapon-param-select-name sheet-bold-font">Damage</span>
         <span class="sheet-weapon-param-name sheet-bold-font">Dam Bonus</span>
-        <span class="sheet-weapon-param-name sheet-bold-font">Stand. Attack</span>
-        
-        <div class="sheet-beserk_attack_section">
-          <span class="sheet-weapon-param sheet-bold-font">Beserk Attack</span>
+        <span class="sheet-weapon-param-name sheet-bold-font">Stnd. Attack</span>
+
+        <div class="sheet-press_attack_section">
+          <span class="sheet-weapon-param-name sheet-bold-font">Press Attack</span>
         </div>
+        <div class="sheet-defense_attack_section">
+          <span class="sheet-weapon-param-name sheet-bold-font">Defns. Attack</span>
+        </div>
+
+        <div class="sheet-beserk_attack_section">
+          <span class="sheet-weapon-param-name sheet-bold-font">Beserk Attack</span>
+        </div>
+
         <div class="sheet-cleave_attack_section">
           <span class="sheet-weapon-param-name sheet-bold-font">Cleave Attack</span>
         </div>
+
         <div class="sheet-strong_attack_section">
           <span class="sheet-weapon-param-name sheet-bold-font">Strong Attack</span>
         </div>
+
         <div class="sheet-sneak_attack_section">
           <span class="sheet-weapon-param-name sheet-bold-font">Sneak Attack</span>
         </div>
@@ -579,6 +591,8 @@
         <div class="sheet-inline-flex">
           <input type="checkbox" class="sheet-weapon_beserk_attack_enabled" name="attr_weapon_beserk_attack_enabled" value="1" hidden="true"/>
           <input type="checkbox" class="sheet-weapon_cleave_attack_enabled" name="attr_weapon_cleave_attack_enabled" value="1" hidden="true"/>
+          <input type="checkbox" class="sheet-weapon_defense_attack_enabled" name="attr_weapon_defense_attack_enabled" value="1" hidden="true"/>
+          <input type="checkbox" class="sheet-weapon_press_attack_enabled" name="attr_weapon_press_attack_enabled" value="1" hidden="true"/>
           <input type="checkbox" class="sheet-weapon_strong_attack_enabled" name="attr_weapon_strong_attack_enabled" value="1" hidden="true"/>
           <input type="checkbox" class="sheet-weapon_sneak_attack_enabled" name="attr_weapon_sneak_attack_enabled" value="1" hidden="true"/>
           <input name="attr_weapon_sneak_attack_dam" value="0" hidden="true"/>
@@ -617,6 +631,15 @@
 
           <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_weapon_attack"
                   value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+
+          <div class="sheet-weapon_press_attack_section">
+            <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_weapon_attack"
+                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 2 ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+          </div>
+          <div class="sheet-weapon_defense_attack_section">
+            <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_weapon_attack"
+                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Defensive Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] -4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+          </div>
 
           <div class="sheet-weapon_beserk_attack_section">
             <button class="sheet-attack-button sheet-yellow-border" type="roll" name="roll_beserk_attack"
@@ -1654,7 +1677,7 @@
   });
 
   // Keep weapons up to date
-  const combatOpts = ['beserk_attack', 'cleave_attack', 'strong_attack' ];
+  const combatOpts = ['press_attack', 'defensive_attack', 'beserk_attack', 'cleave_attack', 'strong_attack' ];
 
   combatOpts.forEach(combat_opt => {
     on(`change:${combat_opt} change:sneak_attack_dice change:repeating_weapons` , function () {
@@ -1670,10 +1693,14 @@
               const sneak_dice = parseInt(values.sneak_attack_dice) || 0;
               const beserk_attack = parseInt(values.beserk_attack) || 0;
               const cleave_attack = parseInt(values.cleave_attack) || 0;
+              const defensive_attack = parseInt(values.defensive_attack) || 0;
+              const press_attack = parseInt(values.press_attack) || 0;
               const strong_attack = parseInt(values.strong_attack) || 0;
 
               output['beserk_attack_enabled'] = beserk_attack;
               output['cleave_attack_enabled'] = cleave_attack;
+              output['defense_attack_enabled'] = defensive_attack;
+              output['press_attack_enabled'] = press_attack;
               output['strong_attack_enabled'] = strong_attack;
 
               ids.forEach(id => {
@@ -1682,6 +1709,8 @@
 
                   output['repeating_weapons_' + id + '_weapon_beserk_attack_enabled'] = beserk_attack;
                   output['repeating_weapons_' + id + '_weapon_cleave_attack_enabled'] = cleave_attack;
+                  output['repeating_weapons_' + id + '_weapon_defense_attack_enabled'] = defensive_attack;
+                  output['repeating_weapons_' + id + '_weapon_press_attack_enabled'] = press_attack;
                   output['repeating_weapons_' + id + '_weapon_strong_attack_enabled'] = strong_attack;
                   output['repeating_weapons_' + id + '_weapon_sneak_attack_dam'] = sneak_dam;
                   output['repeating_weapons_' + id + '_weapon_sneak_attack_enabled'] = sneak_dice > 0 ? 1 : 0;
