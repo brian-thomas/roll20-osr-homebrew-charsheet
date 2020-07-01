@@ -623,12 +623,9 @@ span.sheet-weapon-param-select-name
 select.sheet-weapon-param,
 span.sheet-weapon-param-select-name
 {
-	text-align: center;
 	width: 70px;
 }
 
-button.sheet-attack-disabled,
-button[type=roll].sheet-attack-disabled,
 button[type=roll].sheet-attack-button
 {
 	width: 30px;
@@ -639,15 +636,6 @@ button[type=roll].sheet-attack-button
 	margin-left: 8px;
 	text-shadow: none;
 	background-image: none;
-}
-
-button[type=roll].sheet-attack-disabled::before,
-button[type=roll].sheet-attack-disabled::after,
-button[type=roll].sheet-attack-disabled
-{
-	background-image: none;
-	color: #000;
-	background-color: #000;
 }
 
 button[type=roll].sheet-attack-button
@@ -692,7 +680,6 @@ button[type=roll].sheet-yellow-border
 	border: 2px solid yellow;
 }
 
-
 div.sheet-beserk_attack_section,
 div.sheet-cleave_attack_section,
 div.sheet-strong_attack_section,
@@ -705,18 +692,6 @@ div.sheet-weapon_strong_attack_section
 	display: none;
 }
 
-div.sheet-no_beserk_attack_section,
-div.sheet-no_cleave_attack_section,
-div.sheet-no_sneak_attack_section,
-div.sheet-no_strong_attack_section,
-div.sheet-weapon_no_beserk_attack_section,
-div.sheet-weapon_no_cleave_attack_section,
-div.sheet-weapon_no_sneak_attack_section,
-div.sheet-weapon_no_strong_attack_section
-{
-	display: none;
-}
-
 input.sheet-beserk_attack_enabled:checked ~ div.sheet-beserk_attack_section,
 input.sheet-cleave_attack_enabled:checked ~ div.sheet-cleave_attack_section,
 input.sheet-sneak_attack_enabled:checked ~ div.sheet-sneak_attack_section,
@@ -725,18 +700,6 @@ input.sheet-weapon_beserk_attack_enabled:checked ~ div.sheet-weapon_beserk_attac
 input.sheet-weapon_cleave_attack_enabled:checked ~ div.sheet-weapon_cleave_attack_section,
 input.sheet-weapon_sneak_attack_enabled:checked ~ div.sheet-weapon_sneak_attack_section,
 input.sheet-weapon_strong_attack_enabled:checked ~ div.sheet-weapon_strong_attack_section
-{
-  display: block;
-}
-
-input.sheet-beserk_attack_enabled:not(:checked) ~ div.sheet-no_beserk_attack_section,
-input.sheet-cleave_attack_enabled:not(:checked) ~ div.sheet-no_cleave_attack_section,
-input.sheet-sneak_attack_enabled:not(:checked) ~ div.sheet-no_sneak_attack_section,
-input.sheet-strong_attack_enabled:not(:checked) ~ div.sheet-no_strong_attack_section,
-input.sheet-weapon_beserk_attack_enabled:not(:checked) ~ div.sheet-weapon_no_beserk_attack_section,
-input.sheet-weapon_cleave_attack_enabled:not(:checked) ~ div.sheet-weapon_no_cleave_attack_section,
-input.sheet-weapon_sneak_attack_enabled:not(:checked) ~ div.sheet-weapon_no_sneak_attack_section,
-input.sheet-weapon_strong_attack_enabled:not(:checked) ~ div.sheet-weapon_no_strong_attack_section
 {
   display: block;
 }
