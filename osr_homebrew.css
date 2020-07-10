@@ -280,7 +280,7 @@ input[type=number]::-webkit-inner-spin-button {
     margin: 0 1%;
 }
 .sheet-info-row {
-    display: flex;
+    display: inline-flex;
     text-align: center;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -442,6 +442,11 @@ input.sheet-tab99:checked + span.sheet-tab99 {
         background: #ab8b57;
         color: white;
         border-radius: 4px;
+}
+
+input.sheet-is_multiclass:checked ~ div.sheet-section-multiclass
+{
+	display: block;
 }
 
 input.sheet-skillname {
