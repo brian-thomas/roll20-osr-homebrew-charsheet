@@ -653,7 +653,7 @@
   	        <option value="@{ranged_ab}">Ranged</option>
   	      </select>
 
-          <input type="number" name="attr_weapon_attack_bonus" class="weapon-param inactive-color" value="[[@{weapon_type}+[[@{weapon_bonus}]]]]" disabled="true"/>
+          <input type="number" name="attr_weapon_attack_bonus" class="weapon-param inactive-color" value="[[@{weapon_type}+[[@{weapon_bonus}]]-[[@{weapon_notches}]]]]" disabled="true"/>
 
           <select class="sheet-weapon-param" name="attr_weapon_dam">
             <option selected="selected" value="1d2">1d2</option>
