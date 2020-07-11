@@ -595,7 +595,7 @@
         <input type="checkbox" class="sheet-strong_attack_enabled" name="attr_strong_attack_enabled" value="1" hidden="true"/>
         <input type="number" name="attr_beserk_attack_mod" value="2" hidden="true"/>
 
-        <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font">Notches</span>
+        <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font sheet-italic-font">Notches</span>
         <span class="sheet-weapon-name sheet-bold-font">Name</span>
         <span class="sheet-weapon-param-name sheet-bold-font">Add. Bonus</span>
         <span class="sheet-weapon-param-select-name sheet-bold-font">Type</span>
@@ -948,9 +948,9 @@
           <div class="sheet-col-left-inv">
             <div class="sheet-thin-border sheet-padding">
               <div class="table sheet-fill-width">
-                <div class="table-row sheet-flex-simple">
+                <div class="table-row sheet-inline-flex">
                   <div class="table-cell sheet-table-cell">
-                    <h3>Armor:</h3>
+                    <span class="sheet-bold-font">Armor:</span>
                   </div>
                   <div class="table-cell sheet-table-cell">
                     <select name="attr_armor" class="sheet-armor-name">
@@ -961,10 +961,22 @@
                       <option value="plate">Plate / 2 Enc. Pts. / 1 Slot</option>
                     </select>
                   </div>
+                  <div class="table-cell sheet-table-cell">
+                    <div class="sheet-block">
+                      <select class="sheet-weapon-notches" name="attr_armor_notches">
+                        <option selected="selected" value="0">--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
+                      <span class="sheet-italic-font">Notches</span>
+                    </div>
+                  </div>
                 </div>
 		            <div class="table-row sheet-flex-simple">
                   <div class="table-cell sheet-table-cell">
-                    <h3>Shield:</h3>
+                    <span class="sheet-bold-font">Shield:</span>
                   </div>
                   <div class="table-cell sheet-table-cell">
                     <select name="attr_shield" class="sheet-armor-name">
@@ -974,16 +986,30 @@
                       <option value="tower_shield">Tower Shield / 2 Slots/1 Enc</option>
                     </select>
                   </div>
+                  <div class="table-cell sheet-table-cell">
+                    <div class="sheet-block">
+                      <select class="sheet-weapon-notches" name="attr_shield_notches">
+                        <option selected="selected" value="0">--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
+                      <span class="sheet-italic-font">Notches</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="table-row sheet-flex-simple">
                   <div class="table-cell sheet-table-cell">
-                      <span class="sheet-left-pad">Armor Bonus:</span>
+                    <div class="sheet-block">
+                      <span class="sheet-center">Armor Bonus:</span>
+                    </div>
                   </div>
                   <div class="table-cell sheet-table-cell sheet-bottom-pad">
                     <input type="number" class="center sheet-purple-border" name="attr_armor_bonus" value="0"/>
                   </div>
                   <div class="table-cell sheet-table-cell">
-                      <span class="sheet-left-pad">Shield Bonus:</span>
+                      <span class="sheet-center sheet-left-pad">Shield Bonus:</span>
                   </div>
                   <div class="table-cell sheet-table-cell sheet-bottom-pad">
                       <input type="number" class="center sheet-purple-border" name="attr_shield_bonus" value="0"/>
@@ -1693,13 +1719,12 @@
   // Calculate armor class
   const armor_ac_value = {'none': 0, 'leather': 2, 'studded_leather': 4, 'chain': 6, 'plate': 8};
   const shield_ac_value = {'none': 0, 'small_shield': 1, 'large_shield': 2, 'tower_shield': 3};
-  on(`sheet:opened change:armor change:shield change:dexterity_mod change:armor_bonus change:shield_bonus`, () => {
-    getAttrs(['armor', 'shield', 'armor_bonus', 'shield_bonus', 'dexterity_mod'], v => {
+  on(`sheet:opened change:armor change:shield change:dexterity_mod change:armor_bonus change:armor_notches change:shield_bonus change:shield_notches`, () => {
+    getAttrs(['armor', 'shield', 'armor_bonus', 'armor_notches', 'shield_bonus', 'shield_notches', 'dexterity_mod'], v => {
       var armor_class = 10 + parseInt(v.dexterity_mod)
-      armor_class += parseInt(armor_ac_value[v.armor]) + parseInt(shield_ac_value[v.shield])
+      armor_class += parseInt(armor_ac_value[v.armor]) + parseInt(shield_ac_value[v.shield]) - parseInt(v.armor_notches) - parseInt(v.shield_notches)
       armor_class += parseInt(v.armor_bonus) + parseInt(v.shield_bonus);
       setAttrs({ac : armor_class});
-
     });
   });
 
