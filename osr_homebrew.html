@@ -636,6 +636,7 @@
           <input type="checkbox" class="sheet-weapon_press_attack_enabled" name="attr_weapon_press_attack_enabled" value="1" hidden="true"/>
           <input type="checkbox" class="sheet-weapon_strong_attack_enabled" name="attr_weapon_strong_attack_enabled" value="1" hidden="true"/>
           <input type="checkbox" class="sheet-weapon_sneak_attack_enabled" name="attr_weapon_sneak_attack_enabled" value="1" hidden="true"/>
+          <input name="attr_weapon_sneak_attack_bonus" value="[[@{sneak_attack_skill}+[[@{weapon_bonus}]]-[[@{weapon_notches}]]]]" hidden="true"/>
           <input name="attr_weapon_sneak_attack_dam" value="0" hidden="true"/>
 
           <select class="sheet-weapon-notches" name="attr_weapon_notches">
@@ -654,6 +655,7 @@
   	      </select>
 
           <input type="number" name="attr_weapon_attack_bonus" class="weapon-param inactive-color" value="[[@{weapon_type}+[[@{weapon_bonus}]]-[[@{weapon_notches}]]]]" disabled="true"/>
+          <!--input type="number" name="attr_weapon_sneak_attack_bonus" value="[[@{sneak_attack_skill}+[[@{weapon_bonus}]]-[[@{weapon_notches}]] ]]" hidden="true"/-->
 
           <select class="sheet-weapon-param" name="attr_weapon_dam_die">
             <option selected="selected" value="1d2">1d2</option>
@@ -699,7 +701,7 @@
 
           <div class="sheet-weapon_sneak_attack_section">
             <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_sneak_attack"
-	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{sneak_attack_skill}]] ]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]]  ]]}} {{math=1d20 + [[@{sneak_attack_skill}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_sneak_attack_bonus}]]]]}} {{simple=1}} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_sneak_attack_dam}]] ]]}} {{math=1d20 + @{weapon_sneak_attack_bonus} [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
           </div>
 
         </div>
