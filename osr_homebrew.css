@@ -197,10 +197,10 @@ select.side-padding
 	padding-bottom: 5px;
 }
 .sheet-header-left {
-	width: 75%;
+	width: 60%;
 }
 .sheet-header-right {
-	width: 25%;
+	width: 40%;
 }
 .sheet-col-left {
 	width: 49%;
@@ -224,6 +224,7 @@ select.side-padding
 	flex-direction: column;
 }
 .sheet-logo {
+	  width: 70%;
     margin: 12px auto;
     display: block;
 }
@@ -269,25 +270,7 @@ input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-/* INFO BLOCK */
-.sheet-info-name {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
-.sheet-info-name input {
-    flex: 1 1 0;
-    margin: 0 1%;
-}
-.sheet-info-row {
-    display: inline-flex;
-    text-align: center;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-.sheet-info-row input {
-    text-align: left;
-}
+
 .sheet-info1 {
     width: 11%;
 }
@@ -297,12 +280,61 @@ input[type=number]::-webkit-inner-spin-button {
 .sheet-info3 {
 	width: 32%;
 }
-.sheet-info4 {
+.sheet-info4
+{
 	width: 52%;
 }
 .sheet-info5 {
 	width: 93%;
 }
+
+.sheet-info-name,
+span.sheet-info-name,
+input.sheet-info-name,
+input.sheet-info-name-long
+{
+	width: 140px;
+	font-size: 12px;
+	margin-top: 1px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 1px;
+}
+
+input.sheet-info-name,
+input.sheet-info-name-long
+{
+	text-align: left;
+	align-items: start;
+	font-weight: bold;
+}
+
+span.sheet-info-name,
+input.sheet-info-name-long
+{
+  margin-bottom: 4px;
+}
+
+span.sheet-info-name,
+select.sheet-info-name,
+span.sheet-info-name-long
+{
+	text-align: center;
+	align-items: center;
+	align-content: center;
+}
+
+input.sheet-info-name-long
+{
+  width: 280px;
+}
+
+select.sheet-info-name
+{
+	align-items: center;
+	font-weight: bold;
+}
+
 .sheet-bottom-line {
     border: none;
     border-bottom: 1px solid;
@@ -444,7 +476,7 @@ input.sheet-tab99:checked + span.sheet-tab99 {
         border-radius: 4px;
 }
 
-input.sheet-is_multiclass:checked ~ div.sheet-section-multiclass
+input.sheet-multiclass_enabled:checked ~ div.sheet-section-multiclass
 {
 	display: block;
 }

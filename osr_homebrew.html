@@ -1,22 +1,56 @@
-<div class="sheet-flex-between">
-  <div class="sheet-header-left sheet-noborder">
+<div class="sheet-flex sheet-bottom-padding">
 
-    <div class="sheet-info-name sheet-info-margin">
-      <span><label>Name:</label></span>
-      <input name="attr_character_name" class="sheet-align-left" type="text"/>
+  <div class="sheet-header-left sheet-thin-border">
+
+    <div class="sheet-inline-flex sheet-bottom-padding">
+      <span class="sheet-bold-font">Name:</span>
+      <input type="text" class="sheet-align-left sheet-info-name-long" name="attr_character_name"/>
+      <input type="checkbox" class="sheet-is_multiclass" name="attr_is_multiclass" value="1"/>
+      <span class="ability-check-label">Multiclass</span>
     </div>
 
-    <div class="sheet-block">
-       <div class="sheet-info-row">
-         <select class="sheet-info3" name="attr_class">
-           <option selected="selected" value="fighter">Fighter</option>
+    <div class="sheet-inline-flex">
+       <select class="sheet-info-name" name="attr_class">
+         <option selected="selected" value="fighter">Fighter</option>
+         <option value="cleric">Cleric</option>
+         <option value="specialist">Specialist</option>
+         <option value="wizard">Wizard</option>
+       </select>
+       <select class="sheet-info-name" name="attr_level">
+         <option value="0">0</option>
+         <option selected="selected" value="1">1</option>
+         <option value="2">2</option>
+         <option value="3">3</option>
+         <option value="4">4</option>
+         <option value="5">5</option>
+         <option value="6">6</option>
+         <option value="7">7</option>
+         <option value="8">8</option>
+         <option value="9">9</option>
+         <option value="10">10</option>
+       </select>
+       <input type="text" class="sheet-info-name" name="attr_xp"/>
+     </div>
+
+     <div class="sheet-inline-flex sheet-bottom-padding">
+       <span class="sheet-info-name">Class</span>
+       <span class="sheet-info-name">Level</span>
+       <span class="sheet-info-name">XP</span>
+     </div>
+
+     <input type="checkbox" class="sheet-multiclass_enabled" name="attr_multiclass_enabled" value="1" hidden="true"/>
+     <div class="section-multiclass">
+       <div class="sheet-inline-flex">
+         <select class="sheet-info-name" name="attr_class2">
+           <option selected="selected" value="none">--</option>
+           <option value="fighter">Fighter</option>
            <option value="cleric">Cleric</option>
            <option value="specialist">Specialist</option>
            <option value="wizard">Wizard</option>
          </select>
-         <select class="sheet-info3" name="attr_level">
-           <option value="0">0</option>
-           <option selected="selected" value="1">1</option>
+         <select class="sheet-info-name" name="attr_level2">
+           <option value="0" selected="selected">--</option>
+           <option value="1">1</option>
            <option value="2">2</option>
            <option value="3">3</option>
            <option value="4">4</option>
@@ -27,79 +61,44 @@
            <option value="9">9</option>
            <option value="10">10</option>
          </select>
-         <input type="text" class="sheet-info3" name="attr_xp"/>
        </div>
-       <div class="sheet-info-row">
-         <span><label class="sheet-info3">Class</label></span>
-         <span><label class="sheet-info3">Level</label></span>
-        <span><label class="sheet-info3">XP</label></span>
+       <div class="sheet-inline-flex">
+         <span class="sheet-info-name">Class</span>
+         <span class="sheet-info-name">Level</span>
+         <span class="sheet-info-name">&nbsp;</span>
        </div>
-    </div>
+     </div>
 
-    <div class="sheet-flex">
-      <div class="sheet-inline-flex">
-         <input type="checkbox" class="sheet-is_multiclass" name="attr_is_multiclass" value="1"/>
-         <span class="ability-check-label sheet-flex-between">Multiclass</span>
-         <div class="sheet-section-multiclass">
-           <div class="sheet-info-row">
-             <select class="sheet-info3" name="attr_class2">
-               <option selected="selected" value="none">--</option>
-               <option value="fighter">Fighter</option>
-               <option value="cleric">Cleric</option>
-               <option value="specialist">Specialist</option>
-               <option value="wizard">Wizard</option>
-             </select>
-             <select class="sheet-info3" name="attr_level2">
-               <option value="0" selected="selected">--</option>
-               <option value="1">1</option>
-               <option value="2">2</option>
-               <option value="3">3</option>
-               <option value="4">4</option>
-               <option value="5">5</option>
-               <option value="6">6</option>
-               <option value="7">7</option>
-               <option value="8">8</option>
-               <option value="9">9</option>
-               <option value="10">10</option>
-             </select>
-             <div class="sheet-info-row">
-               <span><label class="sheet-info3">Class</label></span>
-               <span><label class="sheet-info3">Level</label></span>
-             </div>
-           </div>
+      <div class="sheet-block">
+         <div class="sheet-inline-flex">
+           <select class="sheet-info-name" name="attr_alignment">
+              <option selectekd="selected" value="Neutral">Neutral</option>
+              <option value="Lawful">Lawful</option>
+              <option value="Chaotic">Chaotic</option>
+           </select>
+           <select class="sheet-info-name" name="attr_race">
+              <option selected="selected" value="Human">Human</option>
+              <option value="Dwarf">Dwarf</option>
+              <option value="Elven">Elven</option>
+              <option value="Halfling">Halfling</option>
+           </select>
+           <input type="text" class="sheet-info-name" name="attr_background"/>
+         </div>
+         <div class="sheet-inline-flex">
+           <span class="sheet-info-name">Alignment</span>
+           <span class="sheet-info-name">Race</span>
+           <span class="sheet-info-name">Background</span>
          </div>
       </div>
+
     </div>
 
-    <div class="sheet-block">
-       <div class="sheet-info-row">
-         <select class="sheet-info3" name="attr_alignment">
-            <option selectekd="selected" value="Neutral">Neutral</option>
-            <option value="Lawful">Lawful</option>
-            <option value="Chaotic">Chaotic</option>
-         </select>
-         <select class="sheet-info3" name="attr_race">
-            <option selected="selected" value="Human">Human</option>
-            <option value="Dwarf">Dwarf</option>
-            <option value="Elven">Elven</option>
-            <option value="Halfling">Halfling</option>
-         </select>
-         <input type="text" class="sheet-info3" name="attr_background"/>
-       </div>
-       <div class="sheet-info-row">
-         <span><label class="sheet-info3">Alignment</label></span>
-         <span><label class="sheet-info3">Race</label></span>
-         <span><label class="sheet-info3">Background</label></span>
-       </div>
+    <div class="sheet-header-right sheet-noborder">
+      <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/osr_logo.png"
+           class="sheet-logo">
     </div>
 
   </div>
-
-  <div class="sheet-header-right sheet-noborder">
-    <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/osr_logo.png"
-         class="sheet-logo">
-  </div>
-
 </div>
 
 <div class="sheet-inline">
@@ -1749,9 +1748,9 @@
         setting["alignment"] = "Chaotic";
       }
 
-      setting['press_attack'] = is_fighter;
-      setting['defensive_attack'] = is_fighter;
-      setting['parry_attack'] = is_fighter;
+      setting['press_attack'] = is_fighter ? 1 : 0;
+      setting['defensive_attack'] = is_fighter ? 1 : 0;
+      setting['parry_attack'] = is_fighter ? 1 : 0;
 
       if (c_class === 'fighter')
       {
@@ -1877,6 +1876,12 @@
 
         setAttrs( { encumbrance_points: enc_points, encumbrance: enc, movement_rate: move_rate} );
       });
+    });
+  });
+
+  on(`change:is_multiclass`, () => {
+    getAttrs(['is_multiclass'], v=> {
+       setAttrs( {multiclass_enabled: v.is_multiclass });
     });
   });
 
