@@ -655,7 +655,7 @@
 
           <input type="number" name="attr_weapon_attack_bonus" class="weapon-param inactive-color" value="[[@{weapon_type}+[[@{weapon_bonus}]]-[[@{weapon_notches}]]]]" disabled="true"/>
 
-          <select class="sheet-weapon-param" name="attr_weapon_dam">
+          <select class="sheet-weapon-param" name="attr_weapon_dam_die">
             <option selected="selected" value="1d2">1d2</option>
             <option value="1d4">1d4</option>
             <option value="1d6">1d6</option>
@@ -666,6 +666,7 @@
             <option value="2d6">2d6</option>
             <option value="2d8">2d8</option>
           </select>
+          <input name="attr_weapon_dam" value="0" hidden="true"/>
 
           <input type="number" name="attr_weapon_dam_bonus" class="weapon-param inactive-color" value="[[@{strength_mod}+[[@{weapon_bonus}]]]]" disabled="true"/>
 
@@ -1816,7 +1817,8 @@
           const fieldnames = [];
           ids.forEach(id => {
               fieldnames.push('repeating_weapons_' + id + '_weapon_sneak_attack_dam');
-              fieldnames.push('repeating_weapons_' + id + '_weapon_dam');
+              fieldnames.push('repeating_weapons_' + id + '_weapon_dam_die');
+              fieldnames.push('repeating_weapons_' + id + '_weapon_notches');
           });
           getAttrs([...fieldnames, ...combatOpts, 'sneak_attack_dice'], function (values) {
               const output = {};
@@ -1835,9 +1837,23 @@
               output['strong_attack_enabled'] = strong_attack;
 
               ids.forEach(id => {
-                  const this_dam_dice = values['repeating_weapons_' + id + '_weapon_dam'];
-                  const sneak_dam = sneak_dice + this_dam_dice.substring(1);
 
+                  const weapon_dam_die = values['repeating_weapons_' + id + '_weapon_dam_die'];
+                  const weapon_notches = parseInt(values['repeating_weapons_' + id + '_weapon_notches']);
+
+                  const num_dam_die = parseInt(weapon_dam_die.substring(0,1));
+                  const weapon_dam_die_type = parseInt(weapon_dam_die.substring(2)) - (2 * (weapon_notches));
+
+                  // safety for low die weapons with lots of notches
+                  if (weapon_dam_die_type < 0) {
+                    weapon_dam_die_type = 0;
+                  }
+
+                  // final calculations
+                  const sneak_dam = (sneak_dice * num_dam_die ) + 'd' + weapon_dam_die_type;
+                  const weapon_dam = num_dam_die + 'd' + weapon_dam_die_type;
+
+                  // apply new properties to weapon
                   output['repeating_weapons_' + id + '_weapon_beserk_attack_enabled'] = beserk_attack;
                   output['repeating_weapons_' + id + '_weapon_cleave_attack_enabled'] = cleave_attack;
                   output['repeating_weapons_' + id + '_weapon_defense_attack_enabled'] = defensive_attack;
@@ -1845,6 +1861,8 @@
                   output['repeating_weapons_' + id + '_weapon_strong_attack_enabled'] = strong_attack;
                   output['repeating_weapons_' + id + '_weapon_sneak_attack_dam'] = sneak_dam;
                   output['repeating_weapons_' + id + '_weapon_sneak_attack_enabled'] = sneak_dice > 0 ? 1 : 0;
+                  output['repeating_weapons_' + id + '_weapon_dam'] = weapon_dam;
+
               });
               setAttrs(output);
           });
