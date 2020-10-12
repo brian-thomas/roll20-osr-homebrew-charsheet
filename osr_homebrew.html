@@ -11,7 +11,8 @@
 
     <div class="sheet-inline-flex">
        <select class="sheet-info-name" name="attr_class">
-         <option selected="selected" value="fighter">Fighter</option>
+         <option selected="selected" value="none">--</option>
+         <option value="fighter">Fighter</option>
          <option value="cleric">Cleric</option>
          <option value="specialist">Specialist</option>
          <option value="wizard">Wizard</option>
@@ -328,7 +329,7 @@
                           <span class="sheet-bold-font">Athletics</span>
                           <input type="number" name="attr_athletics_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" name="roll_athletics"
-                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Athletics Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{athletics_skill} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{athletics_skill}]] ]]}}"></button>
+                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Athletics Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{athletics_skill} + (@{strength_mod} STR mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{athletics_skill} + @{strength_mod}]] ]]}}"></button>
                         </div>
                       </div>
 
@@ -346,7 +347,7 @@
                           <span class="sheet-bold-font">Languages</span>
                           <input type="number" name="attr_languages_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" name="roll_languagues"
-                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Languages Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{languages_skill} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{languages_skill}]] ]]}}"></button>
+                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Languages Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{languages_skill} + (@{intelligence_mod} INT mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{languages_skill} + @{intelligence_mod}]] ]]}}"></button>
                         </div>
                       </div>
 
@@ -355,7 +356,7 @@
                           <span class="sheet-bold-font">Open&nbsp;Doors</span>
                           <input type="number" name="attr_open_door_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" name="roll_opendoor"
-                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Open Doors Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{open_door_skill} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{open_door_skill}]] ]]}}"></button>
+                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Open Doors Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{open_door_skill} + (@{strength_mod} STR mod) }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{open_door_skill} + @{strength_mod}]] ]]}}"></button>
                         </div>
                       </div>
                     </div>
@@ -366,7 +367,7 @@
                           <span class="sheet-bold-font">Search</span>
                           <input type="number" name="attr_search_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" name="roll_search"
-                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Search Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{search_skill} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{search_skill}]] ]]}}"></button>
+                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Search Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{search_skill} + (@{intelligence_mod} INT mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{search_skill} + @{intelligence_mod}]] ]]}}"></button>
                         </div>
                       </div>
 
@@ -381,8 +382,8 @@
 
                       <div class="sheet-block">
                         <div class="sheet-align-left">
-                          <span class="sheet-bold-font">Sneak&nbsp;Attack</span>
-		                      <span>&nbsp;&nbsp;&nbsp;</span>
+                          <span class="sheet-bold-font">&nbsp;&nbsp;&nbsp; Sneak&nbsp;Attack</span>
+		                      <span>&nbsp;&nbsp;</span>
                           <input type="number" name="attr_sneak_attack_skill" class="sheet-skillvalue" value="0"/>
                         </div>
                       </div>
@@ -392,16 +393,16 @@
                           <span class="sheet-bold-font">Stealth</span>
                           <input type="number" name="attr_stealth_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" name="roll_stealth"
-                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Stealth Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{stealth_skill} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{stealth_skill}]] ]]}}"></button>
+                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Stealth Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{stealth_skill} + (@{dexterity_mod} DEX mod) }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{stealth_skill} + @{dexterity_mod}]] ]]}}"></button>
                         </div>
                       </div>
 
                       <div class="sheet-block">
                         <div class="sheet-align-right">
-                          <span class="sheet-bold-font sheet-italic-font">Social</span>
+                          <input type="text" class="sheet-primary-skill-name" name="attr_social_skill_name" value="Social (Rename)"/>
                           <input type="number" name="attr_social_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" name="roll_stealth"
-                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Social Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{social_skill} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{social_skill}]] ]]}}"></button>
+                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{social_skill_name} Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{social_skill} + (@{charisma_mod} CHA mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{social_skill} + @{charisma_mod}]] ]]}}"></button>
                         </div>
                       </div>
 
@@ -1632,7 +1633,7 @@
               const setting = {};
               const score = parseInt(v[ability]) || 10;
               const statrank = [1,3,5,8,12,15,17,19].findIndex(rank => score <= rank);
-              const level = parseInt(v.level) || 1;
+              const level = parseInt(v.level) || 0;
               const level2 = parseInt(v.level2) || 0;
               const race = v.race.trim();
               const c_class = v.class.trim();
@@ -1642,11 +1643,30 @@
 
               // intelligence based stuff
               if (ability === 'intelligence') {
-                // skill points
                 const base_int_mod = setting[ability_mod];
-                const base_points = (base_int_mod + (c_class === 'specialist' ?  3 : 1)) * level;
-                const base_points2 = (base_int_mod + (c_class2 === 'specialist' ?  3 : 1)) * level2;
-                setting["skill_points"] = base_points + base_points2;
+
+                // skill points
+                // starting race skills; elves dont get any skill points to start
+                var base_race_start_skills = (race === 'Elven' ? 0 : 3) + base_int_mod;
+                if (base_race_start_skills < 0) {
+                  // prevent negative totals
+                  base_race_start_skills = 0;
+                }
+
+                // class skills
+                const base_start_class_skills = (level > 0 ? ((c_class === 'specialist' ?  8 : 3) + base_int_mod) : 0); // set by the first class chosen at 1st level
+
+                // class skills for levels beyond 1st
+                const class1_skill_points = (base_int_mod + (c_class === 'specialist' ?  3 : 1)) * (level - 1);
+                const class2_skill_points = (base_int_mod + (c_class2 === 'specialist' ?  3 : 1)) * level2;
+
+                var class_skill_points = class1_skill_points + class2_skill_points;
+                if (class_skill_points < 0) {
+                  // prevent negative totals
+                  class_skill_points = 0;
+                }
+
+                setting["skill_points"] = base_start_class_skills + base_race_start_skills + class_skill_points;
 
                 // arcane spellcasting
                 if (c_class === 'wizard') {
@@ -1801,12 +1821,36 @@
 
   coreSkills.forEach(core_skill => {
     on(`change:${core_skill} change:repeating_skills remove:repeating_skills`, () => {
-      getAttrs(coreSkills, v => {
-        const setting = {};
-         const total = Object.values(v).reduce((m, w) => (m + (parseInt(w) || 0)), 0);
-         setting ["skill_points_used"] = total;
-         setAttrs(setting);
+      // find total skill points spent
+       var skill_point_total = 0;
+
+       // find core skills value total
+       getAttrs(coreSkills, v => {
+          skill_point_total = Object.values(v).reduce((m, w) => (m + (parseInt(w) || 0)), 0);
+          setAttrs({skill_points_used: skill_point_total});
        });
+
+       // now look at additional (repeating_skills) skills
+       const other_skills = [];
+       getSectionIDs('repeating_skills', function (ids) {
+         ids.forEach(id => {
+           other_skills.push('repeating_skills_' + id + '_skillvalue');
+         });
+
+         //getAttrs(coreSkills, v => {
+         //getAttrs([...other_skills, ...coreSkills], v => {
+         getAttrs([...other_skills, 'skill_points_used' ], v => {
+           var skill_point_total = parseInt(v['skill_points_used']);
+           ids.forEach( id => {
+             const skill_value = parseInt(v['repeating_skills_' + id + '_skillvalue']);
+             skill_point_total += skill_value;
+           });
+
+           // update
+           setAttrs({skill_points_used: skill_point_total});
+         });
+       });
+
     });
   });
 
@@ -1816,8 +1860,8 @@
   combatOpts.forEach(combat_opt => {
     on(`change:${combat_opt} change:sneak_attack_dice change:repeating_weapons change:level change:level2` , function () {
       getSectionIDs('repeating_weapons', function (ids) {
-          const fieldnames = [];
-          ids.forEach(id => {
+        const fieldnames = [];
+        ids.forEach(id => {
               fieldnames.push('repeating_weapons_' + id + '_weapon_sneak_attack_dam');
               fieldnames.push('repeating_weapons_' + id + '_weapon_dam_die');
               fieldnames.push('repeating_weapons_' + id + '_weapon_notches');

@@ -1195,7 +1195,13 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 	background-color: blue;
 }
 
-
+input.sheet-primary-skill-name {
+	font-size: 12px;
+	font-weight: bold;
+	font-style: italic;
+	text-align: right;
+	width: 110px;
+}
 
 /* Check header */
 
