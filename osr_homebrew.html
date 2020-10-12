@@ -327,9 +327,10 @@
                       <div class="sheet-block">
                         <div class="sheet-align-right">
                           <span class="sheet-bold-font">Athletics</span>
+                          <input type="hidden" name="attr_athletics_skill_mod" value="0"/>
                           <input type="number" name="attr_athletics_skill" class="sheet-skillvalue" value="0"/>
                           <button class="sheet-skill-button" type="roll" name="roll_athletics"
-                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Athletics Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{athletics_skill} + (@{strength_mod} STR mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{athletics_skill} + @{strength_mod}]] ]]}}"></button>
+                                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Athletics Check}} {{subheader=@{character_name}}} {{skill=1}} {{simple=1}} {{math=roll: 1d20 + @{athletics_skill} + (@{athletics_skill_mod} STR/DEX mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{athletics_skill} + @{athletics_skill_mod}]] ]]}}"></button>
                         </div>
                       </div>
 
@@ -1718,6 +1719,19 @@
             });
         });
       });
+
+  // determine which attribute contributes the bonus for Athletics skill
+  on(`change:strength_mod change:dexterity_mod`, () => {
+    getAttrs(['strength_mod', 'dexterity_mod', 'athletics_skill_mod'], v => {
+      const str_mod = parseInt(v.strength_mod);
+      const dex_mod = parseInt(v.dexterity_mod);
+      if (str_mod > dex_mod) {
+        setAttrs({athletics_skill_mod: str_mod})
+      } else {
+        setAttrs({athletics_skill_mod: dex_mod})
+      }
+    });
+  });
 
   const abilityCheck = { strength_mod: "fortitude", dexterity_mod: "dodge", constitution_mod: "health", intelligence_mod: "perception", wisdom_mod: "willpower" };
   ['charisma_mod', 'constitution_mod', 'dexterity_mod', 'intelligence_mod', 'strength_mod', 'wisdom_mod'].forEach(ability_mod => {
