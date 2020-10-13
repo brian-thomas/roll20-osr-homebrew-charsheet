@@ -840,40 +840,40 @@
               <span class="sheet-italic-font sheet-side-padding">Slots / Level</span>
             </div>
             <div class="sheet-flex">
-              <span>1:</span>
-                <input type="number" name="attr_spells_l1" value="0"/>
+                <span>1:</span>
+                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l1" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>2:</span>
-                <input type="number" name="attr_spells_l2" value="0"/>
+                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l2" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>3:</span>
-                <input type="number" name="attr_spells_l3" value="0"/>
+                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l3" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>4:</span>
-                <input type="number" name="attr_spells_l4" value="0"/>
+                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l4" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>5:</span>
-                <input type="number" name="attr_spells_l5" value="0"/>
+                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l5" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>6:</span>
-                <input type="number" name="attr_spells_l6" value="0"/>
+                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l6" value="0" readonly="true"/>
             </div>
                 <div class="sheet-flex">
                 <span>7:</span>
-                <input type="number" name="attr_spells_l7" value="0"/>
+                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l7" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>8:</span>
-                <input type="number" name="attr_spells_l8" value="0"/>
+                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l8" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>9:</span>
-                <input type="number" name="attr_spells_l9" value="0"/>
+                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l9" value="0" readonly="true"/>
             </div>
           </div>
 
@@ -922,7 +922,7 @@
          </div>
 
          <fieldset class="repeating_spells">
-           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="1"/>
+           <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="1" checked="True"/>
            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="2"/>
            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="3"/>
            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="4"/>
@@ -934,7 +934,7 @@
            <div class="sheet-spellcontainer sheet-side-padding">
              <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" data-i18n-placeholder="name"/>
              <span class="sheet-left-pad"> Level:</span>
-             <select class="sheet-info1 sheet-align-right sheet-spell-level" name="attr_spelllevel">
+             <select class="sheet-info2 sheet-align-right sheet-spell-level" name="attr_spelllevel">
                <option selected="selected" value="1">1</option>
                <option value="2">2</option>
                <option value="3">3</option>
@@ -945,8 +945,10 @@
                <option value="8">8</option>
                <option value="9">9</option>
              </select>
-	     <button class="sheet-attack-button" type="roll" name="roll_cast_spell"
-							     value="&{template:roll_check}  {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{level=@{spelllevel}}} {{description=@{spelldescription}}}"></button>
+	           <button class="sheet-attack-button" type="roll" name="roll_cast_spell"
+                     value="&{template:roll_check}  {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{level=@{spelllevel}}} {{description=@{spelldescription}}}"></button>
+             <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
+                   value="&{template:roll_check}  {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{level=@{spelllevel}}} {{description=@{spelldescription}}}"></button>
              <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
            </div>
          </fieldset>
@@ -1653,6 +1655,7 @@
 
   // Ability modifiers
   const raceMods = { Human: "", Dwarf: "constitution", Halfling: "dexterity", Elven : "charisma:intelligence:dexterity" };
+
   ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom'].forEach( ability => {
     on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:${ability}`, () => {
           getAttrs([ability, 'class', 'class2', 'race', 'level', 'level2', 'skill_points'], v => {
@@ -1666,6 +1669,11 @@
               const c_class2 = v.class2.trim();
               const ability_mod = `${ability}_mod`
               setting[ability_mod] = (statrank === -1 ? 4 : statrank -4) + ((raceMods[race] || '').indexOf(ability) !== -1 ? 1 : 0);
+
+              // initialize/reset all spell slots to zero
+              /*
+              setting["spell_slots_l1"] = 0;
+              */
 
               // intelligence based stuff
               if (ability === 'intelligence') {
@@ -1788,6 +1796,25 @@
     });
   });
 
+  // Spell Slots
+  const arcane_spell_slots1 = [0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8];
+  const arcane_spell_slots2 = [0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7];
+  const arcane_spell_slots3 = [0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6];
+  const arcane_spell_slots4 = [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6];
+  const arcane_spell_slots5 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5];
+  const arcane_spell_slots6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4];
+  const arcane_spell_slots7 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4];
+  const arcane_spell_slots8 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3];
+  const arcane_spell_slots9 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2];
+
+  const divine_spell_slots1 = [0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 8];
+  const divine_spell_slots2 = [0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7];
+  const divine_spell_slots3 = [0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 7];
+  const divine_spell_slots4 = [0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 6];
+  const divine_spell_slots5 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 5, 5, 5, 5, 6, 6, 6, 6, 7, 8];
+  const divine_spell_slots6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 5];
+  const divine_spell_slots7 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4];
+
   // General Class/Level stuff
   on(`sheet:opened change:class change:class2 change:level change:level2 change:race change:xp`, () => {
     getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race', 'xp'], v => {
@@ -1818,14 +1845,34 @@
 
       if (is_wizard)
       {
+        const wizard_level = (c_class === 'wizard' ? level : level2);
         setting["spellcasting_type"] = "Arcane";
         setting["alignment"] = "Chaotic";
+        setting["spell_slots_l1"] = arcane_spell_slots1[wizard_level];
+        setting["spell_slots_l2"] = arcane_spell_slots2[wizard_level];
+        setting["spell_slots_l3"] = arcane_spell_slots3[wizard_level];
+        setting["spell_slots_l4"] = arcane_spell_slots4[wizard_level];
+        setting["spell_slots_l5"] = arcane_spell_slots5[wizard_level];
+        setting["spell_slots_l6"] = arcane_spell_slots6[wizard_level];
+        setting["spell_slots_l7"] = arcane_spell_slots7[wizard_level];
+        setting["spell_slots_l8"] = arcane_spell_slots8[wizard_level];
+        setting["spell_slots_l9"] = arcane_spell_slots9[wizard_level];
       }
       else
       if (is_cleric)
       {
+        const cleric_level = (c_class === 'cleric' ? level : level2);
         setting["spellcasting_type"] = "Divine";
         setting["alignment"] = "Lawful";
+        setting["spell_slots_l1"] = divine_spell_slots1[cleric_level];
+        setting["spell_slots_l2"] = divine_spell_slots2[cleric_level];
+        setting["spell_slots_l3"] = divine_spell_slots3[cleric_level];
+        setting["spell_slots_l4"] = divine_spell_slots4[cleric_level];
+        setting["spell_slots_l5"] = divine_spell_slots5[cleric_level];
+        setting["spell_slots_l6"] = divine_spell_slots6[cleric_level];
+        setting["spell_slots_l7"] = divine_spell_slots7[cleric_level];
+        setting["spell_slots_l8"] = 0;
+        setting["spell_slots_l9"] = 0;
       }
       else
       {
@@ -1833,6 +1880,17 @@
         setting["spellcasting_mod"] = 0;
         setting["spellcasting_dc"] = 0;
         setting["alignment"] = c_align;
+
+        // reset spell slots
+        setting["spell_slots_l1"] = 0;
+        setting["spell_slots_l2"] = 0;
+        setting["spell_slots_l3"] = 0;
+        setting["spell_slots_l4"] = 0;
+        setting["spell_slots_l5"] = 0;
+        setting["spell_slots_l6"] = 0;
+        setting["spell_slots_l7"] = 0;
+        setting["spell_slots_l8"] = 0;
+        setting["spell_slots_l9"] = 0;
       }
 
       // force alignment if Wizard, Cleric or Elven

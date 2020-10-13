@@ -537,7 +537,7 @@ input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-
     justify-content: space-between;
 }
 .sheet-spell-name {
-    width: 59%;
+    width: 48%;
     font-weight: bold;
 		text-align: left;
 }
@@ -548,7 +548,7 @@ input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-
 	text-align: left;
 }
 .sheet-spell-level {
-    width: 6%;
+    width: 12%;
     text-align: center;
 }
 
@@ -570,9 +570,9 @@ input[type=number].sheet-spell-prepared {
     resize: vertical;
     box-sizing: border-box;
     border-radius: 0;
-    height: 5px;
+    height: 30px;
     margin-bottom: 0;
-    min-height: 5px;
+    min-height: 20px;
 }
 .sheet-spells-per-level {
     align-items: center;
