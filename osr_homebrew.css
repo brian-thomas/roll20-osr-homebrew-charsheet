@@ -289,6 +289,8 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .sheet-info-name,
+.sheet-info-name-med,
+.sheet-info-name-sm,
 span.sheet-info-name,
 input.sheet-info-name,
 input.sheet-info-name-long
@@ -299,9 +301,27 @@ input.sheet-info-name-long
 	margin-left: 5px;
 	margin-right: 5px;
 	margin-bottom: 1px;
+	text-align: center;
+}
+
+.sheet-info-name-med,
+span.sheet-info-name-med,
+input.sheet-info-name-med,
+select.sheet-info-name-med,
+{
+	width: 100px;
+}
+
+.sheet-info-name-sm,
+span.sheet-info-name-sm,
+input.sheet-info-name-sm,
+select.sheet-info-name-sm,
+{
+	width: 65px;
 }
 
 input.sheet-info-name,
+select.sheet-info-name-sm,
 input.sheet-info-name-long
 {
 	text-align: left;
@@ -316,7 +336,7 @@ input.sheet-info-name-long
 }
 
 span.sheet-info-name,
-select.sheet-info-name,
+select.sheet-info-name-sm,
 span.sheet-info-name-long
 {
 	text-align: center;
@@ -346,7 +366,9 @@ select.sheet-info-name
 	text-align: left;
 	align-items: flex-start;
 }
-.sheet-align-right {
+.sheet-align-right,
+input.sheet-align-right
+{
 	text-align: right;
 	align-items: flex-start;
 }

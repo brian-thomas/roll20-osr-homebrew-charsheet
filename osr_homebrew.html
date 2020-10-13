@@ -17,7 +17,7 @@
          <option value="specialist">Specialist</option>
          <option value="wizard">Wizard</option>
        </select>
-       <select class="sheet-info-name" name="attr_level">
+       <select class="sheet-info-name-sm" name="attr_level">
          <option value="0">0</option>
          <option selected="selected" value="1">1</option>
          <option value="2">2</option>
@@ -30,13 +30,15 @@
          <option value="9">9</option>
          <option value="10">10</option>
        </select>
-       <input type="text" class="sheet-info-name" name="attr_xp"/>
+       <input type="text" class="sheet-align-right sheet-info-name-med" name="attr_xp" value="0"/>
+       <input type="text" class="sheet-align-right sheet-inactive-color sheet-info-name-med" name="attr_next_level_xp" value="1" readonly="true"/>
      </div>
 
      <div class="sheet-inline-flex sheet-bottom-padding">
        <span class="sheet-info-name">Class</span>
-       <span class="sheet-info-name">Level</span>
-       <span class="sheet-info-name">XP</span>
+       <span class="sheet-info-name-sm">Level</span>
+       <span class="sheet-info-name-med">XP</span>
+       <span class="sheet-info-name-med">Next Level XP</span>
      </div>
 
      <input type="checkbox" class="sheet-multiclass_enabled" name="attr_multiclass_enabled" value="1" hidden="true"/>
@@ -1735,6 +1737,7 @@
     });
   });
 
+  // update ability modifiers
   const abilityCheck = { strength_mod: "fortitude", dexterity_mod: "dodge", constitution_mod: "health", intelligence_mod: "perception", wisdom_mod: "willpower" };
   ['charisma_mod', 'constitution_mod', 'dexterity_mod', 'intelligence_mod', 'strength_mod', 'wisdom_mod'].forEach(ability_mod => {
     on(`sheet:opened change:level change:level2 change:${ability_mod}`, () => {
@@ -1764,7 +1767,7 @@
     });
   });
 
-  // Class/Level stuff
+  // General Class/Level stuff
   on(`sheet:opened change:class change:class2 change:level change:level2 change:race`, () => {
     getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race'], v => {
       const c_align = v.alignment.trim();
@@ -1781,6 +1784,10 @@
 
       const setting = {};
 
+      // calculate next level xp
+      setting['next_level_xp'] = level < 1 ? 100 : 1000 * (2**(level + level2 - 1));
+
+      // deal with sneak attack stuff
       setting['sneak_attack_enabled'] = (c_class === 'specialist' ? 1 : (c_class2 === 'specialist' ? 1: 0));
       setting['sneak_attack_checkbox'] = (c_class === 'specialist' ? 1 : (c_class2 === 'specialist' ? 1: 0));
       setting['sneak_attack_dice'] = (c_class === 'specialist' ?  1 + parseInt(level/4): (c_class2 === 'specialist' ?  1 + parseInt(level2/4): 0));
