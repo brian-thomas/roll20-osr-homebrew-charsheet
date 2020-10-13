@@ -287,8 +287,10 @@
           <div class="sheet-thick-border">
             <h3>Skills</h3>
             <div class="sheet-bold-font">
-              Skill Points Available: <input type="number" class="sheet-inactive-color" name="attr_skill_points" value="0" readonly="true"/>
-              Skill Points Spent: <input type="number" class="sheet-inactive-color" name="attr_skill_points_used" value="0" readonly="true"/>
+              <input type="checkbox" class="sheet-skill-points-overspent" name="attr_skill_points_overspent" value="0" hidden="true" checked="true"/>
+
+              <span>Skill Points Available: <input type="number" class="sheet-inactive-color" name="attr_skill_points" value="0" readonly="true"/></span>
+              <span class="sheet-skill-points-overspend-notify">Skill Points Spent: <input type="number" class="sheet-inactive-color" name="attr_skill_points_used" value="0" readonly="true"/></span>
             </div>
             <div class="sheet-block">
               <div class="sheet-block">
@@ -1853,15 +1855,18 @@
 
          //getAttrs(coreSkills, v => {
          //getAttrs([...other_skills, ...coreSkills], v => {
-         getAttrs([...other_skills, 'skill_points_used' ], v => {
+         getAttrs([...other_skills, 'skill_points', 'skill_points_used'], v => {
+           var skill_points_available = parseInt(v['skill_points']);
            var skill_point_total = parseInt(v['skill_points_used']);
            ids.forEach( id => {
              const skill_value = parseInt(v['repeating_skills_' + id + '_skillvalue']);
              skill_point_total += skill_value;
            });
 
+           const overspent = (skill_point_total > skill_points_available ? 0 : 1);
+
            // update
-           setAttrs({skill_points_used: skill_point_total});
+           setAttrs({skill_points_used: skill_point_total, skill_points_overspent: overspent});
          });
        });
 

@@ -487,6 +487,12 @@ input.sheet-skillname {
 	overflow-x: auto;
 }
 
+input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-overspend-notify
+{
+	background: red;
+  color: white;
+}
+
 /* Spells */
 .sheet-spells .repitem {
     margin: 0;
