@@ -551,6 +551,12 @@ input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-
     width: 6%;
     text-align: center;
 }
+
+input.sheet-next-level-up[value="0"]:checked ~ input.sheet-next-level-notify
+{
+	background-color: yellow;
+}
+
 input[type=number].sheet-spell-prepared {
     width: 23px;
 }

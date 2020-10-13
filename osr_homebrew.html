@@ -31,7 +31,8 @@
          <option value="10">10</option>
        </select>
        <input type="text" class="sheet-align-right sheet-info-name-med" name="attr_xp" value="0"/>
-       <input type="text" class="sheet-align-right sheet-inactive-color sheet-info-name-med" name="attr_next_level_xp" value="1" readonly="true"/>
+       <input type="checkbox" class="sheet-next-level-up" name="attr_next_level_up" value="0" hidden="true" checked="true"/>
+       <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name-med" name="attr_next_level_xp" value="1" readonly="true"/>
      </div>
 
      <div class="sheet-inline-flex sheet-bottom-padding">
@@ -1768,14 +1769,15 @@
   });
 
   // General Class/Level stuff
-  on(`sheet:opened change:class change:class2 change:level change:level2 change:race`, () => {
-    getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race'], v => {
+  on(`sheet:opened change:class change:class2 change:level change:level2 change:race change:xp`, () => {
+    getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race', 'xp'], v => {
       const c_align = v.alignment.trim();
       const c_class = v.class.trim();
       const c_class2 = v.class2.trim();
       const c_race = v.race.trim();
       const level = parseInt(v.level) || 0;
       const level2 = parseInt(v.level2) || 0;
+      const xp = parseInt(v.xp) || 0;
 
       const is_cleric = (c_class === 'cleric' || c_class2 === 'cleric');
       const is_fighter = (c_class === 'fighter' || c_class2 === 'fighter');
@@ -1785,7 +1787,9 @@
       const setting = {};
 
       // calculate next level xp
-      setting['next_level_xp'] = level < 1 ? 100 : 1000 * (2**(level + level2 - 1));
+      const next_level_xp = level < 1 ? 100 : 1000 * (2**(level + level2 - 1));
+      setting['next_level_xp'] = next_level_xp;
+      setting['next_level_up'] = next_level_xp <= xp ? 0 : 1;
 
       // deal with sneak attack stuff
       setting['sneak_attack_enabled'] = (c_class === 'specialist' ? 1 : (c_class2 === 'specialist' ? 1: 0));
