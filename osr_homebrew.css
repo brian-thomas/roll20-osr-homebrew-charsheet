@@ -549,6 +549,7 @@ input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-
 }
 .sheet-spell-level {
     width: 12%;
+    font-weight: bold;
     text-align: center;
 }
 
@@ -1213,6 +1214,15 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
         background-color: #45285D;
 }
 
+div.sheet-adhoc-spell
+{
+	  display: none;
+}
+
+input.sheet-is-wizard-spell:checked ~ div.sheet-adhoc-spell
+{
+	  display: block;
+}
 
 
 /* Skill header */

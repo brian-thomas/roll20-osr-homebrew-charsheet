@@ -18,8 +18,8 @@
          <option value="wizard">Wizard</option>
        </select>
        <select class="sheet-info-name-sm" name="attr_level">
-         <option value="0">0</option>
-         <option selected="selected" value="1">1</option>
+         <option selected="selected" value="0">0</option>
+         <option value="1">1</option>
          <option value="2">2</option>
          <option value="3">3</option>
          <option value="4">4</option>
@@ -543,8 +543,8 @@
               </div>
               <div class="sheet-flex">
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <span><input type="radio" class="inactive-color" name="attr_parry_attack" value="ac2" checked="checked" readonly="true"/>AC+2</span>
-                <span><input type="radio" class="inactive-color" name="attr_parry_attack" value="ac4" readonly="true"/>AC+4</span>
+                <span><input type="radio" class="inactive-color" name="attr_parry_attack" value="0" checked="checked" readonly="true"/>AC+2</span>
+                <span><input type="radio" class="inactive-color" name="attr_parry_attack" value="1" readonly="true"/>AC+4</span>
               </div>
             </div>
             <div class="sheet-flex sheet-bottom-padding">
@@ -840,40 +840,40 @@
               <span class="sheet-italic-font sheet-side-padding">Slots / Level</span>
             </div>
             <div class="sheet-flex">
-                <span>1:</span>
-                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l1" value="0" readonly="true"/>
+                <span class="sheet-bold-font">1:</span>
+                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l1" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>2:</span>
-                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l2" value="0" readonly="true"/>
+                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l2" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>3:</span>
-                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l3" value="0" readonly="true"/>
+                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l3" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>4:</span>
-                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l4" value="0" readonly="true"/>
+                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l4" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>5:</span>
-                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l5" value="0" readonly="true"/>
+                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l5" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>6:</span>
-                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l6" value="0" readonly="true"/>
+                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l6" value="0" readonly="true"/>
             </div>
                 <div class="sheet-flex">
                 <span>7:</span>
-                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l7" value="0" readonly="true"/>
+                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l7" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>8:</span>
-                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l8" value="0" readonly="true"/>
+                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l8" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
                 <span>9:</span>
-                <input type="number" class="sheet-inactive-color" name="attr_spell_slots_l9" value="0" readonly="true"/>
+                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l9" value="0" readonly="true"/>
             </div>
           </div>
 
@@ -947,9 +947,12 @@
              </select>
 	           <button class="sheet-attack-button" type="roll" name="roll_cast_spell"
                      value="&{template:roll_check}  {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{level=@{spelllevel}}} {{description=@{spelldescription}}}"></button>
-             <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
-                   value="&{template:roll_check}  {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{level=@{spelllevel}}} {{description=@{spelldescription}}}"></button>
-             <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
+             <input type="checkbox" name="attr_is_wizard_spell" class="sheet-is-wizard-spell" value="1" hidden="True"/>
+             <div class="sheet-adhoc-spell">
+                <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
+                        value="&{template:roll_check}  {{character_name=@{character_name}}} {{title=Adhoc Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{level=@{spelllevel}}} {{description=@{spelldescription}}}"></button>
+             </div>
+             <!--textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea-->
            </div>
          </fieldset>
       </div>
@@ -1959,6 +1962,27 @@
          });
        });
 
+    });
+  });
+
+  // Keep spells up to date
+  on(`change:repeating_spells change:class change:class2` , function () {
+    getSectionIDs('repeating_spells', function (ids) {
+      const fieldnames = [];
+      ids.forEach(id => {
+        fieldnames.push('repeating_spells_' + id + '_is_wizard_spell');
+      });
+      getAttrs([...fieldnames, 'class', 'class2'], function (values) {
+        const c_class = values.class.trim();
+        const c_class2 = values.class2.trim();
+        const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard') ? 1 : 0;
+
+        settings = {}
+        ids.forEach(id => {
+          settings['repeating_spells_' + id + '_is_wizard_spell'] = is_wizard;
+        });
+        setAttrs(settings);
+      });
     });
   });
 
