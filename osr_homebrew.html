@@ -989,10 +989,13 @@
                   <div class="table-cell sheet-table-cell">
                     <select name="attr_armor" class="sheet-armor-name">
                       <option selected="selected" value="none">Clothing / 0 Slots</option>
+                      <option value="padded">Padded / 1 Slot</option>
                       <option value="leather">Leather / 1 Slot</option>
                       <option value="studded_leather">Std. Leather / 1 Slot</option>
+                      <option value="scale">Scale / 1 Enc. Pts. / 1 Slot</option>
                       <option value="chain">Chain / 1 Enc. Pts. / 1 Slot</option>
-                      <option value="plate">Plate / 2 Enc. Pts. / 1 Slot</option>
+                      <option value="half_plate">Half Plate/ 1 Enc. Pts. / 2 Slots</option>
+                      <option value="plate">Plate / 2 Enc. Pts. / 2 Slots</option>
                     </select>
                   </div>
                   <div class="table-cell sheet-table-cell">
@@ -1788,7 +1791,7 @@
   });
 
   // Calculate armor class
-  const armor_ac_value = {'none': 0, 'leather': 2, 'studded_leather': 4, 'chain': 6, 'plate': 8};
+  const armor_ac_value = {'none': 0, 'padded': 1, 'leather': 2, 'studded_leather': 4, 'scale': 6, 'chain': 6, 'half_plate': 7, 'plate': 8};
   const shield_ac_value = {'none': 0, 'small_shield': 1, 'large_shield': 2, 'tower_shield': 3};
   on(`sheet:opened change:armor change:shield change:dexterity_mod change:armor_bonus change:armor_notches change:shield_bonus change:shield_notches`, () => {
     getAttrs(['armor', 'shield', 'armor_bonus', 'armor_notches', 'shield_bonus', 'shield_notches', 'dexterity_mod'], v => {
@@ -2048,7 +2051,7 @@
     });
   });
 
-  const armor_enc = { 'chain' : 1, 'plate': 2 }
+  const armor_enc = { 'chain' : 1, 'half_plate': 1, 'plate': 2 }
   const shield_enc = { 'tower_shield' : 1 }
 
   // Check various inventory slots and the encumberance
