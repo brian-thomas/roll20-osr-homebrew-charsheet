@@ -1727,7 +1727,7 @@
                 }
                 else
                 if (c_class2 === 'cleric') {
-                  setting["spellcasting_mod"] = base_wis_mod + parseInt(level2/2);
+                  setting["spellcasting_mod"] = base_wis_mod + parseInt(level3/2);
                   setting["spellcasting_dc"] = base_wis_mod + 10 + parseInt(level2/2);
                 }
 
@@ -2046,7 +2046,7 @@
     });
   });
 
-  const armor_enc = { 'chain' : 1, 'half_plate': 1, 'plate': 2 }
+  const armor_enc = { 'scale': 1, 'chain' : 1, 'half_plate': 1, 'plate': 2 }
   const shield_enc = { 'tower_shield' : 1 }
 
   // Check various inventory slots and the encumberance
