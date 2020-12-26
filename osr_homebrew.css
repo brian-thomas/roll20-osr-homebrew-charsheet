@@ -1,7 +1,7 @@
 .charsheet {
 	  background-color: #ddd;
-    width: 842px !important;
-		min-width: 842px; /* Set the min-width so that when the window is resized the look will stay consistant */
+    width: 942px !important;
+	min-width: 942px; /* Set the min-width so that when the window is resized the look will stay consistant */
     margin: 0 auto !important;
     line-height: 18px;
 }
@@ -114,8 +114,8 @@ input[type="radio"][readonly] {
     justify-content: space-between;
 }
 .sheet-flex-between {
-		display: flex;
-	  justify-content: space-evenly;
+    display: flex;
+	justify-content: space-evenly;
 }
 
 .sheet-center,
@@ -404,13 +404,21 @@ input[type=number].sheet-ability-modifier {
 .sheet-subtext {
     width: 138px;
 }
-input[type=number].sheet-ability-value {
+input[type=number].sheet-ability-value,
+input[type=number].sheet-ability-bonus-value 
+{
     width: 40px;
     height: 40px;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     display: block;
     margin: 6px auto;
+}
+
+input[type=number].sheet-ability-bonus-value {
+    width: 30px;
+    height: 30px;
+    margin-top: 6px;
 }
 
 button[type=roll].sheet-ability-button {
@@ -428,15 +436,26 @@ button[type=roll].sheet-ability-button {
 input[type=number].sheet-ability-check-value {
     width: 40px;
     height: 40px;
-		align-self: auto;
+	align-self: auto;
     font-size: 20px;
     text-align: center;
     display: block;
     margin: 6px auto;
 }
-.sheet-ability-check-label {
+.sheet-ability-check-label,
+.sheet-ability-check-bonus-label
+{
     text-align: center;
     font-weight: bold;
+}
+
+.sheet-ability-check-bonus-label
+{
+    display: block;
+    font-size: 10px;
+    margin-top: 11px;
+    margin-bottom: 0px;
+    padding: 0px;
 }
 
 span.sheet-spacer {
