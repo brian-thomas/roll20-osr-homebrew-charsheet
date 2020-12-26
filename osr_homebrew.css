@@ -424,6 +424,11 @@ input[type=number].sheet-ability-bonus-value
     margin: 6px auto;
 }
 
+input[type=number].sheet-ability-value
+{
+    font-weight: bold;
+}
+
 input[type=number].sheet-ability-bonus-value {
     width: 30px;
     height: 30px;
