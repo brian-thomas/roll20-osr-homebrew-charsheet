@@ -540,8 +540,14 @@ input.sheet-skillname {
 input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-overspend-notify
 {
 	background: red;
-  color: white;
+    color: white;
 }
+
+input[type=number].sheet-skill-bonus-value
+{
+    height: 22px;
+    width: 30px;
+}   
 
 /* Spells */
 .sheet-spells .repitem {
@@ -1254,7 +1260,6 @@ input.sheet-is-wizard-spell:checked ~ div.sheet-adhoc-spell
 
 
 /* Skill header */
-
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-skill:before {
         border-right-color: blue;
 }
@@ -1272,7 +1277,7 @@ input.sheet-primary-skill-name {
 	font-weight: bold;
 	font-style: italic;
 	text-align: right;
-	width: 110px;
+	width: 95px;
 }
 
 /* Check header */
