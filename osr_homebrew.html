@@ -152,6 +152,10 @@
                 <span>Strength</span>
                 <input class="ability-value" name="attr_strength" type="number" value="10"/>
               </div>
+              <div class="sheet-ability-column-bonus">
+                <span class="ability-check-bonus-label">bonus</span>
+                <input type="number" name="attr_strength_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
+              </div>
               <div class="sheet-ability-column-modifier sheet-flex-between">
                 <input name="attr_strength_mod" type="number" value="0" class="sheet-ability-modifier inactive-color" readonly="true"/>
                 <span class="noborder left-pad">Melee AB, Athletics, Open Doors, Encumbrance, Fortitude</span>
@@ -167,6 +171,10 @@
                 <span>Dexterity</span>
                 <input class="ability-value" name="attr_dexterity" type="number" value="10"/>
               </div>
+              <div class="sheet-ability-column-bonus">
+                <span class="ability-check-bonus-label">bonus</span>
+                <input type="number" name="attr_dexterity_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
+              </div>
               <div class="sheet-ability-column-modifier sheet-flex-between">
                 <input name="attr_dexterity_mod" type="number" value="0" class="sheet-ability-modifier inactive-color" readonly="true"/>
                 <span class="noborder left-pad">Ranged AB, Dodge, AC, Initiative, Stealth</span>
@@ -181,6 +189,10 @@
               <div class="sheet-ability-column-value">
                 <span>Constitution</span>
                 <input class="ability-value" name="attr_constitution" type="number" value="10"/>
+              </div>
+              <div class="sheet-ability-column-bonus">
+                <span class="ability-check-bonus-label">bonus</span>
+                <input type="number" name="attr_constitution_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
               </div>
               <div class="sheet-ability-column-modifier sheet-flex-between">
                 <input name="attr_constitution_mod" type="number" value="0" class="sheet-ability-modifier inactive-color" readonly="true"/>
@@ -198,6 +210,10 @@
                 <span>Intelligence</span>
                 <input class="ability-value" name="attr_intelligence" type="number" value="10"/>
               </div>
+              <div class="sheet-ability-column-bonus">
+                <span class="ability-check-bonus-label">bonus</span>
+                <input type="number" name="attr_intelligence_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
+              </div>
               <div class="sheet-ability-column-modifier sheet-flex-between">
                 <input name="attr_intelligence_mod" type="number" value="0" class="sheet-ability-modifier inactive-color" readonly="true"/>
                 <span class="noborder left-pad">Perception, Languages, Search, Magic Spell Casting, Skill Points</span>
@@ -213,6 +229,10 @@
                 <span>Wisdom</span>
                 <input class="ability-value" name="attr_wisdom" type="number" value="10"/>
               </div>
+              <div class="sheet-ability-column-bonus">
+                <span class="ability-check-bonus-label">bonus</span>
+                <input type="number" name="attr_wisdom_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
+              </div>
               <div class="sheet-ability-column-modifier sheet-flex-between">
                 <input name="attr_wisdom_mod" type="number" value="0" class="sheet-ability-modifier inactive-color" readonly="true"/>
                 <span class="noborder left-pad">Willpower, Cleric Powers</span>
@@ -227,6 +247,10 @@
               <div class="sheet-ability-column-value">
                 <span>Charisma</span>
                 <input class="ability-value" name="attr_charisma" type="number" value="10"/>
+              </div>
+              <div class="sheet-ability-column-bonus">
+                <span class="ability-check-bonus-label">bonus</span>
+                <input type="number" name="attr_charisma_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
               </div>
               <div class="sheet-ability-column-modifier sheet-flex-between">
                 <input name="attr_charisma_mod" type="number" value="0" class="sheet-ability-modifier inactive-color" readonly="true"/>
@@ -1681,19 +1705,27 @@
 
   // Ability modifiers
   const raceMods = { Human: "", Dwarf: "constitution", Halfling: "dexterity", Elven : "charisma:intelligence:dexterity" };
+  const abilityNames = ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom'];
+  const bonusNames = [ 'strength_bonus', 'dexterity_bonus', 'constitution_bonus', 'intelligence_bonus', 'wisdom_bonus', 'charisma_bonus' ];
 
-  ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom'].forEach( ability => {
-    on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:${ability}`, () => {
-          getAttrs([ability, 'class', 'class2', 'race', 'level', 'level2', 'skill_points'], v => {
+  //['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom'].forEach( ability => {
+  abilityNames.forEach( ability => {
+    on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:${ability} change:${ability}_bonus`, () => {
+          getAttrs([ability, ...bonusNames, 'class', 'class2', 'race', 'level', 'level2', 'skill_points'], v => {
               const setting = {};
-              const score = parseInt(v[ability]) || 10;
+
+              const ability_bonus_name = `${ability}_bonus`;
+              const ability_bonus = parseInt(v[ability_bonus_name]) || 0;
+              const score = (parseInt(v[ability]) || 10) + ability_bonus;
               const statrank = [1,3,5,7,9,11,13,15,17,19,21,23,25].findIndex(rank => score <= rank);
+
               const level = parseInt(v.level) || 0;
               const level2 = parseInt(v.level2) || 0;
               const race = v.race.trim();
               const c_class = v.class.trim();
               const c_class2 = v.class2.trim();
-              const ability_mod = `${ability}_mod`
+
+              const ability_mod = `${ability}_mod`; 
               setting[ability_mod] = (statrank === -1 ? 5 : statrank -5) + ((raceMods[race] || '').indexOf(ability) !== -1 ? 1 : 0);
 
               // intelligence based stuff

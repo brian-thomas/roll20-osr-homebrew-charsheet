@@ -360,7 +360,7 @@ select.sheet-info-name
     border-bottom: 1px solid;
 }
 .sheet-ability-column-value, .sheet-combat-opts-value {
-		width: 30%;
+	width: 30%;
 }
 .sheet-align-left, .sheet-combat-opts-column-value {
 	text-align: left;
@@ -378,11 +378,20 @@ input.sheet-align-right
 	align-content: flex-start;
 }
 /* Abilities */
-.sheet-ability-column-value {
-		height: 90px;
-		text-align: center;
-		font-weight: bold;
+.sheet-ability-column-value,
+.sheet-ability-column-bonus 
+{
+	height: 90px;
+	text-align: center;
+    font-weight: bold;
 }
+
+.sheet-ability-column-bonus 
+{
+    align-items: flex-start;
+    padding-right: 6px;
+}
+
 .sheet-ability-column-modifier {
     width: 54%;
     height: 90px;
