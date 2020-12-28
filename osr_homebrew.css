@@ -77,6 +77,11 @@ input[type="radio"][readonly] {
 .sheet-small-font {
 	font-size: 10px;
 }
+.sheet-med-font, 
+span.sheet-med-font 
+{
+	font-size: 14px;
+}
 .sheet-big-font {
 	font-size: 17px;
 }
@@ -171,7 +176,10 @@ span.sheet-center
 .sheet-col-1, .sheet-col-2, .sheet-thick-border, .sheet-thin-border, .sheet-thin-border-no-pad .sheet-noborder, .sheet-thick-border-no-pad {
 	box-sizing: border-box;
 }
-.sheet-thin-border-no-pad, .sheet-thin-border {
+.sheet-thin-border-no-pad, 
+.sheet-thin-border,
+input[type=number].sheet-thin-border
+{
 	border: 2px solid;
 	overflow: auto;
 	margin-bottom: 0px;
@@ -576,7 +584,7 @@ input[type=number].sheet-skill-bonus-value
     justify-content: space-between;
 }
 .sheet-spell-name {
-    width: 48%;
+    width: 30%;
     font-weight: bold;
 		text-align: left;
 }
@@ -590,6 +598,11 @@ input[type=number].sheet-skill-bonus-value
     width: 12%;
     font-weight: bold;
     text-align: center;
+}
+.sheet-spell-dice {
+    width: 10%;
+    font-weight: bold;
+    text-align: left;
 }
 
 input.sheet-next-level-up[value="0"]:checked ~ input.sheet-next-level-notify
@@ -763,7 +776,8 @@ button[type=roll].sheet-green-border
 }
 
 .sheet-orange-border,
-button[type=roll].sheet-orange-border
+button[type=roll].sheet-orange-border,
+input[type=number].sheet-orange-border
 {
     border: 2px solid orange;
 }
@@ -775,13 +789,15 @@ button.sheet-purple-border
 }
 
 .sheet-red-border,
-button[type=roll].sheet-red-border
+button[type=roll].sheet-red-border,
+input[type=number].sheet-red-border
 {
     border: 2px solid red;
 }
 
 .sheet-yellow-border,
-button[type=roll].sheet-yellow-border
+button[type=roll].sheet-yellow-border,
+input[type=number].sheet-yellow-border
 {
 	border: 2px solid yellow;
 }

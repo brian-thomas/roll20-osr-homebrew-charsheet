@@ -808,13 +808,6 @@
                <span>Spellcasting Type</span>
             </div>
             <input class="ability-value sheet-inactive-color sheet-align-left sheet-info4" name="attr_spellcasting_type" type="text" value="None" readonly="true"/>
-            <!--
-            <select class="sheet-info4" name="attr_spellcasting_type">
-              <option selected="selected" value="none">Pick Type</option>
-              <option value="arcane">Wizard</option>
-              <option value="divine">Cleric</option>
-            </select>
-            -->
           </div>
 
           <div class="sheet-flex">
@@ -897,43 +890,43 @@
 
           <div class="sheet-spells-per-level sheet-flex">
             <div class="sheet-flex">
-              <span class="sheet-italic-font sheet-side-padding">Slots / Level</span>
+              <span class="sheet-italic-font sheet-big-font heet-side-padding">Slots / Level</span>
             </div>
             <div class="sheet-flex">
-                <span class="sheet-bold-font">1:</span>
-                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l1" value="0" readonly="true"/>
+                <span class="sheet-med-font">1st:</span>
+                <input type="number" class="sheet-inactive-color sheet-big-font sheet-orange-border" name="attr_spell_slots_l1" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
-                <span>2:</span>
-                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l2" value="0" readonly="true"/>
+                <span class="sheet-med-font">2nd:</span>
+                <input type="number" class="sheet-inactive-color sheet-big-font sheet-orange-border" name="attr_spell_slots_l2" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
-                <span>3:</span>
-                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l3" value="0" readonly="true"/>
+                <span class="sheet-med-font">3rd:</span>
+                <input type="number" class="sheet-inactive-color sheet-big-font sheet-orange-border" name="attr_spell_slots_l3" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
-                <span>4:</span>
-                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l4" value="0" readonly="true"/>
+                <span class="sheet-med-font">4th:</span>
+                <input type="number" class="sheet-inactive-color sheet-big-font sheet-orange-border" name="attr_spell_slots_l4" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
-                <span>5:</span>
-                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l5" value="0" readonly="true"/>
+                <span class="sheet-med-font">5th:</span>
+                <input type="number" class="sheet-inactive-color sheet-big-font sheet-orange-border" name="attr_spell_slots_l5" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
-                <span>6:</span>
-                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l6" value="0" readonly="true"/>
+                <span class="sheet-med-font">6th:</span>
+                <input type="number" class="sheet-inactive-color sheet-big-font sheet-orange-border" name="attr_spell_slots_l6" value="0" readonly="true"/>
             </div>
                 <div class="sheet-flex">
-                <span>7:</span>
-                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l7" value="0" readonly="true"/>
+                <span class="sheet-med-font">7th:</span>
+                <input type="number" class="sheet-inactive-color sheet-big-font sheet-orange-border" name="attr_spell_slots_l7" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
-                <span>8:</span>
-                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l8" value="0" readonly="true"/>
+                <span class="sheet-med-font">8th:</span>
+                <input type="number" class="sheet-inactive-color sheet-big-font sheet-orange-border" name="attr_spell_slots_l8" value="0" readonly="true"/>
             </div>
             <div class="sheet-flex">
-                <span>9:</span>
-                <input type="number" class="sheet-inactive-color sheet-bold-font" name="attr_spell_slots_l9" value="0" readonly="true"/>
+                <span class="sheet-med-font">9th:</span>
+                <input type="number" class="sheet-inactive-color sheet-big-font sheet-orange-border" name="attr_spell_slots_l9" value="0" readonly="true"/>
             </div>
           </div>
 
@@ -994,7 +987,7 @@
            <div class="sheet-spellcontainer sheet-side-padding">
              <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" data-i18n-placeholder="name"/>
              <span class="sheet-left-pad"> Level:</span>
-             <select class="sheet-info2 sheet-align-right sheet-spell-level" name="attr_spelllevel">
+             <select class="sheet-info1 sheet-align-right sheet-spell-level" name="attr_spelllevel">
                <option selected="selected" value="1">1</option>
                <option value="2">2</option>
                <option value="3">3</option>
@@ -1005,14 +998,16 @@
                <option value="8">8</option>
                <option value="9">9</option>
              </select>
-	           <button class="sheet-attack-button" type="roll" name="roll_cast_spell"
-                     value="&{template:roll_check}  {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{level=@{spelllevel}}} {{description=@{spelldescription}}}"></button>
+             <span class="sheet-left-pad">Dice:</span>
+             <input type="text" class="sheet-info3 sheet-align-right sheet-spell-dice" name="attr_spell_dice" value="0" data-i18n-placeholder="ex 1d4+1">
+	           <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_cast_spell"
+                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{simple=1}} {{level=@{spelllevel}}} {{math=@{spell_dice}}} {{noadvroll=1}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
              <input type="checkbox" name="attr_is_wizard_spell" class="sheet-is-wizard-spell" value="1" hidden="True"/>
              <div class="sheet-adhoc-spell">
                 <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
-                        value="&{template:roll_check}  {{character_name=@{character_name}}} {{title=Adhoc Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{level=@{spelllevel}}} {{description=@{spelldescription}}}"></button>
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Adhoc Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{simple=1}} {{level=@{spelllevel}}} {{math=@{spell_dice}}} {{noadvroll=1}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
              </div>
-             <!--textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea-->
+             <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
            </div>
          </fieldset>
       </div>
@@ -1623,7 +1618,7 @@
 <rolltemplate class="sheet-rolltemplate-roll_check">
   <div class="sheet-rt-card">
 	  <div class="sheet-rt-header{{#weapon}} sheet-weapon{{/weapon}}{{#skill}} sheet-skill{{/skill}} {{#initiative}} sheet-initiative{{/initiative}}{{#spell}} sheet-spell{{/spell}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#deathsave}} sheet-deathsave{{/deathsave}}">
-      <div class="sheet-rt-title">{{title}}</div>
+      <div class="sheet-rt-title">{{title}} {{level}}</div>
       {{#subheader}}
       <div class="sheet-rt-subheader">{{subheader}}{{#subheaderright}} &bullet; {{subheaderright}}{{/subheaderright}}</div>
       {{/subheader}} {{#subheader2}}
@@ -1750,7 +1745,12 @@
                  <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Math</div>
                  <div class="sheet-col-7-12 sheet-padr sheet-rt-value sheet-no-roll-highlight">{{math}}</div>
         </div>
-        {{/math}} {{/simple}}
+        {{/math}} 
+        {{#spell}}
+        {{/spell}}
+        <!-- description of this roll, if any -->
+        <div class="sheet-row">{{description}}</div>
+        {{/simple}}
         <!-- END roll option templates -->
     </div>
   </div>
