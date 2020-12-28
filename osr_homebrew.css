@@ -7,7 +7,7 @@
 }
 
 img {
-	height: 60%;
+	height: 61%;
 }
 label {
 	font-weight: normal;
@@ -842,10 +842,16 @@ input.sheet-weapon_strong_attack_enabled:checked ~ div.sheet-weapon_strong_attac
 	font-weight: bold;
 	font-size: 17px
 }
-.sheet-armor-name {
+.sheet-worn-name {
+    text-align: left;
 	font-weight: bold;
 	width: 180px;
 }
+input[type=text].sheet-worn-name 
+{
+	width: 100px;
+}
+
 .sheet-item-name-header, .sheet-item-name {
 	width: 250px;
 }

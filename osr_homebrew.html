@@ -1021,33 +1021,34 @@
 
   <div class="sheet-section-inventory">
     <span class="sheet-spacer">&nbsp;</span>
-      <div class="sheet-block">
-        <div class="sheet-flex-between sheet-bottom-padding">
-          <div class="sheet-thin-border sheet-padding">
-            <span class="sheet-bold-font sheet-left-pad">Encumbrance Points:</span>
-            <input type="number" name="attr_encumbrance_points" class="sheet-inactive-color" value="0" readonly="true"/>
-            <span class="sheet-bold-font">Encumbrance Modifier:</span>
-            <input type="number" name="attr_encumbrance_mod" class="sheet-inactive-color" value="0" readonly="true"/>
-            <span class="sheet-bold-font sheet-big-font">Encumbrance: </span>
-            <input type="number" name="attr_encumbrance" class="sheet-inactive-color sheet-right-pad" value="0" readonly="true"/>
-          </div>
-          <div class="sheet-thin-border sheet-padding">
-            <span class="sheet-bold-font sheet-big-font">Movement Rate: </span>
-            <input type="number" name="attr_movement_rate" class="sheet-inactive-color" value="0" readonly="true"/>
-          </div>
+    <div class="sheet-block">
+      <div class="sheet-flex-between sheet-bottom-padding">
+        <div class="sheet-thin-border sheet-padding">
+          <span class="sheet-bold-font sheet-left-pad">Encumbrance Points:</span>
+          <input type="number" name="attr_encumbrance_points" class="sheet-inactive-color" value="0" readonly="true"/>
+          <span class="sheet-bold-font">Encumbrance Modifier:</span>
+          <input type="number" name="attr_encumbrance_mod" class="sheet-inactive-color" value="0" readonly="true"/>
+          <span class="sheet-bold-font sheet-big-font">Encumbrance: </span>
+          <input type="number" name="attr_encumbrance" class="sheet-inactive-color sheet-right-pad" value="0" readonly="true"/>
         </div>
-        <div class="sheet-thick-border">
-        <h3>Inventory</h3>
-        <div class="sheet-flex-between">
-          <div class="sheet-col-left-inv">
-            <div class="sheet-thin-border sheet-padding">
+        <div class="sheet-thin-border sheet-padding">
+          <span class="sheet-bold-font sheet-big-font">Movement Rate: </span>
+          <input type="number" name="attr_movement_rate" class="sheet-inactive-color" value="0" readonly="true"/>
+        </div>
+      </div>
+      <div class="sheet-thick-border">
+      <h3>Inventory</h3>
+        <div class="sheet-block">
+          <div class="sheet-thin-border sheet-padding">
+            <h4 class="sheet-bold-font">Worn Items</h4>
+            <div class="sheet-flex-between">
               <div class="table sheet-fill-width">
                 <div class="table-row sheet-inline-flex">
                   <div class="table-cell sheet-table-cell">
-                    <span class="sheet-bold-font">Armor:</span>
+                    <span class="sheet-bold-font sheet-worn-item">Armor:</span>
                   </div>
                   <div class="table-cell sheet-table-cell">
-                    <select name="attr_armor" class="sheet-armor-name">
+                    <select name="attr_armor" class="sheet-worn-name">
                       <option selected="selected" value="none">Clothing / 0 Slots</option>
                       <option value="padded">Padded / 1 Slot</option>
                       <option value="leather">Leather / 1 Slot</option>
@@ -1059,59 +1060,109 @@
                     </select>
                   </div>
                   <div class="table-cell sheet-table-cell">
-                    <div class="sheet-block">
-                      <select class="sheet-weapon-notches" name="attr_armor_notches">
-                        <option selected="selected" value="0">--</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                      </select>
-                      <span class="sheet-italic-font">Notches</span>
+                    <div class="sheet-flex">
+                      <input type="number" class="center sheet-purple-border" name="attr_armor_bonus" value="0"/>
+                      <div class="sheet-block">
+                        <select class="sheet-weapon-notches" name="attr_armor_notches">
+                          <option selected="selected" value="0">--</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                        </select>
+                        <span class="sheet-italic-font">Notches</span>
+                      </div>
                     </div>
                   </div>
+                  <div class="table-cell sheet-table-cell">
+                    &nbsp; &nbsp; &nbsp;
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <span class="sheet-bold-font">Head/Neck:</span>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <input type="text" class="sheet-worn-name" name="attr_inv_head" data-i18n-placeholder="head or neck"/>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    &nbsp; &nbsp; &nbsp;
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <span class="sheet-bold-font">Body/Belt:</span>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <input type="text" class="sheet-worn-name" name="attr_inv_body" data-i18n-placeholder="body or belt"/>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    &nbsp; &nbsp; &nbsp;
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <span class="sheet-bold-font">R Ring:</span>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <input type="text" class="sheet-worn-name" name="attr_inv_rring" data-i18n-placeholder="right ring"/>
+                  </div>
                 </div>
-		            <div class="table-row sheet-flex-simple">
+                <div class="table-row sheet-flex-simple">
                   <div class="table-cell sheet-table-cell">
                     <span class="sheet-bold-font">Shield:</span>
                   </div>
                   <div class="table-cell sheet-table-cell">
-                    <select name="attr_shield" class="sheet-armor-name">
-                      <option selected="selected" value="none">None / 0 Slots</option>
+                    <select name="attr_shield" class="sheet-worn-name">
+                      <option selected="selected" value="none">None</option>
                       <option value="small_shield">Small Shield / 1 Slot</option>
                       <option value="large_shield">Large Shield / 2 Slots</option>
                       <option value="tower_shield">Tower Shield / 2 Slots/1 Enc</option>
                     </select>
                   </div>
                   <div class="table-cell sheet-table-cell">
-                    <div class="sheet-block">
-                      <select class="sheet-weapon-notches" name="attr_shield_notches">
-                        <option selected="selected" value="0">--</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                      </select>
-                      <span class="sheet-italic-font">Notches</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="table-row sheet-flex-simple">
-                  <div class="table-cell sheet-table-cell">
-                    <div class="sheet-block">
-                      <span class="sheet-center">Armor Bonus:</span>
-                    </div>
-                  </div>
-                  <div class="table-cell sheet-table-cell sheet-bottom-pad">
-                    <input type="number" class="center sheet-purple-border" name="attr_armor_bonus" value="0"/>
-                  </div>
-                  <div class="table-cell sheet-table-cell">
-                      <span class="sheet-center sheet-left-pad">Shield Bonus:</span>
-                  </div>
-                  <div class="table-cell sheet-table-cell sheet-bottom-pad">
+                    <div class="sheet-flex">
                       <input type="number" class="center sheet-purple-border" name="attr_shield_bonus" value="0"/>
+                      <div class="sheet-block">
+                        <select class="sheet-weapon-notches" name="attr_shield_notches">
+                          <option selected="selected" value="0">--</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                        </select>
+                        <span class="sheet-italic-font">Notches</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    &nbsp; &nbsp; &nbsp;
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <span class="sheet-bold-font">Legs/Feet:&nbsp;&nbsp;</span>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <input type="text" class="sheet-worn-name" name="attr_inv_feet" data-i18n-placeholder="legs or feet"/>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    &nbsp; &nbsp; &nbsp;
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <span class="sheet-bold-font">Hand/Arm:</span>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <input type="text" class="sheet-worn-name" name="attr_inv_gloves" data-i18n-placeholder="gloves or arms"/>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    &nbsp; &nbsp; &nbsp;
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <span class="sheet-bold-font">L Ring:</span>
+                  </div>
+                  <div class="table-cell sheet-table-cell">
+                    <input type="text" class="sheet-worn-name" name="attr_inv_lring" data-i18n-placeholder="left ring"/>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div class="sheet-flex-between">
+          <div class="sheet-col-left-inv">
+            
             <div class="sheet-thin-border sheet-padding">
               <h3>Ready Items</h3>
               <div class="table sheet-fill-width">
@@ -1544,7 +1595,6 @@
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
