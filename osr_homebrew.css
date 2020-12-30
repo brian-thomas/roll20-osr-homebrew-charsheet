@@ -77,8 +77,8 @@ input[type="radio"][readonly] {
 .sheet-small-font {
 	font-size: 10px;
 }
-.sheet-med-font, 
-span.sheet-med-font 
+.sheet-med-font,
+span.sheet-med-font
 {
 	font-size: 14px;
 }
@@ -176,7 +176,7 @@ span.sheet-center
 .sheet-col-1, .sheet-col-2, .sheet-thick-border, .sheet-thin-border, .sheet-thin-border-no-pad .sheet-noborder, .sheet-thick-border-no-pad {
 	box-sizing: border-box;
 }
-.sheet-thin-border-no-pad, 
+.sheet-thin-border-no-pad,
 .sheet-thin-border,
 input[type=number].sheet-thin-border
 {
@@ -387,14 +387,14 @@ input.sheet-align-right
 }
 /* Abilities */
 .sheet-ability-column-value,
-.sheet-ability-column-bonus 
+.sheet-ability-column-bonus
 {
 	height: 90px;
 	text-align: center;
     font-weight: bold;
 }
 
-.sheet-ability-column-bonus 
+.sheet-ability-column-bonus
 {
     align-items: flex-start;
     padding-right: 6px;
@@ -422,7 +422,7 @@ input[type=number].sheet-ability-modifier {
     width: 138px;
 }
 input[type=number].sheet-ability-value,
-input[type=number].sheet-ability-bonus-value 
+input[type=number].sheet-ability-bonus-value
 {
     width: 40px;
     height: 40px;
@@ -552,7 +552,7 @@ input.sheet-skillname {
 
 input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-overspend-notify
 {
-	background: red;
+	  background: red;
     color: white;
 }
 
@@ -560,7 +560,7 @@ input[type=number].sheet-skill-bonus-value
 {
     height: 22px;
     width: 30px;
-}   
+}
 
 /* Spells */
 .sheet-spells .repitem {
@@ -783,6 +783,7 @@ input[type=number].sheet-orange-border
 }
 
 .sheet-purple-border,
+button[type=roll].sheet-purple-border,
 button.sheet-purple-border
 {
     border: 2px solid purple;
@@ -863,7 +864,7 @@ input.sheet-weapon_strong_attack_enabled:checked ~ div.sheet-weapon_strong_attac
 	font-weight: bold;
 	width: 180px;
 }
-input[type=text].sheet-worn-name 
+input[type=text].sheet-worn-name
 {
 	width: 100px;
 }
@@ -1268,31 +1269,52 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 }
 
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-spell:before {
-	border-right-color: #443550;
+	 border-right-color: #443550;
 }
 
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-spell {
-        background-color: #45285D;
+   background-color: #45285D;
 }
 
-div.sheet-adhoc-spell
+div.sheet-adhoc-dice-spell,
+div.sheet-dice-spell,
+div.sheet-adhoc-no-dice-spell
 {
 	  display: none;
 }
 
-input.sheet-is-wizard-spell:checked ~ div.sheet-adhoc-spell
+div.sheet-no-dice-spell,
+{
+	display: block;
+}
+
+input.sheet-is-adhoc-dice-spell:checked ~ div.sheet-adhoc-dice-spell
 {
 	  display: block;
 }
 
+input.sheet-is-dice-spell:checked ~ div.sheet-dice-spell
+{
+	  display: block;
+}
+
+input.sheet-is-dice-spell:checked ~ div.sheet-no-dice-spell
+{
+	  display: none;
+}
+
+input.sheet-adhoc-not-dice-spell:checked ~ div.sheet-adhoc-no-dice-spell
+{
+	  display: block;
+}
 
 /* Skill header */
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-skill:before {
-        border-right-color: blue;
+    border-right-color: blue;
 }
 
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-skill:after {
-        border-left-color: blue;
+    border-left-color: blue;
 }
 
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-skill {
