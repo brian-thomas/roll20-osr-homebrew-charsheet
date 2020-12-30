@@ -838,36 +838,45 @@
 
       <div class="sheet-thin-border sheet-bottom-padding">
         <h4>Powers</h4>
-        <div class="sheet-flex-between">
-          <div class="sheet-flex-between sheet-thin-border">
-            <div class="sheet-col-left sheet-inline">
-              <input type="checkbox" name="attr_turn_undead1" value="1"/>
-              <input type="checkbox" name="attr_turn_undead2" value="1"/>
-              <input type="checkbox" name="attr_turn_undead3" value="1"/>
-              <span class="sheet-small-font sheet-italic-font">&nbsp;(per day)</span>
-            </div>
-            <div class="sheet-col-right">
+        <input type="checkbox" name="attr_has_cleric_powers" class="sheet-has-cleric-powers" value="1" hidden="True">
+        <div class="sheet-show-cleric-powers">
+          <div class="sheet-flex-between">
+            <div class="sheet-flex-between sheet-thin-border sheet-padding">
               <span class="sheet-bold-font">Turn Undead</span>
+              <div class="sheet-col-left sheet-inline">
+                <input type="checkbox" name="attr_turn_undead1" value="1"/>
+                <input type="checkbox" name="attr_turn_undead2" value="1"/>
+                <input type="checkbox" name="attr_turn_undead3" value="1"/>
+                <span class="sheet-small-font sheet-italic-font">&nbsp;(per day)</span>
+              </div>
+              <div class="sheet-col-right">
+                <button class="sheet-ability-button sheet-green-border" type="roll" name="roll_turn_undead_check"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Turn Undead Check}} {{subheader=@{character_name}}} {{ability=1}} {{simple=1}} {{math=roll: 1d20 + @{spellcasting_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{spellcasting_mod}]] ]]}}"></button>
+              </div>
             </div>
-          </div>
-          <div class="sheet-flex-between sheet-bottom-padding sheet-thin-border">
-            <div class="sheet-col-left sheet-inline">
-              <input type="checkbox" name="attr_dispel_magic1" value="1"/>
-              <input type="checkbox" name="attr_dispel_magic2" value="1"/>
-              <span class="sheet-small-font sheet-italic-font">&nbsp;(per day)</span>
-            </div>
-            <div class="sheet-col-right">
+            <div class="sheet-flex-between sheet-padding sheet-thin-border">
               <span class="sheet-bold-font">Dispel Magic</span>
+              <div class="sheet-col-left sheet-inline">
+                <input type="checkbox" name="attr_dispel_magic1" value="1"/>
+                <input type="checkbox" name="attr_dispel_magic2" value="1"/>
+                <span class="sheet-small-font sheet-italic-font">&nbsp;(per day)</span>
+              </div>
+              <div class="sheet-col-right">
+                <button class="sheet-ability-button sheet-green-border" type="roll" name="roll_dispel_magic_check"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dispel Magic Check}} {{subheader=@{character_name}}} {{ability=1}} {{simple=1}} {{math=roll: 1d20 + @{spellcasting_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{spellcasting_mod}]] ]]}}"></button>
+              </div>
             </div>
-          </div>
-          <div class="sheet-flex-between sheet-bottom-padding sheet-thin-border">
-            <div class="sheet-col-left sheet-inline">
-              <input type="checkbox" name="attr_dispel_evil" value="1"/>
-              &nbsp;
-              <span class="sheet-small-font sheet-italic-font">&nbsp;(per day)</span>
-            </div>
-            <div class="sheet-col-right">
-              <span class="sheet-bold-font">Dispel Evil</span>
+            <div class="sheet-flex-between sheet-padding sheet-thin-border">
+              <div class="sheet-col-left sheet-inline">
+                <span class="sheet-bold-font">Dispel Evil</span>
+                <input type="checkbox" name="attr_dispel_evil" value="1"/>
+                &nbsp;
+                <span class="sheet-small-font sheet-italic-font">&nbsp;(per day)</span>
+              </div>
+              <div class="sheet-col-right">
+                <button class="sheet-ability-button sheet-green-border" type="roll" name="roll_dispel_evil_check"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dispel Evil Check}} {{subheader=@{character_name}}} {{ability=1}} {{simple=1}} {{math=roll: 1d20 + @{spellcasting_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{spellcasting_mod}]] ]]}}"></button>
+              </div>
             </div>
           </div>
         </div>
@@ -1003,21 +1012,21 @@
              <input type="checkbox" name="attr_is_dice_spell" class="sheet-is-dice-spell" value="1" hidden="True">
              <div class="sheet-dice-spell">
                <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_cast_spell"
-                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_dice_enabled=1}} {{simple=1}} {{level=@{spelllevel}}} {{math=@{spell_dice}}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
+                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc} }} {{spell_dice_enabled=1}} {{simple=1}} {{level=@{spelllevel}}} {{math=@{spell_dice}}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
              </div>
              <div class="sheet-no-dice-spell">
                <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_cast_spell"
-                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{simple=1}} {{level=@{spelllevel}}} }} {{description=@{spelldescription} }}"></button>
+                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc} }} {{simple=1}} {{level=@{spelllevel}}} }} {{description=@{spelldescription} }}"></button>
              </div>
              <input type="checkbox" name="attr_is_adhoc_dice_spell" class="sheet-is-adhoc-dice-spell" value="1" hidden="True">
              <div class="sheet-adhoc-dice-spell">
                <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
-                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Adhoc Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_dice_enabled=1}} {{simple=1}} {{level=@{spelllevel}}} {{math=@{spell_dice}}} {{adhoc_cast=1}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
+                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Adhoc Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc} }} {{simple=1}} {{spell_dice_enabled=1}} {{level=@{spelllevel}}} {{math=@{spell_dice}}} {{adhoc_cast=1}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
              </div>
              <input type="checkbox" name="attr_is_adhoc_no_dice_spell" class="sheet-adhoc-not-dice-spell" value="1" hidden="True">
              <div class="sheet-adhoc-no-dice-spell">
                <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
-                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Adhoc Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{simple=1}} {{level=@{spelllevel}}} {{adhoc_cast=1}} {{description=@{spelldescription}}}"></button>
+                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Adhoc Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc} }} {{simple=1}} {{level=@{spelllevel}}} {{adhoc_cast=1}} {{description=@{spelldescription}}}"></button>
              </div>
              <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
            </div>
@@ -1692,13 +1701,15 @@
         {{/rollhasdisadv}}
         <div class="sheet-row">
                <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">{{rollname}}</div>
-               <!-- {{#spell}}
-               -->
+
+               {{#spell}}
+               <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Save DC: {{spell_save_dc}}</div>
+               {{/spell}}
+
                {{#spell_dice_enabled}}
                <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Dice Roll:{{roll1}}</div>
                {{/spell_dice_enabled}}
-               <!-- {{/spell}}
-               -->
+
                {{#noadvroll}}
                <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{roll1}}</div>
                {{/noadvroll}}
@@ -1882,7 +1893,7 @@
                 }
                 else
                 if (c_class2 === 'cleric') {
-                  setting["spellcasting_mod"] = base_wis_mod + parseInt(level3/2);
+                  setting["spellcasting_mod"] = base_wis_mod + parseInt(level2/2);
                   setting["spellcasting_dc"] = base_wis_mod + 10 + parseInt(level2/2);
                 }
 
@@ -2048,6 +2059,7 @@
         setting["spell_slots_l8"] = 0;
         setting["spell_slots_l9"] = 0;
       }
+      setting["has_cleric_powers"] = is_cleric;
 
       // force alignment if Wizard, Cleric or Elven
       if (c_race === 'Elven') {

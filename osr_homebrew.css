@@ -120,7 +120,7 @@ span.sheet-med-font
 }
 .sheet-flex-between {
     display: flex;
-	justify-content: space-evenly;
+	  justify-content: space-evenly;
 }
 
 .sheet-center,
@@ -1261,6 +1261,17 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 }
 
 
+
+/* Powers */
+div.sheet-show-cleric-powers
+{
+    display: none;
+}
+
+input.sheet-has-cleric-powers:checked ~ div.sheet-show-cleric-powers
+{
+	  display: block;
+}
 
 /* Spell header */
 
