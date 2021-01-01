@@ -232,8 +232,8 @@ select.side-padding
 	flex-direction: column;
 }
 .sheet-logo {
-	  width: 70%;
-    margin: 12px auto;
+	  width: 50%;
+    margin: 14px auto;
     display: block;
 }
 input[type=checkbox], input[type=radio] {
@@ -537,6 +537,30 @@ input.sheet-tab99:checked + span.sheet-tab99 {
         background: #ab8b57;
         color: white;
         border-radius: 4px;
+}
+
+/*
+input.sheet-npc-header-enabled:checked ~ div.sheet-section-npc-header,
+input.sheet-multiclass_enabled:checked ~ div.sheet-section-pc-header
+*/
+input.sheet-npc_header_enabled:not(:checked) ~ div.sheet-section-pc-header
+{
+	display: block;
+}
+
+input.sheet-pc-main-enabled:checked ~ div.sheet-section-pc-main
+{
+	display: block;
+}
+
+input.sheet-pc-logo-enabled:checked ~ div.sheet-section-pc-logo
+{
+	 display: block;
+}
+
+input.sheet-npc_header_enabled:checked ~ div.sheet-section-npc-header
+{
+	display: block;
 }
 
 input.sheet-multiclass_enabled:checked ~ div.sheet-section-multiclass

@@ -7,63 +7,87 @@
       <input type="text" class="sheet-align-left sheet-info-name-long" name="attr_character_name"/>
       <input type="checkbox" class="sheet-is_multiclass" name="attr_is_multiclass" value="1"/>
       <span class="ability-check-label">Multiclass</span>
+      <input type="checkbox" class="sheet-is_npc" name="attr_is_npc" value="1"/>
+      <span class="ability-check-label">Monster</span>
     </div>
 
-    <div class="sheet-inline-flex">
-       <select class="sheet-info-name" name="attr_class">
-         <option selected="selected" value="none">--</option>
-         <option value="fighter">Fighter</option>
-         <option value="cleric">Cleric</option>
-         <option value="specialist">Specialist</option>
-         <option value="wizard">Wizard</option>
-       </select>
-       <select class="sheet-info-name-sm" name="attr_level">
-         <option selected="selected" value="0">0</option>
-         <option value="1">1</option>
-         <option value="2">2</option>
-         <option value="3">3</option>
-         <option value="4">4</option>
-         <option value="5">5</option>
-         <option value="6">6</option>
-         <option value="7">7</option>
-         <option value="8">8</option>
-         <option value="9">9</option>
-         <option value="10">10</option>
-         <option value="11">11</option>
-         <option value="12">12</option>
-         <option value="13">13</option>
-         <option value="14">14</option>
-         <option value="15">15</option>
-         <option value="16">16</option>
-         <option value="17">17</option>
-         <option value="18">18</option>
-         <option value="19">19</option>
-         <option value="20">20</option>
-       </select>
-       <input type="text" class="sheet-align-right sheet-info-name-med" name="attr_xp" value="0"/>
-       <input type="checkbox" class="sheet-next-level-up" name="attr_next_level_up" value="0" hidden="true" checked="true"/>
-       <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name-med" name="attr_next_level_xp" value="1" readonly="true"/>
-     </div>
+    <input type="checkbox" class="sheet-npc_header_enabled" name="attr_npc_header_enabled" value="1" hidden="true"/>
+    <div class="sheet-section-npc-header">
+      <!--div class="table sheet-fill-width"-->
+      <div class="table">
+        <div class="table-row sheet-inline-flex sheet-padding">
+          <div class="table-cell sheet-padding">
+            <div class="sheet-block">
+              <span class="ability-check-label">HD: </span>
+              <select class="sheet-info-name-sm" name="attr_level">
+                <option selected="selected" value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-cell sheet-padding">
+            <span class="ability-check-label sheet-center">AC</span>
+            <input class="ability-check-value" name="attr_ac" type="number" value="0"/>
+          </div>
+          <div class="table-cell sheet-padding">
+            <span class="ability-check-label">HP</span>
+            <input class="ability-check-value" name="attr_hit_points" type="number" value="1"/>
+          </div>
+          <div class="table-cell sheet-padding">
+            <span class="ability-check-label">Fort</span>
+            <input class="ability-check-value" name="attr_fortitude" type="number" value="1"/>
+          </div>
+          <div class="table-cell sheet-padding">
+            <span class="ability-check-label">Dodge</span>
+            <input class="ability-check-value" name="attr_dodge" type="number" value="1"/>
+          </div>
+          <div class="table-cell sheet-padding">
+            <span class="ability-check-label">Health</span>
+            <input class="ability-check-value" name="attr_health" type="number" value="1"/>
+          </div>
+          <div class="table-cell sheet-padding">
+            <span class="ability-check-label">Per</span>
+            <input class="ability-check-value" name="attr_perception" type="number" value="1"/>
+          </div>
+          <div class="table-cell sheet-padding">
+            <span class="ability-check-label">Will</span>
+            <input class="ability-check-value" name="attr_willpower" type="number" value="1"/>
+          </div>
+        </div>
+      </div>
+    </div>
 
-     <div class="sheet-inline-flex sheet-bottom-padding">
-       <span class="sheet-info-name">Class</span>
-       <span class="sheet-info-name-sm">Level</span>
-       <span class="sheet-info-name-med">XP</span>
-       <span class="sheet-info-name-med">Next Level XP</span>
-     </div>
-
-     <input type="checkbox" class="sheet-multiclass_enabled" name="attr_multiclass_enabled" value="1" hidden="true"/>
-     <div class="section-multiclass">
-       <div class="sheet-inline-flex">
-         <select class="sheet-info-name" name="attr_class2">
+    <input type="checkbox" class="sheet-pc_header_enabled" name="attr_pc_header_enabled" value="1" hidden="True"/>
+    <div class="sheet-section-pc-header">
+      <div class="sheet-inline-flex">
+        <select class="sheet-info-name" name="attr_class">
            <option selected="selected" value="none">--</option>
            <option value="fighter">Fighter</option>
            <option value="cleric">Cleric</option>
            <option value="specialist">Specialist</option>
            <option value="wizard">Wizard</option>
          </select>
-         <select class="sheet-info-name" name="attr_level2">
-           <option value="0" selected="selected">--</option>
+         <select class="sheet-info-name-sm" name="attr_level">
+           <option selected="selected" value="0">0</option>
            <option value="1">1</option>
            <option value="2">2</option>
            <option value="3">3</option>
@@ -85,47 +109,96 @@
            <option value="19">19</option>
            <option value="20">20</option>
          </select>
+         <input type="text" class="sheet-align-right sheet-info-name-med" name="attr_xp" value="0"/>
+         <input type="checkbox" class="sheet-next-level-up" name="attr_next_level_up" value="0" hidden="true" checked="true"/>
+         <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name-med" name="attr_next_level_xp" value="1" readonly="true"/>
        </div>
-       <div class="sheet-inline-flex">
+
+       <div class="sheet-inline-flex sheet-bottom-padding">
          <span class="sheet-info-name">Class</span>
-         <span class="sheet-info-name">Level</span>
-         <span class="sheet-info-name">&nbsp;</span>
+         <span class="sheet-info-name-sm">Level</span>
+         <span class="sheet-info-name-med">XP</span>
+         <span class="sheet-info-name-med">Next Level XP</span>
        </div>
-     </div>
 
-      <div class="sheet-block">
+       <input type="checkbox" class="sheet-multiclass_enabled" name="attr_multiclass_enabled" value="1" hidden="true"/>
+       <div class="section-multiclass">
          <div class="sheet-inline-flex">
-           <select class="sheet-info-name" name="attr_alignment">
-              <option selectekd="selected" value="Neutral">Neutral</option>
-              <option value="Lawful">Lawful</option>
-              <option value="Chaotic">Chaotic</option>
+           <select class="sheet-info-name" name="attr_class2">
+             <option selected="selected" value="none">--</option>
+             <option value="fighter">Fighter</option>
+             <option value="cleric">Cleric</option>
+             <option value="specialist">Specialist</option>
+             <option value="wizard">Wizard</option>
            </select>
-           <select class="sheet-info-name" name="attr_race">
-              <option selected="selected" value="Human">Human</option>
-              <option value="Dwarf">Dwarf</option>
-              <option value="Elven">Elven</option>
-              <option value="Halfling">Halfling</option>
+           <select class="sheet-info-name" name="attr_level2">
+             <option value="0" selected="selected">--</option>
+             <option value="1">1</option>
+             <option value="2">2</option>
+             <option value="3">3</option>
+             <option value="4">4</option>
+             <option value="5">5</option>
+             <option value="6">6</option>
+             <option value="7">7</option>
+             <option value="8">8</option>
+             <option value="9">9</option>
+             <option value="10">10</option>
+             <option value="11">11</option>
+             <option value="12">12</option>
+             <option value="13">13</option>
+             <option value="14">14</option>
+             <option value="15">15</option>
+             <option value="16">16</option>
+             <option value="17">17</option>
+             <option value="18">18</option>
+             <option value="19">19</option>
+             <option value="20">20</option>
            </select>
-           <input type="text" class="sheet-info-name" name="attr_background"/>
          </div>
          <div class="sheet-inline-flex">
-           <span class="sheet-info-name">Alignment</span>
-           <span class="sheet-info-name">Race</span>
-           <span class="sheet-info-name">Background</span>
+           <span class="sheet-info-name">Class</span>
+           <span class="sheet-info-name">Level</span>
+           <span class="sheet-info-name">&nbsp;</span>
          </div>
+       </div>
+
+        <div class="sheet-block">
+           <div class="sheet-inline-flex">
+             <select class="sheet-info-name" name="attr_alignment">
+                <option selectekd="selected" value="Neutral">Neutral</option>
+                <option value="Lawful">Lawful</option>
+                <option value="Chaotic">Chaotic</option>
+             </select>
+             <select class="sheet-info-name" name="attr_race">
+                <option selected="selected" value="Human">Human</option>
+                <option value="Dwarf">Dwarf</option>
+                <option value="Elven">Elven</option>
+                <option value="Halfling">Halfling</option>
+             </select>
+             <input type="text" class="sheet-info-name" name="attr_background"/>
+           </div>
+           <div class="sheet-inline-flex">
+             <span class="sheet-info-name">Alignment</span>
+             <span class="sheet-info-name">Race</span>
+             <span class="sheet-info-name">Background</span>
+           </div>
+        </div>
       </div>
-
     </div>
 
     <div class="sheet-header-right sheet-noborder">
-      <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/osr_logo.png"
-           class="sheet-logo">
+      <input type="checkbox" class="sheet-pc-logo-enabled" name="attr_pc_logo_enabled" value="1" hidden="true"/>
+      <div class="section-pc-logo">
+        <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/osr_logo.png" class="sheet-logo">
+      </div>
     </div>
 
-  </div>
 </div>
 
-<div class="sheet-inline">
+<input type="checkbox" class="sheet-pc-main-enabled" name="attr_pc_main_enabled" value="1" hidden="true"/>
+<div class="sheet-section-pc-main">
+
+  <div class="sheet-inline">
 
   <input type="radio" name="attr_tab" class="sheet-tab sheet-tab1" value="1" checked="checked" />
   <span class="sheet-tab sheet-tab1">Core Stats</span>
@@ -2186,10 +2259,26 @@
     });
   });
 
+  on(`change:is_npc`, () => {
+    getAttrs(['is_npc', 'notes'], v => {
+       const is_pc = parseInt(v.is_npc) ? 0 : 1;
+
+       settings = {}
+       if (v.is_npc) {
+         settings['class'] = 'fighter';
+       }
+       settings['pc_header_enabled'] = is_pc;
+       settings['pc_main_enabled'] = is_pc;
+       settings['pc_logo_enabled'] = is_pc;
+       settings['npc_header_enabled'] = v.is_npc;
+       setAttrs(settings);
+    });
+  });
+
   on(`change:is_multiclass`, () => {
     getAttrs(['is_multiclass'], v=> {
-       setAttrs( {multiclass_enabled: v.is_multiclass });
-    });
+      setAttrs( {multiclass_enabled: v.is_multiclass });
+     });
   });
 
 </script>
