@@ -101,6 +101,10 @@ span.sheet-med-font
 	height: 50px;
 	width:  180px;
 }
+.sheet-npc-notes {
+	width:  380px;
+	height:  240px;
+}
 .sheet-sm-textarea {
 	height: 121px;
 	width:  490px;
@@ -135,9 +139,17 @@ span.sheet-center
 	justify-content: center;
 }
 
-.sheet-block, .sheet-block-left {
+.sheet-block-top,
+.sheet-block,
+.sheet-block-left {
 	display: block;
 	padding: 1px;
+}
+
+.sheet-block-top
+{
+	align-items: baseline;
+	align-content: center;
 }
 
 .sheet-block-between {
@@ -172,6 +184,11 @@ span.sheet-center
 .sheet-flex {
 	display: flex;
     align-items: start;
+}
+.sheet-no-pad
+{
+		padding: 0px;
+		margin: 0px;
 }
 .sheet-col-1, .sheet-col-2, .sheet-thick-border, .sheet-thin-border, .sheet-thin-border-no-pad .sheet-noborder, .sheet-thick-border-no-pad {
 	box-sizing: border-box;
@@ -298,6 +315,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 .sheet-info-name,
 .sheet-info-name-med,
+.sheet-info-name-med-sm,
 .sheet-info-name-sm,
 span.sheet-info-name,
 input.sheet-info-name,
@@ -323,13 +341,21 @@ select.sheet-info-name-med,
 .sheet-info-name-sm,
 span.sheet-info-name-sm,
 input.sheet-info-name-sm,
+select.sheet-info-name-med-sm,
 select.sheet-info-name-sm,
 {
-	width: 65px;
+	width: 45px;
+}
+
+select.sheet-info-name-med-sm
+{
+	margin-top: 11px;
+	margin-bottom: 11px;
 }
 
 input.sheet-info-name,
 select.sheet-info-name-sm,
+select.sheet-info-name-med-sm,
 input.sheet-info-name-long
 {
 	text-align: left;
@@ -345,6 +371,7 @@ input.sheet-info-name-long
 
 span.sheet-info-name,
 select.sheet-info-name-sm,
+select.sheet-info-name-med-sm,
 span.sheet-info-name-long
 {
 	text-align: center;
@@ -421,6 +448,31 @@ input[type=number].sheet-ability-modifier {
 .sheet-subtext {
     width: 138px;
 }
+
+input[type=number].sheet-npc-ability-value
+{
+	width: 30px;
+	height: 30px;
+	font-size: 12px;
+	text-align: center;
+	align-self: center;
+	margin-top: 6px;
+	margin-left: 0px;
+	display: block;
+}
+
+span.sheet-npc-ability-bonus-label
+{
+	  display: block;
+		align-self: baseline;
+    font-size: 9px;
+		font-weight: bold;
+    margin: 0 0 0 0;
+		text-align: center;
+    padding: 0px;
+}
+
+button.sheet-ability-bonus-value,
 input[type=number].sheet-ability-value,
 input[type=number].sheet-ability-bonus-value
 {
@@ -437,10 +489,21 @@ input[type=number].sheet-ability-value
     font-weight: bold;
 }
 
-input[type=number].sheet-ability-bonus-value {
-    width: 30px;
-    height: 30px;
-    margin-top: 6px;
+input[type=number].sheet-ability-bonus-value
+{
+	width: 30px;
+  height: 30px;
+  margin-top: 6px;
+}
+
+button[type=roll].sheet-npc-ability-button
+{
+	 margin: auto;
+	 padding: 1px;
+	 width: 30px;
+   height: 30px;
+	 font-size: 20px;
+	 display: block;
 }
 
 button[type=roll].sheet-ability-button {
@@ -504,6 +567,11 @@ input.sheet-tab5:checked ~ div.sheet-section-notes {
 	display: block;
 }
 
+input.sheet-npc_combat_enabled:checked ~ div.sheet-section-notes
+{
+	display: block;
+}
+
 input.sheet-tab {
         width: 87px;
         height: 20px;
@@ -539,11 +607,7 @@ input.sheet-tab99:checked + span.sheet-tab99 {
         border-radius: 4px;
 }
 
-/*
-input.sheet-npc-header-enabled:checked ~ div.sheet-section-npc-header,
-input.sheet-multiclass_enabled:checked ~ div.sheet-section-pc-header
-*/
-input.sheet-npc_header_enabled:not(:checked) ~ div.sheet-section-pc-header
+input.sheet-pc_header_enabled:checked ~ div.sheet-section-pc-header
 {
 	display: block;
 }
@@ -618,11 +682,7 @@ input[type=number].sheet-skill-bonus-value
 .sheet-spell-range {
 	text-align: left;
 }
-.sheet-spell-level {
-    width: 12%;
-    font-weight: bold;
-    text-align: center;
-}
+k
 .sheet-spell-dice {
     width: 10%;
     font-weight: bold;
@@ -1458,6 +1518,7 @@ button.sheet-roll {
 	font-size: 12px!important;
 }
 
-button.sheet-initiative {
+button.sheet-initiative
+{
 	height: 3em;
 }

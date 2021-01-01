@@ -5,75 +5,8 @@
     <div class="sheet-inline-flex sheet-bottom-padding">
       <span class="sheet-bold-font">Name:</span>
       <input type="text" class="sheet-align-left sheet-info-name-long" name="attr_character_name"/>
-      <input type="checkbox" class="sheet-is_multiclass" name="attr_is_multiclass" value="1"/>
-      <span class="ability-check-label">Multiclass</span>
       <input type="checkbox" class="sheet-is_npc" name="attr_is_npc" value="1"/>
       <span class="ability-check-label">Monster</span>
-    </div>
-
-    <input type="checkbox" class="sheet-npc_header_enabled" name="attr_npc_header_enabled" value="1" hidden="true"/>
-    <div class="sheet-section-npc-header">
-      <!--div class="table sheet-fill-width"-->
-      <div class="table">
-        <div class="table-row sheet-inline-flex sheet-padding">
-          <div class="table-cell sheet-padding">
-            <div class="sheet-block">
-              <span class="ability-check-label">HD: </span>
-              <select class="sheet-info-name-sm" name="attr_level">
-                <option selected="selected" value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-              </select>
-            </div>
-          </div>
-          <div class="table-cell sheet-padding">
-            <span class="ability-check-label sheet-center">AC</span>
-            <input class="ability-check-value" name="attr_ac" type="number" value="0"/>
-          </div>
-          <div class="table-cell sheet-padding">
-            <span class="ability-check-label">HP</span>
-            <input class="ability-check-value" name="attr_hit_points" type="number" value="1"/>
-          </div>
-          <div class="table-cell sheet-padding">
-            <span class="ability-check-label">Fort</span>
-            <input class="ability-check-value" name="attr_fortitude" type="number" value="1"/>
-          </div>
-          <div class="table-cell sheet-padding">
-            <span class="ability-check-label">Dodge</span>
-            <input class="ability-check-value" name="attr_dodge" type="number" value="1"/>
-          </div>
-          <div class="table-cell sheet-padding">
-            <span class="ability-check-label">Health</span>
-            <input class="ability-check-value" name="attr_health" type="number" value="1"/>
-          </div>
-          <div class="table-cell sheet-padding">
-            <span class="ability-check-label">Per</span>
-            <input class="ability-check-value" name="attr_perception" type="number" value="1"/>
-          </div>
-          <div class="table-cell sheet-padding">
-            <span class="ability-check-label">Will</span>
-            <input class="ability-check-value" name="attr_willpower" type="number" value="1"/>
-          </div>
-        </div>
-      </div>
     </div>
 
     <input type="checkbox" class="sheet-pc_header_enabled" name="attr_pc_header_enabled" value="1" hidden="True"/>
@@ -112,6 +45,8 @@
          <input type="text" class="sheet-align-right sheet-info-name-med" name="attr_xp" value="0"/>
          <input type="checkbox" class="sheet-next-level-up" name="attr_next_level_up" value="0" hidden="true" checked="true"/>
          <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name-med" name="attr_next_level_xp" value="1" readonly="true"/>
+         <input type="checkbox" class="sheet-is_multiclass" name="attr_is_multiclass" value="1"/>
+         <span class="ability-check-label">Multiclass</span>
        </div>
 
        <div class="sheet-inline-flex sheet-bottom-padding">
@@ -162,37 +97,335 @@
          </div>
        </div>
 
+       <div class="sheet-block">
+         <div class="sheet-inline-flex">
+           <select class="sheet-info-name" name="attr_alignment">
+              <option selectekd="selected" value="Neutral">Neutral</option>
+              <option value="Lawful">Lawful</option>
+              <option value="Chaotic">Chaotic</option>
+           </select>
+           <select class="sheet-info-name" name="attr_race">
+              <option selected="selected" value="Human">Human</option>
+              <option value="Dwarf">Dwarf</option>
+              <option value="Elven">Elven</option>
+              <option value="Halfling">Halfling</option>
+           </select>
+           <input type="text" class="sheet-info-name" name="attr_background"/>
+         </div>
+         <div class="sheet-inline-flex">
+           <span class="sheet-info-name">Alignment</span>
+           <span class="sheet-info-name">Race</span>
+           <span class="sheet-info-name">Background</span>
+         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-header-right sheet-noborder">
+    <input type="checkbox" class="sheet-pc-logo-enabled" name="attr_pc_logo_enabled" value="1" hidden="true"/>
+    <div class="section-pc-logo">
+      <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/osr_logo.png" class="sheet-logo">
+    </div>
+  </div>
+
+</div>
+
+<div class="sheet-block">
+  <input type="checkbox" class="sheet-npc_header_enabled" name="attr_npc_header_enabled" value="1" hidden="true"/>
+  <div class="sheet-section-npc-header">
+    <div class="sheet-flex">
+      <div class="sheet-thick-border sheet-padding">
         <div class="sheet-block">
-           <div class="sheet-inline-flex">
-             <select class="sheet-info-name" name="attr_alignment">
-                <option selectekd="selected" value="Neutral">Neutral</option>
-                <option value="Lawful">Lawful</option>
-                <option value="Chaotic">Chaotic</option>
-             </select>
-             <select class="sheet-info-name" name="attr_race">
-                <option selected="selected" value="Human">Human</option>
-                <option value="Dwarf">Dwarf</option>
-                <option value="Elven">Elven</option>
-                <option value="Halfling">Halfling</option>
-             </select>
-             <input type="text" class="sheet-info-name" name="attr_background"/>
-           </div>
-           <div class="sheet-inline-flex">
-             <span class="sheet-info-name">Alignment</span>
-             <span class="sheet-info-name">Race</span>
-             <span class="sheet-info-name">Background</span>
-           </div>
+          <div class="sheet-thin-border sheet-flex-between">
+            <div class="sheet-block sheet-padding sheet-center">
+              <div class="sheet-flex-inline">
+                <select class="sheet-info-name-med-sm" name="attr_level">
+                  <option selected="selected" value="-1">-1</option>
+                  <option value="1">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                </select>
+              </div>
+              <div class="sheet-block sheet-center">
+                <span class="ability-check-label">Hit</span>
+                <span class="ability-check-label">Dice</span>
+              </div>
+            </div>
+            <div class="sheet-block sheet-padding sheet-center">
+              <input class="ability-check-value" name="attr_hit_points" type="number" value="0"/>
+              <span class="ability-check-label">HP</span>
+            </div>
+            <div class="sheet-block sheet-padding sheet-center">
+              <input class="ability-check-value" name="attr_ac" type="number" value="-1"/>
+              <span class="ability-check-label">AC</span>
+            </div>
+            <div class="sheet-flex">
+              <div class="sheet-block sheet-center">
+                <div class="sheet-flex sheet-no-pad">
+                  <div class="sheet-block sheet-center">
+                    <span class="sheet-npc-ability-bonus-label">bonus</span>
+                    <input class="sheet-npc-ability-value" name="attr_initiative" type="number" value="0"/>
+                  </div>
+                    <button type="roll" class="sheet-npc-ability-button" name="roll_initiative"
+                            value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} [Initiative Mod] &{tracker} ]]}}"/>
+                </div>
+                <span class="sheet-ability-check-label sheet-no-pad">Initiative</span>
+              </div>
+            </div>
+          </div>
+          <br/>
+          <div class="sheet-flex-between sheet-padding">
+            <div class="sheet-flex">
+              <div class="sheet-block sheet-center sheet-padding">
+                <span class="ability-check-label">Fortitude</span>
+                <div class="sheet-flex">
+                  <input class="ability-check-value" name="attr_fortitude" type="number" value="0"/>
+                  <button class="sheet-npc-ability-button" type="roll" name="roll_fortitude"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Fortitude Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{fortitude} + @{fort_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{fortitude}]] + [[@{fort_bonus}]] ]]}}"/>
+                </div>
+              </div>
+            </div>
+            <div class="sheet-block sheet-padding">
+              <div class="sheet-block sheet-center sheet-padding">
+                <span class="ability-check-label">Dodge</span>
+                <div class="sheet-flex">
+                  <input class="ability-check-value" name="attr_dodge" type="number" value="0"/>
+                  <button class="sheet-npc-ability-button" type="roll" name="roll_dodge"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dodge Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{dodge} + @{dodge_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{dodge}]] + [[@{dodge_bonus}]] ]]}}"/>
+                </div>
+              </div>
+            </div>
+            <div class="sheet-block sheet-padding">
+              <div class="sheet-block sheet-center sheet-padding">
+                <span class="ability-check-label">Health</span>
+                <div class="sheet-flex">
+                  <input class="ability-check-value" name="attr_health" type="number" value="0"/>
+                  <button class="sheet-npc-ability-button" type="roll" name="roll_health"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Health Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{health} +@{health_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{health}]] + [[@{health_bonus}]] ]]}}"/>
+                </div>
+              </div>
+            </div>
+            <div class="sheet-block sheet-padding">
+              <div class="sheet-block sheet-center sheet-padding">
+                <span class="sheet-bold-font">Perception</span>
+                <div class="sheet-flex">
+                  <input class="ability-check-value" name="attr_perception" type="number" value="0"/>
+                  <button class="sheet-npc-ability-button" type="roll" name="roll_perception"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Perception Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{perception} + @{per_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{perception}]] + [[@{per_bonus}]] ]]}}"></button>
+                </div>
+              </div>
+            </div>
+            <div class="sheet-block sheet-padding">
+              <div class="sheet-block sheet-center sheet-padding">
+                <span class="ability-check-label">Willpower</span>
+                <div class="sheet-flex">
+                  <input class="ability-check-value" name="attr_willpower" type="number" value="0"/>
+                  <button class="sheet-npc-ability-button" type="roll" name="roll_willpower"
+                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Willpower Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{willpower} +@{will_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{willpower}]] +[[@{will_bonus}]] ]]}}"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sheet-thin-border">
+          <h4>Skills</h4>
+          <fieldset class="repeating_skills">
+            <div class="sheet-block sheet-thin-border sheet-side-padding">
+              <div class="sheet-align-right">
+                <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname"/>
+                <input type="number" name="attr_skillvalue" class="sheet-bold-font" value="1"/>
+                <input type="number" name="attr_skill_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
+                <button class="sheet-skill-button" type="roll" name="roll_skill"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{skillname} Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{skillvalue} +@{skill_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{skillvalue}]] +[[@{skill_bonus}]] ]]}}"></button>
+              </div>
+            </div>
+         </fieldset>
+       </div>
+       <div class="sheet-thin-border">
+         <div class="sheet-block">
+          <h4>Spells/Powers</h4>
+          <fieldset class="repeating_spells">
+            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="1" checked="True"/>
+            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="2"/>
+            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="3"/>
+            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="4"/>
+            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="5"/>
+            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="6"/>
+            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="7"/>
+            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="8"/>
+            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="9"/>
+            <div class="sheet-spellcontainer sheet-side-padding">
+              <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" data-i18n-placeholder="name"/>
+              <span class="sheet-left-pad"> Level:</span>
+              <select class="sheet-info-name-sm sheet-align-right" name="attr_spelllevel">
+                <option selected="selected" value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+              <span class="sheet-left-pad">Dice:</span>
+              <input type="text" class="sheet-info3 sheet-align-right sheet-spell-dice" name="attr_spell_dice" value="">
+              <input type="checkbox" name="attr_is_dice_spell" class="sheet-is-dice-spell" value="1" hidden="True">
+              <div class="sheet-dice-spell">
+                <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_cast_spell"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc} }} {{spell_dice_enabled=1}} {{level=@{spelllevel}}} {{math=@{spell_dice}}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
+              </div>
+              <div class="sheet-no-dice-spell">
+                <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_cast_spell"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc} }} {{level=@{spelllevel}}} }} {{description=@{spelldescription} }}"></button>
+              </div>
+              <input type="checkbox" name="attr_is_adhoc_dice_spell" class="sheet-is-adhoc-dice-spell" value="1" hidden="True">
+              <div class="sheet-adhoc-dice-spell">
+                <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Adhoc Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc} }} {{spell_dice_enabled=1}} {{level=@{spelllevel}}} {{math=@{spell_dice}}} {{adhoc_cast=1}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
+              </div>
+              <input type="checkbox" name="attr_is_adhoc_no_dice_spell" class="sheet-adhoc-not-dice-spell" value="1" hidden="True">
+              <div class="sheet-adhoc-no-dice-spell">
+                <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Adhoc Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc} }} {{level=@{spelllevel}}} {{adhoc_cast=1}} {{description=@{spelldescription}}}"></button>
+              </div>
+            </div>
+          </fieldset>
         </div>
       </div>
-    </div>
+     </div>
+     <div class="sheet-block">
+       <div class="sheet-thick-border">
+         <h3>Notes</h3>
+         <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
+       </div>
+     </div>
+   </div>
+   <div class="sheet-thin-border">
+     <div class="sheet-block">
+       <h4>Combat</h4>
+       <div class="sheet-inline-flex">
+         <input type="checkbox" class="sheet-beserk_attack_enabled" name="attr_beserk_attack_enabled" value="1" hidden="true"/>
+         <input type="checkbox" class="sheet-cleave_attack_enabled" name="attr_cleave_attack_enabled" value="1" hidden="true"/>
+         <input type="checkbox" class="sheet-defense_attack_enabled" name="attr_defense_attack_enabled" value="1" hidden="true"/>
+         <input type="checkbox" class="sheet-press_attack_enabled" name="attr_press_attack_enabled" value="1" hidden="true"/>
+         <input type="checkbox" class="sheet-sneak_attack_enabled" name="attr_sneak_attack_enabled" value="1" hidden="true"/>
+         <input type="checkbox" class="sheet-strong_attack_enabled" name="attr_strong_attack_enabled" value="1" hidden="true"/>
+         <input type="number" name="attr_beserk_attack_mod" value="2" hidden="true"/>
 
-    <div class="sheet-header-right sheet-noborder">
-      <input type="checkbox" class="sheet-pc-logo-enabled" name="attr_pc_logo_enabled" value="1" hidden="true"/>
-      <div class="section-pc-logo">
-        <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/osr_logo.png" class="sheet-logo">
+         <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font sheet-italic-font">Notches</span>
+         <span class="sheet-weapon-name sheet-bold-font">Name</span>
+         <span class="sheet-weapon-param-name sheet-bold-font">Add. Bonus</span>
+         <span class="sheet-weapon-param-select-name sheet-bold-font">Type</span>
+         <span class="sheet-weapon-param-name sheet-bold-font">Attk Bonus</span>
+         <span class="sheet-weapon-param-select-name sheet-bold-font">Damage</span>
+         <span class="sheet-weapon-param-name sheet-bold-font">Dam Bonus</span>
+         <span class="sheet-weapon-param-name sheet-bold-font">Stnd. Attack</span>
+
+         <span class="sheet-weapon-param-name sheet-bold-font">Press Attack</span>
+         <span class="sheet-weapon-param-name sheet-bold-font">Defns. Attack</span>
+         <span class="sheet-weapon-param-name sheet-bold-font">Beserk Attack</span>
+         <span class="sheet-weapon-param-name sheet-bold-font">Cleave Attack</span>
+         <span class="sheet-weapon-param-name sheet-bold-font">Strong Attack</span>
+         <span class="sheet-weapon-param-name sheet-bold-font">Sneak Attack</span>
+
+       </div>
+       <fieldset class="repeating_weapons">
+         <div class="sheet-inline-flex">
+           <input type="checkbox" class="sheet-weapon_beserk_attack_enabled" name="attr_weapon_beserk_attack_enabled" value="1" hidden="true"/>
+           <input type="checkbox" class="sheet-weapon_cleave_attack_enabled" name="attr_weapon_cleave_attack_enabled" value="1" hidden="true"/>
+           <input type="checkbox" class="sheet-weapon_defense_attack_enabled" name="attr_weapon_defense_attack_enabled" value="1" hidden="true"/>
+           <input type="checkbox" class="sheet-weapon_press_attack_enabled" name="attr_weapon_press_attack_enabled" value="1" hidden="true"/>
+           <input type="checkbox" class="sheet-weapon_strong_attack_enabled" name="attr_weapon_strong_attack_enabled" value="1" hidden="true"/>
+           <input type="checkbox" class="sheet-weapon_sneak_attack_enabled" name="attr_weapon_sneak_attack_enabled" value="1" hidden="true"/>
+
+           <input name="attr_weapon_sneak_attack_bonus" value="[[@{sneak_attack_skill}+[[@{weapon_bonus}]]-[[@{weapon_notches}]]]]" hidden="true"/>
+           <input name="attr_weapon_sneak_attack_dam" value="0" hidden="true"/>
+
+           <select class="sheet-weapon-notches" name="attr_weapon_notches">
+             <option selected="selected" value="0">--</option>
+             <option value="1">1</option>
+             <option value="2">2</option>
+             <option value="3">3</option>
+           </select>
+           <input type="text" name="attr_weapon_name" class="weapon-name" data-i18n-placeholder="name"/>
+
+           <input type="number" name="attr_weapon_bonus" class="weapon-param sheet-purple-border" value="0"/>
+
+          <select class="weapon-param" name="attr_weapon_type">
+            <option selected="selected" value="@{melee_ab}">Melee</option>
+            <option value="@{ranged_ab}">Ranged</option>
+          </select>
+
+           <input type="number" name="attr_weapon_attack_bonus" class="weapon-param inactive-color" value="[[@{weapon_type}+[[@{weapon_bonus}]]-[[@{weapon_notches}]]]]" disabled="true"/>
+
+           <select class="sheet-weapon-param" name="attr_weapon_dam_die">
+             <option selected="selected" value="1d2">1d2</option>
+             <option value="1d4">1d4</option>
+             <option value="1d6">1d6</option>
+             <option value="1d8">1d8</option>
+             <option value="1d10">1d10</option>
+             <option value="1d12">1d12</option>
+             <option value="2d4">2d4</option>
+             <option value="2d6">2d6</option>
+             <option value="2d8">2d8</option>
+           </select>
+
+           <input name="attr_weapon_dam" value="0" hidden="true"/>
+           <input type="number" name="attr_weapon_dam_bonus" class="weapon-param inactive-color" value="[[@{strength_mod}+[[@{weapon_bonus}]]]]" disabled="true"/>
+
+           <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_weapon_attack"
+                   value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus}]]}} {{fumble=[[2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+
+           <div class="sheet-weapon_press_attack_section">
+             <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_press_attack"
+                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{weapon_attack_bonus}]]}} {{fumble=[[4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+           </div>
+           <div class="sheet-weapon_defense_attack_section">
+             <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_defense_attack"
+                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Defensive Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] -4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+           </div>
+
+           <button class="sheet-attack-button sheet-yellow-border" type="roll" name="roll_beserk_attack"
+                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Beserk Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + [[@{beserk_attack_mod}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus} + [[@{beserk_attack_mod}]] ]]}} {{fumble=[[2+@{weapon_attack_bonus} + [[@{beserk_attack_mod}]] ]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{beserk_attack_mod}]] ]]}}   {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{beserk_attack_mod}]] ]]}}  {{math=1d20 + [[@{weapon_attack_bonus}]] + @{beserk_attack_mod} [Attk], @{weapon_dam} + @{weapon_dam_bonus} + @{beserk_attack_mod} [Dam] }}"></button>
+
+           <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_cleave_attack"
+                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{critical=[[19 + @{weapon_bonus}]]}} {{fumble=[[2+@{weapon_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]]  ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]] ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + [[@{weapon_attack_bonus}/2]] [Dam] }}"></button>
+
+           <button class="sheet-attack-button sheet-green-border" type="roll" name="roll_strong_attack"
+                   value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b> Strong Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus}]]}} {{fumble=[[2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam} + @{weapon_dam_bonus} [Dam] }}"></button>
+
+           <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_sneak_attack"
+                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_sneak_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_sneak_attack_bonus}]]}} {{fumble=[[2+@{weapon_sneak_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam}]]}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} + @{weapon_sneak_attack_dam} ]]}} {{math=1d20 + @{weapon_sneak_attack_bonus} [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+
+         </div>
+       </fieldset>
       </div>
     </div>
-
+  </div>
 </div>
 
 <input type="checkbox" class="sheet-pc-main-enabled" name="attr_pc_main_enabled" value="1" hidden="true"/>
@@ -212,6 +445,8 @@
   <span class="sheet-tab sheet-tab5">Notes</span>
   <input type="radio" name="attr_tab" class="sheet-tab sheet-tab99" value="99" />
   <span class="sheet-tab sheet-tab99">Show All</span>
+
+  <input type="checkbox" class="sheet-npc_combat_enabled" name="attr_npc_combat_enabled" value="1" hidden="true"/>
 
   <div class="section-core">
     <span class="sheet-spacer">&nbsp;</span>
@@ -396,7 +631,7 @@
               </div>
               <div class="sheet-ability-column-roll sheet-flex">
                 <button class="sheet-ability-button" type="roll" name="roll_perception"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Perception Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{perception} + @{per_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{perception}]] + [[@{per_bonus}]] ]]}}"></button>
+                value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Perception Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{perception} + @{per_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{perception}]] + [[@{per_bonus}]] ]]}}"></button>
                 </button>
               </div>
             </div>
@@ -412,7 +647,7 @@
               </div>
               <div class="sheet-ability-column-roll sheet-flex">
                 <button class="sheet-ability-button" type="roll" name="roll_willpower"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Willpower Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{willpower} +@{will_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{willpower}]] +[[@{will_bonus}]] ]]}}"></button>
+                value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Willpower Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{willpower} +@{will_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{willpower}]] +[[@{will_bonus}]] ]]}}"></button>
                 </button>
               </div>
             </div>
@@ -637,8 +872,8 @@
             <span class="ability-check-label">Initiative Bonus</span>
           </div>
           <div class="sheet-flex-between left-pad">
-	    <button type="roll" class="sheet-initiative" name="roll_initiative"
-			  value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
+	          <button type="roll" class="sheet-initiative" name="roll_initiative"
+			              value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
           </div>
         </div>
         <div class="sheet-ability-column-value">
@@ -1069,7 +1304,7 @@
            <div class="sheet-spellcontainer sheet-side-padding">
              <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" data-i18n-placeholder="name"/>
              <span class="sheet-left-pad"> Level:</span>
-             <select class="sheet-info1 sheet-align-right sheet-spell-level" name="attr_spelllevel">
+             <select class="sheet-info-name-sm sheet-align-right" name="attr_spelllevel">
                <option selected="selected" value="1">1</option>
                <option value="2">2</option>
                <option value="3">3</option>
@@ -2260,7 +2495,7 @@
   });
 
   on(`change:is_npc`, () => {
-    getAttrs(['is_npc', 'notes'], v => {
+    getAttrs(['is_npc'], v => {
        const is_pc = parseInt(v.is_npc) ? 0 : 1;
 
        settings = {}
@@ -2271,6 +2506,8 @@
        settings['pc_main_enabled'] = is_pc;
        settings['pc_logo_enabled'] = is_pc;
        settings['npc_header_enabled'] = v.is_npc;
+       settings['npc_combat_enabled'] = v.is_npc;
+
        setAttrs(settings);
     });
   });
