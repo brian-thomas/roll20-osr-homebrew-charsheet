@@ -2252,7 +2252,7 @@
       // deal with sneak attack stuff
       setting['sneak_attack_enabled'] = (c_class === 'specialist' ? 1 : (c_class2 === 'specialist' ? 1: 0));
       setting['sneak_attack_checkbox'] = (c_class === 'specialist' ? 1 : (c_class2 === 'specialist' ? 1: 0));
-      setting['sneak_attack_dice'] = (c_class === 'specialist' ?  1 + parseInt(level/3): (c_class2 === 'specialist' ?  1 + parseInt(level2/3): 0));
+      setting['sneak_attack_dice'] = (c_class === 'specialist' ?  1 + parseInt((level-1)/2): (c_class2 === 'specialist' ?  1 + parseInt((level2-1)/2): 0));
 
       if (is_wizard)
       {
