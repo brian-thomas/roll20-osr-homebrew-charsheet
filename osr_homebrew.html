@@ -2245,7 +2245,7 @@
       const setting = {};
 
       // calculate next level xp
-      const next_level_xp = level < 1 ? 100 : 1000 * (2**(level + level2 - 1));
+      const next_level_xp = level < 1 ? 100 : level > 8 ? 128000 * (level + level2 - 7) : 1000 * (2**(level + level2 - 1));
       setting['next_level_xp'] = next_level_xp;
       setting['next_level_up'] = next_level_xp <= xp ? 0 : 1;
 
