@@ -5,8 +5,8 @@
     <div class="sheet-inline-flex sheet-bottom-padding">
       <span class="sheet-bold-font">Name:</span>
       <input type="text" class="sheet-align-left sheet-info-name-long" name="attr_character_name"/>
-      <input type="checkbox" class="sheet-is_npc" name="attr_npc" value="1"/>
-      <span class="ability-check-label">Monster</span>
+      <input type="checkbox" class="sheet-is_npc" name="attr_npc" value="1" checked="True"/>
+      <span class="ability-check-label">NPC</span>
     </div>
 
     <input type="checkbox" class="sheet-pc_header_enabled" name="attr_pc_header_enabled" value="1" hidden="True"/>
@@ -20,7 +20,8 @@
            <option value="wizard">Wizard</option>
          </select>
          <select class="sheet-info-name-sm" name="attr_level">
-           <option selected="selected" value="0">0</option>
+           <option selected="selected" value="-1">-1</option>
+           <option value="1">0</option>
            <option value="1">1</option>
            <option value="2">2</option>
            <option value="3">3</option>
@@ -458,8 +459,6 @@
   <span class="sheet-tab sheet-tab5">Notes</span>
   <input type="radio" name="attr_tab" class="sheet-tab sheet-tab99" value="99" />
   <span class="sheet-tab sheet-tab99">Show All</span>
-
-  <input type="checkbox" class="sheet-npc_combat_enabled" name="attr_npc_combat_enabled" value="1" hidden="true"/>
 
   <div class="section-core">
     <span class="sheet-spacer">&nbsp;</span>
@@ -2082,9 +2081,6 @@
               const c_class = v.class.trim();
               const c_class2 = v.class2.trim();
 
-              // set NPC npc_hpformula
-              setting['npc_hpformula'] = v.level + 'd8';
-
               const ability_mod = `${ability}_mod`;
               setting[ability_mod] = (statrank === -1 ? 5 : statrank -5) + ((raceMods[race] || '').indexOf(ability) !== -1 ? 1 : 0);
 
@@ -2391,7 +2387,7 @@
         const c_class2 = values.class2.trim();
         const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard') ? 1 : 0;
 
-        settings = {}
+        settings = {};
         ids.forEach(id => {
 
           const spell_dice = values['repeating_spells_' + id + '_spell_dice'];
@@ -2518,20 +2514,24 @@
     });
   });
 
-  on(`change:npc`, () => {
-    getAttrs(['npc', 'level'], v => {
+  on(`sheet:opened change:npc change:level`, () => {
+    getAttrs(['npc', 'level', 'hp'], v => {
        const is_pc = parseInt(v.npc) ? 0 : 1;
 
-       settings = {}
+       settings = {};
+
+       settings['npc_header_enabled'] = v.npc;
+       settings['pc_header_enabled'] = is_pc;
+       settings['pc_logo_enabled'] = is_pc;
+       settings['pc_main_enabled'] = is_pc;
+
        if (v.npc) {
          settings['class'] = 'fighter';
-         setting['npc_hpformula'] = v.level + 'd8';
+         settings['npc_hpformula'] = v.level + 'd8';
        }
-       settings['pc_header_enabled'] = is_pc;
-       settings['pc_main_enabled'] = is_pc;
-       settings['pc_logo_enabled'] = is_pc;
-       settings['npc_header_enabled'] = v.npc;
-       settings['npc_combat_enabled'] = v.npc;
+       else {
+         settings['npc_hpformula'] = v.hp;
+       }
 
        setAttrs(settings);
     });

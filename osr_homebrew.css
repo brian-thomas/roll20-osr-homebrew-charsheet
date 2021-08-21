@@ -567,7 +567,7 @@ input.sheet-tab5:checked ~ div.sheet-section-notes {
 	display: block;
 }
 
-input.sheet-npc_combat_enabled:checked ~ div.sheet-section-notes
+input.sheet-npc_header_enabled:checked ~ div.sheet-section-notes
 {
 	display: block;
 }
