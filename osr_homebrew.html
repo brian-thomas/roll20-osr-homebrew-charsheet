@@ -6,6 +6,7 @@
       <span class="sheet-bold-font">Name:</span>
       <input type="text" class="sheet-align-left sheet-info-name-long" name="attr_character_name"/>
       <input type="checkbox" class="sheet-is_npc" name="attr_npc" value="1" checked="True"/>
+      <input type="text" name="attr_npc_name" hidden="True"/>
       <span class="ability-check-label">NPC</span>
     </div>
 
@@ -134,6 +135,12 @@
 <div class="sheet-block">
   <input type="checkbox" class="sheet-npc_header_enabled" name="attr_npc_header_enabled" value="1" hidden="true"/>
   <div class="sheet-section-npc-header">
+    <div class="sheet-block">
+      <input type="text" name="attr_npc_type" class="sheet-info3 sheet-align-left sheet-padding sheet-italic-font"/>
+    </div>
+    <div class="sheet-block">
+      <input type="text" name="attr_npc_actype" class="sheet-info3 sheet-align-left sheet-padding sheet-italic-font"/>
+    </div>
     <div class="sheet-flex">
       <div class="sheet-thick-border sheet-padding">
         <div class="sheet-block">
@@ -2220,7 +2227,7 @@
   const divine_spell_slots2 = [0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7];
   const divine_spell_slots3 = [0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 7];
   const divine_spell_slots4 = [0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 6];
-  const divine_spell_slots5 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 5, 5, 5, 5, 6, 6, 6, 6, 7, 8];
+  const divine_spell_slots5 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5];
   const divine_spell_slots6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 5];
   const divine_spell_slots7 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4];
 
@@ -2514,8 +2521,8 @@
     });
   });
 
-  on(`sheet:opened change:npc change:level`, () => {
-    getAttrs(['npc', 'level', 'hp'], v => {
+  on(`sheet:opened change:npc change:name`, () => {
+    getAttrs(['npc', 'level', 'hp', 'character_name'], v => {
        const is_pc = parseInt(v.npc) ? 0 : 1;
 
        settings = {};
@@ -2526,11 +2533,12 @@
        settings['pc_main_enabled'] = is_pc;
 
        if (v.npc) {
+         settings['npc_name'] = v.character_name;
          settings['class'] = 'fighter';
          settings['npc_hpformula'] = v.level + 'd8';
-       }
-       else {
+       } else {
          settings['npc_hpformula'] = v.hp;
+         settings['npc_name'] = '';
        }
 
        setAttrs(settings);
