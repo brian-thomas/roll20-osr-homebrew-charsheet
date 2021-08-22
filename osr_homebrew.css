@@ -116,6 +116,12 @@ span.sheet-med-font
 .sheet-lrg-textarea {
 	height: 450px;
 }
+input.sheet-npc-short {
+	background-color: #ddd;
+	background: #ddd;
+	font-weight: bold;
+	border: 0px;
+}
 .repitem {
     display: flex;
     align-items: center;
