@@ -573,11 +573,6 @@ input.sheet-tab5:checked ~ div.sheet-section-notes {
 	display: block;
 }
 
-input.sheet-npc_header_enabled:checked ~ div.sheet-section-notes
-{
-	display: block;
-}
-
 input.sheet-tab {
         width: 87px;
         height: 20px;
@@ -613,22 +608,12 @@ input.sheet-tab99:checked + span.sheet-tab99 {
         border-radius: 4px;
 }
 
-input.sheet-pc_header_enabled:checked ~ div.sheet-section-pc-header
+input.sheet-is_npc:checked ~ div.sheet-section-npc
 {
 	display: block;
 }
 
-input.sheet-pc-main-enabled:checked ~ div.sheet-section-pc-main
-{
-	display: block;
-}
-
-input.sheet-pc-logo-enabled:checked ~ div.sheet-section-pc-logo
-{
-	 display: block;
-}
-
-input.sheet-npc_header_enabled:checked ~ div.sheet-section-npc-header
+input.sheet-is_npc:not(:checked) ~ div.sheet-section-pc
 {
 	display: block;
 }
