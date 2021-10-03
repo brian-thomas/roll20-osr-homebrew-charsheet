@@ -63,6 +63,13 @@ input[type=radio]:not(:checked).sheet-inactive-color
 	background-color: #eee;
 }
 
+.sheet-no-border,
+input.sheet-no-border
+{
+	border-width: 0px;
+}
+
+
 input[type=checkbox]:not(:checked),
 input[type=radio]:not(:checked)
 {
@@ -116,12 +123,23 @@ span.sheet-med-font
 .sheet-lrg-textarea {
 	height: 450px;
 }
-input.sheet-npc-short {
-	background-color: #ddd;
-	background: #ddd;
-	font-weight: bold;
+
+.sheet-npc-text,
+input.sheet-npc-text
+{
 	border: 0px;
+	background-color: inherit;
 }
+
+.sheet-npc-name,
+input.sheet-npc-name
+{
+   border: 0px;
+	 background-color: inherit;
+	 font-weight: bold;
+	 font-size: larger;
+}
+
 .repitem {
     display: flex;
     align-items: center;
