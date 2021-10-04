@@ -118,73 +118,104 @@
               </div>
             </div>
             <br/>
-            <div class="sheet-flex-between sheet-padding">
-              <div class="sheet-flex">
-                <div class="sheet-block sheet-center sheet-padding">
-                  <span class="ability-check-label">Fortitude</span>
-                  <div class="sheet-flex">
-                    <input class="ability-check-value" name="attr_fortitude" type="number" value="0"/>
+
+            <div class="sheet-flex-between sheet-thin-border sheet-padding">
+
+              <div class="sheet-ability-column-value">
+                <span>STR</span>
+                <input class="ability-value npc-text" name="attr_strength" type="number" value="10"/>
+                <span class="ability-check-label">Fortitude</span>
+                <input class="ability-check-value npc-text" name="attr_fortitude" type="number" value="0"/>
+              </div>
+              <!--
                     <button class="sheet-npc-ability-button" type="roll" name="roll_fortitude"
                             value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Fortitude Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{fortitude} + @{fort_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{fortitude}]] + [[@{fort_bonus}]] ]]}}"/>
-                  </div>
-                </div>
+              -->
+              <div class="sheet-ability-column-value">
+                <span>DEX</span>
+                <input class="ability-value npc-text" name="attr_dexterity" type="number" value="10"/>
+                <span class="ability-check-label">Dodge</span>
+                <input class="ability-check-value npc-text" name="attr_dodge" type="number" value="0"/>
               </div>
-              <div class="sheet-block sheet-padding">
-                <div class="sheet-block sheet-center sheet-padding">
-                  <span class="ability-check-label">Dodge</span>
-                  <div class="sheet-flex">
-                    <input class="ability-check-value" name="attr_dodge" type="number" value="0"/>
+              <!--
                     <button class="sheet-npc-ability-button" type="roll" name="roll_dodge"
                             value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dodge Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{dodge} + @{dodge_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{dodge}]] + [[@{dodge_bonus}]] ]]}}"/>
-                  </div>
-                </div>
+              -->
+              <div class="sheet-ability-column-value">
+                <span>CON</span>
+                <input class="ability-check-value npc-text" name="attr_constitution" type="number" value="10"/>
+                <span class="ability-check-label">Health</span>
+                <input class="ability-check-value npc-text" name="attr_health" type="number" value="0"/>
               </div>
-              <div class="sheet-block sheet-padding">
-                <div class="sheet-block sheet-center sheet-padding">
-                  <span class="ability-check-label">Health</span>
-                  <div class="sheet-flex">
-                    <input class="ability-check-value" name="attr_health" type="number" value="0"/>
+              <!--
                     <button class="sheet-npc-ability-button" type="roll" name="roll_health"
                             value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Health Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{health} +@{health_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{health}]] + [[@{health_bonus}]] ]]}}"/>
-                  </div>
-                </div>
+                -->
+              <div class="sheet-ability-column-value">
+                <span>INT</span>
+                <input class="ability-check-value npc-text" name="attr_intelligence" type="number" value="10"/>
+                <span class="sheet-bold-font">Per.</span>
+                <input class="ability-check-value npc-text" name="attr_perception" type="number" value="0"/>
               </div>
-              <div class="sheet-block sheet-padding">
-                <div class="sheet-block sheet-center sheet-padding">
-                  <span class="sheet-bold-font">Perception</span>
-                  <div class="sheet-flex">
-                    <input class="ability-check-value" name="attr_perception" type="number" value="0"/>
+              <!--
                     <button class="sheet-npc-ability-button" type="roll" name="roll_perception"
                             value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Perception Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{perception} + @{per_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{perception}]] + [[@{per_bonus}]] ]]}}"></button>
-                  </div>
-                </div>
+              -->
+              <div class="sheet-ability-column-value">
+                <span>WIS</span>
+                <input class="ability-check-value npc-text" name="attr_wisdom" type="number" value="10"/>
+                <span class="ability-check-label">Willpower</span>
+                <input class="ability-check-value npc-text" name="attr_willpower" type="number" value="0"/>
               </div>
-              <div class="sheet-block sheet-padding">
-                <div class="sheet-block sheet-center sheet-padding">
-                  <span class="ability-check-label">Willpower</span>
-                  <div class="sheet-flex">
-                    <input class="ability-check-value" name="attr_willpower" type="number" value="0"/>
+              <!--
                     <button class="sheet-npc-ability-button" type="roll" name="roll_willpower"
                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Willpower Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{willpower} +@{will_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{willpower}]] +[[@{will_bonus}]] ]]}}"></button>
-                  </div>
-                </div>
+                    -->
+              <div class="sheet-ability-column-value">
+                <span>CHA</span>
+                <input class="ability-check-value npc-text" name="attr_charisma" type="number" value="10"/>
               </div>
-            </div>
           </div>
+
           <div class="sheet-thin-border">
-            <h4>Skills</h4>
-            <fieldset class="repeating_skills">
+            <h4>Actions</h4>
+            <!--
+            <fieldset class="repeating_npc_action">
               <div class="sheet-block sheet-thin-border sheet-side-padding">
                 <div class="sheet-align-right">
-                  <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname"/>
-                  <input type="number" name="attr_skillvalue" class="sheet-bold-font" value="1"/>
-                  <input type="number" name="attr_skill_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
+                  <input type="text" name="attr_name" class=""/>
+                  <input type="text" name="attr_description" class=""/>
+                  <input type="text" name="attr_npc_options-flag" class=""/>
+                  <input type="text" name="attr_attack_flag" class=""/>
+                  <input type="text" name="attr_attack_display_flag" class=""/>
+                  <input type="text" name="attr_attack_options" class=""/>
+                  <input type="text" name="attr_attack_type" class=""/>
+                  <input type="text" name="attr_attack_target" class=""/>
+                  <input type="text" name="attr_attack_range" class=""/>
+                  <input type="text" name="attr_attack_tohit" class=""/>
+                  <input type="text" name="attr_attack_damage" class=""/>
+                  <input type="text" name="attr_attack_damagetype" class=""/>
+                  <input type="text" name="attr_attack_damage2" class=""/>
+                  <input type="text" name="attr_attack_damagetype2" class=""/>
                   <button class="sheet-skill-button" type="roll" name="roll_skill"
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{skillname} Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{skillvalue} +@{skill_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{skillvalue}]] +[[@{skill_bonus}]] ]]}}"></button>
                 </div>
               </div>
            </fieldset>
+           -->
          </div>
+
+         <div class="sheet-thin-border">
+           <div class="sheet-block">
+             <h4>Traits</h4>
+             <input type="text" name="attr_npc_damage_resistance" class="sheet-npc-text"/>
+             <input type="text" name="attr_npc_damage_vulnerability" class="sheet-npc-text"/>
+             <input type="text" name="attr_npc_damage_immunity" class="sheet-npc-text"/>
+             <input type="text" name="attr_npc_condition_immunity" class="sheet-npc-text"/>
+             <input type="text" name="attr_known_lang" class="sheet-npc-text"/>
+           </div>
+         </div>
+         <!--
          <div class="sheet-thin-border">
            <div class="sheet-block">
             <h4>Spells/Powers</h4>
@@ -244,18 +275,20 @@
             </fieldset>
           </div>
         </div>
-       </div>
-       <div class="sheet-block">
-         <div class="sheet-thick-border">
-           <h3>Notes</h3>
-           <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
-         </div>
+      -->
+      </div>
+    </div>
+     <div class="sheet-block">
+       <div class="sheet-thin-border">
+         <h3>Notes</h3>
+         <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
        </div>
      </div>
+   </div>
+     <!--
      <div class="sheet-thin-border">
        <div class="sheet-block">
          <h4>Combat</h4>
-         <!--
          <div class="sheet-inline-flex">
            <input type="checkbox" class="sheet-beserk_attack_enabled" name="attr_beserk_attack_enabled" value="1" hidden="true"/>
            <input type="checkbox" class="sheet-cleave_attack_enabled" name="attr_cleave_attack_enabled" value="1" hidden="true"/>
@@ -359,9 +392,9 @@
 
            </div>
          </fieldset>
-         -->
         </div>
       </div>
+    -->
     </div>
   </div>
 
@@ -2618,6 +2651,7 @@
                     "drop_type", "drop_alignment", "drop_hp",
                     "drop_saving_throws", "drop_senses",
                     "drop_passive_perception", "drop_skills",
+//                    "drop_spellcasting_ability",
                     "drop_token_size", "character_id"]
       getAttrs(drop_attrs, function(v) {
         if(category === "Monsters") {
@@ -2718,6 +2752,7 @@
               update["npc_damage_vulnerability"] = v["drop_vulnerabilities"] ? v["drop_vulnerabilities"] : "";
               update["npc_damage_immunity"] = v["drop_immunities"] ? v["drop_immunities"] : "";
               update["npc_condition_immunity"] = v["drop_condition_immunities"] ? v["drop_condition_immunities"] : "";
+              //update["notes"] = v["drop_content"] ? v["drop_content"] : "";
               update["notes"] = v["drop_content"] ? v["drop_content"] : "";
 
                /*
