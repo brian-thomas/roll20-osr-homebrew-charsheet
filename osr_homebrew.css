@@ -125,10 +125,21 @@ span.sheet-med-font
 }
 
 .sheet-npc-text,
-input.sheet-npc-text
+.sheet-npc-text-sm,
+input.sheet-npc-text,
+input[type=number].sheet-npc-text,
+input.sheet-npc-text-sm,
+input[type=number].sheet-npc-text-sm
 {
 	border: 0px;
 	background-color: inherit;
+}
+
+.sheet-npc-text-sm,
+input.sheet-npc-text-sm,
+input[type=number].sheet-npc-text-sm
+{
+	font-size: 8px;
 }
 
 .sheet-npc-name,
@@ -219,6 +230,7 @@ span.sheet-center
 }
 .sheet-thin-border-no-pad,
 .sheet-thin-border,
+input.sheet-thin-border,
 input[type=number].sheet-thin-border
 {
 	border: 2px solid;
@@ -477,12 +489,15 @@ input[type=number].sheet-npc-ability-value
 {
 	width: 30px;
 	height: 30px;
-	font-size: 12px;
+	font-size: 14px;
 	text-align: center;
+	margin-top: 3px;
+	margin-bottom: 3px;
 	align-self: center;
-	margin-top: 6px;
+	/*
 	margin-left: 0px;
 	display: block;
+	*/
 }
 
 span.sheet-npc-ability-bonus-label
