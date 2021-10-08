@@ -218,7 +218,7 @@ span.sheet-center
 }
 .sheet-flex {
 	display: flex;
-    align-items: start;
+  align-items: start;
 }
 .sheet-no-pad
 {
@@ -454,7 +454,7 @@ input.sheet-align-right
 {
 	height: 90px;
 	text-align: center;
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .sheet-ability-column-bonus
@@ -485,19 +485,24 @@ input[type=number].sheet-ability-modifier {
     width: 138px;
 }
 
-input[type=number].sheet-npc-ability-value
+input[type=number].sheet-npc-ability-value,
+input[type=number].sheet-npc-ability-value-wide
 {
 	width: 30px;
 	height: 30px;
-	font-size: 14px;
+	font-size: 13px;
 	text-align: center;
-	margin-top: 3px;
-	margin-bottom: 3px;
-	align-self: center;
+	margin: 3px auto;
 	/*
+	margin-bottom: 3px;
 	margin-left: 0px;
-	display: block;
 	*/
+	align-self: center;
+	display: block;
+}
+input[type=number].sheet-npc-ability-value-wide
+{
+	width: 50px;
 }
 
 span.sheet-npc-ability-bonus-label
@@ -506,21 +511,20 @@ span.sheet-npc-ability-bonus-label
 		align-self: baseline;
     font-size: 9px;
 		font-weight: bold;
-    margin: 0 0 0 0;
+    margin: 3px auto;
 		text-align: center;
-    padding: 0px;
+    padding: 1px;
 }
 
 button.sheet-ability-bonus-value,
 input[type=number].sheet-ability-value,
 input[type=number].sheet-ability-bonus-value
 {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     font-size: 18px;
     text-align: center;
-    display: block;
-    margin: 6px auto;
+    margin: 3px auto;
 }
 
 input[type=number].sheet-ability-value
@@ -535,20 +539,38 @@ input[type=number].sheet-ability-bonus-value
   margin-top: 6px;
 }
 
+
 button[type=roll].sheet-npc-ability-button
 {
-	 margin: auto;
+	/*
 	 padding: 1px;
 	 width: 30px;
-   height: 30px;
 	 font-size: 20px;
+	 margin: auto;
+   height: 20px;
+	 background-image: none;
+	 text-align: center;
+	 */
+	 font: bold 12px Arial;
+   text-decoration: none;
+   background-color: #E0E0EE;
+   color: #333333;
+	 border: 3px;
+	 border-color: black;
+	 /*
+   padding: 2px 6px 2px 6px;
 	 display: block;
+   border-top: 1px solid #CCCCCC;
+   border-right: 1px solid #333333;
+   border-bottom: 1px solid #333333;
+   border-left: 1px solid #CCCCCC;
+	 */
 }
 
 button[type=roll].sheet-ability-button {
-	width: 40px;
+		width: 40px;
     height: 40px;
-    font-size: 26px;
+    font-size: 30px;
     background-color: white;
     background-image: none;
 	  padding: 1px;
