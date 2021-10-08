@@ -557,15 +557,23 @@ button[type=roll].sheet-ability-button {
     margin: auto;
     display: block;
 }
-input[type=number].sheet-ability-check-value {
-    width: 40px;
+
+input[type=number].sheet-ability-check-value,
+input[type=number].sheet-ability-check-value-wide
+{
+	  width: 40px;
     height: 40px;
-	align-self: auto;
+	  align-self: auto;
     font-size: 20px;
     text-align: center;
     display: block;
     margin: 6px auto;
 }
+
+input[type=number].sheet-ability-check-value-wide {
+	width: 60px;
+}
+
 .sheet-ability-check-label,
 .sheet-ability-check-bonus-label
 {
