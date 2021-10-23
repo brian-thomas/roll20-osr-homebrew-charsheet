@@ -127,6 +127,10 @@ span.sheet-med-font
 	height: 450px;
 }
 
+.sheet-limit-to-half-width {
+	width: 380px;
+}
+
 .sheet-npc-text,
 .sheet-npc-text-sm,
 input.sheet-npc-text,
@@ -145,6 +149,17 @@ input[type=number].sheet-npc-text-sm
 	font-size: 8px;
 }
 
+.sheet-npc-trait,
+input.sheet-npc-trait
+{
+	border: 0px;
+	background-color: inherit;
+	padding: 0px;
+	font-size: 10px;
+	text-align: left;
+	width:  370px;
+}
+
 .sheet-npc-name,
 input.sheet-npc-name
 {
@@ -156,10 +171,11 @@ input.sheet-npc-name
 
 .repitem {
     display: flex;
-    align-items: center;
+    align-items: left;
     margin-bottom: 3px;
     justify-content: space-between;
 }
+
 .sheet-flex-between {
     display: flex;
 	  justify-content: space-evenly;
@@ -705,6 +721,28 @@ input[type=number].sheet-skill-bonus-value
 {
     height: 22px;
     width: 30px;
+}
+/* NPCs */
+.sheet-npc .repitem {
+	margin: 1px;
+	/* width: 100%;
+	*/
+	display: block;
+}
+.sheet-npc .repcontainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.sheet-npc-traitcontainer {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 4px;
+	align-items: center;
+	/* border: 2px solid black; */
+	padding: 2px;
+	justify-content: flex-start;
+	align-content: start;
 }
 
 /* Spells */

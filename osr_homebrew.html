@@ -44,7 +44,7 @@
     <input type="hidden" name="attr_drop_token_size" accept="Token Size">
     <!-- END COMPENDIUM DROP CATCHERS -->
 
-    <div class="sheet-block">
+    <div class="sheet-block sheet-npc">
       <input type="text" class="sheet-align-left sheet-npc-name" name="attr_character_name"/>
       <div class="sheet-block">
         <input type="text" name="attr_npc_type" class="sheet-npc-text sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Type"/>
@@ -174,62 +174,63 @@
               <span class="bold-font">CHA</span>
               <input class="npc-ability-value npc-text" name="attr_charisma" type="number" value="10"/>
             </div>
-
           </div>
           <br/>
-          <div class="block thin-border padding">
+          <!--
+          <input type="text" name="attr_npc_damage_resistance" class="sheet-npc-text sheet-align-left"/>
+          <input type="text" name="attr_npc_damage_vulnerability" class="sheet-npc-text sheet-align-left"/>
+          <input type="text" name="attr_npc_damage_immunity" class="sheet-npc-text sheet-align-left"/>
+          <input type="text" name="attr_npc_condition_immunity" class="sheet-npc-text sheet-align-left"/>
+          -->
+          <div class="block padding limit-to-half-width">
              <h4>Traits</h4>
-             <!--
-             <input type="text" name="attr_npc_damage_resistance" class="sheet-npc-text sheet-align-left"/>
-             <input type="text" name="attr_npc_damage_vulnerability" class="sheet-npc-text sheet-align-left"/>
-             <input type="text" name="attr_npc_damage_immunity" class="sheet-npc-text sheet-align-left"/>
-             <input type="text" name="attr_npc_condition_immunity" class="sheet-npc-text sheet-align-left"/>
-             -->
-           <fieldset class="repeating_trait">
-             <div class="block thin-border">
-               <input type="text" name="attr_trait_name" class="npc-text align-left"/>
-               <input type="text" name="attr_trait_description" class="npc-text align-left"/>
+             <div class="npc-traitcontainer">
+               <fieldset class="repeating_npctrait">
+                 <input type="text" name="attr_trait_name" class="npc-trait bold-font" readonly="True"/>
+                 <label class="npc-trait">A destroyed mummy lord gains a new body in 25 hours if its heart is intact, regaining all its hit points and becoming active again. The new body appears within 5 feet of the mummy lord's heart.</label>
+                 <!--
+                 <input type="textarea" name="attr_trait_desc" class="npc-trait" readonly="True" rows="3"/>
+                 <input type="textarea" name="attr_trait_desc" class="npc-trait"/>
+                 -->
+               </fieldset>
              </div>
-           </fieldset>
+          </div>
+          <br/>
+          <div class="block padding limit-to-half-width">
+            <h4>Actions</h4>
+            <div class="npc-traitcontainer">
+              <fieldset class="repeating_npcaction">
+                <div class="sheet-block sheet-thin-border sheet-side-padding">
+                  <div class="sheet-block sheet-thick-border">
+                    <input type="text" name="attr_action_name" class="npc-trait"/>
+                    <input type="text" name="attr_action_desc" class="npc-trait"/>
+                    <!--
+                    <input type="text" name="attr_npc_options-flag" class="npc-trait"/>
+                    <input type="text" name="attr_attack_flag" class="npc-trait"/>
+                    <input type="text" name="attr_attack_display_flag" class=""/>
+                    <input type="text" name="attr_attack_options" class=""/>
+                    <input type="text" name="attr_attack_type" class=""/>
+                    <input type="text" name="attr_attack_target" class=""/>
+                    <input type="text" name="attr_attack_range" class=""/>
+                    <input type="text" name="attr_attack_tohit" class=""/>
+                    <input type="text" name="attr_attack_damage" class=""/>
+                    <input type="text" name="attr_attack_damagetype" class=""/>
+                    <input type="text" name="attr_attack_damage2" class=""/>
+                    <input type="text" name="attr_attack_damagetype2" class=""/>
+                    <button class="sheet-skill-button" type="roll" name="roll_skill"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{skillname} Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{skillvalue} +@{skill_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{skillvalue}]] +[[@{skill_bonus}]] ]]}}"></button>
+                      -->
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+         </div>
+         <br/>
+         <div class="thin-border block padding">
+           <h3>Notes</h3>
+           <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
          </div>
 
-     <!--
-     <div class="sheet-thin-border sheet-padding">
-        <h4>Actions</h4>
-        <fieldset class="repeating_npc_action">
-          <div class="sheet-block sheet-thin-border sheet-side-padding">
-            <div class="sheet-block sheet-thick-border">
-              <input type="text" name="attr_action_name" class="npc-text align-left"/>
-              <input type="text" name="attr_action_description" class="npc-text align-left"/>
-              -->
-              <!--
-              <input type="text" name="attr_npc_options-flag" class=""/>
-              <input type="text" name="attr_attack_flag" class=""/>
-              <input type="text" name="attr_attack_display_flag" class=""/>
-              <input type="text" name="attr_attack_options" class=""/>
-              <input type="text" name="attr_attack_type" class=""/>
-              <input type="text" name="attr_attack_target" class=""/>
-              <input type="text" name="attr_attack_range" class=""/>
-              <input type="text" name="attr_attack_tohit" class=""/>
-              <input type="text" name="attr_attack_damage" class=""/>
-              <input type="text" name="attr_attack_damagetype" class=""/>
-              <input type="text" name="attr_attack_damage2" class=""/>
-              <input type="text" name="attr_attack_damagetype2" class=""/>
-              <button class="sheet-skill-button" type="roll" name="roll_skill"
-                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{skillname} Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{skillvalue} +@{skill_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{skillvalue}]] +[[@{skill_bonus}]] ]]}}"></button>
-                -->
-    <!--
-            </div>
-          </div>
-        </fieldset>
-     </div>
-     -->
-         <div class="sheet-block">
-           <div class="sheet-thin-border">
-             <h3>Notes</h3>
-             <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
-           </div>
-         </div>
        </div> <!-- thin border -->
      </div> <!-- thick border -->
     </div> <!-- block -->
@@ -2592,7 +2593,6 @@
               update["npc_damage_vulnerability"] = v["drop_vulnerabilities"] ? v["drop_vulnerabilities"] : "";
               update["npc_damage_immunity"] = v["drop_immunities"] ? v["drop_immunities"] : "";
               update["npc_condition_immunity"] = v["drop_condition_immunities"] ? v["drop_condition_immunities"] : "";
-              //update["notes"] = v["drop_content"] ? v["drop_content"] : "";
               update["notes"] = v["drop_content"] ? v["drop_content"] : "";
 
                /*
@@ -2626,21 +2626,177 @@
                          update["npc_" + kv[0].toLowerCase().replace(/ /g, '_') + "_bonus"] = parseInt(kv[1], 10);
                      });
                  }
-                 */
+              */
 
-                if(v["drop_content"] && v["drop_content"] != "") {
-                  // add test Trait
-                  var newrowid = generateRowID();
-                  var newrowattrs = {};
-                  newrowattrs["repeating_trait" + newrowid + "_trait_name"] = "Trait 1";
-                  newrowattrs["repeating_trait" + newrowid + "_trait_description"] = "Trait 1 Description Goes Here";
-                  setAttrs(newrowattrs);
-                }
 
-             };
+              if(v["drop_content"] && v["drop_content"] != "") {
 
-             //callbacks.push( function() {cleanup_drop_fields();} );
-             setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
+                  // split out and parse items of interest from drop_content
+                  var contentarray = v["drop_content"];
+
+                  if(contentarray && contentarray.indexOf("Legendary Actions") > -1) {
+                      if(contentarray.indexOf(/\n Legendary Actions\n/) > -1) {
+                          temp = contentarray.split(/\n Legendary Actions\n/)
+                      }
+                      else {
+                          temp = contentarray.split(/Legendary Actions\n/)
+                      }
+                      var legendaryactionsarray = temp[1];
+                      contentarray = temp[0];
+                  }
+
+                  if(contentarray && contentarray.indexOf("Reactions") > -1) {
+                      if(contentarray.indexOf(/\n Reactions\n/) > -1) {
+                          temp = contentarray.split(/\n Reactions\n/)
+                      }
+                      else {
+                          temp = contentarray.split(/Reactions\n/)
+                      }
+                      var reactionsarray = temp[1];
+                      contentarray = temp[0];
+                  }
+
+                  if(contentarray && contentarray.indexOf("Actions") > -1) {
+                      if(contentarray.indexOf("Lair Actions") > -1) {
+                          contentarray = contentarray.replace("Lair Actions","Lair Action");
+                      }
+                      if(contentarray.indexOf(/\n Actions\n/) > -1) {
+                          temp = contentarray.split(/\n Actions\n/)
+                      }
+                      else {
+                          temp = contentarray.split(/Actions\n/)
+                      }
+                      var actionsarray = temp[1];
+                      contentarray = temp[0];
+                  }
+
+                  if(contentarray && contentarray.indexOf("Traits") > -1) {
+                      if(contentarray.indexOf("Lair Traits") > -1) {
+                          contentarray = contentarray.replace("Lair Traits", "Lair Trait");
+                      }
+                      if(contentarray.indexOf(/\n Traits\n/) > -1) {
+                          temp = contentarray.split(/\n Traits\n/)
+                      }
+                      else {
+                          temp = contentarray.split(/Traits\n/)
+                      }
+                      var traitsarray = temp[1];
+                      contentarray = temp[0];
+                  }
+
+                  if(traitsarray) {
+                      traitsarray = traitsarray.split("**");
+                      traitsarray.shift();
+                      var traitsobj = {};
+                      traitsarray.forEach(function(val, i) {
+                          if (i % 2 === 1) return;
+                          traitsobj[val] = traitsarray[i + 1];
+                      });
+                      _.each(traitsobj, function(desc, name) {
+                          newrowid = generateRowID();
+                          update["repeating_npctrait_" + newrowid + "_trait_name"] = name + ".";
+                          if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
+                              desc = desc.substring(2);
+                          }
+                          update["repeating_npctrait_" + newrowid + "_trait_desc"] = desc.trim();
+                          // TODO: SPELLCASTING NPCS
+                          /*
+                          if(name === "Spellcasting") {
+                              var lvl = parseInt(desc.substring(desc.indexOf("-level")-4, desc.indexOf("-level")-2).trim(), 10);
+                              lvl = !isNaN(lvl) ? lvl : 1;
+                              var ability = desc.match(/casting ability is (.*?) /);
+                              ability = ability && ability.length > 1 ? ability[1] : false;
+                              ability = ability ? "@{" + ability.toLowerCase() + "_mod}+" : "0*";
+                              update["npcspellcastingflag"] = 1;
+                              update["spellcasting_ability"] = ability;
+                              update["caster_level"] = lvl;
+                              update["class"] = "Wizard";
+                              update["base_level"] = lvl;
+                              update["level"] = lvl;
+                              callbacks.push( function() {update_pb();} );
+                              callbacks.push( function() {update_spell_slots();} );
+                          }
+                          */
+                      });
+                  }
+
+                  /*
+                  if(actionsarray) {
+                    actionsarray = actionsarray.split("**");
+                    actionsarray.shift();
+                    var actionsobj = {};
+                    actionsarray.forEach(function(val, i) {
+                        if (i % 2 === 1) return;
+                        actionsobj[val] = actionsarray[i + 1];
+                    });
+                    _.each(actionsobj, function(desc, name) {
+                        newrowid = generateRowID();
+                        update["repeating_npcaction_" + newrowid + "_npc_options-flag"] = "0";
+                        update["repeating_npcaction_" + newrowid + "_name"] = name;
+                        if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
+                            desc = desc.substring(2);
+                        }
+                        if(desc.indexOf(" Attack:") > -1) {
+                            update["repeating_npcaction_" + newrowid + "_attack_flag"] = "on";
+                            update["repeating_npcaction_" + newrowid + "_attack_display_flag"] = "{{attack=1}}";
+                            update["repeating_npcaction_" + newrowid + "_attack_options"] = "{{attack=1}}";
+                            if(desc.indexOf(" Weapon Attack:") > -1) {
+                                attacktype = desc.split(" Weapon Attack:")[0];
+                            }
+                            else if(desc.indexOf(" Spell Attack:") > -1) {
+                                attacktype = desc.split(" Spell Attack:")[0];
+                            }
+                            else {
+                                console.log("FAILED TO IMPORT ATTACK - NO ATTACK TYPE FOUND (Weapon Attack/Spell Attack)");
+                                return;
+                            }
+
+                            update["repeating_npcaction_" + newrowid + "_attack_type"] = attacktype;
+                            if(attacktype === "Melee") {
+                                update["repeating_npcaction_" + newrowid + "_attack_range"] = (desc.match(/reach (.*?),/) || ["",""])[1];
+                            }
+                            else {
+                                update["repeating_npcaction_" + newrowid + "_attack_range"] = (desc.match(/range (.*?),/) || ["",""])[1];
+                            }
+                            update["repeating_npcaction_" + newrowid + "_attack_tohit"] = (desc.match(/\+(.*) to hit/) || ["",""])[1];
+                            update["repeating_npcaction_" + newrowid + "_attack_target"] = (desc.match(/\.,(?!.*\.,)(.*)\. Hit:/) || ["",""])[1];
+                            if(desc.toLowerCase().indexOf("damage") > -1) {
+                                update["repeating_npcaction_" + newrowid + "_attack_damage"] = (desc.match(/\(([^)]+)\)/) || ["",""])[1];
+                                update["repeating_npcaction_" + newrowid + "_attack_damagetype"] = (desc.match(/\) (.*?) damage/) || ["",""])[1];
+                                if((desc.match(/\(/g) || []).length > 1 && desc.match(/\((?!.*\()([^)]+)\)/)) {
+                                    var second_match = desc.match(/\((?!.*\()([^)]+)\)/);
+                                    if(second_match[1] && second_match[1].indexOf(" DC") === -1) {
+                                        update["repeating_npcaction_" + newrowid + "_attack_damage2"] = (desc.match(/\((?!.*\()([^)]+)\)/) || ["",""])[1];
+                                        update["repeating_npcaction_" + newrowid + "_attack_damagetype2"] = (desc.match(/\)(?!.*\)) (.*?) damage/) || ["",""])[1];
+                                    };
+                                };
+                                ctest1 = desc.split("damage.")[1];
+                                ctest2 = desc.split("damage, ")[1];
+                                if(ctest1 && ctest1.length > 0) {
+                                    update["repeating_npcaction_" + newrowid + "_desc"] = ctest1.trim();
+                                }
+                                else if(ctest2 && ctest2.length > 0) {
+                                    update["repeating_npcaction_" + newrowid + "_desc"] = ctest2.trim();
+                                }
+                            }
+                            else {
+                                update["repeating_npcaction_" + newrowid + "_desc"] = desc.split("Hit:")[1].trim();
+                            }
+                        }
+                        else {
+                            update["repeating_npcaction_" + newrowid + "_desc"] = desc;
+                        }
+
+                    });
+                    callbacks.push( function() {update_npc_action("all");} );
+                 } // end actions array */
+
+              }
+
+            };
+
+            //callbacks.push( function() {cleanup_drop_fields();} );
+            setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
          });
      };
 
