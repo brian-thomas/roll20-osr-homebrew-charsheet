@@ -187,53 +187,52 @@
              <div class="npc-traitcontainer">
                <fieldset class="repeating_npctrait">
                  <input type="text" name="attr_trait_name" class="npc-trait bold-font" readonly="True"/>
-                 <label class="npc-trait">A destroyed mummy lord gains a new body in 25 hours if its heart is intact, regaining all its hit points and becoming active again. The new body appears within 5 feet of the mummy lord's heart.</label>
-                 <!--
-                 <input type="textarea" name="attr_trait_desc" class="npc-trait" readonly="True" rows="3"/>
-                 <input type="textarea" name="attr_trait_desc" class="npc-trait"/>
-                 -->
+                 <input type="textarea" name="attr_trait_desc" class="npc-trait" readonly="True"/>
                </fieldset>
              </div>
           </div>
-          <br/>
-          <div class="block padding limit-to-half-width">
-            <h4>Actions</h4>
-            <div class="npc-traitcontainer">
-              <fieldset class="repeating_npcaction">
-                <div class="sheet-block sheet-thin-border sheet-side-padding">
-                  <div class="sheet-block sheet-thick-border">
-                    <input type="text" name="attr_action_name" class="npc-trait"/>
-                    <input type="text" name="attr_action_desc" class="npc-trait"/>
-                    <!--
-                    <input type="text" name="attr_npc_options-flag" class="npc-trait"/>
-                    <input type="text" name="attr_attack_flag" class="npc-trait"/>
-                    <input type="text" name="attr_attack_display_flag" class=""/>
-                    <input type="text" name="attr_attack_options" class=""/>
-                    <input type="text" name="attr_attack_type" class=""/>
-                    <input type="text" name="attr_attack_target" class=""/>
-                    <input type="text" name="attr_attack_range" class=""/>
-                    <input type="text" name="attr_attack_tohit" class=""/>
-                    <input type="text" name="attr_attack_damage" class=""/>
-                    <input type="text" name="attr_attack_damagetype" class=""/>
-                    <input type="text" name="attr_attack_damage2" class=""/>
-                    <input type="text" name="attr_attack_damagetype2" class=""/>
-                    <button class="sheet-skill-button" type="roll" name="roll_skill"
-                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{skillname} Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{skillvalue} +@{skill_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{skillvalue}]] +[[@{skill_bonus}]] ]]}}"></button>
-                      -->
-                  </div>
-                </div>
-              </fieldset>
-            </div>
-         </div>
-         <br/>
-         <div class="thin-border block padding">
-           <h3>Notes</h3>
-           <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
-         </div>
+        </div> <!-- thin border -->
+        <div class="block thin-border padding limit-to-half-width">
+          <h4>Actions</h4>
+          <div class="npc-traitcontainer">
+            <fieldset class="repeating_npcactions">
+              <div class="sheet-block sheet-side-padding">
+                <input type="text" name="attr_action_attack_display_flag" hidden="True"/>
+                <input type="text" name="attr_action_attack_flag" hidden="True"/>
+                <input type="text" name="attr_action_attack_options" hidden="True"/>
+                <input type="text" name="attr_action_attack_type" hidden="true"/>
+                <input type="text" name="attr_action_attack_target" hidden="true"/>
+                <input type="text" name="attr_action_attack_range" hidden="true"/>
+                <input type="text" name="attr_action_attack_tohit" hidden="true"/>
+                <input type="text" name="attr_action_attack_damage" hidden="true"/>
+                <input type="text" name="attr_action_attack_damagetype" hidden="true"/>
+                <input type="text" name="attr_action_attack_damage2" hidden="true"/>
+                <input type="text" name="attr_action_attack_damagetype2" hidden="true"/>
+                <input type="text" name="attr_action_name" hidden="True"/>
 
-       </div> <!-- thin border -->
+                <button type="roll" name="roll_npc_action" class="bold-font blank-roll-button info5"
+                   value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{weapon=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + [[@{action_attack_damage}]]]]}} }}">
+                   <span name="attr_action_name">Action Name</span>
+                </button>
+                <!--input type="text" name="attr_action_npc_options-flag" class="npc-trait" hidden="True"/-->
+                <div class="section-npc-attack">
+                  <input type="text" name="attr_attack_desc" hidden="True"/>
+                  <label class="info5"><span name="attr_attack_desc"/></label>
+                </div>
+                <input type="text" name="attr_action_desc" hidden="True"/>
+                <label class="info5"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
+              </div>
+            </fieldset>
+          </div>
+       </div>
      </div> <!-- thick border -->
-    </div> <!-- block -->
+   </div> <!-- block -->
+
+   <div class="thin-border block padding">
+     <h3>Notes</h3>
+     <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
+   </div>
+
   </div> <!-- NPC End -->
 
   <input type="checkbox" class="sheet-pc_header_enabled" name="attr_pc_header_enabled" value="1" hidden="True"/>
@@ -925,6 +924,7 @@
             <span class="sheet-weapon-param-select-name sheet-bold-font">Type</span>
             <span class="sheet-weapon-param-name sheet-bold-font">Attk Bonus</span>
             <span class="sheet-weapon-param-select-name sheet-bold-font">Damage</span>
+            <span class="sheet-weapon-param-select-name sheet-bold-font">Dam. Type</span>
             <span class="sheet-weapon-param-name sheet-bold-font">Dam Bonus</span>
             <span class="sheet-weapon-param-name sheet-bold-font">Stnd. Attack</span>
 
@@ -1001,38 +1001,79 @@
               </select>
 
               <input name="attr_weapon_dam" value="0" hidden="true"/>
+
+      	      <select class="weapon-param" name="attr_weapon_dam_type">
+                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
+                <option value="Piercing">Pierce</option>
+                <option value="Slashing">Slash</option>
+                <option value="Acid">Acid</option>
+                <option value="Cold">Cold</option>
+                <option value="Fire">Fire</option>
+                <option value="Force">Force</option>
+                <option value="Lightning">Lightning</option>
+                <option value="Necrotic">Necrotic</option>
+                <option value="Poison">Poison</option>
+                <option value="Psychic">Psychic</option>
+                <option value="Radiant">Radiant</option>
+                <option value="Thunder">Thunder</option>
+      	      </select>
+
+              <!--
+              <select class="sheet-weapon-param" name="attr_weapon_dam_die2">
+                <option selected="selected" value="0"></option>
+                <option value="1d2">1d2</option>
+                <option value="1d4">1d4</option>
+                <option value="1d6">1d6</option>
+                <option value="1d8">1d8</option>
+                <option value="1d10">1d10</option>
+                <option value="1d12">1d12</option>
+                <option value="2d4">2d4</option>
+                <option value="2d6">2d6</option>
+                <option value="2d8">2d8</option>
+    	          <option value="2d10">2d10</option>
+                <option value="2d12">2d12</option>
+                <option value="3d6">3d6</option>
+                <option value="3d8">3d8</option>
+                <option value="3d10">3d10</option>
+                <option value="3d12">3d12</option>
+                <option value="2d20">2d20</option>
+              </select>
+              <input name="attr_weapon_dam2" value="0" hidden="true"/>
+              -->
+
               <input type="number" name="attr_weapon_dam_bonus" class="weapon-param inactive-color" value="[[@{strength_mod}+[[@{weapon_bonus}]]]]" disabled="true"/>
 
+
               <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_weapon_attack"
-                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus}]]}} {{fumble=[[2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus}]]}} {{fumble=[[2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }}"></button>
 
               <div class="sheet-weapon_press_attack_section">
                 <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_press_attack"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{weapon_attack_bonus}]]}} {{fumble=[[4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{weapon_attack_bonus}]]}} {{fumble=[[4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }}"></button>
               </div>
               <div class="sheet-weapon_defense_attack_section">
                 <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_defense_attack"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Defensive Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] -4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Defensive Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] -4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
               </div>
 
               <div class="sheet-weapon_beserk_attack_section">
                 <button class="sheet-attack-button sheet-yellow-border" type="roll" name="roll_beserk_attack"
-    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Beserk Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + [[@{beserk_attack_mod}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus} + [[@{beserk_attack_mod}]] ]]}} {{fumble=[[2+@{weapon_attack_bonus} + [[@{beserk_attack_mod}]] ]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{beserk_attack_mod}]] ]]}}   {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{beserk_attack_mod}]] ]]}}  {{math=1d20 + [[@{weapon_attack_bonus}]] + @{beserk_attack_mod} [Attk], @{weapon_dam} + @{weapon_dam_bonus} + @{beserk_attack_mod} [Dam] }}"></button>
+    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Beserk Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + [[@{beserk_attack_mod}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus} + [[@{beserk_attack_mod}]] ]]}} {{fumble=[[2+@{weapon_attack_bonus} + [[@{beserk_attack_mod}]] ]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{beserk_attack_mod}]] ]]}}   {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{beserk_attack_mod}]] ]]}}  {{math=1d20 + [[@{weapon_attack_bonus}]] + @{beserk_attack_mod} [Attk], @{weapon_dam} + @{weapon_dam_bonus} + @{beserk_attack_mod} [Dam] }}"></button>
               </div>
 
               <div class="sheet-weapon_cleave_attack_section">
                 <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_cleave_attack"
-    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{critical=[[19 + @{weapon_bonus}]]}} {{fumble=[[2+@{weapon_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]]  ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]] ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + [[@{weapon_attack_bonus}/2]] [Dam] }}"></button>
+    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{critical=[[19 + @{weapon_bonus}]]}} {{fumble=[[2+@{weapon_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]]  ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]] ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + [[@{weapon_attack_bonus}/2]] [Dam] }}"></button>
               </div>
 
               <div class="sheet-weapon_strong_attack_section">
                 <button class="sheet-attack-button sheet-green-border" type="roll" name="roll_strong_attack"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b> Strong Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus}]]}} {{fumble=[[2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam} + @{weapon_dam_bonus} [Dam] }}"></button>
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b> Strong Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus}]]}} {{fumble=[[2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam} + @{weapon_dam_bonus} [Dam] }}"></button>
               </div>
 
               <div class="sheet-weapon_sneak_attack_section">
                 <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_sneak_attack"
-    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_sneak_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_sneak_attack_bonus}]]}} {{fumble=[[2+@{weapon_sneak_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam}]]}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} + @{weapon_sneak_attack_dam} ]]}} {{math=1d20 + @{weapon_sneak_attack_bonus} [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_sneak_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_sneak_attack_bonus}]]}} {{fumble=[[2+@{weapon_sneak_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam}]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} + @{weapon_sneak_attack_dam} ]]}} {{math=1d20 + @{weapon_sneak_attack_bonus} [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
               </div>
 
             </div>
@@ -1909,10 +1950,16 @@
         <div class="sheet-row">
                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Damage</div>
                 {{#rollBetween() attack fumble critical}}
-                <div class="sheet-col-7-12 sheet-padr sheet-rt-value"> {{damage}} </div>
+                <div class="sheet-col-7-12 sheet-padr sheet-rt-value"> {{damage}} ({{damagetype}})</div>
+                {{#damage2}}
+                <div class="sheet-col-7-12 sheet-padr sheet-rt-value"> {{damage2}} ({{damagetype2}})</div>
+                {{/damage2}}
                 {{/rollBetween() attack fumble critical}}
                 {{#rollWasCrit() attack}}
-                <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{critdamage}}</div>
+                <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{critdamage}} ({{damagetype}})</div>
+                {{#critdamage2}}
+                <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{critdamage2}} ({{damagetype2}})</div>
+                {{/critdamage2}}
                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&bull; Roll Critical Hit Effect</div>
                 {{/rollWasCrit() attack}}
                 {{#rollWasFumble() attack}}
@@ -2323,6 +2370,23 @@
     });
   });
 
+  // npc actions
+  on(`change:repeating_npcactions` , function () {
+    getSectionIDs('repeating_npcactions', function (ids) {
+      const fieldnames = [];
+      ids.forEach(id => {
+        fieldnames.push('repeating_npcactions_' + id + '_action_name');
+      });
+      getAttrs([...fieldnames], function (v) {
+        settings = {};
+        ids.forEach(id => {
+          const action_name = v['repeating_npcactions_' + id + '_action_name'];
+        });
+        setAttrs(settings);
+      });
+    });
+  });
+
   // Keep weapons up to date
   const combatOpts = ['press_attack', 'defensive_attack', 'beserk_attack', 'cleave_attack', 'strong_attack' ];
 
@@ -2694,7 +2758,7 @@
                       });
                       _.each(traitsobj, function(desc, name) {
                           newrowid = generateRowID();
-                          update["repeating_npctrait_" + newrowid + "_trait_name"] = name + ".";
+                          update["repeating_npctrait_" + newrowid + "_trait_name"] = name;
                           if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
                               desc = desc.substring(2);
                           }
@@ -2720,7 +2784,6 @@
                       });
                   }
 
-                  /*
                   if(actionsarray) {
                     actionsarray = actionsarray.split("**");
                     actionsarray.shift();
@@ -2731,15 +2794,17 @@
                     });
                     _.each(actionsobj, function(desc, name) {
                         newrowid = generateRowID();
-                        update["repeating_npcaction_" + newrowid + "_npc_options-flag"] = "0";
-                        update["repeating_npcaction_" + newrowid + "_name"] = name;
+                        // update["repeating_npcactions_" + newrowid + "_action_npc_options-flag"] = "0";
+                        update["repeating_npcactions_" + newrowid + "_action_name"] = name;
                         if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
                             desc = desc.substring(2);
                         }
-                        if(desc.indexOf(" Attack:") > -1) {
-                            update["repeating_npcaction_" + newrowid + "_attack_flag"] = "on";
-                            update["repeating_npcaction_" + newrowid + "_attack_display_flag"] = "{{attack=1}}";
-                            update["repeating_npcaction_" + newrowid + "_attack_options"] = "{{attack=1}}";
+
+                        if(desc.indexOf(" Attack:") > -1)
+                        {
+                            update["repeating_npcactions_" + newrowid + "_action_attack_flag"] = "on";
+                            update["repeating_npcactions_" + newrowid + "_action_attack_display_flag"] = "{{attack=1}}";
+                            update["repeating_npcactions_" + newrowid + "_action_attack_options"] = "{{attack=1}}";
                             if(desc.indexOf(" Weapon Attack:") > -1) {
                                 attacktype = desc.split(" Weapon Attack:")[0];
                             }
@@ -2751,51 +2816,51 @@
                                 return;
                             }
 
-                            update["repeating_npcaction_" + newrowid + "_attack_type"] = attacktype;
+                            update["repeating_npcactions_" + newrowid + "_action_attack_type"] = attacktype;
                             if(attacktype === "Melee") {
-                                update["repeating_npcaction_" + newrowid + "_attack_range"] = (desc.match(/reach (.*?),/) || ["",""])[1];
+                                update["repeating_npcactions_" + newrowid + "_action_attack_range"] = (desc.match(/reach (.*?),/) || ["",""])[1];
                             }
                             else {
-                                update["repeating_npcaction_" + newrowid + "_attack_range"] = (desc.match(/range (.*?),/) || ["",""])[1];
+                                update["repeating_npcactions_" + newrowid + "_action_attack_range"] = (desc.match(/range (.*?),/) || ["",""])[1];
                             }
-                            update["repeating_npcaction_" + newrowid + "_attack_tohit"] = (desc.match(/\+(.*) to hit/) || ["",""])[1];
-                            update["repeating_npcaction_" + newrowid + "_attack_target"] = (desc.match(/\.,(?!.*\.,)(.*)\. Hit:/) || ["",""])[1];
+                            update["repeating_npcactions_" + newrowid + "_action_attack_tohit"] = (desc.match(/\+(.*) to hit/) || ["",""])[1];
+                            update["repeating_npcactions_" + newrowid + "_action_attack_target"] = (desc.match(/\.,(?!.*\.,)(.*)\. Hit:/) || ["",""])[1];
                             if(desc.toLowerCase().indexOf("damage") > -1) {
-                                update["repeating_npcaction_" + newrowid + "_attack_damage"] = (desc.match(/\(([^)]+)\)/) || ["",""])[1];
-                                update["repeating_npcaction_" + newrowid + "_attack_damagetype"] = (desc.match(/\) (.*?) damage/) || ["",""])[1];
+                                update["repeating_npcactions_" + newrowid + "_action_attack_damage"] = (desc.match(/\(([^)]+)\)/) || ["",""])[1];
+                                update["repeating_npcactions_" + newrowid + "_action_attack_damagetype"] = (desc.match(/\) (.*?) damage/) || ["",""])[1];
                                 if((desc.match(/\(/g) || []).length > 1 && desc.match(/\((?!.*\()([^)]+)\)/)) {
                                     var second_match = desc.match(/\((?!.*\()([^)]+)\)/);
                                     if(second_match[1] && second_match[1].indexOf(" DC") === -1) {
-                                        update["repeating_npcaction_" + newrowid + "_attack_damage2"] = (desc.match(/\((?!.*\()([^)]+)\)/) || ["",""])[1];
-                                        update["repeating_npcaction_" + newrowid + "_attack_damagetype2"] = (desc.match(/\)(?!.*\)) (.*?) damage/) || ["",""])[1];
+                                        update["repeating_npcactions_" + newrowid + "_action_attack_damage2"] = (desc.match(/\((?!.*\()([^)]+)\)/) || ["",""])[1];
+                                        update["repeating_npcactions_" + newrowid + "_action_attack_damagetype2"] = (desc.match(/\)(?!.*\)) (.*?) damage/) || ["",""])[1];
                                     };
                                 };
                                 ctest1 = desc.split("damage.")[1];
                                 ctest2 = desc.split("damage, ")[1];
                                 if(ctest1 && ctest1.length > 0) {
-                                    update["repeating_npcaction_" + newrowid + "_desc"] = ctest1.trim();
+                                    update["repeating_npcactions_" + newrowid + "_action_desc"] = ctest1.trim();
                                 }
                                 else if(ctest2 && ctest2.length > 0) {
-                                    update["repeating_npcaction_" + newrowid + "_desc"] = ctest2.trim();
+                                    update["repeating_npcactions_" + newrowid + "_action_desc"] = ctest2.trim();
                                 }
                             }
                             else {
-                                update["repeating_npcaction_" + newrowid + "_desc"] = desc.split("Hit:")[1].trim();
+                                update["repeating_npcactions_" + newrowid + "_action_desc"] = desc.split("Hit:")[1].trim();
                             }
                         }
                         else {
-                            update["repeating_npcaction_" + newrowid + "_desc"] = desc;
+                            update["repeating_npcactions_" + newrowid + "_action_desc"] = desc;
                         }
 
                     });
                     callbacks.push( function() {update_npc_action("all");} );
-                 } // end actions array */
+                 } // end actions array
 
               }
 
             };
 
-            //callbacks.push( function() {cleanup_drop_fields();} );
+            callbacks.push( function() {cleanup_drop_fields();} );
             setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
          });
      };

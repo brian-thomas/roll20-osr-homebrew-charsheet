@@ -50,10 +50,12 @@ h4 {
 	font-size: 15px;
 	text-align: center;
 }
+
 button.sheet-nod20:before {
   content: "" !important;
 	font-size: 0px;
 }
+
 .sheet-inactive-color,
 input[type=checkbox]:not(:checked).sheet-inactive-color,
 input[type=radio]:not(:checked).sheet-inactive-color
@@ -112,7 +114,7 @@ span.sheet-med-font
 	width:  180px;
 }
 .sheet-npc-notes {
-	width:  380px;
+	width:  95%;
 	height:  240px;
 }
 .sheet-sm-textarea {
@@ -131,22 +133,46 @@ span.sheet-med-font
 	width: 380px;
 }
 
+button[type=roll].sheet-blank-roll-button {
+	height: 16px;
+	font-size: 12px;
+	background-color: #ddd;
+	background: #ddd;
+	border: 0px;
+	text-align: left;
+	margin-left: 5px;
+  font-weight: bold;
+	box-shadow:0px 0px 0px #ddd;
+  padding: 2px 2px 2px 2px;
+}
+
+button[type=roll].sheet-blank-roll-button::before {
+  content: "";
+}
+
+button[type=roll].sheet-blank-roll-button:hover {
+	background-color: transparent;
+}
+
 .sheet-npc-text,
 .sheet-npc-text-sm,
+span.npc-text,
 input.sheet-npc-text,
 input[type=number].sheet-npc-text,
 input.sheet-npc-text-sm,
 input[type=number].sheet-npc-text-sm
 {
 	border: 0px;
+	font-size: 14px;
 	background-color: inherit;
 }
 
 .sheet-npc-text-sm,
+span.npc-text-sm,
 input.sheet-npc-text-sm,
 input[type=number].sheet-npc-text-sm
 {
-	font-size: 8px;
+	font-size: 10px;
 }
 
 .sheet-npc-trait,
@@ -155,7 +181,7 @@ input.sheet-npc-trait
 	border: 0px;
 	background-color: inherit;
 	padding: 0px;
-	font-size: 10px;
+	font-size: 14px;
 	text-align: left;
 	width:  370px;
 }
@@ -333,7 +359,7 @@ input[type=checkbox]:checked, input[type=radio]:checked {
 }
 
 input[type=checkbox]:hover {
-    box-shadow:0px 0px 10px #1300ff;
+	box-shadow:0px 0px 10px #1300ff;
 }
 .sheet-checkbox-round:checked {
     background-color: black;
@@ -351,7 +377,9 @@ input[type=number]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-.sheet-info1 {
+.sheet-info1,
+input[type=text].sheet-info1
+{
     width: 11%;
 }
 .sheet-info2 {
@@ -360,11 +388,16 @@ input[type=number]::-webkit-inner-spin-button {
 .sheet-info3 {
 	width: 32%;
 }
-.sheet-info4
+.sheet-info4,
+label.info4
 {
 	width: 52%;
 }
-.sheet-info5 {
+
+.sheet-info5,
+label.info5,
+button[type=roll].info5
+{
 	width: 93%;
 }
 
@@ -884,14 +917,16 @@ span.sheet-weapon-name
 }
 
 .sheet-weapon-param,
+.sheet-weapon-param-long,
 select.sheet-weapon-param,
 select.sheet-weapon-notches,
 input[type=text].sheet-weapon-param,
+input[type=text].sheet-weapon-param-long,
 input[type=number].sheet-weapon-param
 {
 	 display: inline-flex;
    text-align: center;
-	 font-size: 12px;
+	 font-size: 11px;
 	 margin-left: 5px;
 	 margin-right: 5px;
 }
@@ -909,12 +944,19 @@ input[type=number].sheet-weapon-param
 	width: 30px;
 }
 
+.sheet-weapon-param-long,
+input[type=text].sheet-weapon-param-long
+{
+	text-align: left;
+  width: 40px;
+}
+
 .sheet-weapon-param-name,
 span.sheet-weapon-param-name,
 span.sheet-weapon-param-select-name
 {
 	display: inline-flex;
-	width: 50px;
+	width: 52px;
 	font-size: 12px;
 	text-align: center;
 	align-items: start;
