@@ -219,6 +219,7 @@
                   <input type="text" name="attr_attack_desc" hidden="True"/>
                   <label class="info5"><span name="attr_attack_desc"/></label>
                 </div>
+                <input type="text" name="attr_action_base_desc" hidden="True"/>
                 <input type="text" name="attr_action_desc" hidden="True"/>
                 <label class="info5"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
               </div>
@@ -2376,11 +2377,29 @@
       const fieldnames = [];
       ids.forEach(id => {
         fieldnames.push('repeating_npcactions_' + id + '_action_name');
+        fieldnames.push('repeating_npcactions_' + id + '_action_desc');
+        fieldnames.push('repeating_npcactions_' + id + '_action_base_desc');
+        fieldnames.push('repeating_npcactions_' + id + '_action_attack_flag');
+        fieldnames.push('repeating_npcactions_' + id + '_action_attack_type');
+        fieldnames.push('repeating_npcactions_' + id + '_action_attack_tohit');
+        fieldnames.push('repeating_npcactions_' + id + '_action_attack_range');
+        fieldnames.push('repeating_npcactions_' + id + '_action_attack_damage');
+        fieldnames.push('repeating_npcactions_' + id + '_action_attack_damage2');
+        fieldnames.push('repeating_npcactions_' + id + '_action_attack_damagetype');
+        fieldnames.push('repeating_npcactions_' + id + '_action_attack_damagetype2');
       });
       getAttrs([...fieldnames], function (v) {
         settings = {};
         ids.forEach(id => {
-          const action_name = v['repeating_npcactions_' + id + '_action_name'];
+          const base_desc = v['repeating_npcactions_' + id + '_action_base_desc'];
+          const is_attack = v['repeating_npcactions_' + id + '_action_attack_flag'];
+          if (is_attack == 'on') {
+            const to_hit = v['repeating_npcactions_' + id + '_action_attack_tohit'];
+            const damage = v['repeating_npcactions_' + id + '_action_attack_damage'];
+            const damagetype = v['repeating_npcactions_' + id + '_action_attack_damagetype'];
+            settings['repeating_npcactions_'+id+'_action_desc'] = ' ' + to_hit + ' ' + damage + ' ' + damagetype + '. ' + base_desc;
+          }
+          settings['repeating_npcactions_'+id+'_action_desc'] = base_desc;
         });
         setAttrs(settings);
       });
@@ -2821,8 +2840,9 @@
                                 update["repeating_npcactions_" + newrowid + "_action_attack_range"] = (desc.match(/reach (.*?),/) || ["",""])[1];
                             }
                             else {
-                                update["repeating_npcactions_" + newrowid + "_action_attack_range"] = (desc.match(/range (.*?),/) || ["",""])[1];
+                              update["repeating_npcactions_" + newrowid + "_action_attack_range"] = (desc.match(/range (.*?),/) || ["",""])[1];
                             }
+
                             update["repeating_npcactions_" + newrowid + "_action_attack_tohit"] = (desc.match(/\+(.*) to hit/) || ["",""])[1];
                             update["repeating_npcactions_" + newrowid + "_action_attack_target"] = (desc.match(/\.,(?!.*\.,)(.*)\. Hit:/) || ["",""])[1];
                             if(desc.toLowerCase().indexOf("damage") > -1) {
@@ -2847,12 +2867,26 @@
                             else {
                                 update["repeating_npcactions_" + newrowid + "_action_desc"] = desc.split("Hit:")[1].trim();
                             }
+
+                            // fix with attack info
+                            update["repeating_npcactions_" + newrowid + "_action_desc"] =
+                              attacktype + ' Attack. '
+                              + update["repeating_npcactions_" + newrowid + "_action_attack_range"]
+                              + " Hit: +"
+                              + update["repeating_npcactions_" + newrowid + "_action_attack_tohit"]
+                              + ' ('
+                              + update["repeating_npcactions_" + newrowid + "_action_attack_damage"]
+                              + ') '
+                              + update["repeating_npcactions_" + newrowid + "_action_attack_damagetype"]
+                              + ' damage. '
+                              + update["repeating_npcactions_" + newrowid + "_action_desc"];
                         }
                         else {
                             update["repeating_npcactions_" + newrowid + "_action_desc"] = desc;
                         }
 
                     });
+
                     callbacks.push( function() {update_npc_action("all");} );
                  } // end actions array
 
