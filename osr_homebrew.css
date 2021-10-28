@@ -133,22 +133,41 @@ span.sheet-med-font
 	width: 380px;
 }
 
-button[type=roll].sheet-blank-roll-button {
-	height: 16px;
+.sheet-npc-trait-name,
+.sheet-npc-trait-attack-info,
+label.sheet-npc-trait-name,
+label.sheet-npc-trait-attack-info,
+button[type=roll].sheet-npc-trait-name
+{
 	font-size: 12px;
+  font-weight: bold;
+	height: 16px;
+	text-align: left;
+	font-style: normal;
+  padding: 2px 2px 2px 2px;
+}
+
+.sheet-npc-trait-attack-info,
+label.sheet-npc-trait-attack-info
+{
+	font-size: 11px;
+	font-style: italic;
+	font-weight: normal;
+  padding: 0px;
+	height: 10px;
+	margin-left: 5px;
+}
+
+button[type=roll].sheet-blank-roll-button {
 	background-color: #ddd;
 	background: #ddd;
 	color: black;
 	border: 0px;
-	text-align: left;
-	margin-left: 5px;
-  font-weight: bold;
-	font-style: normal;
 	box-shadow:0px 0px 0px #ddd;
-  padding: 2px 2px 2px 2px;
 }
 
-button[type=roll].sheet-blank-roll-button::before {
+button[type=roll].sheet-blank-roll-button::before
+{
   content: "";
 }
 
@@ -176,18 +195,7 @@ span.npc-text-sm,
 input.sheet-npc-text-sm,
 input[type=number].sheet-npc-text-sm
 {
-	font-size: 10px;
-}
-
-.sheet-npc-trait,
-input.sheet-npc-trait
-{
-	border: 0px;
-	background-color: inherit;
-	padding: 0px;
-	font-size: 14px;
-	text-align: left;
-	width:  370px;
+	font-size: 11px;
 }
 
 .sheet-npc-name,
@@ -241,7 +249,7 @@ span.sheet-center
 }
 
 .sheet-padding {
-	padding: 2px;
+	padding: 2px 2px 2px 2px;
 }
 
 .sheet-inline {
@@ -541,21 +549,35 @@ input[type=number].sheet-ability-modifier {
     width: 138px;
 }
 
+label.sheet-npc-ability-value,
 input[type=number].sheet-npc-ability-value,
 input[type=number].sheet-npc-ability-value-wide
 {
 	width: 30px;
 	height: 30px;
-	font-size: 13px;
 	text-align: center;
 	margin: 3px auto;
 	/*
 	margin-bottom: 3px;
-	margin-left: 0px;
 	*/
 	align-self: center;
 	display: block;
 }
+
+.sheet-npc-ability-check,
+label.sheet-npc-ability-check,
+input[type=number].sheet-npc-ability-check
+{
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	margin-top: -10px;
+	margin-left: 15px;
+	margin-right: 15px;
+	align-self: center;
+	display: block;
+}
+
 input[type=number].sheet-npc-ability-value-wide
 {
 	width: 50px;
@@ -771,6 +793,7 @@ input[type=number].sheet-skill-bonus-value
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
+
 .sheet-npc-traitcontainer {
 	display: flex;
 	flex-wrap: wrap;
@@ -780,6 +803,16 @@ input[type=number].sheet-skill-bonus-value
 	padding: 2px;
 	justify-content: flex-start;
 	align-content: start;
+}
+
+input.sheet-is_npc_attack:checked ~ div.sheet-section-npc-show-attack
+{
+	display: block;
+}
+
+input.sheet-is_npc_attack:not(:checked) ~ div.sheet-section-npc-show-non-attack
+{
+	display: block;
 }
 
 /* Spells */
