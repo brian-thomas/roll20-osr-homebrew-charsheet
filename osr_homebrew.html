@@ -60,7 +60,7 @@
         <span class="italic-font">Languages: </span>
         <input type="text" name="attr_known_lang" class="sheet-npc-text sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Languages"/>
       </div>
-      <div class="sheet-flex padding">
+      <div class="sheet-flex padding info6 thick-border">
         <div class="sheet-thin-border padding">
           <div class="flex-between thin-border padding">
             <div class="block padding">
@@ -119,64 +119,72 @@
             </div>
           </div>
           <br/>
-          <div class="flex-between thin-border padding">
-            <div class="block padding center">
-              <span class="bold-font">STR</span>
-              <input class="npc-ability-value" name="attr_strength" type="number" value="10"/>
-              <button class="blank-roll-button" type="roll" name="roll_fortitude"
-                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Fortitude Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{fortitude} + @{fort_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{fortitude}]] + [[@{fort_bonus}]] ]]}}">
-                      <label class="center"><span class="bold-font npc-text">Fort.</span></label>
-              </button>
-              <input class="npc-ability-check npc-text" name="attr_fortitude" type="number" value="0"/>
-            </div>
+          <div class="block thin-border padding">
+            <h4>Attributes</h4>
+            <div class="flex padding">
+              <div class="block center">
+                <span class="bold-font">STR</span>
+                <input class="npc-ability-value" name="attr_strength" type="number" value="10"/>
+                <button class="blank-roll-button narrow-button" type="roll" name="roll_fortitude"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Fortitude Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{fortitude} + @{fort_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{fortitude}]] + [[@{fort_bonus}]] ]]}}">
+                        <span class="bold-font npc-text">Fort.</span>
+                </button>
+                <input class="npc-ability-check" name="attr_fortitude" type="number" value="0"/>
+              </div>
 
-            <div class="block padding center">
-              <span class="bold-font">DEX</span>
-              <input class="npc-ability-value" name="attr_dexterity" type="number" value="10"/>
-              <button class="blank-roll-button" type="roll" name="roll_dodge"
-                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dodge Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{dodge} + @{dodge_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{dodge}]] + [[@{dodge_bonus}]] ]]}}">
-                      <label class="center"><span class="bold-font npc-text">Dodge</span></label>
-              </button>
-              <input class="npc-ability-check npc-text" name="attr_dodge" type="number" value="0"/>
-            </div>
+              <div class="block center">
+                <span class="bold-font">DEX</span>
+                <input class="npc-ability-value" name="attr_dexterity" type="number" value="10"/>
+                <button class="blank-roll-button narrow-button" type="roll" name="roll_dodge"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dodge Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{dodge} + @{dodge_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{dodge}]] + [[@{dodge_bonus}]] ]]}}">
+                        <span class="bold-font npc-text">Dodge</span>
+                </button>
+                <input class="npc-ability-check" name="attr_dodge" type="number" value="0"/>
+              </div>
 
-            <div class="block padding center">
-              <span class="bold-font">CON</span>
-              <input class="npc-ability-value" name="attr_constitution" type="number" value="10"/>
-              <button class="blank-roll-button" type="roll" name="roll_health"
-                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Health Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{health} +@{health_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{health}]] + [[@{health_bonus}]] ]]}}">
-                      <label class="center"><span class="bold-font npc-text">Health</span></label>
-              </button>
-              <input class="npc-ability-check npc-text" name="attr_health" type="number" value="0"/>
-            </div>
+              <div class="block center">
+                <span class="bold-font">CON</span>
+                <input class="npc-ability-value" name="attr_constitution" type="number" value="10"/>
+                <button class="blank-roll-button narrow-button" type="roll" name="roll_health"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Health Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{health} +@{health_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{health}]] + [[@{health_bonus}]] ]]}}">
+                        <span class="bold-font npc-text">Health</span>
+                </button>
+                <input class="npc-ability-check" name="attr_health" type="number" value="0"/>
+              </div>
 
-            <div class="block padding center">
-              <span class="bold-font">INT</span>
-              <input class="npc-ability-value" name="attr_intelligence" type="number" value="10"/>
-              <button class="blank-roll-button" type="roll" name="roll_perception"
-                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Perception Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{perception} + @{per_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{perception}]] + [[@{per_bonus}]] ]]}}">
-                      <label class="center"><span class="bold-font npc-text">Per.</span></label>
-              </button>
-              <input class="npc-ability-check npc-text" name="attr_perception" type="number" value="0"/>
-            </div>
+              <div class="block center">
+                <span class="bold-font">INT</span>
+                <input class="npc-ability-value" name="attr_intelligence" type="number" value="10"/>
+                <button class="blank-roll-button narrow-button" type="roll" name="roll_perception"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Perception Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{perception} + @{per_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{perception}]] + [[@{per_bonus}]] ]]}}">
+                        <span class="bold-font npc-text">Per.</span>
+                </button>
+                <input class="npc-ability-check" name="attr_perception" type="number" value="0"/>
+              </div>
 
-            <div class="block padding center">
-              <span class="bold-font">WIS</span>
-              <input class="npc-ability-value" name="attr_wisdom" type="number" value="10"/>
-              <button class="blank-roll-button" type="roll" name="roll_perception"
-                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Willpower Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{willpower} +@{will_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{willpower}]] +[[@{will_bonus}]] ]]}}">
-                      <label class="center"><span class="bold-font npc-text">Will</span></label>
-              </button>
-              <input class="npc-ability-check npc-text" name="attr_willpower" type="number" value="0"/>
+              <div class="block center">
+                <span class="bold-font">WIS</span>
+                <input class="npc-ability-value" name="attr_wisdom" type="number" value="10"/>
+                <button class="blank-roll-button narrow-button" type="roll" name="roll_perception"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Willpower Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{willpower} +@{will_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{willpower}]] +[[@{will_bonus}]] ]]}}">
+                        <span class="bold-font npc-text">Will</span>
+                </button>
+                <input class="npc-ability-check" name="attr_willpower" type="number" value="0"/>
+              </div>
+
+              <div class="block center">
+                <span class="bold-font">CHA</span>
+                <input class="npc-ability-value" name="attr_charisma" type="number" value="10"/>
+                <button class="blank-roll-button narrow-button" type="roll" name="roll_personality"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Ego Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{ego} + @{ego_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{ego}]] +[[@{ego_bonus}]] ]]}}">
+                        <span class="bold-font npc-text">Ego</span>
+                </button>
+                <input class="npc-ability-check" name="attr_ego" type="number" value="0"/>
+                <input name="attr_ego_bonus" type="number" value="0" hidden="True"/>
+              </div>
             </div>
-            <!--
-                  <button class="sheet-npc-ability-button" type="roll" name="roll_willpower"
-                  -->
-            <div class="block padding center">
-              <span class="bold-font">CHA</span>
-              <input class="npc-ability-value" name="attr_charisma" type="number" value="10"/>
-            </div>
-          </div>
+          </div> <!-- end attribs and saves -->
+
           <br/>
           <div class="block padding limit-to-half-width">
              <h4>Traits</h4>
@@ -190,6 +198,8 @@
              </div>
           </div>
         </div> <!-- thin border -->
+
+        <div class="block">
         <div class="block thin-border padding limit-to-half-width">
           <h4>Actions</h4>
           <div class="npc-traitcontainer">
@@ -221,11 +231,63 @@
                   <label class="info5 npc-trait-name"><span name="attr_action_name">Action Name</span></label>
                 </div>
                 <input type="text" name="attr_action_desc" hidden="True"/>
-                <label class="info5"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
+                <label class="info5 npc-text"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
               </div>
             </fieldset>
           </div>
-       </div>
+        </div>
+        <br/>
+        <div class="block thin-border padding limit-to-half-width">
+          <h4>Legendary Actions</h4>
+          <div class="npc-traitcontainer">
+            <fieldset class="repeating_npcactions-l">
+              <div class="sheet-block sheet-side-padding">
+                <input type="text" name="attr_action_attack_options" hidden="True"/>
+                <input type="text" name="attr_action_attack_type" hidden="true"/>
+                <input type="text" name="attr_action_attack_target" hidden="true"/>
+                <input type="text" name="attr_action_attack_range" hidden="true"/>
+                <input type="text" name="attr_action_attack_tohit" hidden="true"/>
+                <input type="text" name="attr_action_attack_damage" hidden="true"/>
+                <input type="text" name="attr_action_attack_damagetype" hidden="true"/>
+                <input type="text" name="attr_action_attack_damage2" hidden="true"/>
+                <input type="text" name="attr_action_attack_damagetype2" hidden="true"/>
+                <input type="text" name="attr_action_attack_desc1" hidden="True"/>
+                <input type="text" name="attr_action_attack_desc2" hidden="True"/>
+                <input type="text" name="attr_action_name" hidden="True"/>
+
+                <input type="checkbox" class="sheet-is_npc_attack" name="attr_action_attack_display_flag" value="1" hidden="True" checked="True"/>
+                <div class="section-npc-show-attack">
+                  <button type="roll" name="roll_npc_action" class="npc-trait-name blank-roll-button info5"
+                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{weapon=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + [[@{action_attack_damage}]]]]}} }}">
+                     <span name="attr_action_name">Legend Action Name</span>
+                  </button>
+                  <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc1"/></label>
+                  <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc2"/></label>
+                </div>
+                <div class="section-npc-show-non-attack">
+                  <label class="info6 npc-trait-name"><span name="attr_action_name">Legend Action Name</span></label>
+                </div>
+                <input type="text" name="attr_action_desc" hidden="True"/>
+                <label class="info5 npc-text"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <br/>
+        <div class="block thin-border padding limit-to-half-width">
+           <h4>Reactions</h4>
+           <div class="npc-traitcontainer">
+             <fieldset class="repeating_npcreaction">
+               <input type="text" name="attr_react_name" hidden="True"/>
+               <input type="textarea" name="attr_react_desc" hidden="True"/>
+               <label class="npc-trait-name info5"><span name="attr_react_name"/></label>
+               <label class="npc-text-sm info5"><span name="attr_react_desc"/></label>
+             </fieldset>
+           </div>
+        </div>
+        <br/>
+      </div> <!-- action/reaction block -->
+
      </div> <!-- thick border -->
    </div> <!-- block -->
 
@@ -2802,6 +2864,88 @@
                       });
                   }
 
+                  if(legendaryactionsarray) {
+                    lactionsarray = legendaryactionsarray.split("**");
+                    lactionsarray.shift();
+                    var actionsobj = {};
+                    lactionsarray.forEach(function(val, i) {
+                        if (i % 2 === 1) return;
+                        actionsobj[val] = lactionsarray[i + 1];
+                    });
+                    _.each(actionsobj, function(desc, name) {
+                        newrowid = generateRowID();
+                        update["repeating_npcactions-l_" + newrowid + "_action_name"] = name;
+                        if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
+                            desc = desc.substring(2);
+                        }
+
+                        if(desc.indexOf(" Attack:") > -1)
+                        {
+                            update["repeating_npcactions-l_" + newrowid + "_action_attack_display_flag"] = 1;
+                            update["repeating_npcactions-l_" + newrowid + "_action_attack_options"] = "{{attack=1}}";
+                            if(desc.indexOf(" Weapon Attack:") > -1) {
+                                attacktype = desc.split(" Weapon Attack:")[0] + " Weapon";
+                            }
+                            else if(desc.indexOf(" Spell Attack:") > -1) {
+                                attacktype = desc.split(" Spell Attack:")[0] + " Spell";
+                            }
+                            else {
+                                console.log("FAILED TO IMPORT ATTACK - NO ATTACK TYPE FOUND (Weapon Attack/Spell Attack)");
+                                return;
+                            }
+
+                            update["repeating_npcactions-l_" + newrowid + "_action_attack_type"] = attacktype;
+                            if(attacktype === "Melee Weapon") {
+                                update["repeating_npcactions-l_" + newrowid + "_action_attack_range"] = (desc.match(/reach (.*?),/) || ["",""])[1] + " reach";
+                            }
+                            else {
+                                update["repeating_npcactions-l_" + newrowid + "_action_attack_range"] = (desc.match(/range (.*?),/) || ["",""])[1] + " range";
+                            }
+
+                            update["repeating_npcactions-l_" + newrowid + "_action_attack_tohit"] = (desc.match(/\+(.*) to hit/) || ["",""])[1];
+                            update["repeating_npcactions-l_" + newrowid + "_action_attack_target"] = (desc.match(/\.,(?!.*\.,)(.*)\. Hit:/) || ["",""])[1];
+                            if(desc.toLowerCase().indexOf("damage") > -1) {
+                                update["repeating_npcactions-l_" + newrowid + "_action_attack_damage"] = (desc.match(/\(([^)]+)\)/) || ["",""])[1];
+                                update["repeating_npcactions-l_" + newrowid + "_action_attack_damagetype"] = (desc.match(/\) (.*?) damage/) || ["",""])[1];
+                                if((desc.match(/\(/g) || []).length > 1 && desc.match(/\((?!.*\()([^)]+)\)/)) {
+                                    var second_match = desc.match(/\((?!.*\()([^)]+)\)/);
+                                    if(second_match[1] && second_match[1].indexOf(" DC") === -1) {
+                                        update["repeating_npcactions-l_" + newrowid + "_action_attack_damage2"] = (desc.match(/\((?!.*\()([^)]+)\)/) || ["",""])[1];
+                                        update["repeating_npcactions-l_" + newrowid + "_action_attack_damagetype2"] = (desc.match(/\)(?!.*\)) (.*?) damage/) || ["",""])[1];
+                                    };
+                                };
+                                ctest1 = desc.split("damage.")[1];
+                                ctest2 = desc.split("damage, ")[1];
+                                if(ctest1 && ctest1.length > 0) {
+                                    update["repeating_npcactions-l_" + newrowid + "_action_desc"] = ctest1.trim();
+                                }
+                                else if(ctest2 && ctest2.length > 0) {
+                                    update["repeating_npcactions-l_" + newrowid + "_action_desc"] = ctest2.trim();
+                                }
+                            }
+                            else {
+                                update["repeating_npcactions-l_" + newrowid + "_action_desc"] = desc.split("Hit:")[1].trim();
+                            }
+
+                            // attack description info
+                            update["repeating_npcactions-l_" + newrowid + "_action_attack_desc1"] = attacktype + ' Attack. '
+                              + update["repeating_npcactions-l_" + newrowid + "_action_attack_range"] + ".";
+
+                            update["repeating_npcactions-l_" + newrowid + "_action_attack_desc2"] = " Hit: +"
+                              + update["repeating_npcactions-l_" + newrowid + "_action_attack_tohit"] + ' ('
+                              + update["repeating_npcactions-l_" + newrowid + "_action_attack_damage"] + ') '
+                              + update["repeating_npcactions-l_" + newrowid + "_action_attack_damagetype"] + ' damage. ';
+                        }
+                        else {
+                            update["repeating_npcactions-l_" + newrowid + "_action_desc"] = desc;
+                            update["repeating_npcactions-l_" + newrowid + "_action_attack_display_flag"] = 0;
+                        }
+
+                    });
+
+                    // callbacks.push( function() {update_npc_action("all");} );
+                  } // end legendary actions
+
                   if(actionsarray) {
                     actionsarray = actionsarray.split("**");
                     actionsarray.shift();
@@ -2882,8 +3026,27 @@
 
                     });
 
-                    callbacks.push( function() {update_npc_action("all");} );
+                    //callbacks.push( function() {update_npc_action("all");} );
                  } // end actions array
+
+                 if(reactionsarray) {
+                    update["npcreactionsflag"] = 1;
+                    reactionsarray = reactionsarray.split("**");
+                    reactionsarray.shift();
+                    var reactionsobj = {};
+                    reactionsarray.forEach(function(val, i) {
+                        if (i % 2 === 1) return;
+                        reactionsobj[val] = reactionsarray[i + 1];
+                    });
+                    _.each(reactionsobj, function(desc, name) {
+                        newrowid = generateRowID();
+                        update["repeating_npcreaction_" + newrowid + "_react_name"] = name + ".";
+                        if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
+                            desc = desc.substring(2);
+                        }
+                        update["repeating_npcreaction_" + newrowid + "_react_desc"] = desc.trim();
+                    });
+                 } // end of reactionsarray
 
               }
 

@@ -139,12 +139,11 @@ label.sheet-npc-trait-name,
 label.sheet-npc-trait-attack-info,
 button[type=roll].sheet-npc-trait-name
 {
-	font-size: 12px;
+	font-size: 13px;
   font-weight: bold;
-	height: 16px;
+	height: 18px;
 	text-align: left;
 	font-style: normal;
-  padding: 2px 2px 2px 2px;
 }
 
 .sheet-npc-trait-attack-info,
@@ -155,8 +154,14 @@ label.sheet-npc-trait-attack-info
 	font-weight: normal;
   padding: 0px;
 	height: 10px;
-	margin-left: 5px;
+	margin-left: 15px;
 }
+
+button[type=roll].sheet-narrow-button
+{
+		height: 22px;
+}
+
 
 button[type=roll].sheet-blank-roll-button {
 	background-color: #ddd;
@@ -179,7 +184,8 @@ button[type=roll].sheet-blank-roll-button:hover {
 
 .sheet-npc-text,
 .sheet-npc-text-sm,
-span.npc-text,
+span.sheet-npc-text,
+label.sheet-npc-text,
 input.sheet-npc-text,
 input[type=number].sheet-npc-text,
 input.sheet-npc-text-sm,
@@ -188,6 +194,7 @@ input[type=number].sheet-npc-text-sm
 	border: 0px;
 	font-size: 14px;
 	background-color: inherit;
+	margin-left: 5px;
 }
 
 .sheet-npc-text-sm,
@@ -406,6 +413,12 @@ label.info4
 	width: 52%;
 }
 
+.sheet-info6,
+label.info6
+{
+	width: 83%;
+}
+
 .sheet-info5,
 label.info5,
 button[type=roll].info5
@@ -571,7 +584,7 @@ input[type=number].sheet-npc-ability-check
 	width: 30px;
 	height: 30px;
 	text-align: center;
-	margin-top: -10px;
+	margin-top: 0px;
 	margin-left: 15px;
 	margin-right: 15px;
 	align-self: center;
