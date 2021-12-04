@@ -61,10 +61,10 @@
         <input type="text" name="attr_known_lang" class="sheet-npc-text sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Languages"/>
       </div>
       <div class="sheet-flex padding info6 thick-border">
-        <div class="sheet-thin-border padding">
-          <div class="flex-between thin-border padding">
-            <div class="block padding">
-              <div class="sheet-flex-inline padding">
+        <div class="block">
+          <div class="flex-between thin-border">
+            <div class="block">
+              <div class="sheet-flex-inline">
                 <select class="sheet-info-name-med-sm" name="attr_level">
                   <option selected="selected" value="0">0</option>
                   <option value="1">1</option>
@@ -121,7 +121,7 @@
           <br/>
           <div class="block thin-border padding">
             <h4>Attributes</h4>
-            <div class="flex padding">
+            <div class="flex">
               <div class="block center">
                 <span class="bold-font">STR</span>
                 <input class="npc-ability-value" name="attr_strength" type="number" value="10"/>
@@ -184,23 +184,49 @@
               </div>
             </div>
           </div> <!-- end attribs and saves -->
-
           <br/>
-          <div class="block padding limit-to-half-width">
-             <h4>Traits</h4>
+          <div class="block thin-border padding limit-to-half-width">
+             <h4>Reactions</h4>
              <div class="npc-traitcontainer">
-               <fieldset class="repeating_npctrait">
-                 <input type="text" name="attr_trait_name" hidden="True"/>
-                 <input type="textarea" name="attr_trait_desc" hidden="True"/>
-                 <label class="npc-trait-name info5"><span name="attr_trait_name"/></label>
-                 <label class="npc-text-sm info5"><span name="attr_trait_desc"/></label>
+               <fieldset class="repeating_npcreaction">
+                 <input type="text" name="attr_react_name" hidden="True"/>
+                 <input type="textarea" name="attr_react_desc" hidden="True"/>
+                 <label class="npc-trait-name info4"><span name="attr_react_name"/></label>
+                 <label class="npc-text-sm info4"><span name="attr_react_desc"/></label>
                </fieldset>
              </div>
           </div>
-        </div> <!-- thin border -->
+          <br/>
+          <div class="block thin-border padding limit-to-half-width">
+            <h4>Traits</h4>
+             <div class="npc-traitcontainer">
+               <fieldset class="repeating_npctrait">
+                 <!--img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
+                 -->
+                 Edit:<input type="checkbox" class="sheet-is_edit_trait" value="1"/>
+                 <div class="section-npc-edit-trait">
+                   <div class="flex fill-width">
+                     <span>Name:</span>
+                     <input type="text" name="attr_trait_name" class="align-left"/>
+                   </div>
+                   <div class="block">
+                     <span>Desc:</span>
+                     <input type="textarea" name="attr_trait_desc" class="npc-trait-textarea"/>
+                   </div>
+                 </div>
+                 <div class="section-npc-show-trait">
+                   <div class="flex fill-width">
+                     <label class="npc-trait-name info5"><span name="attr_trait_name"/></label>
+                   </div>
+                   <label class="npc-text-sm info5"><span name="attr_trait_desc"/></label>
+                 </div>
+               </fieldset>
+             </div>
+          </div>
+        </div> <!-- LHS -->
 
         <div class="block">
-        <div class="block thin-border padding limit-to-half-width">
+        <div class="block thin-border limit-to-half-width">
           <h4>Actions</h4>
           <div class="npc-traitcontainer">
             <fieldset class="repeating_npcactions">
@@ -273,19 +299,7 @@
             </fieldset>
           </div>
         </div>
-        <br/>
-        <div class="block thin-border padding limit-to-half-width">
-           <h4>Reactions</h4>
-           <div class="npc-traitcontainer">
-             <fieldset class="repeating_npcreaction">
-               <input type="text" name="attr_react_name" hidden="True"/>
-               <input type="textarea" name="attr_react_desc" hidden="True"/>
-               <label class="npc-trait-name info5"><span name="attr_react_name"/></label>
-               <label class="npc-text-sm info5"><span name="attr_react_desc"/></label>
-             </fieldset>
-           </div>
-        </div>
-        <br/>
+
       </div> <!-- action/reaction block -->
 
      </div> <!-- thick border -->
@@ -2737,7 +2751,7 @@
               update["npc_damage_vulnerability"] = v["drop_vulnerabilities"] ? v["drop_vulnerabilities"] : "";
               update["npc_damage_immunity"] = v["drop_immunities"] ? v["drop_immunities"] : "";
               update["npc_condition_immunity"] = v["drop_condition_immunities"] ? v["drop_condition_immunities"] : "";
-              update["notes"] = v["drop_content"] ? v["drop_content"] : "";
+              update["notes"] = "";
 
                /*
                //Skills

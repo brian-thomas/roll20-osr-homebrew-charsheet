@@ -146,6 +146,15 @@ button[type=roll].sheet-npc-trait-name
 	font-style: normal;
 }
 
+.sheet-npc-trait-textarea,
+input[type=textarea].sheet-npc-trait-textarea,
+textarea.sheet-npc-trait-textarea
+{
+	 height: 120px;
+	 width: 50%;
+	 text-align: left;
+}
+
 .sheet-npc-trait-attack-info,
 label.sheet-npc-trait-attack-info
 {
@@ -162,6 +171,12 @@ button[type=roll].sheet-narrow-button
 		height: 22px;
 }
 
+
+button[type=roll].sheet-button-sm {
+	background-color: transparent;
+	width: 20px;
+	height: 20px;
+}
 
 button[type=roll].sheet-blank-roll-button {
 	background-color: #ddd;
@@ -194,6 +209,7 @@ input[type=number].sheet-npc-text-sm
 	border: 0px;
 	font-size: 14px;
 	background-color: inherit;
+	text-align: left;
 	margin-left: 5px;
 }
 
@@ -349,10 +365,22 @@ select.side-padding
 	flex-direction: column;
 }
 .sheet-logo {
-	  width: 50%;
+	width: 50%;
     margin: 14px auto;
     display: block;
 }
+.sheet-gear,
+button[type=roll].sheet-gear
+{
+	height: 25px;
+	width: 25px;
+	background-color: inherit;
+	border: 1px;
+	align-items: flex-end;
+	margin-right: 10px;
+	margin-top: -5px;
+}
+
 input[type=checkbox], input[type=radio] {
 	  padding-left:5px;
     padding-right:5px;
@@ -424,6 +452,12 @@ label.info5,
 button[type=roll].info5
 {
 	width: 93%;
+}
+
+.sheet-fill-width,
+label.sheet-fill-width
+{
+	width: 100%;
 }
 
 .sheet-info-name,
@@ -797,8 +831,6 @@ input[type=number].sheet-skill-bonus-value
 /* NPCs */
 .sheet-npc .repitem {
 	margin: 1px;
-	/* width: 100%;
-	*/
 	display: block;
 }
 .sheet-npc .repcontainer {
@@ -810,12 +842,22 @@ input[type=number].sheet-skill-bonus-value
 .sheet-npc-traitcontainer {
 	display: flex;
 	flex-wrap: wrap;
-	margin-bottom: 4px;
+	margin-bottom: 6px;
 	align-items: center;
 	/* border: 2px solid black; */
 	padding: 2px;
 	justify-content: flex-start;
 	align-content: start;
+}
+
+input.sheet-is_edit_trait:checked ~ div.sheet-section-npc-edit-trait
+{
+  display: block;
+}
+
+input.sheet-is_edit_trait:not(:checked) ~ div.sheet-section-npc-show-trait
+{
+	display: block;
 }
 
 input.sheet-is_npc_attack:checked ~ div.sheet-section-npc-show-attack
