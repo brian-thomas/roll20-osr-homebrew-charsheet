@@ -941,7 +941,7 @@
                 <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_press_attack" value="1" readonly="true"/>
                   <span class="ability-check-label">Press</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2 AC-4)</span>
+                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2 AC-4, force 1 step retreat)</span>
                 </div>
                 <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_defensive_attack" value="1" readonly="true"/>
@@ -1144,7 +1144,7 @@
 
               <div class="sheet-weapon_press_attack_section">
                 <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_press_attack"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{weapon_attack_bonus}]]}} {{fumble=[[4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }}"></button>
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{weapon_attack_bonus}]]}} {{fumble=[[4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Force 1 step retreat on hit.}}"></button>
               </div>
               <div class="sheet-weapon_defense_attack_section">
                 <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_defense_attack"
@@ -2095,6 +2095,13 @@
                  <div class="sheet-col-7-12 sheet-padr sheet-rt-value sheet-no-roll-highlight">{{math}}</div>
         </div>
         {{/math}}
+
+        {{#special}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Special</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value sheet-no-roll-highlight">{{special}}</div>
+        </div>
+        {{/special}}
 
         <div class="sheet-row">{{description}}</div>
         <!--
@@ -3127,4 +3134,4 @@
           setAttrs(update, {silent: true});
       };
 
-</script>
+<!-- </script> -->
