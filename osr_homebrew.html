@@ -165,7 +165,7 @@
               <div class="block center">
                 <span class="bold-font">WIS</span>
                 <input class="npc-ability-value" name="attr_wisdom" type="number" value="10"/>
-                <button class="blank-roll-button narrow-button" type="roll" name="roll_perception"
+                <button class="blank-roll-button narrow-button" type="roll" name="roll_willpower"
                         value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Willpower Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{willpower} +@{will_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{willpower}]] +[[@{will_bonus}]] ]]}}">
                         <span class="bold-font npc-text">Will</span>
                 </button>
@@ -175,7 +175,7 @@
               <div class="block center">
                 <span class="bold-font">CHA</span>
                 <input class="npc-ability-value" name="attr_charisma" type="number" value="10"/>
-                <button class="blank-roll-button narrow-button" type="roll" name="roll_personality"
+                <button class="blank-roll-button narrow-button" type="roll" name="roll_ego"
                         value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Ego Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{ego} + @{ego_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{ego}]] +[[@{ego_bonus}]] ]]}}">
                         <span class="bold-font npc-text">Ego</span>
                 </button>
@@ -566,7 +566,7 @@
                   </div>
                   <div class="sheet-ability-column-modifier sheet-flex-between">
                     <input name="attr_charisma_mod" type="number" value="0" class="sheet-ability-modifier inactive-color" readonly="true"/>
-                    <span class="noborder left-pad">Retainer Recruitment, Loyalty, Reaction, Social Skill</span>
+                    <span class="noborder left-pad">Ego, Retainer Recruitment, Loyalty, Reaction, Social Skill</span>
                   </div>
                   <div class="sheet-ability-column-roll sheet-flex">
                     <button class="sheet-ability-button" type="roll" name="roll_cha_check"
@@ -655,6 +655,24 @@
                     </button>
                   </div>
                 </div>
+
+                <div class="sheet-flex-between">
+                  <div class="sheet-ability-column-value">
+                    <span class="ability-check-label">Ego</span>
+                    <input class="ability-check-value inactive-color" name="attr_ego" type="number" value="0" readonly="true"/>
+                  </div>
+                  <div class="sheet-ability-column-value">
+                    <span class="ability-check-bonus-label">bonus</span>
+                    <input type="number" name="attr_ego_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
+                  </div>
+                  <div class="sheet-ability-column-roll sheet-flex">
+                    <button class="sheet-ability-button" type="roll" name="roll_ego"
+                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Ego Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{ego} +@{ego_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{ego}]] +[[@{ego_bonus}]] ]]}}"></button>
+                    </button>
+                  </div>
+                </div>
+
+
               </div>
             </div>
 
@@ -2220,8 +2238,8 @@
   });
 
   // update ability modifiers
-  const abilityCheck = { strength_mod: "fortitude", dexterity_mod: "dodge", constitution_mod: "health", intelligence_mod: "perception", wisdom_mod: "willpower" };
-  ['charisma_mod', 'constitution_mod', 'dexterity_mod', 'intelligence_mod', 'strength_mod', 'wisdom_mod'].forEach(ability_mod => {
+  const abilityCheck = { strength_mod: "fortitude", dexterity_mod: "dodge", constitution_mod: "health", intelligence_mod: "perception", wisdom_mod: "willpower", charisma_mod: "ego" };
+  ['charisma_mod', 'constitution_mod', 'dexterity_mod', 'intelligence_mod', 'strength_mod', 'wisdom_mod', 'charisma_mod'].forEach(ability_mod => {
     on(`sheet:opened change:level change:level2 change:${ability_mod}`, () => {
       getAttrs([ability_mod, 'level', 'level2'], v => {
         const setting = {};
