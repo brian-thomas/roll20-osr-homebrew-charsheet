@@ -1,7 +1,9 @@
 .charsheet {
 	  background-color: #ddd;
-    width: 942px !important;
-	min-width: 942px; /* Set the min-width so that when the window is resized the look will stay consistant */
+    width: 1000px !important;
+    height: 1600px !important;
+	  min-width: 1000px; /* Set the min-width so that when the window is resized the look will stay consistant */
+	  min-height: 1000px; /* Set the min-width so that when the window is resized the look will stay consistant */
     margin: 0 auto !important;
     line-height: 18px;
 }
