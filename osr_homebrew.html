@@ -916,6 +916,10 @@
               <input class="ability-check-value inactive-color" name="attr_ranged_ab" type="number" value="0" readonly="true"/>
               <span class="ability-check-label">Ranged AB</span>
             </div>
+            <div class="sheet-ability-column-value">
+              <input class="ability-check-value inactive-color" name="attr_unarmed_ab" type="number" value="0" readonly="true"/>
+              <span class="ability-check-label">Unarmed AB</span>
+            </div>
 
             <!-- HIT DICE, TODO -->
             <input name="attr_hit_dice" type="number" value="1" hidden="true"/>
@@ -967,6 +971,11 @@
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB/2 -&gt; Dam, Attack adj foe on kill, AC-2)</span>
                 </div>
                 <div class="sheet-flex sheet-bottom-padding">
+                  <input type="checkbox" name="attr_great_cleave_attack" value="1"/>
+                  <span class="ability-check-label">Great Cleave</span>
+                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB -&gt; Dam, Attack adj foe on kill, AC-4)</span>
+                </div>
+                <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_2weapon_attack" value="1"/>
                   <span class="ability-check-label">2&nbsp;Weapon</span>
                   <span class="sheet-small-font sheet-italic-font">&nbsp;(2nd Attk with offhand or AC+1)</span>
@@ -1014,6 +1023,7 @@
           <div class="sheet-inline-flex">
             <input type="checkbox" class="sheet-beserk_attack_enabled" name="attr_beserk_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-cleave_attack_enabled" name="attr_cleave_attack_enabled" value="1" hidden="true"/>
+            <input type="checkbox" class="sheet-great_cleave_attack_enabled" name="attr_great_cleave_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-defense_attack_enabled" name="attr_defense_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-press_attack_enabled" name="attr_press_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-sneak_attack_enabled" name="attr_sneak_attack_enabled" value="1" hidden="true"/>
@@ -1023,7 +1033,7 @@
             <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font sheet-italic-font">Notches</span>
             <span class="sheet-weapon-name sheet-bold-font">Name</span>
             <span class="sheet-weapon-param-name sheet-bold-font">Add. Bonus</span>
-            <span class="sheet-weapon-param-select-name sheet-bold-font">Type</span>
+            <span class="sheet-weapon-param-select-name sheet-bold-font">Attk Type</span>
             <span class="sheet-weapon-param-name sheet-bold-font">Attk Bonus</span>
             <span class="sheet-weapon-param-select-name sheet-bold-font">Damage</span>
             <span class="sheet-weapon-param-select-name sheet-bold-font">Dam. Type</span>
@@ -1045,6 +1055,10 @@
               <span class="sheet-weapon-param-name sheet-bold-font">Cleave Attack</span>
             </div>
 
+            <div class="sheet-great_cleave_attack_section">
+              <span class="sheet-weapon-param-name sheet-bold-font">Great Cleave Attack</span>
+            </div>
+
             <div class="sheet-strong_attack_section">
               <span class="sheet-weapon-param-name sheet-bold-font">Strong Attack</span>
             </div>
@@ -1054,10 +1068,12 @@
             </div>
 
           </div>
+
           <fieldset class="repeating_weapons">
             <div class="sheet-inline-flex">
               <input type="checkbox" class="sheet-weapon_beserk_attack_enabled" name="attr_weapon_beserk_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_cleave_attack_enabled" name="attr_weapon_cleave_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-weapon_great_cleave_attack_enabled" name="attr_weapon_great_cleave_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_defense_attack_enabled" name="attr_weapon_defense_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_press_attack_enabled" name="attr_weapon_press_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_strong_attack_enabled" name="attr_weapon_strong_attack_enabled" value="1" hidden="true"/>
@@ -1079,6 +1095,7 @@
       	      <select class="weapon-param" name="attr_weapon_type">
       	        <option selected="selected" value="@{melee_ab}">Melee</option>
       	        <option value="@{ranged_ab}">Ranged</option>
+      	        <option value="@{unarmed_ab}">Unarmed</option>
       	      </select>
 
               <input type="number" name="attr_weapon_attack_bonus" class="weapon-param inactive-color" value="[[@{weapon_type}+[[@{weapon_bonus}]]-[[@{weapon_notches}]]]]" disabled="true"/>
@@ -1166,6 +1183,11 @@
               <div class="sheet-weapon_cleave_attack_section">
                 <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_cleave_attack"
     	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{critical=[[19 + @{weapon_bonus}]]}} {{fumble=[[2+@{weapon_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]]  ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]] ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + [[@{weapon_attack_bonus}/2]] [Dam] }} {{special=-2 AC for next round}}"></button>
+              </div>
+
+              <div class="sheet-weapon_great_cleave_attack_section">
+                <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_great_cleave_attack"
+    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Great Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{critical=[[19 + @{weapon_bonus}]]}} {{fumble=[[2+@{weapon_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}]]  ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}]] ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_attack_bonus} [Dam] }} {{special=-4 AC for next round}}"></button>
               </div>
 
               <div class="sheet-weapon_strong_attack_section">
@@ -2239,15 +2261,22 @@
       });
 
   // determine which attribute contributes the bonus for Athletics skill
-  on(`change:strength_mod change:dexterity_mod change:strength_bonus change:dexterity_bonus`, () => {
-    getAttrs(['strength_mod', 'dexterity_mod', 'athletics_skill_mod'], v => {
+  // also set unarmed AB here too
+  on(`change:strength_mod change:dexterity_mod change:strength_bonus change:dexterity_bonus change:melee_ab change:ranged_ab`, () => {
+    getAttrs(['strength_mod', 'dexterity_mod', 'athletics_skill_mod', 'melee_ab', 'ranged_ab', 'unarmed_ab'], v => {
       const str_mod = parseInt(v.strength_mod);
       const dex_mod = parseInt(v.dexterity_mod);
+      const melee_ab = parseInt(v.melee_ab);
+      const ranged_ab = parseInt(v.ranged_ab);
+      settings = {}
       if (str_mod > dex_mod) {
-        setAttrs({athletics_skill_mod: str_mod})
+        settings["athletics_skill_mod"] = str_mod;
+        settings["unarmed_ab"] = melee_ab;
       } else {
-        setAttrs({athletics_skill_mod: dex_mod})
+        settings["athletics_skill_mod"] = dex_mod;
+        settings["unarmed_ab"] = ranged_ab;
       }
+      setAttrs(settings);
     });
   });
 
@@ -2514,7 +2543,7 @@
   });
 
   // Keep weapons up to date
-  const combatOpts = ['press_attack', 'defensive_attack', 'beserk_attack', 'cleave_attack', 'strong_attack' ];
+  const combatOpts = ['press_attack', 'defensive_attack', 'beserk_attack', 'cleave_attack', 'great_cleave_attack', 'strong_attack' ];
 
   combatOpts.forEach(combat_opt => {
     on(`change:${combat_opt} change:sneak_attack_dice change:repeating_weapons change:level change:level2` , function () {
@@ -2531,12 +2560,14 @@
               const sneak_dice = parseInt(values.sneak_attack_dice) || 0;
               const beserk_attack = parseInt(values.beserk_attack) || 0;
               const cleave_attack = parseInt(values.cleave_attack) || 0;
+              const great_cleave_attack = parseInt(values.great_cleave_attack) || 0;
               const defensive_attack = parseInt(values.defensive_attack) || 0;
               const press_attack = parseInt(values.press_attack) || 0;
               const strong_attack = parseInt(values.strong_attack) || 0;
 
               output['beserk_attack_enabled'] = beserk_attack;
               output['cleave_attack_enabled'] = cleave_attack;
+              output['great_cleave_attack_enabled'] = great_cleave_attack;
               output['defense_attack_enabled'] = defensive_attack;
               output['press_attack_enabled'] = press_attack;
               output['strong_attack_enabled'] = strong_attack;
@@ -2561,6 +2592,7 @@
                   // apply new properties to weapon
                   output['repeating_weapons_' + id + '_weapon_beserk_attack_enabled'] = beserk_attack;
                   output['repeating_weapons_' + id + '_weapon_cleave_attack_enabled'] = cleave_attack;
+                  output['repeating_weapons_' + id + '_weapon_great_cleave_attack_enabled'] = great_cleave_attack;
                   output['repeating_weapons_' + id + '_weapon_defense_attack_enabled'] = defensive_attack;
                   output['repeating_weapons_' + id + '_weapon_press_attack_enabled'] = press_attack;
                   output['repeating_weapons_' + id + '_weapon_strong_attack_enabled'] = strong_attack;
