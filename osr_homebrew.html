@@ -983,11 +983,6 @@
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB -&gt; Dam, Attack adj foe on kill, AC-4)</span>
                 </div>
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_2weapon_attack" value="1"/>
-                  <span class="ability-check-label">2&nbsp;Weapon</span>
-                  <span class="sheet-small-font sheet-italic-font">&nbsp;(2nd Attk with offhand or AC+1)</span>
-                </div>
-                <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_rapid_strike_attack1" value="1"/>
                   <input type="checkbox" name="attr_rapid_strike_attack2" value="1"/>
                   <span class="ability-check-label">Rapid Strike</span>
@@ -1011,6 +1006,17 @@
                   <input type="checkbox" name="attr_stun_attack" value="1"/>
                   <span class="ability-check-label">Stun</span>
                   <span class="sheet-small-font sheet-italic-font">&nbsp;(AB-4, AC-4, target STR save vs dam or stun)</span>
+                </div>
+                <div class="sheet-flex sheet-bottom-padding">
+                  <input type="checkbox" name="attr_two_weapon_attack" value="1"/>
+                  <span class="ability-check-label">Two Weapon Attack</span>
+                  <span class="sheet-small-font sheet-italic-font">&nbsp;(2nd Attk with small offhand weapon or AC+1)</span>
+                </div>
+                <input type="checkbox" class="sheet-two_weapon_attack_enabled"  name="attr_two_weapon_attack_enabled" value="1" hidden="true"/>
+                <div class="sheet-section-two_weapon_master sheet-flex sheet-bottom-padding">
+                  <input type="checkbox" name="attr_two_weapon_master_attack" value="1"/>
+                  <span class="ability-check-label">Two Weapon Master</span>
+                  <span class="sheet-small-font sheet-italic-font">&nbsp;(2nd Attk with offhand weapon or AC+2)</span>
                 </div>
                 <div class="sheet-thin-border sheet-flex-between">
                   <input type="checkbox" name="attr_sneak_attack_checkbox" value="1" readonly="true"/>
@@ -2572,7 +2578,7 @@
   });
 
   // Keep weapons up to date
-  const combatOpts = ['press_attack', 'defensive_attack', 'beserk_attack', 'cleave_attack', 'disarm_attack', 'great_cleave_attack', 'strong_attack', 'stun_attack' ];
+  const combatOpts = ['press_attack', 'defensive_attack', 'beserk_attack', 'cleave_attack', 'disarm_attack', 'great_cleave_attack', 'strong_attack', 'stun_attack', 'two_weapon_attack' ];
 
   combatOpts.forEach(combat_opt => {
     on(`change:${combat_opt} change:sneak_attack_dice change:repeating_weapons change:level change:level2` , function () {
@@ -2595,6 +2601,7 @@
               const press_attack = parseInt(values.press_attack) || 0;
               const strong_attack = parseInt(values.strong_attack) || 0;
               const stun_attack = parseInt(values.stun_attack) || 0;
+              const two_weapon_attack = parseInt(values.two_weapon_attack) || 0;
 
               output['beserk_attack_enabled'] = beserk_attack;
               output['cleave_attack_enabled'] = cleave_attack;
@@ -2604,6 +2611,7 @@
               output['press_attack_enabled'] = press_attack;
               output['strong_attack_enabled'] = strong_attack;
               output['stun_attack_enabled'] = stun_attack;
+              output['two_weapon_attack_enabled'] = two_weapon_attack;
 
               ids.forEach(id => {
 

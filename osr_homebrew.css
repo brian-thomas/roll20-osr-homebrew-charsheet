@@ -401,6 +401,7 @@ input[type=checkbox], input[type=radio] {
 		margin-left: 3px;
 		margin-right: 3px;
 }
+
 input[type=checkbox]:checked, input[type=radio]:checked {
     background-color:#800;
     border-left-color:#06F;
@@ -821,6 +822,11 @@ input.sheet-is_npc:not(:checked) ~ div.sheet-section-pc
 }
 
 input.sheet-multiclass_enabled:checked ~ div.sheet-section-multiclass
+{
+	display: block;
+}
+
+input.sheet-two_weapon_attack_enabled:checked ~ div.sheet-section-two_weapon_master
 {
 	display: block;
 }
