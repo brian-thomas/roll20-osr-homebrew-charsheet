@@ -1061,6 +1061,10 @@
               <span class="sheet-weapon-param-name sheet-bold-font">Cleave Attack</span>
             </div>
 
+            <div class="sheet-disarm_attack_section">
+              <span class="sheet-weapon-param-name sheet-bold-font">Disarm Attack</span>
+            </div>
+
             <div class="sheet-great_cleave_attack_section">
               <span class="sheet-weapon-param-name sheet-bold-font">Great Cleave Attack</span>
             </div>
@@ -1083,6 +1087,7 @@
             <div class="sheet-inline-flex">
               <input type="checkbox" class="sheet-weapon_beserk_attack_enabled" name="attr_weapon_beserk_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_cleave_attack_enabled" name="attr_weapon_cleave_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-weapon_disarm_attack_enabled" name="attr_weapon_disarm_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_great_cleave_attack_enabled" name="attr_weapon_great_cleave_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_defense_attack_enabled" name="attr_weapon_defense_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_press_attack_enabled" name="attr_weapon_press_attack_enabled" value="1" hidden="true"/>
@@ -1182,6 +1187,7 @@
                         value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{weapon_attack_bonus}]]}} {{fumble=[[4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Force 1 step retreat on hit. -4 AC next round.}}"></button>
               </div>
               <div class="sheet-weapon_defense_attack_section">
+
                 <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_defense_attack"
                         value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Defensive Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] -4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }} {{special=+2 AC next round.}}"></button>
               </div>
@@ -1196,6 +1202,11 @@
     	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{critical=[[19 + @{weapon_bonus}]]}} {{fumble=[[2+@{weapon_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]]  ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]] ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + [[@{weapon_attack_bonus}/2]] [Dam] }} {{special=-2 AC for next round}}"></button>
               </div>
 
+              <div class="sheet-weapon_disarm_attack_section">
+                <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_disarm_attack"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Disarm Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4 ]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Force 1 step retreat on hit. -4 AC next round.}}"></button>
+              </div>
+
               <div class="sheet-weapon_great_cleave_attack_section">
                 <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_great_cleave_attack"
     	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Great Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{critical=[[19 + @{weapon_bonus}]]}} {{fumble=[[2+@{weapon_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}]]  ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}]] ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_attack_bonus} [Dam] }} {{special=-4 AC for next round}}"></button>
@@ -1203,17 +1214,17 @@
 
               <div class="sheet-weapon_strong_attack_section">
                 <button class="sheet-attack-button sheet-green-border" type="roll" name="roll_strong_attack"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b> Stun Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20-4 + [[@{weapon_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus}]]}} {{fumble=[[2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20-4 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam} + @{weapon_dam_bonus} [Dam] }} {{special=-4 AC for next round}}"></button>
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b> Stun Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] -4 ]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20-4 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam} + @{weapon_dam_bonus} [Dam] }} {{special=-4 AC for next round}}"></button>
               </div>
 
               <div class="sheet-weapon_stun_attack_section">
                 <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_stun_attack"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Stun Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 -4 + [[@{weapon_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus}]]}} {{fumble=[[2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 -4 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Target STR save vs damage or stun 1 rnd. -4 AC next round.}}"></button>
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Stun Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] -4 ]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 -4 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Target STR save vs damage or stun 1 rnd. -4 AC next round.}}"></button>
               </div>
 
               <div class="sheet-weapon_sneak_attack_section">
                 <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_sneak_attack"
-    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_sneak_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_sneak_attack_bonus}]]}} {{fumble=[[2+@{weapon_sneak_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam}]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} + @{weapon_sneak_attack_dam} ]]}} {{math=1d20 + @{weapon_sneak_attack_bonus} [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_sneak_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_sneak_attack_bonus}]]}} {{fumble=[[-4+@{weapon_sneak_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam}]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} + @{weapon_sneak_attack_dam} ]]}} {{math=1d20 + @{weapon_sneak_attack_bonus} [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
               </div>
 
             </div>
