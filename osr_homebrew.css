@@ -826,6 +826,7 @@ input.sheet-multiclass_enabled:checked ~ div.sheet-section-multiclass
 	display: block;
 }
 
+input.sheet-cleave_attack_enabled2:checked ~ div.sheet-section-great_cleave,
 input.sheet-two_weapon_attack_enabled:checked ~ div.sheet-section-two_weapon_master
 {
 	display: block;

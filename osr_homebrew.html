@@ -968,7 +968,7 @@
                 <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_cleave_attack" value="1"/>
                   <span class="ability-check-label">Cleave</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB/2 -&gt; Dam, Attack adj foe on kill, AC-2)</span>
+                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB/2 -&gt; Dam, Attack adj foe on kill, AC-4)</span>
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
@@ -977,7 +977,8 @@
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Force target to drop weapon on hit, AB-4, AC-4)</span>
                 </div>
 
-                <div class="sheet-flex sheet-bottom-padding">
+                <input type="checkbox" class="sheet-cleave_attack_enabled2" name="attr_cleave_attack_enabled2" value="1" hidden="true"/>
+                <div class="sheet-section-great_cleave sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_great_cleave_attack" value="1"/>
                   <span class="ability-check-label">Great Cleave</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB -&gt; Dam, Attack adj foe on kill, AC-4)</span>
@@ -1207,7 +1208,7 @@
 
               <div class="sheet-weapon_cleave_attack_section">
                 <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_cleave_attack"
-    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{critical=[[19 + @{weapon_bonus}]]}} {{fumble=[[2+@{weapon_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]]  ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]] ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + [[@{weapon_attack_bonus}/2]] [Dam] }} {{special=-2 AC for next round}}"></button>
+    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{critical=[[19 + @{weapon_bonus}]]}} {{fumble=[[2+@{weapon_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]]  ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]] ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + [[@{weapon_attack_bonus}/2]] [Dam] }} {{special=-4 AC for next round}}"></button>
               </div>
 
               <div class="sheet-weapon_disarm_attack_section">
@@ -2604,9 +2605,10 @@
               const two_weapon_attack = parseInt(values.two_weapon_attack) || 0;
 
               output['beserk_attack_enabled'] = beserk_attack;
-              output['cleave_attack_enabled'] = cleave_attack;
+              output['cleave_attack_enabled'] = cleave_attack && !great_cleave_attack;
+              output['cleave_attack_enabled2'] = cleave_attack;
               output['disarm_attack_enabled'] = disarm_attack;
-              output['great_cleave_attack_enabled'] = great_cleave_attack;
+              output['great_cleave_attack_enabled'] = great_cleave_attack && cleave_attack;
               output['defense_attack_enabled'] = defensive_attack;
               output['press_attack_enabled'] = press_attack;
               output['strong_attack_enabled'] = strong_attack;
@@ -2632,9 +2634,9 @@
 
                   // apply new properties to weapon
                   output['repeating_weapons_' + id + '_weapon_beserk_attack_enabled'] = beserk_attack;
-                  output['repeating_weapons_' + id + '_weapon_cleave_attack_enabled'] = cleave_attack;
+                  output['repeating_weapons_' + id + '_weapon_cleave_attack_enabled'] = cleave_attack && !great_cleave_attack;
                   output['repeating_weapons_' + id + '_weapon_disarm_attack_enabled'] = disarm_attack;
-                  output['repeating_weapons_' + id + '_weapon_great_cleave_attack_enabled'] = great_cleave_attack;
+                  output['repeating_weapons_' + id + '_weapon_great_cleave_attack_enabled'] = great_cleave_attack && cleave_attack;
                   output['repeating_weapons_' + id + '_weapon_defense_attack_enabled'] = defensive_attack;
                   output['repeating_weapons_' + id + '_weapon_press_attack_enabled'] = press_attack;
                   output['repeating_weapons_' + id + '_weapon_strong_attack_enabled'] = strong_attack;
