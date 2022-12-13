@@ -960,7 +960,7 @@
                 <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_beserk_attack" value="1"/>
                   <span class="ability-check-label sheet-flex-between">Beserk</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB +3+Fghtr/4, Dam +3+Fghtr/4, No Retreat, Will to Stop)</span>
+                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB +3+Fghtr/4, Dam +3+Fghtr/4, No Retreating, Will to Stop, AC-2)</span>
                 </div>
               </div>
 
@@ -1104,7 +1104,7 @@
               <input type="checkbox" class="sheet-weapon_stun_attack_enabled" name="attr_weapon_stun_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_sneak_attack_enabled" name="attr_weapon_sneak_attack_enabled" value="1" hidden="true"/>
 
-              <input name="attr_weapon_sneak_attack_bonus" value="[[@{sneak_attack_skill}+[[@{weapon_bonus}]]-[[@{weapon_notches}]]]]" hidden="true"/>
+              <input name="attr_weapon_sneak_attack_bonus" value="@{sneak_attack_skill} + @{weapon_bonus} - @{weapon_notches}" hidden="true"/>
               <input name="attr_weapon_sneak_attack_dam" value="0" hidden="true"/>
 
               <select class="sheet-weapon-notches" name="attr_weapon_notches">
@@ -1117,13 +1117,13 @@
 
               <input type="number" name="attr_weapon_bonus" class="weapon-param sheet-purple-border" value="0"/>
 
-      	      <select class="weapon-param" name="attr_weapon_type">
+      	      <select class="weapon-param" name="attr_weapon_attk_type">
       	        <option selected="selected" value="@{melee_ab}">Melee</option>
       	        <option value="@{ranged_ab}">Ranged</option>
       	        <option value="@{unarmed_ab}">Unarmed</option>
       	      </select>
 
-              <input type="number" name="attr_weapon_attack_bonus" class="weapon-param inactive-color" value="[[@{weapon_type}+[[@{weapon_bonus}]]-[[@{weapon_notches}]]]]" disabled="true"/>
+              <input type="number" name="attr_weapon_attack_bonus" class="weapon-param inactive-color" value="@{weapon_attk_type}+ @{weapon_bonus} - @{weapon_notches}" disabled="true"/>
 
               <select class="sheet-weapon-param" name="attr_weapon_dam_die">
                 <option selected="selected" value="1d2">1d2</option>
@@ -1203,7 +1203,7 @@
 
               <div class="sheet-weapon_beserk_attack_section">
                 <button class="sheet-attack-button sheet-yellow-border" type="roll" name="roll_beserk_attack"
-    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Beserk Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + [[@{beserk_attack_mod}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus} + [[@{beserk_attack_mod}]] ]]}} {{fumble=[[2+@{weapon_attack_bonus} + [[@{beserk_attack_mod}]] ]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{beserk_attack_mod} ]]}}   {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{beserk_attack_mod} ]]}}  {{math=1d20 + [[@{weapon_attack_bonus}]] + @{beserk_attack_mod} [Attk], @{weapon_dam} + @{weapon_dam_bonus} + @{beserk_attack_mod} [Dam] }} {{special=Will vs DC 12 to stop. No Retreat.}}"></button>
+    	                  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Beserk Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + [[@{beserk_attack_mod}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus} + [[@{beserk_attack_mod}]] ]]}} {{fumble=[[2+@{weapon_attack_bonus} + [[@{beserk_attack_mod}]] ]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{beserk_attack_mod} ]]}}   {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{beserk_attack_mod} ]]}}  {{math=1d20 + [[@{weapon_attack_bonus}]] + @{beserk_attack_mod} [Attk], @{weapon_dam} + @{weapon_dam_bonus} + @{beserk_attack_mod} [Dam] }} {{special=Will vs DC 12 to stop. No Retreat. AC-2 for next rnd.}}"></button>
               </div>
 
               <div class="sheet-weapon_cleave_attack_section">
@@ -2668,6 +2668,44 @@
           });
       });
     });
+  });
+
+  // Add basic HTH attacks in repeating_weapons
+  on(`change:two_weapon_attack`, () => {
+  //	add_weapon({name: "Fist", attk_type: "Unarmed", dam_die: "1d2", dam_type: "Bludgeoning"});
+
+    console.error("CALLED UPDATE of HTH weapons")
+
+    /*
+  var add_weapon = function(weapon) {
+    getSectionIDs('repeating_weapons', function (ids) {
+      const fieldnames = [];
+      ids.forEach(id => {
+            fieldnames.push('repeating_weapons_' + id + '_weapon_sneak_attack_dam');
+            fieldnames.push('repeating_weapons_' + id + '_weapon_dam_die');
+            fieldnames.push('repeating_weapons_' + id + '_weapon_notches');
+        });
+        var keys = let keys weapon;
+        getAttrs([...fieldnames, 'sneak_attack_dice'], function (values) {
+
+        });
+
+      });
+    });
+
+    */
+    /*
+    var newrowid = generateRowID();
+    var newrow = {};
+
+    newrow["repeating_weapons_" + newrowid + "_weapon_name"] = weapon["name"];
+    newrow["repeating_weapons_" + newrowid + "_weapon_attk_type"] = weapon["attk_type"];
+    newrow["repeating_weapons_" + newrowid + "_weapon_dam_type"] = weapon["dam_type"];
+    newrow["repeating_weapons_" + newrowid + "_weapon_dam_die"] = weapon["dam_die"];
+
+    setAttrs(newrow);
+    */
+
   });
 
   const armor_enc = { 'scale': 1, 'chain' : 1, 'half_plate': 1, 'plate': 2 }
