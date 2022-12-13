@@ -613,6 +613,18 @@ input[type=number].sheet-npc-ability-value-wide
 	display: block;
 }
 
+.sheet-ability-check-sm-value,
+input[type=number].ability-check-sm-value
+{
+  width: 20px;
+  height: 20px;
+  align-self: auto;
+  font-size: 14px;
+  text-align: center;
+  display: block;
+  margin: 3px auto;
+}
+
 .sheet-npc-ability-check,
 label.sheet-npc-ability-check,
 input[type=number].sheet-npc-ability-check
@@ -1122,6 +1134,7 @@ div.sheet-press_attack_section,
 div.sheet-defense_attack_section,
 div.sheet-beserk_attack_section,
 div.sheet-cleave_attack_section,
+div.sheet-disarm_attack_section,
 div.sheet-great_cleave_attack_section,
 div.sheet-strong_attack_section,
 div.sheet-stun_attack_section,
@@ -1130,6 +1143,7 @@ div.sheet-weapon_press_attack_section,
 div.sheet-weapon_defense_attack_section,
 div.sheet-weapon_beserk_attack_section,
 div.sheet-weapon_cleave_attack_section,
+div.sheet-weapon_disarm_attack_section,
 div.sheet-weapon_great_cleave_attack_section,
 div.sheet-weapon_sneak_attack_section,
 div.sheet-weapon_strong_attack_section,
@@ -1142,6 +1156,7 @@ input.sheet-press_attack_enabled:checked ~ div.sheet-press_attack_section,
 input.sheet-defense_attack_enabled:checked ~ div.sheet-defense_attack_section,
 input.sheet-beserk_attack_enabled:checked ~ div.sheet-beserk_attack_section,
 input.sheet-cleave_attack_enabled:checked ~ div.sheet-cleave_attack_section,
+input.sheet-disarm_attack_enabled:checked ~ div.sheet-disarm_attack_section,
 input.sheet-great_cleave_attack_enabled:checked ~ div.sheet-great_cleave_attack_section,
 input.sheet-sneak_attack_enabled:checked ~ div.sheet-sneak_attack_section,
 input.sheet-strong_attack_enabled:checked ~ div.sheet-strong_attack_section,
@@ -1150,6 +1165,7 @@ input.sheet-weapon_press_attack_enabled:checked ~ div.sheet-weapon_press_attack_
 input.sheet-weapon_defense_attack_enabled:checked ~ div.sheet-weapon_defense_attack_section,
 input.sheet-weapon_beserk_attack_enabled:checked ~ div.sheet-weapon_beserk_attack_section,
 input.sheet-weapon_cleave_attack_enabled:checked ~ div.sheet-weapon_cleave_attack_section,
+input.sheet-weapon_disarm_attack_enabled:checked ~ div.sheet-weapon_disarm_attack_section,
 input.sheet-weapon_great_cleave_attack_enabled:checked ~ div.sheet-weapon_great_cleave_attack_section,
 input.sheet-weapon_sneak_attack_enabled:checked ~ div.sheet-weapon_sneak_attack_section,
 input.sheet-weapon_strong_attack_enabled:checked ~ div.sheet-weapon_strong_attack_section,
