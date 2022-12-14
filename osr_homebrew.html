@@ -1033,7 +1033,7 @@
 
         <div class="sheet-thick-border">
           <h3>Weapons</h3>
-          <div class="sheet-inline-flex">
+          <div class="sheet-flex">
             <input type="checkbox" class="sheet-beserk_attack_enabled" name="attr_beserk_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-cleave_attack_enabled" name="attr_cleave_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-disarm_attack_enabled" name="attr_disarm_attack_enabled" value="1" hidden="true"/>
@@ -1045,7 +1045,8 @@
             <input type="checkbox" class="sheet-stun_attack_enabled" name="attr_stun_attack_enabled" value="1" hidden="true"/>
             <input type="number" name="attr_beserk_attack_mod" value="2" hidden="true"/>
 
-            <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font sheet-italic-font">Notches</span>
+            <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font sheet-italic-font left-pad right-pad">Notches</span>
+            <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font sheet-italic-font left-pad right-pad">Prof.</span>
             <span class="sheet-weapon-name sheet-bold-font">Name</span>
             <span class="sheet-weapon-param-name sheet-bold-font">Add. Bonus</span>
             <span class="sheet-weapon-param-select-name sheet-bold-font">Attk Type</span>
@@ -1053,41 +1054,42 @@
             <span class="sheet-weapon-param-select-name sheet-bold-font">Damage</span>
             <span class="sheet-weapon-param-select-name sheet-bold-font">Dam. Type</span>
             <span class="sheet-weapon-param-name sheet-bold-font">Dam Bonus</span>
-            <span class="sheet-weapon-param-name sheet-bold-font">Stnd. Attack</span>
+
+            <span class="sheet-weapon-param-attk-name sheet-bold-font">Stnd. Attack</span>
 
             <div class="sheet-press_attack_section">
-              <span class="sheet-weapon-param-name sheet-bold-font">Press Attack</span>
+              <span class="sheet-weapon-param-attk-name sheet-bold-font">Press Attack</span>
             </div>
             <div class="sheet-defense_attack_section">
-              <span class="sheet-weapon-param-name sheet-bold-font">Defns. Attack</span>
+              <span class="sheet-weapon-param-attk-name sheet-bold-font">Defns. Attack</span>
             </div>
 
             <div class="sheet-beserk_attack_section">
-              <span class="sheet-weapon-param-name sheet-bold-font">Beserk Attack</span>
+              <span class="sheet-weapon-param-attk-name sheet-bold-font">Beserk Attack</span>
             </div>
 
             <div class="sheet-cleave_attack_section">
-              <span class="sheet-weapon-param-name sheet-bold-font">Cleave Attack</span>
+              <span class="sheet-weapon-param-attk-name sheet-bold-font">Cleave Attack</span>
             </div>
 
             <div class="sheet-disarm_attack_section">
-              <span class="sheet-weapon-param-name sheet-bold-font">Disarm Attack</span>
+              <span class="sheet-weapon-param-attk-name sheet-bold-font">Disarm Attack</span>
             </div>
 
             <div class="sheet-great_cleave_attack_section">
-              <span class="sheet-weapon-param-name sheet-bold-font">Great Cleave Attack</span>
+              <span class="sheet-weapon-param-attk-name sheet-bold-font">Great Cleave Attack</span>
             </div>
 
             <div class="sheet-strong_attack_section">
-              <span class="sheet-weapon-param-name sheet-bold-font">Strong Attack</span>
+              <span class="sheet-weapon-param-attk-name sheet-bold-font">Strong Attack</span>
             </div>
 
             <div class="sheet-stun_attack_section">
-              <span class="sheet-weapon-param-name sheet-bold-font">Stun Attack</span>
+              <span class="sheet-weapon-param-attk-name sheet-bold-font">Stun Attack</span>
             </div>
 
             <div class="sheet-sneak_attack_section">
-              <span class="sheet-weapon-param-name sheet-bold-font">Sneak Attack</span>
+              <span class="sheet-weapon-param-attk-name sheet-bold-font">Sneak Attack</span>
             </div>
 
           </div>
@@ -1113,8 +1115,8 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
-              <input type="text" name="attr_weapon_name" class="weapon-name" data-i18n-placeholder="name"/>
-
+              <input type="checkbox" class="sheet-weapon-notches" name="attr_weapon_proficiency" value="1"/>
+              <input type="text" name="attr_weapon_name" class="weapon-name" data-i18n-placeholder="weapon name"/>
               <input type="number" name="attr_weapon_bonus" class="weapon-param sheet-purple-border" value="0"/>
 
       	      <select class="weapon-param" name="attr_weapon_attk_type">
