@@ -2670,43 +2670,62 @@
     });
   });
 
-  // Add basic HTH attacks in repeating_weapons
-  on(`change:two_weapon_attack`, () => {
-  //	add_weapon({name: "Fist", attk_type: "Unarmed", dam_die: "1d2", dam_type: "Bludgeoning"});
+  // Update basic weapon information we expect to have
+  on(`change:c_class change:c_class2 change:repeating_weapons`, () => {
 
-    console.error("CALLED UPDATE of HTH weapons")
+    // Basic HTH weapons for everyone
+     add_weapon_if_missing({name: "Fist", dam_die: "1d2", dam_type: "Bludgeoning"});
+     add_weapon_if_missing({name: "Kick", attk_type: "Unarmed", dam_die: "1d4", dam_type: "Bludgeoning"});
+     add_weapon_if_missing({name: "Grapple", attk_type: "Unarmed", dam_die: "1d2", dam_type: "Bludgeoning"});
 
-    /*
-  var add_weapon = function(weapon) {
-    getSectionIDs('repeating_weapons', function (ids) {
-      const fieldnames = [];
-      ids.forEach(id => {
-            fieldnames.push('repeating_weapons_' + id + '_weapon_sneak_attack_dam');
-            fieldnames.push('repeating_weapons_' + id + '_weapon_dam_die');
-            fieldnames.push('repeating_weapons_' + id + '_weapon_notches');
-        });
-        var keys = let keys weapon;
-        getAttrs([...fieldnames, 'sneak_attack_dice'], function (values) {
-
-        });
-
-      });
-    });
-
-    */
-    /*
-    var newrowid = generateRowID();
-    var newrow = {};
-
-    newrow["repeating_weapons_" + newrowid + "_weapon_name"] = weapon["name"];
-    newrow["repeating_weapons_" + newrowid + "_weapon_attk_type"] = weapon["attk_type"];
-    newrow["repeating_weapons_" + newrowid + "_weapon_dam_type"] = weapon["dam_type"];
-    newrow["repeating_weapons_" + newrowid + "_weapon_dam_die"] = weapon["dam_die"];
-
-    setAttrs(newrow);
-    */
+     // TODO: weapon proficiencies
 
   });
+
+  function create_weapon_obj (weapon) {
+
+    var newrowid = generateRowID();
+    var settings = {};
+
+    settings["repeating_weapons_" + newrowid + "_weapon_name"] = weapon["name"];
+    settings["repeating_weapons_" + newrowid + "_weapon_attk_type"] = "@{unarmed_ab}";
+    settings["repeating_weapons_" + newrowid + "_weapon_dam_type"] = weapon["dam_type"];
+    settings["repeating_weapons_" + newrowid + "_weapon_dam_die"] = weapon["dam_die"];
+
+    return settings;
+  }
+
+  function add_weapon_if_missing (weapon) {
+
+    var name = weapon["name"];
+
+    // SO we cannot pass stuff out of getSectionIDs or getAttrs for whatever reason.
+    // We need to cache our result in the chracter attribute (bah)
+    getSectionIDs('repeating_weapons', function (ids) {
+      // build list of weapon name references
+      const fieldnames = [];
+      ids.forEach(id => {
+         fieldnames.push('repeating_weapons_' + id + '_weapon_name');
+      });
+
+      getAttrs([...fieldnames ], function (values) {
+        // set default
+        var has_weapon = false;
+        ids.forEach(id => {
+            const weapon_name = values['repeating_weapons_' + id + '_weapon_name'];
+            // NO need to add it if we already have it in the list
+            if (weapon_name.localeCompare(name) == 0) {
+              has_weapon = true;
+            }
+        });
+
+        if (has_weapon == false) {
+          var settings = create_weapon_obj(weapon);
+          setAttrs(settings);
+        }
+      });
+    });
+  }
 
   const armor_enc = { 'scale': 1, 'chain' : 1, 'half_plate': 1, 'plate': 2 }
   const shield_enc = { 'tower_shield' : 1 }
