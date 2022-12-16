@@ -1010,6 +1010,44 @@ span.sheet-rotate
 	padding: 0;
 }
 
+.sheet-cstyle-name,
+.sheet-cstyle-opts,
+.sheet-cstyle-skills,
+.sheet-cstyle-wprof,
+span.sheet-cstyle-name,
+span.sheet-cstyle-opts,
+span.sheet-cstyle-skills,
+span.sheet-cstyle-wprof,
+input[type=text].sheet-cstyle-name,
+input[type=text].sheet-cstyle-opts,
+input[type=text].sheet-cstyle-skills,
+input[type=text].sheet-cstyle-wprof
+{
+	width: 180px;
+	font-weight: bold;
+	text-align: left;
+	font-size: 14px;
+	margin: auto 5px;
+  padding-right: 5px;
+}
+
+.sheet-cstyle-opts,
+.sheet-cstyle-wprof,
+span.sheet-cstyle-opts,
+span.sheet-cstyle-wprof,
+input[type=text].sheet-cstyle-opts,
+input[type=text].sheet-cstyle-wprof
+{
+	width: 300px;
+}
+
+.sheet-cstyle-skills,
+span.sheet-cstyle-skills,
+input[type=text].sheet-cstyle-skills
+{
+	width: 150px;
+}
+
 .sheet-weapon-name,
 span.sheet-weapon-name,
 input[type=text].sheet-weapon-name
