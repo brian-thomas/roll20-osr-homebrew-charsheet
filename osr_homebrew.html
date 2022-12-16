@@ -316,12 +316,12 @@
     <div class="sheet-header-left sheet-thin-border">
 
       <div class="sheet-inline-flex sheet-bottom-padding">
-        <span class="sheet-bold-font">Name:</span>
-        <input type="text" class="sheet-align-left sheet-info-name-long" name="attr_character_name"/>
-      </div>
-      <div class="sheet-inline-flex sheet-bottom-padding">
-          <span class="sheet-bold-font">MOVE:</span>
-          <input type="number" name="attr_movement_rate" class="sheet-inactive-color" value="0" readonly="true"/>
+        <span class="sheet-bold-font med-font centered-label">Name:</span>
+        <input type="text" class="sheet-align-left sheet-info-name-long right-pad" name="attr_character_name"/>
+        <span class="sheet-bold-font centered-label left-pad right-pad">Movement Rate:</span>
+        <input type="number" name="attr_movement_rate" class="sheet-inactive-color right-pad" value="0" readonly="true"/>
+        <span class="bold-font big-font centred-label left-pad right-pad">/</span>
+        <input type="number" name="attr_base_movement_rate" class="sheet-inactive-color" value="0" readonly="true"/>
       </div>
 
       <div class="sheet-inline-flex">
@@ -333,8 +333,7 @@
            <option value="wizard">Wizard</option>
          </select>
          <select class="sheet-info-name-sm" name="attr_level">
-           <option selected="selected" value="-1">-1</option>
-           <option value="1">0</option>
+           <option selected="selected" value="0">0</option>
            <option value="1">1</option>
            <option value="2">2</option>
            <option value="3">3</option>
@@ -1519,10 +1518,12 @@
               <span class="sheet-bold-font sheet-big-font">Encumbrance: </span>
               <input type="number" name="attr_encumbrance" class="sheet-inactive-color sheet-right-pad" value="0" readonly="true"/>
             </div>
+            <!--
             <div class="sheet-thin-border sheet-padding">
               <span class="sheet-bold-font sheet-big-font">Movement Rate: </span>
               <input type="number" name="attr_movement_rate" class="sheet-inactive-color" value="0" readonly="true"/>
             </div>
+            -->
           </div>
           <div class="sheet-thick-border">
           <h3>Inventory</h3>
@@ -2838,11 +2839,12 @@
 
         // TODO: Calculate movement
         const enc_move_factor = enc > 1 ? enc : 0;
-        var move_rate = (v.race === 'Dwarf' || v.race === 'Halfling') ? 35 : 40;
+        const base_move_rate = (v.race === 'Dwarf' || v.race === 'Halfling') ? 35 : 40;
+        var move_rate = base_move_rate;
         move_rate -= enc_move_factor > 0 ? (enc_move_factor -1) * 10 : 0;
         move_rate = move_rate > 0 ? move_rate : 0;
 
-        setAttrs( { encumbrance_points: enc_points, encumbrance: enc, movement_rate: move_rate} );
+        setAttrs( { encumbrance_points: enc_points, encumbrance: enc, base_movement_rate: base_move_rate, movement_rate: move_rate} );
       });
     });
   });

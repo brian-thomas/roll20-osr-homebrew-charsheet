@@ -91,6 +91,7 @@ input[type="radio"][readonly] {
 .sheet-small-font {
 	font-size: 10px;
 }
+
 .sheet-med-font,
 span.sheet-med-font
 {
@@ -1056,14 +1057,14 @@ input[type=text].sheet-weapon-name
 	font-weight: bold;
 	font-size: 14px;
 	text-align: left;
-	/*
-	align-items: start;
-	align-self: left;
-	margin-left: 5px;
-	margin-right: 5px;
-	padding-left: 5px;
-	padding-right: 5px;
-	*/
+}
+
+.sheet-centered-label,
+span.sheet-centered-label
+{
+	text-align: center;
+	align-content: center;
+  margin: 4px 0px 0px 0px;
 }
 
 span.sheet-weapon-name
