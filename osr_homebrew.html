@@ -2291,6 +2291,11 @@
                   setting["spellcasting_mod"] = base_int_mod + parseInt(level2/2);
                   setting["spellcasting_dc"] = base_int_mod + 10 + parseInt(level2/2);
                 }
+                else
+                if (race === 'Elven') {
+                  setting["spellcasting_mod"] = base_int_mod + 1;
+                  setting["spellcasting_dc"] = base_int_mod + 11;
+                }
 
               }
 
@@ -2434,6 +2439,8 @@
       const is_specialist = (c_class === 'specialist' || c_class2 === 'specialist');
       const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard');
 
+      const is_elf = (c_race === 'Elven');
+
       const setting = {};
 
       // calculate next level xp
@@ -2460,6 +2467,12 @@
         setting["spell_slots_l7"] = arcane_spell_slots7[wizard_level];
         setting["spell_slots_l8"] = arcane_spell_slots8[wizard_level];
         setting["spell_slots_l9"] = arcane_spell_slots9[wizard_level];
+      }
+      else
+      if (is_elf)
+      {
+        setting["spellcasting_type"] = "Arcane";
+        setting["spell_slots_l1"] = 1;
       }
       else
       if (is_cleric)
@@ -2495,11 +2508,17 @@
         setting["spell_slots_l8"] = 0;
         setting["spell_slots_l9"] = 0;
       }
+
       setting["has_cleric_powers"] = is_cleric;
 
-      // force alignment if Wizard, Cleric or Elven
-      if (c_race === 'Elven') {
+      // force alignment to Chaotic for Elf
+      if (is_elf) {
         setting["alignment"] = "Chaotic";
+        setting["spellcasting_type"] = "Arcane";
+        if (!is_wizard) {
+          // non-wizard elf may cast 1 1st level spell
+          setting["spell_slots_l1"] = 1;
+        }
       }
 
       setting['press_attack'] = is_fighter ? 1 : 0;
