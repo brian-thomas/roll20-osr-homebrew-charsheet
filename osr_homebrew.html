@@ -2260,7 +2260,8 @@
 
                 // skill points
                 // starting race skills; elves dont get any skill points to start
-                var base_race_start_skills = (race === 'Elven' ? 0 : 5) + base_int_mod;
+                // BUT everyone gets 1 skill point for their background profession, so 1/6 for Elves/Non-Elves 
+                var base_race_start_skills = (race === 'Elven' ? 1 : 6) + base_int_mod;
                 if (base_race_start_skills < 0) {
                   // prevent negative totals
                   base_race_start_skills = 0;
