@@ -1064,7 +1064,7 @@ input[type=text].sheet-cstyle-skills
 span.sheet-weapon-name,
 input[type=text].sheet-weapon-name
 {
-	width: 180px;
+	width: 140px;
 	font-weight: bold;
 	font-size: 14px;
 	text-align: left;
@@ -1085,11 +1085,10 @@ span.sheet-weapon-name
 }
 
 .sheet-weapon-param,
-.sheet-weapon-param-long,
 select.sheet-weapon-param,
+select.sheet-weapon-param-long,
 select.sheet-weapon-notches,
 input[type=text].sheet-weapon-param,
-input[type=text].sheet-weapon-param-long,
 input[type=number].sheet-weapon-param
 {
 	 display: inline-flex;
@@ -1113,15 +1112,9 @@ input[type=number].sheet-weapon-param
 	width: 34px;
 }
 
-.sheet-weapon-param-long,
-input[type=text].sheet-weapon-param-long
-{
-	text-align: left;
-  width: 40px;
-}
-
 .sheet-weapon-param-name,
 span.sheet-weapon-param-name,
+span.sheet-weapon-param-long-name,
 span.sheet-weapon-param-attk-name,
 span.sheet-weapon-param-select-name
 {
@@ -1133,6 +1126,7 @@ span.sheet-weapon-param-select-name
 }
 
 span.sheet-weapon-param-attk-name,
+span.sheet-weapon-param-select-attk-name,
 span.sheet-weapon-param-select-name
 {
 	width: 40px;
@@ -1146,7 +1140,13 @@ span.sheet-weapon-param-select-name
 select.sheet-weapon-param,
 span.sheet-weapon-param-select-name
 {
-	width: 70px;
+	width: 55px;
+}
+
+select.sheet-weapon-param-long,
+span.sheet-weapon-param-long-name
+{
+	width: 75px;
 }
 
 button[type=roll].sheet-attack-button
