@@ -1202,6 +1202,7 @@ input[type=number].sheet-yellow-border
 	border: 2px solid yellow;
 }
 
+div.sheet-charge_attack_section,
 div.sheet-press_attack_section,
 div.sheet-defense_attack_section,
 div.sheet-beserk_attack_section,
@@ -1212,6 +1213,7 @@ div.sheet-great_cleave_attack_section,
 div.sheet-strong_attack_section,
 div.sheet-stun_attack_section,
 div.sheet-sneak_attack_section,
+div.sheet-weapon_charge_attack_section,
 div.sheet-weapon_press_attack_section,
 div.sheet-weapon_defense_attack_section,
 div.sheet-weapon_beserk_attack_section,
@@ -1226,6 +1228,7 @@ div.sheet-weapon_stun_attack_section
 	display: none;
 }
 
+input.sheet-charge_attack_enabled:checked ~ div.sheet-charge_attack_section,
 input.sheet-press_attack_enabled:checked ~ div.sheet-press_attack_section,
 input.sheet-defense_attack_enabled:checked ~ div.sheet-defense_attack_section,
 input.sheet-beserk_attack_enabled:checked ~ div.sheet-beserk_attack_section,
@@ -1236,6 +1239,7 @@ input.sheet-great_cleave_attack_enabled:checked ~ div.sheet-great_cleave_attack_
 input.sheet-sneak_attack_enabled:checked ~ div.sheet-sneak_attack_section,
 input.sheet-strong_attack_enabled:checked ~ div.sheet-strong_attack_section,
 input.sheet-stun_attack_enabled:checked ~ div.sheet-stun_attack_section,
+input.sheet-weapon_charge_attack_enabled:checked ~ div.sheet-weapon_charge_attack_section,
 input.sheet-weapon_press_attack_enabled:checked ~ div.sheet-weapon_press_attack_section,
 input.sheet-weapon_defense_attack_enabled:checked ~ div.sheet-weapon_defense_attack_section,
 input.sheet-weapon_beserk_attack_enabled:checked ~ div.sheet-weapon_beserk_attack_section,
