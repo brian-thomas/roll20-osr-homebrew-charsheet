@@ -685,11 +685,10 @@
             <div class="sheet-noborder">
               <div class="sheet-thick-border">
                 <h3>Skills</h3>
-                <div class="sheet-bold-font">
+                <div class="sheet-bold-font center">
                   <input type="checkbox" class="sheet-skill-points-overspent" name="attr_skill_points_overspent" value="0" hidden="true" checked="true"/>
-
-                  <span>Skill Points Available: <input type="number" class="sheet-inactive-color" name="attr_skill_points" value="0" readonly="true"/></span>
-                  <span class="sheet-skill-points-overspend-notify">Skill Points Spent: <input type="number" class="sheet-inactive-color" name="attr_skill_points_used" value="0" readonly="true"/></span>
+                  <span>Skill Points Available: <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_skill_points" value="0" readonly="true"/></span>
+                  <span class="sheet-skill-points-overspend-notify">Skill Points Spent: <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_skill_points_used" value="0" readonly="true"/></span>
                 </div>
                 <div class="sheet-block">
                   <div class="sheet-block">
@@ -867,6 +866,10 @@
              <div class="sheet-inline">
                <div class="sheet-thick-border">
                  <h3>Languages</h3>
+                 <div class="center">
+                    <label class="italic-font centered-label"><span name="attr_max_languages_allowed"/></label>
+                    &nbsp;
+                 </div>
                  <div class="sheet-flex-between">
                    <div class="sheet-col-right">
                      <h4>Known Languages</h4>
@@ -1212,7 +1215,7 @@
               <input name="attr_weapon_dam2" value="0" hidden="true"/>
               -->
 
-              <input type="number" name="attr_weapon_dam_bonus" class="weapon-param bold-font inactive-color" value="[[@{strength_mod}+[[@{weapon_bonus}]]]]" disabled="true"/>
+              <input type="number" name="attr_weapon_dam_bonus" class="weapon-param bold-font inactive-color" value="[[@{strength_mod}+@{weapon_bonus}]]" disabled="true"/>
 
               <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_weapon_attack"
                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus}]]}} {{fumble=[[2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }}"></button>
@@ -2363,6 +2366,7 @@
         settings["unarmed_ab"] = ranged_ab;
         settings["unarmed_base_ab"] = ranged_base_ab;
       }
+
       setAttrs(settings);
     });
   });
@@ -2379,6 +2383,11 @@
 
         const checkName = abilityCheck[ability_mod];
         setting[checkName] = score + parseInt((level+level2)/2);
+
+        // set max languages here as well
+        if (ability_mod === 'intelligence_mod') {
+          setting['max_languages_allowed'] = 'Max ' + (score + 1 > 0 ? score + 1: 1) + ' languages allowed.';
+        }
 
         setAttrs(setting);
       });

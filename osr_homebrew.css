@@ -296,9 +296,11 @@ span.sheet-center
 .sheet-fill-width {
 	width: 100%;
 }
+
 .sheet-flex-simple {
 	display: flex;
 }
+
 .sheet-flex {
 	display: flex;
   align-items: start;
@@ -436,9 +438,11 @@ input[type=text].sheet-info1
 .sheet-info2 {
     width: 20%;
 }
+
 .sheet-info3 {
 	width: 32%;
 }
+
 .sheet-info4,
 label.info4
 {
@@ -502,6 +506,13 @@ select.sheet-info-name-med-sm
 {
 	margin-top: 11px;
 	margin-bottom: 11px;
+}
+
+.sheet-info-name-tiny,
+input[type=text].sheet-info-name-tiny
+{
+	text-align: left;
+	width: 8px;
 }
 
 input.sheet-info-name,
@@ -1060,6 +1071,7 @@ input[type=text].sheet-weapon-name
 }
 
 .sheet-centered-label,
+label.sheet-centered-label
 span.sheet-centered-label
 {
 	text-align: center;
@@ -1247,7 +1259,9 @@ input.sheet-weapon_stun_attack_enabled:checked ~ div.sheet-weapon_stun_attack_se
 	background: #000;
 	height: 1px;
 }
-.sheet-item-name, .sheet-container-item {
+.sheet-item-name,
+.sheet-container-item
+{
   text-align: left;
 }
 .sheet-item-dex {
