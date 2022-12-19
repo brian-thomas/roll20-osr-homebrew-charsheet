@@ -530,7 +530,7 @@
                   </div>
                   <div class="sheet-ability-column-modifier sheet-flex-between">
                     <input name="attr_intelligence_mod" type="number" value="0" class="sheet-ability-modifier inactive-color" readonly="true"/>
-                    <span class="noborder left-pad">Perception, Languages, Search, Magic Spell Casting, Skill Points</span>
+                    <span class="noborder left-pad">Perception, Languages, Search, Magic Spell Casting, Skills </span>
                   </div>
                   <div class="sheet-ability-column-roll sheet-flex">
                     <button class="sheet-ability-button" type="roll" name="roll_int_check"
@@ -686,9 +686,17 @@
               <div class="sheet-thick-border">
                 <h3>Skills</h3>
                 <div class="sheet-bold-font center">
+                  <span class="med-small-font">Points Available:
+                    <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_skill_points" value="0" readonly="true"/>
+                  </span>
                   <input type="checkbox" class="sheet-skill-points-overspent" name="attr_skill_points_overspent" value="0" hidden="true" checked="true"/>
-                  <span>Skill Points Available: <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_skill_points" value="0" readonly="true"/></span>
-                  <span class="sheet-skill-points-overspend-notify">Skill Points Spent: <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_skill_points_used" value="0" readonly="true"/></span>
+                  <span class="sheet-skill-points-overspend-notify med-small-font">Points Spent:
+                    <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_skill_points_used" value="0" readonly="true"/>
+                  </span>
+                  <input type="checkbox" class="sheet-max-skill-value-exceeded" name="attr_max_skill_value_exceeded" value="0" hidden="true" checked="true"/>
+                  <span class="sheet-max-skill-value-exceeded-notify med-small-font">Max Skill Value:
+                    <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_skill_value" value="0" readonly="true"/>
+                  </span>
                 </div>
                 <div class="sheet-block">
                   <div class="sheet-block">
@@ -2617,43 +2625,55 @@
     });
   });
 
+  // Checks for Skills, are they overspent? Have they underspent? Exceeded max bonus for a skill?
   const coreSkills = ['arcana_skill', 'architect_skill', 'armory_skill', 'athletics_skill', 'bushcraft_skill',
                       'languages_skill', 'open_door_skill', 'search_skill', 'sleight_skill', 'sneak_attack_skill',
                       'stealth_skill', 'social_skill', 'theology_skill', 'tinker_skill'];
 
   coreSkills.forEach(core_skill => {
-    on(`change:${core_skill} change:repeating_skills remove:repeating_skills`, () => {
+    on(`change:${core_skill} change:level change:level2 change:intelligence_mod change:repeating_skills remove:repeating_skills`, () => {
       // find total skill points spent
        var skill_point_total = 0;
+       var max_skill_value = 0;
 
-       // find core skills value total
-       getAttrs(coreSkills, v => {
-          skill_point_total = Object.values(v).reduce((m, w) => (m + (parseInt(w) || 0)), 0);
-          setAttrs({skill_points_used: skill_point_total});
-       });
-
-       // now look at additional (repeating_skills) skills
-       const other_skills = [];
        getSectionIDs('repeating_skills', function (ids) {
+
+         // gather up other_skills from repeating_skills
+         const other_skills = [];
          ids.forEach(id => {
            other_skills.push('repeating_skills_' + id + '_skillvalue');
          });
 
-         //getAttrs(coreSkills, v => {
-         //getAttrs([...other_skills, ...coreSkills], v => {
-         getAttrs([...other_skills, 'skill_points', 'skill_points_used'], v => {
-           var skill_points_available = parseInt(v['skill_points']);
-           var skill_point_total = parseInt(v['skill_points_used']);
-           ids.forEach( id => {
-             const skill_value = parseInt(v['repeating_skills_' + id + '_skillvalue']);
-             skill_point_total += skill_value;
-           });
+         // find skills value total
+         getAttrs([...coreSkills, ...other_skills], v => {
+            skill_point_total = Object.values(v).reduce((m, w) => (m + (parseInt(w) || 0)), 0);
+            max_skill_value = Object.values(v).reduce((m, w) => (m > (parseInt(w) || 0) ? m : (parseInt(w) || 0)), 0);
+            // cache values
+            setAttrs({skill_points_used: skill_point_total, max_skill_value: max_skill_value});
+         });
 
-           const overspent = (skill_point_total > skill_points_available ? 0 : 1);
+         // Now lets check on our spending of skill points
+         // did we 1) overspend the total allowed? 2) exceed the maxium value for a skill?
+         getAttrs(['skill_points', 'level', 'level2', 'intelligence_mod'], v => {
+           var skill_points_available = parseInt(v['skill_points']);
+           var level = parseInt(v['level']) || 0;
+           var level2 = parseInt(v['level2']) || 0;
+           var intelligence_mod = parseInt(v['intelligence_mod']) || 0;
+
+           // maximum skill value is betweeen 2 and 10 + int mod as modified by total level
+           // check for max value being exceeded
+           var max_value_allowed = 2 + level + level2 + intelligence_mod;
+           if (max_value_allowed < 2) { max_value_allowed = 2; }
+           if (max_value_allowed > 10 + intelligence_mod) { max_value_allowed = 10 + intelligence_mod; }
+           const max_value_exceeded = max_skill_value > max_value_allowed ? 0 : 1;
+
+           // check if we exceeded the sum of spending
+           const overspent = skill_point_total > skill_points_available ? 0 : 1;
 
            // update
-           setAttrs({skill_points_used: skill_point_total, skill_points_overspent: overspent});
+           setAttrs({skill_points_overspent: overspent, max_skill_value_exceeded: max_value_exceeded});
          });
+
        });
 
     });

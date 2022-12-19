@@ -92,6 +92,11 @@ input[type="radio"][readonly] {
 	font-size: 10px;
 }
 
+.sheet-med-small-font
+{
+	font-size: 11px;
+}
+
 .sheet-med-font,
 span.sheet-med-font
 {
@@ -850,6 +855,7 @@ input.sheet-skillname {
 	overflow-x: auto;
 }
 
+input.sheet-max-skill-value-exceeded[value="0"]:checked ~ span.sheet-max-skill-value-exceeded-notify,
 input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-overspend-notify
 {
 	  background: red;
