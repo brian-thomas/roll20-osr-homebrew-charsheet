@@ -937,6 +937,7 @@
         </div>
 
         <div class="sheet-thick-border">
+
           <h3>Combat Styles</h3>
           <div class="sheet-flex">
             <span class="sheet-cstyle-name">Style Name</span>
@@ -944,6 +945,7 @@
             <span class="sheet-cstyle-opts">Allowed Combat Options</span>
             <span class="sheet-cstyle-skills">Associated Skills</span>
           </div>
+
           <fieldset class="repeating_cmbt_style">
             <div class="sheet-inline-flex">
               <input type="text" name="attr_cmbt_style_name" class="cstyle-name" data-i18n-placeholder="Cmbt Style Name"/>
@@ -952,6 +954,7 @@
               <input type="text" name="attr_cmbt_style_skills" class="cstyle-skills" data-i18n-placeholder="Style assoc. skills, comma separated"/>
             </div>
           </fieldset>
+
           <div class="sheet-thin-border">
             <div class="sheet-bottom-padding">
               <h4>Combat Options</h4>
@@ -1027,11 +1030,18 @@
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
+                  <input type="checkbox" name="attr_lightning_attack" value="1"/>
+                  <span class="ability-check-label">Lightning Strike</span>
+                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(-4 AB, +4 Init)</span>
+                </div>
+
+                <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_rapid_strike_attack1" value="1"/>
                   <input type="checkbox" name="attr_rapid_strike_attack2" value="1"/>
                   <span class="ability-check-label">Rapid Strike</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Xtra Melee Attk, AC-4)</span>
                 </div>
+
                 <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_rapid_shot_attack1" value="1"/>
                   <input type="checkbox" name="attr_rapid_shot_attack2" value="1"/>
@@ -1041,6 +1051,11 @@
               </div>
 
               <div class="sheet-inline sheet-side-padding">
+                <div class="sheet-flex sheet-bottom-padding">
+                  <input type="checkbox" name="attr_shield_bash_attack" value="1"/>
+                  <span class="ability-check-label">Shield Bash</span>
+                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(May make a 2nd attack w/ shield.)</span>
+                </div>
                 <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_strong_attack" value="1"/>
                   <span class="ability-check-label">Strong</span>
@@ -1085,6 +1100,7 @@
             <input type="checkbox" class="sheet-great_cleave_attack_enabled" name="attr_great_cleave_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-feint_attack_enabled" name="attr_feint_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-press_attack_enabled" name="attr_press_attack_enabled" value="1" hidden="true"/>
+            <input type="checkbox" class="sheet-lightning_attack_enabled" name="attr_lightning_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-sneak_attack_enabled" name="attr_sneak_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-strong_attack_enabled" name="attr_strong_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-stun_attack_enabled" name="attr_stun_attack_enabled" value="1" hidden="true"/>
@@ -1134,6 +1150,10 @@
               <span class="sheet-weapon-param-attk-name sheet-bold-font">Feint Attack</span>
             </div>
 
+            <div class="sheet-lightning_attack_section">
+              <span class="sheet-weapon-param-attk-name sheet-bold-font">Lightning Strike</span>
+            </div>
+
             <div class="sheet-strong_attack_section">
               <span class="sheet-weapon-param-attk-name sheet-bold-font">Strong Attack</span>
             </div>
@@ -1158,6 +1178,7 @@
               <input type="checkbox" class="sheet-weapon_great_cleave_attack_enabled" name="attr_weapon_great_cleave_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_feint_attack_enabled" name="attr_weapon_feint_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_press_attack_enabled" name="attr_weapon_press_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-weapon_lightning_attack_enabled" name="attr_weapon_lightning_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_strong_attack_enabled" name="attr_weapon_strong_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_stun_attack_enabled" name="attr_weapon_stun_attack_enabled" value="1" hidden="true"/>
               <input type="checkbox" class="sheet-weapon_sneak_attack_enabled" name="attr_weapon_sneak_attack_enabled" value="1" hidden="true"/>
@@ -1258,8 +1279,8 @@
                 <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_press_attack"
                         value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{weapon_attack_bonus}]]}} {{fumble=[[4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Force 1 step retreat on hit. -4 AC next round.}}"></button>
               </div>
-              <div class="sheet-weapon_defense_attack_section">
 
+              <div class="sheet-weapon_defense_attack_section">
                 <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_defense_attack"
                         value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Defensive Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] -4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }} {{special=+2 AC next round.}}"></button>
               </div>
@@ -1287,6 +1308,11 @@
               <div class="sheet-weapon_feint_attack_section">
                 <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_feint_attack"
                         value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Feint Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 4 ]]}} {{critical=[[23 + @{weapon_attack_bonus}]]}} {{fumble=[[6+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Attack occurs at -4 Initiative.}}"></button>
+              </div>
+
+              <div class="sheet-weapon_lightning_attack_section">
+                <button class="sheet-attack-button sheet-yellow-border" type="roll" name="roll_lightning_attack"
+                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Lightning Strike</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4 ]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] - 4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Attack earlier, Init +4. AB-4.}}"></button>
               </div>
 
               <div class="sheet-weapon_strong_attack_section">
@@ -2695,7 +2721,7 @@
   });
 
   // Keep weapons up to date
-  const combatOpts = ['charge_attack', 'press_attack', 'defensive_attack', 'beserk_attack', 'cleave_attack', 'disarm_attack', 'feint_attack', 'great_cleave_attack', 'strong_attack', 'stun_attack', 'two_weapon_attack' ];
+  const combatOpts = ['charge_attack', 'press_attack', 'defensive_attack', 'beserk_attack', 'cleave_attack', 'disarm_attack', 'feint_attack', 'great_cleave_attack', 'lightning_attack', 'strong_attack', 'stun_attack', 'two_weapon_attack' ];
 
   combatOpts.forEach(combat_opt => {
     on(`change:${combat_opt} change:sneak_attack_dice change:repeating_weapons change:level change:level2` , function () {
@@ -2727,6 +2753,7 @@
               const disarm_attack = parseInt(values.disarm_attack) || 0;
               const feint_attack = parseInt(values.feint_attack) || 0;
               const great_cleave_attack = parseInt(values.great_cleave_attack) || 0;
+              const lightning_attack = parseInt(values.lightning_attack) || 0;
 
               const charge_attack = parseInt(values.charge_attack) || 0;
               const press_attack = parseInt(values.press_attack) || 0;
@@ -2740,6 +2767,7 @@
               output['defense_attack_enabled'] = defensive_attack;
               output['disarm_attack_enabled'] = disarm_attack;
               output['feint_attack_enabled'] = feint_attack;
+              output['lightning_attack_enabled'] = lightning_attack;
               output['great_cleave_attack_enabled'] = great_cleave_attack && cleave_attack;
               output['charge_attack_enabled'] = charge_attack;
               output['press_attack_enabled'] = press_attack;
@@ -2791,17 +2819,19 @@
 
                   // apply new properties to weapon
                   output['repeating_weapons_' + id + '_weapon_beserk_attack_enabled'] = beserk_attack;
+                  output['repeating_weapons_' + id + '_weapon_charge_attack_enabled'] = charge_attack;
                   output['repeating_weapons_' + id + '_weapon_cleave_attack_enabled'] = cleave_attack && !great_cleave_attack;
                   output['repeating_weapons_' + id + '_weapon_defense_attack_enabled'] = defensive_attack;
                   output['repeating_weapons_' + id + '_weapon_disarm_attack_enabled'] = disarm_attack;
                   output['repeating_weapons_' + id + '_weapon_feint_attack_enabled'] = feint_attack;
                   output['repeating_weapons_' + id + '_weapon_great_cleave_attack_enabled'] = great_cleave_attack && cleave_attack;
-                  output['repeating_weapons_' + id + '_weapon_charge_attack_enabled'] = charge_attack;
+                  output['repeating_weapons_' + id + '_weapon_lightning_attack_enabled'] = lightning_attack;
                   output['repeating_weapons_' + id + '_weapon_press_attack_enabled'] = press_attack;
                   output['repeating_weapons_' + id + '_weapon_strong_attack_enabled'] = strong_attack;
                   output['repeating_weapons_' + id + '_weapon_stun_attack_enabled'] = stun_attack;
                   output['repeating_weapons_' + id + '_weapon_sneak_attack_dam'] = sneak_dam;
                   output['repeating_weapons_' + id + '_weapon_sneak_attack_enabled'] = sneak_dice > 0 ? 1 : 0;
+
                   output['repeating_weapons_' + id + '_weapon_attack_bonus'] = weapon_attack_bonus;
                   output['repeating_weapons_' + id + '_weapon_dam'] = weapon_dam;
 
