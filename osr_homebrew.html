@@ -2314,6 +2314,7 @@
               const ability_bonus_name = `${ability}_bonus`;
               const ability_bonus = parseInt(v[ability_bonus_name]) || 0;
               const score = (parseInt(v[ability]) || 10) + ability_bonus;
+              // const statrank = [1,3,5,7,9,11,13,15,17,19,21,23,25].findIndex(rank => score <= rank);
               const statrank = [1,3,5,7,9,11,13,15,17,19,21,23,25].findIndex(rank => score <= rank);
 
               const level = parseInt(v.level) || 0;
@@ -2554,7 +2555,16 @@
       if (is_elf)
       {
         setting["spellcasting_type"] = "Arcane";
-        setting["spell_slots_l1"] = 1;
+        setting["alignment"] = "Chaotic";
+        setting["spell_slots_l1"] = 1 + parseInt((level + level2)/4);
+        setting["spell_slots_l2"] = 0;
+        setting["spell_slots_l3"] = 0;
+        setting["spell_slots_l4"] = 0;
+        setting["spell_slots_l5"] = 0;
+        setting["spell_slots_l6"] = 0;
+        setting["spell_slots_l7"] = 0;
+        setting["spell_slots_l8"] = 0;
+        setting["spell_slots_l9"] = 0;
       }
       else
       if (is_cleric)
@@ -2594,13 +2604,16 @@
       setting["has_cleric_powers"] = is_cleric;
       setting["can_cast_magic"] = is_wizard || is_cleric || is_elf;
 
-      // force alignment to Chaotic for Elf
-      if (is_elf) {
-        setting["alignment"] = "Chaotic";
-        setting["spellcasting_type"] = "Arcane";
-        if (!is_wizard) {
-          // non-wizard elf may cast 1 1st level spell
-          setting["spell_slots_l1"] = 1;
+      // Check that we have not gimped low level slots
+      // for elf multiclassed w/ wizard
+      if (is_elf && is_wizard) {
+        const wizard_level = (c_class === 'wizard' ? level : level2);
+        var elf_slots1 = 1 + parseInt((level + level2)/4);
+        if (arcane_spell_slots1[wizard_level] < elf_slots1) {
+           setting["spell_slots_l1"] = elf_slots1;
+        }
+        else {
+           setting["spell_slots_l1"] = arcane_spell_slots1[wizard_level];
         }
       }
 
