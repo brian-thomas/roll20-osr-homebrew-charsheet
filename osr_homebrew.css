@@ -910,6 +910,17 @@ input.sheet-is_npc_attack:not(:checked) ~ div.sheet-section-npc-show-non-attack
 }
 
 /* Spells */
+
+div.sheet-show-spellbook
+{
+	display: none;
+}
+
+input.sheet-can-cast-magic:checked ~ div.sheet-show-spellbook
+{
+  display: block;
+}
+
 .sheet-spells .repitem {
     margin: 0;
     width: 49.8%;

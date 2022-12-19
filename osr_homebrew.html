@@ -1430,18 +1430,20 @@
           <span class="sheet-spacer">&nbsp;</span>
 
           <div class="sheet-thin-border sheet-spells">
-              <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="all" checked/>
-              <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="1"/>
-              <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="2"/>
-              <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="3"/>
-              <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="4"/>
-              <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="5"/>
-              <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="6"/>
-              <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="7"/>
-              <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="8"/>
-              <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="9"/>
-              <h4>Spellbook</h4>
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="all" checked/>
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="1"/>
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="2"/>
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="3"/>
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="4"/>
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="5"/>
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="6"/>
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="7"/>
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="8"/>
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="9"/>
+            <h4>Spellbook</h4>
 
+            <input type="checkbox" name="attr_can_cast_magic" class="sheet-can-cast-magic" value="1" hidden="True">
+            <div class="sheet-show-spellbook">
               <div class="sheet-spells-per-level sheet-flex">
                 <div class="sheet-flex">
                   <span class="sheet-italic-font sheet-big-font heet-side-padding">Slots / Level</span>
@@ -1576,11 +1578,12 @@
                  <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
                </div>
              </fieldset>
-          </div>
-        </div>
-      </div>
+           </div>
+         </div>
+       </div>
+     </div>
 
-      <div class="sheet-section-inventory">
+     <div class="sheet-section-inventory">
         <span class="sheet-spacer">&nbsp;</span>
         <div class="sheet-block">
           <div class="sheet-flex-between sheet-bottom-padding">
@@ -2589,6 +2592,7 @@
       }
 
       setting["has_cleric_powers"] = is_cleric;
+      setting["can_cast_magic"] = is_wizard || is_cleric || is_elf;
 
       // force alignment to Chaotic for Elf
       if (is_elf) {
