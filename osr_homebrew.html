@@ -2359,12 +2359,12 @@
 
                 // arcane spellcasting
                 if (c_class === 'wizard') {
-                  setting["spellcasting_mod"] = base_int_mod + parseInt(level/2);
+                  setting["spellcasting_mod"] = base_int_mod + 1 + parseInt(level/2);
                   setting["spellcasting_dc"] = base_int_mod + 10 + parseInt(level/2);
                 }
                 else
                 if (c_class2 === 'wizard') {
-                  setting["spellcasting_mod"] = base_int_mod + parseInt(level2/2);
+                  setting["spellcasting_mod"] = base_int_mod + 1 + parseInt(level2/2);
                   setting["spellcasting_dc"] = base_int_mod + 10 + parseInt(level2/2);
                 }
                 else
@@ -2381,12 +2381,12 @@
 
                 // divine spell casting
                 if (c_class === 'cleric') {
-                  setting["spellcasting_mod"] = base_wis_mod + parseInt(level/2);
+                  setting["spellcasting_mod"] = base_wis_mod + 1 + parseInt(level/2);
                   setting["spellcasting_dc"] = base_wis_mod + 10 + parseInt(level/2);
                 }
                 else
                 if (c_class2 === 'cleric') {
-                  setting["spellcasting_mod"] = base_wis_mod + parseInt(level2/2);
+                  setting["spellcasting_mod"] = base_wis_mod + 1 + parseInt(level2/2);
                   setting["spellcasting_dc"] = base_wis_mod + 10 + parseInt(level2/2);
                 }
 
