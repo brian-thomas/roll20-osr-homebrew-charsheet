@@ -1041,7 +1041,7 @@ input[type=text].sheet-cstyle-opts,
 input[type=text].sheet-cstyle-skills,
 input[type=text].sheet-cstyle-wprof
 {
-	width: 180px;
+	width: 200px;
 	font-weight: bold;
 	text-align: left;
 	font-size: 14px;
@@ -1056,7 +1056,7 @@ span.sheet-cstyle-wprof,
 input[type=text].sheet-cstyle-opts,
 input[type=text].sheet-cstyle-wprof
 {
-	width: 300px;
+	width: 345px;
 }
 
 .sheet-cstyle-skills,
