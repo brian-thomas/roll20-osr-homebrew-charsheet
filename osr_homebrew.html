@@ -695,7 +695,7 @@
                   </span>
                   <input type="checkbox" class="sheet-max-skill-value-exceeded" name="attr_max_skill_value_exceeded" value="0" hidden="true" checked="true"/>
                   <span class="sheet-max-skill-value-exceeded-notify med-small-font">Max Skill Value:
-                    <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_skill_value" value="0" readonly="true"/>
+                    <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_skill_value_allowed" value="0" readonly="true"/>
                   </span>
                 </div>
                 <div class="sheet-block">
@@ -2651,7 +2651,7 @@
             skill_point_total = Object.values(v).reduce((m, w) => (m + (parseInt(w) || 0)), 0);
             max_skill_value = Object.values(v).reduce((m, w) => (m > (parseInt(w) || 0) ? m : (parseInt(w) || 0)), 0);
             // cache values
-            setAttrs({skill_points_used: skill_point_total, max_skill_value: max_skill_value});
+            setAttrs({skill_points_used: skill_point_total});
          });
 
          // Now lets check on our spending of skill points
@@ -2673,7 +2673,7 @@
            const overspent = skill_point_total > skill_points_available ? 0 : 1;
 
            // update
-           setAttrs({skill_points_overspent: overspent, max_skill_value_exceeded: max_value_exceeded});
+           setAttrs({skill_points_overspent: overspent, max_skill_value_allowed: max_value_allowed, max_skill_value_exceeded: max_value_exceeded});
          });
 
        });
