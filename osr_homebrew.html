@@ -2310,8 +2310,6 @@
   const raceMods = { Human: "", Dwarf: "constitution", Halfling: "dexterity", Elven : "charisma:intelligence:dexterity" };
   const abilityNames = ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom'];
   const bonusNames = [ 'strength_bonus', 'dexterity_bonus', 'constitution_bonus', 'intelligence_bonus', 'wisdom_bonus', 'charisma_bonus' ];
-
-  //['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom'].forEach( ability => {
   abilityNames.forEach( ability => {
     on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:${ability} change:${ability}_bonus`, () => {
           getAttrs([ability, ...bonusNames, 'class', 'class2', 'race', 'level', 'level2', 'skill_points'], v => {
@@ -2335,6 +2333,12 @@
               if (race === 'Elven') {
                 if (ability_mod === 'wisdom_mod' || ability_mod === 'constitution_mod') {
                   setting[ability_mod] = parseInt(setting[ability_mod])-1;
+                }
+              }
+              // nuther hack, Halfings get +2 Dex mod
+              if (race === 'Halfling') {
+                if (ability_mod === 'dexterity_mod') {
+                  setting[ability_mod] = parseInt(setting[ability_mod])+1;
                 }
               }
 
@@ -2414,7 +2418,7 @@
                 setting["ranged_base_ab"] = base_dex_mod;
                 var ranged_ab = base_dex_mod + 1 + (c_class === 'fighter' ? parseInt((level+1)/2) : (c_class2 === 'fighter' ? parseInt((level2+1)/2) : 0));
                 // halflings get +2 ranged AB
-                setting["ranged_ab"] = ranged_ab + (race === 'Halfling' ? 2 : 0);
+                setting["ranged_ab"] = ranged_ab + (race === 'Halfling' ? 1 : 0);
 
                 // for ready inventory slots
                 setting["dex-show-slots"] = score;
