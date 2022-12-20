@@ -947,6 +947,11 @@
         <div class="sheet-thick-border">
 
           <h3>Combat Styles</h3>
+          <div class="center">
+            <span class="med-font italic-font">Combat Styles Allowed:
+              <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_cmbt_styles_allowed" value="0" readonly="true"/>
+            </span>
+          </div>
           <div class="sheet-flex">
             <span class="sheet-cstyle-name">Style Name</span>
             <span class="sheet-cstyle-wprof">Style Weapon Proficiencies</span>
@@ -955,9 +960,10 @@
 
           <fieldset class="repeating_cmbt_style">
             <div class="sheet-inline-flex">
-              <input type="text" name="attr_cmbt_style_name" class="cstyle-name" data-i18n-placeholder="Cmbt Style Name"/>
-              <input type="text" name="attr_cmbt_style_weapons" class="cstyle-wprof" data-i18n-placeholder="Style weapons, comma separated"/>
-              <input type="text" name="attr_cmbt_style_opts" class="cstyle-opts" data-i18n-placeholder="Allowed style combat opts, comma sep."/>
+              <input type="checkbox" name="attr_foobar" value="1" hidden="true"/>
+              <input type="text" name="attr_cmbt_style_name" class="cstyle-name" value="" data-i18n-placeholder="Cmbt Style Name"/>
+              <input type="text" name="attr_cmbt_style_weapons" class="cstyle-wprof" value="" data-i18n-placeholder="Style weapons, comma separated"/>
+              <input type="text" name="attr_cmbt_style_opts" class="cstyle-opts" value="" data-i18n-placeholder="Allowed style combat opts, comma sep."/>
             </div>
           </fieldset>
 
@@ -2314,7 +2320,6 @@
               const ability_bonus_name = `${ability}_bonus`;
               const ability_bonus = parseInt(v[ability_bonus_name]) || 0;
               const score = (parseInt(v[ability]) || 10) + ability_bonus;
-              // const statrank = [1,3,5,7,9,11,13,15,17,19,21,23,25].findIndex(rank => score <= rank);
               const statrank = [1,3,5,8,11,14,17,19,21,23,25,27,29,31].findIndex(rank => score <= rank);
 
               const level = parseInt(v.level) || 0;
@@ -2407,7 +2412,9 @@
                 setting["initiative"] = base_dex_mod;
                 setting["init_extra"] = base_dex_f;
                 setting["ranged_base_ab"] = base_dex_mod;
-                setting["ranged_ab"] = base_dex_mod + 1 + (c_class === 'fighter' ? parseInt((level+1)/2) : (c_class2 === 'fighter' ? parseInt((level2+1)/2) : 0));
+                var ranged_ab = base_dex_mod + 1 + (c_class === 'fighter' ? parseInt((level+1)/2) : (c_class2 === 'fighter' ? parseInt((level2+1)/2) : 0));
+                // halflings get +2 ranged AB
+                setting["ranged_ab"] = ranged_ab + (race === 'Halfling' ? 2 : 0);
 
                 // for ready inventory slots
                 setting["dex-show-slots"] = score;
