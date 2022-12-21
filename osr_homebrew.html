@@ -4,7 +4,8 @@
 <input class="licensedsheet" name="attr_licensedsheet" type="hidden"/>
 <div class="licensecontainer compendium-drop-target monsters" data-licensedsheet="attr_licensedsheet">
 
-  <input type="checkbox" class="sheet-is_npc" name="attr_npc" value="1" checked="True" hidden="True"/>
+  <span class="small-font">NPC</span>
+  <input type="checkbox" class="sheet-is_npc" name="attr_npc" value="1" checked="True"/>
   <div class="sheet-section-npc">
      <!-- COMPENDIUM DROP CATCHERS -->
     <input type="hidden" name="attr_drop_category" accept="Category">
@@ -476,7 +477,7 @@
                   </div>
                   <div class="sheet-ability-column-roll sheet-flex">
                     <button class="sheet-ability-button" type="roll" name="roll_str_check"
-                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=STR Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{strength_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{strength_mod}]] ]]}}"></button>
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=STR Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{strength_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{strength_mod}]]}}"></button>
                   </div>
                 </div>
 
@@ -949,13 +950,14 @@
           <h3>Combat Styles</h3>
           <div class="sheet-flex center">
             <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_opts_used" value="0" hidden="true"/>
+            <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_styles_used" value="0" hidden="true"/>
             <span class="med-font italic-font">Total Combat Styles and Selected Combat Options Allowed:
               <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_cmbt_styles_and_opts_allowed" value="0" readonly="true"/>
             </span>
           </div>
           <div class="sheet-flex center">
             <span class="med-font italic-font">Combat Styles and Selected Combat Options Selected:
-              <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_styles_and_opts_used" value="0" readonly="true"/>
+              <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_styles_and_opts_used" value="[[@cmbt_opts_used + @cmbt_styles_used]]" readonly="true"/>
             </span>
           </div>
 
@@ -965,14 +967,15 @@
             <span class="sheet-cstyle-opts">Allowed Combat Options</span>
           </div>
 
-          <fieldset class="repeating_cmbt_styles">
+          <div class="sheet-thick-border">
+          <fieldset class="repeating_cmbt-styles">
             <div class="sheet-inline-flex">
-              <input type="checkbox" name="attr_foobar" value="1" hidden="true"/>
               <input type="text" name="attr_cmbt_style_name" class="cstyle-name" value="" data-i18n-placeholder="Cmbt Style Name"/>
-              <input type="text" name="attr_cmbt_style_weapons" class="cstyle-wprof" value="" data-i18n-placeholder="Style weapons, comma separated"/>
+              <input type="text" name="attr_cmbt_style_profs" class="cstyle-wprof" value="" data-i18n-placeholder="Style weapons, comma separated"/>
               <input type="text" name="attr_cmbt_style_opts" class="cstyle-opts" value="" data-i18n-placeholder="Allowed style combat opts, comma sep."/>
             </div>
           </fieldset>
+          </div>
 
           <div class="sheet-thin-border">
             <div class="sheet-bottom-padding">
@@ -2785,7 +2788,7 @@
                       'shield_bash_attack', 'strong_attack', 'stun_attack', 'two_weapon_attack', 'two_weapon_master_attack' ];
 
   combatOpts.forEach(combat_opt => {
-    on(`change:${combat_opt} change:repeating_cmbt_styles change:sneak_attack_dice change:repeating_weapons change:level change:level2` , function () {
+    on(`change:${combat_opt} change:sneak_attack_dice change:repeating_weapons change:c_class change:c_class2 change:level change:level2` , function () {
       getSectionIDs('repeating_weapons', function (ids) {
         const fieldnames = [];
         ids.forEach(id => {
@@ -2845,13 +2848,12 @@
               output['two_weapon_attack_enabled'] = two_weapon_attack;
               output['two_weapon_master_attack_enabled'] = two_weapon_master_attack;
 
+
               // starts w/ 2 because everyone gets standard attack and some kind of parry_attack
               output['cmbt_opts_used'] = 2 + press_attack + charge_attack + defensive_attack
                                    + beserk_attack + cleave_attack + great_cleave_attack + disarm_attack + feint_attack + lightning_attack
                                    + rapid_shot_attack1 + rapid_shot_attack2 + rapid_strike_attack1 + rapid_strike_attack2
                                    + shield_bash_attack + strong_attack + stun_attack + two_weapon_attack + two_weapon_master_attack;
-              // TODO: REMOVE ME
-              output['cmbt_styles_and_opts_used'] = 10;
 
               ids.forEach(id => {
 
@@ -2915,22 +2917,23 @@
 
               });
               setAttrs(output);
-          });
+            });
+         });
       });
+  });
 
-      /*
-      getSectionIDs('repeating_cmbt_styles', function (ids) {
-        const nrof_cmbt_styles_used = ids.length;
-        getAttrs(['cmbt_opts_used'], function (values) {
-          var output = {};
-          var cmbt_opts_used = parseInt(values.cmbt_opts_used) || 0;
-          setAttrs({cmbt_styles_and_opts_used : cmbt_opts_used + nrof_cmbt_styles_used});
-        });
+  on(`change:cmbt_opts_used change:repeating_cmbt-styles remove:repeating_cmbt-styles` , function () {
+    // do combat style entries now
+    getSectionIDs('repeating_cmbt-styles', function (ids) {
+       getAttrs(['cmbt_opts_used'], function (v) {
+         const cmbt_opts_used = parseInt(v.cmbt_opts_used) || 0;
+         const cmbt_styles_used = ids.length; // count combat styles
+         setAttrs({cmbt_styles_used : cmbt_styles_used, cmbt_styles_and_opts_used: cmbt_styles_used + cmbt_opts_used});
       });
-      */
-
     });
   });
+
+
 
   // Update basic weapon information we expect to have
   on(`change:c_class change:c_class2 change:repeating_weapons`, () => {
