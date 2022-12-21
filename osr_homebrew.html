@@ -947,18 +947,25 @@
         <div class="sheet-thick-border">
 
           <h3>Combat Styles</h3>
-          <div class="center">
-            <span class="med-font italic-font">Combat Styles Allowed:
-              <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_cmbt_styles_allowed" value="0" readonly="true"/>
+          <div class="sheet-flex center">
+            <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_opts_used" value="0" hidden="true"/>
+            <span class="med-font italic-font">Total Combat Styles and Selected Combat Options Allowed:
+              <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_cmbt_styles_and_opts_allowed" value="0" readonly="true"/>
             </span>
           </div>
+          <div class="sheet-flex center">
+            <span class="med-font italic-font">Combat Styles and Selected Combat Options Selected:
+              <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_styles_and_opts_used" value="0" readonly="true"/>
+            </span>
+          </div>
+
           <div class="sheet-flex">
             <span class="sheet-cstyle-name">Style Name</span>
             <span class="sheet-cstyle-wprof">Style Weapon Proficiencies</span>
             <span class="sheet-cstyle-opts">Allowed Combat Options</span>
           </div>
 
-          <fieldset class="repeating_cmbt_style">
+          <fieldset class="repeating_cmbt_styles">
             <div class="sheet-inline-flex">
               <input type="checkbox" name="attr_foobar" value="1" hidden="true"/>
               <input type="text" name="attr_cmbt_style_name" class="cstyle-name" value="" data-i18n-placeholder="Cmbt Style Name"/>
@@ -2635,23 +2642,18 @@
         }
       }
 
+      setting['max_cmbt_styles_and_opts_allowed'] = 2;
+
+      setting['beserk_attack_mod'] = 0;
       setting['charge_attack'] = is_fighter ? 1 : 0;
       setting['press_attack'] = is_fighter ? 1 : 0;
       setting['defensive_attack'] = is_fighter ? 1 : 0;
       setting['parry_attack'] = is_fighter ? 1 : 0;
 
-      if (c_class === 'fighter')
-      {
-        setting['beserk_attack_mod'] = 3 + parseInt(level/4)
-      }
-      else
-      if (c_class2 === 'fighter')
-      {
-        setting['beserk_attack_mod'] = 3 + parseInt(level2/4)
-      }
-      else
-      {
-        setting['beserk_attack_mod'] = 0;
+      if (is_fighter) {
+        const fighter_level = (c_class === 'fighter' ? level : level2);
+        setting['beserk_attack_mod'] = 3 + parseInt(fighter_level/4)
+        setting['max_cmbt_styles_and_opts_allowed'] = 5 + parseInt(fighter_level/2);
       }
 
       setAttrs(setting);
@@ -2778,10 +2780,12 @@
   });
 
   // Keep weapons up to date
-  const combatOpts = ['charge_attack', 'press_attack', 'defensive_attack', 'beserk_attack', 'cleave_attack', 'disarm_attack', 'feint_attack', 'great_cleave_attack', 'lightning_attack', 'strong_attack', 'stun_attack', 'two_weapon_attack' ];
+  const combatOpts = ['charge_attack', 'press_attack', 'defensive_attack', 'beserk_attack', 'cleave_attack', 'disarm_attack', 'feint_attack',
+                      'great_cleave_attack', 'lightning_attack', 'rapid_strike_attack1', 'rapid_strike_attack2', 'rapid_shot_attack1', 'rapid_shot_attack2',
+                      'shield_bash_attack', 'strong_attack', 'stun_attack', 'two_weapon_attack', 'two_weapon_master_attack' ];
 
   combatOpts.forEach(combat_opt => {
-    on(`change:${combat_opt} change:sneak_attack_dice change:repeating_weapons change:level change:level2` , function () {
+    on(`change:${combat_opt} change:repeating_cmbt_styles change:sneak_attack_dice change:repeating_weapons change:level change:level2` , function () {
       getSectionIDs('repeating_weapons', function (ids) {
         const fieldnames = [];
         ids.forEach(id => {
@@ -2814,23 +2818,40 @@
 
               const charge_attack = parseInt(values.charge_attack) || 0;
               const press_attack = parseInt(values.press_attack) || 0;
+              const rapid_strike_attack1 = parseInt(values.rapid_strike_attack1) || 0;
+              const rapid_strike_attack2 = parseInt(values.rapid_strike_attack2) || 0;
+              const rapid_shot_attack1 = parseInt(values.rapid_shot_attack1) || 0;
+              const rapid_shot_attack2 = parseInt(values.rapid_shot_attack2) || 0;
+              const shield_bash_attack = parseInt(values.shield_bash_attack) || 0;
               const strong_attack = parseInt(values.strong_attack) || 0;
               const stun_attack = parseInt(values.stun_attack) || 0;
               const two_weapon_attack = parseInt(values.two_weapon_attack) || 0;
+              const two_weapon_master_attack = parseInt(values.two_weapon_master_attack) || 0;
 
+              // record state so we know if we should render buttons for these special combat options
+              // or not
               output['beserk_attack_enabled'] = beserk_attack;
+              output['charge_attack_enabled'] = charge_attack;
               output['cleave_attack_enabled'] = cleave_attack && !great_cleave_attack;
               output['cleave_attack_enabled2'] = cleave_attack;
               output['defense_attack_enabled'] = defensive_attack;
               output['disarm_attack_enabled'] = disarm_attack;
+              output['great_cleave_attack_enabled'] = great_cleave_attack && cleave_attack;
               output['feint_attack_enabled'] = feint_attack;
               output['lightning_attack_enabled'] = lightning_attack;
-              output['great_cleave_attack_enabled'] = great_cleave_attack && cleave_attack;
-              output['charge_attack_enabled'] = charge_attack;
               output['press_attack_enabled'] = press_attack;
               output['strong_attack_enabled'] = strong_attack;
               output['stun_attack_enabled'] = stun_attack;
               output['two_weapon_attack_enabled'] = two_weapon_attack;
+              output['two_weapon_master_attack_enabled'] = two_weapon_master_attack;
+
+              // starts w/ 2 because everyone gets standard attack and some kind of parry_attack
+              output['cmbt_opts_used'] = 2 + press_attack + charge_attack + defensive_attack
+                                   + beserk_attack + cleave_attack + great_cleave_attack + disarm_attack + feint_attack + lightning_attack
+                                   + rapid_shot_attack1 + rapid_shot_attack2 + rapid_strike_attack1 + rapid_strike_attack2
+                                   + shield_bash_attack + strong_attack + stun_attack + two_weapon_attack + two_weapon_master_attack;
+              // TODO: REMOVE ME
+              output['cmbt_styles_and_opts_used'] = 10;
 
               ids.forEach(id => {
 
@@ -2896,6 +2917,18 @@
               setAttrs(output);
           });
       });
+
+      /*
+      getSectionIDs('repeating_cmbt_styles', function (ids) {
+        const nrof_cmbt_styles_used = ids.length;
+        getAttrs(['cmbt_opts_used'], function (values) {
+          var output = {};
+          var cmbt_opts_used = parseInt(values.cmbt_opts_used) || 0;
+          setAttrs({cmbt_styles_and_opts_used : cmbt_opts_used + nrof_cmbt_styles_used});
+        });
+      });
+      */
+
     });
   });
 
