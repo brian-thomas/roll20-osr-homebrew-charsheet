@@ -857,10 +857,26 @@ input.sheet-skillname {
 
 input.sheet-max-cstyle-copts-value-exceeded[value="0"]:checked ~ span.sheet-max-cstyle-copts-value-exceeded-notify,
 input.sheet-max-skill-value-exceeded[value="0"]:checked ~ span.sheet-max-skill-value-exceeded-notify,
+input.sheet-move-rate-stop[value="0"]:checked ~ span.sheet-move-rate-stop-notify,
 input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-overspend-notify
 {
 	  background: red;
     color: white;
+}
+
+input.sheet-move-rate-light-enc[value="0"]:checked ~ span.sheet-move-rate-light-enc-notify
+{
+	  background: yellow;
+}
+
+input.sheet-move-rate-med-enc[value="0"]:checked ~ span.sheet-move-rate-med-enc-notify
+{
+	  background: orange;
+}
+
+input.sheet-move-rate-heavy-enc[value="0"]:checked ~ span.sheet-move-rate-heavy-enc-notify
+{
+	  background: #E44D2E;
 }
 
 input.sheet-skill-points-underspent[value="0"]:checked ~ span.sheet-skill-points-underspent-notify,

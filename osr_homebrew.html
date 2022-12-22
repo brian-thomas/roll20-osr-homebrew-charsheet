@@ -319,7 +319,11 @@
       <div class="sheet-inline-flex sheet-bottom-padding">
         <span class="sheet-bold-font med-font centered-label">Name:</span>
         <input type="text" class="sheet-align-left sheet-info-name-long right-pad" name="attr_character_name"/>
-        <span class="sheet-bold-font centered-label left-pad right-pad">Movement Rate:</span>
+        <input type="checkbox" class="sheet-move-rate-stop" name="attr_move_rate_stop" value="0" hidden="true" checked="true"/>
+        <input type="checkbox" class="sheet-move-rate-heavy-enc" name="attr_move_rate_heavy_enc" value="0" hidden="true" checked="true"/>
+        <input type="checkbox" class="sheet-move-rate-med-enc" name="attr_move_rate_med_enc" value="0" hidden="true" checked="true"/>
+        <input type="checkbox" class="sheet-move-rate-light-enc" name="attr_move_rate_light_enc" value="0" hidden="true" checked="true"/>
+        <span class="sheet-bold-font centered-label left-pad right-pad move-rate-light-enc-notify move-rate-med-enc-notify move-rate-heavy-enc-notify move-rate-stop-notify">Movement Rate:</span>
         <input type="number" name="attr_movement_rate" class="sheet-inactive-color right-pad" value="40" readonly="true"/>
         <span class="bold-font big-font centred-label left-pad right-pad">/</span>
         <input type="number" name="attr_base_movement_rate" class="sheet-inactive-color" value="40" readonly="true"/>
@@ -3054,7 +3058,16 @@
         move_rate -= enc_move_factor > 0 ? (enc_move_factor -1) * 10 : 0;
         move_rate = move_rate > 0 ? move_rate : 0;
 
-        setAttrs( { encumbrance_points: enc_points, encumbrance: enc, base_movement_rate: base_move_rate, movement_rate: move_rate} );
+        const move_rate_light_enc = (move_rate < base_move_rate) &&  (move_rate >= 30 ) ? 0 : 1;
+        const move_rate_med_enc = (move_rate < 30 ) &&  (move_rate >= 20 ) ? 0 : 1;
+        const move_rate_heavy_enc = (move_rate < 20 ) &&  (move_rate >= 10 ) ? 0 : 1;
+        const move_rate_stop = (move_rate < 10 ) ? 0 : 1;
+
+        setAttrs( { encumbrance_points: enc_points, encumbrance: enc,
+                    base_movement_rate: base_move_rate, movement_rate: move_rate,
+                    move_rate_light_enc: move_rate_light_enc, move_rate_med_enc: move_rate_med_enc,
+                    move_rate_heavy_enc: move_rate_heavy_enc, move_rate_stop: move_rate_stop
+                  });
       });
     });
   });
