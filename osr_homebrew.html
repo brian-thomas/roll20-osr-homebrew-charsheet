@@ -901,83 +901,90 @@
         <span class="sheet-spacer">&nbsp;</span>
         <div class="sheet-thick-border-no-pad">
           <h3>Combat</h3>
-          <div class="sheet-flex sheet-thin-border left-pad bottom-padding">
-            <div class="sheet-ability-column-value">
-              <div class="sheet-thin-border sheet-flex left-pad">
-    	           <button type="roll" class="sheet-initiative" name="roll_initiative"
-    			               value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} + @{init_extra} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
-                <input name="attr_init_extra" type="number" hidden="true" value="0"/>
-                <input class="ability-check-value-wide inactive-color" name="attr_initiative" type="number" step="0.01" value="0" readonly="true"/>
-              </div>
-              <span class="ability-check-label">Initiative Bonus</span>
-            </div>
-            <div class="sheet-ability-column-value">
-              <input class="ability-check-value inactive-color" name="attr_ac" type="number" value="10" readonly="true"/>
-              <span class="ability-check-label">AC</span>
-            </div>
-            <div class="sheet-ability-column-value">
-              <div class="sheet-flex sheet-thin-border sheet-right-pad">
-                <input class="ability-check-value" name="attr_hp" type="number" value="1"/>
-                /
-                <input class="ability-check-value" name="attr_hp_max" type="number" value="1"/>
-              </div>
-              <span class="ability-check-label">HP / Max HP</span>
-            </div>
-            <div class="sheet-ability-column-value">
-              <input class="ability-check-value inactive-color" name="attr_melee_ab" type="number" value="0" readonly="true"/>
-              <input name="attr_melee_base_ab" type="number" value="0" hidden="true"/>
-              <span class="ability-check-label">Melee AB</span>
-            </div>
-            <div class="sheet-ability-column-value">
-              <input class="ability-check-value inactive-color" name="attr_ranged_ab" type="number" value="0" readonly="true"/>
-              <input name="attr_ranged_base_ab" type="number" value="0" hidden="true"/>
-              <span class="ability-check-label">Ranged AB</span>
-            </div>
-            <div class="sheet-ability-column-value">
-              <input class="ability-check-value inactive-color" name="attr_unarmed_ab" type="number" value="0" readonly="true"/>
-              <input name="attr_unarmed_base_ab" type="number" value="0" hidden="true"/>
-              <span class="ability-check-label">Unarmed AB</span>
-            </div>
 
-            <!-- HIT DICE, TODO -->
-            <input name="attr_hit_dice" type="number" value="1" hidden="true"/>
-            <input name="attr_hit_dice_max" type="number" value="1" hidden="true"/>
-          </div>
-        </div>
+          <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_opts_used" value="0" hidden="true"/>
+          <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_styles_used" value="0" hidden="true"/>
 
-        <div class="sheet-thick-border">
-
-          <h3>Combat Styles</h3>
           <div class="sheet-flex center">
-            <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_opts_used" value="0" hidden="true"/>
-            <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_styles_used" value="0" hidden="true"/>
-            <span class="med-font italic-font">Total Combat Styles and Selected Combat Options Allowed:
+            <input type="checkbox" class="sheet-max-cstyle-copts-value-exceeded" name="attr_max_cstyle_copts_value_exceeded" value="0" hidden="true" checked="true"/>
+            <span class="max-cstyle-copts-value-exceeded-notify med-font italic-font">Total Combat Styles and Options Allowed:
               <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_cmbt_styles_and_opts_allowed" value="0" readonly="true"/>
             </span>
-          </div>
-          <div class="sheet-flex center">
-            <span class="med-font italic-font">Combat Styles and Selected Combat Options Selected:
+            <input type="checkbox" class="sheet-cstyle-copts-value-underspent" name="attr_cstyle_copts_value_underspent" value="0" hidden="true" checked="true"/>
+            <span class="sheet-cstyle-copts-value-underspent-notify med-font italic-font">Combat Styles and Options Selected:
               <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_styles_and_opts_used" value="[[@cmbt_opts_used + @cmbt_styles_used]]" readonly="true"/>
             </span>
           </div>
 
-          <div class="sheet-flex">
-            <span class="sheet-cstyle-name">Style Name</span>
-            <span class="sheet-cstyle-wprof">Style Weapon Proficiencies</span>
-            <span class="sheet-cstyle-opts">Allowed Combat Options</span>
-          </div>
+          <div class="sheet-thin-border bottom-padding">
+            <h4>Combat Stats</h4>
+            <div class="sheet-flex left-pad bottom-padding">
 
-          <div class="sheet-thick-border">
-          <fieldset class="repeating_cmbt-styles">
-            <div class="sheet-inline-flex">
-              <input type="text" name="attr_cmbt_style_name" class="cstyle-name" value="" data-i18n-placeholder="Cmbt Style Name"/>
-              <input type="text" name="attr_cmbt_style_profs" class="cstyle-wprof" value="" data-i18n-placeholder="Style weapons, comma separated"/>
-              <input type="text" name="attr_cmbt_style_opts" class="cstyle-opts" value="" data-i18n-placeholder="Allowed style combat opts, comma sep."/>
+              <div class="sheet-ability-column-value">
+                <div class="sheet-thin-border sheet-flex left-pad">
+      	           <button type="roll" class="sheet-initiative" name="roll_initiative"
+      			               value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} + @{init_extra} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
+                  <input name="attr_init_extra" type="number" hidden="true" value="0"/>
+                  <input class="ability-check-value-wide inactive-color" name="attr_initiative" type="number" step="0.01" value="0" readonly="true"/>
+                </div>
+                <span class="ability-check-label">Initiative Bonus</span>
+              </div>
+              <div class="sheet-ability-column-value">
+                <input class="ability-check-value inactive-color" name="attr_ac" type="number" value="10" readonly="true"/>
+                <span class="ability-check-label">AC</span>
+              </div>
+              <div class="sheet-ability-column-value">
+                <div class="sheet-flex sheet-thin-border sheet-right-pad">
+                  <input class="ability-check-value" name="attr_hp" type="number" value="1"/>
+                  /
+                  <input class="ability-check-value" name="attr_hp_max" type="number" value="1"/>
+                </div>
+                <span class="ability-check-label">HP / Max HP</span>
+              </div>
+              <div class="sheet-ability-column-value">
+                <input class="ability-check-value inactive-color" name="attr_melee_ab" type="number" value="0" readonly="true"/>
+                <input name="attr_melee_base_ab" type="number" value="0" hidden="true"/>
+                <span class="ability-check-label">Melee AB</span>
+              </div>
+              <div class="sheet-ability-column-value">
+                <input class="ability-check-value inactive-color" name="attr_ranged_ab" type="number" value="0" readonly="true"/>
+                <input name="attr_ranged_base_ab" type="number" value="0" hidden="true"/>
+                <span class="ability-check-label">Ranged AB</span>
+              </div>
+              <div class="sheet-ability-column-value">
+                <input class="ability-check-value inactive-color" name="attr_unarmed_ab" type="number" value="0" readonly="true"/>
+                <input name="attr_unarmed_base_ab" type="number" value="0" hidden="true"/>
+                <span class="ability-check-label">Unarmed AB</span>
+              </div>
+
+              <!-- HIT DICE, TODO -->
+              <input name="attr_hit_dice" type="number" value="1" hidden="true"/>
+              <input name="attr_hit_dice_max" type="number" value="1" hidden="true"/>
             </div>
-          </fieldset>
           </div>
 
-          <div class="sheet-thin-border">
+          &nbsp;
+          <div class="sheet-thin-border bottom-padding">
+            <h4>Combat Styles</h4>
+
+            <div class="sheet-flex bottom-padding">
+              <span class="sheet-cstyle-name">Style Name</span>
+              <span class="sheet-cstyle-wprof">Style Weapon Proficiencies</span>
+              <span class="sheet-cstyle-opts">Allowed Combat Options</span>
+            </div>
+
+            <fieldset class="repeating_cmbt-styles">
+              <div class="sheet-inline-flex">
+                <input type="text" name="attr_cmbt_style_name" class="cstyle-name" value="" data-i18n-placeholder="Cmbt Style Name"/>
+                <input type="text" name="attr_cmbt_style_profs" class="cstyle-wprof" value="" data-i18n-placeholder="Style weapons, comma separated, 3 max"/>
+                <input type="text" name="attr_cmbt_style_opts" class="cstyle-opts" value="" data-i18n-placeholder="Allowed style combat opts, comma sep., 3 max"/>
+              </div>
+            </fieldset>
+          </div>
+
+          <span class="sheet-spacer">&nbsp;</span>
+
+          <div class="sheet-thin-border bottom-padding">
             <div class="sheet-bottom-padding">
               <h4>Combat Options</h4>
             </div>
@@ -2656,7 +2663,7 @@
       if (is_fighter) {
         const fighter_level = (c_class === 'fighter' ? level : level2);
         setting['beserk_attack_mod'] = 3 + parseInt(fighter_level/4)
-        setting['max_cmbt_styles_and_opts_allowed'] = 5 + parseInt(fighter_level/2);
+        setting['max_cmbt_styles_and_opts_allowed'] = 6 + parseInt(fighter_level/2);
       }
 
       setAttrs(setting);
@@ -2925,10 +2932,17 @@
   on(`change:cmbt_opts_used change:repeating_cmbt-styles remove:repeating_cmbt-styles` , function () {
     // do combat style entries now
     getSectionIDs('repeating_cmbt-styles', function (ids) {
-       getAttrs(['cmbt_opts_used'], function (v) {
+       getAttrs(['cmbt_opts_used', 'max_cmbt_styles_and_opts_allowed'], function (v) {
+         const max_cmbt_styles_and_opts_allowed = parseInt(v.max_cmbt_styles_and_opts_allowed) || 0;
          const cmbt_opts_used = parseInt(v.cmbt_opts_used) || 0;
          const cmbt_styles_used = ids.length; // count combat styles
-         setAttrs({cmbt_styles_used : cmbt_styles_used, cmbt_styles_and_opts_used: cmbt_styles_used + cmbt_opts_used});
+         const cmbt_styles_and_opts_used = cmbt_opts_used + cmbt_styles_used;
+         const max_cstyle_copts_value_exceeded = cmbt_styles_and_opts_used > max_cmbt_styles_and_opts_allowed ? 0 : 1;
+         const cstyle_copts_value_underspent = cmbt_styles_and_opts_used < max_cmbt_styles_and_opts_allowed ? 0 : 1;
+
+         setAttrs({max_cstyle_copts_value_exceeded: max_cstyle_copts_value_exceeded,
+                   cstyle_copts_value_underspent: cstyle_copts_value_underspent,
+                   cmbt_styles_used : cmbt_styles_used, cmbt_styles_and_opts_used: cmbt_styles_used + cmbt_opts_used});
       });
     });
   });

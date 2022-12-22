@@ -855,10 +855,17 @@ input.sheet-skillname {
 	overflow-x: auto;
 }
 
+input.sheet-max-cstyle-copts-value-exceeded[value="0"]:checked ~ span.sheet-max-cstyle-copts-value-exceeded-notify,
 input.sheet-max-skill-value-exceeded[value="0"]:checked ~ span.sheet-max-skill-value-exceeded-notify,
 input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-overspend-notify
 {
 	  background: red;
+    color: white;
+}
+
+input.sheet-cstyle-copts-value-underspent[value="0"]:checked ~ span.sheet-cstyle-copts-value-underspent-notify
+{
+	  background: green;
     color: white;
 }
 
