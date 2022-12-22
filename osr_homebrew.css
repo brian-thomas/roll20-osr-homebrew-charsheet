@@ -863,6 +863,7 @@ input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-
     color: white;
 }
 
+input.sheet-skill-points-underspent[value="0"]:checked ~ span.sheet-skill-points-underspent-notify,
 input.sheet-cstyle-copts-value-underspent[value="0"]:checked ~ span.sheet-cstyle-copts-value-underspent-notify
 {
 	  background: green;

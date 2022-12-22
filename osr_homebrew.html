@@ -691,7 +691,8 @@
                     <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_skill_points" value="0" readonly="true"/>
                   </span>
                   <input type="checkbox" class="sheet-skill-points-overspent" name="attr_skill_points_overspent" value="0" hidden="true" checked="true"/>
-                  <span class="sheet-skill-points-overspend-notify med-small-font">Points Spent:
+                  <input type="checkbox" class="sheet-skill-points-underspent" name="attr_skill_points_underspent" value="0" hidden="true" checked="true"/>
+                  <span class="sheet-skill-points-overspend-notify sheet-skill-points-underspent-notify med-small-font">Points Spent:
                     <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_skill_points_used" value="0" readonly="true"/>
                   </span>
                   <input type="checkbox" class="sheet-max-skill-value-exceeded" name="attr_max_skill_value_exceeded" value="0" hidden="true" checked="true"/>
@@ -2713,10 +2714,12 @@
            const max_value_exceeded = max_skill_value > max_value_allowed ? 0 : 1;
 
            // check if we exceeded the sum of spending
-           const overspent = skill_point_total > skill_points_available ? 0 : 1;
+           const skill_underspent = skill_point_total < skill_points_available ? 0 : 1;
+           const skill_overspent = skill_point_total > skill_points_available ? 0 : 1;
 
            // update
-           setAttrs({skill_points_overspent: overspent, max_skill_value_allowed: max_value_allowed, max_skill_value_exceeded: max_value_exceeded});
+           setAttrs({ skill_points_underspent: skill_underspent, skill_points_overspent: skill_overspent,
+             max_skill_value_allowed: max_value_allowed, max_skill_value_exceeded: max_value_exceeded});
          });
 
        });
