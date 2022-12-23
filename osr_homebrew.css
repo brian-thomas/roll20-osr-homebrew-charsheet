@@ -1203,6 +1203,30 @@ button[type=roll].sheet-attack-button
 	background-image: none;
 }
 
+div.sheet-weapon-berserk-attack-button-enabled,
+div.sheet-weapon-cleave-attack-button-enabled,
+div.sheet-weapon-stun-attack-button-enabled,
+div.sheet-weapon-great-cleave-attack-button-enabled,
+div.sheet-weapon-berserk-attack-button-disabled,
+div.sheet-weapon-cleave-attack-button-disabled,
+div.sheet-weapon-stun-attack-button-disabled,
+div.sheet-weapon-great-cleave-attack-button-disabled
+{
+	display: none;
+}
+
+input.sheet-weapon-berserk-attack-button-show:checked ~ div.sheet-weapon-berserk-attack-button-enabled,
+input.sheet-weapon-cleave-attack-button-show:checked ~ div.sheet-weapon-cleave-attack-button-enabled,
+input.sheet-weapon-great-cleave-attack-button-show:checked ~ div.sheet-weapon-great-cleave-attack-button-enabled,
+input.sheet-weapon-stun-attack-button-show:checked ~ div.sheet-weapon-stun-attack-button-enabled,
+input.sheet-weapon-berserk-attack-button-show:not(:checked) ~ div.sheet-weapon-berserk-attack-button-disabled,
+input.sheet-weapon-cleave-attack-button-show:not(:checked) ~ div.sheet-weapon-cleave-attack-button-disabled,
+input.sheet-weapon-stun-attack-button-show:not(:checked) ~ div.sheet-weapon-stun-attack-button-disabled,
+input.sheet-weapon-great-cleave-attack-button-show:not(:checked) ~ div.sheet-weapon-great-cleave-attack-button-disabled
+{
+	display: block;
+}
+
 .sheet-blue-border,
 button[type=roll].sheet-blue-border
 {
@@ -1246,7 +1270,7 @@ input[type=number].sheet-yellow-border
 div.sheet-charge_attack_section,
 div.sheet-press_attack_section,
 div.sheet-defense_attack_section,
-div.sheet-beserk_attack_section,
+div.sheet-berserk_attack_section,
 div.sheet-cleave_attack_section,
 div.sheet-disarm_attack_section,
 div.sheet-feint_attack_section,
@@ -1258,7 +1282,7 @@ div.sheet-sneak_attack_section,
 div.sheet-weapon_charge_attack_section,
 div.sheet-weapon_press_attack_section,
 div.sheet-weapon_defense_attack_section,
-div.sheet-weapon_beserk_attack_section,
+div.sheet-weapon_berserk_attack_section,
 div.sheet-weapon_cleave_attack_section,
 div.sheet-weapon_disarm_attack_section,
 div.sheet-weapon_feint_attack_section,
@@ -1274,7 +1298,7 @@ div.sheet-weapon_stun_attack_section
 input.sheet-charge_attack_enabled:checked ~ div.sheet-charge_attack_section,
 input.sheet-press_attack_enabled:checked ~ div.sheet-press_attack_section,
 input.sheet-defense_attack_enabled:checked ~ div.sheet-defense_attack_section,
-input.sheet-beserk_attack_enabled:checked ~ div.sheet-beserk_attack_section,
+input.sheet-berserk_attack_enabled:checked ~ div.sheet-berserk_attack_section,
 input.sheet-cleave_attack_enabled:checked ~ div.sheet-cleave_attack_section,
 input.sheet-disarm_attack_enabled:checked ~ div.sheet-disarm_attack_section,
 input.sheet-feint_attack_enabled:checked ~ div.sheet-feint_attack_section,
@@ -1286,7 +1310,7 @@ input.sheet-stun_attack_enabled:checked ~ div.sheet-stun_attack_section,
 input.sheet-weapon_charge_attack_enabled:checked ~ div.sheet-weapon_charge_attack_section,
 input.sheet-weapon_press_attack_enabled:checked ~ div.sheet-weapon_press_attack_section,
 input.sheet-weapon_defense_attack_enabled:checked ~ div.sheet-weapon_defense_attack_section,
-input.sheet-weapon_beserk_attack_enabled:checked ~ div.sheet-weapon_beserk_attack_section,
+input.sheet-weapon_berserk_attack_enabled:checked ~ div.sheet-weapon_berserk_attack_section,
 input.sheet-weapon_cleave_attack_enabled:checked ~ div.sheet-weapon_cleave_attack_section,
 input.sheet-weapon_disarm_attack_enabled:checked ~ div.sheet-weapon_disarm_attack_section,
 input.sheet-weapon_feint_attack_enabled:checked ~ div.sheet-weapon_feint_attack_section,
