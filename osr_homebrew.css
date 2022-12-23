@@ -789,6 +789,7 @@ input.sheet-tab1:checked ~ div.sheet-section-core,
 input.sheet-tab2:checked ~ div.sheet-section-combat,
 input.sheet-tab3:checked ~ div.sheet-section-magic,
 input.sheet-tab4:checked ~ div.sheet-section-inventory,
+input.sheet-tab6:checked ~ div.sheet-section-attacks,
 input.sheet-tab5:checked ~ div.sheet-section-notes {
 	display: block;
 }
@@ -822,6 +823,7 @@ input.sheet-tab2:checked + span.sheet-tab2,
 input.sheet-tab3:checked + span.sheet-tab3,
 input.sheet-tab4:checked + span.sheet-tab4,
 input.sheet-tab5:checked + span.sheet-tab5,
+input.sheet-tab6:checked + span.sheet-tab6,
 input.sheet-tab99:checked + span.sheet-tab99 {
         background: #ab8b57;
         color: white;
