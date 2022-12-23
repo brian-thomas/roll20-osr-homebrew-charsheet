@@ -1235,6 +1235,7 @@
       	        <option selected="selected" value="melee">Melee</option>
       	        <option value="ranged">Ranged</option>
       	        <option value="unarmed">Unarmed</option>
+      	        <option value="spell">Spell</option>
       	      </select>
 
               <input type="number" name="attr_weapon_attack_bonus" value="0" class="weapon-param bold-font inactive-color" readonly="true"/>
@@ -2888,7 +2889,7 @@
               fieldnames.push('repeating_weapons_' + id + '_has_weapon_proficiency');
           });
 
-          getAttrs([...fieldnames, ...combatOpts, 'melee_ab', 'melee_base_ab', 'unarmed_ab', 'unarmed_base_ab', 'ranged_ab', 'ranged_base_ab', 'sneak_attack_dice'], function (values) {
+          getAttrs([...fieldnames, ...combatOpts, 'melee_ab', 'melee_base_ab', 'unarmed_ab', 'unarmed_base_ab', 'ranged_ab', 'ranged_base_ab', 'spellcasting_mod', 'sneak_attack_dice'], function (values) {
               var output = {};
 
               const melee_ab = parseInt(values.melee_ab) || 0;
@@ -2897,6 +2898,8 @@
               const ranged_base_ab = parseInt(values.ranged_base_ab) || 0;
               const unarmed_ab = parseInt(values.unarmed_ab) || 0;
               const unarmed_base_ab = parseInt(values.unarmed_base_ab) || 0;
+
+              const spellcasting_mod = parseInt(values.spellcasting_mod) || 0;
 
               const sneak_dice = parseInt(values.sneak_attack_dice) || 0;
               const berserk_attack = parseInt(values.berserk_attack) || 0;
@@ -2953,6 +2956,7 @@
                   const weapon_proficiency = parseInt(values['repeating_weapons_' + id + '_has_weapon_proficiency']) || 0;
 
                   const is_ranged = (weapon_attk_type === 'ranged' || 0);
+                  const is_spell = (weapon_attk_type === 'spell' || 0);
                   const is_proficient = weapon_proficiency > 0 ? 1 : 0;
 
                   // weapn attack bonus depends on weapon_proficiency and type of attack
@@ -2964,9 +2968,15 @@
                     weapon_attk_type_ab = unarmed_ab;
                     weapon_attk_type_base_ab = unarmed_base_ab;
                   }
+
                   if (is_ranged) {
                     weapon_attk_type_ab = ranged_ab;
                     weapon_attk_type_base_ab = ranged_base_ab;
+                  }
+
+                  if (is_spell) {
+                    weapon_attk_type_ab = spellcasting_mod;
+                    weapon_attk_type_base_ab = 0;
                   }
 
                   // based on proficiency we get AB for weapon
@@ -3012,27 +3022,30 @@
                   // even though we have the attack option, we still may not be able to use it because of the
                   // type of weapon we have in hand and/or we lack proficiency
 
-                  output['repeating_weapons_' + id + '_weapon_defense_attack_button_show'] = is_proficient;
-                  output['repeating_weapons_' + id + '_weapon_disarm_attack_button_show'] = is_proficient;
-                  output['repeating_weapons_' + id + '_weapon_feint_attack_button_show'] = is_proficient;
-                  output['repeating_weapons_' + id + '_weapon_lightning_attack_button_show'] = is_proficient;
-                  output['repeating_weapons_' + id + '_weapon_sneak_attack_button_show'] = is_proficient;
-                  output['repeating_weapons_' + id + '_weapon_strong_attack_button_show'] = is_proficient;
+                  output['repeating_weapons_' + id + '_weapon_defense_attack_button_show'] = is_proficient && is_spell == 0;
+                  output['repeating_weapons_' + id + '_weapon_disarm_attack_button_show'] = is_proficient && is_spell == 0;
+                  output['repeating_weapons_' + id + '_weapon_feint_attack_button_show'] = is_proficient; // allow spells to be aimed if held
+                  output['repeating_weapons_' + id + '_weapon_lightning_attack_button_show'] = is_proficient && is_spell == 0;
+                  output['repeating_weapons_' + id + '_weapon_sneak_attack_button_show'] = is_proficient && is_spell == 0;
+                  output['repeating_weapons_' + id + '_weapon_strong_attack_button_show'] = is_proficient && is_spell == 0;
 
                   // Only slashing / force weapons may 'cleave'
-                  output['repeating_weapons_' + id + '_weapon_cleave_attack_button_show'] = is_proficient && (weapon_dam_type === 'Slashing' || weapon_dam_type === 'Force') ? 1 : 0;
-                  output['repeating_weapons_' + id + '_weapon_great_cleave_attack_button_show'] = is_proficient && (weapon_dam_type === 'Slashing' || weapon_dam_type === 'Force') ? 1 : 0;
+                  output['repeating_weapons_' + id + '_weapon_cleave_attack_button_show'] = is_proficient && is_spell == 0
+                         && (weapon_dam_type === 'Slashing' || weapon_dam_type === 'Force') ? 1 : 0;
+                  output['repeating_weapons_' + id + '_weapon_great_cleave_attack_button_show'] = is_proficient && is_spell == 0
+                         && (weapon_dam_type === 'Slashing' || weapon_dam_type === 'Force') ? 1 : 0;
 
                   // Only bashing / force 'weapons' may 'stun'
-                  output['repeating_weapons_' + id + '_weapon_stun_attack_button_show'] = is_proficient && (weapon_dam_type === 'Bludgeoning' || weapon_dam_type === 'Force') ? 1 : 0;
+                  output['repeating_weapons_' + id + '_weapon_stun_attack_button_show'] = is_proficient && is_spell == 0
+                         && (weapon_dam_type === 'Bludgeoning' || weapon_dam_type === 'Force') ? 1 : 0;
 
                   // NO charge, defense or press attacks with ranged weapons
-                  output['repeating_weapons_' + id + '_weapon_charge_attack_button_show'] = is_proficient && (is_ranged == 0);
-                  output['repeating_weapons_' + id + '_weapon_press_attack_button_show'] = is_proficient && (is_ranged == 0);
+                  output['repeating_weapons_' + id + '_weapon_charge_attack_button_show'] = is_proficient && (is_ranged == 0) && is_spell == 0;
+                  output['repeating_weapons_' + id + '_weapon_press_attack_button_show'] = is_proficient && (is_ranged == 0) && is_spell == 0;
 
                   // NO ranged weapon berserk attacks. Require too much concentration
                   // conversely, we CAN berserk w/o proficiency in a weapon.
-                  output['repeating_weapons_' + id + '_weapon_berserk_attack_button_show'] = is_ranged ? 0 : 1;
+                  output['repeating_weapons_' + id + '_weapon_berserk_attack_button_show'] = is_ranged || is_spell ? 0 : 1;
 
               });
 
