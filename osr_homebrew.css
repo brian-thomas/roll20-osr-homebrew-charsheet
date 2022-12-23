@@ -844,7 +844,7 @@ input.sheet-multiclass_enabled:checked ~ div.sheet-section-multiclass
 }
 
 input.sheet-cleave_attack_enabled2:checked ~ div.sheet-section-great_cleave,
-input.sheet-two_weapon_attack_enabled:checked ~ div.sheet-section-two_weapon_master
+input.sheet-two_attack_attack_enabled:checked ~ div.sheet-section-two_attack_master
 {
 	display: block;
 }
@@ -1101,9 +1101,9 @@ input[type=text].sheet-cstyle-skills
 	width: 150px;
 }
 
-.sheet-weapon-name,
-span.sheet-weapon-name,
-input[type=text].sheet-weapon-name
+.sheet-attack-name,
+span.sheet-attack-name,
+input[type=text].sheet-attack-name
 {
 	width: 140px;
 	font-weight: bold;
@@ -1120,17 +1120,17 @@ span.sheet-centered-label
   margin: 4px 0px 0px 0px;
 }
 
-span.sheet-weapon-name
+span.sheet-attack-name
 {
 	margin-right: 0px;
 }
 
-.sheet-weapon-param,
-select.sheet-weapon-param,
-select.sheet-weapon-param-long,
-select.sheet-weapon-notches,
-input[type=text].sheet-weapon-param,
-input[type=number].sheet-weapon-param
+.sheet-attack-param,
+select.sheet-attack-param,
+select.sheet-attack-param-long,
+select.sheet-attack-notches,
+input[type=text].sheet-attack-param,
+input[type=number].sheet-attack-param
 {
 	 display: inline-flex;
    text-align: center;
@@ -1140,24 +1140,24 @@ input[type=number].sheet-weapon-param
 	 padding: 6px;
 }
 
-select.sheet-weapon-notches
+select.sheet-attack-notches
 {
 	text-align: center;
 	width: 40px;
 }
 
-.sheet-weapon-param,
-input[type=text].sheet-weapon-param,
-input[type=number].sheet-weapon-param
+.sheet-attack-param,
+input[type=text].sheet-attack-param,
+input[type=number].sheet-attack-param
 {
 	width: 34px;
 }
 
-.sheet-weapon-param-name,
-span.sheet-weapon-param-name,
-span.sheet-weapon-param-long-name,
-span.sheet-weapon-param-attk-name,
-span.sheet-weapon-param-select-name
+.sheet-attack-param-name,
+span.sheet-attack-param-name,
+span.sheet-attack-param-long-name,
+span.sheet-attack-param-attk-name,
+span.sheet-attack-param-select-name
 {
 	display: inline-flex;
 	width: 30px;
@@ -1166,9 +1166,9 @@ span.sheet-weapon-param-select-name
 	margin-right: 3px;
 }
 
-span.sheet-weapon-param-attk-name,
-span.sheet-weapon-param-select-attk-name,
-span.sheet-weapon-param-select-name
+span.sheet-attack-param-attk-name,
+span.sheet-attack-param-select-attk-name,
+span.sheet-attack-param-select-name
 {
 	width: 40px;
 	text-align: center;
@@ -1178,14 +1178,14 @@ span.sheet-weapon-param-select-name
 	margin-right: 4px;
 }
 
-select.sheet-weapon-param,
-span.sheet-weapon-param-select-name
+select.sheet-attack-param,
+span.sheet-attack-param-select-name
 {
 	width: 55px;
 }
 
-select.sheet-weapon-param-long,
-span.sheet-weapon-param-long-name
+select.sheet-attack-param-long,
+span.sheet-attack-param-long-name
 {
 	width: 75px;
 }
@@ -1203,59 +1203,59 @@ button[type=roll].sheet-attack-button
 	background-image: none;
 }
 
-div.sheet-weapon-berserk-attack-button-enabled,
-div.sheet-weapon-charge-attack-button-enabled,
-div.sheet-weapon-cleave-attack-button-enabled,
-div.sheet-weapon-defense-attack-button-enabled,
-div.sheet-weapon-disarm-attack-button-enabled,
-div.sheet-weapon-feint-attack-button-enabled,
-div.sheet-weapon-lightning-attack-button-enabled,
-div.sheet-weapon-press-attack-button-enabled,
-div.sheet-weapon-sneak-attack-button-enabled,
-div.sheet-weapon-strong-attack-button-enabled,
-div.sheet-weapon-stun-attack-button-enabled,
-div.sheet-weapon-great-cleave-attack-button-enabled,
-div.sheet-weapon-berserk-attack-button-disabled,
-div.sheet-weapon-charge-attack-button-disabled,
-div.sheet-weapon-cleave-attack-button-disabled,
-div.sheet-weapon-defense-attack-button-disabled,
-div.sheet-weapon-disarm-attack-button-disabled,
-div.sheet-weapon-feint-attack-button-disabled,
-div.sheet-weapon-lightning-attack-button-disabled,
-div.sheet-weapon-press-attack-button-disabled,
-div.sheet-weapon-sneak-attack-button-disabled,
-div.sheet-weapon-strong-attack-button-disabled,
-div.sheet-weapon-stun-attack-button-disabled,
-div.sheet-weapon-great-cleave-attack-button-disabled
+div.sheet-attack-berserk-attack-button-enabled,
+div.sheet-attack-charge-attack-button-enabled,
+div.sheet-attack-cleave-attack-button-enabled,
+div.sheet-attack-defense-attack-button-enabled,
+div.sheet-attack-disarm-attack-button-enabled,
+div.sheet-attack-feint-attack-button-enabled,
+div.sheet-attack-lightning-attack-button-enabled,
+div.sheet-attack-press-attack-button-enabled,
+div.sheet-attack-sneak-attack-button-enabled,
+div.sheet-attack-strong-attack-button-enabled,
+div.sheet-attack-stun-attack-button-enabled,
+div.sheet-attack-great-cleave-attack-button-enabled,
+div.sheet-attack-berserk-attack-button-disabled,
+div.sheet-attack-charge-attack-button-disabled,
+div.sheet-attack-cleave-attack-button-disabled,
+div.sheet-attack-defense-attack-button-disabled,
+div.sheet-attack-disarm-attack-button-disabled,
+div.sheet-attack-feint-attack-button-disabled,
+div.sheet-attack-lightning-attack-button-disabled,
+div.sheet-attack-press-attack-button-disabled,
+div.sheet-attack-sneak-attack-button-disabled,
+div.sheet-attack-strong-attack-button-disabled,
+div.sheet-attack-stun-attack-button-disabled,
+div.sheet-attack-great-cleave-attack-button-disabled
 {
 	display: none;
 }
 
-input.sheet-weapon-berserk-attack-button-show:checked ~ div.sheet-weapon-berserk-attack-button-enabled,
-input.sheet-weapon-charge-attack-button-show:checked ~ div.sheet-weapon-charge-attack-button-enabled,
-input.sheet-weapon-cleave-attack-button-show:checked ~ div.sheet-weapon-cleave-attack-button-enabled,
-input.sheet-weapon-defense-attack-button-show:checked ~ div.sheet-weapon-defense-attack-button-enabled,
-input.sheet-weapon-disarm-attack-button-show:checked ~ div.sheet-weapon-disarm-attack-button-enabled,
-input.sheet-weapon-feint-attack-button-show:checked ~ div.sheet-weapon-feint-attack-button-enabled,
-input.sheet-weapon-lightning-attack-button-show:checked ~ div.sheet-weapon-lightning-attack-button-enabled,
-input.sheet-weapon-press-attack-button-show:checked ~ div.sheet-weapon-press-attack-button-enabled,
-input.sheet-weapon-cleave-attack-button-show:checked ~ div.sheet-weapon-cleave-attack-button-enabled,
-input.sheet-weapon-great-cleave-attack-button-show:checked ~ div.sheet-weapon-great-cleave-attack-button-enabled,
-input.sheet-weapon-sneak-attack-button-show:checked ~ div.sheet-weapon-sneak-attack-button-enabled,
-input.sheet-weapon-strong-attack-button-show:checked ~ div.sheet-weapon-strong-attack-button-enabled,
-input.sheet-weapon-stun-attack-button-show:checked ~ div.sheet-weapon-stun-attack-button-enabled,
-input.sheet-weapon-berserk-attack-button-show:not(:checked) ~ div.sheet-weapon-berserk-attack-button-disabled,
-input.sheet-weapon-charge-attack-button-show:not(:checked) ~ div.sheet-weapon-charge-attack-button-disabled,
-input.sheet-weapon-cleave-attack-button-show:not(:checked) ~ div.sheet-weapon-cleave-attack-button-disabled,
-input.sheet-weapon-defense-attack-button-show:not(:checked) ~ div.sheet-weapon-defense-attack-button-disabled,
-input.sheet-weapon-disarm-attack-button-show:not(:checked) ~ div.sheet-weapon-disarm-attack-button-disabled,
-input.sheet-weapon-feint-attack-button-show:not(:checked) ~ div.sheet-weapon-feint-attack-button-disabled,
-input.sheet-weapon-lightning-attack-button-show:not(:checked) ~ div.sheet-weapon-lightning-attack-button-disabled,
-input.sheet-weapon-press-attack-button-show:not(:checked) ~ div.sheet-weapon-press-attack-button-disabled,
-input.sheet-weapon-sneak-attack-button-show:not(:checked) ~ div.sheet-weapon-sneak-attack-button-disabled,
-input.sheet-weapon-strong-attack-button-show:not(:checked) ~ div.sheet-weapon-strong-attack-button-disabled,
-input.sheet-weapon-stun-attack-button-show:not(:checked) ~ div.sheet-weapon-stun-attack-button-disabled,
-input.sheet-weapon-great-cleave-attack-button-show:not(:checked) ~ div.sheet-weapon-great-cleave-attack-button-disabled
+input.sheet-attack-berserk-attack-button-show:checked ~ div.sheet-attack-berserk-attack-button-enabled,
+input.sheet-attack-charge-attack-button-show:checked ~ div.sheet-attack-charge-attack-button-enabled,
+input.sheet-attack-cleave-attack-button-show:checked ~ div.sheet-attack-cleave-attack-button-enabled,
+input.sheet-attack-defense-attack-button-show:checked ~ div.sheet-attack-defense-attack-button-enabled,
+input.sheet-attack-disarm-attack-button-show:checked ~ div.sheet-attack-disarm-attack-button-enabled,
+input.sheet-attack-feint-attack-button-show:checked ~ div.sheet-attack-feint-attack-button-enabled,
+input.sheet-attack-lightning-attack-button-show:checked ~ div.sheet-attack-lightning-attack-button-enabled,
+input.sheet-attack-press-attack-button-show:checked ~ div.sheet-attack-press-attack-button-enabled,
+input.sheet-attack-cleave-attack-button-show:checked ~ div.sheet-attack-cleave-attack-button-enabled,
+input.sheet-attack-great-cleave-attack-button-show:checked ~ div.sheet-attack-great-cleave-attack-button-enabled,
+input.sheet-attack-sneak-attack-button-show:checked ~ div.sheet-attack-sneak-attack-button-enabled,
+input.sheet-attack-strong-attack-button-show:checked ~ div.sheet-attack-strong-attack-button-enabled,
+input.sheet-attack-stun-attack-button-show:checked ~ div.sheet-attack-stun-attack-button-enabled,
+input.sheet-attack-berserk-attack-button-show:not(:checked) ~ div.sheet-attack-berserk-attack-button-disabled,
+input.sheet-attack-charge-attack-button-show:not(:checked) ~ div.sheet-attack-charge-attack-button-disabled,
+input.sheet-attack-cleave-attack-button-show:not(:checked) ~ div.sheet-attack-cleave-attack-button-disabled,
+input.sheet-attack-defense-attack-button-show:not(:checked) ~ div.sheet-attack-defense-attack-button-disabled,
+input.sheet-attack-disarm-attack-button-show:not(:checked) ~ div.sheet-attack-disarm-attack-button-disabled,
+input.sheet-attack-feint-attack-button-show:not(:checked) ~ div.sheet-attack-feint-attack-button-disabled,
+input.sheet-attack-lightning-attack-button-show:not(:checked) ~ div.sheet-attack-lightning-attack-button-disabled,
+input.sheet-attack-press-attack-button-show:not(:checked) ~ div.sheet-attack-press-attack-button-disabled,
+input.sheet-attack-sneak-attack-button-show:not(:checked) ~ div.sheet-attack-sneak-attack-button-disabled,
+input.sheet-attack-strong-attack-button-show:not(:checked) ~ div.sheet-attack-strong-attack-button-disabled,
+input.sheet-attack-stun-attack-button-show:not(:checked) ~ div.sheet-attack-stun-attack-button-disabled,
+input.sheet-attack-great-cleave-attack-button-show:not(:checked) ~ div.sheet-attack-great-cleave-attack-button-disabled
 {
 	display: block;
 }
@@ -1312,18 +1312,18 @@ div.sheet-lightning_attack_section,
 div.sheet-strong_attack_section,
 div.sheet-stun_attack_section,
 div.sheet-sneak_attack_section,
-div.sheet-weapon_charge_attack_section,
-div.sheet-weapon_press_attack_section,
-div.sheet-weapon_defense_attack_section,
-div.sheet-weapon_berserk_attack_section,
-div.sheet-weapon_cleave_attack_section,
-div.sheet-weapon_disarm_attack_section,
-div.sheet-weapon_feint_attack_section,
-div.sheet-weapon_great_cleave_attack_section,
-div.sheet-weapon_lightning_attack_section,
-div.sheet-weapon_sneak_attack_section,
-div.sheet-weapon_strong_attack_section,
-div.sheet-weapon_stun_attack_section
+div.sheet-attack_charge_attack_section,
+div.sheet-attack_press_attack_section,
+div.sheet-attack_defense_attack_section,
+div.sheet-attack_berserk_attack_section,
+div.sheet-attack_cleave_attack_section,
+div.sheet-attack_disarm_attack_section,
+div.sheet-attack_feint_attack_section,
+div.sheet-attack_great_cleave_attack_section,
+div.sheet-attack_lightning_attack_section,
+div.sheet-attack_sneak_attack_section,
+div.sheet-attack_strong_attack_section,
+div.sheet-attack_stun_attack_section
 {
 	display: none;
 }
@@ -1340,18 +1340,18 @@ input.sheet-lightning_attack_enabled:checked ~ div.sheet-lightning_attack_sectio
 input.sheet-sneak_attack_enabled:checked ~ div.sheet-sneak_attack_section,
 input.sheet-strong_attack_enabled:checked ~ div.sheet-strong_attack_section,
 input.sheet-stun_attack_enabled:checked ~ div.sheet-stun_attack_section,
-input.sheet-weapon_charge_attack_enabled:checked ~ div.sheet-weapon_charge_attack_section,
-input.sheet-weapon_press_attack_enabled:checked ~ div.sheet-weapon_press_attack_section,
-input.sheet-weapon_defense_attack_enabled:checked ~ div.sheet-weapon_defense_attack_section,
-input.sheet-weapon_berserk_attack_enabled:checked ~ div.sheet-weapon_berserk_attack_section,
-input.sheet-weapon_cleave_attack_enabled:checked ~ div.sheet-weapon_cleave_attack_section,
-input.sheet-weapon_disarm_attack_enabled:checked ~ div.sheet-weapon_disarm_attack_section,
-input.sheet-weapon_feint_attack_enabled:checked ~ div.sheet-weapon_feint_attack_section,
-input.sheet-weapon_great_cleave_attack_enabled:checked ~ div.sheet-weapon_great_cleave_attack_section,
-input.sheet-weapon_lightning_attack_enabled:checked ~ div.sheet-weapon_lightning_attack_section,
-input.sheet-weapon_sneak_attack_enabled:checked ~ div.sheet-weapon_sneak_attack_section,
-input.sheet-weapon_strong_attack_enabled:checked ~ div.sheet-weapon_strong_attack_section,
-input.sheet-weapon_stun_attack_enabled:checked ~ div.sheet-weapon_stun_attack_section
+input.sheet-attack_charge_attack_enabled:checked ~ div.sheet-attack_charge_attack_section,
+input.sheet-attack_press_attack_enabled:checked ~ div.sheet-attack_press_attack_section,
+input.sheet-attack_defense_attack_enabled:checked ~ div.sheet-attack_defense_attack_section,
+input.sheet-attack_berserk_attack_enabled:checked ~ div.sheet-attack_berserk_attack_section,
+input.sheet-attack_cleave_attack_enabled:checked ~ div.sheet-attack_cleave_attack_section,
+input.sheet-attack_disarm_attack_enabled:checked ~ div.sheet-attack_disarm_attack_section,
+input.sheet-attack_feint_attack_enabled:checked ~ div.sheet-attack_feint_attack_section,
+input.sheet-attack_great_cleave_attack_enabled:checked ~ div.sheet-attack_great_cleave_attack_section,
+input.sheet-attack_lightning_attack_enabled:checked ~ div.sheet-attack_lightning_attack_section,
+input.sheet-attack_sneak_attack_enabled:checked ~ div.sheet-attack_sneak_attack_section,
+input.sheet-attack_strong_attack_enabled:checked ~ div.sheet-attack_strong_attack_section,
+input.sheet-attack_stun_attack_enabled:checked ~ div.sheet-attack_stun_attack_section
 {
   display: block;
 }
@@ -1744,15 +1744,15 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 
 /* Melee header*/
 
-.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-weapon {
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-attack {
 	background-color: #2C5D28;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-weapon:before {
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-attack:before {
 	border-right-color: #375035;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-weapon:after {
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-attack:after {
 	border-left-color: #375035;
 }
 

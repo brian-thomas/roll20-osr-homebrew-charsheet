@@ -247,7 +247,7 @@
                 <input type="checkbox" class="sheet-is_npc_attack" name="attr_action_attack_display_flag" value="1" hidden="True" checked="True"/>
                 <div class="section-npc-show-attack">
                   <button type="roll" name="roll_npc_action" class="npc-trait-name blank-roll-button info5"
-                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{weapon=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + @{action_attack_damage} ]]}} }}">
+                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{attack=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + @{action_attack_damage} ]]}} }}">
                      <span name="attr_action_name">Action Name</span>
                   </button>
                   <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc1"/></label>
@@ -284,7 +284,7 @@
                 <input type="checkbox" class="sheet-is_npc_attack" name="attr_action_attack_display_flag" value="1" hidden="True" checked="True"/>
                 <div class="section-npc-show-attack">
                   <button type="roll" name="roll_npc_action" class="npc-trait-name blank-roll-button info5"
-                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{weapon=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + @{action_attack_damage} ]]}} }}">
+                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{attack=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + @{action_attack_damage} ]]}} }}">
                      <span name="attr_action_name">Legend Action Name</span>
                   </button>
                   <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc1"/></label>
@@ -981,7 +981,7 @@
             <fieldset class="repeating_cmbt-styles">
               <div class="sheet-inline-flex">
                 <input type="text" name="attr_cmbt_style_name" class="cstyle-name" value="" data-i18n-placeholder="Cmbt Style Name"/>
-                <input type="text" name="attr_cmbt_style_profs" class="cstyle-wprof" value="" data-i18n-placeholder="Style weapons, comma separated, 3 max"/>
+                <input type="text" name="attr_cmbt_style_profs" class="cstyle-wprof" value="" data-i18n-placeholder="Style attacks, comma separated, 3 max"/>
                 <input type="text" name="attr_cmbt_style_opts" class="cstyle-opts" value="" data-i18n-placeholder="Allowed style combat opts, comma sep., 3 max"/>
               </div>
             </fieldset>
@@ -1047,7 +1047,7 @@
                 <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_disarm_attack" value="1"/>
                   <span class="ability-check-label">Disarm</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Target STR save or drop weapon, AB-4, AC-4)</span>
+                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Target STR save or drop attack, AB-4, AC-4)</span>
                 </div>
 
                 <input type="checkbox" class="sheet-cleave_attack_enabled2" name="attr_cleave_attack_enabled2" value="1" hidden="true"/>
@@ -1101,13 +1101,13 @@
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB-4, AC-4, target STR save vs dam or stun)</span>
                 </div>
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_two_weapon_attack" value="1"/>
+                  <input type="checkbox" name="attr_two_attack_attack" value="1"/>
                   <span class="ability-check-label">Two Weapon Attack</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(2nd Attk w/ small offhand weapon or AC+1)</span>
                 </div>
-                <input type="checkbox" class="sheet-two_weapon_attack_enabled"  name="attr_two_weapon_attack_enabled" value="1" hidden="true"/>
-                <div class="sheet-section-two_weapon_master sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_two_weapon_master_attack" value="1"/>
+                <input type="checkbox" class="sheet-two_attack_attack_enabled"  name="attr_two_attack_attack_enabled" value="1" hidden="true"/>
+                <div class="sheet-section-two_attack_master sheet-flex sheet-bottom-padding">
+                  <input type="checkbox" name="attr_two_attack_master_attack" value="1"/>
                   <span class="ability-check-label">Two Weapon Master</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(2nd Attk with offhand weapon or AC+2)</span>
                 </div>
@@ -1124,7 +1124,7 @@
         </div>
 
         <div class="sheet-thick-border">
-          <h3>Weapons</h3>
+          <h3>Attacks</h3>
           <div class="sheet-flex">
             <input type="checkbox" class="sheet-berserk_attack_enabled" name="attr_berserk_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-charge_attack_enabled" name="attr_charge_attack_enabled" value="1" hidden="true"/>
@@ -1140,107 +1140,107 @@
             <input type="checkbox" class="sheet-stun_attack_enabled" name="attr_stun_attack_enabled" value="1" hidden="true"/>
             <input type="number" name="attr_berserk_attack_mod" value="2" hidden="true"/>
 
-            <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font sheet-italic-font left-pad right-pad">Notches</span>
-            <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font sheet-italic-font left-pad right-pad">Prof.</span>
-            <span class="sheet-weapon-name sheet-bold-font">Name</span>
-            <span class="sheet-weapon-param-name sheet-bold-font">Add. Bonus</span>
-            <span class="sheet-weapon-param-long-name sheet-bold-font">Attk Type</span>
-            <span class="sheet-weapon-param-name sheet-bold-font">Attk Bonus</span>
-            <span class="sheet-weapon-param-select-name sheet-bold-font">Damage</span>
-            <span class="sheet-weapon-param-long-name sheet-bold-font">Dam. Type</span>
-            <span class="sheet-weapon-param-name sheet-bold-font">Dam Bonus</span>
+            <span class="sheet-attack-param-name sheet-rotate sheet-bold-font sheet-italic-font left-pad right-pad">Notches</span>
+            <span class="sheet-attack-param-name sheet-rotate sheet-bold-font sheet-italic-font left-pad right-pad">Prof.</span>
+            <span class="sheet-attack-name sheet-bold-font">Name</span>
+            <span class="sheet-attack-param-name sheet-bold-font">Add. Bonus</span>
+            <span class="sheet-attack-param-long-name sheet-bold-font">Attk Type</span>
+            <span class="sheet-attack-param-name sheet-bold-font">Attk Bonus</span>
+            <span class="sheet-attack-param-select-name sheet-bold-font">Damage</span>
+            <span class="sheet-attack-param-long-name sheet-bold-font">Dam. Type</span>
+            <span class="sheet-attack-param-name sheet-bold-font">Dam Bonus</span>
 
-            <span class="sheet-weapon-param-attk-name sheet-bold-font">Stnd. Attack</span>
+            <span class="sheet-attack-param-attk-name sheet-bold-font">Stnd. Attack</span>
 
             <div class="sheet-charge_attack_section">
-              <span class="sheet-weapon-param-attk-name sheet-bold-font">Charge Attack</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Charge Attack</span>
             </div>
 
             <div class="sheet-press_attack_section">
-              <span class="sheet-weapon-param-attk-name sheet-bold-font">Press Attack</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Press Attack</span>
             </div>
 
             <div class="sheet-defense_attack_section">
-              <span class="sheet-weapon-param-attk-name sheet-bold-font">Defns. Attack</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Defns. Attack</span>
             </div>
 
             <div class="sheet-berserk_attack_section">
-              <span class="sheet-weapon-param-attk-name sheet-bold-font">Berserk Attack</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Berserk Attack</span>
             </div>
 
             <div class="sheet-cleave_attack_section">
-              <span class="sheet-weapon-param-attk-name sheet-bold-font">Cleave Attack</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Cleave Attack</span>
             </div>
 
             <div class="sheet-disarm_attack_section">
-              <span class="sheet-weapon-param-attk-name sheet-bold-font">Disarm Attack</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Disarm Attack</span>
             </div>
 
             <div class="sheet-great_cleave_attack_section">
-              <span class="sheet-weapon-param-attk-name sheet-bold-font">Great Cleave Attack</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Great Cleave Attack</span>
             </div>
 
             <div class="sheet-feint_attack_section">
-              <span class="sheet-weapon-param-attk-name sheet-bold-font">Feint Attack</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Feint Attack</span>
             </div>
 
             <div class="sheet-lightning_attack_section">
-              <span class="sheet-weapon-param-attk-name sheet-bold-font">Lightning Strike</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Lightning Strike</span>
             </div>
 
             <div class="sheet-strong_attack_section">
-              <span class="sheet-weapon-param-attk-name sheet-bold-font">Strong Attack</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Strong Attack</span>
             </div>
 
             <div class="sheet-stun_attack_section">
-              <span class="sheet-weapon-param-attk-name sheet-bold-font">Stun Attack</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Stun Attack</span>
             </div>
 
             <div class="sheet-sneak_attack_section">
-              <span class="sheet-weapon-param-attk-name sheet-bold-font">Sneak Attack</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Sneak Attack</span>
             </div>
 
           </div>
 
-          <fieldset class="repeating_weapons">
+          <fieldset class="repeating_attacks">
             <div class="sheet-inline-flex">
-              <input type="checkbox" class="sheet-weapon_berserk_attack_enabled" name="attr_weapon_berserk_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-weapon_charge_attack_enabled" name="attr_weapon_charge_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-weapon_cleave_attack_enabled" name="attr_weapon_cleave_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-weapon_defense_attack_enabled" name="attr_weapon_defense_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-weapon_disarm_attack_enabled" name="attr_weapon_disarm_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-weapon_great_cleave_attack_enabled" name="attr_weapon_great_cleave_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-weapon_feint_attack_enabled" name="attr_weapon_feint_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-weapon_press_attack_enabled" name="attr_weapon_press_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-weapon_lightning_attack_enabled" name="attr_weapon_lightning_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-weapon_strong_attack_enabled" name="attr_weapon_strong_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-weapon_stun_attack_enabled" name="attr_weapon_stun_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-weapon_sneak_attack_enabled" name="attr_weapon_sneak_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-attack_berserk_attack_enabled" name="attr_attack_berserk_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-attack_charge_attack_enabled" name="attr_attack_charge_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-attack_cleave_attack_enabled" name="attr_attack_cleave_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-attack_defense_attack_enabled" name="attr_attack_defense_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-attack_disarm_attack_enabled" name="attr_attack_disarm_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-attack_great_cleave_attack_enabled" name="attr_attack_great_cleave_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-attack_feint_attack_enabled" name="attr_attack_feint_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-attack_press_attack_enabled" name="attr_attack_press_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-attack_lightning_attack_enabled" name="attr_attack_lightning_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-attack_strong_attack_enabled" name="attr_attack_strong_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-attack_stun_attack_enabled" name="attr_attack_stun_attack_enabled" value="1" hidden="true"/>
+              <input type="checkbox" class="sheet-attack_sneak_attack_enabled" name="attr_attack_sneak_attack_enabled" value="1" hidden="true"/>
 
-              <input name="attr_weapon_sneak_attack_bonus" value="@{sneak_attack_skill} + @{weapon_bonus} - @{weapon_notches}" hidden="true"/>
-              <input name="attr_weapon_sneak_attack_dam" value="0" hidden="true"/>
+              <input name="attr_attack_sneak_attack_bonus" value="@{sneak_attack_skill} + @{attack_bonus} - @{attack_notches}" hidden="true"/>
+              <input name="attr_attack_sneak_attack_dam" value="0" hidden="true"/>
 
-              <select class="sheet-weapon-notches" name="attr_weapon_notches">
+              <select class="sheet-attack-notches" name="attr_attack_notches">
                 <option selected="selected" value="0">--</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
 
-              <input type="checkbox" class="sheet-weapon-notches" name="attr_has_weapon_proficiency" value="1"/>
-              <input type="text" name="attr_weapon_name" class="weapon-name" data-i18n-placeholder="weapon name"/>
-              <input type="number" name="attr_weapon_bonus" class="weapon-param sheet-purple-border" value="0"/>
+              <input type="checkbox" class="sheet-attack-notches" name="attr_has_attack_proficiency" value="1"/>
+              <input type="text" name="attr_attack_name" class="attack-name" data-i18n-placeholder="attack name"/>
+              <input type="number" name="attr_attack_bonus" class="attack-param sheet-purple-border" value="0"/>
 
-      	      <select class="weapon-param-long" name="attr_weapon_attk_type">
+      	      <select class="attack-param-long" name="attr_attack_attk_type">
       	        <option selected="selected" value="melee">Melee</option>
       	        <option value="ranged">Ranged</option>
       	        <option value="unarmed">Unarmed</option>
       	        <option value="spell">Spell</option>
       	      </select>
 
-              <input type="number" name="attr_weapon_attack_bonus" value="0" class="weapon-param bold-font inactive-color" readonly="true"/>
+              <input type="number" name="attr_attack_attack_bonus" value="0" class="attack-param bold-font inactive-color" readonly="true"/>
 
-              <select class="sheet-weapon-param" name="attr_weapon_dam_die">
+              <select class="sheet-attack-param" name="attr_attack_dam_die">
                 <option value="0d0">--</option>
                 <option selected="selected" value="1d2">1d2</option>
                 <option value="1d4">1d4</option>
@@ -1260,9 +1260,9 @@
                 <option value="2d20">2d20</option>
               </select>
 
-              <input name="attr_weapon_dam" value="0" hidden="true"/>
+              <input name="attr_attack_dam" value="0" hidden="true"/>
 
-      	      <select class="weapon-param-long" name="attr_weapon_dam_type">
+      	      <select class="attack-param-long" name="attr_attack_dam_type">
                 <option selcted="selected" value="Bludgeoning">Bludgeon</option>
                 <option value="Piercing">Pierce</option>
                 <option value="Slashing">Slash</option>
@@ -1279,7 +1279,7 @@
       	      </select>
 
               <!--
-              <select class="sheet-weapon-param" name="attr_weapon_dam_die2">
+              <select class="sheet-attack-param" name="attr_attack_dam_die2">
                 <option selected="selected" value="0"></option>
                 <option value="1d2">1d2</option>
                 <option value="1d4">1d4</option>
@@ -1298,142 +1298,142 @@
                 <option value="3d12">3d12</option>
                 <option value="2d20">2d20</option>
               </select>
-              <input name="attr_weapon_dam2" value="0" hidden="true"/>
+              <input name="attr_attack_dam2" value="0" hidden="true"/>
               -->
 
-              <input type="number" name="attr_weapon_dam_bonus" class="weapon-param bold-font inactive-color" value="[[@{strength_mod}+@{weapon_bonus}]]" disabled="true"/>
+              <input type="number" name="attr_attack_dam_bonus" class="attack-param bold-font inactive-color" value="[[@{strength_mod}+@{attack_bonus}]]" disabled="true"/>
 
-              <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_weapon_attack"
-                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus}]]}} {{fumble=[[2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }}"></button>
+              <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_attack_attack"
+                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} Attack}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] ]]}} {{critical=[[19 + @{attack_attack_bonus}]]}} {{fumble=[[2+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + [[@{attack_dam_bonus}]] ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }}"></button>
 
-              <div class="sheet-weapon_charge_attack_section">
-                <input type="checkbox" class="sheet-weapon-charge-attack-button-show" name="attr_weapon_charge_attack_button_show" value="1" hidden="true" checked="checked"/>
-                <div class="sheet-weapon-charge-attack-button-enabled">
+              <div class="sheet-attack_charge_attack_section">
+                <input type="checkbox" class="sheet-attack-charge-attack-button-show" name="attr_attack_charge_attack_button_show" value="1" hidden="true" checked="checked"/>
+                <div class="sheet-attack-charge-attack-button-enabled">
                   <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_charge_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Charge Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] +2 ]]}} {{critical=[[21 + @{weapon_attack_bonus}]]}} {{fumble=[[4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] +2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam} + @{weapon_dam_bonus} [Dam] }} {{special=Must move full move to attack. Braced opponents w/ long weapons immediately counterattack.}}"></button>
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Charge Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] +2 ]]}} {{critical=[[21 + @{attack_attack_bonus}]]}} {{fumble=[[4+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] +2 [Attack], @{attack_dam} + @{attack_dam_bonus} + @{attack_dam} + @{attack_dam_bonus} [Dam] }} {{special=Must move full move to attack. Braced opponents w/ long attacks immediately counterattack.}}"></button>
                 </div>
-                <div class="sheet-weapon-charge-attack-button-disabled">
+                <div class="sheet-attack-charge-attack-button-disabled">
                   <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
                 </div>
               </div>
 
-              <div class="sheet-weapon_press_attack_section">
-                <input type="checkbox" class="sheet-weapon-press-attack-button-show" name="attr_weapon_press_attack_button_show" value="1" hidden="true" checked="checked"/>
-                <div class="sheet-weapon-press-attack-button-enabled">
+              <div class="sheet-attack_press_attack_section">
+                <input type="checkbox" class="sheet-attack-press-attack-button-show" name="attr_attack_press_attack_button_show" value="1" hidden="true" checked="checked"/>
+                <div class="sheet-attack-press-attack-button-enabled">
                   <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_press_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{weapon_attack_bonus}]]}} {{fumble=[[4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Force 1 step retreat on hit. -4 AC next round.}}"></button>
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{attack_attack_bonus}]]}} {{fumble=[[4+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] + 2 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Force 1 step retreat on hit. -4 AC next round.}}"></button>
                 </div>
-                <div class="sheet-weapon-press-attack-button-disabled">
+                <div class="sheet-attack-press-attack-button-disabled">
                   <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
                 </div>
               </div>
 
-              <div class="sheet-weapon_defense_attack_section">
-                <input type="checkbox" class="sheet-weapon-defense-attack-button-show" name="attr_weapon_defense_attack_button_show" value="1" hidden="true" checked="checked"/>
-                <div class="sheet-weapon-defense-attack-button-enabled">
+              <div class="sheet-attack_defense_attack_section">
+                <input type="checkbox" class="sheet-attack-defense-attack-button-show" name="attr_attack_defense_attack_button_show" value="1" hidden="true" checked="checked"/>
+                <div class="sheet-attack-defense-attack-button-enabled">
                   <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_defense_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Defensive Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] -4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }} {{special=+2 AC next round.}}"></button>
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Defensive Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] - 4]]}} {{critical=[[15 + @{attack_attack_bonus}]]}} {{fumble=[[-2+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] -4 [Attack], @{attack_dam} + @{attack_dam_bonus} [Damage] }} {{special=+2 AC next round.}}"></button>
                 </div>
-                <div class="sheet-weapon-defense-attack-button-disabled">
+                <div class="sheet-attack-defense-attack-button-disabled">
                   <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
                 </div>
               </div>
 
-              <div class="sheet-weapon_berserk_attack_section">
-                <input type="checkbox" class="sheet-weapon-berserk-attack-button-show" name="attr_weapon_berserk_attack_button_show" value="1" hidden="true" checked="checked"/>
-                <div class="sheet-weapon-berserk-attack-button-enabled">
+              <div class="sheet-attack_berserk_attack_section">
+                <input type="checkbox" class="sheet-attack-berserk-attack-button-show" name="attr_attack_berserk_attack_button_show" value="1" hidden="true" checked="checked"/>
+                <div class="sheet-attack-berserk-attack-button-enabled">
                   <button class="sheet-attack-button sheet-yellow-border" type="roll" name="roll_berserk_attack"
-    	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Berserk Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + [[@{berserk_attack_mod}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus} + [[@{berserk_attack_mod}]] ]]}} {{fumble=[[2+@{weapon_attack_bonus} + [[@{berserk_attack_mod}]] ]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{berserk_attack_mod} ]]}}   {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{berserk_attack_mod} ]]}}  {{math=1d20 + [[@{weapon_attack_bonus}]] + @{berserk_attack_mod} [Attk], @{weapon_dam} + @{weapon_dam_bonus} + @{berserk_attack_mod} [Dam] }} {{special=Will vs DC 12 to stop. No Retreat. AC-2 for next rnd.}}"></button>
+    	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Berserk Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] + [[@{berserk_attack_mod}]] ]]}} {{critical=[[19 + @{attack_attack_bonus} + [[@{berserk_attack_mod}]] ]]}} {{fumble=[[2+@{attack_attack_bonus} + [[@{berserk_attack_mod}]] ]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{berserk_attack_mod} ]]}}   {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{berserk_attack_mod} ]]}}  {{math=1d20 + [[@{attack_attack_bonus}]] + @{berserk_attack_mod} [Attk], @{attack_dam} + @{attack_dam_bonus} + @{berserk_attack_mod} [Dam] }} {{special=Will vs DC 12 to stop. No Retreat. AC-2 for next rnd.}}"></button>
                 </div>
-                <div class="sheet-weapon-berserk-attack-button-disabled">
+                <div class="sheet-attack-berserk-attack-button-disabled">
                   <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
                 </div>
               </div>
 
-              <div class="sheet-weapon_cleave_attack_section">
-                <input type="checkbox" class="sheet-weapon-cleave-attack-button-show" name="attr_weapon_cleave_attack_button_show" value="1" hidden="true" checked="checked"/>
-                <div class="sheet-weapon-cleave-attack-button-enabled">
+              <div class="sheet-attack_cleave_attack_section">
+                <input type="checkbox" class="sheet-attack-cleave-attack-button-show" name="attr_attack_cleave_attack_button_show" value="1" hidden="true" checked="checked"/>
+                <div class="sheet-attack-cleave-attack-button-enabled">
                   <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_cleave_attack"
-    	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{critical=[[19 + @{weapon_bonus}]]}} {{fumble=[[2+@{weapon_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{weapon_attack_bonus}/2 ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_attack_bonus}/2 ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + [[@{weapon_attack_bonus}/2]] [Dam] }} {{special=-4 AC for next round}}"></button>
+    	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_bonus}]] ]]}} {{critical=[[19 + @{attack_bonus}]]}} {{fumble=[[2+@{attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{attack_attack_bonus}/2 ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{attack_attack_bonus}/2 ]]}} {{math=1d20 + [[@{attack_bonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} + [[@{attack_attack_bonus}/2]] [Dam] }} {{special=-4 AC for next round}}"></button>
                 </div>
-                <div class="sheet-weapon-cleave-attack-button-disabled">
+                <div class="sheet-attack-cleave-attack-button-disabled">
                   <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
                 </div>
               </div>
 
-              <div class="sheet-weapon_disarm_attack_section">
-                <input type="checkbox" class="sheet-weapon-disarm-attack-button-show" name="attr_weapon_disarm_attack_button_show" value="1" hidden="true" checked="checked"/>
-                <div class="sheet-weapon-disarm-attack-button-enabled">
+              <div class="sheet-attack_disarm_attack_section">
+                <input type="checkbox" class="sheet-attack-disarm-attack-button-show" name="attr_attack_disarm_attack_button_show" value="1" hidden="true" checked="checked"/>
+                <div class="sheet-attack-disarm-attack-button-enabled">
                   <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_disarm_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Disarm Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4 ]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] - 4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Target STR save vs damage or drop weapon. -4 AC next round.}}"></button>
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Disarm Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] - 4 ]]}} {{critical=[[15 + @{attack_attack_bonus}]]}} {{fumble=[[-2+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] - 4 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Target STR save vs damage or drop attack. -4 AC next round.}}"></button>
                 </div>
-                <div class="sheet-weapon-disarm-attack-button-disabled">
+                <div class="sheet-attack-disarm-attack-button-disabled">
                   <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
                 </div>
               </div>
 
-              <div class="sheet-weapon_great_cleave_attack_section">
-                <input type="checkbox" class="sheet-weapon-great-cleave-attack-button-show" name="attr_weapon_great_cleave_attack_button_show" value="1" hidden="true" checked="checked"/>
-                <div class="sheet-weapon-great-cleave-attack-button-enabled">
+              <div class="sheet-attack_great_cleave_attack_section">
+                <input type="checkbox" class="sheet-attack-great-cleave-attack-button-show" name="attr_attack_great_cleave_attack_button_show" value="1" hidden="true" checked="checked"/>
+                <div class="sheet-attack-great-cleave-attack-button-enabled">
                   <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_great_cleave_attack"
-    	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Great Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{critical=[[19 + @{weapon_bonus}]]}} {{fumble=[[2+@{weapon_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{weapon_attack_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_attack_bonus} ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_attack_bonus} [Dam] }} {{special=-4 AC for next round}}"></button>
+    	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Great Cleave Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_bonus}]] ]]}} {{critical=[[19 + @{attack_bonus}]]}} {{fumble=[[2+@{attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{attack_attack_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{attack_attack_bonus} ]]}} {{math=1d20 + [[@{attack_bonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} + @{attack_attack_bonus} [Dam] }} {{special=-4 AC for next round}}"></button>
                 </div>
-                <div class="sheet-weapon-great-cleave-attack-button-disabled">
+                <div class="sheet-attack-great-cleave-attack-button-disabled">
                   <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
                 </div>
               </div>
 
-              <div class="sheet-weapon_feint_attack_section">
-                <input type="checkbox" class="sheet-weapon-feint-attack-button-show" name="attr_weapon_feint_attack_button_show" value="1" hidden="true" checked="checked"/>
-                <div class="sheet-weapon-feint-attack-button-enabled">
+              <div class="sheet-attack_feint_attack_section">
+                <input type="checkbox" class="sheet-attack-feint-attack-button-show" name="attr_attack_feint_attack_button_show" value="1" hidden="true" checked="checked"/>
+                <div class="sheet-attack-feint-attack-button-enabled">
                   <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_feint_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Feint Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 4 ]]}} {{critical=[[23 + @{weapon_attack_bonus}]]}} {{fumble=[[6+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Attack occurs at -4 Initiative.}}"></button>
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Feint Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] + 4 ]]}} {{critical=[[23 + @{attack_attack_bonus}]]}} {{fumble=[[6+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] + 4 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Attack occurs at -4 Initiative.}}"></button>
                 </div>
-                <div class="sheet-weapon-feint-attack-button-disabled">
+                <div class="sheet-attack-feint-attack-button-disabled">
                   <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
                 </div>
               </div>
 
-              <div class="sheet-weapon_lightning_attack_section">
-                <input type="checkbox" class="sheet-weapon-lightning-attack-button-show" name="attr_weapon_lightning_attack_button_show" value="1" hidden="true" checked="checked"/>
-                <div class="sheet-weapon-lightning-attack-button-enabled">
+              <div class="sheet-attack_lightning_attack_section">
+                <input type="checkbox" class="sheet-attack-lightning-attack-button-show" name="attr_attack_lightning_attack_button_show" value="1" hidden="true" checked="checked"/>
+                <div class="sheet-attack-lightning-attack-button-enabled">
                   <button class="sheet-attack-button sheet-yellow-border" type="roll" name="roll_lightning_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Lightning Strike</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4 ]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] - 4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Attack earlier, Init +4. AB-4.}}"></button>
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Lightning Strike</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] - 4 ]]}} {{critical=[[15 + @{attack_attack_bonus}]]}} {{fumble=[[-2+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] - 4 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Attack earlier, Init +4. AB-4.}}"></button>
                 </div>
-                <div class="sheet-weapon-lightning-attack-button-disabled">
+                <div class="sheet-attack-lightning-attack-button-disabled">
                   <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
                 </div>
               </div>
 
-              <div class="sheet-weapon_strong_attack_section">
-                <input type="checkbox" class="sheet-weapon-strong-attack-button-show" name="attr_weapon_strong_attack_button_show" value="1" hidden="true" checked="checked"/>
-                <div class="sheet-weapon-strong-attack-button-enabled">
+              <div class="sheet-attack_strong_attack_section">
+                <input type="checkbox" class="sheet-attack-strong-attack-button-show" name="attr_attack_strong_attack_button_show" value="1" hidden="true" checked="checked"/>
+                <div class="sheet-attack-strong-attack-button-enabled">
                   <button class="sheet-attack-button sheet-green-border" type="roll" name="roll_strong_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b> Strong Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] -4 ]]}} {{critical=[[13 + @{weapon_attack_bonus}]]}} {{fumble=[[-4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] -4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam} + @{weapon_dam_bonus} [Dam] }} {{special=-4 AC for next round}}"></button>
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b> Strong Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] -4 ]]}} {{critical=[[13 + @{attack_attack_bonus}]]}} {{fumble=[[-4+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] -4 [Attack], @{attack_dam} + @{attack_dam_bonus} + @{attack_dam} + @{attack_dam_bonus} [Dam] }} {{special=-4 AC for next round}}"></button>
                 </div>
-                <div class="sheet-weapon-strong-attack-button-disabled">
+                <div class="sheet-attack-strong-attack-button-disabled">
                   <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
                 </div>
               </div>
 
-              <div class="sheet-weapon_stun_attack_section">
-                <input type="checkbox" class="sheet-weapon-stun-attack-button-show" name="attr_weapon_stun_attack_button_show" value="1" hidden="true" checked="checked"/>
-                <div class="sheet-weapon-stun-attack-button-enabled">
+              <div class="sheet-attack_stun_attack_section">
+                <input type="checkbox" class="sheet-attack-stun-attack-button-show" name="attr_attack_stun_attack_button_show" value="1" hidden="true" checked="checked"/>
+                <div class="sheet-attack-stun-attack-button-enabled">
                   <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_stun_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Stun Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] -4 ]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} ]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] -4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [@{weapon_dam_type} Damage] }} {{special=Target STR save vs damage or stun 1d3-1 rnds. -4 AC next round.}}"></button>
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Stun Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] -4 ]]}} {{critical=[[15 + @{attack_attack_bonus}]]}} {{fumble=[[-2+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] -4 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Target STR save vs damage or stun 1d3-1 rnds. -4 AC next round.}}"></button>
                 </div>
-                <div class="sheet-weapon-stun-attack-button-disabled">
+                <div class="sheet-attack-stun-attack-button-disabled">
                   <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
                 </div>
               </div>
 
-              <div class="sheet-weapon_sneak_attack_section">
-                <input type="checkbox" class="sheet-weapon-sneak-attack-button-show" name="attr_weapon_sneak_attack_button_show" value="1" hidden="true" checked="checked"/>
-                <div class="sheet-weapon-sneak-attack-button-enabled">
+              <div class="sheet-attack_sneak_attack_section">
+                <input type="checkbox" class="sheet-attack-sneak-attack-button-show" name="attr_attack_sneak_attack_button_show" value="1" hidden="true" checked="checked"/>
+                <div class="sheet-attack-sneak-attack-button-enabled">
                   <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_sneak_attack"
-    	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_sneak_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_sneak_attack_bonus}]]}} {{fumble=[[2+@{weapon_sneak_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam}]]}} {{damagetype=@{weapon_dam_type}}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} + @{weapon_sneak_attack_dam} ]]}} {{math=1d20 + @{weapon_sneak_attack_bonus} [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
+    	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_sneak_attack_bonus}]] ]]}} {{critical=[[19 + @{attack_sneak_attack_bonus}]]}} {{fumble=[[2+@{attack_sneak_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{attack_sneak_attack_dam}]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{attack_sneak_attack_dam} + @{attack_sneak_attack_dam} ]]}} {{math=1d20 + @{attack_sneak_attack_bonus} [Attack], @{attack_dam} + @{attack_dam_bonus} + @{attack_sneak_attack_dam} [Dam] }}"></button>
                 </div>
-                <div class="sheet-weapon-sneak-attack-button-disabled">
+                <div class="sheet-attack-sneak-attack-button-disabled">
                   <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
                 </div>
               </div>
@@ -1725,7 +1725,7 @@
                         <div class="sheet-flex">
                           <input type="number" class="center sheet-purple-border" name="attr_armor_bonus" value="0"/>
                           <div class="sheet-block">
-                            <select class="sheet-weapon-notches" name="attr_armor_notches">
+                            <select class="sheet-attack-notches" name="attr_armor_notches">
                               <option selected="selected" value="0">--</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
@@ -1779,7 +1779,7 @@
                         <div class="sheet-flex">
                           <input type="number" class="center sheet-purple-border" name="attr_shield_bonus" value="0"/>
                           <div class="sheet-block">
-                            <select class="sheet-weapon-notches" name="attr_shield_notches">
+                            <select class="sheet-attack-notches" name="attr_shield_notches">
                               <option selected="selected" value="0">--</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
@@ -2285,7 +2285,7 @@
 <!-- Templates -->
 <rolltemplate class="sheet-rolltemplate-roll_check">
   <div class="sheet-rt-card">
-	  <div class="sheet-rt-header{{#weapon}} sheet-weapon{{/weapon}}{{#skill}} sheet-skill{{/skill}} {{#initiative}} sheet-initiative{{/initiative}}{{#spell}} sheet-spell{{/spell}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#deathsave}} sheet-deathsave{{/deathsave}}">
+	  <div class="sheet-rt-header{{#attack}} sheet-attack{{/attack}}{{#skill}} sheet-skill{{/skill}} {{#initiative}} sheet-initiative{{/initiative}}{{#spell}} sheet-spell{{/spell}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#deathsave}} sheet-deathsave{{/deathsave}}">
       <div class="sheet-rt-title">{{title}} {{level}}</div>
       {{#subheader}}
       <div class="sheet-rt-subheader">{{subheader}}{{#subheaderright}} &bullet; {{subheaderright}}{{/subheaderright}}</div>
@@ -2870,23 +2870,23 @@
     });
   });
 
-  // Keep weapons up to date
+  // Keep attacks up to date
   const combatOpts = ['charge_attack', 'press_attack', 'defensive_attack', 'berserk_attack', 'cleave_attack', 'disarm_attack', 'feint_attack',
                       'great_cleave_attack', 'lightning_attack', 'rapid_strike_attack1', 'rapid_strike_attack2', 'rapid_shot_attack1', 'rapid_shot_attack2',
-                      'shield_bash_attack', 'strong_attack', 'stun_attack', 'two_weapon_attack', 'two_weapon_master_attack' ];
+                      'shield_bash_attack', 'strong_attack', 'stun_attack', 'two_attack_attack', 'two_attack_master_attack' ];
 
   combatOpts.forEach(combat_opt => {
-    on(`change:${combat_opt} change:sneak_attack_dice change:repeating_weapons change:c_class change:c_class2 change:level change:level2` , function () {
-      getSectionIDs('repeating_weapons', function (ids) {
+    on(`change:${combat_opt} change:sneak_attack_dice change:repeating_attacks change:c_class change:c_class2 change:level change:level2` , function () {
+      getSectionIDs('repeating_attacks', function (ids) {
         const fieldnames = [];
         ids.forEach(id => {
-              fieldnames.push('repeating_weapons_' + id + '_weapon_sneak_attack_dam');
-              fieldnames.push('repeating_weapons_' + id + '_weapon_dam_die');
-              fieldnames.push('repeating_weapons_' + id + '_weapon_dam_type');
-              fieldnames.push('repeating_weapons_' + id + '_weapon_attk_type');
-              fieldnames.push('repeating_weapons_' + id + '_weapon_bonus');
-              fieldnames.push('repeating_weapons_' + id + '_weapon_notches');
-              fieldnames.push('repeating_weapons_' + id + '_has_weapon_proficiency');
+              fieldnames.push('repeating_attacks_' + id + '_attack_sneak_attack_dam');
+              fieldnames.push('repeating_attacks_' + id + '_attack_dam_die');
+              fieldnames.push('repeating_attacks_' + id + '_attack_dam_type');
+              fieldnames.push('repeating_attacks_' + id + '_attack_attk_type');
+              fieldnames.push('repeating_attacks_' + id + '_attack_bonus');
+              fieldnames.push('repeating_attacks_' + id + '_attack_notches');
+              fieldnames.push('repeating_attacks_' + id + '_has_attack_proficiency');
           });
 
           getAttrs([...fieldnames, ...combatOpts, 'melee_ab', 'melee_base_ab', 'unarmed_ab', 'unarmed_base_ab', 'ranged_ab', 'ranged_base_ab', 'spellcasting_mod', 'sneak_attack_dice'], function (values) {
@@ -2919,8 +2919,8 @@
               const shield_bash_attack = parseInt(values.shield_bash_attack) || 0;
               const strong_attack = parseInt(values.strong_attack) || 0;
               const stun_attack = parseInt(values.stun_attack) || 0;
-              const two_weapon_attack = parseInt(values.two_weapon_attack) || 0;
-              const two_weapon_master_attack = parseInt(values.two_weapon_master_attack) || 0;
+              const two_attack_attack = parseInt(values.two_attack_attack) || 0;
+              const two_attack_master_attack = parseInt(values.two_attack_master_attack) || 0;
 
               // record state so we know if we should render buttons for these special combat options
               // or not
@@ -2936,116 +2936,116 @@
               output['press_attack_enabled'] = press_attack;
               output['strong_attack_enabled'] = strong_attack;
               output['stun_attack_enabled'] = stun_attack;
-              output['two_weapon_attack_enabled'] = two_weapon_attack;
-              output['two_weapon_master_attack_enabled'] = two_weapon_master_attack;
+              output['two_attack_attack_enabled'] = two_attack_attack;
+              output['two_attack_master_attack_enabled'] = two_attack_master_attack;
 
 
               // starts w/ 2 because everyone gets standard attack and some kind of parry_attack
               output['cmbt_opts_used'] = 2 + press_attack + charge_attack + defensive_attack
                                    + berserk_attack + cleave_attack + great_cleave_attack + disarm_attack + feint_attack + lightning_attack
                                    + rapid_shot_attack1 + rapid_shot_attack2 + rapid_strike_attack1 + rapid_strike_attack2
-                                   + shield_bash_attack + strong_attack + stun_attack + two_weapon_attack + two_weapon_master_attack;
+                                   + shield_bash_attack + strong_attack + stun_attack + two_attack_attack + two_attack_master_attack;
 
               ids.forEach(id => {
 
-                  const weapon_dam_die = values['repeating_weapons_' + id + '_weapon_dam_die'];
-                  const weapon_dam_type = values['repeating_weapons_' + id + '_weapon_dam_type'];
-                  const weapon_notches = parseInt(values['repeating_weapons_' + id + '_weapon_notches']);
-                  const weapon_attk_type = values['repeating_weapons_' + id + '_weapon_attk_type'];
-                  const weapon_bonus = parseInt(values['repeating_weapons_' + id + '_weapon_bonus']);
-                  const weapon_proficiency = parseInt(values['repeating_weapons_' + id + '_has_weapon_proficiency']) || 0;
+                  const attack_dam_die = values['repeating_attacks_' + id + '_attack_dam_die'];
+                  const attack_dam_type = values['repeating_attacks_' + id + '_attack_dam_type'];
+                  const attack_notches = parseInt(values['repeating_attacks_' + id + '_attack_notches']);
+                  const attack_attk_type = values['repeating_attacks_' + id + '_attack_attk_type'];
+                  const attack_bonus = parseInt(values['repeating_attacks_' + id + '_attack_bonus']);
+                  const attack_proficiency = parseInt(values['repeating_attacks_' + id + '_has_attack_proficiency']) || 0;
 
-                  const is_ranged = (weapon_attk_type === 'ranged' || 0);
-                  const is_spell = (weapon_attk_type === 'spell' || 0);
-                  const is_proficient = weapon_proficiency > 0 ? 1 : 0;
+                  const is_ranged = (attack_attk_type === 'ranged' || 0);
+                  const is_spell = (attack_attk_type === 'spell' || 0);
+                  const is_proficient = attack_proficiency > 0 ? 1 : 0;
 
-                  // weapn attack bonus depends on weapon_proficiency and type of attack
-                  // TODO: weapon_proficiency
-                  var weapon_attk_type_ab = melee_ab;
-                  var weapon_attk_type_base_ab = melee_base_ab;
+                  // weapn attack bonus depends on attack_proficiency and type of attack
+                  // TODO: attack_proficiency
+                  var attack_attk_type_ab = melee_ab;
+                  var attack_attk_type_base_ab = melee_base_ab;
 
-                  if (weapon_attk_type === 'unarmed') {
-                    weapon_attk_type_ab = unarmed_ab;
-                    weapon_attk_type_base_ab = unarmed_base_ab;
+                  if (attack_attk_type === 'unarmed') {
+                    attack_attk_type_ab = unarmed_ab;
+                    attack_attk_type_base_ab = unarmed_base_ab;
                   }
 
                   if (is_ranged) {
-                    weapon_attk_type_ab = ranged_ab;
-                    weapon_attk_type_base_ab = ranged_base_ab;
+                    attack_attk_type_ab = ranged_ab;
+                    attack_attk_type_base_ab = ranged_base_ab;
                   }
 
                   if (is_spell) {
-                    weapon_attk_type_ab = spellcasting_mod;
-                    weapon_attk_type_base_ab = 0;
+                    attack_attk_type_ab = spellcasting_mod;
+                    attack_attk_type_base_ab = 0;
                   }
 
-                  // based on proficiency we get AB for weapon
-                  var weapon_attack_bonus = weapon_bonus - weapon_notches;
+                  // based on proficiency we get AB for attack
+                  var attack_attack_bonus = attack_bonus - attack_notches;
                   if (is_proficient) {
-                    weapon_attack_bonus += weapon_attk_type_ab;
+                    attack_attack_bonus += attack_attk_type_ab;
                   } else {
-                    weapon_attack_bonus += weapon_attk_type_base_ab;
+                    attack_attack_bonus += attack_attk_type_base_ab;
                   }
 
-                  const num_dam_die = parseInt(weapon_dam_die.substring(0,1));
-                  const weapon_dam_die_type = parseInt(weapon_dam_die.substring(2)) - (2 * (weapon_notches));
+                  const num_dam_die = parseInt(attack_dam_die.substring(0,1));
+                  const attack_dam_die_type = parseInt(attack_dam_die.substring(2)) - (2 * (attack_notches));
 
-                  // safety for low die weapons with lots of notches
-                  if (weapon_dam_die_type < 0) {
-                    weapon_dam_die_type = 0;
+                  // safety for low die attacks with lots of notches
+                  if (attack_dam_die_type < 0) {
+                    attack_dam_die_type = 0;
                   }
 
                   // final calculations
-                  const sneak_dam = (sneak_dice * num_dam_die ) + 'd' + weapon_dam_die_type;
-                  const weapon_dam = num_dam_die + 'd' + weapon_dam_die_type;
+                  const sneak_dam = (sneak_dice * num_dam_die ) + 'd' + attack_dam_die_type;
+                  const attack_dam = num_dam_die + 'd' + attack_dam_die_type;
 
-                  // apply new properties to weapon
-                  output['repeating_weapons_' + id + '_weapon_berserk_attack_enabled'] = berserk_attack;
-                  output['repeating_weapons_' + id + '_weapon_charge_attack_enabled'] = charge_attack;
-                  output['repeating_weapons_' + id + '_weapon_cleave_attack_enabled'] = cleave_attack && !great_cleave_attack;
-                  output['repeating_weapons_' + id + '_weapon_defense_attack_enabled'] = defensive_attack;
-                  output['repeating_weapons_' + id + '_weapon_disarm_attack_enabled'] = disarm_attack;
-                  output['repeating_weapons_' + id + '_weapon_feint_attack_enabled'] = feint_attack;
-                  output['repeating_weapons_' + id + '_weapon_great_cleave_attack_enabled'] = great_cleave_attack && cleave_attack;
-                  output['repeating_weapons_' + id + '_weapon_lightning_attack_enabled'] = lightning_attack;
-                  output['repeating_weapons_' + id + '_weapon_press_attack_enabled'] = press_attack;
-                  output['repeating_weapons_' + id + '_weapon_strong_attack_enabled'] = strong_attack;
-                  output['repeating_weapons_' + id + '_weapon_stun_attack_enabled'] = stun_attack;
-                  output['repeating_weapons_' + id + '_weapon_sneak_attack_dam'] = sneak_dam;
-                  output['repeating_weapons_' + id + '_weapon_sneak_attack_enabled'] = sneak_dice > 0 ? 1 : 0;
+                  // apply new properties to attack
+                  output['repeating_attacks_' + id + '_attack_berserk_attack_enabled'] = berserk_attack;
+                  output['repeating_attacks_' + id + '_attack_charge_attack_enabled'] = charge_attack;
+                  output['repeating_attacks_' + id + '_attack_cleave_attack_enabled'] = cleave_attack && !great_cleave_attack;
+                  output['repeating_attacks_' + id + '_attack_defense_attack_enabled'] = defensive_attack;
+                  output['repeating_attacks_' + id + '_attack_disarm_attack_enabled'] = disarm_attack;
+                  output['repeating_attacks_' + id + '_attack_feint_attack_enabled'] = feint_attack;
+                  output['repeating_attacks_' + id + '_attack_great_cleave_attack_enabled'] = great_cleave_attack && cleave_attack;
+                  output['repeating_attacks_' + id + '_attack_lightning_attack_enabled'] = lightning_attack;
+                  output['repeating_attacks_' + id + '_attack_press_attack_enabled'] = press_attack;
+                  output['repeating_attacks_' + id + '_attack_strong_attack_enabled'] = strong_attack;
+                  output['repeating_attacks_' + id + '_attack_stun_attack_enabled'] = stun_attack;
+                  output['repeating_attacks_' + id + '_attack_sneak_attack_dam'] = sneak_dam;
+                  output['repeating_attacks_' + id + '_attack_sneak_attack_enabled'] = sneak_dice > 0 ? 1 : 0;
 
-                  output['repeating_weapons_' + id + '_weapon_attack_bonus'] = weapon_attack_bonus;
-                  output['repeating_weapons_' + id + '_weapon_dam'] = weapon_dam;
-                  output['repeating_weapons_' + id + '_weapon_sneak_attack_enabled'] = sneak_dice > 0 ? 1 : 0;
+                  output['repeating_attacks_' + id + '_attack_attack_bonus'] = attack_attack_bonus;
+                  output['repeating_attacks_' + id + '_attack_dam'] = attack_dam;
+                  output['repeating_attacks_' + id + '_attack_sneak_attack_enabled'] = sneak_dice > 0 ? 1 : 0;
 
 
                   // even though we have the attack option, we still may not be able to use it because of the
-                  // type of weapon we have in hand and/or we lack proficiency
+                  // type of attack we have in hand and/or we lack proficiency
 
-                  output['repeating_weapons_' + id + '_weapon_defense_attack_button_show'] = is_proficient && is_spell == 0;
-                  output['repeating_weapons_' + id + '_weapon_disarm_attack_button_show'] = is_proficient && is_spell == 0;
-                  output['repeating_weapons_' + id + '_weapon_feint_attack_button_show'] = is_proficient; // allow spells to be aimed if held
-                  output['repeating_weapons_' + id + '_weapon_lightning_attack_button_show'] = is_proficient && is_spell == 0;
-                  output['repeating_weapons_' + id + '_weapon_sneak_attack_button_show'] = is_proficient && is_spell == 0;
-                  output['repeating_weapons_' + id + '_weapon_strong_attack_button_show'] = is_proficient && is_spell == 0;
+                  output['repeating_attacks_' + id + '_attack_defense_attack_button_show'] = is_proficient && is_spell == 0;
+                  output['repeating_attacks_' + id + '_attack_disarm_attack_button_show'] = is_proficient && is_spell == 0;
+                  output['repeating_attacks_' + id + '_attack_feint_attack_button_show'] = is_proficient; // allow spells to be aimed if held
+                  output['repeating_attacks_' + id + '_attack_lightning_attack_button_show'] = is_proficient && is_spell == 0;
+                  output['repeating_attacks_' + id + '_attack_sneak_attack_button_show'] = is_proficient && is_spell == 0;
+                  output['repeating_attacks_' + id + '_attack_strong_attack_button_show'] = is_proficient && is_spell == 0;
 
-                  // Only slashing / force weapons may 'cleave'
-                  output['repeating_weapons_' + id + '_weapon_cleave_attack_button_show'] = is_proficient && is_spell == 0
-                         && (weapon_dam_type === 'Slashing' || weapon_dam_type === 'Force') ? 1 : 0;
-                  output['repeating_weapons_' + id + '_weapon_great_cleave_attack_button_show'] = is_proficient && is_spell == 0
-                         && (weapon_dam_type === 'Slashing' || weapon_dam_type === 'Force') ? 1 : 0;
+                  // Only slashing / force attacks may 'cleave'
+                  output['repeating_attacks_' + id + '_attack_cleave_attack_button_show'] = is_proficient && is_spell == 0
+                         && (attack_dam_type === 'Slashing' || attack_dam_type === 'Force') ? 1 : 0;
+                  output['repeating_attacks_' + id + '_attack_great_cleave_attack_button_show'] = is_proficient && is_spell == 0
+                         && (attack_dam_type === 'Slashing' || attack_dam_type === 'Force') ? 1 : 0;
 
-                  // Only bashing / force 'weapons' may 'stun'
-                  output['repeating_weapons_' + id + '_weapon_stun_attack_button_show'] = is_proficient && is_spell == 0
-                         && (weapon_dam_type === 'Bludgeoning' || weapon_dam_type === 'Force') ? 1 : 0;
+                  // Only bashing / force 'attacks' may 'stun'
+                  output['repeating_attacks_' + id + '_attack_stun_attack_button_show'] = is_proficient && is_spell == 0
+                         && (attack_dam_type === 'Bludgeoning' || attack_dam_type === 'Force') ? 1 : 0;
 
-                  // NO charge, defense or press attacks with ranged weapons
-                  output['repeating_weapons_' + id + '_weapon_charge_attack_button_show'] = is_proficient && (is_ranged == 0) && is_spell == 0;
-                  output['repeating_weapons_' + id + '_weapon_press_attack_button_show'] = is_proficient && (is_ranged == 0) && is_spell == 0;
+                  // NO charge, defense or press attacks with ranged attacks
+                  output['repeating_attacks_' + id + '_attack_charge_attack_button_show'] = is_proficient && (is_ranged == 0) && is_spell == 0;
+                  output['repeating_attacks_' + id + '_attack_press_attack_button_show'] = is_proficient && (is_ranged == 0) && is_spell == 0;
 
-                  // NO ranged weapon berserk attacks. Require too much concentration
-                  // conversely, we CAN berserk w/o proficiency in a weapon.
-                  output['repeating_weapons_' + id + '_weapon_berserk_attack_button_show'] = is_ranged || is_spell ? 0 : 1;
+                  // NO ranged attack berserk attacks. Require too much concentration
+                  // conversely, we CAN berserk w/o proficiency in a attack.
+                  output['repeating_attacks_' + id + '_attack_berserk_attack_button_show'] = is_ranged || is_spell ? 0 : 1;
 
               });
 
@@ -3075,57 +3075,57 @@
 
 
 
-  // Update basic weapon information we expect to have
-  on(`change:c_class change:c_class2 change:repeating_weapons`, () => {
+  // Update basic attack information we expect to have
+  on(`change:c_class change:c_class2 change:repeating_attacks`, () => {
 
-    // Basic HTH weapons for everyone
-     add_weapon_if_missing({name: "Punch", attk_type: "unarmed", dam_die: "1d2", dam_type: "Bludgeoning"});
-     // add_weapon_if_missing({name: "Kick", attk_type: "unarmed", dam_die: "1d4", dam_type: "Bludgeoning"});
-     add_weapon_if_missing({name: "Grapple", attk_type: "unarmed", dam_die: "0d0", dam_type: "Bludgeoning"});
+    // Basic HTH attacks for everyone
+     add_attack_if_missing({name: "Punch", attk_type: "unarmed", dam_die: "1d2", dam_type: "Bludgeoning"});
+     // add_attack_if_missing({name: "Kick", attk_type: "unarmed", dam_die: "1d4", dam_type: "Bludgeoning"});
+     add_attack_if_missing({name: "Grapple", attk_type: "unarmed", dam_die: "0d0", dam_type: "Bludgeoning"});
 
-     // TODO: weapon proficiencies
+     // TODO: attack proficiencies
 
   });
 
-  function create_weapon_obj (weapon) {
+  function create_attack_obj (attack) {
 
     var newrowid = generateRowID();
     var settings = {};
 
-    settings["repeating_weapons_" + newrowid + "_weapon_name"] = weapon["name"];
-    settings["repeating_weapons_" + newrowid + "_weapon_attk_type"] = weapon["attk_type"];
-    settings["repeating_weapons_" + newrowid + "_weapon_dam_type"] = weapon["dam_type"];
-    settings["repeating_weapons_" + newrowid + "_weapon_dam_die"] = weapon["dam_die"];
+    settings["repeating_attacks_" + newrowid + "_attack_name"] = attack["name"];
+    settings["repeating_attacks_" + newrowid + "_attack_attk_type"] = attack["attk_type"];
+    settings["repeating_attacks_" + newrowid + "_attack_dam_type"] = attack["dam_type"];
+    settings["repeating_attacks_" + newrowid + "_attack_dam_die"] = attack["dam_die"];
 
     return settings;
   }
 
-  function add_weapon_if_missing (weapon) {
+  function add_attack_if_missing (attack) {
 
-    var name = weapon["name"];
+    var name = attack["name"];
 
     // SO we cannot pass stuff out of getSectionIDs or getAttrs for whatever reason.
     // We need to cache our result in the chracter attribute (bah)
-    getSectionIDs('repeating_weapons', function (ids) {
-      // build list of weapon name references
+    getSectionIDs('repeating_attacks', function (ids) {
+      // build list of attack name references
       const fieldnames = [];
       ids.forEach(id => {
-         fieldnames.push('repeating_weapons_' + id + '_weapon_name');
+         fieldnames.push('repeating_attacks_' + id + '_attack_name');
       });
 
       getAttrs([...fieldnames ], function (values) {
         // set default
-        var has_weapon = false;
+        var has_attack = false;
         ids.forEach(id => {
-            const weapon_name = values['repeating_weapons_' + id + '_weapon_name'];
+            const attack_name = values['repeating_attacks_' + id + '_attack_name'];
             // NO need to add it if we already have it in the list
-            if (weapon_name.localeCompare(name) == 0) {
-              has_weapon = true;
+            if (attack_name.localeCompare(name) == 0) {
+              has_attack = true;
             }
         });
 
-        if (has_weapon == false) {
-          var settings = create_weapon_obj(weapon);
+        if (has_attack == false) {
+          var settings = create_attack_obj(attack);
           setAttrs(settings);
         }
       });
