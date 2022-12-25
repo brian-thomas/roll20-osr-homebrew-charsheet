@@ -3041,7 +3041,7 @@
       });
   });
 
-  on(`change:cmbt_opts_used change:repeating_cmbt-styles remove:repeating_cmbt-styles` , function () {
+  on(`change:cmbt_opts_used change:level change:level2 change:repeating_cmbt-styles remove:repeating_cmbt-styles` , function () {
     // do combat style entries now
     getSectionIDs('repeating_cmbt-styles', function (ids) {
        getAttrs(['cmbt_opts_used', 'max_cmbt_styles_and_opts_allowed'], function (v) {
