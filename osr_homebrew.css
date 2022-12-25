@@ -1149,7 +1149,6 @@ select.sheet-attack-notches
 }
 
 .sheet-attack-param,
-input[type=text].sheet-attack-param,
 input[type=number].sheet-attack-param
 {
 	width: 34px;
@@ -1181,6 +1180,7 @@ span.sheet-attack-param-select-name
 }
 
 select.sheet-attack-param,
+input[type=text].sheet-attack-param,
 span.sheet-attack-param-select-name
 {
 	width: 55px;

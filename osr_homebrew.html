@@ -1244,25 +1244,7 @@
 
               <input type="number" name="attr_attack_attack_bonus" value="0" class="attack-param bold-font inactive-color" readonly="true"/>
 
-              <select class="sheet-attack-param" name="attr_attack_dam_die">
-                <option value="0d0">--</option>
-                <option selected="selected" value="1d2">1d2</option>
-                <option value="1d4">1d4</option>
-                <option value="1d6">1d6</option>
-                <option value="1d8">1d8</option>
-                <option value="1d10">1d10</option>
-                <option value="1d12">1d12</option>
-                <option value="2d4">2d4</option>
-                <option value="2d6">2d6</option>
-                <option value="2d8">2d8</option>
-    	          <option value="2d10">2d10</option>
-                <option value="2d12">2d12</option>
-                <option value="3d6">3d6</option>
-                <option value="3d8">3d8</option>
-                <option value="3d10">3d10</option>
-                <option value="3d12">3d12</option>
-                <option value="2d20">2d20</option>
-              </select>
+              <input type="text" name="attr_attack_dam_die" class="attack-param" data-i18n-placeholder="1d6"/>
 
               <input name="attr_attack_dam" value="0" hidden="true"/>
 
@@ -1438,7 +1420,7 @@
     	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_sneak_attack_bonus}]] ]]}} {{critical=[[19 + @{attack_sneak_attack_bonus}]]}} {{fumble=[[2+@{attack_sneak_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{attack_sneak_attack_dam}]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{attack_sneak_attack_dam} + @{attack_sneak_attack_dam} ]]}} {{math=1d20 + @{attack_sneak_attack_bonus} [Attack], @{attack_dam} + @{attack_dam_bonus} + @{attack_sneak_attack_dam} [Dam] }}"></button>
                 </div>
                 <div class="sheet-attack-sneak-attack-button-disabled">
-                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button> 
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
 
