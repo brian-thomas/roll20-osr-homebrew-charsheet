@@ -1317,7 +1317,7 @@
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Charge Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] +2 ]]}} {{critical=[[21 + @{attack_attack_bonus}]]}} {{fumble=[[4+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] +2 [Attack], @{attack_dam} + @{attack_dam_bonus} + @{attack_dam} + @{attack_dam_bonus} [Dam] }} {{special=Must move full move to attack. Braced opponents w/ long attacks immediately counterattack.}}"></button>
                 </div>
                 <div class="sheet-attack-charge-attack-button-disabled">
-                  <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
 
@@ -1328,7 +1328,7 @@
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{attack_attack_bonus}]]}} {{fumble=[[4+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] + 2 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Force 1 step retreat on hit. -4 AC next round.}}"></button>
                 </div>
                 <div class="sheet-attack-press-attack-button-disabled">
-                  <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
 
@@ -1339,7 +1339,7 @@
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Defensive Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] - 4]]}} {{critical=[[15 + @{attack_attack_bonus}]]}} {{fumble=[[-2+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] -4 [Attack], @{attack_dam} + @{attack_dam_bonus} [Damage] }} {{special=+2 AC next round.}}"></button>
                 </div>
                 <div class="sheet-attack-defense-attack-button-disabled">
-                  <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
 
@@ -1350,7 +1350,7 @@
     	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Berserk Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] + [[@{berserk_attack_mod}]] ]]}} {{critical=[[19 + @{attack_attack_bonus} + [[@{berserk_attack_mod}]] ]]}} {{fumble=[[2+@{attack_attack_bonus} + [[@{berserk_attack_mod}]] ]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{berserk_attack_mod} ]]}}   {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{berserk_attack_mod} ]]}}  {{math=1d20 + [[@{attack_attack_bonus}]] + @{berserk_attack_mod} [Attk], @{attack_dam} + @{attack_dam_bonus} + @{berserk_attack_mod} [Dam] }} {{special=Will vs DC 12 to stop. No Retreat. AC-2 for next rnd.}}"></button>
                 </div>
                 <div class="sheet-attack-berserk-attack-button-disabled">
-                  <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
 
@@ -1361,7 +1361,7 @@
     	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_bonus}]] ]]}} {{critical=[[19 + @{attack_bonus}]]}} {{fumble=[[2+@{attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{attack_attack_bonus}/2 ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{attack_attack_bonus}/2 ]]}} {{math=1d20 + [[@{attack_bonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} + [[@{attack_attack_bonus}/2]] [Dam] }} {{special=-4 AC for next round}}"></button>
                 </div>
                 <div class="sheet-attack-cleave-attack-button-disabled">
-                  <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
 
@@ -1372,7 +1372,7 @@
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Disarm Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] - 4 ]]}} {{critical=[[15 + @{attack_attack_bonus}]]}} {{fumble=[[-2+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] - 4 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Target STR save vs damage or drop attack. -4 AC next round.}}"></button>
                 </div>
                 <div class="sheet-attack-disarm-attack-button-disabled">
-                  <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
 
@@ -1383,7 +1383,7 @@
     	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Great Cleave Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_bonus}]] ]]}} {{critical=[[19 + @{attack_bonus}]]}} {{fumble=[[2+@{attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{attack_attack_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{attack_attack_bonus} ]]}} {{math=1d20 + [[@{attack_bonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} + @{attack_attack_bonus} [Dam] }} {{special=-4 AC for next round}}"></button>
                 </div>
                 <div class="sheet-attack-great-cleave-attack-button-disabled">
-                  <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
 
@@ -1394,7 +1394,7 @@
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Feint Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] + 4 ]]}} {{critical=[[23 + @{attack_attack_bonus}]]}} {{fumble=[[6+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] + 4 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Attack occurs at -4 Initiative.}}"></button>
                 </div>
                 <div class="sheet-attack-feint-attack-button-disabled">
-                  <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
 
@@ -1405,7 +1405,7 @@
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Lightning Strike</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] - 4 ]]}} {{critical=[[15 + @{attack_attack_bonus}]]}} {{fumble=[[-2+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] - 4 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Attack earlier, Init +4. AB-4.}}"></button>
                 </div>
                 <div class="sheet-attack-lightning-attack-button-disabled">
-                  <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
 
@@ -1416,7 +1416,7 @@
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b> Strong Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] -4 ]]}} {{critical=[[13 + @{attack_attack_bonus}]]}} {{fumble=[[-4+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] -4 [Attack], @{attack_dam} + @{attack_dam_bonus} + @{attack_dam} + @{attack_dam_bonus} [Dam] }} {{special=-4 AC for next round}}"></button>
                 </div>
                 <div class="sheet-attack-strong-attack-button-disabled">
-                  <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
 
@@ -1427,7 +1427,7 @@
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Stun Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] -4 ]]}} {{critical=[[15 + @{attack_attack_bonus}]]}} {{fumble=[[-2+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] -4 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Target STR save vs damage or stun 1d3-1 rnds. -4 AC next round.}}"></button>
                 </div>
                 <div class="sheet-attack-stun-attack-button-disabled">
-                  <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
 
@@ -1438,7 +1438,7 @@
     	                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_sneak_attack_bonus}]] ]]}} {{critical=[[19 + @{attack_sneak_attack_bonus}]]}} {{fumble=[[2+@{attack_sneak_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{attack_sneak_attack_dam}]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{attack_sneak_attack_dam} + @{attack_sneak_attack_dam} ]]}} {{math=1d20 + @{attack_sneak_attack_bonus} [Attack], @{attack_dam} + @{attack_dam_bonus} + @{attack_sneak_attack_dam} [Dam] }}"></button>
                 </div>
                 <div class="sheet-attack-sneak-attack-button-disabled">
-                  <button class="sheet-attack-button inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true"/>
+                  <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button> 
                 </div>
               </div>
 
@@ -3195,7 +3195,6 @@
     });
   });
 
-  /*
   on(`sheet:opened change:npc change:name`, () => {
     getAttrs(['npc', 'level', 'hp', 'character_name'], v => {
        const is_pc = parseInt(v.npc) ? 0 : 1;
@@ -3220,7 +3219,6 @@
        setAttrs(settings);
     });
   });
-  */
 
   on(`change:is_multiclass`, () => {
     getAttrs(['is_multiclass'], v=> {
