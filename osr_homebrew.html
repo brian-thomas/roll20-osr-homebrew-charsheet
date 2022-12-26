@@ -1061,7 +1061,7 @@
 
                 <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_feint_attack" value="1"/>
-                  <span class="ability-check-label">Feint</span>
+                  <span class="ability-check-label">Aim/Feint</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(+4 AB, -4 Init)</span>
                 </div>
 
@@ -1185,7 +1185,7 @@
             </div>
 
             <div class="sheet-feint_attack_section">
-              <span class="sheet-attack-param-attk-name sheet-bold-font">Feint Attack</span>
+              <span class="sheet-attack-param-attk-name sheet-bold-font">Aim/Feint Attack</span>
             </div>
 
             <div class="sheet-lightning_attack_section">
@@ -1373,7 +1373,7 @@
                 <input type="checkbox" class="sheet-attack-feint-attack-button-show" name="attr_attack_feint_attack_button_show" value="1" hidden="true" checked="checked"/>
                 <div class="sheet-attack-feint-attack-button-enabled">
                   <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_feint_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Feint Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] + 4 ]]}} {{critical=[[23 + @{attack_attack_bonus}]]}} {{fumble=[[6+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] + 4 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Attack occurs at -4 Initiative.}}"></button>
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Aim/Feint Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[ 1d20 + [[@{attack_attack_bonus}]] + 4 ]]}} {{critical=[[23 + @{attack_attack_bonus}]]}} {{fumble=[[6+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] + 4 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Attack occurs at -4 Initiative.}}"></button>
                 </div>
                 <div class="sheet-attack-feint-attack-button-disabled">
                   <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
