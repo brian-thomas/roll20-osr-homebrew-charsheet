@@ -254,6 +254,7 @@ input.sheet-npc-name
 button.sheet-center,
 input.sheet-center,
 label.sheet-center,
+div.sheet-center,
 span.sheet-center
 {
 	text-align: center;
@@ -379,6 +380,7 @@ select.side-padding
     margin: 14px auto;
     display: block;
 }
+
 .sheet-gear,
 button[type=roll].sheet-gear
 {
@@ -1025,6 +1027,20 @@ input[type=number].sheet-spell-prepared {
 .sheet-spellfilter, .sheet-hidden-spell-level {
     display: none;
 }
+
+button[type=roll].sheet-cast-button
+{
+	width: 20px;
+	height: 20px;
+	border: 2px solid orange;
+	color: black;
+	background-color: white;
+	margin-right: 4px;
+	margin-left: 4px;
+	text-shadow: none;
+	background-image: none;
+}
+
 .sheet-spellfilter[value="1"]:checked ~ div .sheet-hidden-spell-level[value="1"]:not(:checked) ~ .sheet-spellcontainer,
 .sheet-spellfilter[value="2"]:checked ~ div .sheet-hidden-spell-level[value="2"]:not(:checked) ~ .sheet-spellcontainer,
 .sheet-spellfilter[value="3"]:checked ~ div .sheet-hidden-spell-level[value="3"]:not(:checked) ~ .sheet-spellcontainer,
@@ -1811,6 +1827,7 @@ input.sheet-has-cleric-powers:checked ~ div.sheet-show-cleric-powers
 .sheet-rolltemplate-roll_check .sheet-rt-header.sheet-spell {
    background-color: #45285D;
 }
+
 
 div.sheet-adhoc-dice-spell,
 div.sheet-dice-spell,
