@@ -108,7 +108,12 @@ span.sheet-med-font
 .sheet-italic-font, h4 {
 	font-style: italic;
 }
-.sheet-bold-font {
+.sheet-bold-font,
+input.sheet-bold-font
+input[type=number].sheet-bold-font
+label.sheet-bold-font
+span.sheet-bold-font
+{
 	font-weight: bold;
 }
 .sheet-left-pad {
@@ -1052,12 +1057,23 @@ button[type=roll].sheet-cast-button
 .sheet-spellfilter[value="9"]:checked ~ div .sheet-hidden-spell-level[value="9"]:not(:checked) ~ .sheet-spellcontainer {
     display: none;
 }
+
+.sheet-spellslot-box,
+input.sheet-spellslot-box
+{
+	width: 15px;
+	border: 0px solid #ddd;
+	font-size: 15px;
+	text-align: right;
+}
+
 .sheet-spell-filters {
     font-size: 15px;
     font-weight: bold;
     align-items: center;
     margin-bottom: 10px;
 }
+
 .sheet-filter-button {
     width: 50px;
     font-size: 1em;
@@ -1388,6 +1404,7 @@ input.sheet-attack_stun_attack_enabled:checked ~ div.sheet-attack_stun_attack_se
 	height: 1px;
 }
 .sheet-item-name,
+.sheet-spellslot-value,
 .sheet-container-item
 {
   text-align: left;
