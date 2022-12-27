@@ -2995,10 +2995,13 @@
           const spelllevel = parseInt(values['repeating_spells_' + id + '_spelllevel']) || 0;
           const spell_dice = values['repeating_spells_' + id + '_spell_dice'];
           const is_dice_enabled = (spell_dice === "") ? 0 : 1;
+          var adhoc_dc = 10 + spelllevel - spellcasting_mod - arcana_adj;
+
+          if (adhoc_dc < 2) { adhoc_dc = 2; } // never lower than 2
 
           settings['repeating_spells_' + id + '_is_adhoc_dice_spell'] = is_wizard && is_dice_enabled;
           settings['repeating_spells_' + id + '_is_adhoc_no_dice_spell'] = is_wizard && !is_dice_enabled;
-          settings['repeating_spells_' + id + '_adhoc_dc'] = 10 + spelllevel - spellcasting_mod - arcana_adj;
+          settings['repeating_spells_' + id + '_adhoc_dc'] = adhoc_dc;
           settings['repeating_spells_' + id + '_is_dice_spell'] = is_dice_enabled;
 
         });
