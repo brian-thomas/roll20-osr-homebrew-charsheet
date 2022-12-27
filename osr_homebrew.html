@@ -2967,7 +2967,7 @@
   });
 
   // Keep spells up to date
-  on(`change:repeating_spells change:class change:class2 change:spell_dice` , function () {
+  on(`change:repeating_spells change:arcana_skill change:arcana_bonus change:class change:class2 change:spell_dice` , function () {
     getSectionIDs('repeating_spells', function (ids) {
       const fieldnames = [];
       ids.forEach(id => {
@@ -2986,8 +2986,7 @@
         const arcana_bonus = parseInt(values.arcana_bonus) || 0;
         const spellcasting_mod = parseInt(values.spellcasting_mod) || 0;
 
-        const arcana_adj = parseInt((arcana_skill + arcana_bonus) / 4) || 0;
-
+        const arcana_adj = parseInt((arcana_skill + arcana_bonus) / 4);
         const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard') ? 1 : 0;
 
         settings = {};
@@ -2999,7 +2998,7 @@
 
           settings['repeating_spells_' + id + '_is_adhoc_dice_spell'] = is_wizard && is_dice_enabled;
           settings['repeating_spells_' + id + '_is_adhoc_no_dice_spell'] = is_wizard && !is_dice_enabled;
-          settings['repeating_spells_' + id + '_adhoc_dc'] = 10 + spelllevel - spellcasting_mod - arcana_bonus;
+          settings['repeating_spells_' + id + '_adhoc_dc'] = 10 + spelllevel - spellcasting_mod - arcana_adj;
           settings['repeating_spells_' + id + '_is_dice_spell'] = is_dice_enabled;
 
         });
