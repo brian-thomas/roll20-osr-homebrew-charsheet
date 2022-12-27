@@ -314,6 +314,11 @@
 
   <input type="checkbox" class="sheet-pc_header_enabled" name="attr_pc_header_enabled" value="1" hidden="True"/>
   <div class="sheet-section-pc">
+
+    <!-- Used by OGL Companion API Script -->
+    <input type="text" name="attr_wtype" value="" hidden="true"/>
+    <input type="text" name="attr_whispertoggle" value="" hidden="true"/>
+
     <div class="sheet-header-left sheet-thin-border">
 
       <div class="sheet-inline-flex sheet-bottom-padding">
@@ -1607,10 +1612,6 @@
                 </div>
               </div>
 
-              <div class="sheet-flex">
-                   <button class="nod20" type="action" name="act_spellrest">Rest</button>
-              </div>
-
               <div class="sheet-spell-filters sheet-flex center">
                <span class="sheet-bold-font">Filter:</span>
                <label class="sheet-filter-button">
@@ -1686,14 +1687,14 @@
                  <div class="sheet-dice-spell">
                    <div class="sheet-flex save-col center centered-label">
                      <button class="sheet-cast-button sheet-orange-border" type="roll" name="roll_cast_spell"
-                             value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{spell_dice_enabled=1}} {{spelllevel=@{spelllevel}}} {{math=@{spell_dice}}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
+                             value="@{wtype}&{template:spell} {{name=@{character_name}}} {{innate=}} {{memorized=1}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{level= @{spelllevel}}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{spell_dice_enabled=1}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
                       <span class="small-font centered-label">Cast</span>
                    </div>
                  </div>
                  <div class="sheet-no-dice-spell">
                    <div class="sheet-flex save-col center centered-label">
                      <button class="sheet-cast-button sheet-orange-border" type="roll" name="roll_cast_spell"
-                             value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{spelllevel=@{spelllevel}}} }} {{description=@{spelldescription} }}"></button>
+                             value="@{wtype}&{template:spell} {{name=@{character_name}}} {{innate=}} {{memorized=1}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{level= @{spelllevel}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{description=@{spelldescription} }}"></button>
                       <span class="small-font centered-label">Cast</span>
                    </div>
                 </div>
@@ -1701,7 +1702,7 @@
                  <div class="sheet-adhoc-dice-spell">
                    <div class="sheet-flex save-col center centered-label">
                      <button class="sheet-cast-button nod20 sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
-                             value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{spell_dice_enabled=1}} {{math=@{spell_dice}}} {{adhoc=[[1d20 + @{spellcasting_mod} ]]}} {{dc=[[10+@{spelllevel}]] }} {{critical=[[19+@{spellcasting_mod} ]]}} {{fumble=[[2+@{spellcasting_mod}]]}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}">
+                             value="@{wtype}&{template:spell} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{spell_dice_enabled=1}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]] }} {{critical=[[19]]}} {{fumble=[[2]]}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}">
                              <span name="attr_adhoc_dc"/></button>
                       <span class="small-font centered-label">Adhoc</span>
                    </div>
@@ -1710,7 +1711,7 @@
                  <div class="sheet-adhoc-no-dice-spell">
                    <div class="sheet-flex save-col center centered-label">
                      <button class="sheet-cast-button nod20 sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
-                             value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20 + @{spellcasting_mod} ]]}} {{dc=[[10+@{spelllevel}]]}} {{critical=[[19+@{spellcasting_mod}]]}} {{fumble=[[2+@{spellcasting_mod}]]}} {{description=@{spelldescription}}}">
+                             value="@{wtype}&{template:spell} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
                              <span name="attr_adhoc_dc"/></button>
                      <span class="small-font centered-label">Adhoc</span>
                    </div>
@@ -2321,9 +2322,118 @@
 </div>
 
 <!-- Templates -->
+<rolltemplate class="sheet-rolltemplate-spell">
+  <div class="sheet-rt-card">
+    <div class="sheet-rt-header sheet-spell">
+      <div class="sheet-rt-title">{{title}}</div>
+      {{#subheader}}
+      <div class="sheet-rt-subheader">{{subheader}}{{#subheaderright}} &bullet; {{subheaderright}}{{/subheaderright}}</div>
+      {{/subheader}} {{#subheader2}}
+      <div class="sheet-rt-subheader">{{subheader2}}{{#subheaderright2}} &bullet; {{subheaderright2}}{{/subheaderright2}}</div>
+      {{/subheader2}}
+    </div>
+
+    <div class="sheet-main-content">
+
+        <div class="sheet-row">
+          {{#adhoc}}
+          <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Adhoc Casting</div>
+          <div class="sheet-col-5-12 sheet-padr sheet-rt-value">DC: {{dc}}</div>
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Adhoc casting roll: {{adhoc}}</div>
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"> </div>
+
+          {{#rollBetween() adhoc fumble critical}}
+
+            {{#rollGreater() adhoc dc}}
+            <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting success.</b></div>
+            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell takes effect normally.</div>
+            {{/rollGreater() adhoc dc}}
+
+            {{#^rollGreater() adhoc dc}}
+            <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting failure.</b></div>
+            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Roll Adhoc casting failure result.</div>
+            {{/^rollGreater() adhoc dc}}
+
+          {{/rollBetween() adhoc fumble critical}}
+
+          {{#rollWasCrit() adhoc}}
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Critical!</h3></i> &dash; automatic casting success.</div>
+          {{/rollWasCrit() adhoc}}
+
+          {{#rollWasFumble() adhoc}}
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Fumble!</h3></i> &dash; automatic spell failure.</div>
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Roll adhoc casting blowback result.</div>
+          {{/rollWasFumble() adhoc}}
+
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"> </div>
+
+          {{/adhoc}}
+
+          {{#memorized}}
+          <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Casting memorized spell.</div>
+          {{/memorized}}
+
+        </div>
+
+        <div class="sheet-row">
+
+              {{#memorized}}
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Save DC: {{spell_save_dc}}</div>
+
+              {{#spell_dice_enabled}}
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Dice Roll: {{roll1}}</div>
+              {{/spell_dice_enabled}}
+              {{/memorized}}
+
+              {{#adhoc}}
+              {{#rollWasCrit() adhoc}}
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Save DC: {{spell_save_dc}}</div>
+              {{/rollWasCrit() adhoc}}
+
+              {{#rollBetween() adhoc fumble critical}}
+              {{#rollGreater() adhoc dc}}
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Save DC: {{spell_save_dc}}</div>
+              {{/rollGreater() adhoc dc}}
+              {{/rollBetween() adhoc fumble critical}}
+
+              {{#spell_dice_enabled}}
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Dice Roll: {{roll1}}</div>
+              {{/spell_dice_enabled}}
+
+              {{/adhoc}}
+
+               {{#noadvroll}}
+               <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{roll1}}</div>
+               {{/noadvroll}}
+        </div>
+
+        <!--
+        {{#math}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Math</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value sheet-no-roll-highlight">{{math}}</div>
+        </div>
+        {{/math}}
+        -->
+
+        {{#special}}
+        <div class="sheet-row">
+                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Special</div>
+                 <div class="sheet-col-7-12 sheet-padr sheet-rt-value sheet-no-roll-highlight">{{special}}</div>
+        </div>
+        {{/special}}
+
+        {{#description}}
+        <div class="sheet-row">{{description}}</div>
+        {{/description}}
+
+    </div>
+  </div>
+</rolltemplate>
+
 <rolltemplate class="sheet-rolltemplate-roll_check">
   <div class="sheet-rt-card">
-	  <div class="sheet-rt-header{{#attack}} sheet-attack{{/attack}}{{#skill}} sheet-skill{{/skill}} {{#initiative}} sheet-initiative{{/initiative}}{{#spell}} sheet-spell{{/spell}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#deathsave}} sheet-deathsave{{/deathsave}}">
+	  <div class="sheet-rt-header{{#attack}} sheet-attack{{/attack}}{{#skill}} sheet-skill{{/skill}} {{#initiative}} sheet-initiative{{/initiative}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#deathsave}} sheet-deathsave{{/deathsave}}">
       <div class="sheet-rt-title">{{title}}</div>
       {{#subheader}}
       <div class="sheet-rt-subheader">{{subheader}}{{#subheaderright}} &bullet; {{subheaderright}}{{/subheaderright}}</div>
@@ -2376,41 +2486,6 @@
         </div>
         {{/damage}}
 
-        {{#adhoc}}
-        <div class="sheet-row">
-          <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Adhoc Casting</div>
-          <div class="sheet-col-5-12 sheet-padr sheet-rt-value">DC: {{dc}}</div>
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Adhoc casting roll: {{adhoc}}</div>
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"> </div>
-
-          {{#rollBetween() adhoc fumble critical}}
-
-            {{#rollGreater() adhoc dc}}
-            <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting success.</b></div>
-            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell takes effect normally.</div>
-            {{/rollGreater() adhoc dc}}
-
-            {{#^rollGreater() adhoc dc}}
-            <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting failure.</b></div>
-            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Roll Adhoc casting failure result.</div>
-            {{/^rollGreater() adhoc dc}}
-
-          {{/rollBetween() adhoc fumble critical}}
-
-          {{#rollWasCrit() adhoc}}
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Critical!</h3></i> &dash; automatic casting success.</div>
-          {{/rollWasCrit() adhoc}}
-
-
-          {{#rollWasFumble() adhoc}}
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Fumble!</h3></i> &dash; automatic spell failure.</div>
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Roll adhoc casting blowback result.</div>
-          {{/rollWasFumble() adhoc}}
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"> </div>
-
-        </div>
-        {{/adhoc}}
-
         {{#roll}}
         <div class="sheet-row">
                 <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">{{rollname}}</div>
@@ -2419,14 +2494,6 @@
         {{/roll}}
 
         <div class="sheet-row">
-               {{#spell}}
-               <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Save DC: {{spell_save_dc}}</div>
-               {{/spell}}
-
-               {{#spell_dice_enabled}}
-               <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Dice Roll: {{roll1}}</div>
-               {{/spell_dice_enabled}}
-
                {{#noadvroll}}
                <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{roll1}}</div>
                {{/noadvroll}}
@@ -2468,7 +2535,6 @@
                   cont2_show_slots: v.container_2_type,
                   cont3_show_slots: v.container_3_type});
     });
-
   });
 
   // Ability modifiers
@@ -2714,6 +2780,10 @@
       setting['next_level_xp'] = next_level_xp;
       setting['next_level_up'] = next_level_xp <= xp ? 0 : 1;
 
+      // hitdice - TODO : not quite right
+      // setting['hit_dice'] = level + level2;
+      setting['hit_dice_max'] = level + level2;
+
       // deal with sneak attack stuff
       setting['sneak_attack_enabled'] = (c_class === 'specialist' ? 1 : (c_class2 === 'specialist' ? 1: 0));
       setting['sneak_attack_checkbox'] = (c_class === 'specialist' ? 1 : (c_class2 === 'specialist' ? 1: 0));
@@ -2819,6 +2889,7 @@
     });
   });
 
+  /*
   on("clicked:spellrest", function() {
     getAttrs(['lvl1_slots_total', 'lvl2_slots_total', 'lvl3_slots_total', 'lvl4_slots_total', 'lvl5_slots_total',
               'lvl6_slots_total', 'lvl7_slots_total', 'lvl8_slots_total', 'lvl9_slots_total' ], v => {
@@ -2837,6 +2908,7 @@
       setAttrs(settings);
     });
   });
+  */
 
   // Checks for Skills, are they overspent? Have they underspent? Exceeded max bonus for a skill?
   const coreSkills = ['arcana_skill', 'architect_skill', 'armory_skill', 'athletics_skill', 'bushcraft_skill',
@@ -2907,9 +2979,14 @@
         fieldnames.push('repeating_spells_' + id + '_spelllevel');
         fieldnames.push('repeating_spells_' + id + '_spell_dice');
       });
-      getAttrs([...fieldnames, 'class', 'class2'], function (values) {
+      getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod'], function (values) {
         const c_class = values.class.trim();
         const c_class2 = values.class2.trim();
+        const arcana_skill = parseInt(values.arcana_skill) || 0;
+        const arcana_bonus = parseInt(values.arcana_bonus) || 0;
+        const spellcasting_mod = parseInt(values.spellcasting_mod) || 0;
+
+        const arcana_adj = parseInt((arcana_skill + arcana_bonus) / 4) || 0;
 
         const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard') ? 1 : 0;
 
@@ -2922,7 +2999,7 @@
 
           settings['repeating_spells_' + id + '_is_adhoc_dice_spell'] = is_wizard && is_dice_enabled;
           settings['repeating_spells_' + id + '_is_adhoc_no_dice_spell'] = is_wizard && !is_dice_enabled;
-          settings['repeating_spells_' + id + '_adhoc_dc'] = 10 + spelllevel;
+          settings['repeating_spells_' + id + '_adhoc_dc'] = 10 + spelllevel - spellcasting_mod - arcana_bonus;
           settings['repeating_spells_' + id + '_is_dice_spell'] = is_dice_enabled;
 
         });

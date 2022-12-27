@@ -1682,14 +1682,28 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 	display: block;
 }
 
+.sheet-label,
+div.sheet-label
+{
+	font-size: 17px;
+	background-color: white;
+  background-image: linear-gradient(rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
+  -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, .3);
+  -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, .3);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, .3);
+}
+
 /* Roll Template */
 
 .sheet-col-1,
 .sheet-col-5-12,
 .sheet-col-7-12,
 .sheet-rolltemplate-roll_check .sheet-col-1,
+.sheet-rolltemplate-spell .sheet-col-1,
 .sheet-rolltemplate-roll_check .sheet-col-5-12,
+.sheet-rolltemplate-spell .sheet-col-5-12,
 .sheet-rolltemplate-roll_check .sheet-col-7-12,
+.sheet-rolltemplate-spell .sheet-col-7-12
 {
         display: inline-block;
         zoom: 1;
@@ -1701,24 +1715,31 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 }
 
 .sheet-col-1,
-.sheet-rolltemplate-roll_check .sheet-col-1 {
+.sheet-rolltemplate-roll_check .sheet-col-1,
+.sheet-rolltemplate-spell .sheet-col-1 {
         display: block;
 }
 
 .sheet-col-5-12,
-.sheet-rolltemplate-roll_check .sheet-col-5-12 {
+.sheet-rolltemplate-roll_check .sheet-col-5-12,
+.sheet-rolltemplate-spell .sheet-col-5-12
+{
         width: 41.66667%;
 }
 
 .sheet-col-7-12,
-.sheet-rolltemplate-roll_check .sheet-col-7-12 {
+.sheet-rolltemplate-roll_check .sheet-col-7-12,
+.sheet-rolltemplate-spell .sheet-col-7-12
+{
         width: 58.33333%;
 }
 
 
 
 .sheet-padl,
-.sheet-rolltemplate-roll_check .sheet-padl {
+.sheet-rolltemplate-roll_check .sheet-padl,
+.sheet-rolltemplate-spell .sheet-padl
+{
         padding-left: 10px;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -1726,7 +1747,9 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 }
 
 .sheet-padr,
-.sheet-rolltemplate-roll_check .sheet-padr {
+.sheet-rolltemplate-roll_check .sheet-padr,
+.sheet-rolltemplate-spell .sheet-padr
+{
         padding-right: 10px;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -1736,7 +1759,10 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
 
 /* Generic header */
 
-.sheet-rolltemplate-roll_check .sheet-rt-header {
+.sheet-rolltemplate-simple,
+.sheet-rolltemplate-roll_check .sheet-rt-header,
+.sheet-rolltemplate-spell .sheet-rt-header
+{
         text-align: center;
         position: relative;
         color: #fff;
@@ -1749,8 +1775,18 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
         box-shadow: 0 2px 0 rgba(0, 0, 0, .3);
 }
 
+.sheet-rolltemplate-simple
+{
+    background-color: white;
+    color: black;
+		font-weight: bold;
+}
+
 .sheet-rolltemplate-roll_check .sheet-rt-header:before,
-.sheet-rolltemplate-roll_check .sheet-rt-header:after {
+.sheet-rolltemplate-spell .sheet-rt-header:before,
+.sheet-rolltemplate-roll_check .sheet-rt-header:after,
+.sheet-rolltemplate-spell .sheet-rt-header:after
+{
         content: '';
         position: absolute;
         border-style: solid;
@@ -1758,24 +1794,32 @@ input.sheet-dex-show-slots[value="20"] ~ div.sheet-dex18slots
         bottom: -10px;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-header:before {
+.sheet-rolltemplate-roll_check .sheet-rt-header:before,
+.sheet-rolltemplate-spell .sheet-rt-header:before
+{
         border-width: 0 10px 10px 0;
         border-right-color: #222;
         left: 0;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-header:after {
+.sheet-rolltemplate-roll_check .sheet-rt-header:after,
+.sheet-rolltemplate-spell .sheet-rt-header:after {
         border-width: 0 0 10px 10px;
         border-left-color: #222;
         right: 0;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-title {
-        font-size: 1.0em;
+.sheet-rolltemplate-roll_check .sheet-rt-title,
+.sheet-rolltemplate-spell .sheet-rt-title {
+  font-size: 1.0em;
 	font-weight: bold;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-subheader {}
+.sheet-rolltemplate-roll_check .sheet-rt-subheader,
+.sheet-rolltemplate-spell .sheet-rt-subheader
+{
+
+}
 
 /* Melee header*/
 
@@ -1833,15 +1877,15 @@ input.sheet-has-cleric-powers:checked ~ div.sheet-show-cleric-powers
 
 /* Spell header */
 
-.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-spell {
+.sheet-rolltemplate-spell .sheet-rt-header.sheet-spell {
 	background-color: #45285D;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-spell:before {
+.sheet-rolltemplate-spell .sheet-rt-header.sheet-spell:before {
 	 border-right-color: #443550;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-spell {
+.sheet-rolltemplate-spell .sheet-rt-header.sheet-spell {
    background-color: #45285D;
 }
 
@@ -1900,24 +1944,30 @@ input.sheet-primary-skill-name {
 }
 
 /* Check header */
-
-.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-save {
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-save,
+.sheet-rolltemplate-spell .sheet-rt-header.sheet-save {
         background-color: #8D2828;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-save:before {
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-save:before,
+.sheet-rolltemplate-spell .sheet-rt-header.sheet-save:before {
         border-right-color: #503535;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-save:after {
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-save:after,
+.sheet-rolltemplate-spell .sheet-rt-header.sheet-save:after {
         border-left-color: #503535;
 }
 
-.sheet-rolltemplate-roll_check .sheet-row:nth-child(even) {
+.sheet-rolltemplate-roll_check .sheet-row:nth-child(even),
+.sheet-rolltemplate-spell .sheet-row:nth-child(even)
+{
         background-color: #E9EDEE;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-key {
+.sheet-rolltemplate-roll_check .sheet-rt-key,
+.sheet-rolltemplate-spell .sheet-rt-key
+{
         font-weight: bold;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 1.1em;
@@ -1930,7 +1980,9 @@ input.sheet-primary-skill-name {
         padding: 2px 2px 2px 0px;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-key-wide {
+.sheet-rolltemplate-roll_check .sheet-rt-key-wide,
+.sheet-rolltemplate-spell .sheet-rt-key-wide
+{
         font-weight: bold;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 1.1em;
@@ -1942,18 +1994,24 @@ input.sheet-primary-skill-name {
         padding: 2px 2px 2px 0px
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-value {
+.sheet-rolltemplate-roll_check .sheet-rt-value,
+.sheet-rolltemplate-spell .sheet-rt-value
+{
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         margin-top: 2px;
 }
 
-.sheet-rolltemplate-roll_check .sheet-ignored-roll .inlinerollresult {
+.sheet-rolltemplate-roll_check .sheet-ignored-roll .inlinerollresult,
+.sheet-rolltemplate-spell .sheet-ignored-roll .inlinerollresult
+{
         opacity: 0.5;
 }
 
-.sheet-rolltemplate-roll_check .sheet-no-roll-highlight .inlinerollresult {
+.sheet-rolltemplate-roll_check .sheet-no-roll-highlight .inlinerollresult,
+.sheet-rolltemplate-spell .sheet-no-roll-highlight .inlinerollresult
+{
         background-color: inherit;
         border: 0;
         padding: 0;
@@ -1962,13 +2020,20 @@ input.sheet-primary-skill-name {
         font-size: 1em;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-value .sheet-no-roll-highlight .inlinerollresult .fullfail . .sheet-rolltemplate-roll_check .sheet-rt-value .sheet-no-roll-highlight .inlinerollresult .fullcrit {
+.sheet-rolltemplate-roll_check .sheet-rt-value .sheet-no-roll-highlight .inlinerollresult .fullfail . .sheet-rolltemplate-roll_check .sheet-rt-value .sheet-no-roll-highlight .inlinerollresult .fullcrit,
+.sheet-rolltemplate-spell .sheet-rt-value .sheet-no-roll-highlight .inlinerollresult .fullfail . .sheet-rolltemplate-spell .sheet-rt-value .sheet-no-roll-highlight .inlinerollresult .fullcrit
+{
         border: 0;
 }
 
-.sheet-rolltemplate-roll_check .sheet-main-content {}
+/*
+.sheet-rolltemplate-roll_check .sheet-main-content,
+.sheet-rolltemplate-spell .sheet-main-content {}
+*/
 
-.sheet-rolltemplate-roll_check .sheet-main-content hr.sheet-roll {
+.sheet-rolltemplate-roll_check .sheet-main-content hr.sheet-roll,
+.sheet-rolltemplate-spell .sheet-main-content hr.sheet-roll
+{
         width: 80%;
         margin-left: auto;
         margin-right: auto;
@@ -1977,7 +2042,9 @@ input.sheet-primary-skill-name {
         height: 1px;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-emote {
+.sheet-rolltemplate-roll_check .sheet-rt-emote,
+.sheet-rolltemplate-spell .sheet-rt-emote
+{
         font-style: italic;
         font-size: 11px;
         font-family: Arial;
