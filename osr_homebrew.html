@@ -202,16 +202,17 @@
             <h4>Traits</h4>
              <div class="npc-traitcontainer">
                <fieldset class="repeating_npctrait">
-                 <!--img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/> -->
                  Edit:<input type="checkbox" class="sheet-is_edit_trait" value="1"/>
+                 <img class="small-image" src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
                  <div class="section-npc-edit-trait">
                    <div class="flex fill-width">
-                     <span>Name:</span>
+                     <span class="bold-font">Name:</span>
                      <input type="text" name="attr_trait_name" class="align-left"/>
                    </div>
                    <div class="block">
-                     <span>Desc:</span>
-                     <input type="textarea" name="attr_trait_desc" class="npc-trait-textarea"/>
+                     <span class="bold-font">Desc:</span>
+                     <!--input type="textarea" name="attr_trait_desc" class="npc-trait-textarea"/-->
+                     <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_trait_desc" data-i18n-placeholder="description"></textarea>
                    </div>
                  </div>
                  <div class="section-npc-show-trait">
@@ -230,22 +231,40 @@
           <h4>Actions</h4>
           <div class="npc-traitcontainer">
             <fieldset class="repeating_npcactions">
-              <div class="sheet-block sheet-side-padding">
-                <input type="text" name="attr_action_attack_options" hidden="True"/>
-                <input type="text" name="attr_action_attack_type" hidden="true"/>
-                <input type="text" name="attr_action_attack_target" hidden="true"/>
-                <input type="text" name="attr_action_attack_range" hidden="true"/>
-                <input type="text" name="attr_action_attack_tohit" hidden="true"/>
-                <input type="text" name="attr_action_attack_damage" hidden="true"/>
-                <input type="text" name="attr_action_attack_damagetype" hidden="true"/>
-                <input type="text" name="attr_action_attack_damage2" hidden="true"/>
-                <input type="text" name="attr_action_attack_damagetype2" hidden="true"/>
-                <input type="text" name="attr_action_attack_desc1" hidden="True"/>
-                <input type="text" name="attr_action_attack_desc2" hidden="True"/>
-                <input type="text" name="attr_action_name" hidden="True"/>
+              <div class="sheet-block sheet-side-padding align-right">
 
-                <input type="checkbox" class="sheet-is_npc_attack" name="attr_action_attack_display_flag" value="1" hidden="True" checked="True"/>
-                <div class="section-npc-show-attack">
+                <button type="action" name="act_edit_npc_action" class="npc-edit-button">
+                  <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
+                </button>
+
+                <input type="checkbox" class="sheet-show-npc-action-editor" name="attr_show_action_editor" value="1" checked="True"/>
+                <div class="sheet-section-npc-action-editor sheet-block">
+                  <!-- TODO: implement checkbox toggle in sheethelper attack /non attack here, which then reveals, or not, the attack options -->
+                  <div class="sheet-flex">
+                    <input type="text" class="npc-action-text" name="attr_action_name" data-i18n-placeholder="name"/>
+                  </div>
+                  <div class="sheet-flex">
+                    <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_action_desc" data-i18n-placeholder="description"></textarea>
+                  </div>
+                  <span>is an attack action?</span>
+                  <input type="checkbox" class="sheet-is-npc-attack-action" name="attr_action_is_an_attack" value="1" checked="True"/>
+                  <div class="sheet-section-npc-action-attack-options">
+                    <input type="text" class="npc-action-text" name="attr_action_attack_type" data-i18n-placeholder="Attack Type (Melee|Ranged|Spell)"/>
+                    <input type="text" class="npc-action-text" name="attr_action_attack_target" data-i18n-placeholder="Attack Targets, ex. 'One target'"/>
+                    <input type="text" class="npc-action-text" name="attr_action_attack_range" data-i18n-placeholder="Attack Range, ex '5 ft. reach'"/>
+                    <input type="text" class="npc-action-text" name="attr_action_attack_tohit" data-i18n-placeholder="Attack To Hit Bonus"/>
+                    <input type="text" class="npc-action-text" name="attr_action_attack_damage" data-i18n-placeholder="Attack Damage Dieroll, ex '1d6+1'"/>
+                    <input type="text" class="npc-action-text" name="attr_action_attack_damagetype" data-i18n-placeholder="Attack Damage Type, ex 'slashing'"/>
+                    <input type="text" class="npc-action-text" name="attr_action_attack_damage2" data-i18n-placeholder="Attack Damage2 Dieroll, ex '1d6+1'"/>
+                    <input type="text" class="npc-action-text" name="attr_action_attack_damagetype2" data-i18n-placeholder="Attack Damage2 Type, ex 'slashing'"/>
+                    <!-- TODO: upon edit update these fields -->
+                    <input type="text" name="attr_action_attack_desc1" hidden="true"/>
+                    <input type="text" name="attr_action_attack_desc2" hidden="true"/>
+                  </div>
+                </div>
+
+                <input type="checkbox" class="sheet-npc-show-attack" name="attr_action_show_attack" value="1" hidden="True" checked="True"/>
+                <div class="sheet-section-npc-show-attack">
                   <button type="roll" name="roll_npc_action" class="npc-trait-name blank-roll-button info5"
                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{attack=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + @{action_attack_damage} ]]}} }}">
                      <span name="attr_action_name">Action Name</span>
@@ -254,10 +273,10 @@
                   <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc2"/></label>
                 </div>
                 <div class="section-npc-show-non-attack">
-                  <label class="info5 npc-trait-name"><span name="attr_action_name">Action Name</span></label>
+                  <label class="info5 npc-trait-name info5"><span name="attr_action_name">Action Name</span></label>
                 </div>
-                <input type="text" name="attr_action_desc" hidden="True"/>
                 <label class="info5 npc-text"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
+                <hr/>
               </div>
             </fieldset>
           </div>
@@ -281,8 +300,8 @@
                 <input type="text" name="attr_action_attack_desc2" hidden="True"/>
                 <input type="text" name="attr_action_name" hidden="True"/>
 
-                <input type="checkbox" class="sheet-is_npc_attack" name="attr_action_attack_display_flag" value="1" hidden="True" checked="True"/>
-                <div class="section-npc-show-attack">
+                <input type="checkbox" class="sheet-npc-show-attack" name="attr_action_show_attack" value="1" hidden="True" checked="True"/>
+                <div class="sheet-section-npc-show-attack">
                   <button type="roll" name="roll_npc_action" class="npc-trait-name blank-roll-button info5"
                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{attack=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + @{action_attack_damage} ]]}} }}">
                      <span name="attr_action_name">Legend Action Name</span>
@@ -290,7 +309,7 @@
                   <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc1"/></label>
                   <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc2"/></label>
                 </div>
-                <div class="section-npc-show-non-attack">
+                <div class="sheet-section-npc-show-non-attack">
                   <label class="info6 npc-trait-name"><span name="attr_action_name">Legend Action Name</span></label>
                 </div>
                 <input type="text" name="attr_action_desc" hidden="True"/>
@@ -305,7 +324,7 @@
      </div> <!-- thick border -->
    </div> <!-- block -->
 
-   <div class="thin-border block padding info4">
+   <div class="thin-border block padding">
      <h3>Notes</h3>
      <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
    </div>
@@ -3011,13 +3030,14 @@
   });
 
   // npc actions
-  on(`change:repeating_npcactions` , function () {
+  on(`change:repeating_npcactions remove:repeating_npcactions` , function () {
+    console.log("NPC Actions update called");
     getSectionIDs('repeating_npcactions', function (ids) {
       const fieldnames = [];
       ids.forEach(id => {
         fieldnames.push('repeating_npcactions_' + id + '_action_attack_desc1');
         fieldnames.push('repeating_npcactions_' + id + '_action_attack_desc2');
-        fieldnames.push('repeating_npcactions_' + id + '_action_attack_display_flag');
+        fieldnames.push('repeating_npcactions_' + id + '_action_is_an_attack');
         fieldnames.push('repeating_npcactions_' + id + '_action_attack_type');
         fieldnames.push('repeating_npcactions_' + id + '_action_attack_tohit');
         fieldnames.push('repeating_npcactions_' + id + '_action_attack_range');
@@ -3029,15 +3049,27 @@
       getAttrs([...fieldnames], function (v) {
         settings = {};
         ids.forEach(id => {
-          const is_attack = parseInt(v['repeating_npcactions_' + id + '_action_attack_display_flag']) || 0;
+          const is_attack = parseInt(v['repeating_npcactions_' + id + '_action_is_an_attack']) || 0;
+
+          // set whether its an attack action or not
+          settings['repeating_npcactions_'+id+'_action_show_attack'] = is_attack;
+
+          // set action editor to closed as a default
+          settings['repeating_npcactions_'+id+'_show_action_editor'] = 0;
+
           if (is_attack == 1) {
+             console.log("THIS IS AN ATTACK: "+id);
              const to_hit = v['repeating_npcactions_' + id + '_action_attack_tohit'];
              const range = v['repeating_npcactions_' + id + '_action_attack_range'];
+             const attack_type = v['repeating_npcactions_' + id + '_action_attack_type'];
              const damage = v['repeating_npcactions_' + id + '_action_attack_damage'];
              const damagetype = v['repeating_npcactions_' + id + '_action_attack_damagetype'];
+
              settings['repeating_npcactions_'+id+'_action_attack_desc1'] = attack_type + " " + range + ".";
              settings['repeating_npcactions_'+id+'_action_attack_desc2'] = "Hit: +" + to_hit + ' (' + damage + ') ' + damagetype + '.';
           }
+
+
         });
         setAttrs(settings);
       });
@@ -3666,7 +3698,7 @@
 
                         if(desc.indexOf(" Attack:") > -1)
                         {
-                            update["repeating_npcactions-l_" + newrowid + "_action_attack_display_flag"] = 1;
+                            update["repeating_npcactions-l_" + newrowid + "_action_is_an_attack"] = 1;
                             update["repeating_npcactions-l_" + newrowid + "_action_attack_options"] = "{{attack=1}}";
                             if(desc.indexOf(" Weapon Attack:") > -1) {
                                 attacktype = desc.split(" Weapon Attack:")[0] + " Weapon";
@@ -3723,7 +3755,7 @@
                         }
                         else {
                             update["repeating_npcactions-l_" + newrowid + "_action_desc"] = desc;
-                            update["repeating_npcactions-l_" + newrowid + "_action_attack_display_flag"] = 0;
+                            update["repeating_npcactions-l_" + newrowid + "_action_is_an_attack"] = 0;
                         }
 
                     });
@@ -3749,7 +3781,7 @@
 
                         if(desc.indexOf(" Attack:") > -1)
                         {
-                            update["repeating_npcactions_" + newrowid + "_action_attack_display_flag"] = 1;
+                            update["repeating_npcactions_" + newrowid + "_action_is_an_attack"] = 1;
                             update["repeating_npcactions_" + newrowid + "_action_attack_options"] = "{{attack=1}}";
                             if(desc.indexOf(" Weapon Attack:") > -1) {
                                 attacktype = desc.split(" Weapon Attack:")[0] + " Weapon";
@@ -3806,7 +3838,7 @@
                         }
                         else {
                             update["repeating_npcactions_" + newrowid + "_action_desc"] = desc;
-                            update["repeating_npcactions_" + newrowid + "_action_attack_display_flag"] = 0;
+                            update["repeating_npcactions_" + newrowid + "_action_is_an_attack"] = 0;
                         }
 
                     });

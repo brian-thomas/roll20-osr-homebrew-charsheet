@@ -11,6 +11,14 @@
 img {
 	height: 61%;
 }
+
+.sheet-small-image,
+img.sheet-small-image
+{
+	height: auto;
+	max-width: 5%;
+}
+
 label {
 	font-weight: normal;
 }
@@ -127,8 +135,7 @@ span.sheet-bold-font
 	width:  180px;
 }
 .sheet-npc-notes {
-	width:  95%;
-	height:  240px;
+	height:  241px;
 }
 .sheet-sm-textarea {
 	height: 121px;
@@ -154,6 +161,7 @@ button[type=roll].sheet-npc-trait-name
 {
 	font-size: 13px;
   font-weight: bold;
+	width: 345px;
 	height: 18px;
 	text-align: left;
 	font-style: normal;
@@ -922,6 +930,28 @@ input[type=number].sheet-skill-bonus-value
 	align-content: start;
 }
 
+input.sheet-show-npc-action-editor:checked ~ div.sheet-section-npc-action-editor,
+input.sheet-is-npc-attack-action:checked ~ div.sheet-section-npc-action-attack-options,
+input.sheet-npc-show-attack:checked ~ div.sheet-section-npc-show-attack
+{
+	display: block;
+}
+
+input.sheet-npc-show-attack:not(:checked) ~ div.sheet-section-npc-show-non-attack
+{
+	display: block;
+}
+
+.sheet-npc-action-text,
+.sheet-npc-action-desc
+{
+	width: 350px;
+	text-align: left;
+	background-color: inherit;
+	font-size: 12px;
+	border: 0px;
+}
+
 input.sheet-is_edit_trait:checked ~ div.sheet-section-npc-edit-trait
 {
   display: block;
@@ -937,9 +967,15 @@ input.sheet-is_npc_attack:checked ~ div.sheet-section-npc-show-attack
 	display: block;
 }
 
-input.sheet-is_npc_attack:not(:checked) ~ div.sheet-section-npc-show-non-attack
+
+button.sheet-npc-edit-button
 {
-	display: block;
+    height: auto;
+		max-width: 5%;
+	  text-shadow: none;
+		border: 0px;
+		margin: 0px;
+		background-color: inherit;
 }
 
 /* Spells */
