@@ -276,7 +276,6 @@
                   <label class="info5 npc-trait-name info5"><span name="attr_action_name">Action Name</span></label>
                 </div>
                 <label class="info5 npc-text"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
-                <hr/>
               </div>
             </fieldset>
           </div>
@@ -1770,13 +1769,14 @@
                       <div class="table-cell sheet-table-cell">
                         <select name="attr_armor" class="sheet-worn-name">
                           <option selected="selected" value="none">Clothing / 0 Slots</option>
-                          <option value="padded">Padded / 1 Slot / +3 AC max DEX bonus</option>
-                          <option value="leather">Leather / 1 Slot / +4 AC max DEX bonus</option>
-                          <option value="studded_leather">Std. Leather / 1 Slot / +3 AC max DEX bonus</option>
-                          <option value="scale">Scale / 1 Enc. Pts. / 1 Slot / +1 AC max DEX bonus</option>
-                          <option value="chain">Chain / 1 Enc. Pts. / 1 Slot / +2 AC max DEX bonus</option>
-                          <option value="half_plate">Half Plate/ 1 Enc. Pts. / 2 Slots / No Dex bonus</option>
-                          <option value="plate">Plate / 2 Enc. Pts. / 2 Slots / No Dex bonus</option>
+                          <option value="padded">Padded / 1 Slot / +2 AC max DEX bonus</option>
+                          <option value="leather">Leather / 1 Slot / +3 AC max DEX bonus</option>
+                          <option value="studded_leather">Std. Leather / 1 Slot / +2 AC max DEX bonus</option>
+                          <option value="scale">Scale / 1 Enc. Pts. / 1 Slot / +0 AC max DEX bonus</option>
+                          <option value="chainshirt">Chain Shirt / 1 Enc. Pts. / 1 Slot / +2 AC max DEX bonus</option>
+                          <option value="chain">Chain / 1 Enc. Pts. / 1 Slot / +1 AC max DEX bonus</option>
+                          <option value="half_plate">Half Plate/ 1 Enc. Pts. / 2 Slots / -1 Dex Mod penalty</option>
+                          <option value="plate">Plate / 2 Enc. Pts. / 2 Slots / -2 Dex Mod penalty</option>
                         </select>
                       </div>
                       <div class="table-cell sheet-table-cell">
@@ -1830,7 +1830,7 @@
                           <option selected="selected" value="none">None</option>
                           <option value="small_shield">Small Shield / 1 Slot</option>
                           <option value="large_shield">Large Shield / 2 Slots</option>
-                          <option value="tower_shield">Tower Shield / 2 Slots/1 Enc</option>
+                          <option value="tower_shield">Tower Shield / 2 Slots/ 1 Enc</option>
                         </select>
                       </div>
                       <div class="table-cell sheet-table-cell">
@@ -2560,9 +2560,10 @@
   const raceMods = { Human: "", Dwarf: "constitution", Halfling: "dexterity", Elven : "charisma:intelligence:dexterity" };
   const abilityNames = ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom'];
   const bonusNames = [ 'strength_bonus', 'dexterity_bonus', 'constitution_bonus', 'intelligence_bonus', 'wisdom_bonus', 'charisma_bonus' ];
+  const armor_dex_mod_penalty = {'none': 0, 'padded': 0, 'leather': 0, 'studded_leather': 0, 'scale': 0, 'chain': 0, 'chainshirt':0, 'half_plate': -1, 'plate': -2};
   abilityNames.forEach( ability => {
-    on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:${ability} change:${ability}_bonus`, () => {
-          getAttrs([ability, ...bonusNames, 'class', 'class2', 'race', 'level', 'level2', 'skill_points'], v => {
+    on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:armor change:${ability} change:${ability}_bonus`, () => {
+          getAttrs([ability, ...bonusNames, 'armor', 'class', 'class2', 'race', 'level', 'level2', 'skill_points'], v => {
               const setting = {};
 
               const ability_bonus_name = `${ability}_bonus`;
@@ -2585,11 +2586,13 @@
                   setting[ability_mod] = parseInt(setting[ability_mod])-1;
                 }
               }
-              // nuther hack, Halfings get +2 Dex mod
-              if (race === 'Halfling') {
-                if (ability_mod === 'dexterity_mod') {
+              // nuther set of hacks, Armor and Halfings get +2 Dex mod
+              if (ability_mod === 'dexterity_mod') {
+                 if (race === 'Halfling') {
                   setting[ability_mod] = parseInt(setting[ability_mod])+1;
                 }
+                // modify for armor we are wearing
+                setting[ability_mod] = parseInt(setting[ability_mod])+armor_dex_mod_penalty[v.armor];
               }
 
               // intelligence based stuff
@@ -2663,9 +2666,11 @@
               if (ability === 'dexterity') {
                 const base_dex_mod = setting[ability_mod];
                 const base_dex_f = parseFloat(v[ability]) * 0.01;
+
                 setting["initiative"] = base_dex_mod;
                 setting["init_extra"] = base_dex_f;
                 setting["ranged_base_ab"] = base_dex_mod;
+
                 var ranged_ab = base_dex_mod + 1 + (c_class === 'fighter' ? parseInt((level+1)/2) : (c_class2 === 'fighter' ? parseInt((level2+1)/2) : 0));
                 // halflings get +2 ranged AB
                 setting["ranged_ab"] = ranged_ab + (race === 'Halfling' ? 1 : 0);
@@ -2736,13 +2741,13 @@
   });
 
   // Calculate armor class
-  const armor_ac_value = {'none': 0, 'padded': 1, 'leather': 2, 'studded_leather': 4, 'scale': 6, 'chain': 6, 'half_plate': 7, 'plate': 8};
-  const max_armor_ac_dex_bonus = {'none': 10, 'padded': 3, 'leather': 4, 'studded_leather': 3, 'scale': 1, 'chain': 2, 'half_plate': 0, 'plate': 0};
+  const armor_ac_value = {'none': 0, 'padded': 1, 'leather': 2, 'studded_leather': 3, 'chainshirt':4, 'scale': 5, 'chain': 6, 'half_plate': 7, 'plate': 8};
+  const max_armor_ac_dex_bonus = {'none': 10, 'padded': 2, 'leather': 3, 'studded_leather': 2, 'scale': 1, 'chain': 1, 'chainshirt':2, 'half_plate': 0, 'plate': 0};
   const shield_ac_value = {'none': 0, 'small_shield': 1, 'large_shield': 2, 'tower_shield': 3};
   on(`sheet:opened change:armor change:shield change:dexterity_mod change:armor_bonus change:armor_notches change:shield_bonus change:shield_notches`, () => {
     getAttrs(['armor', 'shield', 'armor_bonus', 'armor_notches', 'shield_bonus', 'shield_notches', 'dexterity_mod'], v => {
       var armor_class = 10;
-      var dex_bonus = parseInt(v.dexterity_mod)
+      var dex_bonus = parseInt(v.dexterity_mod);
       var max_dex_bonus = parseInt(max_armor_ac_dex_bonus[v.armor]);
       if (dex_bonus > max_dex_bonus) {
         armor_class += max_dex_bonus;
