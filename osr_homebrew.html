@@ -210,7 +210,6 @@
           </div>
           <br/>
 
-
           <div class="block thin-border padding limit-to-half-width">
             <h4 class="bottom-line">Traits</h4>
              <div class="npc-traitcontainer">
@@ -231,9 +230,9 @@
                    </div>
                    <div class="section-npc-show-trait">
                      <div class="flex fill-width">
-                       <label class="npc-trait-name info5"><span name="attr_trait_name"/></label>
+                       <label class="npc-trait-name info5"><span name="attr_trait_name">Trait Name</span></label>
                      </div>
-                     <label class="npc-text-sm info5"><span name="attr_trait_desc"/></label>
+                     <label class="npc-text-sm info5"><span name="attr_trait_desc">Description Here</span></label>
                    </div>
                  </div>
                </fieldset>
@@ -326,32 +325,73 @@
           <div class="npc-traitcontainer">
             <fieldset class="repeating_npcactions-l">
               <div class="sheet-block sheet-side-padding bottom-line align-left">
-                <input type="text" name="attr_action_attack_options" hidden="True"/>
-                <input type="text" name="attr_action_attack_type" hidden="true"/>
-                <input type="text" name="attr_action_attack_target" hidden="true"/>
-                <input type="text" name="attr_action_attack_range" hidden="true"/>
-                <input type="text" name="attr_action_attack_tohit" hidden="true"/>
-                <input type="text" name="attr_action_attack_damage" hidden="true"/>
-                <input type="text" name="attr_action_attack_damagetype" hidden="true"/>
-                <input type="text" name="attr_action_attack_damage2" hidden="true"/>
-                <input type="text" name="attr_action_attack_damagetype2" hidden="true"/>
-                <input type="text" name="attr_action_attack_desc1" hidden="True"/>
-                <input type="text" name="attr_action_attack_desc2" hidden="True"/>
-                <input type="text" name="attr_action_name" hidden="True"/>
+
+                <button type="action" name="act_edit_npc_action" class="npc-edit-button align-right">
+                  <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
+                </button>
+
+                <input type="checkbox" class="sheet-show-npc-action-editor" name="attr_show_action_editor" value="1" checked="True"/>
+                <div class="sheet-section-npc-action-editor sheet-block">
+                  <!-- TODO: implement checkbox toggle in sheethelper attack /non attack here, which then reveals, or not, the attack options -->
+                  <div class="sheet-flex">
+                    <input type="text" class="npc-action-text" name="attr_action_name" data-i18n-placeholder="name"/>
+                  </div>
+                  <div class="sheet-flex">
+                    <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_action_desc" data-i18n-placeholder="description"></textarea>
+                  </div>
+                  <span>is an attack action?</span>
+                  <input type="checkbox" class="sheet-is-npc-attack-action" name="attr_action_is_an_attack" value="1" checked="True"/>
+                  <div class="sheet-section-npc-action-attack-options">
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Type</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_type" data-i18n-placeholder="Attack Type (Weapon|Spell)"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Target Area</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_target" data-i18n-placeholder="Attack Targets, ex. 'One target'"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Range</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_range" data-i18n-placeholder="Attack Range, ex '5 ft. reach'"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack To Hit</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_tohit" data-i18n-placeholder="Attack To Hit Bonus"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Damage</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_damage" data-i18n-placeholder="Attack Damage Dieroll, ex '1d6+1'"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Damage Type</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_damagetype" data-i18n-placeholder="Attack Damage Type, ex 'slashing'"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Damage2</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_damage2" data-i18n-placeholder="Attack Damage2 Dieroll, ex '1d6+1'"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Damage Type2</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_damagetype2" data-i18n-placeholder="Attack Damage2 Type, ex 'slashing'"/>
+                    </div>
+                    <!-- TODO: upon edit update these fields -->
+                    <input type="text" name="attr_action_attack_desc1" hidden="true"/>
+                    <input type="text" name="attr_action_attack_desc2" hidden="true"/>
+                  </div>
+                </div>
 
                 <input type="checkbox" class="sheet-npc-show-attack" name="attr_action_show_attack" value="1" hidden="True" checked="True"/>
-                <div class="sheet-section-npc-show-attack">
+                <div class="sheet-section-npc-show-attack flex">
                   <button type="roll" name="roll_npc_action" class="npc-trait-name blank-roll-button info5"
                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{attack=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + @{action_attack_damage} ]]}} }}">
-                     <span name="attr_action_name">Legend Action Name</span>
+                     <span name="attr_action_name">Legendary Action Name</span>
                   </button>
                   <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc1"/></label>
                   <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc2"/></label>
                 </div>
-                <div class="sheet-section-npc-show-non-attack">
-                  <label class="info6 npc-trait-name"><span name="attr_action_name">Legend Action Name</span></label>
+                <div class="section-npc-show-non-attack flex">
+                  <label class="info5 npc-trait-name info5"><span name="attr_action_name">Legendary Action Name</span></label>
                 </div>
-                <input type="text" name="attr_action_desc" hidden="True"/>
                 <label class="info5 npc-text"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
               </div>
             </fieldset>
@@ -378,9 +418,9 @@
                  </div>
                  <div class="section-npc-show-trait">
                    <div class="flex fill-width">
-                     <label class="npc-trait-name info5"><span name="attr_react_name"/></label>
+                     <label class="npc-trait-name info5"><span name="attr_react_name">Reaction Name</span></label>
                    </div>
-                   <label class="npc-text-sm info5"><span name="attr_react_desc"/></label>
+                   <label class="npc-text-sm info5"><span name="attr_react_desc"/>Description Here</label>
                  </div>
                </div>
              </fieldset>
