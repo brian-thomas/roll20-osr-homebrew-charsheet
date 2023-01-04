@@ -6,61 +6,80 @@
 
   <span class="small-font">NPC</span>
   <input type="checkbox" class="sheet-is_npc" name="attr_npc" value="1" checked="True"/>
+
+   <!-- COMPENDIUM DROP CATCHERS -->
+  <input type="hidden" name="attr_drop_category" accept="Category">
+  <input type="hidden" name="attr_drop_name" accept="Name">
+  <input type="hidden" name="attr_drop_weight" accept="Weight">
+  <input type="hidden" name="attr_drop_properties" accept="Properties">
+  <input type="hidden" name="attr_drop_modifiers" accept="Modifiers">
+  <input type="hidden" name="attr_drop_content" accept="Content">
+  <input type="hidden" name="attr_drop_itemtype" accept="Item Type">
+  <input type="hidden" name="attr_drop_damage" accept="Damage">
+  <input type="hidden" name="attr_drop_damagetype" accept="Damage Type">
+  <input type="hidden" name="attr_drop_range" accept="Range">
+  <input type="hidden" name="attr_drop_ac" accept="AC">
+
+  <input type="hidden" name="attr_drop_speed" accept="Speed">
+  <input type="hidden" name="attr_drop_str" accept="STR">
+  <input type="hidden" name="attr_drop_dex" accept="DEX">
+  <input type="hidden" name="attr_drop_con" accept="CON">
+  <input type="hidden" name="attr_drop_int" accept="INT">
+  <input type="hidden" name="attr_drop_wis" accept="WIS">
+  <input type="hidden" name="attr_drop_cha" accept="CHA">
+  <input type="hidden" name="attr_drop_vulnerabilities" accept="Vulnerabilities">
+  <input type="hidden" name="attr_drop_resistances" accept="Resistances">
+  <input type="hidden" name="attr_drop_immunities" accept="Immunities">
+  <input type="hidden" name="attr_drop_condition_immunities" accept="Condition Immunities">
+  <input type="hidden" name="attr_drop_languages" accept="Languages">
+  <input type="hidden" name="attr_drop_challenge_rating" accept="Challenge Rating">
+
+  <input type="hidden" name="attr_drop_size" accept="Size">
+  <input type="hidden" name="attr_drop_type" accept="Type">
+  <input type="hidden" name="attr_drop_alignment" accept="Alignment">
+  <input type="hidden" name="attr_drop_hp" accept="HP">
+  <input type="hidden" name="attr_drop_saving_throws" accept="Saving Throws">
+  <input type="hidden" name="attr_drop_senses" accept="Senses">
+  <input type="hidden" name="attr_drop_passive_perception" accept="Passive Perception">
+  <input type="hidden" name="attr_drop_skills" accept="Skills">
+  <input type="hidden" name="attr_drop_token_size" accept="Token Size">
+  <!-- END COMPENDIUM DROP CATCHERS -->
+
   <div class="sheet-section-npc">
-     <!-- COMPENDIUM DROP CATCHERS -->
-    <input type="hidden" name="attr_drop_category" accept="Category">
-    <input type="hidden" name="attr_drop_name" accept="Name">
-    <input type="hidden" name="attr_drop_weight" accept="Weight">
-    <input type="hidden" name="attr_drop_properties" accept="Properties">
-    <input type="hidden" name="attr_drop_modifiers" accept="Modifiers">
-    <input type="hidden" name="attr_drop_content" accept="Content">
-    <input type="hidden" name="attr_drop_itemtype" accept="Item Type">
-    <input type="hidden" name="attr_drop_damage" accept="Damage">
-    <input type="hidden" name="attr_drop_damagetype" accept="Damage Type">
-    <input type="hidden" name="attr_drop_range" accept="Range">
-    <input type="hidden" name="attr_drop_ac" accept="AC">
-
-    <input type="hidden" name="attr_drop_speed" accept="Speed">
-    <input type="hidden" name="attr_drop_str" accept="STR">
-    <input type="hidden" name="attr_drop_dex" accept="DEX">
-    <input type="hidden" name="attr_drop_con" accept="CON">
-    <input type="hidden" name="attr_drop_int" accept="INT">
-    <input type="hidden" name="attr_drop_wis" accept="WIS">
-    <input type="hidden" name="attr_drop_cha" accept="CHA">
-    <input type="hidden" name="attr_drop_vulnerabilities" accept="Vulnerabilities">
-    <input type="hidden" name="attr_drop_resistances" accept="Resistances">
-    <input type="hidden" name="attr_drop_immunities" accept="Immunities">
-    <input type="hidden" name="attr_drop_condition_immunities" accept="Condition Immunities">
-    <input type="hidden" name="attr_drop_languages" accept="Languages">
-    <input type="hidden" name="attr_drop_challenge_rating" accept="Challenge Rating">
-
-    <input type="hidden" name="attr_drop_size" accept="Size">
-    <input type="hidden" name="attr_drop_type" accept="Type">
-    <input type="hidden" name="attr_drop_alignment" accept="Alignment">
-    <input type="hidden" name="attr_drop_hp" accept="HP">
-    <input type="hidden" name="attr_drop_saving_throws" accept="Saving Throws">
-    <input type="hidden" name="attr_drop_senses" accept="Senses">
-    <input type="hidden" name="attr_drop_passive_perception" accept="Passive Perception">
-    <input type="hidden" name="attr_drop_skills" accept="Skills">
-    <input type="hidden" name="attr_drop_token_size" accept="Token Size">
-    <!-- END COMPENDIUM DROP CATCHERS -->
-
     <div class="block padding npc">
       <input type="text" class="align-left npc-name" name="attr_character_name"/>
-      <div class="sheet-block">
-        <input type="text" name="attr_npc_type" class="sheet-npc-text sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Type"/>
+      <div class="sheet-block info4 bottom-line">
+        <input type="text" name="attr_npc_type" class="sheet-npc-text-long sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Type"/>
       </div>
       <div class="sheet-block">
         <span class="italic-font">Movement: </span>
         <input type="text" name="attr_npc_speed" class="sheet-npc-text sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Speed"/>
       </div>
       <div class="sheet-block">
-        <input type="text" name="attr_npc_senses" class="sheet-npc-text sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Senses"/>
+        <span class="italic-font">Senses: </span>
+        <input type="text" name="attr_npc_senses" class="sheet-npc-text-long sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Senses"/>
       </div>
       <div class="sheet-block">
         <span class="italic-font">Languages: </span>
-        <input type="text" name="attr_known_lang" class="sheet-npc-text sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Languages"/>
+        <input type="text" name="attr_known_lang" class="sheet-npc-text-long sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Languages"/>
       </div>
+      <div class="sheet-block">
+        <span class="italic-font">Damage Resistances: </span>
+        <input type="text" name="attr_npc_damage_resistance" class="sheet-npc-text-long sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Damage Resistances"/>
+      </div>
+      <div class="sheet-block">
+        <span class="italic-font">Damage Immunities: </span>
+        <input type="text" name="attr_npc_damage_immunity" class="sheet-npc-text-long sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Damage Immunities"/>
+      </div>
+      <div class="sheet-block">
+        <span class="italic-font">Condition Immunities: </span>
+        <input type="text" name="attr_npc_condition_immunity" class="sheet-npc-text-long sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Damage Immunities"/>
+      </div>
+      <div class="sheet-block">
+        <span class="italic-font">Damage Vulnerabilities: </span>
+        <input type="text" name="attr_npc_damage_vulnerability" class="sheet-npc-text-long sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Damage Vulnerabilities"/>
+      </div>
+
     </div>
     <hr/>
 
@@ -3815,7 +3834,7 @@
   });
 
   on("change:drop_category", function(eventinfo) {
-    console.debug("Drop category reached")
+    console.debug("Drop category reached:"+eventinfo);
     if(eventinfo.newValue === "Monsters") {
       console.debug("Drop monster reached")
       handle_drop_monster(eventinfo.newValue);

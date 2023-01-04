@@ -224,6 +224,7 @@ button[type=roll].sheet-blank-roll-button:hover {
 span.sheet-npc-text,
 label.sheet-npc-text,
 input.sheet-npc-text,
+input.sheet-npc-text-long,
 input[type=number].sheet-npc-text,
 input.sheet-npc-text-sm,
 input[type=number].sheet-npc-text-sm
@@ -241,6 +242,11 @@ input.sheet-npc-text-sm,
 input[type=number].sheet-npc-text-sm
 {
 	font-size: 11px;
+}
+
+input.sheet-npc-text-long
+{
+   width: 80%;
 }
 
 .sheet-npc-name,
