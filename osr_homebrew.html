@@ -271,14 +271,38 @@
                   <span>is an attack action?</span>
                   <input type="checkbox" class="sheet-is-npc-attack-action" name="attr_action_is_an_attack" value="1" checked="True"/>
                   <div class="sheet-section-npc-action-attack-options">
-                    <input type="text" class="npc-action-text" name="attr_action_attack_type" data-i18n-placeholder="Attack Type (Melee|Ranged|Spell)"/>
-                    <input type="text" class="npc-action-text" name="attr_action_attack_target" data-i18n-placeholder="Attack Targets, ex. 'One target'"/>
-                    <input type="text" class="npc-action-text" name="attr_action_attack_range" data-i18n-placeholder="Attack Range, ex '5 ft. reach'"/>
-                    <input type="text" class="npc-action-text" name="attr_action_attack_tohit" data-i18n-placeholder="Attack To Hit Bonus"/>
-                    <input type="text" class="npc-action-text" name="attr_action_attack_damage" data-i18n-placeholder="Attack Damage Dieroll, ex '1d6+1'"/>
-                    <input type="text" class="npc-action-text" name="attr_action_attack_damagetype" data-i18n-placeholder="Attack Damage Type, ex 'slashing'"/>
-                    <input type="text" class="npc-action-text" name="attr_action_attack_damage2" data-i18n-placeholder="Attack Damage2 Dieroll, ex '1d6+1'"/>
-                    <input type="text" class="npc-action-text" name="attr_action_attack_damagetype2" data-i18n-placeholder="Attack Damage2 Type, ex 'slashing'"/>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Type</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_type" data-i18n-placeholder="Attack Type (Melee|Ranged|Spell)"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Target Area</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_target" data-i18n-placeholder="Attack Targets, ex. 'One target'"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Range</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_range" data-i18n-placeholder="Attack Range, ex '5 ft. reach'"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack To Hit</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_tohit" data-i18n-placeholder="Attack To Hit Bonus"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Damage</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_damage" data-i18n-placeholder="Attack Damage Dieroll, ex '1d6+1'"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Damage Type</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_damagetype" data-i18n-placeholder="Attack Damage Type, ex 'slashing'"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Damage2</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_damage2" data-i18n-placeholder="Attack Damage2 Dieroll, ex '1d6+1'"/>
+                    </div>
+                    <div class="flex">
+                      <span class="bold-font npc-action-text">Attack Damage Type2</span>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_damagetype2" data-i18n-placeholder="Attack Damage2 Type, ex 'slashing'"/>
+                    </div>
                     <!-- TODO: upon edit update these fields -->
                     <input type="text" name="attr_action_attack_desc1" hidden="true"/>
                     <input type="text" name="attr_action_attack_desc2" hidden="true"/>

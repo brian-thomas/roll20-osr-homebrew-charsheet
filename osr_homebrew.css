@@ -945,11 +945,24 @@ input.sheet-npc-show-attack:not(:checked) ~ div.sheet-section-npc-show-non-attac
 .sheet-npc-action-text,
 .sheet-npc-action-desc
 {
-	width: 350px;
+	width: 140px;
 	text-align: left;
-	background-color: inherit;
+	/* background-color: inherit; */
 	font-size: 12px;
 	border: 0px;
+	padding-bottom: 2px;
+	margin: 2px;
+}
+
+input.sheet-npc-action-text
+{
+	width: 200px;
+}
+
+textarea.sheet-npc-action-desc
+{
+	width: 350px;
+	height: 60px;
 }
 
 input.sheet-is_edit_trait:checked ~ div.sheet-section-npc-edit-trait
