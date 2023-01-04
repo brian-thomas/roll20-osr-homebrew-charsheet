@@ -273,7 +273,7 @@
                   <div class="sheet-section-npc-action-attack-options">
                     <div class="flex">
                       <span class="bold-font npc-action-text">Attack Type</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_type" data-i18n-placeholder="Attack Type (Melee|Ranged|Spell)"/>
+                      <input type="text" class="npc-action-text" name="attr_action_attack_type" data-i18n-placeholder="Attack Type (Weapon|Spell)"/>
                     </div>
                     <div class="flex">
                       <span class="bold-font npc-action-text">Attack Target Area</span>
@@ -547,6 +547,8 @@
                <option value="8">8</option>
                <option value="9">9</option>
             </select>
+            <span class="sheet-left-pad">Dice:</span>
+            <input type="text" class="sheet-info1 sheet-align-right sheet-spell-dice" name="attr_spell_dice" value="">
             <div class="sheet-flex save-col center centered-label">
                 <button class="sheet-cast-button sheet-orange-border" type="roll" name="roll_cast_spell"
                         value="@{wtype}&{template:spell} {{name=@{character_name}}} {{innate=}} {{memorized=1}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{level= @{spelllevel}}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{description=@{spelldescription}}}"></button>
@@ -3335,9 +3337,6 @@
           // set whether its an attack action or not
           settings['repeating_npcactions_'+id+'_action_show_attack'] = is_attack;
 
-          // set action editor to closed as a default
-          // settings['repeating_npcactions_'+id+'_show_action_editor'] = 0;
-
           if (is_attack == 1) {
              const to_hit = v['repeating_npcactions_' + id + '_action_attack_tohit'];
              const range = v['repeating_npcactions_' + id + '_action_attack_range'];
@@ -3938,6 +3937,7 @@
                           traitsobj[val] = traitsarray[i + 1];
                       });
                       _.each(traitsobj, function(desc, name) {
+                          name = name.trim();
                           newrowid = generateRowID();
                           update["repeating_npctrait_" + newrowid + "_trait_name"] = name;
                           if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
@@ -3945,7 +3945,9 @@
                           }
                           update["repeating_npctrait_" + newrowid + "_trait_desc"] = desc.trim();
 
-                          // TODO: SPELLCASTING NPCS
+                          console.log("action name: "+name);
+
+                          // SPELLCASTING NPCS
                           if(name === "Spellcasting") {
                               var lvl = parseInt(desc.substring(desc.indexOf("-level")-4, desc.indexOf("-level")-2).trim(), 10);
                               lvl = !isNaN(lvl) ? lvl : 1;
@@ -4114,10 +4116,14 @@
                             desc = desc.substring(2);
                         }
 
+                        // set action editor to closed as a default
+                        update['repeating_npcactions_'+newrowid+'_show_action_editor'] = 0;
+
                         if(desc.indexOf(" Attack:") > -1)
                         {
                             update["repeating_npcactions_" + newrowid + "_action_is_an_attack"] = 1;
                             update["repeating_npcactions_" + newrowid + "_action_attack_options"] = "{{attack=1}}";
+
                             if(desc.indexOf(" Weapon Attack:") > -1) {
                                 attacktype = desc.split(" Weapon Attack:")[0] + " Weapon";
                             }
@@ -4139,6 +4145,7 @@
 
                             update["repeating_npcactions_" + newrowid + "_action_attack_tohit"] = (desc.match(/\+(.*) to hit/) || ["",""])[1];
                             update["repeating_npcactions_" + newrowid + "_action_attack_target"] = (desc.match(/\.,(?!.*\.,)(.*)\. Hit:/) || ["",""])[1];
+
                             if(desc.toLowerCase().indexOf("damage") > -1) {
                                 update["repeating_npcactions_" + newrowid + "_action_attack_damage"] = (desc.match(/\(([^)]+)\)/) || ["",""])[1];
                                 update["repeating_npcactions_" + newrowid + "_action_attack_damagetype"] = (desc.match(/\) (.*?) damage/) || ["",""])[1];
