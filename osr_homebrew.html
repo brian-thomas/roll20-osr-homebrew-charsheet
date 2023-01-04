@@ -4054,35 +4054,48 @@
 
                           // SPELLCASTING NPCS
                           if(name.includes("Spellcasting", 0)) {
-                              var lvl = parseInt(desc.substring(desc.indexOf("-level")-4, desc.indexOf("-level")-2).trim(), 10);
-                              lvl = !isNaN(lvl) ? lvl : 1;
+                              console.log("DESC: "+desc);
 
-                              var ability = desc.match(/casting ability is (.*?) /);
+                              var lvl = parseInt(desc.substring(desc.indexOf("-level")-4, desc.indexOf("-level")-2).trim(), 10);
+                              lvl = !isNaN(lvl) ? lvl : -1;
+                              if (lvl > -1) { // we have cases of innate spellcasters with no stated level, use hitdice and DONT set here
+                                update["level"] = lvl;
+                              }
+
+                              var ability = desc.match(/spellcasting ability is (.*?) /);
                               ability = ability && ability.length > 1 ? ability[1] : "";
                               console.log("Ability:"+ability);
-                              var dc = desc.match(/spell save DC (.*?),/);
-                              console.log("DC:"+dc);
+                              update["spellcasting_type"] = ability.toLowerCase() === "intelligence" ? "Arcane" : "Divine";
+                              update["class"] = ability.toLowerCase() === "intelligence" ? "wizard" : "cleric";
+
+                              var dc = desc.match(/spell save DC (.*?)[,\)]/);
+                              if (dc) {
+                                console.log("spellcasting DC:"+dc);
+                                update["spellcasting_dc"] = parseInt(dc[1]) || -1;
+                              }
+                              else {
+                                update["spellcasting_dc"] = 8;
+                              }
+
                               var mod = desc.match(/ \+?(\d+?) to hit with spell attacks/);
-                              console.log("Spellmod:"+mod);
+                              if (mod) {
+                                console.log("Spellcasting mod:"+mod);
+                                update["spellcasting_mod"] = parseInt(mod[1]) || -1;
+                              } else {
+                                update["spellcasting_mod"] = 0;
+                              }
 
                               // update["npcspellcastingflag"] = 1;
-                              update["spellcasting_type"] = ability.toLowerCase() === "intelligence" ? "Arcane" : "Divine";
-                              update["spellcasting_dc"] = parseInt(dc[1]) || -1;
-                              update["spellcasting_mod"] = parseInt(mod[1]) || -1;
 
                               // we dont use these...
                               //update["caster_level"] = lvl;
                               // update["base_level"] = lvl;
 
-                              // TODO: what if we have a cleric, druid or other??
-                              update["class"] = ability.toLowerCase() === "intelligence" ? "wizard" : "cleric";
-                              update["level"] = lvl;
-
                               // parse out prepared spells
                               spellsarray = desc.match(/(•.*?)$/mg);
+                              console.log("Spellarray:"+spellsarray);
                               if (spellsarray) {
                                 spellsarray.forEach( function(val, i) {
-                                    //if (i % 2 === 1) { console.log("REturning); return; }
 
                                     // clean up carrots from string which are for footnotes we dont currently use
                                     val = val.replaceAll("^", "");
@@ -4094,7 +4107,11 @@
                                       level = 0;
                                     } else {
                                       level = levelarray[1].match(/(\d)\w{2}/);
-                                      level = parseInt(level[1]) || -1;
+                                      if (level && !isNaN(level)) {
+                                        level = parseInt(level[1]) || -1;
+                                      } else {
+                                        level = 1; // innate spell powers case
+                                      }
                                     }
 
                                     // now parse out our spells for level 1 and higher
@@ -4112,6 +4129,7 @@
                                       });
                                     }
                                 });
+
                               }
 
                               // callbacks.push( function() {update_pb();} );
