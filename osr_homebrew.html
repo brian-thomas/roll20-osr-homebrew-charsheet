@@ -4356,7 +4356,7 @@
 
             };
 
-            // callbacks.push( function() {cleanup_drop_fields();} );
+            callbacks.push( function() {cleanup_drop_fields();} );
             setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
          });
      };
