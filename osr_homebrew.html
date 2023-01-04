@@ -147,7 +147,10 @@
               <h4 class="bottom-line">Attributes</h4>
               <div class="flex">
                 <div class="block center">
-                  <span class="bold-font">STR</span>
+                  <button class="blank-roll-button narrow-button" type="roll" name="roll_str_check"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=STR Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{strength_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{strength_mod}]]}}">
+                          <span class="bold-font npc-text">STR</span>
+                  </button>
                   <input class="npc-ability-value" name="attr_strength" type="number" value="10"/>
                   <button class="blank-roll-button narrow-button" type="roll" name="roll_fortitude"
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Fortitude Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{fortitude} + @{fort_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{fortitude}]] + [[@{fort_bonus}]] ]]}}">
@@ -157,7 +160,10 @@
                 </div>
 
                 <div class="block center">
-                  <span class="bold-font">DEX</span>
+                  <button class="blank-roll-button narrow-button" type="roll" name="roll_dex_check"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=DEX Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{dexterity_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{dexterity_mod}]]}}">
+                    <span class="bold-font npc-text">DEX</span>
+                  </button>
                   <input class="npc-ability-value" name="attr_dexterity" type="number" value="10"/>
                   <button class="blank-roll-button narrow-button" type="roll" name="roll_dodge"
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dodge Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{dodge} + @{dodge_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{dodge}]] + [[@{dodge_bonus}]] ]]}}">
@@ -167,7 +173,10 @@
                 </div>
 
                 <div class="block center">
-                  <span class="bold-font">CON</span>
+                  <button class="blank-roll-button narrow-button" type="roll" name="roll_con_check"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=CON Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{constitution_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{constitution_mod}]]}}">
+                    <span class="bold-font npc-text">CON</span>
+                  </button>
                   <input class="npc-ability-value" name="attr_constitution" type="number" value="10"/>
                   <button class="blank-roll-button narrow-button" type="roll" name="roll_health"
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Health Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{health} +@{health_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{health}]] + [[@{health_bonus}]] ]]}}">
@@ -177,7 +186,10 @@
                 </div>
 
                 <div class="block center">
-                  <span class="bold-font">INT</span>
+                  <button class="blank-roll-button narrow-button" type="roll" name="roll_int_check"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=INT Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{intelligence_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{intelligence_mod}]]}}">
+                    <span class="bold-font npc-text">INT</span>
+                 </button>
                   <input class="npc-ability-value" name="attr_intelligence" type="number" value="10"/>
                   <button class="blank-roll-button narrow-button" type="roll" name="roll_perception"
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Perception Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{perception} + @{per_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{perception}]] + [[@{per_bonus}]] ]]}}">
@@ -187,7 +199,10 @@
                 </div>
 
                 <div class="block center">
-                  <span class="bold-font">WIS</span>
+                  <button class="blank-roll-button narrow-button" type="roll" name="roll_wis_check"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=WIS Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{wisdom_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{wisdom_mod}]]}}">
+                    <span class="bold-font npc-text">WIS</span>
+                  </button>
                   <input class="npc-ability-value" name="attr_wisdom" type="number" value="10"/>
                   <button class="blank-roll-button narrow-button" type="roll" name="roll_willpower"
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Willpower Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{willpower} +@{will_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{willpower}]] +[[@{will_bonus}]] ]]}}">
@@ -197,7 +212,10 @@
                 </div>
 
                 <div class="block center">
-                  <span class="bold-font">CHA</span>
+                  <button class="blank-roll-button narrow-button" type="roll" name="roll_cha_check"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=CHA Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{charisma_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{charisma_mod}]]}}">
+                    <span class="bold-font">CHA</span>
+                  </button>
                   <input class="npc-ability-value" name="attr_charisma" type="number" value="10"/>
                   <button class="blank-roll-button narrow-button" type="roll" name="roll_ego"
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Ego Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{ego} + @{ego_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{ego}]] +[[@{ego_bonus}]] ]]}}">
@@ -793,7 +811,7 @@
         <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/osr_logo.png" class="sheet-logo">
       </div>
     </div>
-    
+
     <hr/>
 
     <div class="sheet-inline">
