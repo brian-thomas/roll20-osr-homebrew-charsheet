@@ -3312,10 +3312,9 @@
           settings['repeating_npcactions_'+id+'_action_show_attack'] = is_attack;
 
           // set action editor to closed as a default
-          settings['repeating_npcactions_'+id+'_show_action_editor'] = 0;
+          // settings['repeating_npcactions_'+id+'_show_action_editor'] = 0;
 
           if (is_attack == 1) {
-             console.log("THIS IS AN ATTACK: "+id);
              const to_hit = v['repeating_npcactions_' + id + '_action_attack_tohit'];
              const range = v['repeating_npcactions_' + id + '_action_attack_range'];
              const attack_type = v['repeating_npcactions_' + id + '_action_attack_type'];
@@ -3929,7 +3928,7 @@
 
                               var ability = desc.match(/casting ability is (.*?) /);
                               ability = ability && ability.length > 1 ? ability[1] : "";
-
+                              console.log("Ability:"+ability);
                               var dc = desc.match(/spell save DC (.*?),/);
                               console.log("DC:"+dc);
                               var mod = desc.match(/ \+?(\d+?) to hit with spell attacks/);
@@ -3945,7 +3944,7 @@
                               // update["base_level"] = lvl;
 
                               // TODO: what if we have a cleric, druid or other??
-                              update["class"] = "wizard";
+                              update["class"] = ability.toLowerCase() === "intelligence" ? "wizard" : "cleric";
                               update["level"] = lvl;
 
                               // parse out prepared spells
