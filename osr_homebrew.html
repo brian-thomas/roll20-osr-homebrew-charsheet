@@ -61,573 +61,597 @@
         <span class="italic-font">Languages: </span>
         <input type="text" name="attr_known_lang" class="sheet-npc-text sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Languages"/>
       </div>
+    </div>
+    <hr/>
 
-      <div class="sheet-flex padding thick-border">
-        <div class="block">
-          <div class="thin-border padding limit-to-half-width">
-            <h4 class="bottom-line">Combat</h4>
-            <div class="flex-between">
-              <div class="block">
-                <div class="sheet-flex-inline">
-                  <select class="sheet-info-name-med-sm" name="attr_level">
-                    <option selected="selected" value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                  </select>
+    <div class="sheet-inline">
+      <input type="radio" name="attr_npctab" class="sheet-tab sheet-tab1" value="1" checked="checked" />
+      <span class="sheet-tab sheet-tab1">Core Stats</span>
+      <!--
+      <input type="radio" name="attr_tab" class="sheet-tab sheet-tab6" value="6" />
+      <span class="sheet-tab sheet-tab6">Attacks</span>
+      -->
+      <input type="radio" name="attr_npctab" class="sheet-tab sheet-tab3" value="3" />
+      <span class="sheet-tab sheet-tab3">Spellcasting</span>
+      <input type="radio" name="attr_npctab" class="sheet-tab sheet-tab5" value="5" />
+      <span class="sheet-tab sheet-tab5">Notes</span>
+      <input type="radio" name="attr_npctab" class="sheet-tab sheet-tab99" value="99" />
+      <span class="sheet-tab sheet-tab99">Show All</span>
+
+      <div class="section-core">
+        <span class="sheet-spacer">&nbsp;</span>
+        <div class="npc sheet-flex padding thick-border">
+          <div class="block">
+            <div class="thin-border padding limit-to-half-width">
+              <h4 class="bottom-line">Combat</h4>
+              <div class="flex-between">
+                <div class="block">
+                  <div class="sheet-flex-inline">
+                    <select class="sheet-info-name-med-sm" name="attr_level">
+                      <option selected="selected" value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                      <option value="16">16</option>
+                      <option value="17">17</option>
+                      <option value="18">18</option>
+                      <option value="19">19</option>
+                      <option value="20">20</option>
+                      <option value="21">21</option>
+                      <option value="22">22</option>
+                      <option value="23">23</option>
+                      <option value="24">24</option>
+                      <option value="25">25</option>
+                    </select>
+                  </div>
+                  <div class="block padding center">
+                    <span class="ability-check-label">Hit</span>
+                    <span class="ability-check-label">Dice</span>
+                  </div>
                 </div>
                 <div class="block padding center">
-                  <span class="ability-check-label">Hit</span>
-                  <span class="ability-check-label">Dice</span>
+                  <input class="ability-check-value" name="attr_hp" type="number" value="0"/>
+                  <span class="ability-check-label">HP</span>
+                </div>
+                <div class="block padding center">
+                  <input class="ability-check-value" name="attr_npc_ac" type="number" value="10"/>
+                  <span class="ability-check-label">AC</span>
+                </div>
+                <div class="block padding center">
+                  <div class="sheet-block sheet-padding sheet-center">
+                    <input name="attr_init_extra" type="number" hidden="true" value="0"/>
+                    <input class="sheet-npc-ability-value-wide" name="attr_initiative" type="number" value="0"/>
+                    <button type="roll" class="sheet-npc-ability-button" name="roll_initiative"
+                            value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} + @{init_extra} [Initiative Mod] &{tracker} ]]}}">
+                            Init.
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div class="block padding center">
-                <input class="ability-check-value" name="attr_hp" type="number" value="0"/>
-                <span class="ability-check-label">HP</span>
-              </div>
-              <div class="block padding center">
-                <input class="ability-check-value" name="attr_npc_ac" type="number" value="10"/>
-                <span class="ability-check-label">AC</span>
-              </div>
-              <div class="block padding center">
-                <div class="sheet-block sheet-padding sheet-center">
-                  <input name="attr_init_extra" type="number" hidden="true" value="0"/>
-                  <input class="sheet-npc-ability-value-wide" name="attr_initiative" type="number" value="0"/>
-                  <button type="roll" class="sheet-npc-ability-button" name="roll_initiative"
-                          value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} + @{init_extra} [Initiative Mod] &{tracker} ]]}}">
-                          Init.
+            </div>
+            <br/>
+
+            <div class="block thin-border padding limit-to-half-width">
+              <h4 class="bottom-line">Attributes</h4>
+              <div class="flex">
+                <div class="block center">
+                  <span class="bold-font">STR</span>
+                  <input class="npc-ability-value" name="attr_strength" type="number" value="10"/>
+                  <button class="blank-roll-button narrow-button" type="roll" name="roll_fortitude"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Fortitude Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{fortitude} + @{fort_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{fortitude}]] + [[@{fort_bonus}]] ]]}}">
+                          <span class="bold-font npc-text">Fort.</span>
                   </button>
+                  <input class="npc-ability-check" name="attr_fortitude" type="number" value="0"/>
+                </div>
+
+                <div class="block center">
+                  <span class="bold-font">DEX</span>
+                  <input class="npc-ability-value" name="attr_dexterity" type="number" value="10"/>
+                  <button class="blank-roll-button narrow-button" type="roll" name="roll_dodge"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dodge Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{dodge} + @{dodge_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{dodge}]] + [[@{dodge_bonus}]] ]]}}">
+                          <span class="bold-font npc-text">Dodge</span>
+                  </button>
+                  <input class="npc-ability-check" name="attr_dodge" type="number" value="0"/>
+                </div>
+
+                <div class="block center">
+                  <span class="bold-font">CON</span>
+                  <input class="npc-ability-value" name="attr_constitution" type="number" value="10"/>
+                  <button class="blank-roll-button narrow-button" type="roll" name="roll_health"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Health Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{health} +@{health_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{health}]] + [[@{health_bonus}]] ]]}}">
+                          <span class="bold-font npc-text">Health</span>
+                  </button>
+                  <input class="npc-ability-check" name="attr_health" type="number" value="0"/>
+                </div>
+
+                <div class="block center">
+                  <span class="bold-font">INT</span>
+                  <input class="npc-ability-value" name="attr_intelligence" type="number" value="10"/>
+                  <button class="blank-roll-button narrow-button" type="roll" name="roll_perception"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Perception Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{perception} + @{per_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{perception}]] + [[@{per_bonus}]] ]]}}">
+                          <span class="bold-font npc-text">Per.</span>
+                  </button>
+                  <input class="npc-ability-check" name="attr_perception" type="number" value="0"/>
+                </div>
+
+                <div class="block center">
+                  <span class="bold-font">WIS</span>
+                  <input class="npc-ability-value" name="attr_wisdom" type="number" value="10"/>
+                  <button class="blank-roll-button narrow-button" type="roll" name="roll_willpower"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Willpower Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{willpower} +@{will_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{willpower}]] +[[@{will_bonus}]] ]]}}">
+                          <span class="bold-font npc-text">Will</span>
+                  </button>
+                  <input class="npc-ability-check" name="attr_willpower" type="number" value="0"/>
+                </div>
+
+                <div class="block center">
+                  <span class="bold-font">CHA</span>
+                  <input class="npc-ability-value" name="attr_charisma" type="number" value="10"/>
+                  <button class="blank-roll-button narrow-button" type="roll" name="roll_ego"
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Ego Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{ego} + @{ego_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{ego}]] +[[@{ego_bonus}]] ]]}}">
+                          <span class="bold-font npc-text">Ego</span>
+                  </button>
+                  <input class="npc-ability-check" name="attr_ego" type="number" value="0"/>
+                  <input name="attr_ego_bonus" type="number" value="0" hidden="True"/>
                 </div>
               </div>
-            </div>
-          </div>
-          <br/>
+            </div> <!-- end attribs and saves -->
+            <br/>
 
-          <div class="block thin-border padding limit-to-half-width">
-            <h4 class="bottom-line">Attributes</h4>
-            <div class="flex">
-              <div class="block center">
-                <span class="bold-font">STR</span>
-                <input class="npc-ability-value" name="attr_strength" type="number" value="10"/>
-                <button class="blank-roll-button narrow-button" type="roll" name="roll_fortitude"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Fortitude Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{fortitude} + @{fort_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{fortitude}]] + [[@{fort_bonus}]] ]]}}">
-                        <span class="bold-font npc-text">Fort.</span>
-                </button>
-                <input class="npc-ability-check" name="attr_fortitude" type="number" value="0"/>
-              </div>
-
-              <div class="block center">
-                <span class="bold-font">DEX</span>
-                <input class="npc-ability-value" name="attr_dexterity" type="number" value="10"/>
-                <button class="blank-roll-button narrow-button" type="roll" name="roll_dodge"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dodge Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{dodge} + @{dodge_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{dodge}]] + [[@{dodge_bonus}]] ]]}}">
-                        <span class="bold-font npc-text">Dodge</span>
-                </button>
-                <input class="npc-ability-check" name="attr_dodge" type="number" value="0"/>
-              </div>
-
-              <div class="block center">
-                <span class="bold-font">CON</span>
-                <input class="npc-ability-value" name="attr_constitution" type="number" value="10"/>
-                <button class="blank-roll-button narrow-button" type="roll" name="roll_health"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Health Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{health} +@{health_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{health}]] + [[@{health_bonus}]] ]]}}">
-                        <span class="bold-font npc-text">Health</span>
-                </button>
-                <input class="npc-ability-check" name="attr_health" type="number" value="0"/>
-              </div>
-
-              <div class="block center">
-                <span class="bold-font">INT</span>
-                <input class="npc-ability-value" name="attr_intelligence" type="number" value="10"/>
-                <button class="blank-roll-button narrow-button" type="roll" name="roll_perception"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Perception Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{perception} + @{per_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{perception}]] + [[@{per_bonus}]] ]]}}">
-                        <span class="bold-font npc-text">Per.</span>
-                </button>
-                <input class="npc-ability-check" name="attr_perception" type="number" value="0"/>
-              </div>
-
-              <div class="block center">
-                <span class="bold-font">WIS</span>
-                <input class="npc-ability-value" name="attr_wisdom" type="number" value="10"/>
-                <button class="blank-roll-button narrow-button" type="roll" name="roll_willpower"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Willpower Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{willpower} +@{will_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{willpower}]] +[[@{will_bonus}]] ]]}}">
-                        <span class="bold-font npc-text">Will</span>
-                </button>
-                <input class="npc-ability-check" name="attr_willpower" type="number" value="0"/>
-              </div>
-
-              <div class="block center">
-                <span class="bold-font">CHA</span>
-                <input class="npc-ability-value" name="attr_charisma" type="number" value="10"/>
-                <button class="blank-roll-button narrow-button" type="roll" name="roll_ego"
-                        value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Ego Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{ego} + @{ego_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{ego}]] +[[@{ego_bonus}]] ]]}}">
-                        <span class="bold-font npc-text">Ego</span>
-                </button>
-                <input class="npc-ability-check" name="attr_ego" type="number" value="0"/>
-                <input name="attr_ego_bonus" type="number" value="0" hidden="True"/>
-              </div>
-            </div>
-          </div> <!-- end attribs and saves -->
-          <br/>
-
-          <div class="block thin-border padding limit-to-half-width">
-             <h4 class="bottom-line">Skills</h4>
-             <div class="npc-traitcontainer">
-               <fieldset class="repeating_skills">
-                 <div class="sheet-block sheet-thin-border sheet-side-padding">
-                   <div class="sheet-align-right">
-                     <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname"/>
-                     <input type="number" name="attr_skillvalue" class="sheet-bold-font" value="1"/>
-                     <input type="number" name="attr_skill_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                     <button class="sheet-skill-button" type="roll" name="roll_skill"
-                             value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{skillname} Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{skillvalue} +@{skill_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{skillvalue}]] +[[@{skill_bonus}]] ]]}}"></button>
+            <div class="block thin-border padding limit-to-half-width">
+               <h4 class="bottom-line">Skills</h4>
+               <div class="npc-traitcontainer">
+                 <fieldset class="repeating_skills">
+                   <div class="sheet-block sheet-thin-border sheet-side-padding">
+                     <div class="sheet-align-right">
+                       <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname"/>
+                       <input type="number" name="attr_skillvalue" class="sheet-bold-font" value="1"/>
+                       <input type="number" name="attr_skill_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
+                       <button class="sheet-skill-button" type="roll" name="roll_skill"
+                               value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{skillname} Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{skillvalue} +@{skill_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{skillvalue}]] +[[@{skill_bonus}]] ]]}}"></button>
+                     </div>
                    </div>
-                 </div>
+                </fieldset>
+               </div>
+            </div>
+            <br/>
+
+            <div class="block thin-border padding limit-to-half-width">
+              <h4 class="bottom-line">Traits</h4>
+               <div class="npc-traitcontainer">
+                 <fieldset class="repeating_npctrait">
+                   <div class="sheet-block sheet-side-padding bottom-line align-left">
+                     <img class="small-image" src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
+                     <input type="checkbox" class="sheet-is_edit_trait" value="1"/>
+                     <div class="section-npc-edit-trait">
+                       <div class="flex fill-width">
+                         <span class="bold-font">Name:</span>
+                         <input type="text" name="attr_trait_name" class="align-left"/>
+                       </div>
+                       <div class="block">
+                         <span class="bold-font">Desc:</span>
+                         <!--input type="textarea" name="attr_trait_desc" class="npc-trait-textarea"/-->
+                         <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_trait_desc" data-i18n-placeholder="description"></textarea>
+                       </div>
+                     </div>
+                     <div class="section-npc-show-trait">
+                       <div class="flex fill-width">
+                         <label class="npc-trait-name info5"><span name="attr_trait_name">Trait Name</span></label>
+                       </div>
+                       <label class="npc-text-sm info5"><span name="attr_trait_desc">Description Here</span></label>
+                     </div>
+                   </div>
+                 </fieldset>
+               </div>
+            </div>
+          </div> <!-- LHS -->
+
+          <div class="block">
+          <div class="block thin-border limit-to-half-width">
+            <h4 class="bottom-line">Actions</h4>
+            <div class="npc-traitcontainer">
+              <fieldset class="repeating_npcactions">
+                <div class="sheet-block sheet-side-padding bottom-line align-left">
+
+                  <button type="action" name="act_edit_npc_action" class="npc-edit-button align-right">
+                    <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
+                  </button>
+
+                  <input type="checkbox" class="sheet-show-npc-action-editor" name="attr_show_action_editor" value="1" checked="True"/>
+                  <div class="sheet-section-npc-action-editor sheet-block">
+                    <!-- TODO: implement checkbox toggle in sheethelper attack /non attack here, which then reveals, or not, the attack options -->
+                    <div class="sheet-flex">
+                      <input type="text" class="npc-action-text" name="attr_action_name" data-i18n-placeholder="name"/>
+                    </div>
+                    <div class="sheet-flex">
+                      <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_action_desc" data-i18n-placeholder="description"></textarea>
+                    </div>
+                    <span>is an attack action?</span>
+                    <input type="checkbox" class="sheet-is-npc-attack-action" name="attr_action_is_an_attack" value="1" checked="True"/>
+                    <div class="sheet-section-npc-action-attack-options">
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Type</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_type" data-i18n-placeholder="Attack Type (Weapon|Spell)"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Target Area</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_target" data-i18n-placeholder="Attack Targets, ex. 'One target'"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Range</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_range" data-i18n-placeholder="Attack Range, ex '5 ft. reach'"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack To Hit</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_tohit" data-i18n-placeholder="Attack To Hit Bonus"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Damage</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_damage" data-i18n-placeholder="Attack Damage Dieroll, ex '1d6+1'"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Damage Type</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_damagetype" data-i18n-placeholder="Attack Damage Type, ex 'slashing'"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Damage2</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_damage2" data-i18n-placeholder="Attack Damage2 Dieroll, ex '1d6+1'"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Damage Type2</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_damagetype2" data-i18n-placeholder="Attack Damage2 Type, ex 'slashing'"/>
+                      </div>
+                      <!-- TODO: upon edit update these fields -->
+                      <input type="text" name="attr_action_attack_desc1" hidden="true"/>
+                      <input type="text" name="attr_action_attack_desc2" hidden="true"/>
+                    </div>
+                  </div>
+
+                  <input type="checkbox" class="sheet-npc-show-attack" name="attr_action_show_attack" value="1" hidden="True" checked="True"/>
+                  <div class="sheet-section-npc-show-attack flex">
+                    <button type="roll" name="roll_npc_action" class="npc-trait-name blank-roll-button info5"
+                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{attack=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + @{action_attack_damage} ]]}} }}">
+                       <span name="attr_action_name">Action Name</span>
+                    </button>
+                    <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc1"/></label>
+                    <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc2"/></label>
+                  </div>
+                  <div class="section-npc-show-non-attack flex">
+                    <label class="info5 npc-trait-name info5"><span name="attr_action_name">Action Name</span></label>
+                  </div>
+                  <label class="info5 npc-text"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
+                </div>
               </fieldset>
-             </div>
+            </div>
           </div>
           <br/>
 
           <div class="block thin-border padding limit-to-half-width">
-            <h4 class="bottom-line">Traits</h4>
+            <h4 class="bottom-line">Legendary Actions</h4>
+            <div class="npc-traitcontainer">
+              <fieldset class="repeating_npcactions-l">
+                <div class="sheet-block sheet-side-padding bottom-line align-left">
+
+                  <button type="action" name="act_edit_npc_action" class="npc-edit-button align-right">
+                    <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
+                  </button>
+
+                  <input type="checkbox" class="sheet-show-npc-action-editor" name="attr_show_action_editor" value="1" checked="True"/>
+                  <div class="sheet-section-npc-action-editor sheet-block">
+                    <!-- TODO: implement checkbox toggle in sheethelper attack /non attack here, which then reveals, or not, the attack options -->
+                    <div class="sheet-flex">
+                      <input type="text" class="npc-action-text" name="attr_action_name" data-i18n-placeholder="name"/>
+                    </div>
+                    <div class="sheet-flex">
+                      <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_action_desc" data-i18n-placeholder="description"></textarea>
+                    </div>
+                    <span>is an attack action?</span>
+                    <input type="checkbox" class="sheet-is-npc-attack-action" name="attr_action_is_an_attack" value="1" checked="True"/>
+                    <div class="sheet-section-npc-action-attack-options">
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Type</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_type" data-i18n-placeholder="Attack Type (Weapon|Spell)"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Target Area</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_target" data-i18n-placeholder="Attack Targets, ex. 'One target'"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Range</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_range" data-i18n-placeholder="Attack Range, ex '5 ft. reach'"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack To Hit</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_tohit" data-i18n-placeholder="Attack To Hit Bonus"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Damage</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_damage" data-i18n-placeholder="Attack Damage Dieroll, ex '1d6+1'"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Damage Type</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_damagetype" data-i18n-placeholder="Attack Damage Type, ex 'slashing'"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Damage2</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_damage2" data-i18n-placeholder="Attack Damage2 Dieroll, ex '1d6+1'"/>
+                      </div>
+                      <div class="flex">
+                        <span class="bold-font npc-action-text">Attack Damage Type2</span>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_damagetype2" data-i18n-placeholder="Attack Damage2 Type, ex 'slashing'"/>
+                      </div>
+                      <!-- TODO: upon edit update these fields -->
+                      <input type="text" name="attr_action_attack_desc1" hidden="true"/>
+                      <input type="text" name="attr_action_attack_desc2" hidden="true"/>
+                    </div>
+                  </div>
+
+                  <input type="checkbox" class="sheet-npc-show-attack" name="attr_action_show_attack" value="1" hidden="True" checked="True"/>
+                  <div class="sheet-section-npc-show-attack flex">
+                    <button type="roll" name="roll_npc_action" class="npc-trait-name blank-roll-button info5"
+                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{attack=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + @{action_attack_damage} ]]}} }}">
+                       <span name="attr_action_name">Legendary Action Name</span>
+                    </button>
+                    <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc1"/></label>
+                    <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc2"/></label>
+                  </div>
+                  <div class="section-npc-show-non-attack flex">
+                    <label class="info5 npc-trait-name info5"><span name="attr_action_name">Legendary Action Name</span></label>
+                  </div>
+                  <label class="info5 npc-text"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <br/>
+
+          <div class="block thin-border padding limit-to-half-width">
+             <h4 class="bottom-line">Reactions</h4>
              <div class="npc-traitcontainer">
-               <fieldset class="repeating_npctrait">
+               <fieldset class="repeating_npcreaction">
                  <div class="sheet-block sheet-side-padding bottom-line align-left">
-                   <img class="small-image" src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
                    <input type="checkbox" class="sheet-is_edit_trait" value="1"/>
+                   <img class="small-image" src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
                    <div class="section-npc-edit-trait">
                      <div class="flex fill-width">
                        <span class="bold-font">Name:</span>
-                       <input type="text" name="attr_trait_name" class="align-left"/>
+                       <input type="text" name="attr_react_name" class="align-left" data-i18n-placeholder="reaction name"/>
                      </div>
                      <div class="block">
                        <span class="bold-font">Desc:</span>
-                       <!--input type="textarea" name="attr_trait_desc" class="npc-trait-textarea"/-->
-                       <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_trait_desc" data-i18n-placeholder="description"></textarea>
+                       <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_react_desc" data-i18n-placeholder="description"></textarea>
                      </div>
                    </div>
                    <div class="section-npc-show-trait">
                      <div class="flex fill-width">
-                       <label class="npc-trait-name info5"><span name="attr_trait_name">Trait Name</span></label>
+                       <label class="npc-trait-name info5"><span name="attr_react_name">Reaction Name</span></label>
                      </div>
-                     <label class="npc-text-sm info5"><span name="attr_trait_desc">Description Here</span></label>
+                     <label class="npc-text-sm info5"><span name="attr_react_desc"/>Description Here</label>
                    </div>
                  </div>
                </fieldset>
              </div>
-          </div>
-        </div> <!-- LHS -->
-
-        <div class="block">
-        <div class="block thin-border limit-to-half-width">
-          <h4 class="bottom-line">Actions</h4>
-          <div class="npc-traitcontainer">
-            <fieldset class="repeating_npcactions">
-              <div class="sheet-block sheet-side-padding bottom-line align-left">
-
-                <button type="action" name="act_edit_npc_action" class="npc-edit-button align-right">
-                  <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
-                </button>
-
-                <input type="checkbox" class="sheet-show-npc-action-editor" name="attr_show_action_editor" value="1" checked="True"/>
-                <div class="sheet-section-npc-action-editor sheet-block">
-                  <!-- TODO: implement checkbox toggle in sheethelper attack /non attack here, which then reveals, or not, the attack options -->
-                  <div class="sheet-flex">
-                    <input type="text" class="npc-action-text" name="attr_action_name" data-i18n-placeholder="name"/>
-                  </div>
-                  <div class="sheet-flex">
-                    <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_action_desc" data-i18n-placeholder="description"></textarea>
-                  </div>
-                  <span>is an attack action?</span>
-                  <input type="checkbox" class="sheet-is-npc-attack-action" name="attr_action_is_an_attack" value="1" checked="True"/>
-                  <div class="sheet-section-npc-action-attack-options">
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Type</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_type" data-i18n-placeholder="Attack Type (Weapon|Spell)"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Target Area</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_target" data-i18n-placeholder="Attack Targets, ex. 'One target'"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Range</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_range" data-i18n-placeholder="Attack Range, ex '5 ft. reach'"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack To Hit</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_tohit" data-i18n-placeholder="Attack To Hit Bonus"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Damage</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_damage" data-i18n-placeholder="Attack Damage Dieroll, ex '1d6+1'"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Damage Type</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_damagetype" data-i18n-placeholder="Attack Damage Type, ex 'slashing'"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Damage2</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_damage2" data-i18n-placeholder="Attack Damage2 Dieroll, ex '1d6+1'"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Damage Type2</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_damagetype2" data-i18n-placeholder="Attack Damage2 Type, ex 'slashing'"/>
-                    </div>
-                    <!-- TODO: upon edit update these fields -->
-                    <input type="text" name="attr_action_attack_desc1" hidden="true"/>
-                    <input type="text" name="attr_action_attack_desc2" hidden="true"/>
-                  </div>
-                </div>
-
-                <input type="checkbox" class="sheet-npc-show-attack" name="attr_action_show_attack" value="1" hidden="True" checked="True"/>
-                <div class="sheet-section-npc-show-attack flex">
-                  <button type="roll" name="roll_npc_action" class="npc-trait-name blank-roll-button info5"
-                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{attack=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + @{action_attack_damage} ]]}} }}">
-                     <span name="attr_action_name">Action Name</span>
-                  </button>
-                  <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc1"/></label>
-                  <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc2"/></label>
-                </div>
-                <div class="section-npc-show-non-attack flex">
-                  <label class="info5 npc-trait-name info5"><span name="attr_action_name">Action Name</span></label>
-                </div>
-                <label class="info5 npc-text"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-        <br/>
-
-        <div class="block thin-border padding limit-to-half-width">
-          <h4 class="bottom-line">Legendary Actions</h4>
-          <div class="npc-traitcontainer">
-            <fieldset class="repeating_npcactions-l">
-              <div class="sheet-block sheet-side-padding bottom-line align-left">
-
-                <button type="action" name="act_edit_npc_action" class="npc-edit-button align-right">
-                  <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
-                </button>
-
-                <input type="checkbox" class="sheet-show-npc-action-editor" name="attr_show_action_editor" value="1" checked="True"/>
-                <div class="sheet-section-npc-action-editor sheet-block">
-                  <!-- TODO: implement checkbox toggle in sheethelper attack /non attack here, which then reveals, or not, the attack options -->
-                  <div class="sheet-flex">
-                    <input type="text" class="npc-action-text" name="attr_action_name" data-i18n-placeholder="name"/>
-                  </div>
-                  <div class="sheet-flex">
-                    <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_action_desc" data-i18n-placeholder="description"></textarea>
-                  </div>
-                  <span>is an attack action?</span>
-                  <input type="checkbox" class="sheet-is-npc-attack-action" name="attr_action_is_an_attack" value="1" checked="True"/>
-                  <div class="sheet-section-npc-action-attack-options">
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Type</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_type" data-i18n-placeholder="Attack Type (Weapon|Spell)"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Target Area</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_target" data-i18n-placeholder="Attack Targets, ex. 'One target'"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Range</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_range" data-i18n-placeholder="Attack Range, ex '5 ft. reach'"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack To Hit</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_tohit" data-i18n-placeholder="Attack To Hit Bonus"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Damage</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_damage" data-i18n-placeholder="Attack Damage Dieroll, ex '1d6+1'"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Damage Type</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_damagetype" data-i18n-placeholder="Attack Damage Type, ex 'slashing'"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Damage2</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_damage2" data-i18n-placeholder="Attack Damage2 Dieroll, ex '1d6+1'"/>
-                    </div>
-                    <div class="flex">
-                      <span class="bold-font npc-action-text">Attack Damage Type2</span>
-                      <input type="text" class="npc-action-text" name="attr_action_attack_damagetype2" data-i18n-placeholder="Attack Damage2 Type, ex 'slashing'"/>
-                    </div>
-                    <!-- TODO: upon edit update these fields -->
-                    <input type="text" name="attr_action_attack_desc1" hidden="true"/>
-                    <input type="text" name="attr_action_attack_desc2" hidden="true"/>
-                  </div>
-                </div>
-
-                <input type="checkbox" class="sheet-npc-show-attack" name="attr_action_show_attack" value="1" hidden="True" checked="True"/>
-                <div class="sheet-section-npc-show-attack flex">
-                  <button type="roll" name="roll_npc_action" class="npc-trait-name blank-roll-button info5"
-                     value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{attack=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + @{action_attack_damage} ]]}} }}">
-                     <span name="attr_action_name">Legendary Action Name</span>
-                  </button>
-                  <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc1"/></label>
-                  <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc2"/></label>
-                </div>
-                <div class="section-npc-show-non-attack flex">
-                  <label class="info5 npc-trait-name info5"><span name="attr_action_name">Legendary Action Name</span></label>
-                </div>
-                <label class="info5 npc-text"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-        <br/>
-
-        <div class="block thin-border padding limit-to-half-width">
-           <h4 class="bottom-line">Reactions</h4>
-           <div class="npc-traitcontainer">
-             <fieldset class="repeating_npcreaction">
-               <div class="sheet-block sheet-side-padding bottom-line align-left">
-                 <input type="checkbox" class="sheet-is_edit_trait" value="1"/>
-                 <img class="small-image" src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
-                 <div class="section-npc-edit-trait">
-                   <div class="flex fill-width">
-                     <span class="bold-font">Name:</span>
-                     <input type="text" name="attr_react_name" class="align-left" data-i18n-placeholder="reaction name"/>
-                   </div>
-                   <div class="block">
-                     <span class="bold-font">Desc:</span>
-                     <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_react_desc" data-i18n-placeholder="description"></textarea>
-                   </div>
-                 </div>
-                 <div class="section-npc-show-trait">
-                   <div class="flex fill-width">
-                     <label class="npc-trait-name info5"><span name="attr_react_name">Reaction Name</span></label>
-                   </div>
-                   <label class="npc-text-sm info5"><span name="attr_react_desc"/>Description Here</label>
-                 </div>
-               </div>
-             </fieldset>
            </div>
-        </div>
 
-
-      </div> <!-- action/reaction block -->
-
-     </div> <!-- thick border -->
-   </div> <!-- block -->
-
-   <div class="block thick-border padding">
-      <h3>Spellcasting</h3>
-      <div class="sheet-flex-between">
-        <div class="sheet-flex">
-          <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
-            <span>Spellcasting Type</span>
-          </div>
-          <div class="sheet-ability-column-modifier sheet-flex-between">
-            <select class="attack-param-long" name="attr_spellcasting_type">
-              <option selected="selected" value="none">--</option>
-              <option value="Arcane">Arcane</option>
-              <option value="Divine">Divine</option>
-            </select>
-          </div>
-        </div>
-        <div class="sheet-flex">
-          <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
-            <span>Spellcasting Modifier</span>
-          </div>
-          <div class="sheet-ability-column-modifier sheet-flex-between">
-            <div class="sheet-thin-border sheet-flex sheet-side-padding">
-              <input class="ability-value" name="attr_spellcasting_mod" type="number" value="0"/>
-            </div>
-          </div>
-        </div>
-        <div class="sheet-flex">
-          <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
-            <span>Spell Save DC</span>
-          </div>
-          <div class="sheet-ability-column-modifier sheet-flex-between">
-            <div class="sheet-thin-border sheet-flex sheet-side-padding">
-              <input class="ability-value" name="attr_spellcasting_dc" type="number" value="0"/>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h4 class="bottom-line">Spells</h4>
-      <div class="npc-traitcontainer sheet-spells">
-       <button type="action" name="act_spellrest">Regain All Spellslots</button>
-        <div class="sheet-spells-per-level sheet-flex">
-          <div class="sheet-flex">
-            <span class="sheet-italic-font sheet-big-font heet-side-padding">Slots / Level</span>
-          </div>
-          <div class="sheet-flex">
-              <span class="sheet-med-font">1st: </span>
-              <input type="number" class="sheet-spellslot-box" name="attr_lvl1_slots_expended" value="0" />
-              /
-              <input type="number" class="sheet-spellslot-box sheet-inactive-color" name="attr_lvl1_slots_total" value="0" hidden="true"/>
-              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl1_slots_total"/>
-          </div>
-          <div class="sheet-flex">
-              <span class="sheet-med-font">2nd: </span>
-              <input type="number" class="sheet-spellslot-box" name="attr_lvl2_slots_expended" value="0"/>
-              /
-              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl2_slots_total" value="0" hidden="true"/>
-              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl2_slots_total"/>
-          </div>
-          <div class="sheet-flex">
-              <span class="sheet-med-font">3rd: </span>
-              <input type="number" class="sheet-spellslot-box" name="attr_lvl3_slots_expended" value="0" />
-              /
-              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl3_slots_total" value="0" hidden="true"/>
-              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl3_slots_total"/>
-          </div>
-          <div class="sheet-flex">
-              <span class="sheet-med-font">4th: </span>
-              <input type="number" class="sheet-spellslot-box" name="attr_lvl4_slots_expended" value="0" />
-              /
-              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl4_slots_total" value="0" hidden="true"/>
-              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl4_slots_total"/>
-          </div>
-          <div class="sheet-flex">
-              <span class="sheet-med-font">5th: </span>
-              <input type="number" class="sheet-spellslot-box" name="attr_lvl5_slots_expended" value="0" />
-              /
-              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl5_slots_total" value="0" hidden="true"/>
-              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl5_slots_total"/>
-          </div>
-          <div class="sheet-flex">
-              <span class="sheet-med-font">6th: </span>
-              <input type="number" class="sheet-spellslot-box" name="attr_lvl6_slots_expended" value="0" />
-              /
-              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl6_slots_total" value="0" hidden="true"/>
-              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl6_slots_total"/>
-          </div>
-              <div class="sheet-flex">
-              <span class="sheet-med-font">7th: </span>
-              <input type="number" class="sheet-spellslot-box" name="attr_lvl7_slots_expended" value="0" />
-              /
-              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl7_slots_total" value="0" hidden="true"/>
-              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl7_slots_total"/>
-          </div>
-          <div class="sheet-flex">
-              <span class="sheet-med-font">8th: </span>
-              <input type="number" class="sheet-spellslot-box" name="attr_lvl8_slots_expended" value="0" />
-              /
-              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl8_slots_total" value="0" hidden="true"/>
-              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl8_slots_total"/>
-          </div>
-          <div class="sheet-flex">
-              <span class="sheet-med-font">9th: </span>
-              <input type="number" class="sheet-spellslot-box" name="attr_lvl9_slots_expended" value="0" />
-              /
-              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl9_slots_total" value="0" hidden="true"/>
-              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl9_slots_total"/>
-          </div>
-        </div>
-
-        <div class="sheet-spell-filters sheet-flex center">
-         <span class="sheet-bold-font">Filter:</span>
-         <label class="sheet-filter-button">
-             <input type="radio" name="attr_spells_filter" value="all" checked/>
-             <span data-i18n="all"></span>
-         </label>
-         <label class="sheet-filter-button">
-             <input type="radio" name="attr_spells_filter" value="1"/>
-             <span>1</span>
-         </label>
-         <label class="sheet-filter-button">
-             <input type="radio" name="attr_spells_filter" value="2"/>
-             <span>2</span>
-         </label>
-         <label class="sheet-filter-button">
-             <input type="radio" name="attr_spells_filter" value="3"/>
-             <span>3</span>
-         </label>
-         <label class="sheet-filter-button">
-             <input type="radio" name="attr_spells_filter" value="4"/>
-             <span>4</span>
-         </label>
-         <label class="sheet-filter-button">
-             <input type="radio" name="attr_spells_filter" value="5"/>
-             <span>5</span>
-         </label>
-         <label class="sheet-filter-button">
-             <input type="radio" name="attr_spells_filter" value="6"/>
-             <span>6</span>
-         </label>
-         <label class="sheet-filter-button">
-             <input type="radio" name="attr_spells_filter" value="7"/>
-             <span>7</span>
-         </label>
-         <label class="sheet-filter-button">
-             <input type="radio" name="attr_spells_filter" value="8"/>
-             <span>8</span>
-         </label>
-         <label class="sheet-filter-button">
-           <input type="radio" name="attr_spells_filter" value="9"/>
-           <span>9</span>
-         </label>
+         </div> <!-- action/reaction block -->
        </div>
+     </div> <!-- core w/ thick border -->
 
-       <fieldset class="repeating_spells">
-          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="1" checked="True"/>
-          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="2"/>
-          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="3"/>
-          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="4"/>
-          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="5"/>
-          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="6"/>
-          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="7"/>
-          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="8"/>
-          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="9"/>
-          <div class="sheet-spellcontainer sheet-side-padding">
-            <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" data-i18n-placeholder="name"/>
-            <span class="sheet-left-pad"> Level:</span>
-            <select class="sheet-info-name-sm sheet-align-right" name="attr_spelllevel">
-               <option value="0">0</option>
-               <option selected="selected" value="1">1</option>
-               <option value="2">2</option>
-               <option value="3">3</option>
-               <option value="4">4</option>
-               <option value="5">5</option>
-               <option value="6">6</option>
-               <option value="7">7</option>
-               <option value="8">8</option>
-               <option value="9">9</option>
-            </select>
-            <span class="sheet-left-pad">Dice:</span>
-            <input type="text" class="sheet-info1 sheet-align-right sheet-spell-dice" name="attr_spell_dice" value="">
-            <div class="sheet-flex save-col center centered-label">
-                <button class="sheet-cast-button sheet-orange-border" type="roll" name="roll_cast_spell"
-                        value="@{wtype}&{template:spell} {{name=@{character_name}}} {{innate=}} {{memorized=1}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{level= @{spelllevel}}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{description=@{spelldescription}}}"></button>
-                <span class="small-font centered-label">Cast</span>
+     <div class="section-magic">
+        <span class="sheet-spacer">&nbsp;</span>
+        <div class="block thick-border padding">
+          <h3>Spellcasting</h3>
+          <div class="sheet-flex-between">
+            <div class="sheet-flex">
+              <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
+                <span>Spellcasting Type</span>
+              </div>
+              <div class="sheet-ability-column-modifier sheet-flex-between">
+                <select class="attack-param-long" name="attr_spellcasting_type">
+                  <option selected="selected" value="none">--</option>
+                  <option value="Arcane">Arcane</option>
+                  <option value="Divine">Divine</option>
+                </select>
+              </div>
             </div>
-            <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
+            <div class="sheet-flex">
+              <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
+                <span>Spellcasting Modifier</span>
+              </div>
+              <div class="sheet-ability-column-modifier sheet-flex-between">
+                <div class="sheet-thin-border sheet-flex sheet-side-padding">
+                  <input class="ability-value" name="attr_spellcasting_mod" type="number" value="0"/>
+                </div>
+              </div>
+            </div>
+            <div class="sheet-flex">
+              <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
+                <span>Spell Save DC</span>
+              </div>
+              <div class="sheet-ability-column-modifier sheet-flex-between">
+                <div class="sheet-thin-border sheet-flex sheet-side-padding">
+                  <input class="ability-value" name="attr_spellcasting_dc" type="number" value="0"/>
+                </div>
+              </div>
+            </div>
           </div>
-        </fieldset>
-      </div>
-   </div>
-   </br>
 
-   <div class="thin-border block padding">
-     <h3>Notes</h3>
-     <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
+          <h4 class="bottom-line">Spells</h4>
+          <div class="npc-traitcontainer sheet-spells">
+           <button type="action" name="act_spellrest">Regain All Spellslots</button>
+            <div class="sheet-spells-per-level sheet-flex">
+              <div class="sheet-flex">
+                <span class="sheet-italic-font sheet-big-font heet-side-padding">Slots / Level</span>
+              </div>
+              <div class="sheet-flex">
+                  <span class="sheet-med-font">1st: </span>
+                  <input type="number" class="sheet-spellslot-box" name="attr_lvl1_slots_expended" value="0" />
+                  /
+                  <input type="number" class="sheet-spellslot-box sheet-inactive-color" name="attr_lvl1_slots_total" value="0" hidden="true"/>
+                  <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl1_slots_total"/>
+              </div>
+              <div class="sheet-flex">
+                  <span class="sheet-med-font">2nd: </span>
+                  <input type="number" class="sheet-spellslot-box" name="attr_lvl2_slots_expended" value="0"/>
+                  /
+                  <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl2_slots_total" value="0" hidden="true"/>
+                  <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl2_slots_total"/>
+              </div>
+              <div class="sheet-flex">
+                  <span class="sheet-med-font">3rd: </span>
+                  <input type="number" class="sheet-spellslot-box" name="attr_lvl3_slots_expended" value="0" />
+                  /
+                  <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl3_slots_total" value="0" hidden="true"/>
+                  <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl3_slots_total"/>
+              </div>
+              <div class="sheet-flex">
+                  <span class="sheet-med-font">4th: </span>
+                  <input type="number" class="sheet-spellslot-box" name="attr_lvl4_slots_expended" value="0" />
+                  /
+                  <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl4_slots_total" value="0" hidden="true"/>
+                  <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl4_slots_total"/>
+              </div>
+              <div class="sheet-flex">
+                  <span class="sheet-med-font">5th: </span>
+                  <input type="number" class="sheet-spellslot-box" name="attr_lvl5_slots_expended" value="0" />
+                  /
+                  <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl5_slots_total" value="0" hidden="true"/>
+                  <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl5_slots_total"/>
+              </div>
+              <div class="sheet-flex">
+                  <span class="sheet-med-font">6th: </span>
+                  <input type="number" class="sheet-spellslot-box" name="attr_lvl6_slots_expended" value="0" />
+                  /
+                  <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl6_slots_total" value="0" hidden="true"/>
+                  <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl6_slots_total"/>
+              </div>
+                  <div class="sheet-flex">
+                  <span class="sheet-med-font">7th: </span>
+                  <input type="number" class="sheet-spellslot-box" name="attr_lvl7_slots_expended" value="0" />
+                  /
+                  <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl7_slots_total" value="0" hidden="true"/>
+                  <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl7_slots_total"/>
+              </div>
+              <div class="sheet-flex">
+                  <span class="sheet-med-font">8th: </span>
+                  <input type="number" class="sheet-spellslot-box" name="attr_lvl8_slots_expended" value="0" />
+                  /
+                  <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl8_slots_total" value="0" hidden="true"/>
+                  <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl8_slots_total"/>
+              </div>
+              <div class="sheet-flex">
+                  <span class="sheet-med-font">9th: </span>
+                  <input type="number" class="sheet-spellslot-box" name="attr_lvl9_slots_expended" value="0" />
+                  /
+                  <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl9_slots_total" value="0" hidden="true"/>
+                  <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl9_slots_total"/>
+              </div>
+            </div>
+
+            <div class="sheet-spell-filters sheet-flex center">
+             <span class="sheet-bold-font">Filter:</span>
+             <label class="sheet-filter-button">
+                 <input type="radio" name="attr_spells_filter" value="all" checked/>
+                 <span data-i18n="all"></span>
+             </label>
+             <label class="sheet-filter-button">
+                 <input type="radio" name="attr_spells_filter" value="1"/>
+                 <span>1</span>
+             </label>
+             <label class="sheet-filter-button">
+                 <input type="radio" name="attr_spells_filter" value="2"/>
+                 <span>2</span>
+             </label>
+             <label class="sheet-filter-button">
+                 <input type="radio" name="attr_spells_filter" value="3"/>
+                 <span>3</span>
+             </label>
+             <label class="sheet-filter-button">
+                 <input type="radio" name="attr_spells_filter" value="4"/>
+                 <span>4</span>
+             </label>
+             <label class="sheet-filter-button">
+                 <input type="radio" name="attr_spells_filter" value="5"/>
+                 <span>5</span>
+             </label>
+             <label class="sheet-filter-button">
+                 <input type="radio" name="attr_spells_filter" value="6"/>
+                 <span>6</span>
+             </label>
+             <label class="sheet-filter-button">
+                 <input type="radio" name="attr_spells_filter" value="7"/>
+                 <span>7</span>
+             </label>
+             <label class="sheet-filter-button">
+                 <input type="radio" name="attr_spells_filter" value="8"/>
+                 <span>8</span>
+             </label>
+             <label class="sheet-filter-button">
+               <input type="radio" name="attr_spells_filter" value="9"/>
+               <span>9</span>
+             </label>
+           </div>
+
+           <fieldset class="repeating_spells">
+              <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="1" checked="True"/>
+              <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="2"/>
+              <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="3"/>
+              <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="4"/>
+              <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="5"/>
+              <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="6"/>
+              <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="7"/>
+              <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="8"/>
+              <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="9"/>
+              <div class="sheet-spellcontainer sheet-side-padding">
+                <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" data-i18n-placeholder="name"/>
+                <span class="sheet-left-pad"> Level:</span>
+                <select class="sheet-info-name-sm sheet-align-right" name="attr_spelllevel">
+                   <option value="0">0</option>
+                   <option selected="selected" value="1">1</option>
+                   <option value="2">2</option>
+                   <option value="3">3</option>
+                   <option value="4">4</option>
+                   <option value="5">5</option>
+                   <option value="6">6</option>
+                   <option value="7">7</option>
+                   <option value="8">8</option>
+                   <option value="9">9</option>
+                </select>
+                <span class="sheet-left-pad">Dice:</span>
+                <input type="text" class="sheet-info1 sheet-align-right sheet-spell-dice" name="attr_spell_dice" value="">
+                <div class="sheet-flex save-col center centered-label">
+                    <button class="sheet-cast-button sheet-orange-border" type="roll" name="roll_cast_spell"
+                            value="@{wtype}&{template:spell} {{name=@{character_name}}} {{innate=}} {{memorized=1}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{level= @{spelllevel}}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{description=@{spelldescription}}}"></button>
+                    <span class="small-font centered-label">Cast</span>
+                </div>
+                <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+     </div>
+     </br>
+
+     <div class="section-notes">
+       <span class="sheet-spacer">&nbsp;</span>
+       <div class="thin-border block padding">
+         <h3>Notes</h3>
+         <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
+       </div>
+     </div>
+
    </div>
 
   </div> <!-- NPC End -->
@@ -769,6 +793,8 @@
         <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/osr_logo.png" class="sheet-logo">
       </div>
     </div>
+    
+    <hr/>
 
     <div class="sheet-inline">
       <input type="radio" name="attr_tab" class="sheet-tab sheet-tab1" value="1" checked="checked" />
