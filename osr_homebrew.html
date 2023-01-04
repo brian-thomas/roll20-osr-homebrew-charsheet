@@ -61,9 +61,10 @@
         <span class="italic-font">Languages: </span>
         <input type="text" name="attr_known_lang" class="sheet-npc-text sheet-align-left sheet-padding sheet-italic-font" data-i18n-placeholder="NPC Languages"/>
       </div>
-      <div class="sheet-flex padding info6 thick-border">
+
+      <div class="sheet-flex padding thick-border">
         <div class="block">
-          <div class="flex-between thin-border">
+          <div class="flex-between thin-border padding limit-to-half-width">
             <div class="block">
               <div class="sheet-flex-inline">
                 <select class="sheet-info-name-med-sm" name="attr_level">
@@ -120,7 +121,8 @@
             </div>
           </div>
           <br/>
-          <div class="block thin-border padding">
+
+          <div class="block thin-border padding limit-to-half-width">
             <h4>Attributes</h4>
             <div class="flex">
               <div class="block center">
@@ -186,18 +188,37 @@
             </div>
           </div> <!-- end attribs and saves -->
           <br/>
+
+          <div class="block thin-border padding limit-to-half-width">
+             <h4>Skills</h4>
+             <div class="npc-traitcontainer">
+               <fieldset class="repeating_npcskills">
+                 <div class="sheet-block-between">
+                   <div class="sheet-align-right">
+                     <input type="text" class="bold-font info2" name="attr_skillname"/>
+                     <input type="number" class="bold-font" value="0" name="attr_skillvalue" />
+                     <button class="sheet-skill-button" type="roll" name="roll_npcskill"
+                             value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{skillname} Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{skillvalue} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{skillvalue} ]]}}"></button>
+                   </div>
+                 </div>
+               </fieldset>
+             </div>
+          </div>
+          <br/>
+
           <div class="block thin-border padding limit-to-half-width">
              <h4>Reactions</h4>
              <div class="npc-traitcontainer">
                <fieldset class="repeating_npcreaction">
                  <input type="text" name="attr_react_name" hidden="True"/>
                  <input type="textarea" name="attr_react_desc" hidden="True"/>
-                 <label class="npc-trait-name info4"><span name="attr_react_name"/></label>
-                 <label class="npc-text-sm info4"><span name="attr_react_desc"/></label>
+                 <label class="npc-trait-name info5"><span name="attr_react_name"/></label>
+                 <label class="npc-text-sm info5"><span name="attr_react_desc"/></label>
                </fieldset>
              </div>
           </div>
           <br/>
+
           <div class="block thin-border padding limit-to-half-width">
             <h4>Traits</h4>
              <div class="npc-traitcontainer">
@@ -273,7 +294,7 @@
                   <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc2"/></label>
                 </div>
                 <div class="section-npc-show-non-attack">
-                  <label class="info5 npc-trait-name info5"><span name="attr_action_name">Action Name</span></label>
+                  <label class="info5 npc-trait-name"><span name="attr_action_name">Action Name</span></label>
                 </div>
                 <label class="info5 npc-text"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
               </div>
@@ -322,6 +343,196 @@
 
      </div> <!-- thick border -->
    </div> <!-- block -->
+
+   <div class="block thick-border padding">
+      <h3>Spellcasting</h3>
+      <div class="sheet-flex-between">
+        <div class="sheet-flex">
+          <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
+            <span>Spellcasting Type</span>
+          </div>
+          <div class="sheet-ability-column-modifier sheet-flex-between">
+            <select class="attack-param-long" name="attr_spellcasting_type">
+              <option selected="selected" value="none">--</option>
+              <option value="Arcane">Arcane</option>
+              <option value="Divine">Divine</option>
+            </select>
+          </div>
+        </div>
+        <div class="sheet-flex">
+          <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
+            <span>Spellcasting Modifier</span>
+          </div>
+          <div class="sheet-ability-column-modifier sheet-flex-between">
+            <div class="sheet-thin-border sheet-flex sheet-side-padding">
+              <input class="ability-value" name="attr_spellcasting_mod" type="number" value="0"/>
+            </div>
+          </div>
+        </div>
+        <div class="sheet-flex">
+          <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
+            <span>Spell Save DC</span>
+          </div>
+          <div class="sheet-ability-column-modifier sheet-flex-between">
+            <div class="sheet-thin-border sheet-flex sheet-side-padding">
+              <input class="ability-value" name="attr_spellcasting_dc" type="number" value="0"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h4>Spells</h4>
+      <div class="npc-traitcontainer sheet-spells">
+       <button type="action" name="act_spellrest">Regain All Spellslots</button>
+        <div class="sheet-spells-per-level sheet-flex">
+          <div class="sheet-flex">
+            <span class="sheet-italic-font sheet-big-font heet-side-padding">Slots / Level</span>
+          </div>
+          <div class="sheet-flex">
+              <span class="sheet-med-font">1st: </span>
+              <input type="number" class="sheet-spellslot-box" name="attr_lvl1_slots_expended" value="0" />
+              /
+              <input type="number" class="sheet-spellslot-box sheet-inactive-color" name="attr_lvl1_slots_total" value="0" hidden="true"/>
+              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl1_slots_total"/>
+          </div>
+          <div class="sheet-flex">
+              <span class="sheet-med-font">2nd: </span>
+              <input type="number" class="sheet-spellslot-box" name="attr_lvl2_slots_expended" value="0"/>
+              /
+              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl2_slots_total" value="0" hidden="true"/>
+              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl2_slots_total"/>
+          </div>
+          <div class="sheet-flex">
+              <span class="sheet-med-font">3rd: </span>
+              <input type="number" class="sheet-spellslot-box" name="attr_lvl3_slots_expended" value="0" />
+              /
+              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl3_slots_total" value="0" hidden="true"/>
+              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl3_slots_total"/>
+          </div>
+          <div class="sheet-flex">
+              <span class="sheet-med-font">4th: </span>
+              <input type="number" class="sheet-spellslot-box" name="attr_lvl4_slots_expended" value="0" />
+              /
+              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl4_slots_total" value="0" hidden="true"/>
+              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl4_slots_total"/>
+          </div>
+          <div class="sheet-flex">
+              <span class="sheet-med-font">5th: </span>
+              <input type="number" class="sheet-spellslot-box" name="attr_lvl5_slots_expended" value="0" />
+              /
+              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl5_slots_total" value="0" hidden="true"/>
+              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl5_slots_total"/>
+          </div>
+          <div class="sheet-flex">
+              <span class="sheet-med-font">6th: </span>
+              <input type="number" class="sheet-spellslot-box" name="attr_lvl6_slots_expended" value="0" />
+              /
+              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl6_slots_total" value="0" hidden="true"/>
+              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl6_slots_total"/>
+          </div>
+              <div class="sheet-flex">
+              <span class="sheet-med-font">7th: </span>
+              <input type="number" class="sheet-spellslot-box" name="attr_lvl7_slots_expended" value="0" />
+              /
+              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl7_slots_total" value="0" hidden="true"/>
+              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl7_slots_total"/>
+          </div>
+          <div class="sheet-flex">
+              <span class="sheet-med-font">8th: </span>
+              <input type="number" class="sheet-spellslot-box" name="attr_lvl8_slots_expended" value="0" />
+              /
+              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl8_slots_total" value="0" hidden="true"/>
+              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl8_slots_total"/>
+          </div>
+          <div class="sheet-flex">
+              <span class="sheet-med-font">9th: </span>
+              <input type="number" class="sheet-spellslot-box" name="attr_lvl9_slots_expended" value="0" />
+              /
+              <input type="number" class="sheet-spellslot-box inactive-color" name="attr_lvl9_slots_total" value="0" hidden="true"/>
+              <span class="sheet-spellslot-box bold-font spellslot-value sheet-inactive-color" name="attr_lvl9_slots_total"/>
+          </div>
+        </div>
+
+        <div class="sheet-spell-filters sheet-flex center">
+         <span class="sheet-bold-font">Filter:</span>
+         <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="all" checked/>
+             <span data-i18n="all"></span>
+         </label>
+         <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="1"/>
+             <span>1</span>
+         </label>
+         <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="2"/>
+             <span>2</span>
+         </label>
+         <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="3"/>
+             <span>3</span>
+         </label>
+         <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="4"/>
+             <span>4</span>
+         </label>
+         <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="5"/>
+             <span>5</span>
+         </label>
+         <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="6"/>
+             <span>6</span>
+         </label>
+         <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="7"/>
+             <span>7</span>
+         </label>
+         <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="8"/>
+             <span>8</span>
+         </label>
+         <label class="sheet-filter-button">
+           <input type="radio" name="attr_spells_filter" value="9"/>
+           <span>9</span>
+         </label>
+       </div>
+
+       <fieldset class="repeating_npcspells">
+          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="1" checked="True"/>
+          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="2"/>
+          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="3"/>
+          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="4"/>
+          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="5"/>
+          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="6"/>
+          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="7"/>
+          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="8"/>
+          <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="9"/>
+          <div class="sheet-spellcontainer sheet-side-padding">
+            <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" data-i18n-placeholder="name"/>
+            <span class="sheet-left-pad"> Level:</span>
+            <select class="sheet-info-name-sm sheet-align-right" name="attr_spelllevel">
+               <option value="0">0</option>
+               <option selected="selected" value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <option value="6">6</option>
+               <option value="7">7</option>
+               <option value="8">8</option>
+               <option value="9">9</option>
+            </select>
+            <div class="sheet-flex save-col center centered-label">
+                <button class="sheet-cast-button sheet-orange-border" type="roll" name="roll_cast_spell"
+                        value="@{wtype}&{template:spell} {{name=@{character_name}}} {{innate=}} {{memorized=1}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{level= @{spelllevel}}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{description=@{spelldescription}}}"></button>
+                <span class="small-font centered-label">Cast</span>
+            </div>
+            <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
+          </div>
+        </fieldset>
+      </div>
+   </div>
+   </br>
 
    <div class="thin-border block padding">
      <h3>Notes</h3>
@@ -1469,7 +1680,7 @@
                 <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
                    <span>Spellcasting Type</span>
                 </div>
-                <input class="ability-value sheet-inactive-color sheet-align-left sheet-info4" name="attr_spellcasting_type" type="text" value="None" readonly="true"/>
+                <input class="ability-value sheet-inactive-color sheet-align-left info4" name="attr_spellcasting_type" type="text" value="None" readonly="true"/>
               </div>
 
               <div class="sheet-flex">
@@ -2779,6 +2990,39 @@
   const divine_spell_slots6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 5];
   const divine_spell_slots7 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4];
 
+  function get_spell_slots (is_wizard, is_elf, is_cleric, c_class, level, level2) {
+
+    if (is_wizard)
+    {
+      console.log("get_spellslots called for wizard");
+      const l = (c_class === 'wizard' ? level : level2);
+      return [arcane_spell_slots1[l], arcane_spell_slots2[l], arcane_spell_slots3[l],
+              arcane_spell_slots4[l], arcane_spell_slots5[l], arcane_spell_slots6[l],
+              arcane_spell_slots7[l], arcane_spell_slots8[l], arcane_spell_slots9[l]
+             ];
+    }
+    else
+    if (is_elf)
+    {
+      return [ 1 + parseInt((level + level2)/4), 0, 0, 0, 0, 0, 0, 0, 0 ];
+    }
+    else
+    if (is_cleric)
+    {
+      const l = (c_class === 'cleric' ? level : level2);
+      return [divine_spell_slots1[l], divine_spell_slots2[l], divine_spell_slots3[l],
+              divine_spell_slots4[l], divine_spell_slots5[l], divine_spell_slots6[l],
+              divine_spell_slots7[l], 0, 0
+             ];
+    }
+
+    console.log("get_spellslots called - NO class");
+    // Not a spell caster, reset spell slots
+    return [0,0,0,0,0,0,0,0,0];
+
+;
+  }
+
   // General Class/Level stuff
   on(`sheet:opened change:class change:class2 change:level change:level2 change:race change:xp`, () => {
     getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race', 'xp'], v => {
@@ -2813,35 +3057,28 @@
       setting['sneak_attack_checkbox'] = (c_class === 'specialist' ? 1 : (c_class2 === 'specialist' ? 1: 0));
       setting['sneak_attack_dice'] = (c_class === 'specialist' ?  1 + parseInt((level-1)/2): (c_class2 === 'specialist' ?  1 + parseInt((level2-1)/2): 0));
 
+      spellslots = get_spell_slots (is_wizard, is_elf, is_cleric, c_class, level, level2);
+      setting["lvl1_slots_total"] = spellslots[0];
+      setting["lvl2_slots_total"] = spellslots[1];
+      setting["lvl3_slots_total"] = spellslots[2];
+      setting["lvl4_slots_total"] = spellslots[3];
+      setting["lvl5_slots_total"] = spellslots[4];
+      setting["lvl6_slots_total"] = spellslots[5];
+      setting["lvl7_slots_total"] = spellslots[6];
+      setting["lvl8_slots_total"] = spellslots[7];
+      setting["lvl9_slots_total"] = spellslots[8];
+
       if (is_wizard)
       {
         const wizard_level = (c_class === 'wizard' ? level : level2);
         setting["spellcasting_type"] = "Arcane";
         setting["alignment"] = "Chaotic";
-        setting["lvl1_slots_total"] = arcane_spell_slots1[wizard_level];
-        setting["lvl2_slots_total"] = arcane_spell_slots2[wizard_level];
-        setting["lvl3_slots_total"] = arcane_spell_slots3[wizard_level];
-        setting["lvl4_slots_total"] = arcane_spell_slots4[wizard_level];
-        setting["lvl5_slots_total"] = arcane_spell_slots5[wizard_level];
-        setting["lvl6_slots_total"] = arcane_spell_slots6[wizard_level];
-        setting["lvl7_slots_total"] = arcane_spell_slots7[wizard_level];
-        setting["lvl8_slots_total"] = arcane_spell_slots8[wizard_level];
-        setting["lvl9_slots_total"] = arcane_spell_slots9[wizard_level];
       }
       else
       if (is_elf)
       {
         setting["spellcasting_type"] = "Arcane";
         setting["alignment"] = "Chaotic";
-        setting["lvl1_slots_total"] = 1 + parseInt((level + level2)/4);
-        setting["lvl2_slots_total"] = 0;
-        setting["lvl3_slots_total"] = 0;
-        setting["lvl4_slots_total"] = 0;
-        setting["lvl5_slots_total"] = 0;
-        setting["lvl6_slots_total"] = 0;
-        setting["lvl7_slots_total"] = 0;
-        setting["lvl8_slots_total"] = 0;
-        setting["lvl9_slots_total"] = 0;
       }
       else
       if (is_cleric)
@@ -2849,15 +3086,6 @@
         const cleric_level = (c_class === 'cleric' ? level : level2);
         setting["spellcasting_type"] = "Divine";
         setting["alignment"] = "Lawful";
-        setting["lvl1_slots_total"] = divine_spell_slots1[cleric_level];
-        setting["lvl2_slots_total"] = divine_spell_slots2[cleric_level];
-        setting["lvl3_slots_total"] = divine_spell_slots3[cleric_level];
-        setting["lvl4_slots_total"] = divine_spell_slots4[cleric_level];
-        setting["lvl5_slots_total"] = divine_spell_slots5[cleric_level];
-        setting["lvl6_slots_total"] = divine_spell_slots6[cleric_level];
-        setting["lvl7_slots_total"] = divine_spell_slots7[cleric_level];
-        setting["lvl8_slots_total"] = 0;
-        setting["lvl9_slots_total"] = 0;
       }
       else
       {
@@ -2865,18 +3093,6 @@
         setting["spellcasting_mod"] = 0;
         setting["spellcasting_dc"] = 0;
         setting["alignment"] = c_align;
-
-        // reset spell slots
-        setting["lvl1_slots_total"] = 0;
-        setting["lvl2_slots_total"] = 0;
-        setting["lvl3_slots_total"] = 0;
-        setting["lvl4_slots_total"] = 0;
-        setting["lvl5_slots_total"] = 0;
-        setting["lvl6_slots_total"] = 0;
-        setting["lvl7_slots_total"] = 0;
-        setting["lvl8_slots_total"] = 0;
-        setting["lvl9_slots_total"] = 0;
-
       }
 
       setting["has_cleric_powers"] = is_cleric;
@@ -2913,10 +3129,49 @@
     });
   });
 
-  /*
-  on("clicked:spellrest", function() {
-    getAttrs(['lvl1_slots_total', 'lvl2_slots_total', 'lvl3_slots_total', 'lvl4_slots_total', 'lvl5_slots_total',
+  function set_npc_spellslots (c_class) {
+
+    console.log("Set npcspellslots called");
+
+    getAttrs(['level', 'race' ], v => {
+
+      //const c_class = v.class.trim();
+      const c_race = v.race.trim();
+      const level = parseInt(v.level) || 0;
+
+      const is_cleric = (c_class === 'cleric');
+      const is_wizard = (c_class === 'wizard');
+      const is_elf = (c_race === 'Elven');
+
+      var spellslots = get_spell_slots (is_wizard, is_elf, is_cleric, c_class, level, 0);
+
+      const setting = {};
+      setting["lvl1_slots_total"] = spellslots[0];
+      setting["lvl2_slots_total"] = spellslots[1];
+      setting["lvl3_slots_total"] = spellslots[2];
+      setting["lvl4_slots_total"] = spellslots[3];
+      setting["lvl5_slots_total"] = spellslots[4];
+      setting["lvl6_slots_total"] = spellslots[5];
+      setting["lvl7_slots_total"] = spellslots[6];
+      setting["lvl8_slots_total"] = spellslots[7];
+      setting["lvl9_slots_total"] = spellslots[8];
+
+      setAttrs(setting);
+
+    });
+
+  }
+
+  function npc_spellrest () {
+    console.log("npc spellrest called");
+
+
+    getAttrs(['class', 'lvl1_slots_total', 'lvl2_slots_total', 'lvl3_slots_total', 'lvl4_slots_total', 'lvl5_slots_total',
               'lvl6_slots_total', 'lvl7_slots_total', 'lvl8_slots_total', 'lvl9_slots_total' ], v => {
+
+      //failsafe
+      const c_class = v.class.trim();
+      set_npc_spellslots(c_class);
 
       settings={};
       settings["lvl1_slots_expended"] = parseInt(v.lvl1_slots_total) || 0;
@@ -2931,8 +3186,9 @@
 
       setAttrs(settings);
     });
-  });
-  */
+  }
+
+  on("clicked:spellrest", () => { npc_spellrest(); });
 
   // Checks for Skills, are they overspent? Have they underspent? Exceeded max bonus for a skill?
   const coreSkills = ['arcana_skill', 'architect_skill', 'armory_skill', 'athletics_skill', 'bushcraft_skill',
@@ -2995,11 +3251,6 @@
     getSectionIDs('repeating_spells', function (ids) {
       const fieldnames = [];
       ids.forEach(id => {
-        /*
-        fieldnames.push('repeating_spells_' + id + '_is_adhoc_dice_spell');
-        fieldnames.push('repeating_spells_' + id + '_is_adhoc_no_dice_spell');
-        fieldnames.push('repeating_spells_' + id + '_is_dice_spell');
-        */
         fieldnames.push('repeating_spells_' + id + '_spelllevel');
         fieldnames.push('repeating_spells_' + id + '_spell_dice');
       });
@@ -3416,7 +3667,7 @@
        if (v.npc) {
          console.debug("Is NPC reached: "+v.character_name)
          settings['npc_name'] = v.character_name;
-         settings['class'] = 'fighter';
+         // settings['class'] = 'fighter';
          settings['npc_hpformula'] = v.level + 'd8';
        } else {
          settings['npc_hpformula'] = v.hp;
@@ -3466,6 +3717,9 @@
              if(v["drop_name"] && v["drop_name"] != "") {
                update["character_name"] = v["drop_name"];
              };
+
+             // default class
+             update['class'] = 'fighter';
 
              // core stats
              update["strength"]     = v["drop_str"] ? v["drop_str"] : "";
@@ -3584,16 +3838,17 @@
                */
 
 
-               /*
-                if(v["drop_skills"] && v["drop_skills"] != "") {
+              // NPC Skills
+              if(v["drop_skills"] && v["drop_skills"] != "") {
                      skillarray = v["drop_skills"].split(", ");
                      _.each(skillarray, function(skill) {
                          kv = skill.indexOf("-") > -1 ? skill.split(" ") : skill.split(" +");
-                         update["npc_" + kv[0].toLowerCase().replace(/ /g, '_') + "_bonus"] = parseInt(kv[1], 10);
+                         //update["npc_" + kv[0].toLowerCase().replace(/ /g, '_') + "_bonus"] = parseInt(kv[1], 10);
+                         newrowid = generateRowID();
+                         update["repeating_npcskills_" + newrowid + "_skillname"] = kv[0].trim();
+                         update["repeating_npcskills_" + newrowid + "_skillvalue"] = parseInt(kv[1]) || 0;
                      });
-                 }
-              */
-
+              }
 
               if(v["drop_content"] && v["drop_content"] != "") {
 
@@ -3665,24 +3920,75 @@
                               desc = desc.substring(2);
                           }
                           update["repeating_npctrait_" + newrowid + "_trait_desc"] = desc.trim();
+
                           // TODO: SPELLCASTING NPCS
-                          /*
                           if(name === "Spellcasting") {
                               var lvl = parseInt(desc.substring(desc.indexOf("-level")-4, desc.indexOf("-level")-2).trim(), 10);
                               lvl = !isNaN(lvl) ? lvl : 1;
+
                               var ability = desc.match(/casting ability is (.*?) /);
-                              ability = ability && ability.length > 1 ? ability[1] : false;
-                              ability = ability ? "@{" + ability.toLowerCase() + "_mod}+" : "0*";
-                              update["npcspellcastingflag"] = 1;
-                              update["spellcasting_ability"] = ability;
-                              update["caster_level"] = lvl;
-                              update["class"] = "Wizard";
-                              update["base_level"] = lvl;
+                              ability = ability && ability.length > 1 ? ability[1] : "";
+
+                              var dc = desc.match(/spell save DC (.*?),/);
+                              console.log("DC:"+dc);
+                              var mod = desc.match(/ \+?(\d+?) to hit with spell attacks/);
+                              console.log("Spellmod:"+mod);
+
+                              // update["npcspellcastingflag"] = 1;
+                              update["spellcasting_type"] = ability.toLowerCase() === "intelligence" ? "Arcane" : "Divine";
+                              update["spellcasting_dc"] = parseInt(dc[1]) || -1;
+                              update["spellcasting_mod"] = parseInt(mod[1]) || -1;
+
+                              // we dont use these...
+                              //update["caster_level"] = lvl;
+                              // update["base_level"] = lvl;
+
+                              // TODO: what if we have a cleric, druid or other??
+                              update["class"] = "wizard";
                               update["level"] = lvl;
-                              callbacks.push( function() {update_pb();} );
-                              callbacks.push( function() {update_spell_slots();} );
+
+                              // parse out prepared spells
+                              spellsarray = desc.match(/(•.*?)$/mg);
+                              if (spellsarray) {
+                                spellsarray.forEach( function(val, i) {
+                                    //if (i % 2 === 1) { console.log("REturning); return; }
+
+                                    // clean up carrots from string which are for footnotes we dont currently use
+                                    val = val.replaceAll("^", "");
+
+                                    // try to capture the level of the spells
+                                    // the 2nd field after string split should have the info we want
+                                    levelarray = val.split(" ");
+                                    if (levelarray[1] === 'Cantrips') {
+                                      level = 0;
+                                    } else {
+                                      level = levelarray[1].match(/(\d)\w{2}/);
+                                      level = parseInt(level[1]) || -1;
+                                    }
+
+                                    // now parse out our spells for level 1 and higher
+                                    if (level > 0) {
+                                      spellsstr = val.split(":");
+                                      spellnames = spellsstr[1].split(",");
+                                      spellnames.forEach (function (spellname, j) {
+                                        if (spellname) {
+                                          console.log(" adding spell:"+spellname);
+                                          // add the spell here
+                                          newrowid = generateRowID();
+                                          update["repeating_npcspells_" + newrowid + "_spelllevel"] = level;
+                                          update["repeating_npcspells_" + newrowid + "_spellname"] = spellname;
+                                        }
+                                      });
+                                    }
+                                });
+                              }
+
+                              // callbacks.push( function() {update_pb();} );
+                              //callbacks.push( function() {update_spell_slots();} );
+                              callbacks.push( function() { set_npc_spellslots(update["class"]);} );
+                              callbacks.push( function() { npc_spellrest(); });
+
                           }
-                          */
                       });
                   }
 
@@ -3874,7 +4180,7 @@
 
             };
 
-            callbacks.push( function() {cleanup_drop_fields();} );
+            // callbacks.push( function() {cleanup_drop_fields();} );
             setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
          });
      };
