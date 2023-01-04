@@ -64,66 +64,69 @@
 
       <div class="sheet-flex padding thick-border">
         <div class="block">
-          <div class="flex-between thin-border padding limit-to-half-width">
-            <div class="block">
-              <div class="sheet-flex-inline">
-                <select class="sheet-info-name-med-sm" name="attr_level">
-                  <option selected="selected" value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                  <option value="13">13</option>
-                  <option value="14">14</option>
-                  <option value="15">15</option>
-                  <option value="16">16</option>
-                  <option value="17">17</option>
-                  <option value="18">18</option>
-                  <option value="19">19</option>
-                  <option value="20">20</option>
-                  <option value="21">21</option>
-                  <option value="22">22</option>
-                  <option value="23">23</option>
-                  <option value="24">24</option>
-                  <option value="25">25</option>
-                </select>
+          <div class="thin-border padding limit-to-half-width">
+            <h4 class="bottom-line">Combat</h4>
+            <div class="flex-between">
+              <div class="block">
+                <div class="sheet-flex-inline">
+                  <select class="sheet-info-name-med-sm" name="attr_level">
+                    <option selected="selected" value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                  </select>
+                </div>
+                <div class="block padding center">
+                  <span class="ability-check-label">Hit</span>
+                  <span class="ability-check-label">Dice</span>
+                </div>
               </div>
               <div class="block padding center">
-                <span class="ability-check-label">Hit</span>
-                <span class="ability-check-label">Dice</span>
+                <input class="ability-check-value" name="attr_hp" type="number" value="0"/>
+                <span class="ability-check-label">HP</span>
               </div>
-            </div>
-            <div class="block padding center">
-              <input class="ability-check-value" name="attr_hp" type="number" value="0"/>
-              <span class="ability-check-label">HP</span>
-            </div>
-            <div class="block padding center">
-              <input class="ability-check-value" name="attr_npc_ac" type="number" value="10"/>
-              <span class="ability-check-label">AC</span>
-            </div>
-            <div class="block padding center">
-              <div class="sheet-block sheet-padding sheet-center">
-                <input name="attr_init_extra" type="number" hidden="true" value="0"/>
-                <input class="sheet-npc-ability-value-wide" name="attr_initiative" type="number" value="0"/>
-                <button type="roll" class="sheet-npc-ability-button" name="roll_initiative"
-                        value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} + @{init_extra} [Initiative Mod] &{tracker} ]]}}">
-                        Init.
-                </button>
+              <div class="block padding center">
+                <input class="ability-check-value" name="attr_npc_ac" type="number" value="10"/>
+                <span class="ability-check-label">AC</span>
+              </div>
+              <div class="block padding center">
+                <div class="sheet-block sheet-padding sheet-center">
+                  <input name="attr_init_extra" type="number" hidden="true" value="0"/>
+                  <input class="sheet-npc-ability-value-wide" name="attr_initiative" type="number" value="0"/>
+                  <button type="roll" class="sheet-npc-ability-button" name="roll_initiative"
+                          value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} + @{init_extra} [Initiative Mod] &{tracker} ]]}}">
+                          Init.
+                  </button>
+                </div>
               </div>
             </div>
           </div>
           <br/>
 
           <div class="block thin-border padding limit-to-half-width">
-            <h4>Attributes</h4>
+            <h4 class="bottom-line">Attributes</h4>
             <div class="flex">
               <div class="block center">
                 <span class="bold-font">STR</span>
@@ -190,7 +193,7 @@
           <br/>
 
           <div class="block thin-border padding limit-to-half-width">
-             <h4>Skills</h4>
+             <h4 class="bottom-line">Skills</h4>
              <div class="npc-traitcontainer">
                <fieldset class="repeating_skills">
                  <div class="sheet-block sheet-thin-border sheet-side-padding">
@@ -207,41 +210,31 @@
           </div>
           <br/>
 
-          <div class="block thin-border padding limit-to-half-width">
-             <h4>Reactions</h4>
-             <div class="npc-traitcontainer">
-               <fieldset class="repeating_npcreaction">
-                 <input type="text" name="attr_react_name" hidden="True"/>
-                 <input type="textarea" name="attr_react_desc" hidden="True"/>
-                 <label class="npc-trait-name info5"><span name="attr_react_name"/></label>
-                 <label class="npc-text-sm info5"><span name="attr_react_desc"/></label>
-               </fieldset>
-             </div>
-          </div>
-          <br/>
 
           <div class="block thin-border padding limit-to-half-width">
-            <h4>Traits</h4>
+            <h4 class="bottom-line">Traits</h4>
              <div class="npc-traitcontainer">
                <fieldset class="repeating_npctrait">
-                 Edit:<input type="checkbox" class="sheet-is_edit_trait" value="1"/>
-                 <img class="small-image" src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
-                 <div class="section-npc-edit-trait">
-                   <div class="flex fill-width">
-                     <span class="bold-font">Name:</span>
-                     <input type="text" name="attr_trait_name" class="align-left"/>
+                 <div class="sheet-block sheet-side-padding bottom-line align-left">
+                   <input type="checkbox" class="sheet-is_edit_trait" value="1"/>
+                   <img class="small-image" src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
+                   <div class="section-npc-edit-trait">
+                     <div class="flex fill-width">
+                       <span class="bold-font">Name:</span>
+                       <input type="text" name="attr_trait_name" class="align-left"/>
+                     </div>
+                     <div class="block">
+                       <span class="bold-font">Desc:</span>
+                       <!--input type="textarea" name="attr_trait_desc" class="npc-trait-textarea"/-->
+                       <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_trait_desc" data-i18n-placeholder="description"></textarea>
+                     </div>
                    </div>
-                   <div class="block">
-                     <span class="bold-font">Desc:</span>
-                     <!--input type="textarea" name="attr_trait_desc" class="npc-trait-textarea"/-->
-                     <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_trait_desc" data-i18n-placeholder="description"></textarea>
+                   <div class="section-npc-show-trait">
+                     <div class="flex fill-width">
+                       <label class="npc-trait-name info5"><span name="attr_trait_name"/></label>
+                     </div>
+                     <label class="npc-text-sm info5"><span name="attr_trait_desc"/></label>
                    </div>
-                 </div>
-                 <div class="section-npc-show-trait">
-                   <div class="flex fill-width">
-                     <label class="npc-trait-name info5"><span name="attr_trait_name"/></label>
-                   </div>
-                   <label class="npc-text-sm info5"><span name="attr_trait_desc"/></label>
                  </div>
                </fieldset>
              </div>
@@ -250,12 +243,12 @@
 
         <div class="block">
         <div class="block thin-border limit-to-half-width">
-          <h4>Actions</h4>
+          <h4 class="bottom-line">Actions</h4>
           <div class="npc-traitcontainer">
             <fieldset class="repeating_npcactions">
-              <div class="sheet-block sheet-side-padding align-right">
+              <div class="sheet-block sheet-side-padding bottom-line align-left">
 
-                <button type="action" name="act_edit_npc_action" class="npc-edit-button">
+                <button type="action" name="act_edit_npc_action" class="npc-edit-button align-right">
                   <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
                 </button>
 
@@ -310,7 +303,7 @@
                 </div>
 
                 <input type="checkbox" class="sheet-npc-show-attack" name="attr_action_show_attack" value="1" hidden="True" checked="True"/>
-                <div class="sheet-section-npc-show-attack">
+                <div class="sheet-section-npc-show-attack flex">
                   <button type="roll" name="roll_npc_action" class="npc-trait-name blank-roll-button info5"
                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{action_name} Attack}} {{subheader=@{character_name}}} {{attack=0}} {{attack=[[ 1d20 + [[@{action_attack_tohit}]] ]]}} {{critical=[[19 + @{action_attack_tohit}]]}} {{fumble=[[2+@{action_attack_tohit}]] }} {{damage=[[@{action_attack_damage}]]}} {{damagetype=@{action_attack_damagetype}}} {{critdamage=[[@{action_attack_damage} + @{action_attack_damage} ]]}} }}">
                      <span name="attr_action_name">Action Name</span>
@@ -318,8 +311,8 @@
                   <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc1"/></label>
                   <label class="info5 npc-trait-attack-info"><span name="attr_action_attack_desc2"/></label>
                 </div>
-                <div class="section-npc-show-non-attack">
-                  <label class="info5 npc-trait-name"><span name="attr_action_name">Action Name</span></label>
+                <div class="section-npc-show-non-attack flex">
+                  <label class="info5 npc-trait-name info5"><span name="attr_action_name">Action Name</span></label>
                 </div>
                 <label class="info5 npc-text"><span name="attr_action_desc" class="npc-text-sm">Description Here</span></label>
               </div>
@@ -327,11 +320,12 @@
           </div>
         </div>
         <br/>
+
         <div class="block thin-border padding limit-to-half-width">
-          <h4>Legendary Actions</h4>
+          <h4 class="bottom-line">Legendary Actions</h4>
           <div class="npc-traitcontainer">
             <fieldset class="repeating_npcactions-l">
-              <div class="sheet-block sheet-side-padding">
+              <div class="sheet-block sheet-side-padding bottom-line align-left">
                 <input type="text" name="attr_action_attack_options" hidden="True"/>
                 <input type="text" name="attr_action_attack_type" hidden="true"/>
                 <input type="text" name="attr_action_attack_target" hidden="true"/>
@@ -363,6 +357,36 @@
             </fieldset>
           </div>
         </div>
+        <br/>
+
+        <div class="block thin-border padding limit-to-half-width">
+           <h4 class="bottom-line">Reactions</h4>
+           <div class="npc-traitcontainer">
+             <fieldset class="repeating_npcreaction">
+               <div class="sheet-block sheet-side-padding bottom-line align-left">
+                 <input type="checkbox" class="sheet-is_edit_trait" value="1"/>
+                 <img class="small-image" src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/gear_icon.png"/>
+                 <div class="section-npc-edit-trait">
+                   <div class="flex fill-width">
+                     <span class="bold-font">Name:</span>
+                     <input type="text" name="attr_react_name" class="align-left" data-i18n-placeholder="reaction name"/>
+                   </div>
+                   <div class="block">
+                     <span class="bold-font">Desc:</span>
+                     <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_react_desc" data-i18n-placeholder="description"></textarea>
+                   </div>
+                 </div>
+                 <div class="section-npc-show-trait">
+                   <div class="flex fill-width">
+                     <label class="npc-trait-name info5"><span name="attr_react_name"/></label>
+                   </div>
+                   <label class="npc-text-sm info5"><span name="attr_react_desc"/></label>
+                 </div>
+               </div>
+             </fieldset>
+           </div>
+        </div>
+
 
       </div> <!-- action/reaction block -->
 
@@ -406,7 +430,7 @@
         </div>
       </div>
 
-      <h4>Spells</h4>
+      <h4 class="bottom-line">Spells</h4>
       <div class="npc-traitcontainer sheet-spells">
        <button type="action" name="act_spellrest">Regain All Spellslots</button>
         <div class="sheet-spells-per-level sheet-flex">
@@ -3192,7 +3216,6 @@
   function npc_spellrest () {
     console.log("npc spellrest called");
 
-
     getAttrs(['class', 'lvl1_slots_total', 'lvl2_slots_total', 'lvl3_slots_total', 'lvl4_slots_total', 'lvl5_slots_total',
               'lvl6_slots_total', 'lvl7_slots_total', 'lvl8_slots_total', 'lvl9_slots_total' ], v => {
 
@@ -3945,10 +3968,8 @@
                           }
                           update["repeating_npctrait_" + newrowid + "_trait_desc"] = desc.trim();
 
-                          console.log("action name: "+name);
-
                           // SPELLCASTING NPCS
-                          if(name === "Spellcasting") {
+                          if(name.includes("Spellcasting", 0)) {
                               var lvl = parseInt(desc.substring(desc.indexOf("-level")-4, desc.indexOf("-level")-2).trim(), 10);
                               lvl = !isNaN(lvl) ? lvl : 1;
 
@@ -4011,7 +4032,6 @@
 
                               // callbacks.push( function() {update_pb();} );
                               //callbacks.push( function() {update_spell_slots();} );
-                              callbacks.push( function() { set_npc_spellslots(update["class"]);} );
                               callbacks.push( function() { npc_spellrest(); });
 
                           }
@@ -4110,16 +4130,20 @@
                     });
                     _.each(actionsobj, function(desc, name) {
                         newrowid = generateRowID();
-                        // update["repeating_npcactions_" + newrowid + "_action_npc_options-flag"] = "0";
-                        update["repeating_npcactions_" + newrowid + "_action_name"] = name;
                         if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
                             desc = desc.substring(2);
                         }
 
+                        // determine if its an attack, or just a non-attack 'action'
+                        // For the later, we just turn it into a 'trait'
+                        const is_attack_action = desc.indexOf(" Attack:") > -1 ? true : false;
+
+                        update["repeating_npcactions_" + newrowid + "_action_name"] = name;
                         // set action editor to closed as a default
                         update['repeating_npcactions_'+newrowid+'_show_action_editor'] = 0;
+                        // update["repeating_npcactions_" + newrowid + "_action_npc_options-flag"] = "0";
 
-                        if(desc.indexOf(" Attack:") > -1)
+                        if(is_attack_action)
                         {
                             update["repeating_npcactions_" + newrowid + "_action_is_an_attack"] = 1;
                             update["repeating_npcactions_" + newrowid + "_action_attack_options"] = "{{attack=1}}";

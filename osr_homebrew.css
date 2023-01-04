@@ -150,7 +150,7 @@ span.sheet-bold-font
 }
 
 .sheet-limit-to-half-width {
-	width: 460px;
+	width: 450px;
 }
 
 .sheet-npc-trait-name,
@@ -161,10 +161,11 @@ button[type=roll].sheet-npc-trait-name
 {
 	font-size: 13px;
   font-weight: bold;
-	width: 345px;
-	height: 18px;
+	width: 400px;
+	height: 20px;
 	text-align: left;
 	font-style: normal;
+	align-self: flex-start;
 }
 
 .sheet-npc-trait-textarea,
@@ -358,6 +359,15 @@ select.side-padding
   padding-left: 5px;
 	padding-right: 5px;
 }
+
+.sheet-bottom-line
+{
+	margin-bottom: 20px;
+	border: foobar;
+	border: 2px solid #ddd;
+	border-bottom-color: #000;
+}
+
 .sheet-bottom-padding, .sheet-noborder, .sheet-thick-border {
 	padding-bottom: 5px;
 }
@@ -924,8 +934,7 @@ input[type=number].sheet-skill-bonus-value
 	flex-wrap: wrap;
 	margin-bottom: 6px;
 	align-items: center;
-	/* border: 2px solid black; */
-	padding: 2px;
+	padding: 6px;
 	justify-content: flex-start;
 	align-content: start;
 }
@@ -959,9 +968,11 @@ input.sheet-npc-action-text
 	width: 200px;
 }
 
+.sheet-action-desc,
+button[type=roll].sheet-npc-action-text,
 textarea.sheet-npc-action-desc
 {
-	width: 350px;
+	width: 400px;
 	height: 60px;
 }
 
