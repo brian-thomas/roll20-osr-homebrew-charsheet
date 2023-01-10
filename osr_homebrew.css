@@ -599,6 +599,12 @@ select.sheet-info-name
 	text-align: left;
 	align-items: flex-start;
 }
+
+input[type=checkbox]:checked.sheet-add-cmbt-opt
+{
+	accent-color: green;
+}
+
 .sheet-align-right,
 input.sheet-align-right
 {
@@ -820,7 +826,6 @@ input.sheet-tab1:checked ~ div.sheet-section-core,
 input.sheet-tab2:checked ~ div.sheet-section-combat,
 input.sheet-tab3:checked ~ div.sheet-section-magic,
 input.sheet-tab4:checked ~ div.sheet-section-inventory,
-input.sheet-tab6:checked ~ div.sheet-section-attacks,
 input.sheet-tab5:checked ~ div.sheet-section-notes {
 	display: block;
 }
@@ -854,7 +859,6 @@ input.sheet-tab2:checked + span.sheet-tab2,
 input.sheet-tab3:checked + span.sheet-tab3,
 input.sheet-tab4:checked + span.sheet-tab4,
 input.sheet-tab5:checked + span.sheet-tab5,
-input.sheet-tab6:checked + span.sheet-tab6,
 input.sheet-tab99:checked + span.sheet-tab99 {
         background: #ab8b57;
         color: white;
@@ -888,7 +892,7 @@ input.sheet-skillname {
 	overflow-x: auto;
 }
 
-input.sheet-max-cstyle-copts-value-exceeded[value="0"]:checked ~ span.sheet-max-cstyle-copts-value-exceeded-notify,
+input.sheet-max-copts-value-exceeded[value="0"]:checked ~ span.sheet-max-copts-value-exceeded-notify,
 input.sheet-max-skill-value-exceeded[value="0"]:checked ~ span.sheet-max-skill-value-exceeded-notify,
 input.sheet-move-rate-stop[value="0"]:checked ~ span.sheet-move-rate-stop-notify,
 input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-overspend-notify
@@ -913,7 +917,7 @@ input.sheet-move-rate-heavy-enc[value="0"]:checked ~ span.sheet-move-rate-heavy-
 }
 
 input.sheet-skill-points-underspent[value="0"]:checked ~ span.sheet-skill-points-underspent-notify,
-input.sheet-cstyle-copts-value-underspent[value="0"]:checked ~ span.sheet-cstyle-copts-value-underspent-notify
+input.sheet-copts-value-underspent[value="0"]:checked ~ span.sheet-copts-value-underspent-notify
 {
 	  background: #00FF40;
     color: white;
@@ -1161,44 +1165,6 @@ span.sheet-rotate
 	text-align: center;
 	align-items: flex-start;
 	padding: 0;
-}
-
-.sheet-cstyle-name,
-.sheet-cstyle-opts,
-.sheet-cstyle-skills,
-.sheet-cstyle-wprof,
-span.sheet-cstyle-name,
-span.sheet-cstyle-opts,
-span.sheet-cstyle-skills,
-span.sheet-cstyle-wprof,
-input[type=text].sheet-cstyle-name,
-input[type=text].sheet-cstyle-opts,
-input[type=text].sheet-cstyle-skills,
-input[type=text].sheet-cstyle-wprof
-{
-	width: 200px;
-	font-weight: bold;
-	text-align: left;
-	font-size: 14px;
-	margin: auto 5px;
-  padding-right: 5px;
-}
-
-.sheet-cstyle-opts,
-.sheet-cstyle-wprof,
-span.sheet-cstyle-opts,
-span.sheet-cstyle-wprof,
-input[type=text].sheet-cstyle-opts,
-input[type=text].sheet-cstyle-wprof
-{
-	width: 335px;
-}
-
-.sheet-cstyle-skills,
-span.sheet-cstyle-skills,
-input[type=text].sheet-cstyle-skills
-{
-	width: 150px;
 }
 
 .sheet-attack-name,

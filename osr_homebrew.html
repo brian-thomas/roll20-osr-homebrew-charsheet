@@ -87,10 +87,6 @@
     <div class="sheet-inline">
       <input type="radio" name="attr_npctab" class="sheet-tab sheet-tab1" value="1" checked="checked" />
       <span class="sheet-tab sheet-tab1">Core Stats</span>
-      <!--
-      <input type="radio" name="attr_tab" class="sheet-tab sheet-tab6" value="6" />
-      <span class="sheet-tab sheet-tab6">Attacks</span>
-      -->
       <input type="radio" name="attr_npctab" class="sheet-tab sheet-tab3" value="3" />
       <span class="sheet-tab sheet-tab3">Spellcasting</span>
       <input type="radio" name="attr_npctab" class="sheet-tab sheet-tab5" value="5" />
@@ -839,8 +835,6 @@
       <span class="sheet-tab sheet-tab1">Core Stats</span>
       <input type="radio" name="attr_tab" class="sheet-tab sheet-tab2" value="2" />
       <span class="sheet-tab sheet-tab2">Combat</span>
-      <input type="radio" name="attr_tab" class="sheet-tab sheet-tab6" value="6" />
-      <span class="sheet-tab sheet-tab6">Attacks</span>
       <input type="radio" name="attr_tab" class="sheet-tab sheet-tab3" value="3" />
       <span class="sheet-tab sheet-tab3">Magic</span>
       <input type="radio" name="attr_tab" class="sheet-tab sheet-tab4" value="4" />
@@ -1298,17 +1292,15 @@
         <div class="sheet-thick-border-no-pad">
           <h3>Combat</h3>
 
-          <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_opts_used" value="0" hidden="true"/>
-          <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_styles_used" value="0" hidden="true"/>
 
           <div class="sheet-flex center">
-            <input type="checkbox" class="sheet-max-cstyle-copts-value-exceeded" name="attr_max_cstyle_copts_value_exceeded" value="0" hidden="true" checked="true"/>
-            <span class="max-cstyle-copts-value-exceeded-notify med-font italic-font">Total Combat Styles and Options Allowed:
-              <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_cmbt_styles_and_opts_allowed" value="0" readonly="true"/>
+            <input type="checkbox" class="sheet-max-copts-value-exceeded" name="attr_max_cmbt_opts_exceeded" value="1" hidden="true" checked="true"/>
+            <span class="max-copts-value-exceeded-notify med-font italic-font">Additional Combat Options Allowed:
+              <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_cmbt_opts_allowed" value="0" readonly="true"/>
             </span>
-            <input type="checkbox" class="sheet-cstyle-copts-value-underspent" name="attr_cstyle_copts_value_underspent" value="0" hidden="true" checked="true"/>
-            <span class="sheet-cstyle-copts-value-underspent-notify med-font italic-font">Combat Styles and Options Selected:
-              <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_styles_and_opts_used" value="[[@cmbt_opts_used + @cmbt_styles_used]]" readonly="true"/>
+            <input type="checkbox" class="sheet-copts-value-underspent" name="attr_cmbt_opts_underspent" value="1" hidden="true" checked="true"/>
+            <span class="sheet-copts-value-underspent-notify med-font italic-font">Additional Combat Options Selected:
+             <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_opts_used" value="0" readonly="true"/>
             </span>
           </div>
 
@@ -1359,27 +1351,7 @@
             </div>
           </div>
 
-          &nbsp;
-          <div class="sheet-thin-border bottom-padding">
-            <h4>Combat Styles</h4>
-
-            <div class="sheet-flex bottom-padding">
-              <span class="sheet-cstyle-name">Style Name</span>
-              <span class="sheet-cstyle-wprof">Style Weapon Proficiencies</span>
-              <span class="sheet-cstyle-opts">Allowed Combat Options</span>
-            </div>
-
-            <fieldset class="repeating_cmbt-styles">
-              <div class="sheet-inline-flex">
-                <input type="text" name="attr_cmbt_style_name" class="cstyle-name" value="" data-i18n-placeholder="Cmbt Style Name"/>
-                <input type="text" name="attr_cmbt_style_profs" class="cstyle-wprof" value="" data-i18n-placeholder="Style attacks, comma separated, 3 max"/>
-                <input type="text" name="attr_cmbt_style_opts" class="cstyle-opts" value="" data-i18n-placeholder="Allowed style combat opts, comma sep., 3 max"/>
-              </div>
-            </fieldset>
-          </div>
-
           <span class="sheet-spacer">&nbsp;</span>
-
           <div class="sheet-thin-border bottom-padding">
             <div class="sheet-bottom-padding">
               <h4>Combat Options</h4>
@@ -1425,7 +1397,7 @@
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_berserk_attack" value="1"/>
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_berserk_attack" value="1"/>
                   <span class="ability-check-label sheet-flex-between">Berserk</span>
                   <div class="sheet-block">
                     <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB +3+Fghtr/4, Dam +3+Fghtr/4, No retreating,</span>
@@ -1436,46 +1408,46 @@
 
               <div class="sheet-inline sheet-side-padding">
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_cleave_attack" value="1"/>
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_cleave_attack" value="1"/>
                   <span class="ability-check-label">Cleave</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB/2 -&gt; Dam, Attack adj foe on kill, AC-4)</span>
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_disarm_attack" value="1"/>
+                  <input class="sheet-add-cmbt-opt" class="sheet-add-cmbt-opt" type="checkbox" name="attr_disarm_attack" value="1"/>
                   <span class="ability-check-label">Disarm</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Target STR save or drop attack, AB-4, AC-4)</span>
                 </div>
 
                 <input type="checkbox" class="sheet-cleave_attack_enabled2" name="attr_cleave_attack_enabled2" value="1" hidden="true"/>
                 <div class="sheet-section-great_cleave sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_great_cleave_attack" value="1"/>
+                  <input class="sheet-add-cmbt-opt" class="sheet-add-cmbt-opt" type="checkbox" name="attr_great_cleave_attack" value="1"/>
                   <span class="ability-check-label">Great Cleave</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB -&gt; Dam, Attack adj foe on kill, AC-4)</span>
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_feint_attack" value="1"/>
+                  <input class="sheet-add-cmbt-opt" class="sheet-add-cmbt-opt" type="checkbox" name="attr_feint_attack" value="1"/>
                   <span class="ability-check-label">Aim/Feint</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(+4 AB, -4 Init, AC-4)</span>
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_lightning_attack" value="1"/>
+                  <input class="sheet-add-cmbt-opt" class="sheet-add-cmbt-opt" type="checkbox" name="attr_lightning_attack" value="1"/>
                   <span class="ability-check-label">Lightning Strike</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(-4 AB, +4 Init, AC-4)</span>
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_rapid_strike_attack1" value="1"/>
-                  <input type="checkbox" name="attr_rapid_strike_attack2" value="1"/>
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_rapid_strike_attack1" value="1"/>
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_rapid_strike_attack2" value="1"/>
                   <span class="ability-check-label">Rapid Strike</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Xtra Melee Attk, AC-2)</span>
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_rapid_shot_attack1" value="1"/>
-                  <input type="checkbox" name="attr_rapid_shot_attack2" value="1"/>
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_rapid_shot_attack1" value="1"/>
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_rapid_shot_attack2" value="1"/>
                   <span class="ability-check-label">Rapid Shot</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Xtra Ranged Attk, AC-2)</span>
                 </div>
@@ -1483,28 +1455,28 @@
 
               <div class="sheet-inline sheet-side-padding">
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_shield_bash_attack" value="1"/>
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_shield_bash_attack" value="1"/>
                   <span class="ability-check-label">Shield Bash</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(May make a 2nd attack w/ shield.)</span>
                 </div>
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_strong_attack" value="1"/>
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_strong_attack" value="1"/>
                   <span class="ability-check-label">Strong</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Dam x2, AB-4, AC-4)</span>
                 </div>
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_stun_attack" value="1"/>
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_stun_attack" value="1"/>
                   <span class="ability-check-label">Stun</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB-4, AC-4, target STR save vs dam or stun)</span>
                 </div>
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_two_attack_attack" value="1"/>
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_two_attack_attack" value="1"/>
                   <span class="ability-check-label">Two Weapon Attack</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(2nd Attk w/ small offhand weapon or AC+1)</span>
                 </div>
                 <input type="checkbox" class="sheet-two_attack_attack_enabled"  name="attr_two_attack_attack_enabled" value="1" hidden="true"/>
                 <div class="sheet-section-two_attack_master sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_two_attack_master_attack" value="1"/>
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_two_attack_master_attack" value="1"/>
                   <span class="ability-check-label">Two Weapon Master</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(2nd Attk with offhand weapon or AC+2)</span>
                 </div>
@@ -1518,12 +1490,10 @@
 
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="sheet-section-attacks"> <span class="sheet-spacer">&nbsp;</span>
-        <div class="sheet-thick-border">
-          <h3>Attacks</h3>
+        <span class="sheet-spacer">&nbsp;</span>
+        <div class="sheet-thin-border">
+          <h4>Attacks</h4>
           <div class="sheet-flex">
             <input type="checkbox" class="sheet-berserk_attack_enabled" name="attr_berserk_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-charge_attack_enabled" name="attr_charge_attack_enabled" value="1" hidden="true"/>
@@ -1840,6 +1810,7 @@
 
             </div>
           </fieldset>
+        </div>
         </div>
       </div>
 
@@ -3283,7 +3254,7 @@
         }
       }
 
-      setting['max_cmbt_styles_and_opts_allowed'] = 2;
+      setting['max_cmbt_opts_allowed'] = 0;
 
       setting['berserk_attack_mod'] = 0;
       setting['charge_attack'] = is_fighter ? 1 : 0;
@@ -3294,7 +3265,7 @@
       if (is_fighter) {
         const fighter_level = (c_class === 'fighter' ? level : level2);
         setting['berserk_attack_mod'] = 3 + parseInt(fighter_level/4)
-        setting['max_cmbt_styles_and_opts_allowed'] = 6 + parseInt(fighter_level/2);
+        setting['max_cmbt_opts_allowed'] = 0 + parseInt(fighter_level/2);
       }
 
       setAttrs(setting);
@@ -3514,7 +3485,7 @@
               fieldnames.push('repeating_attacks_' + id + '_attack_proficiency_level');
           });
 
-          getAttrs([...fieldnames, ...combatOpts, 'melee_ab', 'melee_base_ab', 'unarmed_ab', 'unarmed_base_ab', 'ranged_ab', 'ranged_base_ab', 'spellcasting_mod', 'sneak_attack_dice'], function (values) {
+          getAttrs([...fieldnames, ...combatOpts, 'melee_ab', 'melee_base_ab', 'unarmed_ab', 'unarmed_base_ab', 'ranged_ab', 'ranged_base_ab', 'max_cmbt_opts_allowed', 'spellcasting_mod', 'sneak_attack_dice'], function (values) {
               var output = {};
 
               const melee_ab = parseInt(values.melee_ab) || 0;
@@ -3525,6 +3496,8 @@
               const unarmed_base_ab = parseInt(values.unarmed_base_ab) || 0;
 
               const spellcasting_mod = parseInt(values.spellcasting_mod) || 0;
+
+              const max_cmbt_opts_allowed = parseInt(values.max_cmbt_opts_allowed) || 0;
 
               const sneak_dice = parseInt(values.sneak_attack_dice) || 0;
               const berserk_attack = parseInt(values.berserk_attack) || 0;
@@ -3566,10 +3539,14 @@
 
 
               // starts w/ 2 because everyone gets standard attack and some kind of parry_attack
-              output['cmbt_opts_used'] = 2 + press_attack + charge_attack + defensive_attack
-                                   + berserk_attack + cleave_attack + great_cleave_attack + disarm_attack + feint_attack + lightning_attack
-                                   + rapid_shot_attack1 + rapid_shot_attack2 + rapid_strike_attack1 + rapid_strike_attack2
-                                   + shield_bash_attack + strong_attack + stun_attack + two_attack_attack + two_attack_master_attack;
+              // 2 + press_attack + charge_attack + defensive_attack
+              var cmbt_opts_used = berserk_attack + cleave_attack + great_cleave_attack + disarm_attack + feint_attack + lightning_attack
+                                       + rapid_shot_attack1 + rapid_shot_attack2 + rapid_strike_attack1 + rapid_strike_attack2
+                                       + shield_bash_attack + strong_attack + stun_attack + two_attack_attack + two_attack_master_attack;
+
+              output['cmbt_opts_used'] = cmbt_opts_used;
+              output['max_cmbt_opts_exceeded'] = cmbt_opts_used > max_cmbt_opts_allowed ? 1 : 0;
+              output['cmbt_opts_underspent'] = cmbt_opts_used < max_cmbt_opts_allowed ? 1 : 0;
 
               ids.forEach(id => {
 
@@ -3712,26 +3689,6 @@
          });
       });
   });
-
-  on(`change:cmbt_opts_used change:level change:level2 change:repeating_cmbt-styles remove:repeating_cmbt-styles` , function () {
-    // do combat style entries now
-    getSectionIDs('repeating_cmbt-styles', function (ids) {
-       getAttrs(['cmbt_opts_used', 'max_cmbt_styles_and_opts_allowed'], function (v) {
-         const max_cmbt_styles_and_opts_allowed = parseInt(v.max_cmbt_styles_and_opts_allowed) || 0;
-         const cmbt_opts_used = parseInt(v.cmbt_opts_used) || 0;
-         const cmbt_styles_used = ids.length; // count combat styles
-         const cmbt_styles_and_opts_used = cmbt_opts_used + cmbt_styles_used;
-         const max_cstyle_copts_value_exceeded = cmbt_styles_and_opts_used > max_cmbt_styles_and_opts_allowed ? 0 : 1;
-         const cstyle_copts_value_underspent = cmbt_styles_and_opts_used < max_cmbt_styles_and_opts_allowed ? 0 : 1;
-
-         setAttrs({max_cstyle_copts_value_exceeded: max_cstyle_copts_value_exceeded,
-                   cstyle_copts_value_underspent: cstyle_copts_value_underspent,
-                   cmbt_styles_used : cmbt_styles_used, cmbt_styles_and_opts_used: cmbt_styles_used + cmbt_opts_used});
-      });
-    });
-  });
-
-
 
   // Update basic attack information we expect to have
   on(`change:c_class change:c_class2 change:repeating_attacks`, () => {
