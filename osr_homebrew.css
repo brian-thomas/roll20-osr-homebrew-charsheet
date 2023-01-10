@@ -1230,6 +1230,7 @@ select.sheet-attack-param,
 select.sheet-attack-param-long,
 select.sheet-attack-notches,
 select.sheet-attack-proficiency
+span.sheet-attack-proficiency,
 input[type=text].sheet-attack-param,
 input[type=number].sheet-attack-param
 {
@@ -1241,6 +1242,13 @@ input[type=number].sheet-attack-param
 	 padding: 6px;
 }
 
+span.sheet-attack-proficiency
+{
+	text-align: center;
+	margin-right: 9px;
+	margin-left: 9px;
+}
+
 select.sheet-attack-notches,
 select.sheet-attack-proficiency
 {
@@ -1248,7 +1256,6 @@ select.sheet-attack-proficiency
 	width: 40px;
 }
 
-select.sheet-attack-proficiency { background-color: inherit; }
 select.sheet-attack-proficiency option[value="0"] { background-color: white; }
 select.sheet-attack-proficiency option[value="1"] { background-color: #ddd; }
 select.sheet-attack-proficiency option[value="2"] { background-color: white;}
@@ -1463,6 +1470,12 @@ input.sheet-attack_strong_attack_enabled:checked ~ div.sheet-attack_strong_attac
 input.sheet-attack_stun_attack_enabled:checked ~ div.sheet-attack_stun_attack_section
 {
   display: block;
+}
+
+input.sheet-attack-is-weapon-attack:checked ~ div.sheet-section-weapon-proficiency,
+input.sheet-attack-is-weapon-attack:not(:checked) ~ div.sheet-section-non-weapon-proficiency
+{
+	display: block;
 }
 
 /* Inventory */

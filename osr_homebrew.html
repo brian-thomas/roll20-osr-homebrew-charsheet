@@ -1626,17 +1626,20 @@
                 <option value="3">3 - Badly Damaged</option>
               </select>
 
-              <!--
-              <select class="sheet-attack-proficiency" name="attr_attack_proficiency_level">
-              -->
-              <select class="sheet-attack-proficiency" name="attr_attack_proficiency_level"
-                      onchange="this.className=this.options[this.selectedIndex].className">
-                <option selected="selected" value="0">--</option>
-                <option value="1">Skilled</option>
-                <option value="2">Proficient</option>
-                <option value="3">Master</option>
-                <option value="4">Grand Master</option>
-              </select>
+              <input type="checkbox" class="sheet-attack-is-weapon-attack" name="attr_attack_is_weapon_attack" value="1" hidden="true"/>
+              <div class="sheet-section-weapon-proficiency">
+                <select class="sheet-attack-proficiency" name="attr_attack_proficiency_level"
+                        onchange="this.className=this.options[this.selectedIndex].className">
+                  <option selected="selected" value="0">--</option>
+                  <option value="1">Skilled</option>
+                  <option value="2">Proficient</option>
+                  <option value="3">Master</option>
+                  <option value="4">Grand Master</option>
+                </select>
+              </div>
+              <div class="sheet-section-non-weapon-proficiency">
+                <span class="sheet-attack-proficiency">N/A</span>
+              </div>
 
               <input type="text" name="attr_attack_name" class="attack-name" data-i18n-placeholder="attack name"/>
               <input type="number" name="attr_attack_bonus" class="attack-param sheet-purple-border" value="0"/>
@@ -1649,9 +1652,7 @@
       	      </select>
 
               <input type="number" name="attr_attack_attack_bonus" value="0" class="attack-param bold-font inactive-color" readonly="true"/>
-
               <input type="text" name="attr_attack_dam_die" class="attack-param" data-i18n-placeholder="1d6"/>
-
               <input name="attr_attack_dam" value="0" hidden="true"/>
 
       	      <select class="attack-param-long" name="attr_attack_dam_type">
@@ -1696,7 +1697,7 @@
               <input type="number" name="attr_attack_proficiency_dam_bonus" value="0" hidden="true"/>
               <input type="number" name="attr_attack_cmbt_option_ac_penalty" value="-4" hidden="true"/>
               <input type="number" name="attr_attack_crit_range_adj" value="0" hidden="true"/>
-              <input type="number" name="attr_attack_crit_number" value="19" hidden="true"/>
+              <input type="number" name="attr_attack_crit_number" value="20" hidden="true"/>
 
               <input type="number" name="attr_attack_dam_bonus" class="attack-param bold-font inactive-color"
                                    value="[[@{strength_mod}+@{attack_bonus}+@{attack_proficiency_dam_bonus}]]" disabled="true"/>
@@ -3577,11 +3578,10 @@
                   const attack_notches = parseInt(values['repeating_attacks_' + id + '_attack_notches']);
                   const attack_attk_type = values['repeating_attacks_' + id + '_attack_attk_type'];
                   // const attack_bonus = parseInt(values['repeating_attacks_' + id + '_attack_bonus']);
-                  const attack_proficiency_level = parseInt(values['repeating_attacks_' + id + '_attack_proficiency_level']) || 0;
+                  var attack_proficiency_level = parseInt(values['repeating_attacks_' + id + '_attack_proficiency_level']) || 0;
 
                   const is_ranged = (attack_attk_type === 'ranged' || 0);
                   const is_spell = (attack_attk_type === 'spell' || 0);
-                  const is_proficient = attack_proficiency_level > 0 ? 1 : 0;
 
                   // weapn attack bonus depends on attack_proficiency and type of attack
                   var attack_attk_type_ab = melee_ab;
@@ -3600,9 +3600,13 @@
                   if (is_spell) {
                     attack_attk_type_ab = spellcasting_mod;
                     attack_attk_type_base_ab = 0;
+                    // only non-spells may have different proficiencies
+                    attack_proficiency_level = 0;
+                    output['repeating_attacks_' + id + '_attack_proficiency_level'] = 0;
                   }
 
                   // based on proficiency we get AB for attack
+                  const is_proficient = attack_proficiency_level > 0 ? 1 : 0;
                   var attack_attack_bonus = is_proficient ? attack_attk_type_ab : attack_attk_type_base_ab;
 
                   // increased proficiency provides benefits
@@ -3666,9 +3670,10 @@
 
                   output['repeating_attacks_' + id + '_attack_attack_bonus'] = attack_attack_bonus;
                   output['repeating_attacks_' + id + '_attack_dam'] = attack_dam;
+                  output['repeating_attacks_' + id + '_attack_is_weapon_attack'] = is_spell ? 0 : 1;
                   output['repeating_attacks_' + id + '_attack_proficiency_dam_bonus'] = proficiency_dam_bonus;
                   output['repeating_attacks_' + id + '_attack_cmbt_option_ac_penalty'] = cmbt_opt_ac_penalty;
-                  output['repeating_attacks_' + id + '_attack_crit_number'] = 19 - crit_range_adj;
+                  output['repeating_attacks_' + id + '_attack_crit_number'] = 20 - crit_range_adj;
                   output['repeating_attacks_' + id + '_attack_crit_range_adj'] = crit_range_adj;
 
 
