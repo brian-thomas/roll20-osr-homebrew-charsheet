@@ -1229,6 +1229,7 @@ span.sheet-attack-name
 select.sheet-attack-param,
 select.sheet-attack-param-long,
 select.sheet-attack-notches,
+select.sheet-attack-proficiency
 input[type=text].sheet-attack-param,
 input[type=number].sheet-attack-param
 {
@@ -1240,16 +1241,24 @@ input[type=number].sheet-attack-param
 	 padding: 6px;
 }
 
-select.sheet-attack-notches
+select.sheet-attack-notches,
+select.sheet-attack-proficiency
 {
 	text-align: center;
 	width: 40px;
 }
 
+select.sheet-attack-proficiency { background-color: inherit; }
+select.sheet-attack-proficiency option[value="0"] { background-color: white; }
+select.sheet-attack-proficiency option[value="1"] { background-color: #ddd; }
+select.sheet-attack-proficiency option[value="2"] { background-color: white;}
+select.sheet-attack-proficiency option[value="3"] { background-color: #ddd;}
+select.sheet-attack-proficiency option[value="4"] { background-color: white;}
+
 .sheet-attack-param,
 input[type=number].sheet-attack-param
 {
-	width: 34px;
+	width: 30px;
 }
 
 .sheet-attack-param-name,
@@ -1262,7 +1271,7 @@ span.sheet-attack-param-select-name
 	width: 30px;
 	font-size: 11px;
 	margin-left: 3px;
-	margin-right: 3px;
+	margin-right: 2px;
 }
 
 span.sheet-attack-param-attk-name,
@@ -1273,8 +1282,8 @@ span.sheet-attack-param-select-name
 	text-align: center;
 	align-items: start;
 	align-content: center;
-	margin-left: 4px;
-	margin-right: 4px;
+	margin-left: 3px;
+	margin-right: 3px;
 }
 
 select.sheet-attack-param,
@@ -1293,12 +1302,12 @@ span.sheet-attack-param-long-name
 button[type=roll].sheet-attack-button
 {
 	width: 30px;
-	height: 28px;
+	height: 30px;
 	border: 2px solid black;
 	color: black;
 	background-color: white;
-	margin-right: 4px;
-	margin-left: 4px;
+	margin-right: 3px;
+	margin-left: 3px;
 	text-shadow: none;
 	background-image: none;
 }
