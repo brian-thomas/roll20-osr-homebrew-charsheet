@@ -1291,23 +1291,10 @@
         <span class="sheet-spacer">&nbsp;</span>
         <div class="sheet-thick-border-no-pad">
           <h3>Combat</h3>
-
-
-          <div class="sheet-flex center">
-            <input type="checkbox" class="sheet-max-copts-value-exceeded" name="attr_max_cmbt_opts_exceeded" value="1" hidden="true" checked="true"/>
-            <span class="max-copts-value-exceeded-notify med-font italic-font">Additional Combat Options Allowed:
-              <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_cmbt_opts_allowed" value="0" readonly="true"/>
-            </span>
-            <input type="checkbox" class="sheet-copts-value-underspent" name="attr_cmbt_opts_underspent" value="1" hidden="true" checked="true"/>
-            <span class="sheet-copts-value-underspent-notify med-font italic-font">Additional Combat Options Selected:
-             <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_opts_used" value="0" readonly="true"/>
-            </span>
-          </div>
-
+          <span class="sheet-spacer">&nbsp;</span>
+          <h4>Combat Stats</h4>
           <div class="sheet-thin-border bottom-padding">
-            <h4>Combat Stats</h4>
             <div class="sheet-flex left-pad bottom-padding">
-
               <div class="sheet-ability-column-value">
                 <div class="sheet-thin-border sheet-flex left-pad">
       	           <button type="roll" class="sheet-initiative" name="roll_initiative"
@@ -1352,9 +1339,17 @@
           </div>
 
           <span class="sheet-spacer">&nbsp;</span>
+          <div class="sheet-bottom-padding"><h4>Combat Options</h4></div>
           <div class="sheet-thin-border bottom-padding">
-            <div class="sheet-bottom-padding">
-              <h4>Combat Options</h4>
+            <div class="sheet-flex center">
+              <input type="checkbox" class="sheet-max-copts-value-exceeded" name="attr_max_cmbt_opts_exceeded" value="0" hidden="true" checked="true"/>
+              <span class="max-copts-value-exceeded-notify med-font italic-font">Additional Combat Options Allowed:
+                <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_cmbt_opts_allowed" value="0" readonly="true"/>
+              </span>
+              <input type="checkbox" class="sheet-copts-value-underspent" name="attr_cmbt_opts_underspent" value="0" hidden="true" checked="true"/>
+              <span class="sheet-copts-value-underspent-notify med-font italic-font">Additional Combat Options Used:
+               <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_opts_used" value="0" readonly="true"/>
+              </span>
             </div>
             <div class="sheet-flex-between">
               <div class="sheet-inline sheet-side-padding">
@@ -1387,15 +1382,19 @@
                 <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_press_attack" value="1" readonly="true"/>
                   <span class="ability-check-label">Press</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2 AC-4, force 1 step retreat)</span>
+                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2, AC-4, force 1 step retreat)</span>
                 </div>
 
+                <!--
                 <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_defensive_attack" value="1" readonly="true"/>
                   <span class="ability-check-label">Defensive</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB-4 AC+2)</span>
                 </div>
+                -->
+              </div>
 
+              <div class="sheet-inline sheet-side-padding">
                 <div class="sheet-flex sheet-bottom-padding">
                   <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_berserk_attack" value="1"/>
                   <span class="ability-check-label sheet-flex-between">Berserk</span>
@@ -1404,9 +1403,7 @@
                     <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;Will to Stop, AC-4)</span>
                   </div>
                 </div>
-              </div>
 
-              <div class="sheet-inline sheet-side-padding">
                 <div class="sheet-flex sheet-bottom-padding">
                   <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_cleave_attack" value="1"/>
                   <span class="ability-check-label">Cleave</span>
@@ -1442,18 +1439,18 @@
                   <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_rapid_strike_attack1" value="1"/>
                   <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_rapid_strike_attack2" value="1"/>
                   <span class="ability-check-label">Rapid Strike</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Xtra Melee Attk, AC-2)</span>
-                </div>
-
-                <div class="sheet-flex sheet-bottom-padding">
-                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_rapid_shot_attack1" value="1"/>
-                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_rapid_shot_attack2" value="1"/>
-                  <span class="ability-check-label">Rapid Shot</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Xtra Ranged Attk, AC-2)</span>
+                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Xtra Melee Attk, AC-4)</span>
                 </div>
               </div>
 
               <div class="sheet-inline sheet-side-padding">
+                <div class="sheet-flex sheet-bottom-padding">
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_rapid_shot_attack1" value="1"/>
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_rapid_shot_attack2" value="1"/>
+                  <span class="ability-check-label">Rapid Shot</span>
+                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Xtra Ranged Attk, AC-4)</span>
+                </div>
+
                 <div class="sheet-flex sheet-bottom-padding">
                   <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_shield_bash_attack" value="1"/>
                   <span class="ability-check-label">Shield Bash</span>
@@ -1492,8 +1489,18 @@
           </div>
 
         <span class="sheet-spacer">&nbsp;</span>
-        <div class="sheet-thin-border">
-          <h4>Attacks</h4>
+        <div class="sheet-bottom-padding"><h4>Attacks</h4></div>
+        <div class="sheet-thin-border padding">
+          <div class="sheet-flex center">
+            <input type="checkbox" class="sheet-max-prof-value-exceeded" name="attr_max_prof_exceeded" value="0" hidden="true" checked="true"/>
+            <span class="max-prof-value-exceeded-notify med-font italic-font">Weapon Proficiencies Allowed:
+              <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_prof_allowed" value="0" readonly="true"/>
+            </span>
+            <input type="checkbox" class="sheet-prof-value-underspent" name="attr_prof_underspent" value="0" hidden="true" checked="true"/>
+            <span class="sheet-prof-value-underspent-notify med-font italic-font">Weapon Proficiencies Used:
+             <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_prof_used" value="0" readonly="true"/>
+            </span>
+          </div>
           <div class="sheet-flex">
             <input type="checkbox" class="sheet-berserk_attack_enabled" name="attr_berserk_attack_enabled" value="1" hidden="true"/>
             <input type="checkbox" class="sheet-charge_attack_enabled" name="attr_charge_attack_enabled" value="1" hidden="true"/>
@@ -1529,9 +1536,11 @@
               <span class="sheet-attack-param-attk-name sheet-bold-font">Press Attack</span>
             </div>
 
+            <!--
             <div class="sheet-defense_attack_section">
               <span class="sheet-attack-param-attk-name sheet-bold-font">Defns. Attack</span>
             </div>
+            -->
 
             <div class="sheet-berserk_attack_section">
               <span class="sheet-attack-param-attk-name sheet-bold-font">Berserk Attack</span>
@@ -1698,6 +1707,7 @@
                 </div>
               </div>
 
+              <!--
               <div class="sheet-attack_defense_attack_section">
                 <input type="checkbox" class="sheet-attack-defense-attack-button-show" name="attr_attack_defense_attack_button_show" value="1" hidden="true" checked="checked"/>
                 <div class="sheet-attack-defense-attack-button-enabled">
@@ -1708,6 +1718,7 @@
                   <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
                 </div>
               </div>
+              -->
 
               <div class="sheet-attack_berserk_attack_section">
                 <input type="checkbox" class="sheet-attack-berserk-attack-button-show" name="attr_attack_berserk_attack_button_show" value="1" hidden="true" checked="checked"/>
@@ -3255,6 +3266,7 @@
       }
 
       setting['max_cmbt_opts_allowed'] = 0;
+      setting['max_prof_allowed'] = 1;
 
       setting['berserk_attack_mod'] = 0;
       setting['charge_attack'] = is_fighter ? 1 : 0;
@@ -3266,6 +3278,11 @@
         const fighter_level = (c_class === 'fighter' ? level : level2);
         setting['berserk_attack_mod'] = 3 + parseInt(fighter_level/4)
         setting['max_cmbt_opts_allowed'] = 0 + parseInt(fighter_level/2);
+        setting['max_prof_allowed'] = 3 + fighter_level;
+      } else if (is_specialist) {
+        setting['max_prof_allowed'] = 3;
+      } else if (is_cleric) {
+        setting['max_prof_allowed'] = 2;
       }
 
       setAttrs(setting);
@@ -3485,7 +3502,9 @@
               fieldnames.push('repeating_attacks_' + id + '_attack_proficiency_level');
           });
 
-          getAttrs([...fieldnames, ...combatOpts, 'melee_ab', 'melee_base_ab', 'unarmed_ab', 'unarmed_base_ab', 'ranged_ab', 'ranged_base_ab', 'max_cmbt_opts_allowed', 'spellcasting_mod', 'sneak_attack_dice'], function (values) {
+          getAttrs([...fieldnames, ...combatOpts, 'melee_ab', 'melee_base_ab', 'unarmed_ab', 'unarmed_base_ab',
+                    'ranged_ab', 'ranged_base_ab', 'max_cmbt_opts_allowed', 'max_prof_allowed', 'spellcasting_mod',
+                    'sneak_attack_dice'], function (values) {
               var output = {};
 
               const melee_ab = parseInt(values.melee_ab) || 0;
@@ -3498,6 +3517,7 @@
               const spellcasting_mod = parseInt(values.spellcasting_mod) || 0;
 
               const max_cmbt_opts_allowed = parseInt(values.max_cmbt_opts_allowed) || 0;
+              const max_prof_allowed = parseInt(values.max_prof_allowed) || 0;
 
               const sneak_dice = parseInt(values.sneak_attack_dice) || 0;
               const berserk_attack = parseInt(values.berserk_attack) || 0;
@@ -3537,17 +3557,16 @@
               output['two_attack_attack_enabled'] = two_attack_attack;
               output['two_attack_master_attack_enabled'] = two_attack_master_attack;
 
-
-              // starts w/ 2 because everyone gets standard attack and some kind of parry_attack
               // 2 + press_attack + charge_attack + defensive_attack
               var cmbt_opts_used = berserk_attack + cleave_attack + great_cleave_attack + disarm_attack + feint_attack + lightning_attack
                                        + rapid_shot_attack1 + rapid_shot_attack2 + rapid_strike_attack1 + rapid_strike_attack2
                                        + shield_bash_attack + strong_attack + stun_attack + two_attack_attack + two_attack_master_attack;
 
               output['cmbt_opts_used'] = cmbt_opts_used;
-              output['max_cmbt_opts_exceeded'] = cmbt_opts_used > max_cmbt_opts_allowed ? 1 : 0;
-              output['cmbt_opts_underspent'] = cmbt_opts_used < max_cmbt_opts_allowed ? 1 : 0;
+              output['max_cmbt_opts_exceeded'] = cmbt_opts_used > max_cmbt_opts_allowed ? 0 : 1;
+              output['cmbt_opts_underspent'] = cmbt_opts_used < max_cmbt_opts_allowed ? 0 : 1;
 
+              var proficiencies_used = 0;
               ids.forEach(id => {
 
                   const attack_dam_die = values['repeating_attacks_' + id + '_attack_dam_die'];
@@ -3556,6 +3575,8 @@
                   const attack_attk_type = values['repeating_attacks_' + id + '_attack_attk_type'];
                   // const attack_bonus = parseInt(values['repeating_attacks_' + id + '_attack_bonus']);
                   var attack_proficiency_level = parseInt(values['repeating_attacks_' + id + '_attack_proficiency_level']) || 0;
+
+                  proficiencies_used += attack_proficiency_level;
 
                   const is_ranged = (attack_attk_type === 'ranged' || 0);
                   const is_spell = (attack_attk_type === 'spell' || 0);
@@ -3576,7 +3597,7 @@
 
                   if (is_spell) {
                     attack_attk_type_ab = spellcasting_mod;
-                    attack_attk_type_base_ab = 0;
+                    attack_attk_type_base_ab = spellcasting_mod;
                     // only non-spells may have different proficiencies
                     attack_proficiency_level = 0;
                     output['repeating_attacks_' + id + '_attack_proficiency_level'] = 0;
@@ -3683,6 +3704,11 @@
                   output['repeating_attacks_' + id + '_attack_berserk_attack_button_show'] = is_ranged || is_spell ? 0 : 1;
 
               });
+
+              // do proficiency warning now
+              output['prof_used'] = proficiencies_used;
+              output['max_prof_exceeded'] = proficiencies_used > max_prof_allowed ? 0 : 1;
+              output['prof_underspent'] = proficiencies_used < max_prof_allowed ? 0 : 1;
 
               setAttrs(output);
             });

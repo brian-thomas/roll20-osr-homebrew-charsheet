@@ -893,6 +893,7 @@ input.sheet-skillname {
 }
 
 input.sheet-max-copts-value-exceeded[value="0"]:checked ~ span.sheet-max-copts-value-exceeded-notify,
+input.sheet-max-prof-value-exceeded[value="0"]:checked ~ span.sheet-max-prof-value-exceeded-notify,
 input.sheet-max-skill-value-exceeded[value="0"]:checked ~ span.sheet-max-skill-value-exceeded-notify,
 input.sheet-move-rate-stop[value="0"]:checked ~ span.sheet-move-rate-stop-notify,
 input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-overspend-notify
@@ -917,7 +918,8 @@ input.sheet-move-rate-heavy-enc[value="0"]:checked ~ span.sheet-move-rate-heavy-
 }
 
 input.sheet-skill-points-underspent[value="0"]:checked ~ span.sheet-skill-points-underspent-notify,
-input.sheet-copts-value-underspent[value="0"]:checked ~ span.sheet-copts-value-underspent-notify
+input.sheet-copts-value-underspent[value="0"]:checked ~ span.sheet-copts-value-underspent-notify,
+input.sheet-prof-value-underspent[value="0"]:checked ~ span.sheet-prof-value-underspent-notify
 {
 	  background: #00FF40;
     color: white;
