@@ -3494,6 +3494,7 @@
       getSectionIDs('repeating_attacks', function (ids) {
         const fieldnames = [];
         ids.forEach(id => {
+              fieldnames.push('repeating_attacks_' + id + '_attack_name');
               fieldnames.push('repeating_attacks_' + id + '_attack_sneak_attack_dam');
               fieldnames.push('repeating_attacks_' + id + '_attack_dam_die');
               fieldnames.push('repeating_attacks_' + id + '_attack_dam_type');
@@ -3570,6 +3571,7 @@
               var proficiencies_used = 0;
               ids.forEach(id => {
 
+                  const attack_name = values['repeating_attacks_' + id + '_attack_name'];
                   const attack_dam_die = values['repeating_attacks_' + id + '_attack_dam_die'];
                   const attack_dam_type = values['repeating_attacks_' + id + '_attack_dam_type'];
                   const attack_notches = parseInt(values['repeating_attacks_' + id + '_attack_notches']);
@@ -3582,6 +3584,9 @@
                   const is_ranged = (attack_attk_type === 'ranged' || 0);
                   const is_spell = (attack_attk_type === 'spell' || 0);
                   const is_not_spell = is_spell ? 0 : 1;
+
+                  const is_not_grapple = attack_name === 'Grapple' ? 0 : 1;
+                  const is_not_spell_or_grapple = is_not_spell && is_not_grapple;
 
                   // weapn attack bonus depends on attack_proficiency and type of attack
                   var attack_attk_type_ab = melee_ab;
@@ -3680,26 +3685,26 @@
                   // even though we have the attack option, we still may not be able to use it because of the
                   // type of attack we have in hand and/or we lack proficiency
 
-                  output['repeating_attacks_' + id + '_attack_defense_attack_button_show'] = is_proficient && is_not_spell;
-                  output['repeating_attacks_' + id + '_attack_disarm_attack_button_show'] = is_proficient && is_not_spell;
+                  output['repeating_attacks_' + id + '_attack_defense_attack_button_show'] = is_proficient && is_not_spell_or_grapple;
+                  output['repeating_attacks_' + id + '_attack_disarm_attack_button_show'] = is_proficient && is_not_spell_or_grapple;
                   output['repeating_attacks_' + id + '_attack_feint_attack_button_show'] = is_proficient; // allow spells to be aimed if held
                   output['repeating_attacks_' + id + '_attack_lightning_attack_button_show'] = is_proficient && is_not_spell;
-                  output['repeating_attacks_' + id + '_attack_sneak_attack_button_show'] = is_proficient && is_not_spell;
-                  output['repeating_attacks_' + id + '_attack_strong_attack_button_show'] = is_proficient && is_not_spell;
+                  output['repeating_attacks_' + id + '_attack_sneak_attack_button_show'] = is_proficient && is_not_spell_or_grapple;
+                  output['repeating_attacks_' + id + '_attack_strong_attack_button_show'] = is_proficient && is_not_spell_or_grapple;
 
                   // Only slashing / force attacks may 'cleave'
-                  output['repeating_attacks_' + id + '_attack_cleave_attack_button_show'] = is_proficient && is_not_spell
+                  output['repeating_attacks_' + id + '_attack_cleave_attack_button_show'] = is_proficient && is_not_spell_or_grapple
                          && (attack_dam_type === 'Slashing' || attack_dam_type === 'Force') ? 1 : 0;
-                  output['repeating_attacks_' + id + '_attack_great_cleave_attack_button_show'] = is_proficient && is_not_spell
+                  output['repeating_attacks_' + id + '_attack_great_cleave_attack_button_show'] = is_proficient && is_not_spell_or_grapple
                          && (attack_dam_type === 'Slashing' || attack_dam_type === 'Force') ? 1 : 0;
 
                   // Only bashing / force 'attacks' may 'stun'
-                  output['repeating_attacks_' + id + '_attack_stun_attack_button_show'] = is_proficient && is_not_spell
+                  output['repeating_attacks_' + id + '_attack_stun_attack_button_show'] = is_proficient && is_not_spell_or_grapple
                          && (attack_dam_type === 'Bludgeoning' || attack_dam_type === 'Force') ? 1 : 0;
 
                   // NO charge, defense or press attacks with ranged attacks
-                  output['repeating_attacks_' + id + '_attack_charge_attack_button_show'] = is_proficient && (is_ranged == 0) && is_not_spell;
-                  output['repeating_attacks_' + id + '_attack_press_attack_button_show'] = is_proficient && (is_ranged == 0) && is_not_spell;
+                  output['repeating_attacks_' + id + '_attack_charge_attack_button_show'] = is_proficient && (is_ranged == 0) && is_not_spell_or_grapple;
+                  output['repeating_attacks_' + id + '_attack_press_attack_button_show'] = is_proficient && (is_ranged == 0) && is_not_spell_or_grapple;
 
                   // NO ranged attack berserk attacks. Require too much concentration
                   // conversely, we CAN berserk w/o proficiency in a attack.
