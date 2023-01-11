@@ -1374,8 +1374,7 @@
                   <input type="checkbox" name="attr_charge_attack" value="1" readonly="true"/>
                   <span class="ability-check-label">Charge</span>
                   <div class="sheet-block">
-                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2, 2x dam, must move full move to target.</span>
-                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;Braced targets may cause 2x dam to attacker.)</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2, 2x dam, must move full move to target. Braced targets may cause 2x dam to attacker.)</span>
                   </div>
                 </div>
 
@@ -1383,6 +1382,13 @@
                   <input type="checkbox" name="attr_press_attack" value="1" readonly="true"/>
                   <span class="ability-check-label">Press</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2, AC-4, force 1 step retreat)</span>
+                </div>
+                
+                <div class="sheet-thin-border sheet-flex-between">
+                  <input type="checkbox" name="attr_sneak_attack_checkbox" value="1" readonly="true"/>
+                  <span class="ability-check-label centered-label right-pad">Sneak Attack</span>
+                  <span class="sheet-italic-font centered-label right-pad">Extra Dam. Dice</span>
+                  <input class="sheet-inactive-color sheet-ability-check-sm-value" name="attr_sneak_attack_dice" type="number" value="0" readonly="true"/>
                 </div>
 
                 <!--
@@ -1406,8 +1412,7 @@
                   <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_berserk_attack" value="1"/>
                   <span class="ability-check-label sheet-flex-between">Berserk</span>
                   <div class="sheet-block">
-                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB +3+Fghtr/4, Dam +3+Fghtr/4, No retreating,</span>
-                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;Will to Stop, AC-4)</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB +3+Fghtr/4, Dam +3+Fghtr/4, No retreating, Will to Stop, AC-4)</span>
                   </div>
                 </div>
 
@@ -1477,12 +1482,6 @@
                   <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_two_attack_master_attack" value="1"/>
                   <span class="ability-check-label">Two Weapon Master</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(2nd Attk with offhand weapon or AC+2)</span>
-                </div>
-                <div class="sheet-thin-border sheet-flex-between">
-                  <input type="checkbox" name="attr_sneak_attack_checkbox" value="1" readonly="true"/>
-                  <span class="ability-check-label centered-label right-pad">Sneak Attack</span>
-                  <span class="sheet-italic-font centered-label right-pad">Extra Dam. Dice</span>
-                  <input class="sheet-inactive-color sheet-ability-check-sm-value" name="attr_sneak_attack_dice" type="number" value="0" readonly="true"/>
                 </div>
               </div>
 
