@@ -3278,7 +3278,7 @@
       if (is_fighter) {
         const fighter_level = (c_class === 'fighter' ? level : level2);
         setting['berserk_attack_mod'] = 3 + parseInt(fighter_level/4)
-        setting['max_cmbt_opts_allowed'] = 0 + parseInt(fighter_level/2);
+        setting['max_cmbt_opts_allowed'] = 1 + parseInt(fighter_level/2);
         setting['max_prof_allowed'] = 3 + fighter_level;
       } else if (is_specialist) {
         setting['max_prof_allowed'] = 3;
