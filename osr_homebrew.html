@@ -1382,7 +1382,7 @@
                 <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" name="attr_press_attack" value="1" readonly="true"/>
                   <span class="ability-check-label">Press</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2, AC penalty, force 1 step retreat)</span>
+                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2, Fort save vs dam+10 or force 1 step retreat. AC penalty.)</span>
                 </div>
 
                 <div class="sheet-thin-border sheet-flex-between">
@@ -1701,7 +1701,7 @@
                 <input type="checkbox" class="sheet-attack-press-attack-button-show" name="attr_attack_press_attack_button_show" value="1" hidden="true" checked="checked"/>
                 <div class="sheet-attack-press-attack-button-enabled">
                   <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_press_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{attack_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{attack_attack_bonus} - @{attack_crit_range_adj}]]}} {{fumble=[[4+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] + 2 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Force 1 step retreat on hit. @{attack_cmbt_option_ac_penalty} AC penalty next round.}}"></button>
+                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{attack_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{attack_attack_bonus} - @{attack_crit_range_adj}]]}} {{fumble=[[4+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] + 2 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }} {{special=Fort save vs DC: damage +10 or force 1 step retreat. @{attack_cmbt_option_ac_penalty} AC penalty next round.}}"></button>
                 </div>
                 <div class="sheet-attack-press-attack-button-disabled">
                   <button class="sheet-attack-button nod20 inactive-color" type="roll" name="roll_disabled_attack" value="" disabled="true">X</button>
