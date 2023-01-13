@@ -1210,11 +1210,12 @@ input[type=number].sheet-attack-param
 	 padding: 6px;
 }
 
+span.sheet-attack-notches,
 span.sheet-attack-proficiency
 {
 	text-align: center;
-	margin-right: 9px;
-	margin-left: 9px;
+	margin-right: 10px;
+	margin-left: 11px;
 }
 
 select.sheet-attack-notches,

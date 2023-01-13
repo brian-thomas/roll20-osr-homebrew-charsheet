@@ -1606,16 +1606,16 @@
               <input name="attr_attack_sneak_attack_bonus" value="@{sneak_attack_skill} + @{attack_bonus} - @{attack_notches}" hidden="true"/>
               <input name="attr_attack_sneak_attack_dam" value="0" hidden="true"/>
 
-              <input type="text" name="attr_attack_damage_msg" value="" hidden="true"/>
-              <select class="sheet-attack-notches" name="attr_attack_notches">
-                <option selected="selected" value="0">--</option>
-                <option value="1">1 - Slightly Damaged</option>
-                <option value="2">2 - Damaged</option>
-                <option value="3">3 - Badly Damaged</option>
-              </select>
-
               <input type="checkbox" class="sheet-attack-is-weapon-attack" name="attr_attack_is_weapon_attack" value="1" hidden="true"/>
+              <input type="text" name="attr_attack_damage_msg" value="" hidden="true"/>
               <div class="sheet-section-weapon-proficiency">
+                <select class="sheet-attack-notches" name="attr_attack_notches">
+                  <option selected="selected" value="0">--</option>
+                  <option value="1">1 - Slightly Damaged</option>
+                  <option value="2">2 - Damaged</option>
+                  <option value="3">3 - Badly Damaged</option>
+                </select>
+
                 <select class="sheet-attack-proficiency" name="attr_attack_proficiency_level"
                         onchange="this.className=this.options[this.selectedIndex].className">
                   <option selected="selected" value="0">--</option>
@@ -1626,6 +1626,7 @@
                 </select>
               </div>
               <div class="sheet-section-non-weapon-proficiency">
+                <span class="sheet-attack-notches">N/A</span>
                 <span class="sheet-attack-proficiency">N/A</span>
               </div>
 
