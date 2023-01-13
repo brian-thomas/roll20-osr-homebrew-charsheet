@@ -1874,7 +1874,11 @@ div.sheet-label
 .sheet-rolltemplate-roll_check .sheet-rt-subheader,
 .sheet-rolltemplate-spell .sheet-rt-subheader
 {
+}
 
+.sheet-rolltemplate-roll_check .sheet-rt-subheader2
+{
+  color: yellow;
 }
 
 /* Melee header*/

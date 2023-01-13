@@ -1606,6 +1606,7 @@
               <input name="attr_attack_sneak_attack_bonus" value="@{sneak_attack_skill} + @{attack_bonus} - @{attack_notches}" hidden="true"/>
               <input name="attr_attack_sneak_attack_dam" value="0" hidden="true"/>
 
+              <input type="text" name="attr_attack_damage_msg" value="" hidden="true"/>
               <select class="sheet-attack-notches" name="attr_attack_notches">
                 <option selected="selected" value="0">--</option>
                 <option value="1">1 - Slightly Damaged</option>
@@ -1691,7 +1692,7 @@
 
 
               <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_standard_attack"
-                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} Attack}} {{subheader=@{character_name}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + @{attack_attack_bonus} ]]}} {{critical=[[19 + @{attack_attack_bonus} - @{attack_crit_range_adj} ]]}} {{fumble=[[2+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + [[@{attack_dam_bonus}]] ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }}"></button>
+                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{attack_name} Attack}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + @{attack_attack_bonus} ]]}} {{critical=[[19 + @{attack_attack_bonus} - @{attack_crit_range_adj} ]]}} {{fumble=[[2+@{attack_attack_bonus}]] }} {{damage=[[@{attack_dam} + [[@{attack_dam_bonus}]] ]]}} {{damagetype=@{attack_dam_type}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{attack_attack_bonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{attack_dam_type} Damage] }}"></button>
 
               <div class="sheet-attack_charge_attack_section">
                 <input type="checkbox" class="sheet-attack-charge-attack-button-show" name="attr_attack_charge_attack_button_show" value="1" hidden="true" checked="checked"/>
@@ -2832,7 +2833,7 @@
       {{#subheader}}
       <div class="sheet-rt-subheader">{{subheader}}{{#subheaderright}} &bullet; {{subheaderright}}{{/subheaderright}}</div>
       {{/subheader}} {{#subheader2}}
-      <div class="sheet-rt-subheader">{{subheader2}}{{#subheaderright2}} &bullet; {{subheaderright2}}{{/subheaderright2}}</div>
+      <div class="sheet-rt-subheader2">{{subheader2}}{{#subheaderright2}} &bullet; {{subheaderright2}}{{/subheaderright2}}</div>
       {{/subheader2}}
     </div>
     {{#emote}}
@@ -3105,7 +3106,7 @@
         const checkName = abilityCheck[ability_mod];
         setting[checkName] = score + parseInt((level+level2)/2);
 
-        // set healing rate 
+        // set healing rate
         if (ability_mod === 'constitution_mod') {
           const base_rate = score + level + level2;
           setting['healing_rate'] = base_rate > 0 ? base_rate : 1;
@@ -3497,6 +3498,8 @@
     });
   });
 
+  const weapon_damage_msg = ["", "Slightly Damaged Weapon", "Damaged Weapon", "Badly Damaged Weapon"];
+
   // Keep attacks up to date
   const combatOpts = ['charge_attack', 'press_attack', 'defensive_attack', 'berserk_attack', 'cleave_attack', 'disarm_attack', 'feint_attack',
                       'great_cleave_attack', 'lightning_attack', 'rapid_strike_attack1', 'rapid_strike_attack2', 'rapid_shot_attack1', 'rapid_shot_attack2',
@@ -3658,6 +3661,9 @@
                   // damaged weapons reduce attack bonus
                   attack_attack_bonus -= attack_notches;
 
+                  // damaged weapon message
+                  const damage_msg = weapon_damage_msg[attack_notches];
+
                   const num_dam_die = parseInt(attack_dam_die.substring(0,1));
                   const attack_dam_die_type = parseInt(attack_dam_die.substring(2)) - (2 * (attack_notches));
 
@@ -3694,6 +3700,9 @@
                   output['repeating_attacks_' + id + '_attack_crit_number'] = 20 - crit_range_adj;
                   output['repeating_attacks_' + id + '_attack_crit_range_adj'] = crit_range_adj;
 
+
+                  // damage status of our weapon
+                  output['repeating_attacks_' + id + '_attack_damage_msg'] = damage_msg;
 
                   // even though we have the attack option, we still may not be able to use it because of the
                   // type of attack we have in hand and/or we lack proficiency
