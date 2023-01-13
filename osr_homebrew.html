@@ -1315,6 +1315,13 @@
                   <input class="ability-check-value" name="attr_hp_max" type="number" value="1"/>
                 </div>
                 <span class="ability-check-label">HP / Max HP</span>
+                <br/>
+                <input type="number" name="attr_healing_rate" value="0" hidden="true"/>
+                <label class="ability-check-label small-font">(healing rate: <span name="attr_healing_rate"></span> HP/day)</label>
+                <!--
+                <span class="ability-check-label small-font">(healing rate: @{healing_rate}  HP/day)</span>
+                <span class="ability-check-label small-font">(healing rate: @{healing_rate}  HP/day)</span>
+                -->
               </div>
               <div class="sheet-ability-column-value">
                 <input class="ability-check-value inactive-color" name="attr_melee_ab" type="number" value="0" readonly="true"/>
@@ -3097,6 +3104,12 @@
 
         const checkName = abilityCheck[ability_mod];
         setting[checkName] = score + parseInt((level+level2)/2);
+
+        // set healing rate 
+        if (ability_mod === 'constitution_mod') {
+          const base_rate = score + level + level2;
+          setting['healing_rate'] = base_rate > 0 ? base_rate : 1;
+        }
 
         // set max languages here as well
         if (ability_mod === 'intelligence_mod') {
