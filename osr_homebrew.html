@@ -180,6 +180,7 @@
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=DEX Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{dexterity_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{dexterity_mod}]]}}">
                     <span class="bold-font npc-text">DEX</span>
                   </button>
+                  <input class="npc-ability-value" name="attr_perk_inventory_mod" type="number" value="0" hidden="true"/>
                   <input class="npc-ability-value" name="attr_dexterity" type="number" value="10"/>
                   <button class="blank-roll-button narrow-button" type="roll" name="roll_dodge"
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dodge Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{dodge} + @{dodge_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{dodge}]] + [[@{dodge_bonus}]] ]]}}">
@@ -972,6 +973,7 @@
                 <div class="sheet-flex-between">
                   <div class="sheet-ability-column-value">
                     <span class="ability-check-label">Fortitude</span>
+                    <input name="attr_perk_fortitude" type="number" value="0" hidden="true"/>
                     <input class="ability-check-value inactive-color" name="attr_fortitude" type="number" value="0" readonly="true"/>
                   </div>
                   <div class="sheet-ability-column-value">
@@ -987,6 +989,7 @@
                 <div class="sheet-flex-between">
                   <div class="sheet-ability-column-value">
                     <span class="ability-check-label">Dodge</span>
+                    <input name="attr_perk_dodge" type="number" value="0" hidden="true"/>
                     <input class="ability-check-value inactive-color" name="attr_dodge" type="number" value="0" readonly="true"/>
                   </div>
                   <div class="sheet-ability-column-value">
@@ -1003,6 +1006,7 @@
                 <div class="sheet-flex-between">
                   <div class="sheet-ability-column-value">
                     <span class="ability-check-label">Health</span>
+                    <input name="attr_perk_health" type="number" value="0" hidden="true"/>
                     <input class="ability-check-value inactive-color" name="attr_health" type="number" value="0" readonly="true"/>
                   </div>
                   <div class="sheet-ability-column-value">
@@ -1019,6 +1023,7 @@
                 <div class="sheet-flex-between">
                   <div class="sheet-ability-column-value">
                     <span class="ability-check-label">Perception</span>
+                    <input name="attr_perk_perception" type="number" value="0" hidden="true"/>
                     <input class="ability-check-value inactive-color" name="attr_perception" type="number" value="0" readonly="true"/>
                   </div>
                   <div class="sheet-ability-column-value">
@@ -1035,6 +1040,7 @@
                 <div class="sheet-flex-between">
                   <div class="sheet-ability-column-value">
                     <span class="ability-check-label">Willpower</span>
+                    <input name="attr_perk_willpower" type="number" value="0" hidden="true"/>
                     <input class="ability-check-value inactive-color" name="attr_willpower" type="number" value="0" readonly="true"/>
                   </div>
                   <div class="sheet-ability-column-value">
@@ -1051,6 +1057,7 @@
                 <div class="sheet-flex-between">
                   <div class="sheet-ability-column-value">
                     <span class="ability-check-label">Ego</span>
+                    <input name="attr_perk_ego" type="number" value="0" hidden="true"/>
                     <input class="ability-check-value inactive-color" name="attr_ego" type="number" value="0" readonly="true"/>
                   </div>
                   <div class="sheet-ability-column-value">
@@ -1297,17 +1304,17 @@
                   <div class="sheet-perkcontainer sheet-side-padding">
                      <select class="sheet-perk-name" name="attr_perk_type">
                         <option selected="selected" value="none">-- Select Perk --</option>
-                        <option value="assasin">Assasin (Sneak Attack Combat Option, +1 Skill)</option>
-                        <option value="dual_weilder">Dual Weilder (Two Weapon Attack Combat Option, +1 Skill)</option>
+                        <option value="assassin">Assassin (Sneak Attack Combat Option, +1 Skill)</option>
+                        <option value="dual_weilder">Dual Wielder (Two Weapon Attack Combat Option, +1 Skill)</option>
                         <option value="packer">Organized Packer (+1 step for ready items, +1 Skill)</option>
                         <option value="skilled">Skilled (+3 Skills)</option>
                         <option value="scholar">Scholar (+1 Lang, +2 Skills)</option>
-                        <option value="bodybuilder">Bodybuilder (+1 Fortitdue, +1 Skill)</option>
-                        <option value="acrobat">Acrobat (+1 Dodge, +1 Skill)</option>
-                        <option value="healthy">Healthy(+1 Health, +1 Skill)</option>
-                        <option value="perceptive">Perceptive (+1 Perception, +1 Skill)</option>
-                        <option value="strong_will">Strong Will (+1 Will, +1 Skill)</option>
-                        <option value="strong_personality">Strong Personality (+1 Ego, +1 Skill)</option>
+                        <option value="acrobat">Acrobat (+2 Dodge, +1 Skill)</option>
+                        <option value="bodybuilder">Bodybuilder (+2 Fortitdue, +1 Skill)</option>
+                        <option value="healthy">Healthy(+2 Health, +1 Skill)</option>
+                        <option value="perceptive">Perceptive (+2 Perception, +1 Skill)</option>
+                        <option value="strong_will">Strong Will (+2 Willpower, +1 Skill)</option>
+                        <option value="strong_personality">Strong Personality (+2 Ego, +1 Skill)</option>
                      </select>
                    </div>
                </div>
@@ -2962,14 +2969,26 @@
     });
   });
 
+  // function to find the next step up in inventory
+  const inventory_dex_ranks = [3, 4, 6, 9, 13, 16, 18, 100];
+  function inventory_dex (dex_score, extra_inventory )
+  {
+    const base_inventory_rank = inventory_dex_ranks.findIndex(rank => dex_score <= rank);
+    var effective_rank = base_inventory_rank + extra_inventory;
+    if ((effective_rank+1) >= inventory_dex_ranks.length) {
+      effective_rank = inventory_dex_ranks.length -2;
+    }
+    return inventory_dex_ranks[effective_rank];
+  };
+
   // Ability modifiers
   const raceMods = { Human: "", Dwarf: "constitution", Halfling: "dexterity", Elven : "charisma:intelligence:dexterity" };
   const abilityNames = ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom'];
   const bonusNames = [ 'strength_bonus', 'dexterity_bonus', 'constitution_bonus', 'intelligence_bonus', 'wisdom_bonus', 'charisma_bonus' ];
   const armor_dex_mod_penalty = {'none': 0, 'padded': 0, 'leather': 0, 'studded_leather': 0, 'scale': 0, 'chain': 0, 'chainshirt':0, 'half_plate': -1, 'plate': -2};
   abilityNames.forEach( ability => {
-    on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:perk_skill_points change:armor change:${ability} change:${ability}_bonus`, () => {
-          getAttrs([ability, ...bonusNames, 'armor', 'class', 'class2', 'race', 'level', 'level2', 'skill_points', 'perk_skill_points'], v => {
+    on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:perk_skill_points change:perk_inventory_mod change:armor change:${ability} change:${ability}_bonus`, () => {
+          getAttrs([ability, ...bonusNames, 'armor', 'class', 'class2', 'race', 'level', 'level2', 'skill_points', 'perk_skill_points', 'perk_inventory_mod'], v => {
               const setting = {};
 
               const ability_bonus_name = `${ability}_bonus`;
@@ -3074,6 +3093,7 @@
               if (ability === 'dexterity') {
                 const base_dex_mod = setting[ability_mod];
                 const base_dex_f = parseFloat(v[ability]) * 0.01;
+                const perk_inventory_mod = parseInt(v['perk_inventory_mod']) || 0;
 
                 setting["initiative"] = base_dex_mod;
                 setting["init_extra"] = base_dex_f;
@@ -3084,7 +3104,7 @@
                 setting["ranged_ab"] = ranged_ab + (race === 'Halfling' ? 1 : 0);
 
                 // for ready inventory slots
-                setting["dex-show-slots"] = score;
+                setting["dex-show-slots"] = inventory_dex(score, perk_inventory_mod);
               }
 
               if (ability === 'strength') {
@@ -3127,17 +3147,23 @@
 
   // update ability modifiers
   const abilityCheck = { strength_mod: "fortitude", dexterity_mod: "dodge", constitution_mod: "health", intelligence_mod: "perception", wisdom_mod: "willpower", charisma_mod: "ego" };
+  const perkAbility = { strength_mod: "perk_fortitude", dexterity_mod: "perk_dodge", constitution_mod: "perk_health", intelligence_mod: "perk_perception", wisdom_mod: "perk_willpower", charisma_mod: "perk_ego" };
   ['charisma_mod', 'constitution_mod', 'dexterity_mod', 'intelligence_mod', 'strength_mod', 'wisdom_mod', 'charisma_mod'].forEach(ability_mod => {
-    on(`sheet:opened change:level change:level2 change:perk_languages change:${ability_mod}`, () => {
-      getAttrs([ability_mod, 'level', 'level2', 'perk_languages'], v => {
+    on(`sheet:opened change:level change:level2 change:perk_fortitude change:perk_dodge change:perk_health change:perk_perception change:perk_willpower change:perk_ego
+        change:perk_languages change:${ability_mod}`, () => {
+
+      const perk_ability_mod = perkAbility[ability_mod];
+
+      getAttrs([perk_ability_mod, ability_mod, 'level', 'level2', 'perk_languages'], v => {
         const setting = {};
         const score = parseInt(v[ability_mod]) || 0;
+        const perk_score = parseInt(v[perk_ability_mod]) || 0;
         const level = parseInt(v.level) || 1;
         const level2 = parseInt(v.level2) || 0;
         const perk_languages = parseInt(v.perk_languages) || 0;
 
         const checkName = abilityCheck[ability_mod];
-        setting[checkName] = score + parseInt((level+level2)/2);
+        setting[checkName] = score + parseInt((level+level2)/2) + perk_score;
 
         // set healing rate
         if (ability_mod === 'constitution_mod') {
@@ -3509,22 +3535,63 @@
         settings['perks_overspent'] = perks_used > max_perks ? 0 : 1;
         settings['perks_underspent'] = perks_used < max_perks ? 0 : 1;
 
+        var extra_dodge = 0;
+        var extra_fortitude = 0;
+        var extra_health = 0;
+        var extra_perception = 0;
+        var extra_willpower = 0;
+        var extra_ego = 0;
+
         var extra_known_languages = 0;
+        var extra_inventory = 0;
         var extra_skill_points = 0;
         var sneak_attack_enabled = 0;
 
         ids.forEach(id => {
           const type = values['repeating_perks_' + id + '_perk_type'];
-          console.log("PERK TYPE:"+type);
 
           // add up additional perk-based skill points
-          if (type === 'assasin')
+          if (type === 'assassin')
           {
              sneak_attack_enabled = 1;
              extra_skill_points += 1;
           }
-          else
-          if (type === 'skilled')
+          else if (type === 'packer')
+          {
+             extra_inventory += 1;
+             extra_skill_points += 1;
+          }
+          else if (type === 'acrobat')
+          {
+            extra_dodge += 2;
+            extra_skill_points += 1;
+          }
+          else if (type === 'bodybuilder')
+          {
+            extra_fortitude += 2;
+            extra_skill_points += 1;
+          }
+          else if (type === 'healthy')
+          {
+            extra_health += 2;
+            extra_skill_points += 1;
+          }
+          else if (type === 'perceptive')
+          {
+            extra_perception += 2;
+            extra_skill_points += 1;
+          }
+          else if (type === 'strong_will')
+          {
+            extra_willpower += 2;
+            extra_skill_points += 1;
+          }
+          else if (type === 'strong_personality')
+          {
+            extra_ego += 2;
+            extra_skill_points += 1;
+          }
+          else if (type === 'skilled')
           {
             extra_skill_points += 3;
           }
@@ -3535,13 +3602,23 @@
           }
           else
           {
-            extra_skill_points += 1;
+            console.log("ERROR: Unimpleented Perk! "+type);
           }
 
         });
 
+
+        settings['perk_dodge'] = extra_dodge;
+        settings['perk_fortitude'] = extra_fortitude;
+        settings['perk_health'] = extra_health;
+        settings['perk_perception'] = extra_perception;
+        settings['perk_willpower'] = extra_willpower;
+        settings['perk_ego'] = extra_ego;
+
         settings['perk_skill_points'] = extra_skill_points;
         settings['perk_languages'] = extra_known_languages;
+        settings['perk_inventory_mod'] = extra_inventory;
+
         settings['sneak_attack_enabled'] = sneak_attack_enabled;
         settings['sneak_attack_checkbox'] = sneak_attack_enabled;
 
