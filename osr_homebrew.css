@@ -895,6 +895,7 @@ input.sheet-skillname {
 input.sheet-max-copts-value-exceeded[value="0"]:checked ~ span.sheet-max-copts-value-exceeded-notify,
 input.sheet-max-prof-value-exceeded[value="0"]:checked ~ span.sheet-max-prof-value-exceeded-notify,
 input.sheet-max-skill-value-exceeded[value="0"]:checked ~ span.sheet-max-skill-value-exceeded-notify,
+input.sheet-max-perks-overspent[value="0"]:checked ~ label.sheet-max-perks-exceeded-notify,
 input.sheet-move-rate-stop[value="0"]:checked ~ span.sheet-move-rate-stop-notify,
 input.sheet-skill-points-overspent[value="0"]:checked ~ span.sheet-skill-points-overspend-notify
 {
@@ -918,6 +919,7 @@ input.sheet-move-rate-heavy-enc[value="0"]:checked ~ span.sheet-move-rate-heavy-
 }
 
 input.sheet-skill-points-underspent[value="0"]:checked ~ span.sheet-skill-points-underspent-notify,
+input.sheet-perks-underspent[value="0"]:checked ~ label.sheet-perks-underspent-notify,
 input.sheet-copts-value-underspent[value="0"]:checked ~ span.sheet-copts-value-underspent-notify,
 input.sheet-prof-value-underspent[value="0"]:checked ~ span.sheet-prof-value-underspent-notify
 {
@@ -1026,11 +1028,19 @@ input.sheet-can-cast-magic:checked ~ div.sheet-show-spellbook
   display: block;
 }
 
-.sheet-spells .repitem {
+.sheet-perks .repitem {
+    width: 32.9%;
     margin: 0;
-    width: 49.8%;
     display: block;
 }
+
+.sheet-spells .repitem {
+    width: 49.8%;
+    margin: 0;
+    display: block;
+}
+
+.sheet-perkcontainer,
 .sheet-spellcontainer {
     display: flex;
     flex-wrap: wrap;
@@ -1041,11 +1051,27 @@ input.sheet-can-cast-magic:checked ~ div.sheet-show-spellbook
     justify-content: flex-start;
     align-content: start;
 }
+
+.sheet-perks .repcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .sheet-spells .repcontainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+.sheet-perk-name,
+select.sheet-perk-name
+{
+    width: 100%;
+    font-weight: bold;
+		text-align: left;
+}
+
 .sheet-spell-name {
     width: 40%;
     font-weight: bold;
@@ -1057,7 +1083,7 @@ input.sheet-can-cast-magic:checked ~ div.sheet-show-spellbook
 .sheet-spell-range {
 	text-align: left;
 }
-k
+
 .sheet-spell-dice {
     width: 10%;
     font-weight: bold;
