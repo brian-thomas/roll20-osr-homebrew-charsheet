@@ -1420,7 +1420,7 @@
                   <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_berserk_attack" value="1"/>
                   <span class="ability-check-label sheet-flex-between">Berserk</span>
                   <div class="sheet-block">
-                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB +3+Fghtr/4, Dam +3+Fghtr/4, No retreating, Will to Stop, AC penalty)</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2+Fghtr/4, Dam+2+Fghtr/4, No retreating, Will to Stop, AC penalty)</span>
                   </div>
                 </div>
 
@@ -3292,7 +3292,7 @@
 
       if (is_fighter) {
         const fighter_level = (c_class === 'fighter' ? level : level2);
-        setting['berserk_attack_mod'] = 3 + parseInt(fighter_level/4)
+        setting['berserk_attack_mod'] = 2 + parseInt(fighter_level/4)
         setting['max_cmbt_opts_allowed'] = 1 + parseInt(fighter_level/2);
         setting['max_prof_allowed'] = 3 + fighter_level;
       } else if (is_specialist) {
