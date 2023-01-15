@@ -147,10 +147,9 @@
                 </div>
                 <div class="block padding center">
                   <div class="sheet-block sheet-padding sheet-center">
-                    <input name="attr_init_extra" type="number" hidden="true" value="0"/>
-                    <input class="sheet-npc-ability-value-wide" name="attr_initiative" type="number" value="0"/>
+                    <input class="sheet-npc-ability-value-wide" name="attr_initiative_bonus" type="number" value="0"/>
                     <button type="roll" class="sheet-npc-ability-button" name="roll_initiative"
-                            value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} + @{init_extra} [Initiative Mod] &{tracker} ]]}}">
+                            value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative_bonus} [Initiative Mod] &{tracker} ]]}}">
                             Init.
                     </button>
                   </div>
@@ -180,7 +179,6 @@
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=DEX Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{dexterity_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{dexterity_mod}]]}}">
                     <span class="bold-font npc-text">DEX</span>
                   </button>
-                  <input class="npc-ability-value" name="attr_perk_inventory_mod" type="number" value="0" hidden="true"/>
                   <input class="npc-ability-value" name="attr_dexterity" type="number" value="10"/>
                   <button class="blank-roll-button narrow-button" type="roll" name="roll_dodge"
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dodge Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{dodge} + @{dodge_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{dodge}]] + [[@{dodge_bonus}]] ]]}}">
@@ -231,7 +229,7 @@
                 <div class="block center">
                   <button class="blank-roll-button narrow-button" type="roll" name="roll_cha_check"
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=CHA Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{charisma_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{charisma_mod}]]}}">
-                    <span class="bold-font">CHA</span>
+                    <span class="bold-font npc-text">CHA</span>
                   </button>
                   <input class="npc-ability-value" name="attr_charisma" type="number" value="10"/>
                   <button class="blank-roll-button narrow-button" type="roll" name="roll_ego"
@@ -880,6 +878,7 @@
                     <span class="ability-check-bonus-label">bonus</span>
                     <input type="number" name="attr_dexterity_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
                   </div>
+                  <input name="attr_perk_inventory_mod" type="number" value="0" hidden="true"/>
                   <div class="sheet-ability-column-modifier sheet-flex-between">
                     <input name="attr_dexterity_mod" type="number" value="0" class="sheet-ability-modifier inactive-color" readonly="true"/>
                     <span class="noborder left-pad">Ranged AB, Dodge, AC, Initiative, Stealth</span>
@@ -1334,9 +1333,8 @@
               <div class="sheet-ability-column-value">
                 <div class="sheet-thin-border sheet-flex left-pad">
       	           <button type="roll" class="sheet-initiative" name="roll_initiative"
-      			               value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative} + @{init_extra} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
-                  <input name="attr_init_extra" type="number" hidden="true" value="0"/>
-                  <input class="ability-check-value-wide inactive-color" name="attr_initiative" type="number" step="0.01" value="0" readonly="true"/>
+      			               value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative_bonus} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
+                  <input class="ability-check-value-wide inactive-color" name="attr_initiative_bonus" type="number" step="0.01" value="0" readonly="true"/>
                 </div>
                 <span class="ability-check-label">Initiative Bonus</span>
               </div>
@@ -3095,8 +3093,7 @@
                 const base_dex_f = parseFloat(v[ability]) * 0.01;
                 const perk_inventory_mod = parseInt(v['perk_inventory_mod']) || 0;
 
-                setting["initiative"] = base_dex_mod;
-                setting["init_extra"] = base_dex_f;
+                setting["initiative_bonus"] = base_dex_mod + base_dex_f;
                 setting["ranged_base_ab"] = base_dex_mod;
 
                 var ranged_ab = base_dex_mod + 1 + (c_class === 'fighter' ? parseInt((level+1)/2) : (c_class2 === 'fighter' ? parseInt((level2+1)/2) : 0));
