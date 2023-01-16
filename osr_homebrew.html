@@ -2,7 +2,7 @@
 <input class="monster_confirm_flag" name="attr_monster_confirm_flag" type="hidden"/>
 <input class="mancer_confirm_flag" name="attr_mancer_confirm_flag" type="hidden"/>
 <input class="licensedsheet" name="attr_licensedsheet" type="hidden"/>
-<div class="licensecontainer compendium-drop-target monsters spells items" data-licensedsheet="attr_licensedsheet">
+<div class="licensecontainer compendium-drop-target monsters" data-licensedsheet="attr_licensedsheet">
 
   <span class="small-font">NPC</span>
   <input type="checkbox" class="sheet-is_npc" name="attr_npc" value="1" checked="True"/>
@@ -61,6 +61,8 @@
   <input type="hidden" name="attr_drop_spell_school" accept="School"/>
   <input type="hidden" name="attr_drop_spell_target" accept="Target"/>
   <!-- END COMPENDIUM DROP CATCHERS -->
+
+  <div class="compendium_warning"><span data-i18n="accepting-drop-u">ACCEPTING DROP FROM COMPENDIUM</span></div>
 
   <div class="sheet-section-npc">
     <div class="block padding npc">
@@ -4149,7 +4151,9 @@
    });
 */
 
-  on("change:drop_category", function(eventinfo) {
+  on("change:drop_category", function(eventinfo)
+  {
+
     console.debug("Drop category reached:"+eventinfo+" "+eventinfo.newValue);
     if(eventinfo.newValue === "Monsters") {
       console.debug("Drop monster reached")
@@ -4751,7 +4755,7 @@
                            + v.drop_content;
 
         console.log("Handle Drop Spell called:"+v.drop_name);
-        
+
         console.log(" data:"+v.drop_data);
         console.log(" properites:"+v.drop_properties);
 
@@ -4789,6 +4793,9 @@
     drop_item_attrs.forEach((key, i) => update[key] = "");
     drop_monster_attrs.forEach((key, i) => update[key] = "");
     drop_spell_attrs.forEach((key, i) => update[key] = "");
+
+    // clear this so next drop will trigger
+    update["drop_category"] = "";
 
     setAttrs(update, {silent: true});
   };

@@ -153,6 +153,59 @@ span.sheet-bold-font
 	width: 450px;
 }
 
+.sheet-licensecontainer.active-drop-target.dropping,
+.sheet-monster_confirm_flag[value="1"] ~ .sheet-licensecontainer,
+.sheet-mancer_confirm_flag[value="1"] ~ .sheet-licensecontainer {
+  opacity: 0.5;
+  -o-transition: opacity .15s ease-in-out;
+  transition: opacity .15s ease-in-out;
+  -moz-transition: opacity .15s ease-in-out;
+  -webkit-transition: opacity .15s ease-in-out;
+  background-color: transparent; }
+
+.sheet-compendium_warning,
+.sheet-monster_confirm,
+.sheet-mancer_confirm
+{
+  display: none;
+}
+
+.sheet-licensecontainer.active-drop-target.dropping ~ .sheet-compendium_warning,
+.sheet-monster_confirm_flag[value="1"] ~ .sheet-monster_confirm,
+.sheet-mancer_confirm_flag[value="1"] ~ .sheet-mancer_confirm {
+  display: block;
+  position: fixed;
+  top: 50%;
+  background: white;
+  left: 50%;
+  z-index: 100;
+  border: 2px solid black;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+  margin: -70px 0 0 -170px; }
+
+.sheet-licensecontainer.active-drop-target.dropping ~ .sheet-compendium_warning span
+{
+  line-height: 100px;
+}
+
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-compendium_warning,
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-monster_confirm,
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-mancer_confirm {
+  position: absolute !important;
+  padding: 2em 0 !important;
+  min-height: -webkit-max-content;
+  min-height: -moz-max-content;
+  min-height: max-content;
+  -webkit-box-shadow: 0 0 50px #000;
+  box-shadow: 0 0 50px #000;
+  border: 2px solid #000 !important;
+  border-radius: .5em; }
+
+
+
+
 .sheet-npc-trait-name,
 .sheet-npc-trait-attack-info,
 label.sheet-npc-trait-name,
