@@ -2,7 +2,7 @@
 <input class="monster_confirm_flag" name="attr_monster_confirm_flag" type="hidden"/>
 <input class="mancer_confirm_flag" name="attr_mancer_confirm_flag" type="hidden"/>
 <input class="licensedsheet" name="attr_licensedsheet" type="hidden"/>
-<div class="licensecontainer compendium-drop-target monsters" data-licensedsheet="attr_licensedsheet">
+<div class="licensecontainer compendium-drop-target monsters spells items" data-licensedsheet="attr_licensedsheet">
 
   <span class="small-font">NPC</span>
   <input type="checkbox" class="sheet-is_npc" name="attr_npc" value="1" checked="True"/>
@@ -35,6 +35,8 @@
   <input type="hidden" name="attr_drop_languages" accept="Languages"/>
   <input type="hidden" name="attr_drop_challenge_rating" accept="Challenge Rating"/>
 
+  <input type="hidden" name="attr_drop_data" accept="data"/>
+
   <input type="hidden" name="attr_drop_size" accept="Size"/>
   <input type="hidden" name="attr_drop_type" accept="Type"/>
   <input type="hidden" name="attr_drop_alignment" accept="Alignment"/>
@@ -44,6 +46,20 @@
   <input type="hidden" name="attr_drop_passive_perception" accept="Passive Perception"/>
   <input type="hidden" name="attr_drop_skills" accept="Skills"/>
   <input type="hidden" name="attr_drop_token_size" accept="Token Size"/>
+
+  <!-- spells need these -->
+  <input type="hidden" name="attr_drop_level" accept="Level"/>
+  <input type="hidden" name="attr_drop_spell_castingtime" accept="Casting Time"/>
+  <input type="hidden" name="attr_drop_spell_concentration" accept="Concentration"/>
+  <input type="hidden" name="attr_drop_spell_components" accept="Components"/>
+  <input type="hidden" name="attr_drop_spell_duration" accept="Duration"/>
+  <input type="hidden" name="attr_drop_spell_healamount" accept="Healing"/>
+  <input type="hidden" name="attr_drop_spell_range" accept="Range"/>
+  <input type="hidden" name="attr_drop_spell_ritual" accept="Ritual"/>
+  <input type="hidden" name="attr_drop_spell_savestat" accept="Save"/>
+  <input type="hidden" name="attr_drop_spell_savesuccess" accept="Save Success"/>
+  <input type="hidden" name="attr_drop_spell_school" accept="School"/>
+  <input type="hidden" name="attr_drop_spell_target" accept="Target"/>
   <!-- END COMPENDIUM DROP CATCHERS -->
 
   <div class="sheet-section-npc">
@@ -681,7 +697,7 @@
        <span class="sheet-spacer">&nbsp;</span>
        <div class="thin-border block padding">
          <h3>Notes</h3>
-         <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
+         <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes" accept="data"></textarea>
        </div>
      </div>
 
@@ -2111,8 +2127,8 @@
                  </select>
                  <input name="attr_adhoc_dc" value="0" hidden="true"/>
                  <span class="sheet-left-pad">Dice:</span>
-                 <input type="text" class="sheet-info1 sheet-align-right sheet-spell-dice" name="attr_spell_dice" value="">
-                 <input type="checkbox" name="attr_is_dice_spell" class="sheet-is-dice-spell" value="1" hidden="True">
+                 <input type="text" class="sheet-info1 sheet-align-right sheet-spell-dice" name="attr_spell_dice" value=""/>
+                 <input type="checkbox" name="attr_is_dice_spell" class="sheet-is-dice-spell" value="1" hidden="True"/>
                  <div class="sheet-dice-spell">
                    <div class="sheet-flex save-col center centered-label">
                      <button class="sheet-cast-button sheet-orange-border" type="roll" name="roll_cast_spell"
@@ -3476,7 +3492,9 @@
   });
 
   // Keep spells up to date
-  on(`change:repeating_spells change:arcana_skill change:arcana_bonus change:class change:class2 change:spell_dice` , function () {
+  on(`change:repeating_spells change:arcana_skill change:arcana_bonus change:class change:class2 change:spell_dice` , function () { update_spells(); });
+
+  function update_spells() {
     getSectionIDs('repeating_spells', function (ids) {
       const fieldnames = [];
       ids.forEach(id => {
@@ -3512,7 +3530,7 @@
         setAttrs(settings);
       });
     });
-  });
+  };
 
   // Keep perks up to date
   on(`change:repeating_perks remove:repeating_perks change:class change:class2 change:level change:level2` , function () {
@@ -4132,35 +4150,51 @@
 */
 
   on("change:drop_category", function(eventinfo) {
-    console.debug("Drop category reached:"+eventinfo);
+    console.debug("Drop category reached:"+eventinfo+" "+eventinfo.newValue);
     if(eventinfo.newValue === "Monsters") {
       console.debug("Drop monster reached")
       handle_drop_monster(eventinfo.newValue);
     }
+    else
+    if(eventinfo.newValue === "Items") {
+      console.debug("Drop items (to inventory) reached")
+    }
+    else
+    if(eventinfo.newValue === "Spells") {
+      console.debug("Drop spells (to spellbook) reached")
+      handle_drop_spell(eventinfo.newValue);
+    }
+
   });
+
+  const drop_monster_attrs = ["drop_name","drop_weight","drop_properties",
+                "drop_modifiers","drop_content","drop_itemtype",
+                "drop_damage","drop_damagetype","drop_damage2",
+                "drop_damagetype2","drop_range","drop_ac",
+                "drop_speed", "drop_str", "drop_dex", "drop_con",
+                "drop_int", "drop_wis", "drop_cha",
+                "drop_vulnerabilities", "drop_resistances",
+                "drop_immunities", "drop_condition_immunities",
+                "drop_languages", "drop_challenge_rating", "drop_size",
+                "drop_type", "drop_alignment", "drop_hp",
+                "drop_saving_throws", "drop_senses",
+                "drop_passive_perception", "drop_skills",
+//                    "drop_spellcasting_ability",
+                "drop_token_size", "character_id"];
 
   var handle_drop_monster = function(category, eventinfo) {
       var callbacks = [];
       var update = {};
       var id = generateRowID();
 
-      drop_attrs = ["drop_name","drop_weight","drop_properties",
-                    "drop_modifiers","drop_content","drop_itemtype",
-                    "drop_damage","drop_damagetype","drop_damage2",
-                    "drop_damagetype2","drop_range","drop_ac",
-                    "drop_speed", "drop_str", "drop_dex", "drop_con",
-                    "drop_int", "drop_wis", "drop_cha",
-                    "drop_vulnerabilities", "drop_resistances",
-                    "drop_immunities", "drop_condition_immunities",
-                    "drop_languages", "drop_challenge_rating", "drop_size",
-                    "drop_type", "drop_alignment", "drop_hp",
-                    "drop_saving_throws", "drop_senses",
-                    "drop_passive_perception", "drop_skills",
-//                    "drop_spellcasting_ability",
-                    "drop_token_size", "character_id"]
+      if(category === "Monsters") {
+        getAttrs([...drop_monster_attrs, "npc"], function(v) {
 
-      getAttrs(drop_attrs, function(v) {
-        if(category === "Monsters") {
+             if (v.npc == "0") {
+               console.log("CANNOT overwrite PC with NPC creature, ignoring drop");
+             } else {
+
+
              update["npc"] = "1";
              if(v["drop_name"] && v["drop_name"] != "") {
                update["character_name"] = v["drop_name"];
@@ -4656,49 +4690,107 @@
 
               }
 
-            };
+               // persist new monster/creature/npc
+               setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
+             }
 
-            callbacks.push( function() {cleanup_drop_fields();} );
-            setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
-         });
+             // cleanup and persist
+             callbacks.push( function() {cleanup_drop_fields();} );
+           });
+        };
      };
 
-     var cleanup_drop_fields = function() {
-          var update = {};
-          update["drop_name"] = "";
-          update["drop_weight"] = "";
-          update["drop_properties"] = "";
-          update["drop_modifiers"] = "";
-          update["drop_content"] = "";
-          update["drop_itemtype"] = "";
-          update["drop_damage"] = "";
-          update["drop_damagetype"] = "";
-          update["drop_range"] = "";
-          update["drop_ac"] = "";
-          update["drop_category"] = "";
-          update["drop_speed"] = "";
-          update["drop_str"] = "";
-          update["drop_dex"] = "";
-          update["drop_con"] = "";
-          update["drop_int"] = "";
-          update["drop_wis"] = "";
-          update["drop_cha"] = "";
-          update["drop_vulnerabilities"] = "";
-          update["drop_resistances"] = "";
-          update["drop_immunities"] = "";
-          update["drop_condition_immunities"] = "";
-          update["drop_languages"] = "";
-          update["drop_challenge_rating"] = "";
-          update["drop_size"] = "";
-          update["drop_type"] = "";
-          update["drop_alignment"] = "";
-          update["drop_hp"] = "";
-          update["drop_saving_throws"] = "";
-          update["drop_senses"] = "";
-          update["drop_passive_perception"] = "";
-          update["drop_skills"] = "";
-          update["drop_token_size"] = "";
-          setAttrs(update, {silent: true});
-      };
+
+
+  const drop_item_attrs = ["drop_name","drop_level","drop_properties",
+                           "drop_content", "drop_data"];
+
+  var handle_drop_item = function(category, eventinfo) {
+    var callbacks = [];
+    var update = {};
+    var id = generateRowID();
+
+    if(category === "Items") {
+      getAttrs(drop_item_attrs, function(v) {
+        console.log("Handle Drop Item called:"+v.drop_name);
+
+        // do something
+
+        // clean up and persist new spell
+        callbacks.push( function() {cleanup_drop_fields();} );
+        setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
+      });
+    }
+  };
+
+  const drop_spell_attrs = ["drop_name","drop_level","drop_properties",
+                    "drop_damage", "drop_content",
+                    "drop_spell_castingtime", "drop_spell_concentration",
+                    "drop_spell_components", "drop_spell_duration",
+                    "drop_spell_healamount", "drop_spell_range",
+                    "drop_spell_ritual", "drop_spell_savestat",
+                    "drop_spell_savesuccess", "drop_spell_school",
+                    "drop_spell_target"];
+
+  var handle_drop_spell = function(category, eventinfo) {
+    var callbacks = [];
+    var update = {};
+    var id = generateRowID();
+
+    if(category === "Spells") {
+      getAttrs(drop_spell_attrs, function(v) {
+        const spell_name = v.drop_name;
+        const spell_damage = v.drop_damage;
+        const spell_healamount = v.drop_spell_healamount;
+        const spell_castingtime = v.drop_spell_castingtime;
+        const spell_components = v.drop_spell_components;
+        const spell_range = v.drop_spell_range;
+        const spell_target = v.drop_spell_target;
+        const spell_desc = "Components: "+spell_components +"\n" + "Casting Time: "+ spell_castingtime + "\n"
+                           + "Range: " + spell_range + "\n" + "Target: " + spell_target + "\n\n"
+                           + v.drop_content;
+
+        console.log("Handle Drop Spell called:"+v.drop_name);
+        
+        console.log(" data:"+v.drop_data);
+        console.log(" properites:"+v.drop_properties);
+
+        var newrowid = generateRowID();
+        update["repeating_spells_" + newrowid + "_spellname"] = spell_name;
+        update["repeating_spells_" + newrowid + "_spelllevel"] = parseInt(v.drop_level) || 1;
+        update["repeating_spells_" + newrowid + "_spelldescription"] = spell_desc;
+
+        if (spell_damage !== "") {
+          update["repeating_spells_" + newrowid + "_spell_dice"] = spell_damage;
+        }
+        else
+        if (spell_healamount !== "") {
+          update["repeating_spells_" + newrowid + "_spell_dice"] = spell_healamount;
+        }
+
+        console.debug("content: "+v.drop_content);
+        console.debug("properities: "+v.drop_properties);
+        console.debug("data: "+v.drop_data);
+
+        // set callbacks to update new spells and clean up
+        callbacks.push( function() { update_spells();} );
+        callbacks.push( function() { cleanup_drop_fields();} );
+
+        // persist new attributes
+        setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
+
+      });
+    }
+  };
+
+  var cleanup_drop_fields = function() {
+
+    var update = {};
+    drop_item_attrs.forEach((key, i) => update[key] = "");
+    drop_monster_attrs.forEach((key, i) => update[key] = "");
+    drop_spell_attrs.forEach((key, i) => update[key] = "");
+
+    setAttrs(update, {silent: true});
+  };
 
 </script>
