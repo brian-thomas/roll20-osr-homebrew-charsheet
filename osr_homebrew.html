@@ -1552,13 +1552,18 @@
         <div class="sheet-bottom-padding"><h4 class="bold-font">Attacks</h4></div>
         <div class="sheet-thin-border padding">
           <div class="sheet-flex center">
-            <input type="checkbox" class="sheet-max-prof-value-exceeded" name="attr_max_prof_exceeded" value="0" hidden="true" checked="true"/>
+            <input type="checkbox" class="sheet-max-prof-value-exceeded" name="attr_max_prof_numb_exceeded" value="0" hidden="true" checked="true"/>
             <span class="max-prof-value-exceeded-notify med-font italic-font">Weapon Proficiencies Allowed:
               <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_prof_allowed" value="0" readonly="true"/>
             </span>
             <input type="checkbox" class="sheet-prof-value-underspent" name="attr_prof_underspent" value="0" hidden="true" checked="true"/>
             <span class="sheet-prof-value-underspent-notify med-font italic-font">Weapon Proficiencies Used:
-             <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_prof_used" value="0" readonly="true"/>
+              <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_prof_used" value="0" readonly="true"/>
+            </span>
+            <input type="checkbox" class="sheet-max-prof-level-exceeded" name="attr_max_prof_level_exceeded" value="0" hidden="true" checked="true"/>
+            <span class="max-prof-level-exceeded-notify med-font italic-font">Max Weapon Prof:
+              <input type="number" name="attr_max_prof_level_allowed" value="0" hidden="true"/>
+              <input type="text" class="sheet-inactive-color no-border align-left" name="attr_max_prof_level_name" value="Skilled" readonly="true"/>
             </span>
           </div>
           <div class="sheet-flex">
@@ -3266,6 +3271,8 @@
 ;
   }
 
+  const prof_names = ['Unskilled', 'Skilled', 'Proficient', 'Master', 'Grand Master'];
+
   // General Class/Level stuff
   on(`sheet:opened change:class change:class2 change:level change:level2 change:race change:xp`, () => {
     getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race', 'xp' ], v => {
@@ -3356,6 +3363,8 @@
 
       setting['max_cmbt_opts_allowed'] = 0;
       setting['max_prof_allowed'] = 1;
+      setting['max_prof_level_allowed'] = 1;
+      setting['max_prof_level_name'] = prof_names[1];
 
       setting['berserk_attack_mod'] = 0;
       setting['charge_attack'] = is_fighter ? 1 : 0;
@@ -3368,6 +3377,10 @@
         setting['berserk_attack_mod'] = 2 + parseInt(fighter_level/4)
         setting['max_cmbt_opts_allowed'] = 1 + parseInt(fighter_level/2);
         setting['max_prof_allowed'] = 3 + fighter_level;
+        const max_prof_level = fighter_level > 4 ? 4 : fighter_level;
+        setting['max_prof_level_allowed'] = max_prof_level;
+        setting['max_prof_level_name'] = prof_names[max_prof_level];
+
       } else if (is_specialist) {
         const specialist_level = (c_class === 'specialist' ? level : level2);
         setting['max_prof_allowed'] = 3;
@@ -3709,8 +3722,8 @@
           });
 
           getAttrs([...fieldnames, ...combatOpts, 'melee_ab', 'melee_base_ab', 'unarmed_ab', 'unarmed_base_ab',
-                    'ranged_ab', 'ranged_base_ab', 'max_cmbt_opts_allowed', 'max_prof_allowed', 'spellcasting_mod',
-                    'sneak_attack_enabled', 'sneak_attack_dice'], function (values) {
+                    'ranged_ab', 'ranged_base_ab', 'max_cmbt_opts_allowed', 'max_prof_allowed', 'max_prof_level_allowed',
+                    'spellcasting_mod', 'sneak_attack_enabled', 'sneak_attack_dice'], function (values) {
               var output = {};
 
               const melee_ab = parseInt(values.melee_ab) || 0;
@@ -3724,6 +3737,7 @@
 
               const max_cmbt_opts_allowed = parseInt(values.max_cmbt_opts_allowed) || 0;
               const max_prof_allowed = parseInt(values.max_prof_allowed) || 0;
+              const max_prof_level_allowed = parseInt(values.max_prof_level_allowed) || 0;
 
               const sneak_dice = parseInt(values.sneak_attack_dice) || 0;
               const berserk_attack = parseInt(values.berserk_attack) || 0;
@@ -3773,6 +3787,7 @@
               output['max_cmbt_opts_exceeded'] = cmbt_opts_used > max_cmbt_opts_allowed ? 0 : 1;
               output['cmbt_opts_underspent'] = cmbt_opts_used < max_cmbt_opts_allowed ? 0 : 1;
 
+              var max_prof_level_used = 0;
               var proficiencies_used = 0;
               ids.forEach(id => {
 
@@ -3783,6 +3798,10 @@
                   const attack_attk_type = values['repeating_attacks_' + id + '_attack_attk_type'];
                   // const attack_bonus = parseInt(values['repeating_attacks_' + id + '_attack_bonus']);
                   var attack_proficiency_level = parseInt(values['repeating_attacks_' + id + '_attack_proficiency_level']) || 0;
+
+                  if (attack_proficiency_level > max_prof_level_used) {
+                    max_prof_level_used = attack_proficiency_level;
+                  }
 
                   proficiencies_used += attack_proficiency_level;
 
@@ -3924,7 +3943,8 @@
 
               // do proficiency warning now
               output['prof_used'] = proficiencies_used;
-              output['max_prof_exceeded'] = proficiencies_used > max_prof_allowed ? 0 : 1;
+              output['max_prof_level_exceeded'] = max_prof_level_used > max_prof_level_allowed ? 0 : 1;
+              output['max_prof_numb_exceeded'] = proficiencies_used > max_prof_allowed ? 0 : 1;
               output['prof_underspent'] = proficiencies_used < max_prof_allowed ? 0 : 1;
 
               setAttrs(output);

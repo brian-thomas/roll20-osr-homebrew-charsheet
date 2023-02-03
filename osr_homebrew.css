@@ -597,8 +597,7 @@ select.sheet-info-name-med-sm
 	margin-bottom: 11px;
 }
 
-.sheet-info-name-tiny,
-input[type=text].sheet-info-name-tiny
+.sheet-info-name-tiny
 {
 	text-align: left;
 	width: 8px;
@@ -947,6 +946,7 @@ input.sheet-skillname {
 
 input.sheet-max-copts-value-exceeded[value="0"]:checked ~ span.sheet-max-copts-value-exceeded-notify,
 input.sheet-max-prof-value-exceeded[value="0"]:checked ~ span.sheet-max-prof-value-exceeded-notify,
+input.sheet-max-prof-level-exceeded[value="0"]:checked ~ span.sheet-max-prof-level-exceeded-notify,
 input.sheet-max-skill-value-exceeded[value="0"]:checked ~ span.sheet-max-skill-value-exceeded-notify,
 input.sheet-max-perks-overspent[value="0"]:checked ~ label.sheet-max-perks-exceeded-notify,
 input.sheet-move-rate-stop[value="0"]:checked ~ span.sheet-move-rate-stop-notify,
