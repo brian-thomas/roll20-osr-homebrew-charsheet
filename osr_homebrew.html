@@ -3268,7 +3268,7 @@
 
   // General Class/Level stuff
   on(`sheet:opened change:class change:class2 change:level change:level2 change:race change:xp`, () => {
-    getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race', 'xp'], v => {
+    getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race', 'xp' ], v => {
       const c_align = v.alignment.trim();
       const c_class = v.class.trim();
       const c_class2 = v.class2.trim();
@@ -3291,8 +3291,8 @@
       setting['next_level_xp'] = next_level_xp;
       setting['next_level_up'] = next_level_xp <= xp ? 0 : 1;
 
-      // hitdice - TODO : not quite right
-      // setting['hit_dice'] = level + level2;
+      // hitdice - : not quite right, if they change level its reset..
+      setting['hit_dice'] =  level + level2;
       setting['hit_dice_max'] = level + level2;
 
       // deal with sneak attack stuff
