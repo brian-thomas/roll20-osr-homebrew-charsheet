@@ -458,7 +458,7 @@ select.side-padding
 	flex-direction: column;
 }
 .sheet-logo {
-	width: 50%;
+	width: 49%;
     margin: 14px auto;
     display: block;
 }
@@ -922,10 +922,12 @@ input.sheet-is_npc:checked ~ div.sheet-section-npc
 	display: block;
 }
 
-input.sheet-is_npc:not(:checked) ~ div.sheet-section-pc
+input.sheet-is_npc:not(:checked) ~ div.sheet-section-pc,
+input.sheet-pc-logo-enabled[value="0"]:checked ~ div.sheet-section-pc-logo
 {
 	display: block;
 }
+
 
 input.sheet-multiclass_enabled:checked ~ div.sheet-section-multiclass
 {

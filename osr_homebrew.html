@@ -714,78 +714,32 @@
     <input type="text" name="attr_wtype" value="" hidden="true"/>
     <input type="text" name="attr_whispertoggle" value="" hidden="true"/>
 
-    <div class="sheet-header-left sheet-thin-border">
+    <div class="sheet-bottom-padding sheet-flex-between">
+      <div class="sheet-header-left sheet-thin-border">
 
-      <div class="sheet-inline-flex sheet-bottom-padding">
-        <span class="sheet-bold-font med-font centered-label">Name:</span>
-        <input type="text" class="sheet-align-left sheet-info-name-long right-pad" name="attr_character_name"/>
-        <input type="checkbox" class="sheet-move-rate-stop" name="attr_move_rate_stop" value="0" hidden="true" checked="true"/>
-        <input type="checkbox" class="sheet-move-rate-heavy-enc" name="attr_move_rate_heavy_enc" value="0" hidden="true" checked="true"/>
-        <input type="checkbox" class="sheet-move-rate-med-enc" name="attr_move_rate_med_enc" value="0" hidden="true" checked="true"/>
-        <input type="checkbox" class="sheet-move-rate-light-enc" name="attr_move_rate_light_enc" value="0" hidden="true" checked="true"/>
-        <span class="sheet-bold-font centered-label left-pad right-pad move-rate-light-enc-notify move-rate-med-enc-notify move-rate-heavy-enc-notify move-rate-stop-notify">Movement Rate:</span>
-        <input type="number" name="attr_movement_rate" class="sheet-inactive-color right-pad" value="40" readonly="true"/>
-        <span class="bold-font big-font centred-label left-pad right-pad">/</span>
-        <input type="number" name="attr_base_movement_rate" class="sheet-inactive-color" value="40" readonly="true"/>
-      </div>
+        <div class="sheet-inline-flex sheet-bottom-padding">
+          <span class="sheet-bold-font med-font centered-label">Name:</span>
+          <input type="text" class="sheet-align-left sheet-info-name-long right-pad" name="attr_character_name"/>
+          <input type="checkbox" class="sheet-move-rate-stop" name="attr_move_rate_stop" value="0" hidden="true" checked="true"/>
+          <input type="checkbox" class="sheet-move-rate-heavy-enc" name="attr_move_rate_heavy_enc" value="0" hidden="true" checked="true"/>
+          <input type="checkbox" class="sheet-move-rate-med-enc" name="attr_move_rate_med_enc" value="0" hidden="true" checked="true"/>
+          <input type="checkbox" class="sheet-move-rate-light-enc" name="attr_move_rate_light_enc" value="0" hidden="true" checked="true"/>
+          <span class="sheet-bold-font centered-label left-pad right-pad move-rate-light-enc-notify move-rate-med-enc-notify move-rate-heavy-enc-notify move-rate-stop-notify">Movement Rate:</span>
+          <input type="number" name="attr_movement_rate" class="sheet-inactive-color right-pad" value="40" readonly="true"/>
+          <span class="bold-font big-font centred-label left-pad right-pad">/</span>
+          <input type="number" name="attr_base_movement_rate" class="sheet-inactive-color" value="40" readonly="true"/>
+        </div>
 
-      <div class="sheet-inline-flex">
-        <select class="sheet-info-name" name="attr_class">
-           <option selected="selected" value="none">--</option>
-           <option value="fighter">Fighter</option>
-           <option value="cleric">Cleric</option>
-           <option value="specialist">Specialist</option>
-           <option value="wizard">Wizard</option>
-         </select>
-         <select class="sheet-info-name-sm" name="attr_level">
-           <option selected="selected" value="0">0</option>
-           <option value="1">1</option>
-           <option value="2">2</option>
-           <option value="3">3</option>
-           <option value="4">4</option>
-           <option value="5">5</option>
-           <option value="6">6</option>
-           <option value="7">7</option>
-           <option value="8">8</option>
-           <option value="9">9</option>
-           <option value="10">10</option>
-           <option value="11">11</option>
-           <option value="12">12</option>
-           <option value="13">13</option>
-           <option value="14">14</option>
-           <option value="15">15</option>
-           <option value="16">16</option>
-           <option value="17">17</option>
-           <option value="18">18</option>
-           <option value="19">19</option>
-           <option value="20">20</option>
-         </select>
-         <input type="text" class="sheet-align-right sheet-info-name-med" name="attr_xp" value="0"/>
-         <input type="checkbox" class="sheet-next-level-up" name="attr_next_level_up" value="0" hidden="true" checked="true"/>
-         <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name-med" name="attr_next_level_xp" value="1" readonly="true"/>
-         <input type="checkbox" class="sheet-is_multiclass" name="attr_is_multiclass" value="1"/>
-         <span class="ability-check-label">Multiclass</span>
-       </div>
-
-       <div class="sheet-inline-flex sheet-bottom-padding">
-         <span class="sheet-info-name">Class</span>
-         <span class="sheet-info-name-sm">Level</span>
-         <span class="sheet-info-name-med">XP</span>
-         <span class="sheet-info-name-med">Next Level XP</span>
-       </div>
-
-       <input type="checkbox" class="sheet-multiclass_enabled" name="attr_multiclass_enabled" value="1" hidden="true"/>
-       <div class="section-multiclass">
-         <div class="sheet-inline-flex">
-           <select class="sheet-info-name" name="attr_class2">
+        <div class="sheet-inline-flex">
+          <select class="sheet-info-name" name="attr_class">
              <option selected="selected" value="none">--</option>
              <option value="fighter">Fighter</option>
              <option value="cleric">Cleric</option>
              <option value="specialist">Specialist</option>
              <option value="wizard">Wizard</option>
            </select>
-           <select class="sheet-info-name-sm" name="attr_level2">
-             <option value="0" selected="selected">--</option>
+           <select class="sheet-info-name-sm" name="attr_level">
+             <option selected="selected" value="0">0</option>
              <option value="1">1</option>
              <option value="2">2</option>
              <option value="3">3</option>
@@ -807,42 +761,90 @@
              <option value="19">19</option>
              <option value="20">20</option>
            </select>
+           <input type="text" class="sheet-align-right sheet-info-name-med" name="attr_xp" value="0"/>
+           <input type="checkbox" class="sheet-next-level-up" name="attr_next_level_up" value="0" hidden="true" checked="true"/>
+           <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name-med" name="attr_next_level_xp" value="1" readonly="true"/>
+           <input type="checkbox" class="sheet-is_multiclass" name="attr_is_multiclass" value="1"/>
+           <span class="ability-check-label">Multiclass</span>
          </div>
-         <div class="sheet-inline-flex">
-           <span class="sheet-info-name">Class</span>
-           <span class="sheet-info-name">Level</span>
-           <span class="sheet-info-name">&nbsp;</span>
-         </div>
-       </div>
 
-       <div class="sheet-block">
-         <div class="sheet-inline-flex">
-           <select class="sheet-info-name" name="attr_alignment">
-              <option selectekd="selected" value="Neutral">Neutral</option>
-              <option value="Lawful">Lawful</option>
-              <option value="Chaotic">Chaotic</option>
-           </select>
-           <select class="sheet-info-name" name="attr_race">
-              <option selected="selected" value="Human">Human</option>
-              <option value="Dwarf">Dwarf</option>
-              <option value="Elven">Elven</option>
-              <option value="Halfling">Halfling</option>
-           </select>
-           <input type="text" class="sheet-info-name" name="attr_background"/>
+         <div class="sheet-inline-flex sheet-bottom-padding">
+           <span class="sheet-info-name">Class</span>
+           <span class="sheet-info-name-sm">Level</span>
+           <span class="sheet-info-name-med">XP</span>
+           <span class="sheet-info-name-med">Next Level XP</span>
          </div>
-         <div class="sheet-inline-flex">
-           <span class="sheet-info-name">Alignment</span>
-           <span class="sheet-info-name">Race</span>
-           <span class="sheet-info-name">Background</span>
+
+         <input type="checkbox" class="sheet-multiclass_enabled" name="attr_multiclass_enabled" value="1" hidden="true"/>
+         <div class="section-multiclass">
+           <div class="sheet-inline-flex">
+             <select class="sheet-info-name" name="attr_class2">
+               <option selected="selected" value="none">--</option>
+               <option value="fighter">Fighter</option>
+               <option value="cleric">Cleric</option>
+               <option value="specialist">Specialist</option>
+               <option value="wizard">Wizard</option>
+             </select>
+             <select class="sheet-info-name-sm" name="attr_level2">
+               <option value="0" selected="selected">--</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <option value="6">6</option>
+               <option value="7">7</option>
+               <option value="8">8</option>
+               <option value="9">9</option>
+               <option value="10">10</option>
+               <option value="11">11</option>
+               <option value="12">12</option>
+               <option value="13">13</option>
+               <option value="14">14</option>
+               <option value="15">15</option>
+               <option value="16">16</option>
+               <option value="17">17</option>
+               <option value="18">18</option>
+               <option value="19">19</option>
+               <option value="20">20</option>
+             </select>
+           </div>
+           <div class="sheet-inline-flex">
+             <span class="sheet-info-name">Class</span>
+             <span class="sheet-info-name">Level</span>
+             <span class="sheet-info-name">&nbsp;</span>
+           </div>
          </div>
-      </div>
+
+         <div class="sheet-block">
+           <div class="sheet-inline-flex">
+             <select class="sheet-info-name" name="attr_alignment">
+                <option selectekd="selected" value="Neutral">Neutral</option>
+                <option value="Lawful">Lawful</option>
+                <option value="Chaotic">Chaotic</option>
+             </select>
+             <select class="sheet-info-name" name="attr_race">
+                <option selected="selected" value="Human">Human</option>
+                <option value="Dwarf">Dwarf</option>
+                <option value="Elven">Elven</option>
+                <option value="Halfling">Halfling</option>
+             </select>
+             <input type="text" class="sheet-info-name" name="attr_background"/>
+           </div>
+           <div class="sheet-inline-flex">
+             <span class="sheet-info-name">Alignment</span>
+             <span class="sheet-info-name">Race</span>
+             <span class="sheet-info-name">Background</span>
+           </div>
+        </div>
     </div>
 
     <div class="sheet-header-right sheet-noborder">
-      <input type="checkbox" class="sheet-pc-logo-enabled" name="attr_pc_logo_enabled" value="1" hidden="true"/>
+      <input type="checkbox" class="sheet-pc-logo-enabled" name="attr_pc_logo_enabled" value="0" hidden="true"/>
       <div class="section-pc-logo">
         <img src="https://raw.githubusercontent.com/brian-thomas/roll20-osr-homebrew-charsheet/master/osr_logo.png" class="sheet-logo">
       </div>
+    </div>
     </div>
 
     <hr/>
@@ -4062,7 +4064,7 @@
 
        settings['npc_header_enabled'] = v.npc;
        settings['pc_header_enabled'] = is_pc;
-       settings['pc_logo_enabled'] = is_pc;
+       settings['pc_logo_enabled'] = is_pc ? 0 : 1;
        settings['pc_main_enabled'] = is_pc;
 
        if (v.npc) {
