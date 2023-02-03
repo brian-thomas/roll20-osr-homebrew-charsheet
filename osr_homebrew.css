@@ -458,7 +458,7 @@ select.side-padding
 	flex-direction: column;
 }
 .sheet-logo {
-	width: 49%;
+	width: 80%;
     margin: 14px auto;
     display: block;
 }
