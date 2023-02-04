@@ -1,34 +1,37 @@
+
 .charsheet {
 	  background-color: #ddd;
     width: 942px !important;
-    height: 1240px !important;
-	  min-width: 942px; /* Set the min-width so that when the window is resized the look will stay consistant */
-	  min-height: 1240px; /* Set the min-width so that when the window is resized the look will stay consistant */
+    min-width: 942px; /* Set the min-width so that when the window is resized the look will stay consistant */
     margin: 0 auto !important;
     line-height: 18px;
 }
 
-img {
-	height: 61%;
+@mixin inactive-color
+{
+	background-color: #ddd;
 }
 
-.sheet-small-image,
 img.sheet-small-image
 {
 	height: auto;
 	max-width: 5%;
 }
 
+/* set some defaults on elements */
 label {
 	font-weight: normal;
 }
+
 input {
 	text-align: right;
 }
+
 h2 {
 	padding-right: 1px;
 	padding-top: 10px;
 }
+
 h3 {
     line-height: 27px;
     width: 100%;
@@ -38,16 +41,17 @@ h3 {
     padding: 0;
     text-transform: uppercase;
 }
+
 select {
     margin-bottom: 0;
 }
+
 h3::after, h3::before, h4::after, h4::before {
     display: inline-block;
     height: 3px;
     content: " ";
     text-shadow: none;
     background-color: #000;
-   /*   width: 80px; */
 }
 h3::after {
     margin: 0 0 5px 20px;
@@ -61,15 +65,17 @@ h4 {
 	text-align: center;
 }
 
+/* no d20 button config */
 button.sheet-nod20:before {
   content: "" !important;
 	font-size: 0px;
 }
 
-.sheet-inactive-color,
+
 input[type=checkbox]:not(:checked).sheet-inactive-color,
 input[type=radio]:not(:checked).sheet-inactive-color
 {
+	@include inactive-color;
 	background-color: #ddd;
 }
 
@@ -254,7 +260,7 @@ button[type=roll].sheet-button-sm {
 }
 
 button[type=roll].sheet-blank-roll-button {
-	background-color: #ddd;
+	@include inactive-color;
 	background: #ddd;
 	color: black;
 	border: 0px;
