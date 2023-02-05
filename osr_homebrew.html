@@ -4656,7 +4656,7 @@
   on("change:drop_category", function(eventinfo)
   {
 
-    console.debug("Drop category reached:"+eventinfo+" "+eventinfo.newValue);
+    console.debug("Drop category reached:"+eventinfo+"\n event_new_val:"+eventinfo.newValue);
     if(eventinfo.newValue === "Monsters") {
       console.debug("Drop monster reached")
       handle_drop_monster(eventinfo.newValue);
@@ -5230,7 +5230,7 @@
   };
 
   const drop_spell_attrs = ["drop_name","drop_level","drop_properties",
-                    "drop_damage", "drop_content",
+                    "drop_damage", "drop_content", "drop_data",
                     "drop_spell_castingtime", "drop_spell_concentration",
                     "drop_spell_components", "drop_spell_duration",
                     "drop_spell_healamount", "drop_spell_range",
