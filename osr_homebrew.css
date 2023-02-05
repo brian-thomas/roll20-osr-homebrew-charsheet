@@ -208,6 +208,13 @@ span.sheet-bold-font
   line-height: 100px;
 }
 
+div.sheet-licensecontainer.sheet-licensedsheet .sheet-container:not(.sheet-npc) .sheet-core .sheet-col2,
+input.sheet-licensedsheet[value="1"] + div.sheet-licensecontainer .sheet-container:not(.sheet-npc) .sheet-core .sheet-col2 {
+	background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/licensedsheet/vitals.svg?sanitize=true");
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: contain; }
+
 .charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-compendium_warning,
 .charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-monster_confirm,
 .charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-mancer_confirm {
