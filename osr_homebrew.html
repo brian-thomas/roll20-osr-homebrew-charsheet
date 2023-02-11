@@ -23,7 +23,9 @@
   <input type="hidden" name="attr_drop_content" accept="Content"/>
   <input type="hidden" name="attr_drop_itemtype" accept="Item Type"/>
   <input type="hidden" name="attr_drop_damage" accept="Damage"/>
+  <input type="hidden" name="attr_drop_damage2" accept="Damage2"/>
   <input type="hidden" name="attr_drop_damagetype" accept="Damage Type"/>
+  <input type="hidden" name="attr_drop_damagetype2" accept="Damage Type2"/>
   <input type="hidden" name="attr_drop_range" accept="Range"/>
   <input type="hidden" name="attr_drop_ac" accept="AC"/>
 
@@ -693,7 +695,7 @@
                 <input type="text" name="attr_spellrange"/>
                 <input type="text" name="attr_spellcastingtime"/>
                 <input type="text" name="attr_spellcomp_materials" placeholder="ruby dust worth 50gp" data-i18n-placeholder="ruby-dust-place"/>
-                <input type="text" class="sheet-info1 sheet-align-right sheet-spell-dice" name="attr_spell_dice" value=""/>
+                <input type="text" class="sheet-info1 sheet-align-right sheet-spell-dice" name="attr_spelldamage" value=""/>
                 <div class="sheet-flex save-col center centered-label">
                     <button class="sheet-cast-button sheet-orange-border" type="roll" name="roll_cast_spell"
                             value="@{wtype}&{template:spell} {{name=@{character_name}}} {{innate=}} {{memorized=1}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{level= @{spelllevel}}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{description=@{spelldescription}}}"></button>
@@ -2022,7 +2024,7 @@
                  </select>
                  <input name="attr_adhoc_dc" value="0" hidden="true"/>
                  <span class="sheet-left-pad">Dice:</span>
-                 <input type="text" class="sheet-info1 sheet-align-right sheet-spell-dice" name="attr_spell_dice" value=""/>
+                 <input type="text" class="sheet-info1 sheet-align-right sheet-spell-dice" name="attr_spelldamage" value=""/>
                  <input type="checkbox" name="attr_is_dice_spell" class="sheet-is-dice-spell" value="1" hidden="True"/>
                  <div class="sheet-dice-spell">
                    <div class="sheet-flex save-col center centered-label">
@@ -5818,16 +5820,24 @@
     });
   });
 
-  // Keep spells up to date
-  on(`change:repeating_spells change:arcana_skill change:arcana_bonus change:class change:class2 change:spell_dice` , function () { update_spells(); });
+  const spell_lists = ['spells-1','spells-2','spells-3','spells-4','spells-5','spells-6','spells-7','spells-8','spells-9'];
 
-  function update_spells() {
-    getSectionIDs('repeating_spells', function (ids) {
+  // Keep spells up to date
+  spell_lists.forEach( attr => {
+    on(`change:repeating_${attr} change:arcana_skill change:arcana_bonus change:class change:class2 change:spelldamage`, function (attr) {
+      update_spells(attr);
+    });
+  });
+
+  function update_spells (attr) {
+    const repeating_source = `repeating_${attr}`;
+    getSectionIDs(repeating_source, function (ids) {
       const fieldnames = [];
       ids.forEach(id => {
-        fieldnames.push('repeating_spells_' + id + '_spelllevel');
-        fieldnames.push('repeating_spells_' + id + '_spell_dice');
+        fieldnames.push(repeating_source + '_' + id + '_spelllevel');
+        fieldnames.push(repeating_source + '_' + id + '_spelldamage');
       });
+
       getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod'], function (values) {
         const c_class = values.class.trim();
         const c_class2 = values.class2.trim();
@@ -5841,17 +5851,17 @@
         settings = {};
         ids.forEach(id => {
 
-          const spelllevel = parseInt(values['repeating_spells_' + id + '_spelllevel']) || 0;
-          const spell_dice = values['repeating_spells_' + id + '_spell_dice'];
-          const is_dice_enabled = (spell_dice === "") ? 0 : 1;
-          var adhoc_dc = 10 + spelllevel - spellcasting_mod - arcana_adj;
+          const spelllevel = parseInt(values[repeating_source + '_' + id + '_spelllevel']) || 0;
+          const spelldamage = values[repeating_source + '_' + id + '_spelldamage'];
 
+          const is_dice_enabled = (spelldamage === "") ? 0 : 1;
+          var adhoc_dc = 10 + spelllevel - spellcasting_mod - arcana_adj;
           if (adhoc_dc < 2) { adhoc_dc = 2; } // never lower than 2
 
-          settings['repeating_spells_' + id + '_is_adhoc_dice_spell'] = is_wizard && is_dice_enabled;
-          settings['repeating_spells_' + id + '_is_adhoc_no_dice_spell'] = is_wizard && !is_dice_enabled;
-          settings['repeating_spells_' + id + '_adhoc_dc'] = adhoc_dc;
-          settings['repeating_spells_' + id + '_is_dice_spell'] = is_dice_enabled;
+          settings[repeating_source + '_' + id + '_is_adhoc_dice_spell'] = is_wizard && is_dice_enabled;
+          settings[repeating_source + '_' + id + '_is_adhoc_no_dice_spell'] = is_wizard && !is_dice_enabled;
+          settings[repeating_source + '_' + id + '_adhoc_dc'] = adhoc_dc;
+          settings[repeating_source + '_' + id + '_is_dice_spell'] = is_dice_enabled;
 
         });
         setAttrs(settings);
@@ -5859,11 +5869,7 @@
     });
   };
 
-  /*
-  ['spell-cantrip','spell-1','spell-2','spell-3','spell-4','spell-5','spell-6','spell-7','spell-8','spell-9'].forEach(attr => {
-  */
-
-  ['spells'].forEach(attr => {
+  spell_lists.forEach(attr => {
       on(`change:repeating_${attr}:spellathigherlevels`, (eventinfo) => {
           if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
 
@@ -6849,9 +6855,11 @@
                                         if (spellname) {
                                           console.log(" adding spell:"+spellname);
                                           // add the spell here
-                                          newrowid = generateRowID();
-                                          update["repeating_spells_" + newrowid + "_spelllevel"] = level;
-                                          update["repeating_spells_" + newrowid + "_spellname"] = spellname;
+                                          // TODO: add other missing fields (pull from compendium?)
+                                          id = generateRowID();
+                                          repeating_source = `repeating_spells-${level}_${id}`;
+                                          update[repeating_source + "_spelllevel"] = level;
+                                          update[repeating_source + "_spellname"] = spellname;
                                         }
                                       });
                                     }
@@ -7074,7 +7082,7 @@
 
 
 
-  const drop_item_attrs = ["drop_name","drop_level","drop_properties",
+  const drop_item_attrs = ["drop_name", "drop_level", "drop_properties",
                            "drop_content", "drop_data"];
 
   var handle_drop_item = function(category, eventinfo) {
@@ -7096,7 +7104,9 @@
   };
 
   const drop_spell_attrs = ["drop_name","drop_level","drop_properties",
-                    "drop_damage", "drop_content", "drop_data",
+                    "drop_damage", "drop_damagetype",
+                    // "drop_damage2", "drop_damagetype2",
+                    "drop_content", "drop_data",
                     "drop_spell_castingtime", "drop_spell_concentration",
                     "drop_spell_components", "drop_spell_duration",
                     "drop_spell_healamount", "drop_spell_range",
@@ -7107,50 +7117,92 @@
   var handle_drop_spell = function(category, eventinfo) {
     var callbacks = [];
     var update = {};
-    var id = generateRowID();
 
     if(category === "Spells") {
       getAttrs(drop_spell_attrs, function(v) {
+
+        //console.log(`%c SPELL: ${page.name} dropped`, "color: purple; font-weight:14px;");
+        console.log("Handle Drop Spell called:"+v.drop_name);
+        console.log(" data:"+v.drop_data);
+        console.debug("content: "+v.drop_content);
+        //console.log(" properites:"+v.drop_properties);
+
+        var data = {};
+        try {
+            data = JSON.parse(v.drop_data);
+        } catch(e) {
+            data = v.drop_data;
+        }
+
+        // Workaround: we treat cantrips as (cruddy) level 1 spells
+        var lvl = parseInt(data["Level"]) || 1;
+
+        /*
         const spell_name = v.drop_name;
+        const spell_level = parseInt(v.drop_level) || 0;
         const spell_damage = v.drop_damage;
+        const spell_damagetype = v.drop_damagetype;
+        const spell_damage2 = v.drop_damage2;
+        const spell_damagetype2 = v.drop_damagetype2;
         const spell_healamount = v.drop_spell_healamount;
         const spell_castingtime = v.drop_spell_castingtime;
         const spell_components = v.drop_spell_components;
         const spell_range = v.drop_spell_range;
         const spell_target = v.drop_spell_target;
         const spell_desc = "Components: " + spell_components + "\n" + v.drop_content;
-
         const spell_output = (spell_damage || spell_damage > 0) ? "ATTACK" : "SPELLCARD";
 
-        console.log("Handle Drop Spell called:"+v.drop_name);
+        var page = {
+            name: v.drop_name,
+            data: data,
+            content: v.drop_content
+        };
+        */
 
-        console.log(" data:"+v.drop_data);
-        console.log(" properites:"+v.drop_properties);
+        const id = generateRowID();
+        const repeating_source = `repeating_spells-${lvl}_${id}`;
 
-        var newrowid = generateRowID();
-        update["repeating_spells_" + newrowid + "_spellname"] = spell_name;
-        update["repeating_spells_" + newrowid + "_spelllevel"] = parseInt(v.drop_level) || 1;
-        update["repeating_spells_" + newrowid + "_spelldescription"] = spell_desc;
-        update["repeating_spells_" + newrowid + "_spellcomp_materials"] = spell_components;
-        update["repeating_spells_" + newrowid + "_spellrange"] = spell_range;
-        update["repeating_spells_" + newrowid + "_spelloutput"] = spell_output;
-        update["repeating_spells_" + newrowid + "_spelltarget"] = spell_target;
-        update["repeating_spells_" + newrowid + "_spellcastingtime"] = spell_castingtime;
+        update[repeating_source + "_spellname"] = data["Name"];
+        update[repeating_source + "_spelllevel"] = lvl;
+        update[repeating_source + "_spelloutput"] = "SPELLCARD";
+
+//        update[repeating_source + "_spelldescription"] = v.drop_content;
+//        update[repeating_source + "_spellcomp_materials"] = data["Components"];
+
+        if(data["Components"]) {
+            ["v", "s", "m"].forEach((comp) => {
+                if(data["Components"].toLowerCase().indexOf(comp) === -1) {update[repeating_source + `_spellcomp_${comp}`] = "0"};
+            });
+        };
+
+        /*
+        update[repeating_source + "_spellrange"] = spell_range;
+        update[repeating_source + "_spelloutput"] = "SPELLCARD";
+        update[repeating_source + "_spelltarget"] = spell_target;
+        update[repeating_source + "_spellcastingtime"] = spell_castingtime;
 
         if (spell_damage !== "") {
-          update["repeating_spells_" + newrowid + "_spelldamage"] = spell_damage;
+          update[repeating_source + "_spelldamage"] = spell_damage;
+          update[repeating_source + "_spelloutput"] = "ATTACK";
         }
-        else
+        if (spell_damagetype !== "") {
+          update[repeating_source + "_spelldamagetype"] = spell_damagetype;
+        }
+        if (spell_damage2 !== "") {
+          update[repeating_source + "_spelldamage2"] = spell_damage2;
+        }
+        if (spell_damagetype2 !== "") {
+          update[repeating_source + "_spelldamagetype2"] = spell_damagetype2;
+        }
         if (spell_healamount !== "") {
-          update["repeating_spells_" + newrowid + "_spellhealing"] = spell_healamount;
+          update[repeating_source + "_spellhealing"] = spell_healamount;
+          update[repeating_source + "_spelloutput"] = "ATTACK";
         }
+        */
 
-        console.debug("content: "+v.drop_content);
-        console.debug("properities: "+v.drop_properties);
-        console.debug("data: "+v.drop_data);
-
+        // TODO: fix update spells
         // set callbacks to update new spells and clean up
-        callbacks.push( function() { update_spells();} );
+        // callbacks.push( function() { update_spells();} );
         callbacks.push( function() { cleanup_drop_fields();} );
 
         // persist new attributes
