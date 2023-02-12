@@ -7137,7 +7137,6 @@
         // Workaround: we treat cantrips as (cruddy) level 1 spells
         var lvl = parseInt(data["Level"]) || 1;
 
-        /*
         const spell_name = v.drop_name;
         const spell_level = parseInt(v.drop_level) || 0;
         const spell_damage = v.drop_damage;
@@ -7151,6 +7150,7 @@
         const spell_target = v.drop_spell_target;
         const spell_desc = "Components: " + spell_components + "\n" + v.drop_content;
 
+        /*
         var page = {
             name: v.drop_name,
             data: data,
@@ -7165,8 +7165,8 @@
         update[repeating_source + "_spelllevel"] = lvl;
         update[repeating_source + "_spelloutput"] = "SPELLCARD";
 
-//        update[repeating_source + "_spelldescription"] = v.drop_content;
-//        update[repeating_source + "_spellcomp_materials"] = data["Components"];
+        update[repeating_source + "_spelldescription"] = v.drop_content;
+        update[repeating_source + "_spellcomp_materials"] = data["Components"];
 
         if(data["Components"]) {
             ["v", "s", "m"].forEach((comp) => {
@@ -7174,7 +7174,6 @@
             });
         };
 
-        /*
         update[repeating_source + "_spellrange"] = spell_range;
         update[repeating_source + "_spelloutput"] = "SPELLCARD";
         update[repeating_source + "_spelltarget"] = spell_target;
@@ -7187,17 +7186,19 @@
         if (spell_damagetype !== "") {
           update[repeating_source + "_spelldamagetype"] = spell_damagetype;
         }
+        // TODO: 2nd damage type
+        /*
         if (spell_damage2 !== "") {
           update[repeating_source + "_spelldamage2"] = spell_damage2;
         }
         if (spell_damagetype2 !== "") {
           update[repeating_source + "_spelldamagetype2"] = spell_damagetype2;
         }
+        */
         if (spell_healamount !== "") {
           update[repeating_source + "_spellhealing"] = spell_healamount;
           update[repeating_source + "_spelloutput"] = "ATTACK";
         }
-        */
 
         // TODO: fix update spells
         // set callbacks to update new spells and clean up
