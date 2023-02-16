@@ -66,11 +66,12 @@ h4 {
 }
 
 .sheet-body {
-  width: 750px;
+	/* THIS width same as charsheet above */
+  width: 780px;
   margin-top: 22px; }
 
 .sheet-col {
-  width: 32.97%; }
+  width: 32.97%;}
 
 .sheet-col2-3 {
   width: 490px;
@@ -1243,6 +1244,156 @@ button[type=roll]:hover *,
 .sheet-spell {
     position: relative; }
 
+.repcontrol {
+  min-height: 27px; }
+
+.repcontrol .btn {
+  visibility: hidden;
+  border: medium none;
+  color: #ddd !important;
+  background: none;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+.repcontrol .btn:focus {
+  outline: 0; }
+
+.sheet-saving-throw-container .repcontrol .repcontrol_edit,
+.sheet-saving-throw-container .repcontrol .repcontrol_add {
+  padding-left: 4px;
+  padding-right: 4px; }
+
+.repcontrol .repcontrol_edit:after {
+  content: '(';
+  visibility: visible;
+  font-family: pictos;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 2px;
+  font-size: 12px;
+  height: 12px;
+  width: 12px;
+  padding: 2px 4px 2px 4px;
+  color: black; }
+
+.editmode ~ .repcontrol .repcontrol_edit:after {
+  content: ')'; }
+
+.repcontrol .repcontrol_add:before {
+  content: '&';
+  visibility: visible;
+  font-family: pictos;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 2px;
+  font-size: 12px;
+  height: 12px;
+  width: 12px;
+  padding: 2px 4px 2px 4px;
+  color: black; }
+
+.repcontrol .repcontrol_edit:hover:after,
+.repcontrol .repcontrol_add:hover:before {
+  background-color: #EFEFEF; }
+
+.sheet-resources .repcontrol {
+  margin-top: -10px; }
+
+.itemcontrol {
+  z-index: 10; }
+
+.itemcontrol .repcontrol_del {
+  font-size: 10px;
+  margin-top: 3px;
+  padding: 0px;
+  height: 18px;
+  width: 18px; }
+
+.itemcontrol .repcontrol_move {
+  font-size: 10px;
+  margin-top: 3px;
+  padding: 0px;
+  height: 18px;
+  width: 18px; }
+
+.sheet-tool .sheet-options,
+.sheet-attack .sheet-options,
+.sheet-spell .sheet-options,
+.sheet-proficiencies .sheet-options,
+.sheet-traits .sheet-options,
+.sheet-global-mod .sheet-options {
+  padding-left: 5px; }
+
+.sheet-tool .sheet-options span,
+.sheet-attack .sheet-options span,
+.sheet-spell .sheet-options span,
+.sheet-options .sheet-body span,
+.sheet-proficiencies .sheet-options span,
+.sheet-traits .sheet-options span,
+.sheet-global-mod .sheet-options span {
+  width: initial;
+  display: inline-block;
+  text-align: left; }
+
+.sheet-tool .sheet-options input,
+.sheet-attack .sheet-options input[type=text],
+.sheet-spell .sheet-options input[type=text],
+.sheet-options .sheet-body input[type=text],
+.sheet-proficiencies .sheet-options input[type=text],
+.sheet-traits .sheet-options input[type=text],
+.sheet-global-mod .sheet-options input[type=text] {
+  display: inline-block;
+  text-align: left;
+  font-size: 12px;
+  border-bottom: 1px solid #D3D3D3;
+  padding: 0px;
+  width: initial; }
+
+.sheet-tool .sheet-options select,
+.sheet-attack .sheet-options select,
+.sheet-spell .sheet-options select,
+.sheet-options .sheet-body select,
+.sheet-proficiencies .sheet-options select,
+.sheet-traits .sheet-options select {
+  border-bottom: 1px solid #D3D3D3;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  background: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  color: black;
+  display: inline-block;
+  font-size: 12px;
+  width: initial;
+  padding: 0px;
+  margin: 0px;
+  line-height: 18px;
+  height: 18px; }
+
+.sheet-tool .sheet-options input[type=checkbox],
+.sheet-attack .sheet-options input[type=checkbox],
+.sheet-spell .sheet-options input[type=checkbox],
+.sheet-options .sheet-body input[type=checkbox],
+.sheet-npc .sheet-npc_options input[type=checkbox],
+.sheet-proficiencies .sheet-options input[type=checkbox],
+.sheet-traits .sheet-options input[type=checkbox],
+.sheet-global-mod .sheet-options input[type=checkbox] {
+  width: 13px;
+  font-size: initial;
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox; }
+
+.sheet-attack .sheet-options input[type=text].sheet-num,
+.sheet-options input[type=text].sheet-num {
+  width: 15px;
+  text-align: center; }
+
+
 .sheet-spell .sheet-options {
 		  display: none;
 		  border-top: 2px dashed gold; }
@@ -1790,36 +1941,6 @@ span.sheet-spellconcentration {
 .sheet-innate_flag:not([value=""]) + .sheet-innate {
 		  display: inline; }
 
-
-
-
-
-/*
-button[type=roll].sheet-cast-button
-{
-	width: 20px;
-	height: 20px;
-	border: 2px solid orange;
-	color: black;
-	background-color: white;
-	margin-right: 4px;
-	margin-left: 4px;
-	text-shadow: none;
-	background-image: none;
-}
-
-.sheet-spellfilter[value="1"]:checked ~ div .sheet-hidden-spell-level[value="1"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="2"]:checked ~ div .sheet-hidden-spell-level[value="2"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="3"]:checked ~ div .sheet-hidden-spell-level[value="3"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="4"]:checked ~ div .sheet-hidden-spell-level[value="4"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="5"]:checked ~ div .sheet-hidden-spell-level[value="5"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="6"]:checked ~ div .sheet-hidden-spell-level[value="6"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="7"]:checked ~ div .sheet-hidden-spell-level[value="7"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="8"]:checked ~ div .sheet-hidden-spell-level[value="8"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="9"]:checked ~ div .sheet-hidden-spell-level[value="9"]:not(:checked) ~ .sheet-spellcontainer {
-    display: none;
-}
-*/
 
 .sheet-spellslot-box,
 input.sheet-spellslot-box
