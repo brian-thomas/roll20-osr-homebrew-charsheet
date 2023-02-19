@@ -511,7 +511,7 @@
 
      <div class="section-magic">
         <span class="sheet-spacer">&nbsp;</span>
-        <div class="block thick-border padding">
+        <div class="block thick-border">
           <h3>Spellcasting</h3>
           <div class="sheet-flex-between">
             <div class="sheet-flex">
@@ -722,7 +722,7 @@
   </div> <!-- NPC End -->
 
   <input type="checkbox" class="sheet-pc_header_enabled" name="attr_pc_header_enabled" value="1" hidden="True"/>
-  <div class="sheet-section-pc">
+  <div class="sheet-section-pc body">
 
     <!-- Used by OGL Companion API Script -->
     <input type="text" name="attr_wtype" value="" hidden="true"/>
@@ -739,9 +739,9 @@
           <input type="checkbox" class="sheet-move-rate-med-enc" name="attr_move_rate_med_enc" value="0" hidden="true" checked="true"/>
           <input type="checkbox" class="sheet-move-rate-light-enc" name="attr_move_rate_light_enc" value="0" hidden="true" checked="true"/>
           <span class="sheet-bold-font centered-label left-pad right-pad move-rate-light-enc-notify move-rate-med-enc-notify move-rate-heavy-enc-notify move-rate-stop-notify">Movement Rate:</span>
-          <input type="number" name="attr_movement_rate" class="sheet-inactive-color right-pad" value="40" readonly="true"/>
+          <input type="number" name="attr_movement_rate" class="sheet-inactive-color sm-stat right-pad" value="40" readonly="true"/>
           <span class="bold-font big-font centred-label left-pad right-pad">/</span>
-          <input type="number" name="attr_base_movement_rate" class="sheet-inactive-color" value="40" readonly="true"/>
+          <input type="number" name="attr_base_movement_rate" class="sheet-inactive-color sm-stat" value="40" readonly="true"/>
         </div>
 
         <div class="sheet-inline-flex">
@@ -1909,35 +1909,28 @@
         <div class="sheet-thick-border">
           <h3>Magic</h3>
             <div class="sheet-thin-border">
-              <h4>Spellcasting</h4>
-              <div class="sheet-flex-between">
-                <div class="sheet-flex-between sheet-center">
-                  <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
-                     <span>Spellcasting Type</span>
+              <h4 class="bottom-padding">Spellcasting</h4>
+
+              <div class="sheet-flex bottom-padding">
+                <div class="col col1 block">
+                  <div class="center"> <span class="bold-font">Spellcasting Type</span> </div>
+                  <div class="center">
+                      <input class="ability-value sheet-inactive-color center info3" name="attr_spellcasting_type" type="text" value="None" readonly="true"/>
                   </div>
-                  <input class="ability-value sheet-inactive-color sheet-align-left info4" name="attr_spellcasting_type" type="text" value="None" readonly="true"/>
                 </div>
 
-                <div class="sheet-flex">
-                  <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
-                    <span>Spellcasting Modifier</span>
+                <div class="col col2 block">
+                  <div class="center">
+                     <input class="ability-value sheet-inactive-color center" name="attr_spellcasting_mod" type="number" value="0" readonly="true"/>
                   </div>
-                  <div class="sheet-ability-column-modifier sheet-flex-between">
-                    <div class="sheet-thin-border sheet-flex sheet-side-padding">
-                      <span><h2>+</h2></span>
-                      <input class="ability-value sheet-inactive-color" name="attr_spellcasting_mod" type="number" value="0" readonly="true"/>
-                    </div>
-                  </div>
+                  <div class="center"> <span class="bold-font">Spellcasting Modifier</span> </div>
                 </div>
-                <div class="sheet-flex">
-                  <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
-                    <span>Spell Save DC</span>
+
+                <div class="col col3 block">
+                  <div class="center">
+                     <input class="ability-value sheet-inactive-color center" name="attr_spellcasting_dc" type="number" value="0" readonly="true"/>
                   </div>
-                  <div class="sheet-ability-column-modifier sheet-flex-between">
-                    <div class="sheet-thin-border sheet-flex sheet-side-padding">
-                      <input class="ability-value sheet-inactive-color" name="attr_spellcasting_dc" type="number" value="0" readonly="true"/>
-                    </div>
-                  </div>
+                  <div class="center"> <span class="bold-font">Spell Save DC</span> </div>
                 </div>
               </div>
             </div>
@@ -2066,10 +2059,10 @@
               <input type="hidden" class="spellicon_flag" name="attr_spellicon_flag" value="all"/>
               <div class="body">
                 <div class="col col1">
-                  <span class="spell-labels">
-                     <span data-i18n="slots_total-u" style="margin-right: 45px;">SLOTS TOTAL</span>
+                  <div class="spell-labels">
+                     <span data-i18n="slots_total-u" style="margin-right: 17px; margin-left: 38px;">SLOTS TOTAL</span>
                      <span data-i18n="slots_remaining-u">SLOTS REMAINING</span>
-                  </span>
+                  </div>
                   <div class="spell-level">
                      <div class="level">
                          <span class="label">1</span>
@@ -2328,12 +2321,13 @@
                             </div>
                         </div>
                     </fieldset>
+                    <hr/>
                   </div>
 
-                  <span class="spell-labels">
-                     <span data-i18n="slots_total-u" style="margin-right: 45px;">SLOTS TOTAL</span>
+                  <div class="spell-labels">
+                     <span data-i18n="slots_total-u" style="margin-right: 17px; margin-left: 38px;">SLOTS TOTAL</span>
                      <span data-i18n="slots_remaining-u">SLOTS REMAINING</span>
-                  </span>
+                  </div>
                   <div class="spell-level">
                      <div class="level">
                          <span class="label">4</span>
@@ -2592,12 +2586,13 @@
                             </div>
                         </div>
                     </fieldset>
+                    <hr/>
                   </div>
 
-                  <span class="spell-labels">
-                     <span data-i18n="slots_total-u" style="margin-right: 45px;">SLOTS TOTAL</span>
+                  <div class="spell-labels">
+                     <span data-i18n="slots_total-u" style="margin-right: 17px; margin-left: 38px;">SLOTS TOTAL</span>
                      <span data-i18n="slots_remaining-u">SLOTS REMAINING</span>
-                  </span>
+                  </div>
                   <div class="spell-level">
                      <div class="level">
                          <span class="label">7</span>
@@ -2860,10 +2855,10 @@
                 </div>
 
                 <div class="col col2">
-                  <span class="spell-labels">
-                     <span data-i18n="slots_total-u" style="margin-right: 45px;">SLOTS TOTAL</span>
+                  <div class="spell-labels">
+                     <span data-i18n="slots_total-u" style="margin-right: 17px; margin-left: 38px;">SLOTS TOTAL</span>
                      <span data-i18n="slots_remaining-u">SLOTS REMAINING</span>
-                  </span>
+                  </div>
                   <div class="spell-level">
                      <div class="level">
                          <span class="label">2</span>
@@ -3122,12 +3117,13 @@
                             </div>
                         </div>
                     </fieldset>
+                    <hr/>
                   </div>
 
-                  <span class="spell-labels">
-                     <span data-i18n="slots_total-u" style="margin-right: 45px;">SLOTS TOTAL</span>
+                  <div class="spell-labels">
+                     <span data-i18n="slots_total-u" style="margin-right: 17px; margin-left: 38px;">SLOTS TOTAL</span>
                      <span data-i18n="slots_remaining-u">SLOTS REMAINING</span>
-                  </span>
+                  </div>
                   <div class="spell-level">
                      <div class="level">
                          <span class="label">5</span>
@@ -3386,12 +3382,13 @@
                             </div>
                         </div>
                     </fieldset>
+                    <hr/>
                   </div>
 
-                  <span class="spell-labels">
-                     <span data-i18n="slots_total-u" style="margin-right: 45px;">SLOTS TOTAL</span>
+                  <div class="spell-labels">
+                     <span data-i18n="slots_total-u" style="margin-right: 17px; margin-left: 38px;">SLOTS TOTAL</span>
                      <span data-i18n="slots_remaining-u">SLOTS REMAINING</span>
-                  </span>
+                  </div>
                   <div class="spell-level">
                      <div class="level">
                          <span class="label">8</span>
@@ -3654,10 +3651,10 @@
                 </div>
 
                 <div class="col col3">
-                  <span class="spell-labels">
-                     <span data-i18n="slots_total-u" style="margin-right: 45px;">SLOTS TOTAL</span>
+                  <div class="spell-labels">
+                     <span data-i18n="slots_total-u" style="margin-right: 17px; margin-left: 38px;">SLOTS TOTAL</span>
                      <span data-i18n="slots_remaining-u">SLOTS REMAINING</span>
-                  </span>
+                  </div>
                   <div class="spell-level">
                      <div class="level">
                          <span class="label">3</span>
@@ -3916,12 +3913,13 @@
                             </div>
                         </div>
                     </fieldset>
+                    <hr/>
                   </div>
 
-                  <span class="spell-labels">
-                     <span data-i18n="slots_total-u" style="margin-right: 45px;">SLOTS TOTAL</span>
+                  <div class="spell-labels">
+                     <span data-i18n="slots_total-u" style="margin-right: 17px; margin-left: 38px;">SLOTS TOTAL</span>
                      <span data-i18n="slots_remaining-u">SLOTS REMAINING</span>
-                  </span>
+                  </div>
                   <div class="spell-level">
                      <div class="level">
                          <span class="label">6</span>
@@ -4180,12 +4178,13 @@
                             </div>
                         </div>
                     </fieldset>
+                    <hr/>
                   </div>
 
-                  <span class="spell-labels">
-                     <span data-i18n="slots_total-u" style="margin-right: 45px;">SLOTS TOTAL</span>
+                  <div class="spell-labels">
+                     <span data-i18n="slots_total-u" style="margin-right: 17px; margin-left: 38px;">SLOTS TOTAL</span>
                      <span data-i18n="slots_remaining-u">SLOTS REMAINING</span>
-                  </span>
+                  </div>
                   <div class="spell-level">
                      <div class="level">
                          <span class="label">9</span>
@@ -5042,7 +5041,7 @@
         <span class="sheet-spacer">&nbsp;</span>
         <div class="sheet-thick-border">
           <h3>Notes</h3>
-          <textarea class="sheet-lrg-textarea" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
+          <textarea class="sheet-fill-width" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
         </div>
       </div>
     </div>
