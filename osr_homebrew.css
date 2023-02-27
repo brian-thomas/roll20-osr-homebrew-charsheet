@@ -746,13 +746,10 @@ label.sheet-npc-ability-value,
 input[type=number].sheet-npc-ability-value,
 input[type=number].sheet-npc-ability-value-wide
 {
-	width: 30px;
-	height: 30px;
+	width: 40px;
+	height: 40px;
 	text-align: center;
 	margin: 3px auto;
-	/*
-	margin-bottom: 3px;
-	*/
 	align-self: center;
 	display: block;
 }
@@ -803,8 +800,8 @@ button.sheet-ability-bonus-value,
 input[type=number].sheet-ability-value,
 input[type=number].sheet-ability-bonus-value
 {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     font-size: 18px;
     text-align: center;
     margin: 3px auto;
