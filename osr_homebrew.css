@@ -392,6 +392,7 @@ span.sheet-center
 
 .sheet-padding {
 	padding: 2px 2px 2px 2px;
+	margin: 2px;
 }
 
 .sheet-inline {
@@ -459,7 +460,6 @@ select.side-padding
 .sheet-bottom-line
 {
 	margin-bottom: 20px;
-	border: foobar;
 	border: 2px solid #ddd;
 	border-bottom-color: #000;
 }
@@ -1154,6 +1154,16 @@ input.sheet-next-level-up[value="0"]:checked ~ input.sheet-next-level-notify
 	background-color: yellow;
 }
 
+.sheet-toggleflag[value*="advantagetoggle"] + .sheet-advantagetoggle,
+.sheet-toggleflag[value*="whispertoggle"] + .sheet-whispertoggle,
+.sheet-toggleflag[value="1"] + .sheet-hidden,
+.sheet-toggleflag[value="1"] + .sheet-row.sheet-hidden {
+  display: block; }
+
+.sheet-hidden,
+.sheet-options .sheet-row.sheet-hidden {
+  display: none; }
+
 .sheet-rolltemplates {
   display: none; }
 
@@ -1163,6 +1173,9 @@ button[type=roll]:hover *,
 .sheet-action .sheet-display button[type=roll]:hover * {
   color: #EC2127; }
 
+	/*
+.sheet-attacks input,
+*/
 .sheet-spell input
 {
 	  width: 100%;
@@ -1178,6 +1191,9 @@ button[type=roll]:hover *,
 	  border-radius: 0px;
 	  color: black; }
 
+/* .sheet-attacks span,*/
+.sheet-globalattack span,
+.sheet-options .sheet-body span,
 .sheet-spells span
 {
 		  display: block;
@@ -1188,6 +1204,134 @@ button[type=roll]:hover *,
 		  font-weight: bold;
 		  margin-top: 5px; }
 
+.sheet-globalattack span {
+  margin-top: 2px; }
+
+.sheet-globalattack.sheet-acmod .sheet-display span span {
+  display: inline; }
+
+.sheet-globalattack.sheet-acmod label,
+.sheet-globalattack.sheet-acmod label input {
+  font-weight: normal;
+  font-size: 1em; }
+
+.sheet-globalattack.sheet-acmod label input[type="number"] {
+  width: 3.5em; }
+
+.sheet-pc .sheet-globalattack textarea {
+	  resize: vertical; }
+
+.sheet-globalattack input[type="checkbox"] {
+  display: inline;
+  height: 12px;
+  width: 12px;
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  margin-left: 5px;
+  margin-top: 10px; }
+
+.sheet-globalattack textarea {
+  width: 95%;
+  display: inline;
+  height: 25px;
+  margin: 1px; }
+
+.sheet-globalattack .sheet-label {
+  margin-bottom: 5px;
+  padding-top: 5px;
+  color: #A0A0A0;
+  border-top: 1px dotted #A0A0A0; }
+
+.sheet-pc .sheet-globalattack {
+  border: none; }
+
+.sheet-attacks {
+  padding-bottom: 2px;
+  min-height: 25px;
+  width: inherit;
+  margin-bottom: 2px; }
+
+.sheet-attacks .repitem {
+	width: 99.0%;
+	margin: 0;
+	display: block;
+  border-radius: 5px; }
+
+.sheet-attacks .sheet-top span {
+  text-align: left;
+  margin-left: 5px;
+  color: #505050;
+	font-size: 9px;
+  font-weight: normal;
+  display: inline-block;
+  width: initial; }
+
+.sheet-attacks button[type=roll].sheet-attack-button
+{
+  background-color: #FFFFFF;
+  color: #111111;
+	/*
+  border: 2px solid black;
+	*/
+	align-self: center;
+  background-image: none;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding: 0px;
+  margin-left: 5px;
+	height: 24px;
+	width: 32px;
+  font-weight: bold; }
+
+	/*
+.sheet-attacks .sheet-display button[type=roll]::before {
+  content: "" !important; }
+	*/
+
+.sheet-attack .sheet-display select,
+.sheet-attack .sheet-display input,
+.sheet-attack .sheet-display span {
+  font-size: 11px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #EFEFEF;
+  text-align: left;
+	margin-left: 5px;
+	/*
+  cursor: pointer;
+  font-size: 9px;
+	*/
+  font-weight: bold; }
+
+.sheet-attack .sheet-display span {
+	/*
+  min-height: 11px;
+  vertical-align: bottom;
+  display: inline-block;
+	*/
+  margin-top: 0px;
+  padding: 4px;
+	padding-top: 8px;
+	height: 16px;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+	white-space: nowrap; }
+
+.sheet-attack input[type=text].sheet-flat {
+  display: none; }
+
+.sheet-attack .sheet-flatflag[value*="saveflat"] ~ input[type=text].sheet-flat {
+  display: inline-block; }
+
+.sheet-attacks .sheet-ammo {
+  display: none; }
+
+.sheet-ammoflag[value="on"] + .sheet-attacks .sheet-ammo {
+  display: block; }
+
+.sheet-attacks .sheet-options-flag,
 .sheet-spell .sheet-details-flag,
 .sheet-spell .sheet-options-flag
 {
@@ -1199,19 +1343,10 @@ button[type=roll]:hover *,
 			  height: 18px;
 			  z-index: 2; }
 
-
 .sheet-spell .sheet-details-flag + span,
 .sheet-attacks .sheet-options-flag + span,
 .sheet-spell .sheet-options-flag + span,
-.sheet-tool .sheet-options-flag + span,
-.sheet-npc .sheet-npc_options-flag + span,
-.sheet-trait .sheet-options-flag + span,
 .sheet-global-mod .sheet-options-flag + span,
-.sheet-action .sheet-options-flag + span,
-.sheet-textbox .sheet-options-flag + span,
-.sheet-proficiencies .sheet-options-flag + span,
-.sheet-traits .sheet-options-flag + span,
-.sheet-equipment .sheet-inventorysubflag + span,
 .sheet-header .sheet-options-flag + span {
 		-webkit-box-align: center;
 		-ms-flex-align: center;
@@ -1230,11 +1365,19 @@ button[type=roll]:hover *,
 		display: none; }
 
 .sheet-spell .sheet-details-flag:hover + span,
+.sheet-attacks .sheet-options-flag:hover + span,
 .sheet-spell .sheet-options-flag:hover + span
 {
     color: #000000; }
 
+.sheet-pc .sheet-global-mod .sheet-options-flag:not(:checked) ~ .sheet-display,
+.sheet-pc .sheet-global-mod .sheet-options-flag:checked ~ .sheet-options {
+  width: 80%;
+  display: inline-block; }
+
+
 .sheet-spell .sheet-details-flag:checked + span,
+.sheet-attacks .sheet-options-flag:checked + span,
 .sheet-spell .sheet-options-flag:checked + span
 {
 		  color: black;
@@ -1243,12 +1386,14 @@ button[type=roll]:hover *,
 		  display: flex; }
 
 .sheet-spell:hover .sheet-details-flag + span,
-.sheet-spell:hover .sheet-options-flag + span
+.sheet-spell:hover .sheet-options-flag + span,
+.sheet-attacks .sheet-attack:hover .sheet-options-flag + span
 {
   display: -webkit-box;
-		  display: -ms-flexbox;
-		  display: flex; }
+	display: -ms-flexbox;
+	display: flex; }
 
+.sheet-attack,
 .sheet-spell {
     position: relative; }
 
@@ -1324,31 +1469,27 @@ button[type=roll]:hover *,
   height: 18px;
   width: 18px; }
 
-.sheet-tool .sheet-options,
+.sheet-attack .sheet-display {
+	display: inline-flex;
+	margin-bottom: 10px;
+}
+
 .sheet-attack .sheet-options,
 .sheet-spell .sheet-options,
-.sheet-proficiencies .sheet-options,
-.sheet-traits .sheet-options,
 .sheet-global-mod .sheet-options {
   padding-left: 5px; }
 
-.sheet-tool .sheet-options span,
 .sheet-attack .sheet-options span,
 .sheet-spell .sheet-options span,
 .sheet-options .sheet-body span,
-.sheet-proficiencies .sheet-options span,
-.sheet-traits .sheet-options span,
 .sheet-global-mod .sheet-options span {
   width: initial;
   display: inline-block;
   text-align: left; }
 
-.sheet-tool .sheet-options input,
 .sheet-attack .sheet-options input[type=text],
 .sheet-spell .sheet-options input[type=text],
 .sheet-options .sheet-body input[type=text],
-.sheet-proficiencies .sheet-options input[type=text],
-.sheet-traits .sheet-options input[type=text],
 .sheet-global-mod .sheet-options input[type=text] {
   display: inline-block;
   text-align: left;
@@ -1357,12 +1498,9 @@ button[type=roll]:hover *,
   padding: 0px;
   width: initial; }
 
-.sheet-tool .sheet-options select,
 .sheet-attack .sheet-options select,
 .sheet-spell .sheet-options select,
-.sheet-options .sheet-body select,
-.sheet-proficiencies .sheet-options select,
-.sheet-traits .sheet-options select {
+.sheet-options .sheet-body select {
   border-bottom: 1px solid #D3D3D3;
   border-top: 0px;
   border-left: 0px;
@@ -1383,13 +1521,9 @@ button[type=roll]:hover *,
   line-height: 18px;
   height: 18px; }
 
-.sheet-tool .sheet-options input[type=checkbox],
 .sheet-attack .sheet-options input[type=checkbox],
 .sheet-spell .sheet-options input[type=checkbox],
 .sheet-options .sheet-body input[type=checkbox],
-.sheet-npc .sheet-npc_options input[type=checkbox],
-.sheet-proficiencies .sheet-options input[type=checkbox],
-.sheet-traits .sheet-options input[type=checkbox],
 .sheet-global-mod .sheet-options input[type=checkbox] {
   width: 13px;
   font-size: initial;
@@ -1401,8 +1535,14 @@ button[type=roll]:hover *,
   width: 15px;
   text-align: center; }
 
+.sheet-attacks .sheet-options-flag:checked ~ .sheet-options,
+.sheet-global-mod .sheet-options-flag:checked ~ .sheet-options,
+.sheet-textbox .sheet-options-flag:checked ~ .sheet-options {
+  display: inherit; }
 
-.sheet-spell .sheet-options {
+.sheet-attack .sheet-options,
+.sheet-spell .sheet-options
+{
 		  display: none;
 		  border-top: 2px dashed gold; }
 
@@ -1972,16 +2112,6 @@ span.sheet-rotate
 	padding: 0;
 }
 
-.sheet-attack-name,
-span.sheet-attack-name,
-input[type=text].sheet-attack-name
-{
-	width: 140px;
-	font-weight: bold;
-	font-size: 14px;
-	text-align: left;
-}
-
 .sheet-centered-label,
 label.sheet-centered-label
 span.sheet-centered-label
@@ -1991,41 +2121,34 @@ span.sheet-centered-label
   margin: 4px 0px 0px 0px;
 }
 
-span.sheet-attack-name
-{
-	margin-right: 0px;
-}
-
-.sheet-attack-param,
-select.sheet-attack-param,
-select.sheet-attack-param-long,
 select.sheet-attack-notches,
 select.sheet-attack-proficiency
-span.sheet-attack-proficiency,
-input[type=text].sheet-attack-param,
-input[type=number].sheet-attack-param
 {
 	 display: inline-flex;
+	 width: 38px;
    text-align: center;
-	 font-size: 11px;
-	 margin-left: 3px;
-	 margin-right: 3px;
-	 padding: 6px;
+	 font-size: 12px;
+	 margin-left: 5px;
+   background-color: #EFEFEF;
+}
+
+select.sheet-attack-proficiency
+{
+   font-size: 10px;
 }
 
 span.sheet-attack-notches,
 span.sheet-attack-proficiency
 {
+	width: 20px;
 	text-align: center;
 	margin-right: 10px;
 	margin-left: 11px;
-}
-
-select.sheet-attack-notches,
-select.sheet-attack-proficiency
-{
-	text-align: center;
-	width: 40px;
+	/*
+	padding-top: 15px;
+	margin-top: 15px;
+	*/
+  background-color: #EFEFEF;
 }
 
 select.sheet-attack-proficiency option[value="0"] { background-color: white; }
@@ -2033,63 +2156,6 @@ select.sheet-attack-proficiency option[value="1"] { background-color: #ddd; }
 select.sheet-attack-proficiency option[value="2"] { background-color: white;}
 select.sheet-attack-proficiency option[value="3"] { background-color: #ddd;}
 select.sheet-attack-proficiency option[value="4"] { background-color: white;}
-
-.sheet-attack-param,
-input[type=number].sheet-attack-param
-{
-	width: 30px;
-}
-
-.sheet-attack-param-name,
-span.sheet-attack-param-name,
-span.sheet-attack-param-long-name,
-span.sheet-attack-param-attk-name,
-span.sheet-attack-param-select-name
-{
-	display: inline-flex;
-	width: 30px;
-	font-size: 11px;
-	margin-left: 3px;
-	margin-right: 2px;
-}
-
-span.sheet-attack-param-attk-name,
-span.sheet-attack-param-select-attk-name,
-span.sheet-attack-param-select-name
-{
-	width: 40px;
-	text-align: center;
-	align-items: start;
-	align-content: center;
-	margin-left: 3px;
-	margin-right: 3px;
-}
-
-select.sheet-attack-param,
-input[type=text].sheet-attack-param,
-span.sheet-attack-param-select-name
-{
-	width: 55px;
-}
-
-select.sheet-attack-param-long,
-span.sheet-attack-param-long-name
-{
-	width: 75px;
-}
-
-button[type=roll].sheet-attack-button
-{
-	width: 30px;
-	height: 30px;
-	border: 2px solid black;
-	color: black;
-	background-color: white;
-	margin-right: 3px;
-	margin-left: 3px;
-	text-shadow: none;
-	background-image: none;
-}
 
 div.sheet-attack-berserk-attack-button-enabled,
 div.sheet-attack-charge-attack-button-enabled,
@@ -2172,6 +2238,12 @@ button[type=roll].sheet-purple-border,
 button.sheet-purple-border
 {
     border: 2px solid purple;
+}
+
+.sheet-black-border,
+button[type=roll].sheet-black-border,
+{
+    border: 2px solid black;
 }
 
 .sheet-red-border,
@@ -2691,15 +2763,15 @@ div.sheet-label
 
 /* Melee header*/
 
-.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-attack {
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-attackmsg {
 	background-color: #2C5D28;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-attack:before {
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-attackmsg:before {
 	border-right-color: #375035;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-attack:after {
+.sheet-rolltemplate-roll_check .sheet-rt-header.sheet-attackmsg:after {
 	border-left-color: #375035;
 }
 
