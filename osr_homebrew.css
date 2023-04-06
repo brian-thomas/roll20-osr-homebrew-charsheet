@@ -1273,7 +1273,8 @@ button[type=roll]:hover *,
 	display: inline-block;
   width: initial; }
 
-.sheet-attacks button[type=roll].sheet-attack-button
+.sheet-attacks button[type=roll].sheet-attack-button,
+.sheet-attacks button[type=roll].sheet-inactive-attack-button
 {
   background-color: #FFFFFF;
   color: #111111;
@@ -1283,9 +1284,27 @@ button[type=roll]:hover *,
   -webkit-box-shadow: none;
   box-shadow: none;
   padding: 0px;
+	margin-left: 2px;
 	height: 24px;
 	width: 30px;
   font-weight: bold; }
+
+.sheet-attacks button[type=roll].sheet-inactive-attack-button
+{
+	height: 28px;
+	width: 32px;
+}
+
+.sheet-attacks button[type=roll].sheet-attack-button span,
+.sheet-attacks button[type=roll].sheet-inactive-attack-button span
+{
+	text-align: left;
+	line-height: 32px;
+	margin-right: 12px;
+	height: 20px;
+	background: inherit;
+	font-size: 15px;
+}
 
 	/*
 .sheet-attacks .sheet-display button[type=roll]::before {
@@ -2146,14 +2165,10 @@ select.sheet-attack-proficiency
 span.sheet-attack-notches,
 span.sheet-attack-proficiency
 {
-	width: 38px;
+	display: inline-flex;
+	width: 34px;
 	text-align: center;
 	margin-left: 5px;
-	/*
-	margin-right: 10px;
-	padding-top: 15px;
-	margin-top: 15px;
-	*/
   background-color: #EFEFEF;
 }
 
