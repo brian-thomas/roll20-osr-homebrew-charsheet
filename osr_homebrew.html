@@ -164,7 +164,8 @@
                   </div>
                 </div>
                 <div class="block padding center">
-                  <input class="ability-check-value" name="attr_hp" type="number" value="0"/>
+                  <input class="ability-check-value" name="attr_hp_max" type="number" value="1" hidden="True"/>
+                  <input class="ability-check-value" name="attr_hp" type="number" value="1"/>
                   <span class="ability-check-label">HP</span>
                 </div>
                 <div class="block padding center">
@@ -173,8 +174,7 @@
                 </div>
                 <div class="block padding center">
                   <div class="sheet-block sheet-padding sheet-center">
-                    <!--input class="sheet-npc-ability-value-wide" name="attr_initiative_bonus" type="number" value="0"/-->
-                    <input class="ability-check-value" name="attr_initiative_bonus" type="number" value="0"/>
+                    <input class="ability-check-value" name="attr_initiative_bonus" type="number" step="0.01" value="0"/>
                     <button type="roll" class="sheet-npc-ability-button" name="roll_initiative"
                             value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative_bonus} [Initiative Mod] &{tracker} ]]}}">
                             Init.
@@ -1680,7 +1680,6 @@
                 <fieldset class="repeating_attacks">
 
                     <div class="attack">
-
                         <input class="options-flag" type="checkbox" name="attr_options-flag" checked="checked"><span>y</span>
                         <div class="options">
                             <div class="row">
@@ -1920,9 +1919,9 @@
                                   <option value="Radiant">Radiant</option>
                                   <option value="Thunder">Thunder</option>
                           </select>
-		 
-			  <button type="roll" class="attack-button black-border" style="margin-left: 8px;" 
-			          name="roll_attack" 
+
+			  <button type="roll" class="attack-button black-border" style="margin-left: 8px;"
+			          name="roll_attack"
 			          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}}  {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}">
 			  </button>
 
@@ -2209,8 +2208,10 @@
         	        <option value="unarmed">Unarmed</option>
         	        <option value="spell">Spell</option>
         	      </select>
+	    -->
 
-                <input type="number" name="attr_atkbonus" value="0" class="attack-param bold-font inactive-color" readonly="true"/>
+                <!--input type="number" name="attr_atkbonus" value="0" class="attack-param bold-font inactive-color" readonly="true"/-->
+            <!--
                 <input type="text" name="attr_dmgbase" class="attack-param" data-i18n-placeholder="1d6"/>
                 <input name="attr_attack_dam" value="0" hidden="true"/>
 
@@ -2560,9 +2561,13 @@
                     <fieldset class="repeating_spells-1">
                         <div class="spell">
                             <div class="display">
-                                <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
+                               <input type="hidden" name="attr_rollcontent"
+                                      value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
+					     <!--
+                                                    value="@{wtype}&{template:spell} {{level=@{spellschool} @{spelllevel}}}  {{name=@{spellname} FOO}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}">
                                 <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+					       -->
+			        <input type="hidden" name="attr_adhoc_dc" value="10"/>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -5585,8 +5590,7 @@
       </div>
   </rolltemplate>
 
-  <!--
-<rolltemplate class="sheet-rolltemplate-spell2">
+<rolltemplate class="sheet-rolltemplate-spell-adhoc">
   <div class="sheet-rt-card">
     <div class="sheet-rt-header sheet-spell">
       <div class="sheet-rt-title">{{title}}</div>
@@ -5676,7 +5680,6 @@
     </div>
   </div>
 </rolltemplate>
-               -->
 
   <rolltemplate class="sheet-rolltemplate-roll_check">
     <div class="sheet-rt-card">
@@ -6293,17 +6296,26 @@
     });
   });
 
-  const spell_lists = ['spells-1','spells-2','spells-3','spells-4','spells-5','spells-6','spells-7','spells-8','spells-9'];
-
   // Keep spells up to date
-  spell_lists.forEach( attr => {
-    on(`change:repeating_${attr} change:arcana_skill change:arcana_bonus change:class change:class2 change:spelldamage`, function (attr) {
-      update_spells(attr);
+  const spell_lists = ['spells-1','spells-2','spells-3','spells-4','spells-5','spells-6','spells-7','spells-8','spells-9'];
+  spell_lists.forEach( splvl => {
+    on(`change:repeating_${splvl}`, function (splvl) {
+      update_spells(splvl);
     });
   });
 
-  function update_spells (attr) {
-    const repeating_source = `repeating_${attr}`;
+  on(`change:arcana_skill change:arcana_bonus change:class change:class2 change:spelldamage`, function () {
+      update_all_spells();
+  });
+
+  function update_all_spells () {
+    spell_lists.forEach( splvl => {
+      update_spells(splvl);
+    });
+  };
+
+  function update_spells (splvl) {
+    const repeating_source = `repeating_${splvl}`;
     getSectionIDs(repeating_source, function (ids) {
       const fieldnames = [];
       ids.forEach(id => {
@@ -7610,10 +7622,10 @@
     var update = {};
 
     if(category === "Spells") {
-      getAttrs(drop_spell_attrs, function(v) {
+      getAttrs([...drop_spell_attrs, "character_id"], function(v) {
 
         //console.log(`%c SPELL: ${page.name} dropped`, "color: purple; font-weight:14px;");
-        console.log("Handle Drop Spell called:"+v.drop_name);
+        console.log("Handle Drop Spell called:"+v.drop_name+ " char:"+v.character_id);
         console.log(" data:"+v.drop_data);
         console.debug("content: "+v.drop_content);
         //console.log(" properites:"+v.drop_properties);
@@ -7665,7 +7677,12 @@
 
         if(data["Damage"] || data["Healing"]) {
             update[repeating_source + "_spelloutput"] = "ATTACK";
-            callbacks.push( function() {create_attack_from_spell(lvl, id, currentData.character_id);} );
+/*
+            update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}`;
+	    `@{wtype}&{template:spell} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
+*/
+
+            callbacks.push( function() {create_attack_from_spell(lvl, id, v.character_id);} );
         }
         else if(data["Higher Spell Slot Desc"] && data["Higher Spell Slot Desc"] != "") {
             var spelllevel = "?{Cast at what level?";
@@ -7712,7 +7729,7 @@
 
         // TODO: fix update spells
         // set callbacks to update new spells and clean up
-        // callbacks.push( function() { update_spells();} );
+        callbacks.push( function() { update_spells();} );
         callbacks.push( function() { cleanup_drop_fields();} );
 
         // persist new attributes
@@ -7727,13 +7744,16 @@
       const newrowid = generateRowID();
       update[`repeating_spells-${lvl}_${spellid}_spellattackid`] = newrowid;
       update[`repeating_spells-${lvl}_${spellid}_rollcontent`] = `%{${character_id}|repeating_attacks_${newrowid}_attack}`;
-      // setAttrs(update, {}, update_attack_from_spell(lvl, spellid, newrowid, true));
+
+      console.log("Create_attack_from_spell lvl:"+lvl+" spellid:"+spellid+" charid:"+character_id);
+
+      setAttrs(update, {}, update_attack_from_spell(lvl, spellid, newrowid, true));
   }
 
-  /*
   const update_attack_from_spell = (lvl, spellid, attackid, newattack) => {
       const repeating_spell  = `repeating_spells-${lvl}_${spellid}`;
       const repeating_attack = `repeating_attacks_${attackid}`;
+
       getAttrs([`${repeating_spell}_spellname`, `${repeating_spell}_spellrange`, `${repeating_spell}_spelltarget`, `${repeating_spell}_spellattack`, `${repeating_spell}_spelldamage`, `${repeating_spell}_spelldamage2`,`${repeating_spell}_spelldamagetype`,`${repeating_spell}_spelldamagetype2`,`${repeating_spell}_spellhealing`,`${repeating_spell}_spelldmgmod`,`${repeating_spell}_spellsave`,`${repeating_spell}_spellsavesuccess`,`${repeating_spell}_spellhldie`,`${repeating_spell}_spellhldietype`,`${repeating_spell}_spellhlbonus`,`${repeating_spell}_spelllevel`,`${repeating_spell}_includedesc`,`${repeating_spell}_spelldescription`,`${repeating_spell}_spellathigherlevels`,`${repeating_spell}_spell_damage_progression`,`${repeating_spell}_innate`,`${repeating_spell}_spell_ability`,"spellcasting_ability"], (v) => {
           let update = {};
           let description = "";
@@ -8140,9 +8160,7 @@
           });
       });
   };
-  */
 
-  /*
   //Update spells in the attack section
   const update_spell_from_attack = (lvl, spellid, attackid) => {
       const repeating_attack = `repeating_attack_${attackid}`;
@@ -8339,15 +8357,17 @@
           setAttrs(update, {silent: true});
       });
   };
-  */
 
   /*
+	// TODO
   var remove_attack = function(attackid) {
       removeRepeatingRow("repeating_attack_" + attackid);
   };
   */
 
   var cleanup_drop_fields = function() {
+
+    console.log("DROP FIELD CLEANUP Called");
 
     var update = {};
     drop_item_attrs.forEach((key, i) => update[key] = "");
