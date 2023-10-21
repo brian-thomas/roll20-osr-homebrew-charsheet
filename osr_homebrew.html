@@ -1735,9 +1735,9 @@
                                     <option value="spell" data-i18n="spell-u">SPELL</option>
                                     <option value="0">-</option>
                                 </select>
-                                -->
                                 <span>+</span>
                                 <input type="text" class="num" name="attr_dmgmod" placeholder="0">
+                                -->
                             </div>
                             <div class="row">
                                 <span style="margin-left: 17px;" data-i18n="type:-u">TYPE:</span>
@@ -1781,9 +1781,9 @@
                                     <option value="spell" data-i18n="spell-u">SPELL</option>
                                     <option value="0" selected="selected">-</option>
                                 </select>
-				-->
                                 <span>+</span>
                                 <input type="text" class="num" name="attr_dmg2mod" placeholder="0">
+				-->
                             </div>
                             <div class="row">
                                 <span style="margin-left: 17px;" data-i18n="type:-u">TYPE:</span>
@@ -1804,10 +1804,8 @@
                                 </select>
 
                                 <!--span data-i18n="dam-bonus:-u">CRIT:</span-->
-				<!--
                                 <input type="number" name="attr_attack_dam_bonus" class="attack-param bold-font inactive-color"
-                                                     value="[[@{strength_mod}+@{atkbonus}+@{attack_proficiency_dam_bonus}]]" disabled="true"/>
-				-->
+                                                     value="[[@{strength_mod}+@{atkmagic}+@{attack_proficiency_dam_bonus}]]" disabled="true" hidden="true"/>
 
                                 <span data-i18n="crit:-u">CRIT:</span>
                                 <input type="text" name="attr_dmg2custcrit" placeholder="1d6" style="width: 80px;">
@@ -1893,9 +1891,8 @@
 
                           <input type="number" name="attr_atkbonus" value="0" hidden="true"/>
                           <input type="number" name="attr_attack_proficiency_dam_bonus" value="0" hidden="true"/>
-			  <!-- TODO: not sure what to do with this -->
                           <input type="number" name="attr_attack_dam_bonus" 
-                                               value="[[@{strength_mod}+@{atkbonus}+@{attack_proficiency_dam_bonus}]]" disabled="true" hidden="true"/>
+                                               value="[[@{strength_mod}+@{atkmagic}+@{attack_proficiency_dam_bonus}]]" disabled="true" hidden="true"/>
 
                           <input type="text" name="attr_atkname" style="width: 119px;">
                           <select name="attr_attack_form" style="width: 68px; font-size: 10px;">
@@ -1928,7 +1925,7 @@
 
 			  <button type="roll" class="attack-button black-border" style="margin-left: 8px;"
 			          name="roll_attack"
-			          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}}  {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}">
+				  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}}  {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}"> 
 			  </button>
 
                           <div class="sheet-attack_press_attack_section">
@@ -2638,10 +2635,12 @@
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
                                         </div>
+					<!--
                                         <div class="row">
                                             <input type="checkbox" name="attr_spelldmgmod" value="Yes">
                                             <span data-i18n="add-ability-mod-u">ADD ABILITY MOD TO DAMAGE OR HEALING</span>
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="saving-throw:-u">SAVING THROW:</span>
                                             <select name="attr_spellsave">
@@ -2903,10 +2902,12 @@
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
                                         </div>
+					<!--
                                         <div class="row">
                                             <input type="checkbox" name="attr_spelldmgmod" value="Yes">
                                             <span data-i18n="add-ability-mod-u">ADD ABILITY MOD TO DAMAGE OR HEALING</span>
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="saving-throw:-u">SAVING THROW:</span>
                                             <select name="attr_spellsave">
@@ -3168,10 +3169,12 @@
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
                                         </div>
+					<!--
                                         <div class="row">
                                             <input type="checkbox" name="attr_spelldmgmod" value="Yes">
                                             <span data-i18n="add-ability-mod-u">ADD ABILITY MOD TO DAMAGE OR HEALING</span>
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="saving-throw:-u">SAVING THROW:</span>
                                             <select name="attr_spellsave">
@@ -3434,10 +3437,12 @@
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
                                         </div>
+					<!--
                                         <div class="row">
                                             <input type="checkbox" name="attr_spelldmgmod" value="Yes">
                                             <span data-i18n="add-ability-mod-u">ADD ABILITY MOD TO DAMAGE OR HEALING</span>
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="saving-throw:-u">SAVING THROW:</span>
                                             <select name="attr_spellsave">
@@ -3699,10 +3704,12 @@
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
                                         </div>
+					<!--
                                         <div class="row">
                                             <input type="checkbox" name="attr_spelldmgmod" value="Yes">
                                             <span data-i18n="add-ability-mod-u">ADD ABILITY MOD TO DAMAGE OR HEALING</span>
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="saving-throw:-u">SAVING THROW:</span>
                                             <select name="attr_spellsave">
@@ -3964,10 +3971,12 @@
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
                                         </div>
+					<!--
                                         <div class="row">
                                             <input type="checkbox" name="attr_spelldmgmod" value="Yes">
                                             <span data-i18n="add-ability-mod-u">ADD ABILITY MOD TO DAMAGE OR HEALING</span>
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="saving-throw:-u">SAVING THROW:</span>
                                             <select name="attr_spellsave">
@@ -4230,10 +4239,12 @@
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
                                         </div>
+					<!--
                                         <div class="row">
                                             <input type="checkbox" name="attr_spelldmgmod" value="Yes">
                                             <span data-i18n="add-ability-mod-u">ADD ABILITY MOD TO DAMAGE OR HEALING</span>
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="saving-throw:-u">SAVING THROW:</span>
                                             <select name="attr_spellsave">
@@ -4495,10 +4506,12 @@
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
                                         </div>
+					<!--
                                         <div class="row">
                                             <input type="checkbox" name="attr_spelldmgmod" value="Yes">
                                             <span data-i18n="add-ability-mod-u">ADD ABILITY MOD TO DAMAGE OR HEALING</span>
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="saving-throw:-u">SAVING THROW:</span>
                                             <select name="attr_spellsave">
@@ -4760,10 +4773,12 @@
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
                                         </div>
+					<!--
                                         <div class="row">
                                             <input type="checkbox" name="attr_spelldmgmod" value="Yes">
                                             <span data-i18n="add-ability-mod-u">ADD ABILITY MOD TO DAMAGE OR HEALING</span>
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="saving-throw:-u">SAVING THROW:</span>
                                             <select name="attr_spellsave">
@@ -6611,7 +6626,7 @@
 
                   const attack_name = values['repeating_attacks_' + id + '_atkname'];
                   const attack_magic = parseInt(values['repeating_attacks_' + id + '_atkmagic']);
-                  const attack_dam_die = values['repeating_attacks_' + id + '_dmgbase'];
+                  const attack_dambase = values['repeating_attacks_' + id + '_dmgbase'];
                   const dmgtype = values['repeating_attacks_' + id + '_dmgtype'];
                   const attack_notches = parseInt(values['repeating_attacks_' + id + '_attack_notches']);
                   const attack_form = values['repeating_attacks_' + id + '_attack_form'];
@@ -6693,8 +6708,8 @@
                   // damaged weapon message
                   const damage_msg = weapon_damage_msg[attack_notches];
 
-                  const num_dam_die = parseInt(attack_dam_die.substring(0,1));
-                  const attack_dam_die_type = parseInt(attack_dam_die.substring(2)) - (2 * (attack_notches));
+                  const num_dam_die = parseInt(attack_dambase.substring(0,1));
+                  const attack_dam_die_type = parseInt(attack_dambase.substring(2)) - (2 * (attack_notches));
 
                   // safety for low die attacks with lots of notches
                   if (attack_dam_die_type < 0) {
@@ -6703,12 +6718,15 @@
 
                   // final calculations
                   const sneak_dam = (sneak_dice * num_dam_die ) + 'd' + attack_dam_die_type;
-                  var attack_dam = num_dam_die + 'd' + attack_dam_die_type;
+                  var attack_dam = attack_dambase; // num_dam_die + 'd' + attack_dam_die_type;
 
 	          // add magic bonus
 	          if (attack_magic != 0) {
-		      attack_dam = attack_dam + '+' + attack_magic;
+	              console.debug("Attack magic added to damage: "+attack_magic);
+		      attack_dam = attack_dambase + '+' + attack_magic;
 	          }
+
+	          console.debug("ATTACK DAM: "+attack_dam);
 
                   // apply new properties to attack
                   output['repeating_attacks_' + id + '_attack_berserk_attack_enabled'] = berserk_attack;
@@ -7284,7 +7302,6 @@
 
                               var mod = desc.match(/ \+?(\d+?) to hit with spell attacks/);
                               if (mod) {
-                                console.log("Spellcasting mod:"+mod);
                                 update["spellcasting_mod"] = parseInt(mod[1]) || -1;
                               } else {
                                 update["spellcasting_mod"] = 0;
@@ -7647,9 +7664,8 @@
 
         if(data["Damage"] || data["Healing"]) {
             update[repeating_source + "_spelloutput"] = "ATTACK";
-/*
-            update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}`;
-*/
+	    // TODO? -- this may have been added by me as a test 
+            // update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}`;
 
             callbacks.push( function() {create_attack_from_spell(lvl, id, v.character_id);} );
         }
@@ -7675,8 +7691,8 @@
         if(data["Healing"]) {
           update[repeating_source + "_spellhealing"] = data["Healing"];
         };
-        if(data["Add Casting Modifier"]) {
-          update[repeating_source + "_spelldmgmod"] = data["Add Casting Modifier"]};
+        // if(data["Add Casting Modifier"]) {
+        //  update[repeating_source + "_spelldmgmod"] = data["Add Casting Modifier"]};
         if(data["Save"]) {
           update[repeating_source + "_spellsave"] = data["Save"]};
         if(data["Save Success"]) {
@@ -7714,7 +7730,6 @@
       update[`repeating_spells-${lvl}_${spellid}_rollcontent`] = `%{${character_id}|repeating_attacks_${newrowid}_attack}`;
 
       console.log("Create_attack_from_spell lvl:"+lvl+" spellid:"+spellid+" charid:"+character_id);
-
       setAttrs(update, {}, update_attack_from_spell(lvl, spellid, newrowid, true));
   }
 
@@ -7725,7 +7740,8 @@
       const repeating_spell  = `repeating_spells-${lvl}_${spellid}`;
       const repeating_attack = `repeating_attacks_${attackid}`;
 
-      getAttrs([`${repeating_spell}_spellname`, `${repeating_spell}_spellrange`, `${repeating_spell}_spelltarget`, `${repeating_spell}_spellattack`, `${repeating_spell}_spelldamage`, `${repeating_spell}_spelldamage2`,`${repeating_spell}_spelldamagetype`,`${repeating_spell}_spelldamagetype2`,`${repeating_spell}_spellhealing`,`${repeating_spell}_spelldmgmod`,`${repeating_spell}_spellsave`,`${repeating_spell}_spellsavesuccess`,`${repeating_spell}_spellhldie`,`${repeating_spell}_spellhldietype`,`${repeating_spell}_spellhlbonus`,`${repeating_spell}_spelllevel`,`${repeating_spell}_includedesc`,`${repeating_spell}_spelldescription`,`${repeating_spell}_spellathigherlevels`,`${repeating_spell}_spell_damage_progression`,`${repeating_spell}_innate`,`${repeating_spell}_spell_ability`,"spellcasting_ability"], (v) => {
+      // getAttrs([`${repeating_spell}_spellname`, `${repeating_spell}_spellrange`, `${repeating_spell}_spelltarget`, `${repeating_spell}_spellattack`, `${repeating_spell}_spelldamage`, `${repeating_spell}_spelldamage2`,`${repeating_spell}_spelldamagetype`,`${repeating_spell}_spelldamagetype2`,`${repeating_spell}_spellhealing`,`${repeating_spell}_spelldmgmod`,`${repeating_spell}_spellsave`,`${repeating_spell}_spellsavesuccess`,`${repeating_spell}_spellhldie`,`${repeating_spell}_spellhldietype`,`${repeating_spell}_spellhlbonus`,`${repeating_spell}_spelllevel`,`${repeating_spell}_includedesc`,`${repeating_spell}_spelldescription`,`${repeating_spell}_spellathigherlevels`,`${repeating_spell}_spell_damage_progression`,`${repeating_spell}_innate`,`${repeating_spell}_spell_ability`,"spellcasting_ability"], (v) => {
+      getAttrs([`${repeating_spell}_spellname`, `${repeating_spell}_spellrange`, `${repeating_spell}_spelltarget`, `${repeating_spell}_spellattack`, `${repeating_spell}_spelldamage`, `${repeating_spell}_spelldamage2`,`${repeating_spell}_spelldamagetype`,`${repeating_spell}_spelldamagetype2`,`${repeating_spell}_spellhealing`,`${repeating_spell}_spellsave`,`${repeating_spell}_spellsavesuccess`,`${repeating_spell}_spellhldie`,`${repeating_spell}_spellhldietype`,`${repeating_spell}_spellhlbonus`,`${repeating_spell}_spelllevel`,`${repeating_spell}_includedesc`,`${repeating_spell}_spelldescription`,`${repeating_spell}_spellathigherlevels`,`${repeating_spell}_spell_damage_progression`,`${repeating_spell}_innate`,`${repeating_spell}_spell_ability`], (v) => {
           let update = {};
           let description = "";
 
@@ -7854,18 +7870,21 @@
                       _.each(spell_attacks, (data, attack_id) => { update_attack_from_spell(data.spell_lvl, data.spell_id, attack_id); });
                   });
               } else {
+	          /*
                   let attack_attribs = ["spellcasting_ability"];
                   _.each(idarray, (id) => {
+		      // TODO
                       attack_attribs.push(`repeating_attack_${id}_atkattr_base`);
                      // attack_attribs.push(`repeating_attack_${id}_dmgattr`);
                      // attack_attribs.push(`repeating_attack_${id}_dmg2attr`);
                       attack_attribs.push(`repeating_attack_${id}_savedc`);
                   });
+		  */
                   getAttrs(attack_attribs, (v) => {
                       let attr_attack_ids = [];
                       _.each(idarray, (id) => {
                           // if ((v[`repeating_attack_${id}_atkattr_base`] && v[`repeating_attack_${id}_atkattr_base`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_dmgattr`] && v[`repeating_attack_${id}_dmgattr`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_dmg2attr`] && v[`repeating_attack_${id}_dmg2attr`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_savedc`] && v[`repeating_attack_${id}_savedc`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_savedc`] && v[`repeating_attack_${id}_savedc`] === "(@{spell_save_dc})" && v["spellcasting_ability"] && v["spellcasting_ability"].indexOf(update_id) > -1)) {
-                          if ((v[`repeating_attack_${id}_atkattr_base`] && v[`repeating_attack_${id}_atkattr_base`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_savedc`] && v[`repeating_attack_${id}_savedc`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_savedc`] && v[`repeating_attack_${id}_savedc`] === "(@{spell_save_dc})" && v["spellcasting_ability"] && v["spellcasting_ability"].indexOf(update_id) > -1)) {
+			  if ((v[`repeating_attack_${id}_atkattr_base`] && v[`repeating_attack_${id}_atkattr_base`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_savedc`] && v[`repeating_attack_${id}_savedc`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_savedc`] && v[`repeating_attack_${id}_savedc`] === "(@{spell_save_dc})")) {
                               attr_attack_ids.push(id);
                           }
                       });
@@ -7879,9 +7898,11 @@
   };
 
   const do_update_attack = (attack_array, source) => {
-      let attack_attribs = ["level","d20","pb","pb_type","pbd_safe","dtype","strength_mod","dexterity_mod","constitution_mod","intelligence_mod","wisdom_mod","charisma_mod","spellcasting_ability","spell_save_dc","spell_attack_mod", "spell_dc_mod" ];
+      // let attack_attribs = ["level","d20","pb","pb_type","pbd_safe","dtype","strength_mod","dexterity_mod","constitution_mod","intelligence_mod","wisdom_mod","charisma_mod","spellcasting_ability","spell_save_dc","spell_attack_mod", "spell_dc_mod" ];
+      let attack_attribs = ["level","d20","pb","pb_type","pbd_safe","dtype","strength_mod","dexterity_mod","constitution_mod","intelligence_mod","wisdom_mod","charisma_mod","spell_save_dc","spell_attack_mod", "spell_dc_mod" ];
       _.each(attack_array, (attackid) => {
-          ["atkflag","atkname","atkattr_base","atkmod","atkprofflag","atkmagic","dmgflag","dmgbase","dmgmod","dmgtype","dmg2flag","dmg2base","dmg2type","dmgcustcrit","dmg2custcrit","saveflag","savedc","saveeffect","saveflat","hldmg","spellid","spelllevel","atkrange","itemid","ammo",].forEach((attr) => {
+          // ["atkflag","atkname","atkattr_base","atkmod","atkprofflag","atkmagic","dmgflag","dmgbase","dmgmod","dmgtype","dmg2flag","dmg2base","dmg2type","dmgcustcrit","dmg2custcrit","saveflag","savedc","saveeffect","saveflat","hldmg","spellid","spelllevel","atkrange","itemid","ammo",].forEach((attr) => {
+          ["atkflag","atkname","atkattr_base","atkmod","atkprofflag","atkmagic","dmgflag","dmgbase","dmgtype","dmg2flag","dmg2base","dmg2type","dmgcustcrit","dmg2custcrit","saveflag","savedc","saveeffect","saveflat","hldmg","spellid","spelllevel","atkrange","itemid","ammo",].forEach((attr) => {
               attack_attribs.push(`repeating_attack_${attackid}_${attr}`)
           });
       });
@@ -7920,11 +7941,12 @@
               if (!v[`${repeating_attack}_atkattr_base`] || v[`${repeating_attack}_atkattr_base`] === "0") {
                   atkattr_base = 0
               } else if (v[`${repeating_attack}_atkattr_base`] && v[`${repeating_attack}_atkattr_base`] === "spell") {
-                  atkattr_base  = parseInt(v[v["spellcasting_ability"].substring(2, v["spellcasting_ability"].length - 2)], 10);
-                  atkattr_abrev = v["spellcasting_ability"].substring(2, 5).toUpperCase();
+	          // TODO
+                  // atkattr_base  = 0; // parseInt(v[v["spellcasting_ability"].substring(2, v["spellcasting_ability"].length - 2)], 10);
+                  // atkattr_abrev = ""; // v["spellcasting_ability"].substring(2, 5).toUpperCase();
               } else {
-                  atkattr_base = parseInt(v[v[`${repeating_attack}_atkattr_base`].substring(2, v[`${repeating_attack}_atkattr_base`].length - 1)], 10);
-                  atkattr_abrev = v[`${repeating_attack}_atkattr_base`].substring(2, 5).toUpperCase();
+                  // atkattr_base = parseInt(v[v[`${repeating_attack}_atkattr_base`].substring(2, v[`${repeating_attack}_atkattr_base`].length - 1)], 10);
+                  // atkattr_abrev = v[`${repeating_attack}_atkattr_base`].substring(2, 5).toUpperCase();
               };
 
               //DAMAGE 1 ability select inside settings for the repeating attack
@@ -7952,7 +7974,6 @@
               //DAMAGE first input inside settings for the repeating attack
               const dmgbase  = v[`${repeating_attack}_dmgbase`] || 0;
               const dmg2base = v[`${repeating_attack}_dmg2base`] || 0;
-              //DAMAGE 1 second input inside settings for the repeating attack
 
 	      // TODO: remove dmgmod, dmg2mod
               const dmgmod  = parseInt(v[`${repeating_attack}_dmgmod`],10) || 0;
@@ -8065,7 +8086,8 @@
               //Build ROLL TEMPLATE with below variables
               //ATTACK checkbox inside settings for the repeating attack
               if (atkflag != 0) {
-                  if (atkattr_base   != 0) {hbonus += ` + ${atkattr_base}[${atkattr_abrev}]`};
+	          // TODO
+                  // if (atkattr_base   != 0) {hbonus += ` + ${atkattr_base}[${atkattr_abrev}]`};
                   if (atkmod         != 0) {hbonus += ` + ${atkmod}[MOD]`};
                   if (pb             != 0) {hbonus += ` + ${pb}${pbd_safe}[PROF]`};
                   if (atkmag         != 0) {hbonus += ` + ${atkmag}[MAGIC]`};
@@ -8075,7 +8097,7 @@
               if (dmgflag1 != 0) {
                   hdmg1 += dmgbase;
                   // if (dmgattr != 0) {hdmg1 += ` + ${dmgattr}[${dmgattr_abrev}]`};
-                  if (dmgmod  != 0) {hdmg1 += ` + ${dmgmod}[MOD]`};
+                  // if (dmgmod  != 0) {hdmg1 += ` + ${dmgmod}[MOD]`};
                   if (atkmag  != 0) {hdmg1 += ` + ${atkmag}[MAGIC]`};
               } else {
                   hdmg1 += "0";
@@ -8180,7 +8202,8 @@
   };
 
   var update_item_from_attack = function(itemid, attackid) {
-      getAttrs(["repeating_attack_" + attackid + "_atkname", "repeating_attack_" + attackid + "_dmgbase", "repeating_attack_" + attackid + "_dmg2base", "repeating_attack_" + attackid + "_dmgtype", "repeating_attack_" + attackid + "_dmg2type", "repeating_attack_" + attackid + "_atkrange", "repeating_attack_" + attackid + "_atkmod", "repeating_attack_" + attackid + "_dmgmod", "repeating_inventory_" + itemid + "_itemmodifiers", "repeating_attack_" + attackid + "_versatile_alt", "repeating_inventory_" + itemid + "_itemproperties", "repeating_attack_" + attackid + "_atkmagic"], function(v) {
+      // getAttrs(["repeating_attack_" + attackid + "_atkname", "repeating_attack_" + attackid + "_dmgbase", "repeating_attack_" + attackid + "_dmg2base", "repeating_attack_" + attackid + "_dmgtype", "repeating_attack_" + attackid + "_dmg2type", "repeating_attack_" + attackid + "_atkrange", "repeating_attack_" + attackid + "_atkmod", "repeating_attack_" + attackid + "_dmgmod", "repeating_inventory_" + itemid + "_itemmodifiers", "repeating_attack_" + attackid + "_versatile_alt", "repeating_inventory_" + itemid + "_itemproperties", "repeating_attack_" + attackid + "_atkmagic"], function(v) {
+      getAttrs(["repeating_attack_" + attackid + "_atkname", "repeating_attack_" + attackid + "_dmgbase", "repeating_attack_" + attackid + "_dmg2base", "repeating_attack_" + attackid + "_dmgtype", "repeating_attack_" + attackid + "_dmg2type", "repeating_attack_" + attackid + "_atkrange", "repeating_attack_" + attackid + "_atkmod", "repeating_attack_" + attackid + "repeating_inventory_" + itemid + "_itemmodifiers", "repeating_attack_" + attackid + "_versatile_alt", "repeating_inventory_" + itemid + "_itemproperties", "repeating_attack_" + attackid + "_atkmagic"], function(v) {
           var update = {};
           var mods = v["repeating_inventory_" + itemid + "_itemmodifiers"];
           var damage = v["repeating_attack_" + attackid + "_dmgbase"] ? v["repeating_attack_" + attackid + "_dmgbase"] : 0;
@@ -8189,7 +8212,7 @@
           var damagetype2 = v["repeating_attack_" + attackid + "_dmg2type"] ? v["repeating_attack_" + attackid + "_dmg2type"] : 0;
           var range = v["repeating_attack_" + attackid + "_atkrange"] ? v["repeating_attack_" + attackid + "_atkrange"] : 0;
           var attackmod = v["repeating_attack_" + attackid + "_atkmod"] ? v["repeating_attack_" + attackid + "_atkmod"] : 0;
-          var damagemod = v["repeating_attack_" + attackid + "_dmgmod"] ? v["repeating_attack_" + attackid + "_dmgmod"] : 0;
+          // var damagemod = v["repeating_attack_" + attackid + "_dmgmod"] ? v["repeating_attack_" + attackid + "_dmgmod"] : 0;
           var magicmod = v["repeating_attack_" + attackid + "_atkmagic"] ? v["repeating_attack_" + attackid + "_atkmagic"] : 0;
           var atktype = "";
           var altprefix = v["repeating_attack_" + attackid + "_versatile_alt"] === "1" ? "Alternate " : "";
@@ -8310,6 +8333,8 @@
               }
           }
 
+	/*
+	  // TODO: we may not be parsing all of the damage right
           var damagemod_regex = new RegExp("^\\s*(?:" + (atktype !== "" ? atktype + "|" : "") + "Weapon) Damage \\+?(.+)$", "i");
           var damagemod_found = false;
           for(var i = 0; i < mods.length; i++) {
@@ -8331,6 +8356,7 @@
                   mods.push(atktype + " Damage: " + (magicmod !== 0 ? magicmod : damagemod));
               }
           }
+	*/
 
           update["repeating_inventory_" + itemid + "_itemmodifiers"] = mods.join(",");
 
