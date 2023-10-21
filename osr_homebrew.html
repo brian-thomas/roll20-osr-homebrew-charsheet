@@ -6047,14 +6047,31 @@
 
       spellslots = get_spell_slots (is_wizard, is_elf, is_cleric, c_class, level, level2);
       setting["lvl1_slots_total"] = spellslots[0];
+      setting["lvl1_slots_expended"] = spellslots[0];
+
       setting["lvl2_slots_total"] = spellslots[1];
+      setting["lvl2_slots_expended"] = spellslots[1];
+
       setting["lvl3_slots_total"] = spellslots[2];
+      setting["lvl3_slots_expended"] = spellslots[2];
+
       setting["lvl4_slots_total"] = spellslots[3];
+      setting["lvl4_slots_expended"] = spellslots[3];
+
       setting["lvl5_slots_total"] = spellslots[4];
+      setting["lvl5_slots_expended"] = spellslots[4];
+
       setting["lvl6_slots_total"] = spellslots[5];
+      setting["lvl6_slots_expended"] = spellslots[5];
+
       setting["lvl7_slots_total"] = spellslots[6];
+      setting["lvl7_slots_expended"] = spellslots[6];
+
       setting["lvl8_slots_total"] = spellslots[7];
+      setting["lvl8_slots_expended"] = spellslots[7];
+
       setting["lvl9_slots_total"] = spellslots[8];
+      setting["lvl9_slots_expended"] = spellslots[8];
 
       if (is_wizard)
       {
@@ -6093,9 +6110,11 @@
         var elf_slots1 = 1 + parseInt((level + level2)/4);
         if (arcane_spell_slots1[wizard_level] < elf_slots1) {
            setting["lvl1_slots_total"] = elf_slots1;
+           setting["lvl1_slots_expended"] = elf_slots1;
         }
         else {
            setting["lvl1_slots_total"] = arcane_spell_slots1[wizard_level];
+           setting["lvl1_slots_expended"] = arcane_spell_slots1[wizard_level];
         }
       }
 
