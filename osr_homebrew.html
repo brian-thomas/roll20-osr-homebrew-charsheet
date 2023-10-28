@@ -2507,11 +2507,11 @@
                         <div class="spell">
                             <div class="display">
                                <input type="hidden" name="attr_rollcontent"
-                                      value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
-					     <!--
-                                                    value="@{wtype}&{template:spell} {{level=@{spellschool} @{spelllevel}}}  {{name=@{spellname} FOO}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}">
+                                      value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
+					<!--
+				value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{innate=@{innate}}} {{description=@{spelldescription}}}">
+					-->
                                 <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
-					       -->
 			        <input type="hidden" name="attr_adhoc_dc" value="10"/>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -2531,7 +2531,14 @@
                                     <span class="m" data-i18n="spell-component-material">M</span>
                                 </span>
                             </div>
-                            <input class="details-flag" type="checkbox" name="attr_details-flag" checked="checked"><span>i</span>
+			    <button class="adhoc-flag" type="roll" name="roll_adhoc_cast"
+                                    value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
+			        <span>e</span>
+			    </button> 
+	    <!--
+			    <input class="adhoc-flag" type="checkbox" name="attr_adhoc-flag" checked="checked"><span>e</span></input> 
+		-->
+                            <input class="details-flag" type="checkbox" name="attr_details-flag" checked="checked"><span>i</span></input>
                             <div class="wrapper">
                                 <input class="options-flag" type="checkbox" name="attr_options-flag" checked="checked"><span>y</span>
                                 <div class="options">
@@ -2778,7 +2785,7 @@
                         <div class="spell">
                             <div class="display">
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
+                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
                                 <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -3045,7 +3052,7 @@
                         <div class="spell">
                             <div class="display">
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
+                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
                                 <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -3313,7 +3320,7 @@
                         <div class="spell">
                             <div class="display">
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
+                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
                                 <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -3580,7 +3587,7 @@
                         <div class="spell">
                             <div class="display">
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
+                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
                                 <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -3847,7 +3854,7 @@
                         <div class="spell">
                             <div class="display">
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
+                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
                                 <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -4115,7 +4122,7 @@
                         <div class="spell">
                             <div class="display">
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
+                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
                                 <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -4382,7 +4389,7 @@
                         <div class="spell">
                             <div class="display">
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
+                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
                                 <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -4649,7 +4656,7 @@
                         <div class="spell">
                             <div class="display">
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
+                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
                                 <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -6286,6 +6293,20 @@
     });
   });
 
+  spell_lists.forEach( splvl => {
+    on(`remove:repeating_${splvl}`, function (splvl) {
+
+      const repeating_source_id = splvl['sourceAttribute'];
+      const spellattackid_fld = repeating_source_id + "_spellattackid";
+
+      const spellattackid = splvl['removedInfo'][spellattackid_fld];
+      if (spellattackid && spellattackid !== "") {
+         remove_attack(spellattackid);
+      }
+
+    });
+  });
+
   on(`change:arcana_skill change:arcana_bonus change:class change:class2 change:spelldamage`, function () {
       update_all_spells();
   });
@@ -6299,6 +6320,7 @@
   function update_spells (splvl) {
 
     console.log("Update spells lvl:"+splvl);
+
     const repeating_source = `repeating_${splvl}`;
     getSectionIDs(repeating_source, function (ids) {
       const fieldnames = [];
@@ -6323,6 +6345,7 @@
           const spelllevel = parseInt(values[repeating_source + '_' + id + '_spelllevel']) || 0;
           const spelldamage = values[repeating_source + '_' + id + '_spelldamage'];
 
+          // handle ADHOC
           const is_dice_enabled = (spelldamage === "") ? 0 : 1;
           var adhoc_dc = 10 + spelllevel - spellcasting_mod - arcana_adj;
           if (adhoc_dc < 2) { adhoc_dc = 2; } // never lower than 2
@@ -6338,9 +6361,9 @@
     });
   };
 
-  // update need for query for higher level casting
+  // update need for query for higher level casting and/or spelloutput 
   spell_lists.forEach(attr => {
-      on(`change:repeating_${attr}:spellathigherlevels`, (eventinfo) => {
+      on(`change:repeating_${attr}:spellathigherlevels change:repeating_${attr}:spelloutput`, (eventinfo) => {
           if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
 
           const spellid = eventinfo.sourceAttribute.split("_")[2], repeating_source = `repeating_${attr}_${spellid}`;
@@ -6350,17 +6373,20 @@
               const spelloutput  = v[repeating_source + "_spelloutput"];
               const licensedsheet = parseInt(v.licensedsheet) || 0;
 
-              if (spelloutput) { //  && spelloutput === "SPELLCARD") {
-                  update_spelloutput(higherlevels, lvl, repeating_source, spelloutput, licensedsheet);
+              if (spelloutput) { 
+                  update_spelloutput(higherlevels, lvl, spellid, repeating_source, spelloutput, licensedsheet);
               }
           });
       });
   });
 
-  const update_spelloutput = (higherlevels, lvl, repeating_source, spelloutput, licensedsheet)  => {
+  const update_spelloutput = (higherlevels, lvl, spellid, repeating_source, spelloutput, licensedsheet)  => {
       let spelllevel = "@{spelllevel}";
       let update = {};
+      var callbacks = [];
 
+      console.log("UPDATE SPELLOUTPUT");
+     /*
       if (higherlevels && higherlevels !== "") {
           for(i = 0; i < 10-lvl; i++) {
               let tot = parseInt(i, 10) + parseInt(lvl, 10);
@@ -6368,8 +6394,39 @@
           }
           spelllevel = `?{Cast at what level? ${spelllevel}}`;
       }
-      update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
-      setAttrs(update, {silent: true});
+      */
+
+      getAttrs([`${repeating_source}_spellattackid`, "character_id"], (v) => {
+	const character_id = v.character_id;
+	const spellattackid = v[repeating_source + "_spellattackid"];
+        if (spelloutput === "SPELLCARD") {
+
+          // default rollcontent for spellcard
+          update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
+
+	  // see if we already had a spellattackid, if so delete the attack 
+	  if (spellattackid !== "") {
+             console.log("UPDATE SPELLOUTPUT -- ATTACK  attck_id: "+ spellattackid);
+	     console.log("UNLINK and delete attack for spell with preexisting attack id:"+repeating_source);
+
+             // erase spell attack id
+             update[repeating_source + "_spellattackid"] = "";
+             callbacks.push( function() { remove_attack(spellattackid); });
+	  
+	  }
+
+        } else {
+
+           // spelloutput ATTACK
+	   // make a new attack
+	   console.log("CREATE new attack for spell ");
+           callbacks.push( function() { create_attack_from_spell(lvl, spellid, character_id); });
+
+        }
+
+        console.log("ROLLCONTENT (before set attrs): "+update[repeating_source + "_rollcontent"]);
+        setAttrs(update, {silent: false}, function() {callbacks.forEach(function(callback) {callback(); })} );
+      });
   };
 
   // Keep perks up to date
@@ -6720,13 +6777,10 @@
                   const sneak_dam = (sneak_dice * num_dam_die ) + 'd' + attack_dam_die_type;
                   var attack_dam = attack_dambase; // num_dam_die + 'd' + attack_dam_die_type;
 
-	          // add magic bonus
+	          // add magic bonus to damage
 	          if (attack_magic != 0) {
-	              console.debug("Attack magic added to damage: "+attack_magic);
 		      attack_dam = attack_dambase + '+' + attack_magic;
 	          }
-
-	          console.debug("ATTACK DAM: "+attack_dam);
 
                   // apply new properties to attack
                   output['repeating_attacks_' + id + '_attack_berserk_attack_enabled'] = berserk_attack;
@@ -7664,10 +7718,7 @@
 
         if(data["Damage"] || data["Healing"]) {
             update[repeating_source + "_spelloutput"] = "ATTACK";
-	    // TODO? -- this may have been added by me as a test 
-            // update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}`;
-
-            callbacks.push( function() {create_attack_from_spell(lvl, id, v.character_id);} );
+            callbacks.push( function() { create_attack_from_spell(lvl, id, v.character_id); });
         }
         else if(data["Higher Spell Slot Desc"] && data["Higher Spell Slot Desc"] != "") {
             var spelllevel = "?{Cast at what level?";
@@ -7675,7 +7726,9 @@
                 spelllevel = spelllevel + "|Level " + (parseInt(i, 10) + parseInt(lvl, 10)) + "," + (parseInt(i, 10) + parseInt(lvl, 10));
             }
             spelllevel = spelllevel + "}";
-            update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
+
+	    console.log("Using rollcontent 1(higher spellslot)\n");
+            update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
         };
 
         if(data["Spell Attack"]) {
@@ -7728,6 +7781,9 @@
       const newrowid = generateRowID();
       update[`repeating_spells-${lvl}_${spellid}_spellattackid`] = newrowid;
       update[`repeating_spells-${lvl}_${spellid}_rollcontent`] = `%{${character_id}|repeating_attacks_${newrowid}_attack}`;
+
+      let rollcontent = `%{${character_id}|repeating_attacks_${newrowid}_attack}`;
+      console.log("SET rollcontent (attack) to:"+rollcontent);
 
       console.log("Create_attack_from_spell lvl:"+lvl+" spellid:"+spellid+" charid:"+character_id);
       setAttrs(update, {}, update_attack_from_spell(lvl, spellid, newrowid, true));
@@ -8364,12 +8420,9 @@
       });
   };
 
-  /*
-	// TODO
   var remove_attack = function(attackid) {
-      removeRepeatingRow("repeating_attack_" + attackid);
+      removeRepeatingRow("repeating_attacks_" + attackid);
   };
-  */
 
   var cleanup_drop_fields = function() {
 
