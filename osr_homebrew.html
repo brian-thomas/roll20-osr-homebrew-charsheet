@@ -6327,11 +6327,14 @@
       ids.forEach(id => {
         fieldnames.push(repeating_source + '_' + id + '_spelllevel');
         fieldnames.push(repeating_source + '_' + id + '_spelldamage');
+        fieldnames.push(repeating_source + '_' + id + '_spelloutput');
+        fieldnames.push(repeating_source + '_' + id + '_spellattackid');
       });
 
-      getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod'], function (values) {
+      getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod', 'character_id'], function (values) {
         const c_class = values.class.trim();
         const c_class2 = values.class2.trim();
+        const character_id = values.character_id;
         const arcana_skill = parseInt(values.arcana_skill) || 0;
         const arcana_bonus = parseInt(values.arcana_bonus) || 0;
         const spellcasting_mod = parseInt(values.spellcasting_mod) || 0;
@@ -6339,11 +6342,29 @@
         const arcana_adj = parseInt((arcana_skill + arcana_bonus) / 4);
         const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard') ? 1 : 0;
 
-        settings = {};
+        var settings = {};
+	var callbacks = [];
         ids.forEach(id => {
 
           const spelllevel = parseInt(values[repeating_source + '_' + id + '_spelllevel']) || 0;
           const spelldamage = values[repeating_source + '_' + id + '_spelldamage'];
+          const spelloutput = values[repeating_source + '_' + id + '_spelloutput'];
+          const spellattackid = values[repeating_source + '_' + id + '_spellattackid'];
+
+          // handle sync between attack and spell
+	  if (spelloutput === "ATTACK") 
+	  {
+	      if (!spellattackid || spellattackid === "") {
+                 // undefined attack?? add one
+		 create_attack_from_spell();
+                 callbacks.push( function() { create_attack_from_spell(spelllevel, id, character_id); });
+	      }
+	      else 
+	      {
+                 // sync spell to the changed spell
+                 callbacks.push( function() { update_attack_from_spell(spelllevel, id, spellattackid, false); });
+	      }
+	  }
 
           // handle ADHOC
           const is_dice_enabled = (spelldamage === "") ? 0 : 1;
@@ -6356,7 +6377,7 @@
           settings[repeating_source + '_' + id + '_is_dice_spell'] = is_dice_enabled;
 
         });
-        setAttrs(settings);
+        setAttrs(settings, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
       });
     });
   };
@@ -6425,7 +6446,7 @@
         }
 
         console.log("ROLLCONTENT (before set attrs): "+update[repeating_source + "_rollcontent"]);
-        setAttrs(update, {silent: false}, function() {callbacks.forEach(function(callback) {callback(); })} );
+        setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
       });
   };
 
@@ -6594,6 +6615,11 @@
   });
 
   on(`:${combatOptChangeStr} change:sneak_attack_dice change:sneak_attack_enabled change:repeating_attacks change:c_class change:c_class2 change:level change:level2` , function () {
+      update_attacks2();
+  });
+
+  function update_attacks2 () {
+      console.log("UPDATE ATTACKS2");
       getSectionIDs('repeating_attacks', function (ids) {
 
         console.debug("Repeating attacks update called");
@@ -6848,7 +6874,7 @@
               setAttrs(output);
             });
          });
-  });
+  };
 
   // Update basic attack information we expect to have
   // DONT do this on change:repeating_attacks. Its very slow..
@@ -7796,7 +7822,6 @@
       const repeating_spell  = `repeating_spells-${lvl}_${spellid}`;
       const repeating_attack = `repeating_attacks_${attackid}`;
 
-      // getAttrs([`${repeating_spell}_spellname`, `${repeating_spell}_spellrange`, `${repeating_spell}_spelltarget`, `${repeating_spell}_spellattack`, `${repeating_spell}_spelldamage`, `${repeating_spell}_spelldamage2`,`${repeating_spell}_spelldamagetype`,`${repeating_spell}_spelldamagetype2`,`${repeating_spell}_spellhealing`,`${repeating_spell}_spelldmgmod`,`${repeating_spell}_spellsave`,`${repeating_spell}_spellsavesuccess`,`${repeating_spell}_spellhldie`,`${repeating_spell}_spellhldietype`,`${repeating_spell}_spellhlbonus`,`${repeating_spell}_spelllevel`,`${repeating_spell}_includedesc`,`${repeating_spell}_spelldescription`,`${repeating_spell}_spellathigherlevels`,`${repeating_spell}_spell_damage_progression`,`${repeating_spell}_innate`,`${repeating_spell}_spell_ability`,"spellcasting_ability"], (v) => {
       getAttrs([`${repeating_spell}_spellname`, `${repeating_spell}_spellrange`, `${repeating_spell}_spelltarget`, `${repeating_spell}_spellattack`, `${repeating_spell}_spelldamage`, `${repeating_spell}_spelldamage2`,`${repeating_spell}_spelldamagetype`,`${repeating_spell}_spelldamagetype2`,`${repeating_spell}_spellhealing`,`${repeating_spell}_spellsave`,`${repeating_spell}_spellsavesuccess`,`${repeating_spell}_spellhldie`,`${repeating_spell}_spellhldietype`,`${repeating_spell}_spellhlbonus`,`${repeating_spell}_spelllevel`,`${repeating_spell}_includedesc`,`${repeating_spell}_spelldescription`,`${repeating_spell}_spellathigherlevels`,`${repeating_spell}_spell_damage_progression`,`${repeating_spell}_innate`,`${repeating_spell}_spell_ability`], (v) => {
           let update = {};
           let description = "";
@@ -7893,13 +7918,15 @@
           };
           update[`${repeating_attack}_atk_desc`] = description;
 
-          var callback = () => {update_attacks(attackid, "spell")};
+          var callback = () => { update_attacks(attackid, "spell") };
           setAttrs(update, {silent: true}, callback);
       });
   };
 
   const update_attacks = (update_id, source) => {
+
       console.log("update attacks");
+
       if (update_id.substring(0,1) === "-" && update_id.length === 20) {
           do_update_attack([update_id], source);
       } else if (["strength","dexterity","constitution","intelligence","wisdom","charisma","spells","all"].indexOf(update_id) > -1) {
@@ -7939,7 +7966,6 @@
                   getAttrs(attack_attribs, (v) => {
                       let attr_attack_ids = [];
                       _.each(idarray, (id) => {
-                          // if ((v[`repeating_attack_${id}_atkattr_base`] && v[`repeating_attack_${id}_atkattr_base`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_dmgattr`] && v[`repeating_attack_${id}_dmgattr`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_dmg2attr`] && v[`repeating_attack_${id}_dmg2attr`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_savedc`] && v[`repeating_attack_${id}_savedc`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_savedc`] && v[`repeating_attack_${id}_savedc`] === "(@{spell_save_dc})" && v["spellcasting_ability"] && v["spellcasting_ability"].indexOf(update_id) > -1)) {
 			  if ((v[`repeating_attack_${id}_atkattr_base`] && v[`repeating_attack_${id}_atkattr_base`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_savedc`] && v[`repeating_attack_${id}_savedc`].indexOf(update_id) > -1) || (v[`repeating_attack_${id}_savedc`] && v[`repeating_attack_${id}_savedc`] === "(@{spell_save_dc})")) {
                               attr_attack_ids.push(id);
                           }
@@ -7951,10 +7977,10 @@
               };
           });
       };
+      update_attacks2();
   };
 
   const do_update_attack = (attack_array, source) => {
-      // let attack_attribs = ["level","d20","pb","pb_type","pbd_safe","dtype","strength_mod","dexterity_mod","constitution_mod","intelligence_mod","wisdom_mod","charisma_mod","spellcasting_ability","spell_save_dc","spell_attack_mod", "spell_dc_mod" ];
       let attack_attribs = ["level","d20","pb","pb_type","pbd_safe","dtype","strength_mod","dexterity_mod","constitution_mod","intelligence_mod","wisdom_mod","charisma_mod","spell_save_dc","spell_attack_mod", "spell_dc_mod" ];
       _.each(attack_array, (attackid) => {
           // ["atkflag","atkname","atkattr_base","atkmod","atkprofflag","atkmagic","dmgflag","dmgbase","dmgmod","dmgtype","dmg2flag","dmg2base","dmg2type","dmgcustcrit","dmg2custcrit","saveflag","savedc","saveeffect","saveflat","hldmg","spellid","spelllevel","atkrange","itemid","ammo",].forEach((attr) => {
