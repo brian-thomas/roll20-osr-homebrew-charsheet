@@ -1765,11 +1765,11 @@
                                 <span data-i18n="crit:-u">CRIT:</span>
                                 <input type="text" name="attr_dmgcustcrit" placeholder="1d6" style="width: 80px;">
                             </div>
+			    <!--
                             <div class="row">
                                 <input type="checkbox" name="attr_dmg2flag" value="{{damage=1}} {{dmg2flag=1}}"/>
                                 <span data-i18n="damage2:-u">DAMAGE2:</span>
                                 <input type="text" name="attr_dmg2base" placeholder="1d6" style="width: 50px;"/>
-				<!--
                                 <span>+</span>
                                 <select name="attr_dmg2attr">
                                     <option value="@{strength_mod}" data-i18n="str-u">STR</option>
@@ -1783,7 +1783,6 @@
                                 </select>
                                 <span>+</span>
                                 <input type="text" class="num" name="attr_dmg2mod" placeholder="0">
-				-->
                             </div>
                             <div class="row">
                                 <span style="margin-left: 17px;" data-i18n="type:-u">TYPE:</span>
@@ -1803,13 +1802,14 @@
                                   <option value="Thunder">Thunder</option>
                                 </select>
 
-                                <!--span data-i18n="dam-bonus:-u">CRIT:</span-->
+                                <span data-i18n="dam-bonus:-u">CRIT:</span>
                                 <input type="number" name="attr_attack_dam_bonus" class="attack-param bold-font inactive-color"
                                                      value="[[@{strength_mod}+@{atkmagic}+@{attack_proficiency_dam_bonus}]]" disabled="true" hidden="true"/>
 
                                 <span data-i18n="crit:-u">CRIT:</span>
                                 <input type="text" name="attr_dmg2custcrit" placeholder="1d6" style="width: 80px;">
                             </div>
+			    -->
                             <div class="row">
                                 <input type="checkbox" name="attr_saveflag" value="{{save=1}} {{saveattr=@{saveattr}}} {{savedesc=@{saveeffect}}} {{savedc=[[[[@{savedc}]][SAVE]]]}}">
                                 <span data-i18n="saving-throw:-u">SAVING THROW:</span>
@@ -1891,7 +1891,7 @@
 
                           <input type="number" name="attr_atkbonus" value="0" hidden="true"/>
                           <input type="number" name="attr_attack_proficiency_dam_bonus" value="0" hidden="true"/>
-                          <input type="number" name="attr_attack_dam_bonus" 
+                          <input type="number" name="attr_attack_dam_bonus"
                                                value="[[@{strength_mod}+@{atkmagic}+@{attack_proficiency_dam_bonus}]]" disabled="true" hidden="true"/>
 
                           <input type="text" name="attr_atkname" style="width: 119px;">
@@ -1923,10 +1923,27 @@
                                   <option value="Thunder">Thunder</option>
                           </select>
 
-			  <button type="roll" class="attack-button black-border" style="margin-left: 8px;"
-			          name="roll_attack"
-				  value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}}  {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}"> 
-			  </button>
+			  <input type="hidden" name="attr_rollbase"/>
+                          <input type="hidden" name="attr_rollbase_dmg"/>
+                          <input type="hidden" name="attr_rollbase_crit"/>
+                          <input type="hidden" name="attr_hldmg"/>
+                          <input type="hidden" name="attr_spelllevel"/>
+                          <input type="hidden" name="attr_itemid"/>
+                          <input type="hidden" name="attr_spellid"/>
+                          <input type="hidden" name="attr_spell_innate" value=""/>
+                          <input type="hidden" name="attr_versatile_alt"/>
+
+			  <div>
+			      <button type="roll" class="attack-button black-border" style="margin-left: 8px;"
+			              name="roll_attack"
+				      value="&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}"
+			      </button>
+			  </div>
+
+				  <!--
+				      value = "@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} @{dmg2flag} {{dmg2=[[${hdmg2}]]}} {{dmg2type=${dmg2type}}} {{crit1=[[${crit1}[CRIT]]]}} {{crit2=[[${crit2}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}"
+				      value="&{template:roll_check} {{character_name=@{character_name}}} {{ammo=@{ammo}}} {{name=@{atkname}}} {{innate=@{spell_innate}}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}}  {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}"
+					 -->
 
                           <div class="sheet-attack_press_attack_section">
                             <input type="checkbox" class="sheet-attack-press-attack-button-show" name="attr_attack_press_attack_button_show" value="1" hidden="true" checked="checked"/>
@@ -2061,15 +2078,6 @@
 
                         </div>
 
-                        <input type="hidden" name="attr_rollbase"/>
-                        <input type="hidden" name="attr_rollbase_dmg"/>
-                        <input type="hidden" name="attr_rollbase_crit"/>
-                        <input type="hidden" name="attr_hldmg"/>
-                        <input type="hidden" name="attr_spelllevel"/>
-                        <input type="hidden" name="attr_itemid"/>
-                        <input type="hidden" name="attr_spellid"/>
-                        <input type="hidden" name="attr_spell_innate"/>
-                        <input type="hidden" name="attr_versatile_alt"/>
                         <button type="roll" name="roll_attack_dmg" style="display: none;" value="@{rollbase_dmg}"></button>
                         <button type="roll" name="roll_attack_crit" style="display: none;" value="@{rollbase_crit}"></button>
 
@@ -2078,28 +2086,6 @@
                 </fieldset>
 
             </div>
-
-            <!--
-            <input type="hidden" class="toggleflag" name="attr_global_ac_mod_flag">
-            <div class="equipment hidden">
-                <div class="textarea globalattack acmod">
-                    <fieldset class="repeating_acmod">
-                        <div class="global-mod">
-                            <input type="checkbox" name="attr_options-flag" class="options-flag" checked="checked" style="top: -15px;"><span>y</span>
-                            <input type="checkbox" name="attr_global_ac_active_flag" value="1" class="active-flag">
-                            <div class="options">
-                                <label>Value: <input type="number" name="attr_global_ac_val" placeholder="1"></label>
-                                <label>Name: <input type="text" name="attr_global_ac_name" placeholder="Defense"></label>
-                            </div>
-                            <div class="display">
-                                <span class="title"><span name="attr_global_ac_val"></span> [<span name="attr_global_ac_name"></span>]</span>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-                <span class="label" data-i18n="global-ac-u">GLOBAL AC MODIFIER</span>
-            </div>
-            -->
 
             <!--
             <fieldset class="repeating_attacks">
@@ -2534,9 +2520,9 @@
 			    <button class="adhoc-flag" type="roll" name="roll_adhoc_cast"
                                     value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
 			        <span>e</span>
-			    </button> 
+			    </button>
 	    <!--
-			    <input class="adhoc-flag" type="checkbox" name="attr_adhoc-flag" checked="checked"><span>e</span></input> 
+			    <input class="adhoc-flag" type="checkbox" name="attr_adhoc-flag" checked="checked"><span>e</span></input>
 		-->
                             <input class="details-flag" type="checkbox" name="attr_details-flag" checked="checked"><span>i</span></input>
                             <div class="wrapper">
@@ -2592,6 +2578,7 @@
                                         <span data-i18n="duration:-u">DURATION:</span>
                                         <input type="text" name="attr_spellduration">
                                     </div>
+				    <!--
                                     <div class="row">
                                         <span data-i18n="spell-ability-u">SPELLCASTING ABILITY</span>
                                         <select name="attr_spell_ability">
@@ -2605,6 +2592,7 @@
                                             <option value="@{charisma_mod}+" data-i18n="charisma-u">CHARISMA</option>
                                         </select>
                                     </div>
+				    -->
                                     <div class="row">
                                         <span data-i18n="innate:-u">INNATE:</span>
                                         <input type="text" name="attr_innate" placeholder="1/day" value="">
@@ -2630,14 +2618,30 @@
                                             <span data-i18n="damage:-u">DAMAGE:</span>
                                             <input type="text" name="attr_spelldamage" style="width: 50px;">
                                             <span data-i18n="type:-u">TYPE:</span>
-                                            <input type="text" name="attr_spelldamagetype" style="width: 103px;">
+					    <select name="attr_spelldamagetype" style="width: 103px;">
+                                                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
+                                                <option value="Piercing">Pierce</option>
+                                                <option value="Slashing">Slash</option>
+                                                <option value="Acid">Acid</option>
+                                                <option value="Cold">Cold</option>
+                                                <option value="Fire">Fire</option>
+                                                <option value="Force">Force</option>
+                                                <option value="Lightning">Lightning</option>
+                                                <option value="Necrotic">Necrotic</option>
+                                                <option value="Poison">Poison</option>
+                                                <option value="Psychic">Psychic</option>
+                                                <option value="Radiant">Radiant</option>
+                                                <option value="Thunder">Thunder</option>
+                                            </select>
                                         </div>
+					<!--
                                         <div class="row">
                                             <span data-i18n="damage2:-u">DAMAGE2:</span>
                                             <input type="text" name="attr_spelldamage2" style="width: 45px;">
                                             <span data-i18n="type:-u">TYPE:</span>
                                             <input type="text" name="attr_spelldamagetype2" style="width: 103px;">
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
@@ -2859,6 +2863,7 @@
                                         <span data-i18n="duration:-u">DURATION:</span>
                                         <input type="text" name="attr_spellduration">
                                     </div>
+				    <!--
                                     <div class="row">
                                         <span data-i18n="spell-ability-u">SPELLCASTING ABILITY</span>
                                         <select name="attr_spell_ability">
@@ -2872,6 +2877,7 @@
                                             <option value="@{charisma_mod}+" data-i18n="charisma-u">CHARISMA</option>
                                         </select>
                                     </div>
+				    -->
                                     <div class="row">
                                         <span data-i18n="innate:-u">INNATE:</span>
                                         <input type="text" name="attr_innate" placeholder="1/day" value="">
@@ -2897,14 +2903,30 @@
                                             <span data-i18n="damage:-u">DAMAGE:</span>
                                             <input type="text" name="attr_spelldamage" style="width: 50px;">
                                             <span data-i18n="type:-u">TYPE:</span>
-                                            <input type="text" name="attr_spelldamagetype" style="width: 103px;">
+					    <select name="attr_spelldamagetype" style="width: 103px;">
+                                                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
+                                                <option value="Piercing">Pierce</option>
+                                                <option value="Slashing">Slash</option>
+                                                <option value="Acid">Acid</option>
+                                                <option value="Cold">Cold</option>
+                                                <option value="Fire">Fire</option>
+                                                <option value="Force">Force</option>
+                                                <option value="Lightning">Lightning</option>
+                                                <option value="Necrotic">Necrotic</option>
+                                                <option value="Poison">Poison</option>
+                                                <option value="Psychic">Psychic</option>
+                                                <option value="Radiant">Radiant</option>
+                                                <option value="Thunder">Thunder</option>
+                                            </select>
                                         </div>
+					<!--
                                         <div class="row">
                                             <span data-i18n="damage2:-u">DAMAGE2:</span>
                                             <input type="text" name="attr_spelldamage2" style="width: 45px;">
                                             <span data-i18n="type:-u">TYPE:</span>
                                             <input type="text" name="attr_spelldamagetype2" style="width: 103px;">
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
@@ -3126,6 +3148,7 @@
                                         <span data-i18n="duration:-u">DURATION:</span>
                                         <input type="text" name="attr_spellduration">
                                     </div>
+				    <!--
                                     <div class="row">
                                         <span data-i18n="spell-ability-u">SPELLCASTING ABILITY</span>
                                         <select name="attr_spell_ability">
@@ -3139,6 +3162,7 @@
                                             <option value="@{charisma_mod}+" data-i18n="charisma-u">CHARISMA</option>
                                         </select>
                                     </div>
+				    -->
                                     <div class="row">
                                         <span data-i18n="innate:-u">INNATE:</span>
                                         <input type="text" name="attr_innate" placeholder="1/day" value="">
@@ -3164,14 +3188,30 @@
                                             <span data-i18n="damage:-u">DAMAGE:</span>
                                             <input type="text" name="attr_spelldamage" style="width: 50px;">
                                             <span data-i18n="type:-u">TYPE:</span>
-                                            <input type="text" name="attr_spelldamagetype" style="width: 103px;">
+					    <select name="attr_spelldamagetype" style="width: 103px;">
+                                                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
+                                                <option value="Piercing">Pierce</option>
+                                                <option value="Slashing">Slash</option>
+                                                <option value="Acid">Acid</option>
+                                                <option value="Cold">Cold</option>
+                                                <option value="Fire">Fire</option>
+                                                <option value="Force">Force</option>
+                                                <option value="Lightning">Lightning</option>
+                                                <option value="Necrotic">Necrotic</option>
+                                                <option value="Poison">Poison</option>
+                                                <option value="Psychic">Psychic</option>
+                                                <option value="Radiant">Radiant</option>
+                                                <option value="Thunder">Thunder</option>
+                                            </select>
                                         </div>
+					<!--
                                         <div class="row">
                                             <span data-i18n="damage2:-u">DAMAGE2:</span>
                                             <input type="text" name="attr_spelldamage2" style="width: 45px;">
                                             <span data-i18n="type:-u">TYPE:</span>
                                             <input type="text" name="attr_spelldamagetype2" style="width: 103px;">
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
@@ -3394,6 +3434,7 @@
                                         <span data-i18n="duration:-u">DURATION:</span>
                                         <input type="text" name="attr_spellduration">
                                     </div>
+				    <!--
                                     <div class="row">
                                         <span data-i18n="spell-ability-u">SPELLCASTING ABILITY</span>
                                         <select name="attr_spell_ability">
@@ -3407,6 +3448,7 @@
                                             <option value="@{charisma_mod}+" data-i18n="charisma-u">CHARISMA</option>
                                         </select>
                                     </div>
+				    -->
                                     <div class="row">
                                         <span data-i18n="innate:-u">INNATE:</span>
                                         <input type="text" name="attr_innate" placeholder="1/day" value="">
@@ -3432,14 +3474,30 @@
                                             <span data-i18n="damage:-u">DAMAGE:</span>
                                             <input type="text" name="attr_spelldamage" style="width: 50px;">
                                             <span data-i18n="type:-u">TYPE:</span>
-                                            <input type="text" name="attr_spelldamagetype" style="width: 103px;">
+					    <select name="attr_spelldamagetype" style="width: 103px;">
+                                                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
+                                                <option value="Piercing">Pierce</option>
+                                                <option value="Slashing">Slash</option>
+                                                <option value="Acid">Acid</option>
+                                                <option value="Cold">Cold</option>
+                                                <option value="Fire">Fire</option>
+                                                <option value="Force">Force</option>
+                                                <option value="Lightning">Lightning</option>
+                                                <option value="Necrotic">Necrotic</option>
+                                                <option value="Poison">Poison</option>
+                                                <option value="Psychic">Psychic</option>
+                                                <option value="Radiant">Radiant</option>
+                                                <option value="Thunder">Thunder</option>
+                                            </select>
                                         </div>
+					<!--
                                         <div class="row">
                                             <span data-i18n="damage2:-u">DAMAGE2:</span>
                                             <input type="text" name="attr_spelldamage2" style="width: 45px;">
                                             <span data-i18n="type:-u">TYPE:</span>
                                             <input type="text" name="attr_spelldamagetype2" style="width: 103px;">
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
@@ -3661,6 +3719,7 @@
                                         <span data-i18n="duration:-u">DURATION:</span>
                                         <input type="text" name="attr_spellduration">
                                     </div>
+				    <!--
                                     <div class="row">
                                         <span data-i18n="spell-ability-u">SPELLCASTING ABILITY</span>
                                         <select name="attr_spell_ability">
@@ -3674,6 +3733,7 @@
                                             <option value="@{charisma_mod}+" data-i18n="charisma-u">CHARISMA</option>
                                         </select>
                                     </div>
+				    -->
                                     <div class="row">
                                         <span data-i18n="innate:-u">INNATE:</span>
                                         <input type="text" name="attr_innate" placeholder="1/day" value="">
@@ -3699,14 +3759,30 @@
                                             <span data-i18n="damage:-u">DAMAGE:</span>
                                             <input type="text" name="attr_spelldamage" style="width: 50px;">
                                             <span data-i18n="type:-u">TYPE:</span>
-                                            <input type="text" name="attr_spelldamagetype" style="width: 103px;">
+					    <select name="attr_spelldamagetype" style="width: 103px;">
+                                                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
+                                                <option value="Piercing">Pierce</option>
+                                                <option value="Slashing">Slash</option>
+                                                <option value="Acid">Acid</option>
+                                                <option value="Cold">Cold</option>
+                                                <option value="Fire">Fire</option>
+                                                <option value="Force">Force</option>
+                                                <option value="Lightning">Lightning</option>
+                                                <option value="Necrotic">Necrotic</option>
+                                                <option value="Poison">Poison</option>
+                                                <option value="Psychic">Psychic</option>
+                                                <option value="Radiant">Radiant</option>
+                                                <option value="Thunder">Thunder</option>
+                                            </select>
                                         </div>
+					<!--
                                         <div class="row">
                                             <span data-i18n="damage2:-u">DAMAGE2:</span>
                                             <input type="text" name="attr_spelldamage2" style="width: 45px;">
                                             <span data-i18n="type:-u">TYPE:</span>
                                             <input type="text" name="attr_spelldamagetype2" style="width: 103px;">
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
@@ -3928,6 +4004,7 @@
                                         <span data-i18n="duration:-u">DURATION:</span>
                                         <input type="text" name="attr_spellduration">
                                     </div>
+				    <!--
                                     <div class="row">
                                         <span data-i18n="spell-ability-u">SPELLCASTING ABILITY</span>
                                         <select name="attr_spell_ability">
@@ -3941,6 +4018,7 @@
                                             <option value="@{charisma_mod}+" data-i18n="charisma-u">CHARISMA</option>
                                         </select>
                                     </div>
+				    -->
                                     <div class="row">
                                         <span data-i18n="innate:-u">INNATE:</span>
                                         <input type="text" name="attr_innate" placeholder="1/day" value="">
@@ -3966,14 +4044,30 @@
                                             <span data-i18n="damage:-u">DAMAGE:</span>
                                             <input type="text" name="attr_spelldamage" style="width: 50px;">
                                             <span data-i18n="type:-u">TYPE:</span>
-                                            <input type="text" name="attr_spelldamagetype" style="width: 103px;">
+					    <select name="attr_spelldamagetype" style="width: 103px;">
+                                                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
+                                                <option value="Piercing">Pierce</option>
+                                                <option value="Slashing">Slash</option>
+                                                <option value="Acid">Acid</option>
+                                                <option value="Cold">Cold</option>
+                                                <option value="Fire">Fire</option>
+                                                <option value="Force">Force</option>
+                                                <option value="Lightning">Lightning</option>
+                                                <option value="Necrotic">Necrotic</option>
+                                                <option value="Poison">Poison</option>
+                                                <option value="Psychic">Psychic</option>
+                                                <option value="Radiant">Radiant</option>
+                                                <option value="Thunder">Thunder</option>
+                                            </select>
                                         </div>
+					<!--
                                         <div class="row">
                                             <span data-i18n="damage2:-u">DAMAGE2:</span>
                                             <input type="text" name="attr_spelldamage2" style="width: 45px;">
                                             <span data-i18n="type:-u">TYPE:</span>
                                             <input type="text" name="attr_spelldamagetype2" style="width: 103px;">
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
@@ -4196,6 +4290,7 @@
                                         <span data-i18n="duration:-u">DURATION:</span>
                                         <input type="text" name="attr_spellduration">
                                     </div>
+				    <!--
                                     <div class="row">
                                         <span data-i18n="spell-ability-u">SPELLCASTING ABILITY</span>
                                         <select name="attr_spell_ability">
@@ -4209,6 +4304,7 @@
                                             <option value="@{charisma_mod}+" data-i18n="charisma-u">CHARISMA</option>
                                         </select>
                                     </div>
+				    -->
                                     <div class="row">
                                         <span data-i18n="innate:-u">INNATE:</span>
                                         <input type="text" name="attr_innate" placeholder="1/day" value="">
@@ -4234,14 +4330,30 @@
                                             <span data-i18n="damage:-u">DAMAGE:</span>
                                             <input type="text" name="attr_spelldamage" style="width: 50px;">
                                             <span data-i18n="type:-u">TYPE:</span>
-                                            <input type="text" name="attr_spelldamagetype" style="width: 103px;">
+					    <select name="attr_spelldamagetype" style="width: 103px;">
+                                                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
+                                                <option value="Piercing">Pierce</option>
+                                                <option value="Slashing">Slash</option>
+                                                <option value="Acid">Acid</option>
+                                                <option value="Cold">Cold</option>
+                                                <option value="Fire">Fire</option>
+                                                <option value="Force">Force</option>
+                                                <option value="Lightning">Lightning</option>
+                                                <option value="Necrotic">Necrotic</option>
+                                                <option value="Poison">Poison</option>
+                                                <option value="Psychic">Psychic</option>
+                                                <option value="Radiant">Radiant</option>
+                                                <option value="Thunder">Thunder</option>
+                                            </select>
                                         </div>
+					<!--
                                         <div class="row">
                                             <span data-i18n="damage2:-u">DAMAGE2:</span>
                                             <input type="text" name="attr_spelldamage2" style="width: 45px;">
                                             <span data-i18n="type:-u">TYPE:</span>
                                             <input type="text" name="attr_spelldamagetype2" style="width: 103px;">
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
@@ -4463,6 +4575,7 @@
                                         <span data-i18n="duration:-u">DURATION:</span>
                                         <input type="text" name="attr_spellduration">
                                     </div>
+				    <!--
                                     <div class="row">
                                         <span data-i18n="spell-ability-u">SPELLCASTING ABILITY</span>
                                         <select name="attr_spell_ability">
@@ -4476,6 +4589,7 @@
                                             <option value="@{charisma_mod}+" data-i18n="charisma-u">CHARISMA</option>
                                         </select>
                                     </div>
+				    -->
                                     <div class="row">
                                         <span data-i18n="innate:-u">INNATE:</span>
                                         <input type="text" name="attr_innate" placeholder="1/day" value="">
@@ -4501,14 +4615,30 @@
                                             <span data-i18n="damage:-u">DAMAGE:</span>
                                             <input type="text" name="attr_spelldamage" style="width: 50px;">
                                             <span data-i18n="type:-u">TYPE:</span>
-                                            <input type="text" name="attr_spelldamagetype" style="width: 103px;">
+					    <select name="attr_spelldamagetype" style="width: 103px;">
+                                                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
+                                                <option value="Piercing">Pierce</option>
+                                                <option value="Slashing">Slash</option>
+                                                <option value="Acid">Acid</option>
+                                                <option value="Cold">Cold</option>
+                                                <option value="Fire">Fire</option>
+                                                <option value="Force">Force</option>
+                                                <option value="Lightning">Lightning</option>
+                                                <option value="Necrotic">Necrotic</option>
+                                                <option value="Poison">Poison</option>
+                                                <option value="Psychic">Psychic</option>
+                                                <option value="Radiant">Radiant</option>
+                                                <option value="Thunder">Thunder</option>
+                                            </select>
                                         </div>
+					<!--
                                         <div class="row">
                                             <span data-i18n="damage2:-u">DAMAGE2:</span>
                                             <input type="text" name="attr_spelldamage2" style="width: 45px;">
                                             <span data-i18n="type:-u">TYPE:</span>
                                             <input type="text" name="attr_spelldamagetype2" style="width: 103px;">
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
@@ -4730,6 +4860,7 @@
                                         <span data-i18n="duration:-u">DURATION:</span>
                                         <input type="text" name="attr_spellduration">
                                     </div>
+				    <!--
                                     <div class="row">
                                         <span data-i18n="spell-ability-u">SPELLCASTING ABILITY</span>
                                         <select name="attr_spell_ability">
@@ -4743,6 +4874,7 @@
                                             <option value="@{charisma_mod}+" data-i18n="charisma-u">CHARISMA</option>
                                         </select>
                                     </div>
+				    -->
                                     <div class="row">
                                         <span data-i18n="innate:-u">INNATE:</span>
                                         <input type="text" name="attr_innate" placeholder="1/day" value="">
@@ -4768,14 +4900,30 @@
                                             <span data-i18n="damage:-u">DAMAGE:</span>
                                             <input type="text" name="attr_spelldamage" style="width: 50px;">
                                             <span data-i18n="type:-u">TYPE:</span>
-                                            <input type="text" name="attr_spelldamagetype" style="width: 103px;">
+					    <select name="attr_spelldamagetype" style="width: 103px;">
+                                                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
+                                                <option value="Piercing">Pierce</option>
+                                                <option value="Slashing">Slash</option>
+                                                <option value="Acid">Acid</option>
+                                                <option value="Cold">Cold</option>
+                                                <option value="Fire">Fire</option>
+                                                <option value="Force">Force</option>
+                                                <option value="Lightning">Lightning</option>
+                                                <option value="Necrotic">Necrotic</option>
+                                                <option value="Poison">Poison</option>
+                                                <option value="Psychic">Psychic</option>
+                                                <option value="Radiant">Radiant</option>
+                                                <option value="Thunder">Thunder</option>
+                                            </select>
                                         </div>
+					<!--
                                         <div class="row">
                                             <span data-i18n="damage2:-u">DAMAGE2:</span>
                                             <input type="text" name="attr_spelldamage2" style="width: 45px;">
                                             <span data-i18n="type:-u">TYPE:</span>
                                             <input type="text" name="attr_spelldamagetype2" style="width: 103px;">
                                         </div>
+					-->
                                         <div class="row">
                                             <span data-i18n="healing:-u">HEALING:</span>
                                             <input type="text" name="attr_spellhealing" style="width: 45px;">
@@ -5507,6 +5655,318 @@
 
 <!-- Templates -->
 <div class="rolltemplates">
+
+  <rolltemplate class="sheet-rolltemplate-atkdmg">
+      <div class="licensedsheet-flag-{{licensedsheet}}"></div>
+      {{#attack}}
+          <div class="container atk">
+              <div class="result">
+                  {{#always}}
+                      <div class="adv">
+                          <span>{{r1}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                      </div>
+                      <div class="advspacer"></div>
+                      <div class="adv">
+                          <span>{{r2}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                      </div>
+                  {{/always}}
+                  {{#normal}}
+                      <div class="solo">
+                          <span>{{r1}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                      </div>
+                  {{/normal}}
+                  {{#advantage}}
+                      {{#rollLess() r1 r2}}
+                          <div class="adv">
+                              <span class="grey">{{r1}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                          </div>
+                          <div class="advspacer"></div>
+                          <div class="adv">
+                              <span>{{r2}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                          </div>
+                      {{/rollLess() r1 r2}}
+                      {{#rollTotal() r1 r2}}
+                          <div class="adv">
+                              <span>{{r1}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                          </div>
+                          <div class="advspacer"></div>
+                          <div class="adv">
+                              <span>{{r2}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                          </div>
+                      {{/rollTotal() r1 r2}}
+                      {{#rollGreater() r1 r2}}
+                          <div class="adv">
+                              <span>{{r1}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                          </div>
+                          <div class="advspacer"></div>
+                          <div class="adv">
+                              <span class="grey">{{r2}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                          </div>
+                      {{/rollGreater() r1 r2}}
+                  {{/advantage}}
+                  {{#disadvantage}}
+                      {{#rollLess() r1 r2}}
+                          <div class="adv">
+                              <span>{{r1}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                          </div>
+                          <div class="advspacer"></div>
+                          <div class="adv">
+                              <span class="grey">{{r2}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                          </div>
+                      {{/rollLess() r1 r2}}
+                      {{#rollTotal() r1 r2}}
+                          <div class="adv">
+                              <span>{{r1}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                          </div>
+                          <div class="advspacer"></div>
+                          <div class="adv">
+                              <span>{{r2}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                          </div>
+                      {{/rollTotal() r1 r2}}
+                      {{#rollGreater() r1 r2}}
+                          <div class="adv">
+                              <span class="grey">{{r1}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                          </div>
+                          <div class="advspacer"></div>
+                          <div class="adv">
+                              <span>{{r2}}{{#globalattack}} + {{globalattack}}{{/globalattack}}</span>
+                          </div>
+                      {{/rollGreater() r1 r2}}
+                  {{/disadvantage}}
+              </div>
+              {{#range}}
+                  <div class="sublabel">
+                      <span>{{range}}</span>
+                  </div>
+              {{/range}}
+              <div class="label">
+                  <span>{{rname}}{{#innate}}<span class="grey">, {{innate}}</span>{{/innate}}{{#attack}} <span>({{mod}})</span>{{/attack}}</span>
+              </div>
+              {{#charname}}
+                  <div class="charname">
+                      <span>{{charname}}</span>
+                  </div>
+              {{/charname}}
+          </div>
+      {{/attack}}
+      {{#save}}
+          {{#attack}}
+              <div class="container desc save">
+          {{/attack}}
+          {{^attack}}
+              <div class="container atk save">
+          {{/attack}}
+              <div class="savedc">
+                  <span class="rolltemplate-inline" data-i18n="difficulty-class-abv">DC</span><span class="rolltemplate-inline">{{savedc}}</span>
+              </div>
+              {{#savedesc}}
+                  <div class="sublabel">
+                      <span>{{savedesc}}</span>
+                  </div>
+              {{/savedesc}}
+              <div class="label">
+                  <span class="rolltemplate-inline">{{saveattr}}</span> <span class="rolltemplate-inline" data-i18n="save">Save</span>
+              </div>
+          </div>
+      {{/save}}
+      {{#desc}}
+          <div class="desc info">
+              <span>
+                  <span class="top"></span><span class="middle">{{desc}}</span><span class="bottom"></span>
+              </span>
+          </div>
+      {{/desc}}
+      {{#globaldamage}}
+          {{#^rollTotal() globaldamage 0}}
+              <div class="desc">
+                  <span>
+                      {{globaldamage}}
+                      {{#attack}}
+                          {{#normal}}
+                              {{#rollWasCrit() r1}}<span class="plus"> + </span>{{globaldamagecrit}}{{/rollWasCrit() r1}}
+                          {{/normal}}
+                          {{#always}}
+                              {{#rollLess() r1 r2}}{{#rollWasCrit() r2}}<span class="plus"> + </span>{{globaldamagecrit}}{{/rollWasCrit() r2}}{{/rollLess() r1 r2}}
+                              {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}<span class="plus"> + </span>{{globaldamagecrit}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                              {{#rollGreater() r1 r2}}{{#rollWasCrit() r1}}<span class="plus"> + </span>{{globaldamagecrit}}{{/rollWasCrit() r1}}{{/rollGreater() r1 r2}}
+                          {{/always}}
+                          {{#advantage}}
+                              {{#rollLess() r1 r2}}{{#rollWasCrit() r2}}<span class="plus"> + </span>{{globaldamagecrit}}{{/rollWasCrit() r2}}{{/rollLess() r1 r2}}
+                              {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}<span class="plus"> + </span>{{globaldamagecrit}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                              {{#rollGreater() r1 r2}}{{#rollWasCrit() r1}}<span class="plus"> + </span>{{globaldamagecrit}}{{/rollWasCrit() r1}}{{/rollGreater() r1 r2}}
+                          {{/advantage}}
+                          {{#disadvantage}}
+                              {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}<span class="plus"> + </span>{{globaldamagecrit}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                          {{/disadvantage}}
+                      {{/attack}}
+                  </span>
+                  <span class="sublabel">{{globaldamagetype}}</span>
+              </div>
+          {{/^rollTotal() globaldamage 0}}
+      {{/globaldamage}}
+      {{#hldmg}}
+          {{#^rollTotal() hldmg 0}}
+              <div class="desc">
+                  <span>
+                      {{hldmg}}
+                      <!-- {{#hldmgcrit}} + {{hldmgcrit}}{{/hldmgcrit}} -->
+                      {{#attack}}
+                          {{#normal}}
+                              {{#rollWasCrit() r1}}<span class="plus"> + </span>{{hldmgcrit}}{{/rollWasCrit() r1}}
+                          {{/normal}}
+                          {{#always}}
+                              {{#rollLess() r1 r2}}{{#rollWasCrit() r2}}<span class="plus"> + </span>{{hldmgcrit}}{{/rollWasCrit() r2}}{{/rollLess() r1 r2}}
+                              {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}<span class="plus"> + </span>{{hldmgcrit}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                              {{#rollGreater() r1 r2}}{{#rollWasCrit() r1}}<span class="plus"> + </span>{{hldmgcrit}}{{/rollWasCrit() r1}}{{/rollGreater() r1 r2}}
+                          {{/always}}
+                          {{#advantage}}
+                              {{#rollLess() r1 r2}}{{#rollWasCrit() r2}}<span class="plus"> + </span>{{hldmgcrit}}{{/rollWasCrit() r2}}{{/rollLess() r1 r2}}
+                              {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}<span class="plus"> + </span>{{hldmgcrit}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                              {{#rollGreater() r1 r2}}{{#rollWasCrit() r1}}<span class="plus"> + </span>{{hldmgcrit}}{{/rollWasCrit() r1}}{{/rollGreater() r1 r2}}
+                          {{/advantage}}
+                          {{#disadvantage}}
+                              {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}<span class="plus"> + </span>{{hldmgcrit}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                          {{/disadvantage}}
+                      {{/attack}}
+                  </span>
+                  <span class="sublabel">{{dmg1type}}</span>
+                  <div class="label">
+                      <span data-i18n="higher-lvl-cast">Higher Level Cast</span>
+                  </div>
+              </div>
+          {{/^rollTotal() hldmg 0}}
+      {{/hldmg}}
+      {{#damage}}
+          <div class="container damagetemplate">
+              <div class="result">
+                  {{#dmg1flag}}
+                      {{^dmg2flag}}
+                          <div class="solo">
+                              <span class="damage">
+                                  {{dmg1}}
+                                  {{#attack}}
+                                      {{#normal}}
+                                          {{#rollWasCrit() r1}}+ {{crit1}}{{/rollWasCrit() r1}}
+                                      {{/normal}}
+                                      {{#always}}
+                                          {{#rollLess() r1 r2}}{{#rollWasCrit() r2}}+ {{crit1}}{{/rollWasCrit() r2}}{{/rollLess() r1 r2}}
+                                          {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}+ {{crit1}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                                          {{#rollGreater() r1 r2}}{{#rollWasCrit() r1}}+ {{crit1}}{{/rollWasCrit() r1}}{{/rollGreater() r1 r2}}
+                                      {{/always}}
+                                      {{#advantage}}
+                                          {{#rollLess() r1 r2}}{{#rollWasCrit() r2}}+ {{crit1}}{{/rollWasCrit() r2}}{{/rollLess() r1 r2}}
+                                          {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}+ {{crit1}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                                          {{#rollGreater() r1 r2}}{{#rollWasCrit() r1}}+ {{crit1}}{{/rollWasCrit() r1}}{{/rollGreater() r1 r2}}
+                                      {{/advantage}}
+                                      {{#disadvantage}}
+                                          {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}+ {{crit1}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                                      {{/disadvantage}}
+                                  {{/attack}}
+                              </span>
+                              <span class="sublabel">{{dmg1type}}</span>
+                          </div>
+                      {{/dmg2flag}}
+                  {{/dmg1flag}}
+                  {{#dmg2flag}}
+                      {{^dmg1flag}}
+                          <div class="solo">
+                              <span class="damage">
+                                  {{dmg2}}
+                                  {{#attack}}
+                                      {{#normal}}
+                                          {{#rollWasCrit() r1}}+ {{crit2}}{{/rollWasCrit() r1}}
+                                      {{/normal}}
+                                      {{#always}}
+                                          {{#rollLess() r1 r2}}{{#rollWasCrit() r2}}+ {{crit2}}{{/rollWasCrit() r2}}{{/rollLess() r1 r2}}
+                                          {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}+ {{crit2}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                                          {{#rollGreater() r1 r2}}{{#rollWasCrit() r1}}+ {{crit2}}{{/rollWasCrit() r1}}{{/rollGreater() r1 r2}}
+                                      {{/always}}
+                                      {{#advantage}}
+                                          {{#rollLess() r1 r2}}{{#rollWasCrit() r2}}+ {{crit2}}{{/rollWasCrit() r2}}{{/rollLess() r1 r2}}
+                                          {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}+ {{crit2}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                                          {{#rollGreater() r1 r2}}{{#rollWasCrit() r1}}+ {{crit2}}{{/rollWasCrit() r1}}{{/rollGreater() r1 r2}}
+                                      {{/advantage}}
+                                      {{#disadvantage}}
+                                          {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}+ {{crit2}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                                      {{/disadvantage}}
+                                  {{/attack}}
+                              </span>
+                              <span class="sublabel">{{dmg2type}}</span>
+                          </div>
+                      {{/dmg1flag}}
+                  {{/dmg2flag}}
+                  {{#dmg1flag}}
+                      {{#dmg2flag}}
+                          <div class="adv">
+                              <span class="damage">
+                                  {{dmg1}}
+                                  {{#attack}}
+                                      {{#normal}}
+                                          {{#rollWasCrit() r1}}+ {{crit1}}{{/rollWasCrit() r1}}
+                                      {{/normal}}
+                                      {{#always}}
+                                          {{#rollLess() r1 r2}}{{#rollWasCrit() r2}}+ {{crit1}}{{/rollWasCrit() r2}}{{/rollLess() r1 r2}}
+                                          {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}+ {{crit1}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                                          {{#rollGreater() r1 r2}}{{#rollWasCrit() r1}}+ {{crit1}}{{/rollWasCrit() r1}}{{/rollGreater() r1 r2}}
+                                      {{/always}}
+                                      {{#advantage}}
+                                          {{#rollLess() r1 r2}}{{#rollWasCrit() r2}}+ {{crit1}}{{/rollWasCrit() r2}}{{/rollLess() r1 r2}}
+                                          {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}+ {{crit1}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                                          {{#rollGreater() r1 r2}}{{#rollWasCrit() r1}}+ {{crit1}}{{/rollWasCrit() r1}}{{/rollGreater() r1 r2}}
+                                      {{/advantage}}
+                                      {{#disadvantage}}
+                                          {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}+ {{crit1}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                                      {{/disadvantage}}
+                                  {{/attack}}
+                              </span>
+                              <span class="sublabel">{{dmg1type}}</span>
+                          </div>
+                          <div class="advspacer"></div>
+                          <div class="adv">
+                              <span>
+                                  {{dmg2}}
+                                  {{#attack}}
+                                      {{#normal}}
+                                          {{#rollWasCrit() r1}}+ {{crit2}}{{/rollWasCrit() r1}}
+                                      {{/normal}}
+                                      {{#always}}
+                                          {{#rollLess() r1 r2}}{{#rollWasCrit() r2}}+ {{crit2}}{{/rollWasCrit() r2}}{{/rollLess() r1 r2}}
+                                          {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}+ {{crit2}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                                          {{#rollGreater() r1 r2}}{{#rollWasCrit() r1}}+ {{crit2}}{{/rollWasCrit() r1}}{{/rollGreater() r1 r2}}
+                                      {{/always}}
+                                      {{#advantage}}
+                                          {{#rollLess() r1 r2}}{{#rollWasCrit() r2}}+ {{crit2}}{{/rollWasCrit() r2}}{{/rollLess() r1 r2}}
+                                          {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}+ {{crit2}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                                          {{#rollGreater() r1 r2}}{{#rollWasCrit() r1}}+ {{crit2}}{{/rollWasCrit() r1}}{{/rollGreater() r1 r2}}
+                                      {{/advantage}}
+                                      {{#disadvantage}}
+                                          {{#rollTotal() r1 r2}}{{#rollWasCrit() r1}}+ {{crit2}}{{/rollWasCrit() r1}}{{/rollTotal() r1 r2}}
+                                      {{/disadvantage}}
+                                  {{/attack}}
+                              </span>
+                              <span class="sublabel">{{dmg2type}}</span>
+                          </div>
+                      {{/dmg2flag}}
+                  {{/dmg1flag}}
+              </div>
+              {{^attack}}
+                  {{#range}}
+                      <div class="sublabel">
+                          <span>{{range}}</span>
+                      </div>
+                  {{/range}}
+                  <div class="label">
+                      <span>{{rname}}</span>{{#innate}}<span class="grey">, {{innate}}</span>{{/innate}}
+                  </div>
+                  {{#charname}}
+                      <div class="charname">
+                          <span>{{charname}}</span>
+                      </div>
+                  {{/charname}}
+              {{/attack}}
+          </div>
+      {{/damage}}
+  </rolltemplate>
 
   <rolltemplate class="sheet-rolltemplate-spell">
       <div class="licensedsheet-flag-{{licensedsheet}}"></div>
@@ -6288,7 +6748,8 @@
   // Keep spells up to date
   const spell_lists = ['spells-1','spells-2','spells-3','spells-4','spells-5','spells-6','spells-7','spells-8','spells-9'];
   spell_lists.forEach( splvl => {
-    on(`change:repeating_${splvl}`, function (splvl) {
+    on(`change:repeating_${splvl}`, function (eventinfo, splvl) {
+      if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
       update_spells(splvl);
     });
   });
@@ -6352,14 +6813,14 @@
           const spellattackid = values[repeating_source + '_' + id + '_spellattackid'];
 
           // handle sync between attack and spell
-	  if (spelloutput === "ATTACK") 
+	  if (spelloutput === "ATTACK")
 	  {
 	      if (!spellattackid || spellattackid === "") {
                  // undefined attack?? add one
 		 create_attack_from_spell();
                  callbacks.push( function() { create_attack_from_spell(spelllevel, id, character_id); });
 	      }
-	      else 
+	      else
 	      {
                  // sync spell to the changed spell
                  callbacks.push( function() { update_attack_from_spell(spelllevel, id, spellattackid, false); });
@@ -6382,7 +6843,7 @@
     });
   };
 
-  // update need for query for higher level casting and/or spelloutput 
+  // update need for query for higher level casting and/or spelloutput
   spell_lists.forEach(attr => {
       on(`change:repeating_${attr}:spellathigherlevels change:repeating_${attr}:spelloutput`, (eventinfo) => {
           if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
@@ -6394,7 +6855,7 @@
               const spelloutput  = v[repeating_source + "_spelloutput"];
               const licensedsheet = parseInt(v.licensedsheet) || 0;
 
-              if (spelloutput) { 
+              if (spelloutput) {
                   update_spelloutput(higherlevels, lvl, spellid, repeating_source, spelloutput, licensedsheet);
               }
           });
@@ -6425,7 +6886,7 @@
           // default rollcontent for spellcard
           update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
 
-	  // see if we already had a spellattackid, if so delete the attack 
+	  // see if we already had a spellattackid, if so delete the attack
 	  if (spellattackid !== "") {
              console.log("UPDATE SPELLOUTPUT -- ATTACK  attck_id: "+ spellattackid);
 	     console.log("UNLINK and delete attack for spell with preexisting attack id:"+repeating_source);
@@ -6433,7 +6894,7 @@
              // erase spell attack id
              update[repeating_source + "_spellattackid"] = "";
              callbacks.push( function() { remove_attack(spellattackid); });
-	  
+
 	  }
 
         } else {
@@ -6614,12 +7075,46 @@
       combatOptChangeStr = combatOptChangeStr + `change:${combat_opt} `;
   });
 
-  on(`:${combatOptChangeStr} change:sneak_attack_dice change:sneak_attack_enabled change:repeating_attacks change:c_class change:c_class2 change:level change:level2` , function () {
+/*
+  on(`change:repeating_attacks`, function(eventinfo) {
+      if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
+
+      console.log("REP ATTACK CHANGE:"+JSON.stringify(eventinfo));
+
+      const attack_row_id = eventinfo.triggerName;
+      if (attack_row_id && attack_row_id !== "") {
+          console.log("change_repeating_attacks id:"+attack_row_id );
+
+          const fieldnames = [];
+	  fieldnames.push(attack_row_id + "_spellid");
+	  fieldnames.push(attack_row_id + "_spelllevel");
+
+          var callbacks = [];
+	  var spell_id = "";
+	  var spell_level = "";
+	  getAttrs([...fieldnames], function (v) {
+	      spell_id = v[attack_row_id + "_spellid"];
+	      spell_level = v[attack_row_id + "_spelllevel"];
+	  });
+          console.log(" attkid:"+attack_row_id+" spid:"+spell_id+" splvl:"+spell_level);
+
+          update_spell_from_attack(spell_level, spell_id, attack_row_id);
+          // callbacks.push(() => { update_spell_from_attack(spell_level, spell_id, attack_row_id); });
+	  // setAttrs({}, {silent: true}, () => { callbacks.forEach((callback) => { callback(); }); });
+      }
+  });
+*/
+
+  on(`:${combatOptChangeStr} change:sneak_attack_dice change:sneak_attack_enabled change:repeating_attacks change:c_class change:c_class2 change:level change:level2` , function (eventinfo) {
+
+      if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
+      console.log("EVENT trigger on update_attacks2: "+JSON.stringify(eventinfo));
       update_attacks2();
   });
 
   function update_attacks2 () {
       console.log("UPDATE ATTACKS2");
+
       getSectionIDs('repeating_attacks', function (ids) {
 
         console.debug("Repeating attacks update called");
@@ -6634,6 +7129,8 @@
               fieldnames.push('repeating_attacks_' + id + '_atkmagic');
               fieldnames.push('repeating_attacks_' + id + '_attack_notches');
               fieldnames.push('repeating_attacks_' + id + '_attack_proficiency_level');
+              fieldnames.push('repeating_attacks_' + id + '_spellid');
+              fieldnames.push('repeating_attacks_' + id + '_spelllevel');
           });
 
           getAttrs([...fieldnames, ...combatOpts, 'melee_ab', 'melee_base_ab', 'unarmed_ab', 'unarmed_base_ab',
@@ -6705,6 +7202,7 @@
 
               var max_prof_level_used = 0;
               var proficiencies_used = 0;
+              var callbacks = [];
               ids.forEach(id => {
 
                   const attack_name = values['repeating_attacks_' + id + '_atkname'];
@@ -6714,6 +7212,8 @@
                   const attack_notches = parseInt(values['repeating_attacks_' + id + '_attack_notches']);
                   const attack_form = values['repeating_attacks_' + id + '_attack_form'];
                   var attack_proficiency_level = parseInt(values['repeating_attacks_' + id + '_attack_proficiency_level']) || 0;
+                  const spellid = values['repeating_attacks_' + id + '_spellid'];
+                  const spell_level = parseInt(values['repeating_attacks_' + id + '_spelllevel']) || 0;
 
                   if (attack_proficiency_level > max_prof_level_used) {
                     max_prof_level_used = attack_proficiency_level;
@@ -6749,6 +7249,11 @@
                     attack_proficiency_level = 0;
                     output['repeating_attacks_' + id + '_attack_proficiency_level'] = 0;
                   }
+
+                  console.log("spell id: "+spellid+" spell level:"+spell_level);
+                  if (spellid && spell_level) {
+                    callbacks.push(() => { update_spell_from_attack(spell_level, spellid, id); });
+	          }
 
                   // based on proficiency we get AB for attack
                   const is_proficient = attack_proficiency_level > 0 ? 1 : 0;
@@ -6805,7 +7310,7 @@
 
 	          // add magic bonus to damage
 	          if (attack_magic != 0) {
-		      attack_dam = attack_dambase + '+' + attack_magic;
+		          attack_dam = attack_dambase + '+' + attack_magic;
 	          }
 
                   // apply new properties to attack
@@ -6871,7 +7376,7 @@
               output['max_prof_numb_exceeded'] = proficiencies_used > max_prof_allowed ? 0 : 1;
               output['prof_underspent'] = proficiencies_used < max_prof_allowed ? 0 : 1;
 
-              setAttrs(output);
+              setAttrs(output, {silent: false}, () => { callbacks.forEach((callback) => { callback(); }); });
             });
          });
   };
@@ -7639,12 +8144,13 @@
 
               }
 
+               // cleanup and persist
+               callbacks.push( function() {cleanup_drop_fields();} );
+
                // persist new monster/creature/npc
                setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
              }
 
-             // cleanup and persist
-             callbacks.push( function() {cleanup_drop_fields();} );
            });
         };
      };
@@ -7803,6 +8309,8 @@
   };
 
   const create_attack_from_spell = function(lvl, spellid, character_id) {
+
+      console.log("CREATE ATTACK FROM SPELL");
       let update   = {};
       const newrowid = generateRowID();
       update[`repeating_spells-${lvl}_${spellid}_spellattackid`] = newrowid;
@@ -7817,17 +8325,18 @@
 
   const update_attack_from_spell = (lvl, spellid, attackid, newattack) => {
 
-      console.log("update_attack_from_spell lvl:"+lvl+" spellid:"+spellid+" new:"+newattack);
+      console.log("update_attack_from_spell lvl:"+lvl+" spellid:"+spellid+" attackid:"+attackid+" new:"+newattack);
 
       const repeating_spell  = `repeating_spells-${lvl}_${spellid}`;
       const repeating_attack = `repeating_attacks_${attackid}`;
 
-      getAttrs([`${repeating_spell}_spellname`, `${repeating_spell}_spellrange`, `${repeating_spell}_spelltarget`, `${repeating_spell}_spellattack`, `${repeating_spell}_spelldamage`, `${repeating_spell}_spelldamage2`,`${repeating_spell}_spelldamagetype`,`${repeating_spell}_spelldamagetype2`,`${repeating_spell}_spellhealing`,`${repeating_spell}_spellsave`,`${repeating_spell}_spellsavesuccess`,`${repeating_spell}_spellhldie`,`${repeating_spell}_spellhldietype`,`${repeating_spell}_spellhlbonus`,`${repeating_spell}_spelllevel`,`${repeating_spell}_includedesc`,`${repeating_spell}_spelldescription`,`${repeating_spell}_spellathigherlevels`,`${repeating_spell}_spell_damage_progression`,`${repeating_spell}_innate`,`${repeating_spell}_spell_ability`], (v) => {
+      getAttrs([`${repeating_spell}_spellname`, `${repeating_spell}_spellrange`, `${repeating_spell}_spelltarget`, `${repeating_spell}_spellattack`, `${repeating_spell}_spelldamage`, `${repeating_spell}_spelldamage2`,`${repeating_spell}_spelldamagetype`,`${repeating_spell}_spelldamagetype2`,`${repeating_spell}_spellhealing`,`${repeating_spell}_spellsave`,`${repeating_spell}_spellsavesuccess`,`${repeating_spell}_spellhldie`,`${repeating_spell}_spellhldietype`,`${repeating_spell}_spellhlbonus`,`${repeating_spell}_spelllevel`,`${repeating_spell}_includedesc`,`${repeating_spell}_spelldescription`,`${repeating_spell}_spellathigherlevels`,`${repeating_spell}_spell_damage_progression`,`${repeating_spell}_innate`], (v) => {
+
           let update = {};
           let description = "";
 
-          const spellAbility = (v[`${repeating_spell}_spell_ability`] != "spell") ? v[`${repeating_spell}_spell_ability`].slice(0, -1) : "spell";
-          update[`${repeating_attack}_atkattr_base`] = spellAbility;
+          // const spellAbility = (v[`${repeating_spell}_spell_ability`] != "spell") ? v[`${repeating_spell}_spell_ability`].slice(0, -1) : "spell";
+          // update[`${repeating_attack}_atkattr_base`] = spellAbility;
 
           if (newattack) {
               update[`${repeating_attack}_options-flag`] = "0";
@@ -7835,6 +8344,7 @@
               update[`${repeating_attack}_spelllevel`]   = lvl;
           }
 
+          /*
           if (v[`${repeating_spell}_spell_ability`] == "spell") {
               update[`${repeating_attack}_savedc`] = "(@{spell_save_dc})";
           } else if (v[`${repeating_spell}_spell_ability`]) {
@@ -7842,6 +8352,7 @@
               // update[`${repeating_attack}_savedc`] = `(${spellAbility}+8+@{spell_dc_mod}+@{pb})`;
               update[`${repeating_attack}_savedc`] = `(${spellAbility}+8+@{spell_dc_mod})`;
           }
+          */
 
           if (v[`${repeating_spell}_spellname`] && v[`${repeating_spell}_spellname`] != "") {
               update[`${repeating_attack}_atkname`] = v[`${repeating_spell}_spellname`];
@@ -7863,10 +8374,12 @@
           update[`${repeating_attack}_dmgflag`] = (v[`${repeating_spell}_spelldamage`] && v[`${repeating_spell}_spelldamage`] != "") ? "{{damage=1}} {{dmg1flag=1}}" : "0";
           // update[`${repeating_attack}_dmgattr`] = (v[`${repeating_spell}_spelldmgmod`] && v[`${repeating_spell}_spelldmgmod`] === "Yes") ? spellAbility : "0";
           update[`${repeating_attack}_dmgtype`] = (v[`${repeating_spell}_spelldamagetype`]) ? v[`${repeating_spell}_spelldamagetype`] : "";
-          update[`${repeating_attack}_dmg2base`] = (v[`${repeating_spell}_spelldamage2`]) ? v[`${repeating_spell}_spelldamage2`] : "";
+
+          // update[`${repeating_attack}_dmg2base`] = (v[`${repeating_spell}_spelldamage2`]) ? v[`${repeating_spell}_spelldamage2`] : "";
           // update[`${repeating_attack}_dmg2attr`] = "0";
-          update[`${repeating_attack}_dmg2flag`] = (v[`${repeating_spell}_spelldamage2`]) ? "{{damage=1}} {{dmg2flag=1}}" : 0;
-          update[`${repeating_attack}_dmg2type`] = (v[`${repeating_spell}_spelldamagetype2`]) ? v[`${repeating_spell}_spelldamagetype2`] : "";
+          // update[`${repeating_attack}_dmg2flag`] = (v[`${repeating_spell}_spelldamage2`]) ? "{{damage=1}} {{dmg2flag=1}}" : 0;
+          // update[`${repeating_attack}_dmg2type`] = (v[`${repeating_spell}_spelldamagetype2`]) ? v[`${repeating_spell}_spelldamagetype2`] : "";
+
           update[`${repeating_attack}_atkrange`] = (v[`${repeating_spell}_spellrange`]) ? v[`${repeating_spell}_spellrange`] : "";
           update[`${repeating_attack}_saveflag`] = (v[`${repeating_spell}_spellsave`]) ? "{{save=1}} {{saveattr=@{saveattr}}} {{savedesc=@{saveeffect}}} {{savedc=[[[[@{savedc}]][SAVE]]]}}" : "0";
           update[`${repeating_attack}_saveeffect`] = (v[`${repeating_spell}_spellsavesuccess`]) ? v[`${repeating_spell}_spellsavesuccess`] : "";
@@ -7896,10 +8409,10 @@
                   update[`${repeating_attack}_dmgbase`] = v[`${repeating_spell}_spellhealing`];
                   update[`${repeating_attack}_dmgflag`] = "{{damage=1}} {{dmg1flag=1}}";
                   update[`${repeating_attack}_dmgtype`] = "Healing";
-              } else if (!v[`${repeating_spell}_spelldamage2`] || v[`${repeating_spell}_spelldamage2`] === "") {
-                  update[`${repeating_attack}_dmg2base`] = v[`${repeating_spell}_spellhealing`];
-                  update[`${repeating_attack}_dmg2flag`] = "{{damage=1}} {{dmg2flag=1}}";
-                  update[`${repeating_attack}_dmg2type`] = "Healing";
+             //  } else if (!v[`${repeating_spell}_spelldamage2`] || v[`${repeating_spell}_spelldamage2`] === "") {
+             //     update[`${repeating_attack}_dmg2base`] = v[`${repeating_spell}_spellhealing`];
+             //     update[`${repeating_attack}_dmg2flag`] = "{{damage=1}} {{dmg2flag=1}}";
+             //     update[`${repeating_attack}_dmg2type`] = "Healing";
               }
           }
 
@@ -7925,15 +8438,22 @@
 
   const update_attacks = (update_id, source) => {
 
-      console.log("update attacks");
+      console.log("UPDATE ATTACKS id:"+update_id+" src:"+source);
 
-      if (update_id.substring(0,1) === "-" && update_id.length === 20) {
+      if (update_id && update_id.substring(0,1) === "-" && update_id.length === 20) {
+          // passed a attack row id, update single attack
           do_update_attack([update_id], source);
+
       } else if (["strength","dexterity","constitution","intelligence","wisdom","charisma","spells","all"].indexOf(update_id) > -1) {
           getSectionIDs("repeating_attack", (idarray) => {
               if (update_id === "all") {
+                  // check everything
+	          console.log("DO update attack (all)");
                   do_update_attack(idarray);
+
               } else if (update_id === "spells") {
+                  // check spell-related attacks
+
 	          console.log("DO update attack (spells)");
                   let attack_attribs = [];
                   _.each(idarray, (id) => {
@@ -7952,17 +8472,19 @@
                       });
                       _.each(spell_attacks, (data, attack_id) => { update_attack_from_spell(data.spell_lvl, data.spell_id, attack_id); });
                   });
+
               } else {
-	          /*
-                  let attack_attribs = ["spellcasting_ability"];
-                  _.each(idarray, (id) => {
+	          // attribute-based
+
+                  //let attack_attribs = ["spellcasting_ability"];
+                  //_.each(idarray, (id) => {
 		      // TODO
-                      attack_attribs.push(`repeating_attack_${id}_atkattr_base`);
+                  //    attack_attribs.push(`repeating_attack_${id}_atkattr_base`);
                      // attack_attribs.push(`repeating_attack_${id}_dmgattr`);
                      // attack_attribs.push(`repeating_attack_${id}_dmg2attr`);
-                      attack_attribs.push(`repeating_attack_${id}_savedc`);
-                  });
-		  */
+                  //    attack_attribs.push(`repeating_attack_${id}_savedc`);
+                  // });
+
                   getAttrs(attack_attribs, (v) => {
                       let attr_attack_ids = [];
                       _.each(idarray, (id) => {
@@ -7981,9 +8503,11 @@
   };
 
   const do_update_attack = (attack_array, source) => {
+
+      console.log("DO UPDATE ATTACK");
+
       let attack_attribs = ["level","d20","pb","pb_type","pbd_safe","dtype","strength_mod","dexterity_mod","constitution_mod","intelligence_mod","wisdom_mod","charisma_mod","spell_save_dc","spell_attack_mod", "spell_dc_mod" ];
       _.each(attack_array, (attackid) => {
-          // ["atkflag","atkname","atkattr_base","atkmod","atkprofflag","atkmagic","dmgflag","dmgbase","dmgmod","dmgtype","dmg2flag","dmg2base","dmg2type","dmgcustcrit","dmg2custcrit","saveflag","savedc","saveeffect","saveflat","hldmg","spellid","spelllevel","atkrange","itemid","ammo",].forEach((attr) => {
           ["atkflag","atkname","atkattr_base","atkmod","atkprofflag","atkmagic","dmgflag","dmgbase","dmgtype","dmg2flag","dmg2base","dmg2type","dmgcustcrit","dmg2custcrit","saveflag","savedc","saveeffect","saveflat","hldmg","spellid","spelllevel","atkrange","itemid","ammo",].forEach((attr) => {
               attack_attribs.push(`repeating_attack_${attackid}_${attr}`)
           });
@@ -8201,7 +8725,7 @@
               r2    = (atkflag != 0) ? "@{rtype}" : "{{r2=[[0d20";
               //set in the GLOBAL DAMAGE MODIFIER section
 
-              //Assamble Roll Templates
+              //Assemble Roll Templates
               if (v.dtype === "full") {
                   rollbase = `@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} @{dmg2flag} {{dmg2=[[${hdmg2}]]}} {{dmg2type=${dmg2type}}} {{crit1=[[${crit1}[CRIT]]]}} {{crit2=[[${crit2}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
               } else if (atkflag != 0) {
@@ -8222,9 +8746,7 @@
               if (v[`${repeating_attack}_spellid`] && v[`${repeating_attack}_spellid`] != "" && (!source || source && source != "spell") && v[`${repeating_attack}_spellid`].length == 20) {
                   const spellid = v[`${repeating_attack}_spellid`];
                   const lvl     = v[`${repeating_attack}_spelllevel`];
-                  callbacks.push(() => {
-                      update_spell_from_attack(lvl, spellid, attackid);
-                  });
+                  callbacks.push(() => { update_spell_from_attack(lvl, spellid, attackid); });
               }
 
               if (v[`${repeating_attack}_itemid`] && v[`${repeating_attack}_itemid`] != "" && (!source || source && source != "item")) {
@@ -8233,58 +8755,82 @@
                       update_item_from_attack(itemid, attackid);
                   });
               }
-              setAttrs(update, {silent: true}, () => {
-                  callbacks.forEach((callback) => {
-                      callback();
-                  });
-              });
+              setAttrs(update, {silent: false}, () => { callbacks.forEach((callback) => { callback(); }); });
           });
       });
   };
 
+  // attack properties to use
+  const attack_properties = ["atkname", "atkrange", "atkflag", "atkattr_base", "dmgbase", "dmgtype", "dmg2base", "dmg2type",
+                             "saveflag", "saveattr", "saveeffect"];
+
   //Update spells in the attack section
-  const update_spell_from_attack = (lvl, spellid, attackid) => {
+  const update_spell_from_attack = (lvl, spellid, attack_id) => {
 
-      console.log("Update spell from attack lvl:"+lvl);
+      console.log("Update spell from attack splvl:"+lvl+" sp_id:"+spellid+" attk_id:"+attack_id);
 
-      const repeating_attack = `repeating_attack_${attackid}`;
+      const repeating_attack = `repeating_attack_${attack_id}`;
       const repeating_spell = `repeating_spell-${lvl}_${spellid}`;
+
+      console.log(" using attk row id:"+repeating_attack);
+      console.log(" using spell row id:"+repeating_spell);
+
+      var attk_attribs = [];
+      attack_properties.forEach( prop => {
+	  attk_attribs.push(repeating_attack + "_" + prop);
+      });
+
+      console.log("ATTACK FIELDS:"+attk_attribs);
+
       let update = {};
-      getAttrs([`${repeating_attack}_atkname`, `${repeating_attack}_atkrange`, `${repeating_attack}_atkflag`, `${repeating_attack}_atkattr_base`, `${repeating_attack}_dmgbase`, `${repeating_attack}_dmgtype`, `${repeating_attack}_dmg2base`, `${repeating_attack}_dmg2type`, `${repeating_attack}_saveflag`, `${repeating_attack}_saveattr`, `${repeating_attack}_saveeffect`], (v) => {
+      getAttrs([...attk_attribs], (v) => {
+
+	  // console.log("values grid: "+JSON.stringify(v));
+	  console.log("  repeating_attack:"+repeating_attack);
+	  console.log("  repeating_spell: "+repeating_spell);
+
+          var dmgbase = "FOOBSR"; // v[`${repeating_attack}_dmgbase`];
+          // var dmg2base = v[`${repeating_attack}_dmg2base`] || "";
+          var dmgtype = v[`${repeating_attack}_dmgtype`] || "Bludgeoning";
+          // var dmg2type = v[`${repeating_attack}_dmg2type`] || "";
+
           update[`${repeating_spell}_spellname`]        = v[`${repeating_attack}_atkname`];
           update[`${repeating_spell}_spellrange`]       = v[`${repeating_attack}_atkrange`] || "";
           update[`${repeating_spell}_spellsavesuccess`] = v[`${repeating_attack}_saveeffect`] || "";
+          update[`${repeating_spell}_spelldamage`] = "FOOBAR"; // dmgbase;
 
-          if (v[`${repeating_attack}_dmgtype`] && v[`${repeating_attack}_dmgtype`].toLowerCase() == "healing") {
-              if (v[`${repeating_attack}_dmgbase`] && v[`${repeating_attack}_dmgbase`] != "") {
-                  update[`${repeating_spell}_spellhealing`] = v[`${repeating_attack}_dmgbase`];
-              }
-          } else {
-              if (v[`${repeating_attack}_dmgbase`] && v[`${repeating_attack}_dmgbase`] != "" && v[`${repeating_attack}_dmgbase`].indexOf("[[round((@{level} + 1) / 6 + 0.5)]]") === -1) {
-                  update[`${repeating_spell}_spelldamage`] = v[`${repeating_attack}_dmgbase`];
-              } else if (!v[`${repeating_attack}_dmgbase`] || v[`${repeating_attack}_dmgbase`] === "") {
-                  update[`${repeating_spell}_spelldamage`] = "";
-              }
+          // check for healing or attack damage
+	  console.log("DAMAGES: db:"+dmgbase+" dt:"+dmgtype);
+	  if (dmgbase) {
+              if (dmgtype.toLowerCase() == "healing") {
+                  update[`${repeating_spell}_spellhealing`] = dmgbase;
+              } else {
+	          console.log("UPDATE SPELL DAMAGE & TYPE!");
+                  update[`${repeating_spell}_spelldamage`] = dmgbase;
+                  update[`${repeating_spell}_spelldamagetype`] = dmgtype;
+	      }
+          };
 
-              update[`${repeating_spell}_spelldamagetype`] = v[`${repeating_attack}_dmgtype`] || "";
-          };
-          if (v[`${repeating_attack}_dmg2type`] && v[`${repeating_attack}_dmg2type`].toLowerCase() === "healing") {
-              if (v[`${repeating_attack}_dmgbase`] && v[`${repeating_attack}_dmgbase`] != "") {
-                  update[`${repeating_spell}_spellhealing`] = v[`${repeating_attack}_dmgbase`];
-              }
-          } else {
-              update[`${repeating_spell}_spelldamage2`] = v[`${repeating_attack}_dmg2base`] || "";
-              update[`${repeating_spell}_spelldamagetype2`] = v[`${repeating_attack}_dmg2type`] || "";
-          };
+	  // pick up healing on 2nd type of damage(?)
+	  //if (dmg2type && dmg2base) {
+          //    if (dmg2type.toLowerCase() == "healing") {
+          //        update[`${repeating_spell}_spellhealing`] = dmg2base;
+    	  //    } else {
+          //        update[`${repeating_spell}_spelldamage2`] = dmg2base;
+          //        update[`${repeating_spell}_spelldamagetype2`] = dmg2type;
+	  //    }
+          // };
 
           //SAVING THROW checkbox inside settings for the repeating attack
-          update[`${repeating_spell}_spellsave`] =  (v[`${repeating_attack}_saveflag`] && v[`${repeating_attack}_saveflag`] != "0") ? v[`${repeating_attack}_saveattr`] : "";
-          setAttrs(update, {silent: true});
+          update[`${repeating_spell}_spellsave`] =
+	      (v[`${repeating_attack}_saveflag`] && v[`${repeating_attack}_saveflag`] != "0") ? v[`${repeating_attack}_saveattr`] : "";
+
+	  console.log("UPDATE Spell from attack using:"+JSON.stringify(update));
+          setAttrs(update);
       });
   };
 
   var update_item_from_attack = function(itemid, attackid) {
-      // getAttrs(["repeating_attack_" + attackid + "_atkname", "repeating_attack_" + attackid + "_dmgbase", "repeating_attack_" + attackid + "_dmg2base", "repeating_attack_" + attackid + "_dmgtype", "repeating_attack_" + attackid + "_dmg2type", "repeating_attack_" + attackid + "_atkrange", "repeating_attack_" + attackid + "_atkmod", "repeating_attack_" + attackid + "_dmgmod", "repeating_inventory_" + itemid + "_itemmodifiers", "repeating_attack_" + attackid + "_versatile_alt", "repeating_inventory_" + itemid + "_itemproperties", "repeating_attack_" + attackid + "_atkmagic"], function(v) {
       getAttrs(["repeating_attack_" + attackid + "_atkname", "repeating_attack_" + attackid + "_dmgbase", "repeating_attack_" + attackid + "_dmg2base", "repeating_attack_" + attackid + "_dmgtype", "repeating_attack_" + attackid + "_dmg2type", "repeating_attack_" + attackid + "_atkrange", "repeating_attack_" + attackid + "_atkmod", "repeating_attack_" + attackid + "repeating_inventory_" + itemid + "_itemmodifiers", "repeating_attack_" + attackid + "_versatile_alt", "repeating_inventory_" + itemid + "_itemproperties", "repeating_attack_" + attackid + "_atkmagic"], function(v) {
           var update = {};
           var mods = v["repeating_inventory_" + itemid + "_itemmodifiers"];
