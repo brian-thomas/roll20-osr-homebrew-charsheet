@@ -1357,6 +1357,7 @@ button[type=roll]:hover *,
   display: block; }
 
 .sheet-attacks .sheet-options-flag,
+.sheet-spell .sheet-adhoc-flag,
 .sheet-spell .sheet-details-flag,
 .sheet-spell .sheet-options-flag
 {
@@ -1368,6 +1369,7 @@ button[type=roll]:hover *,
 			  height: 18px;
 			  z-index: 2; }
 
+.sheet-spell .sheet-adhoc-flag + span,
 .sheet-spell .sheet-details-flag + span,
 .sheet-attacks .sheet-options-flag + span,
 .sheet-spell .sheet-options-flag + span,
@@ -1389,11 +1391,13 @@ button[type=roll]:hover *,
 		margin-top: 0px;
 		display: none; }
 
+.sheet-spell .sheet-adhoc-flag:hover + span,
 .sheet-spell .sheet-details-flag:hover + span,
 .sheet-attacks .sheet-options-flag:hover + span,
 .sheet-spell .sheet-options-flag:hover + span
 {
-    color: #000000; }
+    color: #000000;
+}
 
 .sheet-pc .sheet-global-mod .sheet-options-flag:not(:checked) ~ .sheet-display,
 .sheet-pc .sheet-global-mod .sheet-options-flag:checked ~ .sheet-options {
@@ -1401,6 +1405,7 @@ button[type=roll]:hover *,
   display: inline-block; }
 
 
+.sheet-spell:hover .sheet-adhoc-flag + span,
 .sheet-spell .sheet-details-flag:checked + span,
 .sheet-attacks .sheet-options-flag:checked + span,
 .sheet-spell .sheet-options-flag:checked + span
@@ -1410,6 +1415,7 @@ button[type=roll]:hover *,
 		  display: -ms-flexbox;
 		  display: flex; }
 
+.sheet-spell:hover .sheet-adhoc-flag + span,
 .sheet-spell:hover .sheet-details-flag + span,
 .sheet-spell:hover .sheet-options-flag + span,
 .sheet-attacks .sheet-attack:hover .sheet-options-flag + span
@@ -1955,6 +1961,8 @@ span.sheet-spellconcentration {
 .sheet-spell-container input[name="attr_spellduration"] {
 		  width: 186px; }
 
+.sheet-spell .sheet-adhoc-flag,
+.sheet-spell .sheet-adhoc-flag + span,
 .sheet-spell .sheet-details-flag,
 .sheet-spell .sheet-details-flag + span {
 			  position: absolute;
@@ -1963,10 +1971,16 @@ span.sheet-spellconcentration {
 			  width: 18px;
 			  height: 18px; }
 
+.sheet-spell .sheet-adhoc-flag,
+.sheet-spell .sheet-adhoc-flag + span {
+			  right: 43px; }
+
+.sheet-spell .sheet-adhoc-flag,
 .sheet-spell .sheet-details-flag {
 			  opacity: 0;
 			  z-index: 2; }
 
+.sheet-spell .sheet-adhoc-flag + span,
 .sheet-spell .sheet-details-flag + span {
 			  white-space: nowrap;
 			  font-size: 20px;
@@ -2013,6 +2027,7 @@ span.sheet-spellconcentration {
 			  display: block;
 			  color: #000000; }
 
+.sheet-spell:hover .sheet-adhoc-flag + span,
 .sheet-spell:hover .sheet-details-flag + span {
 			  display: block; }
 
@@ -2066,8 +2081,8 @@ span.sheet-spellconcentration {
 			  display: none; }
 
 .sheet-spell .sheet-display {
-				display: flex;
-			  position: relative;
+    display: flex;
+    position: relative;
 }
 
 .sheet-spell .sheet-prep {
@@ -2090,7 +2105,437 @@ span.sheet-spellconcentration {
 			  width: 12px; }
 
 .charsheet .sheet-spell .sheet-display button[type=roll].sheet-spellcard {
-			  width: calc(100% - 21px); }
+	                  border: 2px solid blue;
+			  width: calc(100% - 81px); }
+			  /* width: calc(100% - 21px); } */
+
+.sheet-rolltemplates {
+  display: none; }
+
+.sheet-rolltemplate-dmg,
+.sheet-rolltemplate-atk,
+.sheet-rolltemplate-simple,
+.sheet-rolltemplate-atkdmg {
+  width: 14em; }
+
+.sheet-rolltemplate-simple .sheet-container,
+.sheet-rolltemplate-atk .sheet-container,
+.sheet-rolltemplate-atkdmg .sheet-container.sheet-atk,
+.sheet-rolltemplate-dmg .sheet-atk,
+.sheet-rolltemplate-dmg .sheet-container,
+.sheet-rolltemplate-atkdmg .sheet-container.sheet-damagetemplate {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  width: 100%; }
+
+.sheet-rolltemplate-simple .sheet-container {
+  border-radius: 10px; }
+
+.sheet-rolltemplate-atk .sheet-container,
+.sheet-rolltemplate-atkdmg .sheet-container.sheet-atk,
+.sheet-rolltemplate-dmg .sheet-atk {
+  border-top-left-radius: 0.8em;
+  border-top-right-radius: 0.8em; }
+
+.sheet-rolltemplate-dmg .sheet-container,
+.sheet-rolltemplate-atkdmg .sheet-container.sheet-damagetemplate {
+  border-bottom-left-radius: 0.8em;
+  border-bottom-right-radius: 0.8em; }
+
+/* Obsolete Template */
+.sheet-rolltemplate-simple .sheet-containerold,
+.sheet-rolltemplate-atk .sheet-containerold,
+.sheet-rolltemplate-atkdmg .sheet-container.sheet-atkold,
+.sheet-rolltemplate-dmg .sheet-atkold,
+.sheet-rolltemplate-dmg .sheet-containerold,
+.sheet-rolltemplate-atkdmg .sheet-container.sheet-damagetemplateold {
+  background-repeat: no-repeat;
+  background-size: 14em 100%;
+  color: black;
+  width: 81%; }
+
+/* Obsolete Template */
+.sheet-rolltemplate-simple .sheet-containerold {
+  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/53WSdhx.png") top left; }
+
+/* Obsolete Template */
+.sheet-rolltemplate-atk .sheet-containerold,
+.sheet-rolltemplate-atkdmg .sheet-container.sheet-atkold,
+.sheet-rolltemplate-dmg .sheet-atkold {
+  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/4RCRsAd.png") top left; }
+
+/* Obsolete Template */
+.sheet-rolltemplate-dmg .sheet-containerold,
+.sheet-rolltemplate-atkdmg .sheet-container.sheet-damagetemplateold {
+  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/gw9HTsq.png") top left; }
+
+.sheet-rolltemplate-atkdmg .sheet-damagetemplate .sheet-result,
+.sheet-rolltemplate-dmg .sheet-damagetemplate .sheet-result {
+  min-height: 45px; }
+
+.sheet-rolltemplate-simple .sheet-adv,
+.sheet-rolltemplate-atk .sheet-adv,
+.sheet-rolltemplate-atkdmg .sheet-adv,
+.sheet-rolltemplate-dmg .sheet-adv {
+  display: inline-block;
+  margin-top: 1em;
+  text-align: center;
+  vertical-align: top;
+  width: 45%; }
+
+.sheet-rolltemplate-simple .sheet-adv:first-child,
+.sheet-rolltemplate-atk .sheet-adv:first-child,
+.sheet-rolltemplate-atkdmg .sheet-adv:first-child,
+.sheet-rolltemplate-dmg .sheet-adv:first-child {
+  margin-left: 0.2em; }
+
+.sheet-rolltemplate-simple .sheet-adv:nth-child(3),
+.sheet-rolltemplate-atk .sheet-adv:nth-child(3),
+.sheet-rolltemplate-atkdmg .sheet-adv:nth-child(3),
+.sheet-rolltemplate-dmg .sheet-adv:nth-child(3) {
+  margin-right: 8px;
+  margin-left: -3px; }
+
+.sheet-rolltemplate-simple .sheet-adv span,
+.sheet-rolltemplate-simple .sheet-solo span,
+.sheet-rolltemplate-atk .sheet-adv span,
+.sheet-rolltemplate-atk .sheet-solo span,
+.sheet-rolltemplate-atkdmg .sheet-adv span,
+.sheet-rolltemplate-atkdmg .sheet-solo span,
+.sheet-rolltemplate-dmg .sheet-adv span,
+.sheet-rolltemplate-dmg .sheet-solo span {
+  background-color: transparent;
+  border: 0px;
+  font-size: 1.2em;
+  padding: 0px; }
+
+.sheet-rolltemplate-simple .sheet-advspacer,
+.sheet-rolltemplate-atk .sheet-advspacer,
+.sheet-rolltemplate-atkdmg .sheet-advspacer,
+.sheet-rolltemplate-dmg .sheet-advspacer {
+  border: 1px solid black;
+  display: inline-block;
+  height: 35px;
+  width: 0px; }
+
+.sheet-rolltemplate-simple .sheet-solo,
+.sheet-rolltemplate-atk .sheet-solo,
+.sheet-rolltemplate-atkdmg .sheet-solo,
+.sheet-rolltemplate-dmg .sheet-solo {
+  height: auto;
+  padding-bottom: 0.5em;
+  padding-top: 1em;
+  text-align: center;
+  width: 100%; }
+
+.sheet-rolltemplate-simple span,
+.sheet-rolltemplate-atk span,
+.sheet-rolltemplate-atkdmg span,
+.sheet-rolltemplate-dmg span,
+.sheet-rolltemplate-desc span {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 12px;
+  text-align: center; }
+
+.sheet-rolltemplate-dmg .sheet-desc span.sheet-plus,
+.sheet-rolltemplate-atkdmg .sheet-desc span.sheet-plus {
+  display: inline;
+  font-size: 20px;
+  font-weight: bold; }
+
+.sheet-rolltemplate-simple .sheet-grey,
+.sheet-rolltemplate-simple .sheet-grey .inlinerollresult.fullcrit,
+.sheet-rolltemplate-simple .sheet-grey .inlinerollresult.fullfail,
+.sheet-rolltemplate-simple .sheet-grey .inlinerollresult.importantroll,
+.sheet-rolltemplate-simple .sheet-label span span,
+.sheet-rolltemplate-atk .sheet-label span span,
+.sheet-rolltemplate-atk .sheet-grey,
+.sheet-rolltemplate-atk .sheet-grey .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atk .sheet-grey .inlinerollresult.fullfail,
+.sheet-rolltemplate-atk .sheet-grey .inlinerollresult.importantroll,
+.sheet-rolltemplate-atkdmg .sheet-label span span,
+.sheet-rolltemplate-atkdmg .sheet-grey,
+.sheet-rolltemplate-atkdmg .sheet-grey .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atkdmg .sheet-grey .inlinerollresult.fullfail,
+.sheet-rolltemplate-atkdmg .sheet-grey .inlinerollresult.importantroll,
+.sheet-rolltemplate-dmg .sheet-label span span,
+.sheet-rolltemplate-dmg .sheet-grey,
+.sheet-rolltemplate-dmg .sheet-grey .inlinerollresult.fullcrit,
+.sheet-rolltemplate-dmg .sheet-grey .inlinerollresult.fullfail,
+.sheet-rolltemplate-dmg .sheet-grey .inlinerollresult.importantroll,
+.sheet-rolltemplate-npc .sheet-grey,
+.sheet-rolltemplate-npc .sheet-grey .inlinerollresult.fullcrit,
+.sheet-rolltemplate-npc .sheet-grey .inlinerollresult.fullfail,
+.sheet-rolltemplate-npc .sheet-grey .inlinerollresult.importantroll,
+.sheet-rolltemplate-npcaction .sheet-grey,
+.sheet-rolltemplate-npcaction .sheet-grey .inlinerollresult.fullcrit,
+.sheet-rolltemplate-npcaction .sheet-grey .inlinerollresult.fullfail,
+.sheet-rolltemplate-npcaction .sheet-grey .inlinerollresult.importantroll,
+.sheet-rolltemplate-npcatk .sheet-grey,
+.sheet-rolltemplate-npcatk .sheet-grey .inlinerollresult.fullcrit,
+.sheet-rolltemplate-npcatk .sheet-grey .inlinerollresult.fullfail,
+.sheet-rolltemplate-npcatk .sheet-grey .inlinerollresult.importantroll {
+  color: #A0A0A0;
+  border: 0px;
+  font-weight: normal; }
+
+.sheet-rolltemplate-simple .sheet-label,
+.sheet-rolltemplate-atk .sheet-label,
+.sheet-rolltemplate-atkdmg .sheet-label,
+.sheet-rolltemplate-dmg .sheet-label {
+  margin-top: -3px;
+  padding: 0.25em;
+  text-align: center; }
+
+.sheet-rolltemplate-simple .sheet-label span span,
+.sheet-rolltemplate-atk .sheet-label span span,
+.sheet-rolltemplate-atkdmg .sheet-label span span,
+.sheet-rolltemplate-dmg .sheet-label span span {
+  padding: 0px;
+  border: 0px;
+  background-color: transparent;
+  font-size: 12px; }
+
+.sheet-rolltemplate-simple .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atk .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atkdmg .inlinerollresult.fullcrit,
+.sheet-rolltemplate-dmg .inlinerollresult.fullcrit {
+  color: #3FB315;
+  border: 0px; }
+
+.sheet-rolltemplate-simple .inlinerollresult.fullfail,
+.sheet-rolltemplate-atk .inlinerollresult.fullfail,
+.sheet-rolltemplate-atkdmg .inlinerollresult.fullfail,
+.sheet-rolltemplate-dmg .inlinerollresult.fullfail {
+  color: #B31515;
+  border: 0px; }
+
+.sheet-rolltemplate-simple .inlinerollresult.importantroll,
+.sheet-rolltemplate-atk .inlinerollresult.importantroll,
+.sheet-rolltemplate-atkdmg .inlinerollresult.importantroll,
+.sheet-rolltemplate-dmg .inlinerollresult.importantroll {
+  color: #4A57ED;
+  border: 0px; }
+
+.sheet-rolltemplate-atkdmg .sheet-damagetemplate .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atkdmg .sheet-damagetemplate .inlinerollresult.fullfail,
+.sheet-rolltemplate-atkdmg .sheet-damagetemplate .inlinerollresult.importantroll,
+.sheet-rolltemplate-dmg .sheet-damagetemplate .inlinerollresult.fullcrit,
+.sheet-rolltemplate-dmg .sheet-damagetemplate .inlinerollresult.fullfail,
+.sheet-rolltemplate-dmg .sheet-damagetemplate .inlinerollresult.importantroll,
+.sheet-rolltemplate-npcaction .sheet-damagetemplate .inlinerollresult.fullcrit,
+.sheet-rolltemplate-npcaction .sheet-damagetemplate .inlinerollresult.fullfail,
+.sheet-rolltemplate-npcaction .sheet-damagetemplate .inlinerollresult.importantroll,
+.sheet-rolltemplate-npcdmg .sheet-damagetemplate .inlinerollresult.fullcrit,
+.sheet-rolltemplate-npcdmg .sheet-damagetemplate .inlinerollresult.fullfail,
+.sheet-rolltemplate-npcdmg .sheet-damagetemplate .inlinerollresult.importantroll,
+.sheet-rolltemplate-atkdmg .sheet-desc .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atkdmg .sheet-desc .inlinerollresult.importantroll,
+.sheet-rolltemplate-atkdmg .sheet-desc .inlinerollresult.fullfail,
+.sheet-rolltemplate-dmg .sheet-desc .inlinerollresult.fullcrit,
+.sheet-rolltemplate-dmg .sheet-desc .inlinerollresult.importantroll,
+.sheet-rolltemplate-dmg .sheet-desc .inlinerollresult.fullfail
+.sheet-rolltemplate-atk .sheet-desc .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atk .sheet-desc .inlinerollresult.importantroll,
+.sheet-rolltemplate-atk .sheet-desc .inlinerollresult.fullfail,
+.sheet-rolltemplate-mancerroll .inlinerollresult.fullcrit,
+.sheet-rolltemplate-mancerroll .inlinerollresult.importantroll,
+.sheet-rolltemplate-mancerroll .inlinerollresult.fullfail,
+.sheet-rolltemplate-mancerhproll .inlinerollresult.fullcrit,
+.sheet-rolltemplate-mancerhproll .inlinerollresult.importantroll,
+.sheet-rolltemplate-mancerhproll .inlinerollresult.fullfail {
+  color: black;
+  border: 0px; }
+
+.sheet-rolltemplate-atk .sheet-save .sheet-savedc,
+.sheet-rolltemplate-dmg .sheet-save .sheet-savedc,
+.sheet-rolltemplate-atkdmg .sheet-save .sheet-savedc {
+  padding-bottom: 5px;
+  padding-top: 15px;
+  text-align: center; }
+
+.sheet-rolltemplate-atk .sheet-save .sheet-savedc span,
+.sheet-rolltemplate-dmg .sheet-save .sheet-savedc span,
+.sheet-rolltemplate-atkdmg .sheet-save .sheet-savedc span {
+  font-size: 15px;
+  font-weight: bold; }
+
+.sheet-rolltemplate-atk .sheet-save .sheet-label span,
+.sheet-rolltemplate-dmg .sheet-save .sheet-label span,
+.sheet-rolltemplate-atkdmg .sheet-save .sheet-label span {
+  font-weight: bold; }
+
+.sheet-rolltemplate-dmg .sheet-desc .inlinerollresult,
+.sheet-rolltemplate-atkdmg .sheet-desc .inlinerollresult,
+.sheet-rolltemplate-atk .sheet-desc .inlinerollresult,
+.sheet-rolltemplate-mancerroll .inlinerollresult,
+.sheet-rolltemplate-mancerhproll .inlinerollresult,
+.sheet-rolltemplate-atk .sheet-save .inlinerollresult,
+.sheet-rolltemplate-dmg .sheet-save .inlinerollresult,
+.sheet-rolltemplate-atkdmg .sheet-save .inlinerollresult {
+  background-color: transparent;
+  border: 0px;
+  display: inline-block;
+  font-weight: bold; }
+
+.sheet-rolltemplate-atk .sheet-save .inlinerollresult,
+.sheet-rolltemplate-dmg .sheet-save .inlinerollresult,
+.sheet-rolltemplate-atkdmg .sheet-save .inlinerollresult {
+  padding: 0px; }
+
+.sheet-rolltemplate-dmg .sheet-desc .inlinerollresult,
+.sheet-rolltemplate-atkdmg .sheet-desc .inlinerollresult,
+.sheet-rolltemplate-atk .sheet-desc .inlinerollresult,
+.sheet-rolltemplate-mancerroll .inlinerollresult,
+.sheet-rolltemplate-mancerhproll .inlinerollresult {
+  font-size: 20px;
+  padding-bottom: 6px;
+  padding-top: 10px; }
+
+.sheet-rolltemplate-dmg .sheet-desc .sheet-label span,
+.sheet-rolltemplate-atkdmg .sheet-desc .sheet-label span {
+  font-weight: bold; }
+
+.sheet-rolltemplate-atk .sheet-save span,
+.sheet-rolltemplate-dmg .sheet-save span,
+.sheet-rolltemplate-atkdmg .sheet-save span {
+  font-weight: normal;
+  line-height: 12px;
+  display: block; }
+
+.sheet-rolltemplate-atk .sheet-save span.sheet-bold,
+.sheet-rolltemplate-dmg .sheet-save span.sheet-bold,
+.sheet-rolltemplate-atkdmg .sheet-save span.sheet-bold {
+  font-weight: bold;
+  display: inline-block; }
+
+.sheet-rolltemplate-atk .sheet-sublabel,
+.sheet-rolltemplate-atkdmg .sheet-sublabel,
+.sheet-rolltemplate-dmg .sheet-sublabel {
+  text-align: center;
+  font-style: italic;
+  margin-top: -2px;
+  min-height: 17px; }
+
+/* Obsolete Template */
+.sheet-rolltemplate-atk .sheet-descold,
+.sheet-rolltemplate-atkdmg .sheet-descold,
+.sheet-rolltemplate-dmg .sheet-descold {
+  background-repeat: no-repeat;
+  background-size: 14em 100%;
+  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/4988JS0.png") top left;
+  color: black;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  text-align: center;
+  width: 189px; }
+
+.sheet-rolltemplate-atk .sheet-desc,
+.sheet-rolltemplate-atkdmg .sheet-desc,
+.sheet-rolltemplate-dmg .sheet-desc,
+.sheet-rolltemplate-desc .sheet-desc {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  text-align: center;
+  width: 81%; }
+
+/*
+Fix for Global Damage Modifier
+By Miguel
+*/
+.sheet-rolltemplate-dmg .sheet-desc {
+  width: 100%; }
+
+.sheet-rolltemplate-atk .sheet-desc span,
+.sheet-rolltemplate-atkdmg .sheet-desc span,
+.sheet-rolltemplate-dmg .sheet-desc span,
+.sheet-rolltemplate-desc .sheet-desc span {
+  font-weight: normal;
+  line-height: 12px;
+  display: block; }
+
+.sheet-rolltemplate-atk .sheet-info span,
+.sheet-rolltemplate-atkdmg .sheet-info span,
+.sheet-rolltemplate-dmg .sheet-info span {
+  text-align: left;
+  padding: 0px 5px 0px 5px; }
+
+.sheet-rolltemplate-atk .sheet-info .inlinerollresult,
+.sheet-rolltemplate-atkdmg .sheet-info .inlinerollresult,
+.sheet-rolltemplate-dmg .sheet-info .inlinerollresult {
+  font-size: inherit;
+  padding: 0px; }
+
+.sheet-rolltemplate-atkdmg .sheet-damagetemplate .sheet-sublabel,
+.sheet-rolltemplate-dmg .sheet-damagetemplate .sheet-sublabel,
+.sheet-rolltemplate-atkdmg .sheet-desc .sheet-sublabel,
+.sheet-rolltemplate-dmg .sheet-desc .sheet-sublabel {
+  color: #A0A0A0;
+  display: block;
+  font-size: 10px;
+  font-weight: normal;
+  margin-top: -5px; }
+
+.sheet-rolltemplate-atk .sheet-sublabel span,
+.sheet-rolltemplate-atkdmg .sheet-sublabel span,
+.sheet-rolltemplate-dmg .sheet-sublabel span {
+  font-weight: normal;
+  color: black; }
+
+.sheet-rolltemplate-atk .sheet-spacer,
+.sheet-rolltemplate-atkdmg .sheet-spacer,
+.sheet-rolltemplate-dmg .sheet-spacer {
+  height: 10px; }
+
+.sheet-rolltemplate-atk a[href^="~"] {
+  background-color: transparent;
+  padding: 0px;
+  color: black;
+  border: 0px; }
+
+.sheet-rolltemplate-atk a:hover {
+  color: #EC2127; }
+
+.sheet-rolltemplate-atk a[href^="~"]:visited {
+  pointer-events: none; }
+
+.sheet-rolltemplate-spell .sheet-container 
+{
+  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/spellbg.jpg") center center;
+  background-repeat: repeat;
+  background-size: auto;
+  border: 1px solid black;
+  color: black;
+  font-family: "Times New Roman", Times, serif;
+  margin-left: -3em;
+  padding: 0.5em;
+  width: 19em; }
+
+.withoutavatars .sheet-rolltemplate-spell .sheet-container {
+  margin-left: -15px; }
+
+.sheet-rolltemplate-spell .sheet-row {
+  display: block; }
+
+.sheet-rolltemplate-spell .sheet-title {
+  color: #7e2d40;
+  font-size: 1.2em; }
+
+.sheet-rolltemplate-spell .sheet-italics,
+.sheet-npc .sheet-italics {
+  font-style: italic; }
+
+.sheet-rolltemplate-spell .sheet-bold,
+.sheet-actions .sheet-bold {
+  font-weight: bold; }
+
+.sheet-rolltemplate-spell .sheet-spacer {
+  height: 5px; }
 
 .sheet-spellattackinfo {
 			  display: none; }
@@ -2743,6 +3188,140 @@ div.sheet-label
     color: black;
 		font-weight: bold;
 }
+
+.sheet-rolltemplate-simple,
+.sheet-rolltemplate-atk,
+.sheet-rolltemplate-atkdmg,
+.sheet-rolltemplate-dmg,
+.sheet-rolltemplate-desc {
+  image-rendering: -webkit-optimize-contrast; }
+
+.sheet-rolltemplate-simple div.sheet-licensedsheet-flag-1 ~ div.sheet-container {
+  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/licensedsheet/DnD-Rolltemplate-Simple.png") top left; }
+
+.sheet-rolltemplate-atk div.sheet-licensedsheet-flag-1 ~ div.sheet-container,
+.sheet-rolltemplate-atkdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-container.sheet-atk,
+.sheet-rolltemplate-dmg div.sheet-licensedsheet-flag-1 ~ div.sheet-atk {
+  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/licensedsheet/DnD-Rolltemplate-Attack.png") top left;
+  background-color: inherit; }
+
+.sheet-rolltemplate-dmg div.sheet-licensedsheet-flag-1 ~ div.sheet-container,
+.sheet-rolltemplate-atkdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-container.sheet-damagetemplate {
+  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/licensedsheet/DnD-Rolltemplate-Damage.png") top left;
+  background-color: inherit; }
+
+.sheet-rolltemplate-atk div.sheet-licensedsheet-flag-1 ~ div.sheet-desc,
+.sheet-rolltemplate-atkdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc,
+.sheet-rolltemplate-dmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc,
+.sheet-rolltemplate-desc div.sheet-licensedsheet-flag-1 ~ div.sheet-desc {
+  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/licensedsheet/DnD-Rolltemplate-Desc.png") top left;
+  background-color: inherit;
+  padding-bottom: 0.35em;
+  padding-top: 0.35em; }
+
+.sheet-rolltemplate-simple div.sheet-licensedsheet-flag-1 ~ div.sheet-container,
+.sheet-rolltemplate-atk div.sheet-licensedsheet-flag-1 ~ div.sheet-container,
+.sheet-rolltemplate-atkdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-container.sheet-atk,
+.sheet-rolltemplate-dmg div.sheet-licensedsheet-flag-1 ~ div.sheet-atk,
+.sheet-rolltemplate-dmg div.sheet-licensedsheet-flag-1 ~ div.sheet-container,
+.sheet-rolltemplate-atkdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-container.sheet-damagetemplate,
+.sheet-rolltemplate-atk div.sheet-licensedsheet-flag-1 ~ div.sheet-desc,
+.sheet-rolltemplate-atkdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc,
+.sheet-rolltemplate-dmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc,
+.sheet-rolltemplate-desc div.sheet-licensedsheet-flag-1 ~ div.sheet-desc {
+  background-repeat: no-repeat;
+  background-size: 13.8em 100%;
+  border: none;
+  width: 100%; }
+
+.sheet-rolltemplate-atk div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info,
+.sheet-rolltemplate-atkdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info,
+.sheet-rolltemplate-dmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info,
+.sheet-rolltemplate-desc div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info {
+  background: none;
+  width: 100%; }
+
+.sheet-rolltemplate-atk div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info > span,
+.sheet-rolltemplate-atkdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info > span,
+.sheet-rolltemplate-dmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info > span,
+.sheet-rolltemplate-desc div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info > span {
+  padding: 0px; }
+
+.sheet-rolltemplate-atk div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info .sheet-bottom,
+.sheet-rolltemplate-atkdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info .sheet-bottom,
+.sheet-rolltemplate-dmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info .sheet-bottom,
+.sheet-rolltemplate-desc div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info .sheet-bottom {
+  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/licensedsheet/DnD-Rolltemplate-Info-Bottom.png") top left;
+  height: 1.1em;
+  background-size: 100% 100%;
+  margin-bottom: -0.3em; }
+
+.sheet-rolltemplate-atk div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info .sheet-top,
+.sheet-rolltemplate-atkdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info .sheet-top,
+.sheet-rolltemplate-dmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info .sheet-top,
+.sheet-rolltemplate-desc div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info .sheet-top {
+  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/licensedsheet/DnD-Rolltemplate-Info-Top.png") top left;
+  height: 1.1em;
+  background-size: 100% 100%;
+  margin-top: -0.3em; }
+
+.sheet-rolltemplate-atk div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info .sheet-middle,
+.sheet-rolltemplate-atkdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info .sheet-middle,
+.sheet-rolltemplate-dmg div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info .sheet-middle,
+.sheet-rolltemplate-desc div.sheet-licensedsheet-flag-1 ~ div.sheet-desc.sheet-info .sheet-middle {
+  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/licensedsheet/DnD-Rolltemplate-Info-Middle.png") top left;
+  background-size: 100% 100%; }
+
+.sheet-rolltemplate-npc div.sheet-licensedsheet-flag-1 ~ div.sheet-arrow-right,
+.sheet-rolltemplate-npcaction div.sheet-licensedsheet-flag-1 ~ div.sheet-arrow-right,
+.sheet-rolltemplate-npcatk div.sheet-licensedsheet-flag-1 ~ div.sheet-arrow-right,
+.sheet-rolltemplate-npcdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-arrow-right {
+  border: none;
+  border-top: 0.25em solid transparent;
+  border-bottom: 0.25em solid transparent;
+  border-left: 14em solid #7e2d40; }
+
+.sheet-rolltemplate-atk div.sheet-licensedsheet-flag-1 ~ div.sheet-advspacer,
+.sheet-rolltemplate-dmg div.sheet-licensedsheet-flag-1 ~ div.sheet-advspacer,
+.sheet-rolltemplate-atkdmg div.sheet-licensedsheet-flag-1 ~ div.sheet-advspacer {
+  margin-top: 1px; }
+
+/* DIALOGUE PROMPT */
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-monster_confirm span:not(.sheet-yes),
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-mancer_confirm span:not(.sheet-yes) {
+  font-size: 1.68em;
+  font-weight: bold; }
+
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-compendium_warning,
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-monster_confirm,
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-mancer_confirm {
+  position: absolute !important;
+  padding: 2em 0 !important;
+  min-height: -webkit-max-content;
+  min-height: -moz-max-content;
+  min-height: max-content;
+  -webkit-box-shadow: 0 0 50px #000;
+  box-shadow: 0 0 50px #000;
+  border: 2px solid #000 !important;
+  border-radius: .5em; }
+
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-monster_confirm span:not(.sheet-yes),
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-mancer_confirm span:not(.sheet-yes) {
+  font-weight: bold;
+  font-size: 18px; }
+
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-monster_confirm .sheet-yes,
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-mancer_confirm .sheet-yes {
+  color: #000;
+  background-color: #eee; }
+
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-monster_confirm .sheet-yes:hover + .sheet-yes,
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-monster_confirm .sheet-yes:hover,
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-mancer_confirm .sheet-yes:hover + .sheet-yes,
+.charsheet input.sheet-licensedsheet[value="1"] ~ .sheet-mancer_confirm .sheet-yes:hover {
+  color: #fff;
+  background-color: #EC2127;
+  cursor: pointer; }
 
 .sheet-rolltemplate-roll_check .sheet-rt-header:before,
 .sheet-rolltemplate-roll_check .sheet-rt-header:after
