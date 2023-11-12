@@ -1914,7 +1914,7 @@
 
 			  <!-- TODO: Fix d20, rtype -->
 			  <input type="hidden" name="attr_d20" value="d20"/>
-			  <input type="hidden" name="attr_rtype" value="{{always=1}} {{r2=[[@{d20}"/> 
+			  <input type="hidden" name="attr_rtype" value="{{always=1}} {{r2=[[@{d20}"/>
 
 			  <input type="hidden" name="attr_rollbase" />
 
@@ -5428,7 +5428,6 @@
 
   <rolltemplate class="sheet-rolltemplate-atk">
       <div class="licensedsheet-flag-{{licensedsheet}}"></div>
-      ATK
       <div class="container">
           <div class="result">
               {{#always}}
@@ -5650,7 +5649,6 @@
 
   <rolltemplate class="sheet-rolltemplate-atkdmg">
       <div class="licensedsheet-flag-{{licensedsheet}}"></div>
-      ATKDMG
       <div class="container">
       {{#attack}}
           <div class="atk">
@@ -6019,7 +6017,7 @@
 
 <rolltemplate class="sheet-rolltemplate-spell-adhoc">
   <div class="sheet-rt-card">
-  SPELLADHOC 
+  SPELLADHOC
     <div class="sheet-rt-header sheet-spell">
       <div class="sheet-rt-title">{{title}}</div>
       {{#subheader}}
@@ -6744,109 +6742,138 @@
   });
 
   // Keep spells up to date
-  const spell_lists = ['spells-1','spells-2','spells-3','spells-4','spells-5','spells-6','spells-7','spells-8','spells-9'];
-  spell_lists.forEach( splvl => {
-    on(`change:repeating_${splvl}`, function (eventinfo, splvl) {
-      if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
-      update_spells(splvl);
+  const spell_levels= [1,2,3,4,5,6,7,8,9];
+  spell_levels.forEach( splvl => {
+    on(`change:repeating_spells-${splvl}`, function (eventinfo, splvl) {
+
+       if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
+
+       console.log("SPELLS change event:"+JSON.stringify(eventinfo));
+
+       // argh, this is ugly but it works...
+       var workstr = eventinfo.triggerName.split("repeating_spells-"); 
+       workstr.shift();
+       workstr = workstr.join("");
+       workstr = workstr.split("-");
+       var splvl = workstr.shift();
+       splvl = splvl.split('_')[0];
+       workstr = workstr.join("-");
+       workstr = '-' + workstr;
+
+       update_spells(workstr, `repeating_spells-${splvl}`);
     });
   });
 
-  spell_lists.forEach( splvl => {
-    on(`remove:repeating_${splvl}`, function (splvl) {
+  spell_levels.forEach( splvl => {
+    on(`remove:repeating_spells-${splvl}`, function (eventinfo, splvl) {
 
-      const repeating_source_id = splvl['sourceAttribute'];
+      const repeating_source_id = eventinfo['sourceAttribute'];
       const spellattackid_fld = repeating_source_id + "_spellattackid";
 
-      const spellattackid = splvl['removedInfo'][spellattackid_fld];
+      const spellattackid = eventinfo['removedInfo'][spellattackid_fld];
       if (spellattackid && spellattackid !== "") {
          remove_attack(spellattackid);
       }
-
     });
   });
 
-  on(`change:arcana_skill change:arcana_bonus change:class change:class2 change:spelldamage`, function () {
-      update_all_spells();
+  on(`change:arcana_skill change:arcana_bonus change:class change:class2`, function () {
+      // global changes to spells
+      update_spells('all');
   });
 
-  function update_all_spells () {
-    spell_lists.forEach( splvl => {
-      update_spells(splvl);
-    });
+  function update_spells (update_id, src) {
+
+    console.log("Update spells update_id:"+update_id+ " src:"+src);
+
+    if (update_id && update_id.substring(0,1) === "-" && update_id.length === 20) {
+        const splvl = update_id.substring(17,18);
+
+        // passed single id for a row
+	do_update_spells([update_id], src);
+
+    } else {
+
+        // update everything
+	console.log("Update spells (all)");
+        spell_levels.forEach( splvl=> {
+	    getSectionIDs(`repeating_spells-${splvl}`, function (idarray) {
+		do_update_spells(idarray, `repeating_spells-${splvl}`);
+	    });
+	});
+    }
+
   };
 
-  function update_spells (splvl) {
+  function do_update_spells (ids, repeating_source) {
 
-    console.log("Update spells lvl:"+splvl);
+    console.log("DO update spells src:"+repeating_source+" ids:"+JSON.stringify(ids));
 
-    const repeating_source = `repeating_${splvl}`;
-    getSectionIDs(repeating_source, function (ids) {
-      const fieldnames = [];
+    const fieldnames = [];
+    ids.forEach(id => {
+      fieldnames.push(repeating_source + '_' + id + '_spelllevel');
+      fieldnames.push(repeating_source + '_' + id + '_spelldamage');
+      fieldnames.push(repeating_source + '_' + id + '_spelloutput');
+      fieldnames.push(repeating_source + '_' + id + '_spellattackid');
+    });
+
+    getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod', 'character_id'], function (values) {
+      const c_class = values.class.trim();
+      const c_class2 = values.class2.trim();
+      const character_id = values.character_id;
+      const arcana_skill = parseInt(values.arcana_skill) || 0;
+      const arcana_bonus = parseInt(values.arcana_bonus) || 0;
+      const spellcasting_mod = parseInt(values.spellcasting_mod) || 0;
+
+      const arcana_adj = parseInt((arcana_skill + arcana_bonus) / 4);
+      const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard') ? 1 : 0;
+
+      var settings = {};
+      var callbacks = [];
       ids.forEach(id => {
-        fieldnames.push(repeating_source + '_' + id + '_spelllevel');
-        fieldnames.push(repeating_source + '_' + id + '_spelldamage');
-        fieldnames.push(repeating_source + '_' + id + '_spelloutput');
-        fieldnames.push(repeating_source + '_' + id + '_spellattackid');
+
+        const spelllevel = parseInt(values[repeating_source + '_' + id + '_spelllevel']) || 0;
+        const spelldamage = values[repeating_source + '_' + id + '_spelldamage'];
+        const spelloutput = values[repeating_source + '_' + id + '_spelloutput'];
+        const spellattackid = values[repeating_source + '_' + id + '_spellattackid'];
+
+        // handle sync between attack and spell
+        if (spelloutput === "ATTACK")
+        {
+            if (!spellattackid || spellattackid === "") {
+                // undefined attack?? add one
+		create_attack_from_spell();
+                callbacks.push( function() { create_attack_from_spell(spelllevel, id, character_id); });
+            }
+            else
+            {
+                // sync spell to the changed spell
+                callbacks.push( function() { update_attack_from_spell(spelllevel, id, spellattackid, false); });
+            }
+        }
+
+        // handle ADHOC
+        const is_dice_enabled = (spelldamage === "") ? 0 : 1;
+        var adhoc_dc = 10 + spelllevel - spellcasting_mod - arcana_adj;
+        if (adhoc_dc < 2) { adhoc_dc = 2; } // never lower than 2
+
+        settings[repeating_source + '_' + id + '_is_adhoc_dice_spell'] = is_wizard && is_dice_enabled;
+        settings[repeating_source + '_' + id + '_is_adhoc_no_dice_spell'] = is_wizard && !is_dice_enabled;
+        settings[repeating_source + '_' + id + '_adhoc_dc'] = adhoc_dc;
+        settings[repeating_source + '_' + id + '_is_dice_spell'] = is_dice_enabled;
+
       });
+      setAttrs(settings, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
 
-      getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod', 'character_id'], function (values) {
-        const c_class = values.class.trim();
-        const c_class2 = values.class2.trim();
-        const character_id = values.character_id;
-        const arcana_skill = parseInt(values.arcana_skill) || 0;
-        const arcana_bonus = parseInt(values.arcana_bonus) || 0;
-        const spellcasting_mod = parseInt(values.spellcasting_mod) || 0;
-
-        const arcana_adj = parseInt((arcana_skill + arcana_bonus) / 4);
-        const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard') ? 1 : 0;
-
-        var settings = {};
-	var callbacks = [];
-        ids.forEach(id => {
-
-          const spelllevel = parseInt(values[repeating_source + '_' + id + '_spelllevel']) || 0;
-          const spelldamage = values[repeating_source + '_' + id + '_spelldamage'];
-          const spelloutput = values[repeating_source + '_' + id + '_spelloutput'];
-          const spellattackid = values[repeating_source + '_' + id + '_spellattackid'];
-
-          // handle sync between attack and spell
-	  if (spelloutput === "ATTACK")
-	  {
-	      if (!spellattackid || spellattackid === "") {
-                 // undefined attack?? add one
-		 create_attack_from_spell();
-                 callbacks.push( function() { create_attack_from_spell(spelllevel, id, character_id); });
-	      }
-	      else
-	      {
-                 // sync spell to the changed spell
-                 callbacks.push( function() { update_attack_from_spell(spelllevel, id, spellattackid, false); });
-	      }
-	  }
-
-          // handle ADHOC
-          const is_dice_enabled = (spelldamage === "") ? 0 : 1;
-          var adhoc_dc = 10 + spelllevel - spellcasting_mod - arcana_adj;
-          if (adhoc_dc < 2) { adhoc_dc = 2; } // never lower than 2
-
-          settings[repeating_source + '_' + id + '_is_adhoc_dice_spell'] = is_wizard && is_dice_enabled;
-          settings[repeating_source + '_' + id + '_is_adhoc_no_dice_spell'] = is_wizard && !is_dice_enabled;
-          settings[repeating_source + '_' + id + '_adhoc_dc'] = adhoc_dc;
-          settings[repeating_source + '_' + id + '_is_dice_spell'] = is_dice_enabled;
-
-        });
-        setAttrs(settings, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
-      });
     });
   };
 
   // update need for query for higher level casting and/or spelloutput
-  spell_lists.forEach(attr => {
-      on(`change:repeating_${attr}:spellathigherlevels change:repeating_${attr}:spelloutput`, (eventinfo) => {
+  spell_levels.forEach( splvl=> {
+      on(`change:repeating_spells-${splvl}:spellathigherlevels change:repeating_spells-${splvl}:spelloutput`, (eventinfo) => {
           if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
 
-          const spellid = eventinfo.sourceAttribute.split("_")[2], repeating_source = `repeating_${attr}_${spellid}`;
+          const spellid = eventinfo.sourceAttribute.split("_")[2], repeating_source = `repeating_spells-${splvl}_${spellid}`;
           getAttrs(['licensedsheet', `${repeating_source}_spelllevel`, `${repeating_source}_spelloutput`], function(v) {
               const higherlevels = eventinfo.newValue;
               const lvl          = parseInt(v[repeating_source + "_spelllevel"], 10);
@@ -7102,19 +7129,44 @@
       }
   });
 
-  on(`:${combatOptChangeStr} change:sneak_attack_dice change:sneak_attack_enabled change:repeating_attacks change:c_class change:c_class2 change:level change:level2` , function (eventinfo) {
+  // global changes which effect all attacks
+  on(`:${combatOptChangeStr} change:sneak_attack_dice change:sneak_attack_enabled change:c_class change:c_class2 change:level change:level2`,
+      function (eventinfo) {
+         update_attacks('all');
+  });
+
+  function rowid_from_trigger (triggerName) {
+      var id = "";
+      if (triggerName.indexOf("-") > -1) {
+          var data = triggerName.split("-");
+          data.shift();
+          id = data.join('-');
+          id = '-' + id;
+      }
+      console.log("EVENT row id:"+id);
+      return id;
+  };
+
+  function rowsrc_from_trigger (triggerName) {
+      console.log("got src input:"+triggerName);
+      var src = "";
+      if (triggerName.indexOf("-") > -1) {
+          var data = triggerName.split("-");
+          data.pop();
+          src = data.join('-');
+      }
+      console.log("EVENT row src:"+src);
+      return src;
+  };
+
+  // particular row changes
+  on(`change:repeating_attacks`, function (eventinfo) {
 
       if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
 
-      var id = "";
-      if (eventinfo.triggerName.indexOf("-") > -1) { 
-          var data = eventinfo.triggerName.split("-");
-	  data.shift();
-	  id = data.join('-');
-	  id = '-' + id;
-      }
       console.log("EVENT trigger on update_attacks: "+JSON.stringify(eventinfo));
-      console.log("EVENT id:"+id);
+
+      const id = rowid_from_trigger(eventinfo.triggerName);
       update_attacks(id);
   });
 
@@ -7259,7 +7311,7 @@
 		  /*
                   console.log("spell id: "+spellid+" spell level:"+spell_level);
                   if (spellid && spell_level) {
-                    callbacks.push(() => { update_spell_from_attack(spell_level, spellid, id); });
+                    callbacks.push(() => { update_spell_from_attack(spell_level, spellid, attack_row_id); });
 	          }
 		  */
 
@@ -7384,7 +7436,7 @@
               output['max_prof_numb_exceeded'] = proficiencies_used > max_prof_allowed ? 0 : 1;
               output['prof_underspent'] = proficiencies_used < max_prof_allowed ? 0 : 1;
 
-              setAttrs(output, {silent: false}, () => { callbacks.forEach((callback) => { callback(); }); });
+              setAttrs(output, {silent: true}, () => { callbacks.forEach((callback) => { callback(); }); });
             });
          });
   };
@@ -8306,7 +8358,7 @@
         update[repeating_source + "_options-flag"] = "0";
 
         // set callbacks to update new spells and clean up
-        callbacks.push( function() { update_spells();} );
+        callbacks.push( function() { update_spells('all');} );
         callbacks.push( function() { cleanup_drop_fields();} );
 
         // persist new attributes
@@ -8448,8 +8500,8 @@
 
       console.log("UPDATE ATTACKS id:"+update_id+" src:"+source);
 
+      // passed a attack row id, update single attack
       if (update_id && update_id.substring(0,1) === "-" && update_id.length === 20) {
-          // passed a attack row id, update single attack
           do_update_attack([update_id], source);
 
       } else if (["strength","dexterity","constitution","intelligence","wisdom","charisma","spells","all"].indexOf(update_id) > -1) {
@@ -8482,17 +8534,8 @@
                   });
 
               } else {
+
 	          // attribute-based
-
-                  //let attack_attribs = ["spellcasting_ability"];
-                  //_.each(idarray, (id) => {
-		      // TODO
-                  //    attack_attribs.push(`repeating_attacks_${id}_atkattr_base`);
-                     // attack_attribs.push(`repeating_attacks_${id}_dmgattr`);
-                     // attack_attribs.push(`repeating_attacks_${id}_dmg2attr`);
-                  //    attack_attribs.push(`repeating_attacks_${id}_savedc`);
-                  // });
-
                   getAttrs(attack_attribs, (v) => {
                       let attr_attack_ids = [];
                       _.each(idarray, (id) => {
@@ -8512,7 +8555,7 @@
 
   const do_update_attack = (attack_array, source) => {
 
-      console.log("DO UPDATE ATTACK");
+      console.log("DO UPDATE ATTACK array:"+attack_array);
 
       let attack_attribs = ["level","d20","pb","pb_type","pbd_safe","strength_mod","dexterity_mod","constitution_mod","intelligence_mod","wisdom_mod","charisma_mod","spell_save_dc","spell_attack_mod", "spell_dc_mod" ];
       _.each(attack_array, (attackid) => {
@@ -8770,8 +8813,8 @@
                   const spellid = v[`${repeating_attacks}_spellid`];
                   const lvl     = v[`${repeating_attacks}_spelllevel`];
 		  console.log("UPDATE ATTACKS updating spell from attack calling");
-		  console.log("  spellid:"+spellid+" src:"+source);
-                  callbacks.push(() => { update_spell_from_attack(lvl, spellid, attackid); });
+		  console.log("  spellid:"+spellid+" attack_id:"+attackid);
+                  callbacks.push(() => { update_spell_from_attack(lvl, spellid, 'repeating_attacks_'+attackid); });
               }
 
               if (v[`${repeating_attacks}_itemid`] && v[`${repeating_attacks}_itemid`] != "" && (!source || source && source != "item")) {
@@ -8780,8 +8823,7 @@
                       update_item_from_attack(itemid, attackid);
                   });
               }
-	      console.log("do_update_attack update arry:"+JSON.stringify(update));
-              setAttrs(update, {silent: false}, () => { callbacks.forEach((callback) => { callback(); }); });
+              setAttrs(update, {silent: true}, () => { callbacks.forEach((callback) => { callback(); }); });
           });
       });
   };
@@ -8824,11 +8866,12 @@
           update[`${repeating_spell}_spellname`]        = v[`${repeating_attacks}_atkname`];
           update[`${repeating_spell}_spellrange`]       = v[`${repeating_attacks}_atkrange`] || "";
           update[`${repeating_spell}_spellsavesuccess`] = v[`${repeating_attacks}_saveeffect`] || "";
-          update[`${repeating_spell}_spelldamage`] = dmgbase;
 
           // check for healing or attack damage
 	  console.log("DAMAGES: db:"+dmgbase+" dt:"+dmgtype);
 	  if (dmgbase) {
+
+              update[`${repeating_spell}_spelldamage`] = dmgbase;
               if (dmgtype.toLowerCase() == "healing") {
                   update[`${repeating_spell}_spellhealing`] = dmgbase;
               } else {
