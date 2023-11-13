@@ -1306,11 +1306,6 @@ button[type=roll]:hover *,
 	font-size: 15px;
 }
 
-	/*
-.sheet-attacks .sheet-display button[type=roll]::before {
-  content: "" !important; }
-	*/
-
 .sheet-attack .sheet-display select,
 .sheet-attack .sheet-display input,
 .sheet-attack .sheet-display span {
@@ -1321,21 +1316,24 @@ button[type=roll]:hover *,
 	*/
   background-color: #EFEFEF;
   text-align: left;
-	margin-left: 5px;
-	/* cursor: pointer; */
+  margin-left: 5px;
+  /* cursor: pointer; */
   font-weight: bold; }
 
+.sheet-attack .sheet-display input {
+  height: 26px; }
+
 .sheet-attack .sheet-display span {
+    height: 20px;
 	/*
   min-height: 11px;
   display: inline-block;
   padding: 4px;
   vertical-align: bottom;
 	*/
-	height: 20px;
-	padding-left: 4px;
-	padding-top: 8px;
-  margin-top: 0px;
+    padding-left: 4px;
+    padding-top: 8px;
+    margin-top: 0px;
 	/*
   overflow: hidden;
   -o-text-overflow: ellipsis;
@@ -2143,33 +2141,6 @@ span.sheet-spellconcentration {
   border-bottom-left-radius: 0.8em;
   border-bottom-right-radius: 0.8em; }
 
-/* Obsolete Template */
-.sheet-rolltemplate-simple .sheet-containerold,
-.sheet-rolltemplate-atk .sheet-containerold,
-.sheet-rolltemplate-atkdmg .sheet-container.sheet-atkold,
-.sheet-rolltemplate-dmg .sheet-atkold,
-.sheet-rolltemplate-dmg .sheet-containerold,
-.sheet-rolltemplate-atkdmg .sheet-container.sheet-damagetemplateold {
-  background-repeat: no-repeat;
-  background-size: 14em 100%;
-  color: black;
-  width: 81%; }
-
-/* Obsolete Template */
-.sheet-rolltemplate-simple .sheet-containerold {
-  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/53WSdhx.png") top left; }
-
-/* Obsolete Template */
-.sheet-rolltemplate-atk .sheet-containerold,
-.sheet-rolltemplate-atkdmg .sheet-container.sheet-atkold,
-.sheet-rolltemplate-dmg .sheet-atkold {
-  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/4RCRsAd.png") top left; }
-
-/* Obsolete Template */
-.sheet-rolltemplate-dmg .sheet-containerold,
-.sheet-rolltemplate-atkdmg .sheet-container.sheet-damagetemplateold {
-  background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/gw9HTsq.png") top left; }
-
 .sheet-rolltemplate-atkdmg .sheet-damagetemplate .sheet-result,
 .sheet-rolltemplate-dmg .sheet-damagetemplate .sheet-result {
   min-height: 45px; }
@@ -2442,7 +2413,7 @@ span.sheet-spellconcentration {
   padding-bottom: 5px;
   padding-top: 5px;
   text-align: center;
-  width: 81%; }
+  width: 100%; }
 
 /*
 Fix for Global Damage Modifier
