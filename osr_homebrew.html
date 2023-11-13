@@ -1603,7 +1603,7 @@
                         <span class="label" style="width: 115px;" data-i18n="name-u">NAME</span>
                         <span class="label" style="width: 65px; text-align: center;" data-i18n="atk-form-u">FORM</span>
                         <span class="label" style="width: 25px; text-align: center;" data-i19n="atk-bonus-u">ATK</span>
-                        <span class="label" style="width: 35px; text-align: center;" data-i18n="atk-dmg-u">DAMAGE</span>
+                        <span class="label" style="width: 55px; text-align: center;" data-i18n="atk-dmg-u">DAMAGE</span>
                         <span class="label" style="width: 70px; text-align: center;" data-i18n="atk-dmg-type-u">DAM/TYPE</span>
                       </div>
                     </div>
@@ -1683,30 +1683,6 @@
                         <input class="options-flag" type="checkbox" name="attr_options-flag" checked="checked"><span>y</span>
                         <div class="options">
                             <input type="checkbox" name="attr_atkflag" value="{{attack=1}}" checked="checked" hidden="True"/>
-				<!--
-                            <div class="row">
-                                <input type="checkbox" name="attr_atkflag" value="{{attack=1}}" checked="checked"/>
-                                <span data-i18n="attack:-u">ATTACK Stat:</span>
-                                <select name="attr_atkattr_base">
-                                    <option value="@{strength_mod}" selected="selected" data-i18n="str-u">STR</option>
-                                    <option value="@{dexterity_mod}" data-i18n="dex-u">DEX</option>
-                                    <option value="@{constitution_mod}" data-i18n="con-u">CON</option>
-                                    <option value="@{intelligence_mod}" data-i18n="int-u">INT</option>
-                                    <option value="@{wisdom_mod}" data-i18n="wis-u">WIS</option>
-                                    <option value="@{charisma_mod}" data-i18n="cha-u">CHA</option>
-                                    <option value="spell" data-i18n="spell-u">SPELL</option>
-                                    <option value="0">-</option>
-                                </select>
-                                <span>+</span>
-                                <input type="text" class="num" name="attr_atkmod" placeholder="0">
-				-->
-                                <!--
-				TODO: we dont use 5e proficency
-			        <span>+</span>
-                                <input type="checkbox" name="attr_atkprofflag" value="(@{pb})" checked="checked" style="margin-left: 3px;">
-                                <span data-i18n="proflevel-u">Prof. Lvl</span>
-                            </div>
-				-->
                             <div class="row">
                                 <span style="margin-left: 17px;" data-i18n="range:-u">RANGE:</span>
                                 <input type="text" name="attr_atkrange" placeholder="Self (60-foot cone)" style="width: 170px;" data-i18n-placeholder="range-place">
@@ -1887,7 +1863,7 @@
                             <option value="spell">Spell</option>
                           </select>
                           <span name="attr_atkbonus" style="width: 25px; text-align: center;"></span>
-                          <span name="attr_attack_dam" style="width: 30px; text-align: center"></span>
+                          <span name="attr_attack_dam" style="width: 45px; text-align: center"></span>
 
                           <input name="attr_attack_damage_msg" value="" hidden="true"/>
 
