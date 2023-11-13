@@ -1278,32 +1278,28 @@ button[type=roll]:hover *,
 {
   background-color: #FFFFFF;
   color: #111111;
-	align-self: center;
+  align-self: center;
   background-image: none;
   text-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
   padding: 0px;
-	margin-left: 2px;
-	height: 24px;
-	width: 30px;
-  font-weight: bold; }
-
-.sheet-attacks button[type=roll].sheet-inactive-attack-button
-{
-	height: 28px;
-	width: 32px;
+  margin-left: 2px;
+  height: 25px;
+  width: 32px;
+  font-weight: bold; 
 }
 
 .sheet-attacks button[type=roll].sheet-attack-button span,
 .sheet-attacks button[type=roll].sheet-inactive-attack-button span
 {
-	text-align: left;
-	line-height: 32px;
-	margin-right: 12px;
-	height: 20px;
-	background: inherit;
-	font-size: 15px;
+    margin-top: 8px;
+    text-align: left;
+    line-height: 32px;
+    margin-right: 12px;
+    height: 20px;
+    background: inherit;
+    font-size: 13px;
 }
 
 .sheet-attack .sheet-display select,
