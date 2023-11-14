@@ -1892,14 +1892,17 @@
 			  <input type="hidden" name="attr_d20" value="d20"/>
 			  <input type="hidden" name="attr_rtype" value="{{always=1}} {{r2=[[@{d20}"/>
 
-			  <input type="hidden" name="attr_rollbase" />
+			  <input type="hidden" name="attr_rollbase" 
+					       value = "@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{spell=1}} {{charname=@{character_name}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} {{crit2=[[${crit2}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{level=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}"
+			  />
 
 			  <!--
+                                 value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
 				 value="&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}"
 
 				 value="&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}"
+
 			  @{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} {{crit2=[[${crit2}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}"
-				 value = "@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} {{crit2=[[${crit2}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}"
 
 			  -->
 
@@ -2144,74 +2147,11 @@
             <div class="spells thin-border">
               <h4>Spellbook</h4>
 
-          <!--
-            <input type="checkbox" name="attr_can_cast_magic" class="sheet-can-cast-magic" value="1" hidden="True">
-            <div class="sheet-show-spellbook">
-
-             <fieldset class="repeating_spells">
-               <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="1" checked="True"/>
-               <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="2"/>
-               <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="3"/>
-               <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="4"/>
-               <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="5"/>
-               <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="6"/>
-               <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="7"/>
-               <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="8"/>
-               <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="9"/>
-               <div class="sheet-spellcontainer sheet-side-padding">
-                 <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" data-i18n-placeholder="name"/>
-                 <span class="sheet-left-pad"> Level:</span>
-                 <select class="sheet-info-name-sm sheet-align-right" name="attr_spelllevel">
-                   <option selected="selected" value="1">1</option>
-                   <option value="2">2</option>
-                   <option value="3">3</option>
-                   <option value="4">4</option>
-                   <option value="5">5</option>
-                   <option value="6">6</option>
-                   <option value="7">7</option>
-                   <option value="8">8</option>
-                   <option value="9">9</option>
-                 </select>
-                 <input name="attr_adhoc_dc" value="0" hidden="true"/>
-                 <span class="sheet-left-pad">Dice:</span>
-                 <input type="text" class="sheet-info1 sheet-align-right sheet-spell-dice" name="attr_spelldamage" value=""/>
-                 <input type="checkbox" name="attr_is_dice_spell" class="sheet-is-dice-spell" value="1" hidden="True"/>
-                 <div class="sheet-dice-spell">
-                   <div class="sheet-flex save-col center centered-label">
-                     <button class="sheet-cast-button sheet-orange-border" type="roll" name="roll_cast_spell"
-                             value="@{wtype}&{template:spell} {{name=@{character_name}}} {{innate=}} {{memorized=1}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{level= @{spelllevel}}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{spell_dice_enabled=1}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
-                      <span class="small-font centered-label">Cast</span>
-                   </div>
-                 </div>
-                 <div class="sheet-no-dice-spell">
-                   <div class="sheet-flex save-col center centered-label">
-                     <button class="sheet-cast-button sheet-orange-border" type="roll" name="roll_cast_spell"
-                             value="@{wtype}&{template:spell} {{name=@{character_name}}} {{innate=}} {{memorized=1}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{level= @{spelllevel}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{description=@{spelldescription} }}"></button>
-                      <span class="small-font centered-label">Cast</span>
-                   </div>
-                </div>
-                 <input type="checkbox" name="attr_is_adhoc_dice_spell" class="sheet-is-adhoc-dice-spell" value="1" hidden="True">
-                 <div class="sheet-adhoc-dice-spell">
-                   <div class="sheet-flex save-col center centered-label">
-                     <button class="sheet-cast-button nod20 sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
-                             value="@{wtype}&{template:spell} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{spell_dice_enabled=1}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]] }} {{critical=[[19]]}} {{fumble=[[2]]}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}">
-                             <span name="attr_adhoc_dc"/></button>
-                      <span class="small-font centered-label">Adhoc</span>
-                   </div>
-                 </div>
-                 <input type="checkbox" name="attr_is_adhoc_no_dice_spell" class="sheet-adhoc-not-dice-spell" value="1" hidden="True">
-                 <div class="sheet-adhoc-no-dice-spell">
-                   <div class="sheet-flex save-col center centered-label">
+<!--
                      <button class="sheet-cast-button nod20 sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
                              value="@{wtype}&{template:spell} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
                              <span name="attr_adhoc_dc"/></button>
-                     <span class="small-font centered-label">Adhoc</span>
-                   </div>
-                 </div>
-                 <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
-               </div>
-             </fieldset>
-             -->
+ -->
 
               <input type="hidden" class="spellicon_flag" name="attr_spellicon_flag" value="all"/>
               <div class="body">
@@ -2239,6 +2179,8 @@
                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
 					<!--
 				value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{innate=@{innate}}} {{description=@{spelldescription}}}">
+
+                                value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
 					-->
                                 <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
 			        <input type="hidden" name="attr_adhoc_dc" value="10"/>
@@ -7544,8 +7486,8 @@
        settings['pc_main_enabled'] = is_pc;
 
        if (v.npc) {
-         console.debug("Is NPC reached: "+v.character_name)
          settings['npc_name'] = v.character_name;
+         console.debug("Is NPC reached: "+v.character_name)
          // settings['class'] = 'fighter';
          settings['npc_hpformula'] = v.level + 'd8';
        } else {
@@ -8540,7 +8482,7 @@
           });
       });
 
-      getAttrs(attack_attribs, (v) => {
+      getAttrs([...attack_attribs, 'character_name'], (v) => {
           _.each(attack_array, (attackid) => {
               const repeating_attacks = `repeating_attacks_${attackid}`;
               let callbacks          = [];
@@ -8558,6 +8500,8 @@
               //let dmg2attr_abrev     = "";
               //PROFICIENCY BONUS select in Settings.
               const pbd_safe = v["pbd_safe"] || "";
+
+              const character_name     = v.character_name;
 
               //HIGHER LVL CAST DMG found in Spells for spells like Fireball
               const hldmgcrit = (v[`${repeating_attacks}_hldmg`] && v[`${repeating_attacks}_hldmg`] != "") ? v[`${repeating_attacks}_hldmg`].slice(0, 7) + "crit" + v[`${repeating_attacks}_hldmg`].slice(7) : "";
@@ -8759,24 +8703,7 @@
 
               //Assemble Roll Templates
 	      console.log("do_update_attack assembling templates -- ");
-	      rollbase = `@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
-
-	      /*
-	      rollbase = `@{wtype}&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}`;
-	      */
-
-	      /*
-	      // TODO: delete
-              if (v.dtype === "full") {
-                  rollbase = `@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} @{dmg2flag} {{dmg2=[[${hdmg2}]]}} {{dmg2type=${dmg2type}}} {{crit1=[[${crit1}[CRIT]]]}} {{crit2=[[${crit2}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
-              } else if (atkflag != 0) {
-                  rollbase = `@{wtype}&{template:atk} {{mod=@{atkbonus}}} {{rname=[@{atkname}](~repeating_attacks_attack_dmg)}} {{rnamec=[@{atkname}](~repeating_attacks_attack_crit)}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} {{range=@{atkrange}}} {{desc=@{atk_desc}}} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
-              } else if (dmgflag1 != 0) {
-                  rollbase = `@{wtype}&{template:dmg} {{rname=@{atkname}}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} @{dmg2flag} {{dmg2=[[${hdmg2}]]}} {{dmg2type=${dmg2type}}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
-              } else {
-                  rollbase = `@{wtype}&{template:dmg} {{rname=@{atkname}}} @{atkflag} {{range=@{atkrange}}} @{saveflag} {{desc=@{atk_desc}}} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
-              }
-              */
+	      rollbase = `@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{name=@{character_name}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
 
               update[`${repeating_attacks}_rollbase_dmg`]  = `@{wtype}&{template:dmg} {{rname=@{atkname}}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} @{dmg2flag} {{dmg2=[[${hdmg2}]]}} {{dmg2type=${dmg2type}}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
 
@@ -8784,6 +8711,7 @@
 
               update[`${repeating_attacks}_atkbonus`]      = bonus;
               update[`${repeating_attacks}_rollbase`]      = rollbase;
+	      console.log("ROLLBASE:\n"+rollbase);
 
               if (v[`${repeating_attacks}_spellid`] && v[`${repeating_attacks}_spellid`] != "" && (!source || source && source != "spell") && v[`${repeating_attacks}_spellid`].length == 20) {
                   const spellid = v[`${repeating_attacks}_spellid`];
