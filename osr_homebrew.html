@@ -2177,11 +2177,6 @@
                             <div class="display">
                                <input type="hidden" name="attr_rollcontent"
                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-					<!--
-				value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{innate=@{innate}}} {{description=@{spelldescription}}}">
-
-                                value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
-					-->
                                 <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
 			        <input type="hidden" name="attr_adhoc_dc" value="10"/>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
@@ -2202,13 +2197,25 @@
                                     <span class="m" data-i18n="spell-component-material">M</span>
                                 </span>
                             </div>
+<!--
+                                value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{innate=@{innate}}} {{description=@{spelldescription}}}">
+
+                                value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
+-->
+
+			    <!--
+                            <input type="hidden" name="attr_adhoc_rollcontent"
+                                   value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
+
+                            <button class="adhoc-flag" type="roll" name="roll_adhoc_cast" value="@{adhoc_rollcontent}"><span>e</span></button> 
+
 			    <button class="adhoc-flag" type="roll" name="roll_adhoc_cast"
                                     value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
 			        <span>e</span>
 			    </button>
-	    <!--
 			    <input class="adhoc-flag" type="checkbox" name="attr_adhoc-flag" checked="checked"><span>e</span></input>
-		-->
+			    -->
+
                             <input class="details-flag" type="checkbox" name="attr_details-flag" checked="checked"><span>i</span></input>
                             <div class="wrapper">
                                 <input class="options-flag" type="checkbox" name="attr_options-flag" checked="checked"><span>y</span>
@@ -5934,8 +5941,8 @@
   </rolltemplate>
 
 <rolltemplate class="sheet-rolltemplate-spell-adhoc">
-  <div class="sheet-rt-card">
   SPELLADHOC
+  <div class="sheet-rt-card">
     <div class="sheet-rt-header sheet-spell">
       <div class="sheet-rt-title">{{title}}</div>
       {{#subheader}}
@@ -5944,7 +5951,9 @@
       <div class="sheet-rt-subheader">{{subheader2}}{{#subheaderright2}} &bullet; {{subheaderright2}}{{/subheaderright2}}</div>
       {{/subheader2}}
     </div>
-
+    {{#emote}}
+      <p class="sheet-rt-emote">{{character_name}} {{emote}}</p>
+    {{/emote}}
     <div class="sheet-main-content">
 
         <div class="sheet-row">
@@ -6775,10 +6784,7 @@
         var adhoc_dc = 10 + spelllevel - spellcasting_mod - arcana_adj;
         if (adhoc_dc < 2) { adhoc_dc = 2; } // never lower than 2
 
-        settings[repeating_source + '_' + id + '_is_adhoc_dice_spell'] = is_wizard && is_dice_enabled;
-        settings[repeating_source + '_' + id + '_is_adhoc_no_dice_spell'] = is_wizard && !is_dice_enabled;
         settings[repeating_source + '_' + id + '_adhoc_dc'] = adhoc_dc;
-        settings[repeating_source + '_' + id + '_is_dice_spell'] = is_dice_enabled;
 
       });
       setAttrs(settings, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );

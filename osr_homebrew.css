@@ -1399,7 +1399,7 @@ button[type=roll]:hover *,
   display: inline-block; }
 
 
-.sheet-spell:hover .sheet-adhoc-flag + span,
+.sheet-spell .sheet-adhoc-flag + span,
 .sheet-spell .sheet-details-flag:checked + span,
 .sheet-attacks .sheet-options-flag:checked + span,
 .sheet-spell .sheet-options-flag:checked + span
@@ -1684,6 +1684,7 @@ button[type=roll]:hover *,
 .charsheet .sheet-spells .sheet-details span[name="attr_spelldescription"] {
 	  white-space: pre-line; }
 
+.repcontainer .sheet-spell .sheet-adhoc-flag ~ .sheet-wrapper,
 .repcontainer .sheet-spell .sheet-details-flag:not(:checked) ~ .sheet-wrapper {
 	  display: none; }
 
@@ -3450,38 +3451,6 @@ div.sheet-show-cleric-powers
 }
 
 input.sheet-has-cleric-powers:checked ~ div.sheet-show-cleric-powers
-{
-	  display: block;
-}
-
-div.sheet-adhoc-dice-spell,
-div.sheet-dice-spell,
-div.sheet-adhoc-no-dice-spell
-{
-	  display: none;
-}
-
-div.sheet-no-dice-spell,
-{
-	display: block;
-}
-
-input.sheet-is-adhoc-dice-spell:checked ~ div.sheet-adhoc-dice-spell
-{
-	  display: block;
-}
-
-input.sheet-is-dice-spell:checked ~ div.sheet-dice-spell
-{
-	  display: block;
-}
-
-input.sheet-is-dice-spell:checked ~ div.sheet-no-dice-spell
-{
-	  display: none;
-}
-
-input.sheet-adhoc-not-dice-spell:checked ~ div.sheet-adhoc-no-dice-spell
 {
 	  display: block;
 }
