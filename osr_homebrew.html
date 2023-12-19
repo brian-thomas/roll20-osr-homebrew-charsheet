@@ -371,7 +371,7 @@
                       </div>
                       <div class="flex">
                         <span class="bold-font npc-action-text">Attack Damage Type2</span>
-                        <input type="text" class="npc-action-text" name="attr_action_attack_damagetype2" data-i18n-placeholder="Attack Damage2 Type, ex 'slashing'"/>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_damage2type" data-i18n-placeholder="Attack Damage2 Type, ex 'slashing'"/>
                       </div>
                       <!-- TODO: upon edit update these fields -->
                       <input type="text" name="attr_action_attack_desc1" hidden="true"/>
@@ -450,7 +450,7 @@
                       </div>
                       <div class="flex">
                         <span class="bold-font npc-action-text">Attack Damage Type2</span>
-                        <input type="text" class="npc-action-text" name="attr_action_attack_damagetype2" data-i18n-placeholder="Attack Damage2 Type, ex 'slashing'"/>
+                        <input type="text" class="npc-action-text" name="attr_action_attack_damage2type" data-i18n-placeholder="Attack Damage2 Type, ex 'slashing'"/>
                       </div>
                       <!-- TODO: upon edit update these fields -->
                       <input type="text" name="attr_action_attack_desc1" hidden="true"/>
@@ -552,14 +552,6 @@
 
           <h4 class="bottom-line">Spells</h4>
           <div class="npc-traitcontainer sheet-spells">
-              <h4>Spellbook</h4>
-
-  <!--
-                     <button class="sheet-cast-button nod20 sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
-                             value="@{wtype}&{template:spell} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
-                             <span name="attr_adhoc_dc"/></button>
-  -->
-
               <input type="hidden" class="spellicon_flag" name="attr_spellicon_flag" value="all"/>
               <div class="body">
                 <div class="col col1">
@@ -8639,15 +8631,15 @@
         const splvl = update_id.substring(17,18);
 
         // passed single id for a row
-	do_update_spells([update_id], src);
+	      do_update_spells([update_id], src);
 
     } else {
 
         // update everything
 	console.log("Update spells (all)");
-        spell_levels.forEach( splvl=> {
+  spell_levels.forEach( splvl=> {
 	    getSectionIDs(`repeating_spells-${splvl}`, function (idarray) {
-		do_update_spells(idarray, `repeating_spells-${splvl}`);
+		      do_update_spells(idarray, `repeating_spells-${splvl}`);
 	    });
 	});
     }
@@ -8906,7 +8898,7 @@
         fieldnames.push('repeating_npcactions_' + id + '_action_attack_damage');
         fieldnames.push('repeating_npcactions_' + id + '_action_attack_damage2');
         fieldnames.push('repeating_npcactions_' + id + '_action_attack_damagetype');
-        fieldnames.push('repeating_npcactions_' + id + '_action_attack_damagetype2');
+        fieldnames.push('repeating_npcactions_' + id + '_action_attack_damage2type');
       });
       getAttrs([...fieldnames], function (v) {
         settings = {};
@@ -9506,17 +9498,40 @@
    });
 */
 
-  on("change:drop_category", function(eventinfo)
-  {
+const drop_monster_attrs = ["drop_name","drop_weight","drop_properties",
+               "drop_modifiers","drop_data", "drop_content","drop_itemtype",
+               "drop_damage","drop_damagetype","drop_damage1",
+               "drop_damagetype1","drop_range","drop_ac",
+               "drop_speed", "drop_str", "drop_dex", "drop_con",
+               "drop_int", "drop_wis", "drop_cha",
+               "drop_vulnerabilities", "drop_resistances",
+               "drop_immunities", "drop_condition_immunities",
+               "drop_languages", "drop_challenge_rating", "drop_size",
+               "drop_type", "drop_alignment", "drop_hp",
+               "drop_saving_throws", "drop_senses",
+               "drop_passive_perception", "drop_skills",
+//                    "drop_spellcasting_ability",
+               "drop_token_size", "character_id"];
+
+on("change:drop_category", function(eventinfo)
+{
 
     console.debug("Drop category reached:"+eventinfo+"\n event_new_val:"+eventinfo.newValue);
+
     if(eventinfo.newValue === "Monsters") {
       console.debug("Drop monster reached")
-      handle_drop_monster(eventinfo.newValue);
+      getAttrs([...drop_monster_attrs, "npc"], function(vals) {
+          if (vals.npc == "0") {
+            console.log("CANNOT overwrite PC with NPC creature, ignoring drop");
+          } else {
+            var results = handle_drop_monster(vals);
+            setAttrs(results.update, {silent: true}, function() { results.callbacks.forEach(function(callback) {callback(); })} );
+          }
+      });
     }
     else
     if(eventinfo.newValue === "Items") {
-      console.debug("Drop items (to inventory) reached")
+      console.debug("Drop items (to inventory) reached -- NOT IMPLEMENTED YET")
     }
     else
     if(eventinfo.newValue === "Spells") {
@@ -9524,543 +9539,450 @@
       handle_drop_spell(eventinfo.newValue);
     }
 
-  });
-
-  const drop_monster_attrs = ["drop_name","drop_weight","drop_properties",
-                "drop_modifiers","drop_content","drop_itemtype",
-                "drop_damage","drop_damagetype","drop_damage2",
-                "drop_damagetype2","drop_range","drop_ac",
-                "drop_speed", "drop_str", "drop_dex", "drop_con",
-                "drop_int", "drop_wis", "drop_cha",
-                "drop_vulnerabilities", "drop_resistances",
-                "drop_immunities", "drop_condition_immunities",
-                "drop_languages", "drop_challenge_rating", "drop_size",
-                "drop_type", "drop_alignment", "drop_hp",
-                "drop_saving_throws", "drop_senses",
-                "drop_passive_perception", "drop_skills",
-//                    "drop_spellcasting_ability",
-                "drop_token_size", "character_id"];
-
-  var handle_drop_monster = function(category, eventinfo) {
-      var callbacks = [];
-      var update = {};
-      var id = generateRowID();
-
-      if(category === "Monsters") {
-        getAttrs([...drop_monster_attrs, "npc"], function(v) {
-
-             if (v.npc == "0") {
-               console.log("CANNOT overwrite PC with NPC creature, ignoring drop");
-             } else {
-
-
-             update["npc"] = "1";
-             if(v["drop_name"] && v["drop_name"] != "") {
-               update["character_name"] = v["drop_name"];
-             };
-
-             // token size
-             update["token_size"] = v["drop_token_size"] ? v["drop_token_size"] : "";
-
-             // default class
-             update['class'] = 'fighter';
-
-             // core stats
-             update["strength"]     = v["drop_str"] ? v["drop_str"] : "";
-             update["dexterity"]    = v["drop_dex"] ? v["drop_dex"] : "";
-             update["constitution"] = v["drop_con"] ? v["drop_con"] : "";
-             update["intelligence"] = v["drop_int"] ? v["drop_int"] : "";
-             update["wisdom"]       = v["drop_wis"] ? v["drop_wis"] : "";
-             update["charisma"]     = v["drop_cha"] ? v["drop_cha"] : "";
-
-             /*
-             update["npc_strength_save_mod"] = 0;
-             update["npc_dexterity_save_mod"] = 0;
-             update["npc_constitution_save_mod"] = 0;
-             update["npc_intelligence_save_mod"] = 0;
-             update["npc_wisdom_save_mod"] = 0;
-             update["npc_charisma_save_mod"] = 0;
-             */
-
-             /*
-             if(v["drop_saving_throws"] && v["drop_saving_throws"] != "") {
-                 var savearray = v["drop_saving_throws"].split(", ");
-                 _.each(savearray, function(save) {
-                     kv = save.indexOf("-") > -1 ? save.split(" ") : save.split(" +");
-                     update["npc_" + kv[0].toLowerCase() + "_save_mod"] = parseInt(kv[1], 10);
-                 });
-             };
-             */
-
-             // figure out 'level' (hit_dice) from challenge Rating
-             var cr = v["drop_challenge_rating"];
-             if (cr) {
-                if (cr === '1/4') {
-                  update["level"] = 1;
-                } else if (cr === '1/2') {
-                  update["level"] = 2;
-                } else {
-                   update["level"] = parseInt(cr) + 2;
-                }
-                // default, using d8s
-                update["npc_hpformula"] = update["level"].toString() + 'd8';
-             }
-
-             //right side of core stats, top to bottom
-             update["npc_size"]      = v["drop_size"] ? v["drop_size"] : "";
-             update["npc_type"]      = v["drop_type"] ? v["drop_type"] : "";
-             if (v["drop_alignment"]) {
-               update["npc_type"]  = update["npc_type"] + ", " + v["drop_alignment"];
-             }
-
-             //AC handling
-             if(v["drop_ac"]) {
-                 if(v["drop_ac"].indexOf("(") > -1) {
-                     update["npc_ac"] = v["drop_ac"].split(" (")[0];
-                     update["npc_ac_note"] = v["drop_ac"].split(" (")[1].slice(0, -1);
-                 }
-                 else {
-                     update["npc_ac"] = v["drop_ac"];
-                     update["npc_ac_note"] = "";
-                 };
-             }
-             else {
-                 update["npc_ac"] = 10;
-                 update["npc_ac_note"] = "";
-             };
-
-             //HP handling
-              if(v["drop_hp"]) {
-                  if(v["drop_hp"].indexOf("(") > -1) {
-                      update["hp"] = v["drop_hp"].split(" (")[0];
-                      update["hp_max"] = update["hp"]// v["drop_hp"].split(" (")[0];
-                      update["npc_hpformula"] = v["drop_hp"].split(" (")[1].slice(0, -1);
-                      // try to update our level based on the npc_hpformula
-                      // update["level"] = parseInt(update["npc_hpformula"].split("d")[0]) || update["level"];
-                  }
-                  else {
-                      update["hp"] = v["drop_hp"];
-                      update["hp_max"] = v["drop_hp"];
-                  };
-              }
-              else {
-                  update["hp"] = 1;
-                  update["hp_max"] = 1;
-              };
-
-              update["npc_speed"] = v["drop_speed"] ? v["drop_speed"] + '/rnd' : "";
-              update["npc_senses"] = v["drop_senses"] ? v["drop_senses"] : "";
-              update["known_lang"] = v["drop_languages"] ? v["drop_languages"] : "";
-
-              //Traits/Background
-              update["npc_damage_resistance"] = v["drop_resistances"] ? v["drop_resistances"] : "";
-              update["npc_damage_vulnerability"] = v["drop_vulnerabilities"] ? v["drop_vulnerabilities"] : "";
-              update["npc_damage_immunity"] = v["drop_immunities"] ? v["drop_immunities"] : "";
-              update["npc_condition_immunity"] = v["drop_condition_immunities"] ? v["drop_condition_immunities"] : "";
-              update["notes"] = "";
-
-               /*
-               //Skills
-               update["npc_acrobatics_bonus"] = 0;
-               update["npc_animal_handling_bonus"] = 0;
-               update["npc_arcana_bonus"] = 0;
-               update["npc_athletics_bonus"] = 0;
-               update["npc_deception_bonus"] = 0;
-               update["npc_history_bonus"] = 0;
-               update["npc_insight_bonus"] = 0;
-               update["npc_intimidation_bonus"] = 0;
-               update["npc_investigation_bonus"] = 0;
-               update["npc_medicine_bonus"] = 0;
-               update["npc_nature_bonus"] = 0;
-               update["npc_perception_bonus"] = 0;
-               update["npc_performance_bonus"] = 0;
-               update["npc_persuasion_bonus"] = 0;
-               update["npc_religion_bonus"] = 0;
-               update["npc_sleight_of_hand_bonus"] = 0;
-               update["npc_stealth_bonus"] = 0;
-               update["npc_survival_bonus"] = 0;
-               */
-
-
-              // NPC Skills
-              if(v["drop_skills"] && v["drop_skills"] != "") {
-                     skillarray = v["drop_skills"].split(", ");
-                     _.each(skillarray, function(skill) {
-                         kv = skill.indexOf("-") > -1 ? skill.split(" ") : skill.split(" +");
-                         //update["npc_" + kv[0].toLowerCase().replace(/ /g, '_') + "_bonus"] = parseInt(kv[1], 10);
-                         newrowid = generateRowID();
-                         update["repeating_skills_" + newrowid + "_skillname"] = kv[0].trim();
-                         update["repeating_skills_" + newrowid + "_skillvalue"] = parseInt(kv[1]) || 0;
-                     });
-              }
-
-              if(v["drop_content"] && v["drop_content"] != "") {
-
-                  // split out and parse items of interest from drop_content
-                  var contentarray = v["drop_content"];
-
-                  if(contentarray && contentarray.indexOf("Legendary Actions") > -1) {
-                      if(contentarray.indexOf(/\n Legendary Actions\n/) > -1) {
-                          temp = contentarray.split(/\n Legendary Actions\n/)
-                      }
-                      else {
-                          temp = contentarray.split(/Legendary Actions\n/)
-                      }
-                      var legendaryactionsarray = temp[1];
-                      contentarray = temp[0];
-                  }
-
-                  if(contentarray && contentarray.indexOf("Reactions") > -1) {
-                      if(contentarray.indexOf(/\n Reactions\n/) > -1) {
-                          temp = contentarray.split(/\n Reactions\n/)
-                      }
-                      else {
-                          temp = contentarray.split(/Reactions\n/)
-                      }
-                      var reactionsarray = temp[1];
-                      contentarray = temp[0];
-                  }
-
-                  if(contentarray && contentarray.indexOf("Actions") > -1) {
-                      if(contentarray.indexOf("Lair Actions") > -1) {
-                          contentarray = contentarray.replace("Lair Actions","Lair Action");
-                      }
-                      if(contentarray.indexOf(/\n Actions\n/) > -1) {
-                          temp = contentarray.split(/\n Actions\n/)
-                      }
-                      else {
-                          temp = contentarray.split(/Actions\n/)
-                      }
-                      var actionsarray = temp[1];
-                      contentarray = temp[0];
-                  }
-
-                  if(contentarray && contentarray.indexOf("Traits") > -1) {
-                      if(contentarray.indexOf("Lair Traits") > -1) {
-                          contentarray = contentarray.replace("Lair Traits", "Lair Trait");
-                      }
-                      if(contentarray.indexOf(/\n Traits\n/) > -1) {
-                          temp = contentarray.split(/\n Traits\n/)
-                      }
-                      else {
-                          temp = contentarray.split(/Traits\n/)
-                      }
-                      var traitsarray = temp[1];
-                      contentarray = temp[0];
-                  }
-
-                  if(traitsarray) {
-                      traitsarray = traitsarray.split("**");
-                      traitsarray.shift();
-                      var traitsobj = {};
-                      traitsarray.forEach(function(val, i) {
-                          if (i % 2 === 1) return;
-                          traitsobj[val] = traitsarray[i + 1];
-                      });
-                      _.each(traitsobj, function(desc, name) {
-                          name = name.trim();
-                          newrowid = generateRowID();
-                          update["repeating_npctrait_" + newrowid + "_trait_name"] = name;
-                          if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
-                              desc = desc.substring(2);
-                          }
-                          update["repeating_npctrait_" + newrowid + "_trait_desc"] = desc.trim();
-
-                          // SPELLCASTING NPCS
-                          if(name.includes("Spellcasting", 0)) {
-                              console.log("DESC: "+desc);
-
-                              var lvl = parseInt(desc.substring(desc.indexOf("-level")-4, desc.indexOf("-level")-2).trim(), 10);
-                              lvl = !isNaN(lvl) ? lvl : -1;
-                              if (lvl > -1) { // we have cases of innate spellcasters with no stated level, use hitdice and DONT set here
-                                update["level"] = lvl;
-                              }
-
-                              var ability = desc.match(/spellcasting ability is (.*?) /);
-                              ability = ability && ability.length > 1 ? ability[1] : "";
-                              console.log("Ability:"+ability);
-                              update["spellcasting_type"] = ability.toLowerCase() === "intelligence" ? "Arcane" : "Divine";
-                              update["class"] = ability.toLowerCase() === "intelligence" ? "wizard" : "cleric";
-
-                              var dc = desc.match(/spell save DC (.*?)[,\)]/);
-                              if (dc) {
-                                console.log("spellcasting DC:"+dc);
-                                update["spellcasting_dc"] = parseInt(dc[1]) || -1;
-                              }
-                              else {
-                                update["spellcasting_dc"] = 8;
-                              }
-
-                              var mod = desc.match(/ \+?(\d+?) to hit with spell attacks/);
-                              if (mod) {
-                                update["spellcasting_mod"] = parseInt(mod[1]) || -1;
-                              } else {
-                                update["spellcasting_mod"] = 0;
-                              }
-
-                              // update["npcspellcastingflag"] = 1;
-
-                              // we dont use these...
-                              //update["caster_level"] = lvl;
-                              // update["base_level"] = lvl;
-
-                              // parse out prepared spells
-                              spellsarray = desc.match(/(•.*?)$/mg);
-                              console.log("Spellarray:"+spellsarray);
-                              if (spellsarray) {
-                                spellsarray.forEach( function(val, i) {
-
-                                    // clean up carrots from string which are for footnotes we dont currently use
-                                    val = val.replaceAll("^", "");
-
-                                    // try to capture the level of the spells
-                                    // the 2nd field after string split should have the info we want
-                                    levelarray = val.split(" ");
-                                    if (levelarray[1] === 'Cantrips') {
-                                      level = 0;
-                                    } else {
-                                      level = levelarray[1].match(/(\d)\w{2}/);
-                                      if (level && !isNaN(level)) {
-                                        level = parseInt(level[1]) || -1;
-                                      } else {
-                                        level = 1; // innate spell powers case
-                                      }
-                                    }
-
-                                    // now parse out our spells for level 1 and higher
-                                    if (level > 0) {
-                                      spellsstr = val.split(":");
-                                      spellnames = spellsstr[1].split(",");
-                                      spellnames.forEach (function (spellname, j) {
-                                        if (spellname) {
-                                          console.log(" adding spell:"+spellname);
-                                          // add the spell here
-                                          // TODO: add other missing fields (pull from compendium?)
-                                          id = generateRowID();
-                                          repeating_source = `repeating_spells-${level}_${id}`;
-                                          update[repeating_source + "_spelllevel"] = level;
-                                          update[repeating_source + "_spellname"] = spellname;
-                                        }
-                                      });
-                                    }
-                                });
-
-                              }
-
-                              // callbacks.push( function() {update_pb();} );
-                              // callbacks.push( function() {update_spell_slots();} );
-                              callbacks.push( function() { npc_spellrest(); });
-
-                          }
-                      });
-                  }
-
-                  if(legendaryactionsarray) {
-                    lactionsarray = legendaryactionsarray.split("**");
-                    lactionsarray.shift();
-                    var actionsobj = {};
-                    lactionsarray.forEach(function(val, i) {
-                        if (i % 2 === 1) return;
-                        actionsobj[val] = lactionsarray[i + 1];
-                    });
-                    _.each(actionsobj, function(desc, name) {
-                        newrowid = generateRowID();
-                        update["repeating_npcactions-l_" + newrowid + "_action_name"] = name;
-                        if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
-                            desc = desc.substring(2);
-                        }
-
-                        if(desc.indexOf(" Attack:") > -1)
-                        {
-                            update["repeating_npcactions-l_" + newrowid + "_action_is_an_attack"] = 1;
-                            update["repeating_npcactions-l_" + newrowid + "_action_attack_options"] = "{{attack=1}}";
-                            if(desc.indexOf(" Weapon Attack:") > -1) {
-                                attacktype = desc.split(" Weapon Attack:")[0] + " Weapon";
-                            }
-                            else if(desc.indexOf(" Spell Attack:") > -1) {
-                                attacktype = desc.split(" Spell Attack:")[0] + " Spell";
-                            }
-                            else {
-                                console.log("FAILED TO IMPORT ATTACK - NO ATTACK TYPE FOUND (Weapon Attack/Spell Attack)");
-                                return;
-                            }
-
-                            update["repeating_npcactions-l_" + newrowid + "_action_attack_type"] = attacktype;
-                            if(attacktype === "Melee Weapon") {
-                                update["repeating_npcactions-l_" + newrowid + "_action_attack_range"] = (desc.match(/reach (.*?),/) || ["",""])[1] + " reach";
-                            }
-                            else {
-                                update["repeating_npcactions-l_" + newrowid + "_action_attack_range"] = (desc.match(/range (.*?),/) || ["",""])[1] + " range";
-                            }
-
-                            update["repeating_npcactions-l_" + newrowid + "_action_attack_tohit"] = (desc.match(/\+(.*) to hit/) || ["",""])[1];
-                            update["repeating_npcactions-l_" + newrowid + "_action_attack_target"] = (desc.match(/\.,(?!.*\.,)(.*)\. Hit:/) || ["",""])[1];
-                            if(desc.toLowerCase().indexOf("damage") > -1) {
-                                update["repeating_npcactions-l_" + newrowid + "_action_attack_damage"] = (desc.match(/\(([^)]+)\)/) || ["",""])[1];
-                                update["repeating_npcactions-l_" + newrowid + "_action_attack_damagetype"] = (desc.match(/\) (.*?) damage/) || ["",""])[1];
-                                if((desc.match(/\(/g) || []).length > 1 && desc.match(/\((?!.*\()([^)]+)\)/)) {
-                                    var second_match = desc.match(/\((?!.*\()([^)]+)\)/);
-                                    if(second_match[1] && second_match[1].indexOf(" DC") === -1) {
-                                        update["repeating_npcactions-l_" + newrowid + "_action_attack_damage2"] = (desc.match(/\((?!.*\()([^)]+)\)/) || ["",""])[1];
-                                        update["repeating_npcactions-l_" + newrowid + "_action_attack_damagetype2"] = (desc.match(/\)(?!.*\)) (.*?) damage/) || ["",""])[1];
-                                    };
-                                };
-                                ctest1 = desc.split("damage.")[1];
-                                ctest2 = desc.split("damage, ")[1];
-                                if(ctest1 && ctest1.length > 0) {
-                                    update["repeating_npcactions-l_" + newrowid + "_action_desc"] = ctest1.trim();
-                                }
-                                else if(ctest2 && ctest2.length > 0) {
-                                    update["repeating_npcactions-l_" + newrowid + "_action_desc"] = ctest2.trim();
-                                }
-                            }
-                            else {
-                                update["repeating_npcactions-l_" + newrowid + "_action_desc"] = desc.split("Hit:")[1].trim();
-                            }
-
-                            // attack description info
-                            update["repeating_npcactions-l_" + newrowid + "_action_attack_desc1"] = attacktype + ' Attack. '
-                              + update["repeating_npcactions-l_" + newrowid + "_action_attack_range"] + ".";
-
-                            update["repeating_npcactions-l_" + newrowid + "_action_attack_desc2"] = " Hit: +"
-                              + update["repeating_npcactions-l_" + newrowid + "_action_attack_tohit"] + ' ('
-                              + update["repeating_npcactions-l_" + newrowid + "_action_attack_damage"] + ') '
-                              + update["repeating_npcactions-l_" + newrowid + "_action_attack_damagetype"] + ' damage. ';
-                        }
-                        else {
-                            update["repeating_npcactions-l_" + newrowid + "_action_desc"] = desc;
-                            update["repeating_npcactions-l_" + newrowid + "_action_is_an_attack"] = 0;
-                        }
-
-                    });
-
-                    // callbacks.push( function() {update_npc_action("all");} );
-                  } // end legendary actions
-
-                  if(actionsarray) {
-                    actionsarray = actionsarray.split("**");
-                    actionsarray.shift();
-                    var actionsobj = {};
-                    actionsarray.forEach(function(val, i) {
-                        if (i % 2 === 1) return;
-                        actionsobj[val] = actionsarray[i + 1];
-                    });
-                    _.each(actionsobj, function(desc, name) {
-                        newrowid = generateRowID();
-                        if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
-                            desc = desc.substring(2);
-                        }
-
-                        // determine if its an attack, or just a non-attack 'action'
-                        // For the later, we just turn it into a 'trait'
-                        const is_attack_action = desc.indexOf(" Attack:") > -1 ? true : false;
-
-                        update["repeating_npcactions_" + newrowid + "_action_name"] = name;
-                        // set action editor to closed as a default
-                        update['repeating_npcactions_'+newrowid+'_show_action_editor'] = 0;
-                        // update["repeating_npcactions_" + newrowid + "_action_npc_options-flag"] = "0";
-
-                        if(is_attack_action)
-                        {
-                            update["repeating_npcactions_" + newrowid + "_action_is_an_attack"] = 1;
-                            update["repeating_npcactions_" + newrowid + "_action_attack_options"] = "{{attack=1}}";
-
-                            if(desc.indexOf(" Weapon Attack:") > -1) {
-                                attacktype = desc.split(" Weapon Attack:")[0] + " Weapon";
-                            }
-                            else if(desc.indexOf(" Spell Attack:") > -1) {
-                                attacktype = desc.split(" Spell Attack:")[0] + " Spell";
-                            }
-                            else {
-                                console.log("FAILED TO IMPORT ATTACK - NO ATTACK TYPE FOUND (Weapon Attack/Spell Attack)");
-                                return;
-                            }
-
-                            update["repeating_npcactions_" + newrowid + "_action_attack_type"] = attacktype;
-                            if(attacktype === "Melee Weapon") {
-                                update["repeating_npcactions_" + newrowid + "_action_attack_range"] = (desc.match(/reach (.*?),/) || ["",""])[1] + " reach";
-                            }
-                            else {
-                                update["repeating_npcactions_" + newrowid + "_action_attack_range"] = (desc.match(/range (.*?),/) || ["",""])[1] + " range";
-                            }
-
-                            update["repeating_npcactions_" + newrowid + "_action_attack_tohit"] = (desc.match(/\+(.*) to hit/) || ["",""])[1];
-                            update["repeating_npcactions_" + newrowid + "_action_attack_target"] = (desc.match(/\.,(?!.*\.,)(.*)\. Hit:/) || ["",""])[1];
-
-                            if(desc.toLowerCase().indexOf("damage") > -1) {
-                                update["repeating_npcactions_" + newrowid + "_action_attack_damage"] = (desc.match(/\(([^)]+)\)/) || ["",""])[1];
-                                update["repeating_npcactions_" + newrowid + "_action_attack_damagetype"] = (desc.match(/\) (.*?) damage/) || ["",""])[1];
-                                if((desc.match(/\(/g) || []).length > 1 && desc.match(/\((?!.*\()([^)]+)\)/)) {
-                                    var second_match = desc.match(/\((?!.*\()([^)]+)\)/);
-                                    if(second_match[1] && second_match[1].indexOf(" DC") === -1) {
-                                        update["repeating_npcactions_" + newrowid + "_action_attack_damage2"] = (desc.match(/\((?!.*\()([^)]+)\)/) || ["",""])[1];
-                                        update["repeating_npcactions_" + newrowid + "_action_attack_damagetype2"] = (desc.match(/\)(?!.*\)) (.*?) damage/) || ["",""])[1];
-                                    };
-                                };
-                                ctest1 = desc.split("damage.")[1];
-                                ctest2 = desc.split("damage, ")[1];
-                                if(ctest1 && ctest1.length > 0) {
-                                    update["repeating_npcactions_" + newrowid + "_action_desc"] = ctest1.trim();
-                                }
-                                else if(ctest2 && ctest2.length > 0) {
-                                    update["repeating_npcactions_" + newrowid + "_action_desc"] = ctest2.trim();
-                                }
-                            }
-                            else {
-                                update["repeating_npcactions_" + newrowid + "_action_desc"] = desc.split("Hit:")[1].trim();
-                            }
-
-                            // attack description info
-                            update["repeating_npcactions_" + newrowid + "_action_attack_desc1"] = attacktype + ' Attack. '
-                              + update["repeating_npcactions_" + newrowid + "_action_attack_range"] + ".";
-
-                            update["repeating_npcactions_" + newrowid + "_action_attack_desc2"] = " Hit: +"
-                              + update["repeating_npcactions_" + newrowid + "_action_attack_tohit"] + ' ('
-                              + update["repeating_npcactions_" + newrowid + "_action_attack_damage"] + ') '
-                              + update["repeating_npcactions_" + newrowid + "_action_attack_damagetype"] + ' damage. ';
-                        }
-                        else {
-                            update["repeating_npcactions_" + newrowid + "_action_desc"] = desc;
-                            update["repeating_npcactions_" + newrowid + "_action_is_an_attack"] = 0;
-                        }
-
-                    });
-
-                    //callbacks.push( function() {update_npc_action("all");} );
-                 } // end actions array
-
-                 if(reactionsarray) {
-                    update["npcreactionsflag"] = 1;
-                    reactionsarray = reactionsarray.split("**");
-                    reactionsarray.shift();
-                    var reactionsobj = {};
-                    reactionsarray.forEach(function(val, i) {
-                        if (i % 2 === 1) return;
-                        reactionsobj[val] = reactionsarray[i + 1];
-                    });
-                    _.each(reactionsobj, function(desc, name) {
-                        newrowid = generateRowID();
-                        update["repeating_npcreaction_" + newrowid + "_react_name"] = name + ".";
-                        if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
-                            desc = desc.substring(2);
-                        }
-                        update["repeating_npcreaction_" + newrowid + "_react_desc"] = desc.trim();
-                    });
-                 } // end of reactionsarray
-
-              }
-
-               // cleanup and persist
-               callbacks.push( function() {cleanup_drop_fields();} );
-
-               // persist new monster/creature/npc
-               setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
-             }
-
+});
+
+var removeDuplicatedPageData = function(data) {
+   if(!Array.isArray(data)) return data;
+   const getPageName = function(item) {
+     let category = "";
+     if("data" in item && "Category" in item.data) category += item.data["Category"] + ": ";
+     return category+item.name;
+   }
+   let seen = {};
+   return data.filter(function(item) {
+       let pageName = getPageName(item);
+       return seen.hasOwnProperty(pageName) ? false : (seen[pageName] = true);
+   })
+};
+
+var handle_drop_monster = function(v) {
+   // var id = generateRowID();
+
+   var callbacks = [];
+   var update = {};
+   const data = JSON.parse(v.drop_data);
+   console.log(" Monster Data: "+v.drop_data);
+
+   // console.log(" Monster Content: "+v.drop_content);
+
+   update["npc"] = "1";
+   if(v["drop_name"] && v["drop_name"] != "") {
+     update["character_name"] = v["drop_name"];
+   }
+
+   // token size
+   update["token_size"] = data["Token Size"] ? data["Token Size"] : "1";
+
+   // default class
+   update['class'] = 'fighter';
+
+   // core stats
+   update["strength"]     = data["STR"] ? data["STR"] : "";
+   update["dexterity"]    = data["DEX"] ? data["DEX"] : "";
+   update["constitution"] = data["CON"] ? data["CON"] : "";
+   update["intelligence"] = data["INT"] ? data["INT"] : "";
+   update["wisdom"]       = data["WIS"] ? data["WIS"] : "";
+   update["charisma"]     = data["CHA"] ? data["CHA"] : "";
+
+   // figure out 'level' (hit_dice) from challenge Rating
+   var cr = data["Challenge Rating"];
+   if (cr) {
+      if (cr === '1/4') {
+        update["level"] = 1;
+      } else if (cr === '1/2') {
+        update["level"] = 2;
+      } else {
+         update["level"] = parseInt(cr) + 2;
+      }
+      // default, using d8s
+      update["npc_hpformula"] = update["level"].toString() + 'd8';
+   }
+
+   //right side of core stats, top to bottom
+   update["npc_size"]      = data["Size"] ? data["Size"] : "";
+   update["npc_type"]      = data["Type"] ? data["Type"] : "";
+   if (data["Alignment"]) {
+     update["npc_type"]  = update["npc_type"] + ", " + data["Alignment"];
+   }
+
+  //AC handling
+  if(data["AC"]) {
+       const ac = data["AC"];
+       if(ac.indexOf("(") > -1) {
+           update["npc_ac"] = ac.split(" (")[0];
+           update["npc_ac_note"] = ac.split(" (")[1].slice(0, -1);
+       }
+       else {
+           update["npc_ac"] = ac;
+           update["npc_ac_note"] = "";
+       };
+  }
+  else {
+       update["npc_ac"] = 10;
+       update["npc_ac_note"] = "";
+  };
+
+  //HP handling
+  if(data["HP"]) {
+       const hp = data["HP"];
+       if(hp.indexOf("(") > -1) {
+            update["hp"] = hp.split(" (")[0];
+            update["hp_max"] = update["hp"]
+            update["npc_hpformula"] = hp.split(" (")[1].slice(0, -1);
+
+            // try to update our level based on the npc_hpformula
+            if (update["npc_hpformula"].indexOf("d") > -1) {
+                update["level"] = parseInt(update["npc_hpformula"].split("d")[0]) || update["level"];
+            }
+       }
+       else {
+            update["hp"] = hp;
+            update["hp_max"] = hp;
+       };
+  }
+  else {
+        update["hp"] = 1;
+        update["hp_max"] = 1;
+  };
+
+    update["npc_speed"]  = data["Speed"] ? data["Speed"] + '/rnd' : "";
+    update["npc_senses"] = data["Senses"] ? data["Senses"] : "";
+    update["known_lang"] = data["Languages"] ? data["Languages"] : "";
+
+    //Traits/Background
+    update["npc_damage_resistance"]    = data["Resistances"] ? data["Resistances"] : "";
+    update["npc_damage_vulnerability"] = data["Vulnerabilities"] ? data["Vulnerabilities"] : "";
+    update["npc_damage_immunity"]      = data["Immunities"] ? data["Immunities"] : "";
+    update["npc_condition_immunity"]   = data["Condition Immunities"] ? data["Condition Immunities"] : "";
+    update["notes"] = "";
+
+     /*
+     //Skills
+     update["npc_acrobatics_bonus"] = 0;
+     update["npc_animal_handling_bonus"] = 0;
+     update["npc_arcana_bonus"] = 0;
+     update["npc_athletics_bonus"] = 0;
+     update["npc_deception_bonus"] = 0;
+     update["npc_history_bonus"] = 0;
+     update["npc_insight_bonus"] = 0;
+     update["npc_intimidation_bonus"] = 0;
+     update["npc_investigation_bonus"] = 0;
+     update["npc_medicine_bonus"] = 0;
+     update["npc_nature_bonus"] = 0;
+     update["npc_perception_bonus"] = 0;
+     update["npc_performance_bonus"] = 0;
+     update["npc_persuasion_bonus"] = 0;
+     update["npc_religion_bonus"] = 0;
+     update["npc_sleight_of_hand_bonus"] = 0;
+     update["npc_stealth_bonus"] = 0;
+     update["npc_survival_bonus"] = 0;
+     */
+
+    // NPC Skills
+    if(data["Skills"] && data["Skills"] != "") {
+           skillarray = data["Skills"].split(", ");
+           _.each(skillarray, function(skill) {
+               kv = skill.indexOf("-") > -1 ? skill.split(" ") : skill.split(" +");
+               //update["npc_" + kv[0].toLowerCase().replace(/ /g, '_') + "_bonus"] = parseInt(kv[1], 10);
+               newrowid = generateRowID();
+               update["repeating_skills_" + newrowid + "_skillname"] = kv[0].trim();
+               update["repeating_skills_" + newrowid + "_skillvalue"] = parseInt(kv[1]) || 0;
            });
-        };
-     };
+    }
 
+    /*
+    if(v["drop_content"] && v["drop_content"] != "") {
+
+        // split out and parse items of interest from drop_content
+        var contentarray = v["drop_content"];
+
+        if(contentarray && contentarray.indexOf("Legendary Actions") > -1) {
+            if(contentarray.indexOf(/\n Legendary Actions\n/) > -1) {
+                temp = contentarray.split(/\n Legendary Actions\n/)
+            }
+            else {
+                temp = contentarray.split(/Legendary Actions\n/)
+            }
+            var legendaryactionsarray = temp[1];
+            contentarray = temp[0];
+        }
+
+        if(contentarray && contentarray.indexOf("Reactions") > -1) {
+            if(contentarray.indexOf(/\n Reactions\n/) > -1) {
+                temp = contentarray.split(/\n Reactions\n/)
+            }
+            else {
+                temp = contentarray.split(/Reactions\n/)
+            }
+            var reactionsarray = temp[1];
+            contentarray = temp[0];
+        }
+
+        if(contentarray && contentarray.indexOf("Actions") > -1) {
+            if(contentarray.indexOf("Lair Actions") > -1) {
+                contentarray = contentarray.replace("Lair Actions","Lair Action");
+            }
+            if(contentarray.indexOf(/\n Actions\n/) > -1) {
+                temp = contentarray.split(/\n Actions\n/)
+            }
+            else {
+                temp = contentarray.split(/Actions\n/)
+            }
+            var actionsarray = temp[1];
+            contentarray = temp[0];
+        }
+
+        if(contentarray && contentarray.indexOf("Traits") > -1) {
+            if(contentarray.indexOf("Lair Traits") > -1) {
+                contentarray = contentarray.replace("Lair Traits", "Lair Trait");
+            }
+            if(contentarray.indexOf(/\n Traits\n/) > -1) {
+                temp = contentarray.split(/\n Traits\n/)
+            }
+            else {
+                temp = contentarray.split(/Traits\n/)
+            }
+            var traitsarray = temp[1];
+            contentarray = temp[0];
+        }
+    */
+
+     if (data['data-Traits']) {
+       let traitsobj     = {};
+       JSON.parse(data["data-Traits"]).forEach((val) => {
+           traitsobj[val.Name] = (val.Name && val.Desc) ? val.Desc : "";
+           if (val.Name && val.Desc) {
+               traitsobj[val.Name] = val.Desc;
+           } else if (val.Name) {
+               traitsobj[val.Name] = "";
+           } else {
+               console.log(`%c Traits JSON is lacking a Name key`, "color: orange;")
+           };
+       });
+       _.each(traitsobj, function(desc, name) {
+            newrowid = generateRowID();
+            update["repeating_npctrait_" + newrowid + "_trait_name"] = name;
+            if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
+                desc = desc.substring(2);
+            }
+            update["repeating_npctrait_" + newrowid + "_trait_desc"] = desc.trim();
+
+            // SPELLCASTING NPCS
+            if(name === "Spellcasting") {
+                var lvl = parseInt(desc.substring(desc.indexOf("-level")-4, desc.indexOf("-level")-2).trim(), 10);
+                lvl = !isNaN(lvl) ? lvl : update["level"]; // if we can parse it from spellcasting description, use the level as the caster level
+
+                var ability = desc.match(/casting ability is (.*?) /);
+                    ability = ability && ability.length > 1 ? ability[1] : "";
+
+                update["spellcasting_type"] = ability.toLowerCase() === "wisdom" ? "Divine" : "Arcane";
+                update["class"]             = ability.toLowerCase() === "wisdom" ? "cleric" : "wizard";
+                update["level"]             = lvl;
+
+                var dc = desc.match(/spell save DC (.*?)[,\)]/);
+                if (dc) {
+                  console.log("spellcasting DC:"+dc);
+                  update["spellcasting_dc"] = parseInt(dc[1]) || -1;
+                }
+                else {
+                  update["spellcasting_dc"] = 8;
+                }
+
+                var mod = desc.match(/ \+?(\d+?) to hit with spell attacks/);
+                if (mod) {
+                  update["spellcasting_mod"] = parseInt(mod[1]) || -1;
+                } else {
+                  update["spellcasting_mod"] = 0;
+                }
+
+                callbacks.push( function() { npc_spellrest(); });
+                callbacks.push( function() { update_spells('all');} );
+            }
+
+        });
+    }
+
+    //REACTIONS
+    if (data["data-Reactions"]) {
+        update["npcreactionsflag"] = 1;
+        let reactionsobj = {};
+       jsonparse(data["data-Reactions"]).forEach((val) => { reactionsobj[val.Name] = val.Desc; });
+        _.each(reactionsobj, (desc, name) => {
+            newrowid = generateRowID();
+            update[`repeating_npcreaction_${newrowid}_name`] = name + ".";
+            if(desc.substring(0,2) === ": " || encodeURI(desc.substring(0,2)) === ":%C2%A0") {
+                desc = desc.substring(2);
+            };
+            update[`repeating_npcreaction_${newrowid}_desc`] = desc.trim();
+        });
+    }
+
+    // ACTIONS & LEGENDARY ACTIONS
+    ["Actions", "Legendary Actions"].forEach((attr) => {
+        if (data[`data-${attr}`]) {
+            const npcaction = (attr === "Actions") ? "npcactions" : "npcactions-l";
+            let actionsobj = {};
+            JSON.parse(data[`data-${attr}`]).forEach((val) => { actionsobj[val.Name] = val; });
+            console.log("Got "+JSON.stringify(actionsobj));
+
+            _.each(actionsobj, (action, name) => {
+                console.log("Got "+attr+" "+name);
+                const repeating_npcaction = "repeating_" + npcaction + "_" + generateRowID();
+
+                // update[`repeating_${npcaction}_${newrowid}_npc_options-flag`] = "0";
+                update[repeating_npcaction + "_action_name"]             = name;
+                (action["Desc"]) ? update[repeating_npcaction + "_action_desc"] = action["Desc"] : "";
+                update[repeating_npcaction + "_show_action_editor"]      = 0;
+                update[repeating_npcaction + "_action_is_an_attack"]     = 0;
+
+                if ( action["Type Attack"] ) {
+
+                    update[repeating_npcaction + "_action_attack_type"]    = action['Type Attack'] === "Weapon Attack" ? action["Type"] + "Weapon" : action["Type"] + "Spell";
+                    update[repeating_npcaction + "_action_is_an_attack"]  = 1;
+                    update[repeating_npcaction + "_attack_options"]       = "{{attack=1}}";
+                    update[repeating_npcaction + "_action_attack_type"]   = "Spell";
+
+                    ["Damage Type", "Damage", "Damage 2", "Damage 2 Type", "Hit Bonus", "Reach", "Target", "Type"].forEach((attr) => {
+                        if(action[attr]) {
+                            var attributeName = (attr === "Hit Bonus") ? "tohit" : (attr === "Reach") ? "range" : attr.toLowerCase().replace(" ", "");
+                            const fld_name = `${repeating_npcaction}_action_attack_${attributeName}`;
+                            console.log("Setting fldname;" + fld_name + " to " + action[attr]);
+                            update[fld_name] = action[attr];
+                        };
+                    });
+                }
+
+            });
+
+            // (attr === "Actions") ? callbacks.push(() => {update_npc_action("all");} ) : false;
+        }
+
+    });
+
+  if (data["data-Spells"]) {
+    //console.log("SPELL DATA: " + JSON.stringify(data["data-Spells"]));
+
+    let spellsobj = [];
+    //Put together a list of spells to get from the Comepndium
+    ["spells", "innate"].forEach((type) => {
+        let spellList = JSON.parse(data["data-Spells"])[`${type}`];
+        if (spellList) {
+            Object.keys(spellList).map((objectKey, index) => {
+                spellList[objectKey].forEach((spell) => {
+                    spellsobj.push(spell);
+                });
+            });
+        };
+    });
+
+    // now look them up
+    getCompendiumPage(spellsobj, (compendiumPages) => {
+
+      compendiumPages = removeDuplicatedPageData(compendiumPages);
+      const spellData = (compendiumPages.length === undefined || compendiumPages.length === 1) ? [compendiumPages] : compendiumPages;
+      const innate = (JSON.parse(data["data-Spells"])[`innate`]) ? JSON.parse(data["data-Spells"])[`innate`] : false;
+      let update   = [], callbacks = [];
+
+      spellData.forEach( (page) => {
+            const spell        = page.data;
+            const lvl          = spell["Level"] && spell["Level"] > 0 ? spell["Level"] : 1; // "cantrip" is level 1 for us;
+            const newrowid     = generateRowID();
+            const repeatingRow = "repeating_spells-"+lvl+"_"+newrowid;
+
+            //console.log("ADDING SPELL row:" + repeatingRow);
+            //console.log("ADDING SPELL data:"+JSON.stringify(spell));
+
+            update[ repeatingRow + "_spelllevel"]               = lvl;
+            // update[`${repeatingRow}_spell_ability`]            = (update["spellcasting_ability"]) ? update["spellcasting_ability"] : "spell";
+            (spell.Name) ? update[repeatingRow + "_spellname"] = spell.Name : console.log(`%c ${JSON.stringify(page.name)} is incorrect. Update compendium data.`, "color: orange;");
+            update[ repeatingRow + "_spelloutput"]              = (page.data["Damage"] || page.data["Healing"]) ? "ATTACK" : "SPELLCARD";
+
+            ["spellclass", "spellsource", "data-description"].forEach((attr) => {
+                const suffix = (attr.includes("description")) ? "spelldescription" : attr;
+                (spell[`${attr}`]) ? update[repeatingRow + "_" + suffix] = spell[`${attr}`] : false;
+            });
+
+            // ["Add Casting Modifier", "Casting Time", "Concentration", "Damage Type", "Damage", "Duration", "Healing", "Material", "Range", "Ritual", "Save", "Save Success", "School", "Secondary Damage", "Secondary Damage Type", "Spell Attack", "Target"].forEach((attr) => {
+            ["Casting Time", "Concentration", "Damage Type", "Damage", "Duration", "Healing", "Material", "Range", "Ritual", "Save", "Save Success", "School", "Spell Attack", "Target"].forEach((attr) => {
+                if (spell[`${attr}`]) {
+                    //Adjust the array entry to match the attribute name in the HTML
+                    const name =
+                        (attr === "Add Casting Modifier") ? "dmgmod" :
+                        (attr === "Material") ? `comp_materials` :
+                        (attr === "Spell Attack") ? `attack` :
+                        (attr.includes("Secondary Damage")) ? attr.split("Secondary ")[0] + "2" :
+                        attr;
+
+                    const spellattribute = name.toLowerCase().replace(" ", "");
+                    //Concentration, Ritual, and School are exceptions to norm
+                    const updateValue =
+                        (attr === "Concentration" || attr === "Ritual") ? `{{${spellattribute}=1}}` :
+                        (attr === "School") ? spell["School"].toLowerCase() : spell[`${attr}`];
+
+                    update[`${repeatingRow}_spell${spellattribute}`] = updateValue;
+                };
+            });
+
+           ["Higher Spell Slot Bonus", "Higher Spell Slot Desc", "Higher Spell Slot Dice", "Higher Spell Slot Die"].forEach((attr) => {
+                if (spell[`${attr}`]) {
+                    const spellattribute = (attr.includes("Bonus")) ? "hlbonus" : (attr.includes("Desc")) ? "athigherlevels" : (attr.includes("Dice")) ? "hldie" : "hldietype";
+                    update[`${repeatingRow}_spell${spellattribute}`] = spell[`${attr}`];
+                };
+            });
+
+            if (spell["Components"]) {
+                ["v", "s", "m"].forEach((comp) => {
+                    if (spell["Components"].toLowerCase().indexOf(comp) === -1) {update[`${repeatingRow}_spellcomp_${comp}`] = "0"};
+                });
+            };
+
+            if(data["Damage"] || data["Healing"]) {
+                //This needs to run the create_attack_from_spell
+                callbacks.push(() => { create_attack_from_spell(lvl, newrowid, currentData.character_id); });
+            } else if (page.data["Higher Spell Slot Desc"] && page.data["Higher Spell Slot Desc"] != "") {
+                //This needs to run the update_spelloutput
+                console.debug("MISSING HIGHER LEVEL SLOT FOR NPC SPELLS");
+            };
+
+            /*
+            if (spell["data-Cantrip Scaling"] && lvl == "cantrip") {
+                update[`${repeatingRow}_spell_damage_progression`] = "Cantrip " + spell["data-Cantrip Scaling"].charAt(0).toUpperCase() + spell["data-Cantrip Scaling"].slice(1);
+            };
+            */
+
+            if (innate) {
+                const spellName = (spell.Name).toLowerCase();
+                //Search each keys in INNATE to see if spell name === one of the Values
+                Object.keys(innate).map((objectKey, index) => {
+                    innate[objectKey].forEach((spell) => {
+                        (spell === spellName) ? update[`${repeatingRow}_innate`] = objectKey : false;
+                    });
+                });
+            };
+
+            update[repeatingRow + "_options-flag"] = "0";
+            update[repeatingRow + "_details-flag"] = "0";
+        });
+
+        setAttrs(update, {silent: true}, () => {
+            callbacks.forEach((callback) => {
+                callback();
+            })
+        });
+
+        return {
+            callbacks: callbacks
+        };
+
+    });
+
+  }
+
+  // cleanup
+  callbacks.push( function() { cleanup_drop_fields();} );
+
+  return { update: update, callbacks: callbacks }
+};
 
 
   const drop_item_attrs = ["drop_name", "drop_level", "drop_properties",
@@ -10630,7 +10552,6 @@
               //set in the GLOBAL DAMAGE MODIFIER section
 
               //Assemble Roll Templates
-	      console.log("do_update_attack assembling templates -- ");
 	      rollbase = `@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{name=@{character_name}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
 
               update[`${repeating_attacks}_rollbase_dmg`]  = `@{wtype}&{template:dmg} {{rname=@{atkname}}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} @{dmg2flag} {{dmg2=[[${hdmg2}]]}} {{dmg2type=${dmg2type}}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
@@ -10639,13 +10560,12 @@
 
               update[`${repeating_attacks}_atkbonus`]      = bonus;
               update[`${repeating_attacks}_rollbase`]      = rollbase;
-	      console.log("ROLLBASE:\n"+rollbase);
 
               if (v[`${repeating_attacks}_spellid`] && v[`${repeating_attacks}_spellid`] != "" && (!source || source && source != "spell") && v[`${repeating_attacks}_spellid`].length == 20) {
                   const spellid = v[`${repeating_attacks}_spellid`];
                   const lvl     = v[`${repeating_attacks}_spelllevel`];
-		  console.log("UPDATE ATTACKS updating spell from attack calling");
-		  console.log("  spellid:"+spellid+" attack_id:"+attackid);
+		  console.debug("UPDATE ATTACKS updating spell from attack calling");
+		  console.debug("  spellid:"+spellid+" attack_id:"+attackid);
                   callbacks.push(() => { update_spell_from_attack(lvl, spellid, 'repeating_attacks_'+attackid); });
               }
 
