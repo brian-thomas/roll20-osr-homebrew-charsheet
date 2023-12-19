@@ -9425,10 +9425,10 @@
      });
   });
 
-  /* TODO: implement for NPC dropped tokens, see page: https://gist.github.com/SteveKoontz/7dce834b2285734d8f557f03489531c2
-     for original code from 5e ogl char sheet.
+  // implement for NPC dropped tokens, see page: https://gist.github.com/SteveKoontz/7dce834b2285734d8f557f03489531c2
+  // for original code from 5e ogl char sheet.
 
-  on("sheet:compendium-drop", function() {
+on("sheet:compendium-drop", function() {
        getAttrs(["hp_max","npc_senses","token_size","cd_bar1_v","cd_bar1_m","cd_bar1_l","cd_bar2_v","cd_bar2_m","cd_bar2_l","cd_bar3_v","cd_bar3_m","cd_bar3_l"], function(v) {
            var default_attr = {};
            default_attr["width"] = 70;
@@ -9495,8 +9495,7 @@
 
            setDefaultToken(default_attr);
        });
-   });
-*/
+});
 
 const drop_monster_attrs = ["drop_name","drop_weight","drop_properties",
                "drop_modifiers","drop_data", "drop_content","drop_itemtype",
