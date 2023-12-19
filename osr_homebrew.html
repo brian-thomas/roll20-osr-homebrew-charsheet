@@ -9429,72 +9429,72 @@
   // for original code from 5e ogl char sheet.
 
 on("sheet:compendium-drop", function() {
-       getAttrs(["hp_max","npc_senses","token_size","cd_bar1_v","cd_bar1_m","cd_bar1_l","cd_bar2_v","cd_bar2_m","cd_bar2_l","cd_bar3_v","cd_bar3_m","cd_bar3_l"], function(v) {
-           var default_attr = {};
-           default_attr["width"] = 70;
-           default_attr["height"] = 70;
-           if(v["npc_senses"].toLowerCase().match(/(darkvision|blindsight|tremorsense|truesight)/)) {
-               default_attr["light_radius"] = Math.max.apply(Math, v["npc_senses"].match(/\d+/g));
-           }
-           if(v["token_size"]) {
-               var squarelength = 70;
-               if(v["token_size"].indexOf(",") > -1) {
-                   var setwidth = !isNaN(v["token_size"].split(",")[0]) ? v["token_size"].split(",")[0] : 1;
-                   var setheight = !isNaN(v["token_size"].split(",")[1]) ? v["token_size"].split(",")[1] : 1;
-                   default_attr["width"] = setwidth * squarelength;
-                   default_attr["height"] = setheight * squarelength;
-               }
-               else {
-                   default_attr["width"] = squarelength * v["token_size"]
-                   default_attr["height"] = squarelength * v["token_size"]
-               };
-           }
-
-           if(v["cd_bar1_l"]) {
-               default_attr["bar1_link"] = v["cd_bar1_l"];
-           }
-           else if(v["cd_bar1_v"] || v["cd_bar1_m"]) {
-               if(v["cd_bar1_v"]) {
-                   default_attr["bar1_value"] = v["cd_bar1_v"];
-               }
-               if(v["cd_bar1_m"]) {
-                   default_attr["bar1_max"] = v["cd_bar1_m"];
-               }
+   getAttrs(["hp_max","npc_senses","token_size","cd_bar1_v","cd_bar1_m","cd_bar1_l","cd_bar2_v","cd_bar2_m","cd_bar2_l","cd_bar3_v","cd_bar3_m","cd_bar3_l"], function(v) {
+       var default_attr = {};
+       default_attr["width"] = 70;
+       default_attr["height"] = 70;
+       if(v["npc_senses"].toLowerCase().match(/(darkvision|blindsight|tremorsense|truesight)/)) {
+           default_attr["light_radius"] = Math.max.apply(Math, v["npc_senses"].match(/\d+/g));
+       }
+       if(v["token_size"]) {
+           var squarelength = 70;
+           if(v["token_size"].indexOf(",") > -1) {
+               var setwidth = !isNaN(v["token_size"].split(",")[0]) ? v["token_size"].split(",")[0] : 1;
+               var setheight = !isNaN(v["token_size"].split(",")[1]) ? v["token_size"].split(",")[1] : 1;
+               default_attr["width"] = setwidth * squarelength;
+               default_attr["height"] = setheight * squarelength;
            }
            else {
-               default_attr["bar1_value"] = v["hp_max"];
-               default_attr["bar1_max"] = v["hp_max"];
-           }
+               default_attr["width"] = squarelength * v["token_size"]
+               default_attr["height"] = squarelength * v["token_size"]
+           };
+       }
 
-           if(v["cd_bar2_l"]) {
-               default_attr["bar2_link"] = v["cd_bar2_l"];
+       if(v["cd_bar1_l"]) {
+           default_attr["bar1_link"] = v["cd_bar1_l"];
+       }
+       else if(v["cd_bar1_v"] || v["cd_bar1_m"]) {
+           if(v["cd_bar1_v"]) {
+               default_attr["bar1_value"] = v["cd_bar1_v"];
            }
-           else if(v["cd_bar2_v"] || v["cd_bar2_m"]) {
-               if(v["cd_bar2_v"]) {
-                   default_attr["bar2_value"] = v["cd_bar2_v"];
-               }
-               if(v["cd_bar2_m"]) {
-                   default_attr["bar2_max"] = v["cd_bar2_m"];
-               }
+           if(v["cd_bar1_m"]) {
+               default_attr["bar1_max"] = v["cd_bar1_m"];
            }
-           else {
-               default_attr["bar2_link"] = "npc_ac";
-           }
+       }
+       else {
+           default_attr["bar1_value"] = v["hp_max"];
+           default_attr["bar1_max"] = v["hp_max"];
+       }
 
-           if(v["cd_bar3_l"]) {
-               default_attr["bar3_link"] = v["cd_bar3_l"];
+       if(v["cd_bar2_l"]) {
+           default_attr["bar2_link"] = v["cd_bar2_l"];
+       }
+       else if(v["cd_bar2_v"] || v["cd_bar2_m"]) {
+           if(v["cd_bar2_v"]) {
+               default_attr["bar2_value"] = v["cd_bar2_v"];
            }
-           else if(v["cd_bar3_v"] || v["cd_bar3_m"]) {
-               if(v["cd_bar3_v"]) {
-                   default_attr["bar3_value"] = v["cd_bar3_v"];
-               }
-               if(v["cd_bar3_m"]) {
-                   default_attr["bar3_max"] = v["cd_bar3_m"];
-               }
+           if(v["cd_bar2_m"]) {
+               default_attr["bar2_max"] = v["cd_bar2_m"];
            }
+       }
+       else {
+           default_attr["bar2_link"] = "npc_ac";
+       }
 
-           setDefaultToken(default_attr);
-       });
+       if(v["cd_bar3_l"]) {
+           default_attr["bar3_link"] = v["cd_bar3_l"];
+       }
+       else if(v["cd_bar3_v"] || v["cd_bar3_m"]) {
+           if(v["cd_bar3_v"]) {
+               default_attr["bar3_value"] = v["cd_bar3_v"];
+           }
+           if(v["cd_bar3_m"]) {
+               default_attr["bar3_max"] = v["cd_bar3_m"];
+           }
+       }
+
+       setDefaultToken(default_attr);
+   });
 });
 
 const drop_monster_attrs = ["drop_name","drop_weight","drop_properties",
