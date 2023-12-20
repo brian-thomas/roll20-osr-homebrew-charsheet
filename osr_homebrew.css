@@ -12,6 +12,10 @@
 	background-color: #ddd;
 }
 
+.sheet-inactive-color {
+	@include inactive-color;
+}
+
 img.sheet-small-image
 {
 	height: auto;
@@ -89,6 +93,9 @@ button.sheet-nod20:before {
 	font-size: 0px;
 }
 
+select.sheet-inactive-color,
+input[type=number].sheet-inactive-color,
+input[type=text].sheet-inactive-color,
 input[type=checkbox]:not(:checked).sheet-inactive-color,
 input[type=radio]:not(:checked).sheet-inactive-color
 {
