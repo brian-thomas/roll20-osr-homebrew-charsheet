@@ -487,18 +487,18 @@
                    <div class="section-npc-edit-trait">
                      <div class="flex fill-width">
                        <span class="bold-font">Name:</span>
-                       <input type="text" name="attr_react_name" class="align-left" data-i18n-placeholder="reaction name"/>
+                       <input type="text" name="attr_name" class="align-left" data-i18n-placeholder="reaction name"/>
                      </div>
                      <div class="block">
                        <span class="bold-font">Desc:</span>
-                       <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_react_desc" data-i18n-placeholder="description"></textarea>
+                       <textarea class="sheet-npc-action-desc" spellcheck="false" name="attr_desc" data-i18n-placeholder="description"></textarea>
                      </div>
                    </div>
                    <div class="section-npc-show-trait">
                      <div class="flex fill-width">
-                       <label class="npc-trait-name info5"><span name="attr_react_name">Reaction Name</span></label>
+                       <label class="npc-trait-name info5"><span name="attr_name">Reaction Name</span></label>
                      </div>
-                     <label class="npc-text-sm info5"><span name="attr_react_desc"/>Description Here</label>
+                     <label class="npc-text-sm info5"><span name="attr_desc"/>Description Here</label>
                    </div>
                  </div>
                </fieldset>
@@ -8646,7 +8646,7 @@
 
   function do_update_spells (ids, repeating_source) {
 
-    console.debug("DO update spells src:"+repeating_source+" ids:"+JSON.stringify(ids));
+    // console.debug("DO update spells src:"+repeating_source+" ids:"+JSON.stringify(ids));
 
     const fieldnames = [];
     ids.forEach(id => {
@@ -9007,7 +9007,7 @@
   });
 
   function update_attacks2 () {
-      console.debug("UPDATE ATTACKS2");
+      // console.debug("UPDATE ATTACKS2");
 
       getSectionIDs('repeating_attacks', function (ids) {
 
@@ -9744,6 +9744,9 @@ var handle_drop_monster = function(v) {
         update["npcreactionsflag"] = 1;
         let reactionsobj = {};
         JSON.parse(data["data-Reactions"]).forEach((val) => { reactionsobj[val.Name] = val.Desc; });
+
+        console.log("REACTIONS OBJ:"+JSON.stringify(reactionsobj));
+
         _.each(reactionsobj, (desc, name) => {
             newrowid = generateRowID();
             update[`repeating_npcreaction_${newrowid}_name`] = name + ".";
@@ -10255,7 +10258,7 @@ var handle_drop_monster = function(v) {
 
   const do_update_attack = (attack_array, source) => {
 
-      console.debug("DO UPDATE ATTACK array:"+attack_array);
+      // console.debug("DO UPDATE ATTACK array:"+attack_array);
 
       let attack_attribs = ["level","d20","pb","pb_type","pbd_safe","strength_mod","dexterity_mod","constitution_mod","intelligence_mod","wisdom_mod","charisma_mod","spell_save_dc","spell_attack_mod", "spell_dc_mod" ];
       _.each(attack_array, (attackid) => {
@@ -10497,8 +10500,8 @@ var handle_drop_monster = function(v) {
                   const spellid = v[`${repeating_attacks}_spellid`];
                   const lvl     = v[`${repeating_attacks}_spelllevel`];
 
-		              console.debug("UPDATE ATTACKS updating spell from attack calling");
-		              console.debug("  spellid:"+spellid+" attack_id:"+attackid);
+		              // console.debug("UPDATE ATTACKS updating spell from attack calling");
+		              // console.debug("  spellid:"+spellid+" attack_id:"+attackid);
                   callbacks.push(() => { update_spell_from_attack(lvl, spellid, 'repeating_attacks_'+attackid); });
               }
 
