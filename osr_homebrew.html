@@ -2891,7 +2891,7 @@
        <span class="sheet-spacer">&nbsp;</span>
        <div class="thin-border block padding">
          <h3>Notes</h3>
-         <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes" accept="data"></textarea>
+         <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
        </div>
      </div>
 
@@ -9745,8 +9745,6 @@ var handle_drop_monster = function(v) {
         let reactionsobj = {};
         JSON.parse(data["data-Reactions"]).forEach((val) => { reactionsobj[val.Name] = val.Desc; });
 
-        console.log("REACTIONS OBJ:"+JSON.stringify(reactionsobj));
-
         _.each(reactionsobj, (desc, name) => {
             newrowid = generateRowID();
             update[`repeating_npcreaction_${newrowid}_name`] = name + ".";
@@ -9964,8 +9962,8 @@ var handle_drop_monster = function(v) {
 
         //console.log(`%c SPELL: ${page.name} dropped`, "color: purple; font-weight:14px;");
         console.log("Handle Drop Spell called:"+v.drop_name+ " char:"+v.character_id);
-        console.log(" data:"+v.drop_data);
-        console.debug("content: "+v.drop_content);
+        // console.log(" data:"+v.drop_data);
+        // console.debug("content: "+v.drop_content);
         //console.log(" properites:"+v.drop_properties);
 
         var data = {};
@@ -10030,7 +10028,7 @@ var handle_drop_monster = function(v) {
             }
             spelllevel = spelllevel + "}";
 
-	    console.log("Using rollcontent 1(higher spellslot)\n");
+	          // console.log("Using rollcontent 1(higher spellslot)\n");
             update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
         };
 
