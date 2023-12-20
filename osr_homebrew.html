@@ -8922,34 +8922,6 @@
       combatOptChangeStr = combatOptChangeStr + `change:${combat_opt} `;
   });
 
-  on(`change:repeating_attacks`, function(eventinfo) {
-      if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
-
-      console.log("REP ATTACK CHANGE:"+JSON.stringify(eventinfo));
-
-      const attack_row_id = eventinfo.triggerName;
-      if (attack_row_id && attack_row_id !== "") {
-
-          console.log("change_repeating_attacks id:"+attack_row_id );
-
-          const fieldnames = [];
-	  fieldnames.push(attack_row_id + "_spellid");
-	  fieldnames.push(attack_row_id + "_spelllevel");
-
-          var callbacks = [];
-	  getAttrs([...fieldnames], function (v) {
-	      var spell_id = v[attack_row_id + "_spellid"];
-	      var spell_level = v[attack_row_id + "_spelllevel"];
-
-	      if (spell_id && spell_id != "" && spell_id && spell_id != "") {
-                  console.log(" attkid:"+attack_row_id+" spid:"+spell_id+" splvl:"+spell_level);
-                  callbacks.push(() => { update_spell_from_attack(spell_level, spell_id, attack_row_id); });
-	      }
-	      setAttrs({}, {silent: true}, () => { callbacks.forEach((callback) => { callback(); }); });
-	  });
-
-      }
-  });
 
   // global changes which effect all attacks
   on(`:${combatOptChangeStr} change:sneak_attack_dice change:sneak_attack_enabled change:c_class change:c_class2 change:level change:level2`,
@@ -8981,15 +8953,38 @@
       return src;
   };
 
-  // particular row changes
-  on(`change:repeating_attacks`, function (eventinfo) {
-
+  on(`change:repeating_attacks`, function(eventinfo) {
       if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
 
-      console.log("EVENT trigger on update_attacks: "+JSON.stringify(eventinfo));
+      console.log("REP ATTACK CHANGE:"+JSON.stringify(eventinfo));
 
-      const id = rowid_from_trigger(eventinfo.triggerName);
-      update_attacks(id);
+      const row_id = rowid_from_trigger(eventinfo.triggerName);
+      update_attacks(row_id);
+
+      /*
+      // not needed? update_attacks will auto check for spell attack and update
+      const repeating_attack_row = eventinfo.triggerName;
+      if (repeating_attack_row && repeating_attack_row !== "") {
+
+        console.log("change_repeating_attacks id:" + repeating_attack_row );
+
+        const fieldnames = [];
+	      fieldnames.push(repeating_attack_row + "_spellid");
+	      fieldnames.push(repeating_attack_row + "_spelllevel");
+
+        var callbacks = [];
+	      getAttrs([...fieldnames], function (v) {
+	         var spell_id = v[repeating_attack_row + "_spellid"];
+	         var spell_level = v[repeating_attack_row + "_spelllevel"];
+
+	         if (spell_id && spell_id != "" && spell_id && spell_id != "") {
+              callbacks.push(() => { update_spell_from_attack(spell_level, spell_id, repeating_attack_row); });
+	         }
+	         setAttrs({}, {silent: true}, () => { callbacks.forEach((callback) => { callback(); }); });
+	      });
+
+      }
+      */
   });
 
   function update_attacks2 () {
@@ -10229,7 +10224,7 @@ var handle_drop_monster = function(v) {
                   getAttrs(attack_attribs, (v) => {
                       let attr_attack_ids = [];
                       _.each(idarray, (id) => {
-			  if ((v[`repeating_attacks_${id}_atkattr_base`] && v[`repeating_attacks_${id}_atkattr_base`].indexOf(update_id) > -1) || (v[`repeating_attacks_${id}_savedc`] && v[`repeating_attacks_${id}_savedc`].indexOf(update_id) > -1) || (v[`repeating_attacks_${id}_savedc`] && v[`repeating_attacks_${id}_savedc`] === "(@{spell_save_dc})")) {
+			                    if ((v[`repeating_attacks_${id}_atkattr_base`] && v[`repeating_attacks_${id}_atkattr_base`].indexOf(update_id) > -1) || (v[`repeating_attacks_${id}_savedc`] && v[`repeating_attacks_${id}_savedc`].indexOf(update_id) > -1) || (v[`repeating_attacks_${id}_savedc`] && v[`repeating_attacks_${id}_savedc`] === "(@{spell_save_dc})")) {
                               attr_attack_ids.push(id);
                           }
                       });
