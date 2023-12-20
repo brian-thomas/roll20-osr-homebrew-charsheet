@@ -3592,11 +3592,15 @@
             <div class="sheet-flex center">
               <input type="checkbox" class="sheet-max-copts-value-exceeded" name="attr_max_cmbt_opts_exceeded" value="0" hidden="true" checked="true"/>
               <span class="max-copts-value-exceeded-notify med-font italic-font">Additional Combat Options Allowed:
-                <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_cmbt_opts_allowed" value="0" readonly="true"/>
+		      &nbsp;
+                <input type="number" class="sheet-inactive-color info1 center info-name-tiny" name="attr_max_cmbt_opts_allowed" value="0" readonly="true"/>
               </span>
+		      &nbsp;
+		      &nbsp;
               <input type="checkbox" class="sheet-copts-value-underspent" name="attr_cmbt_opts_underspent" value="0" hidden="true" checked="true"/>
               <span class="sheet-copts-value-underspent-notify med-font italic-font">Additional Combat Options Used:
-               <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_cmbt_opts_used" value="0" readonly="true"/>
+		      &nbsp;
+               <input type="number" class="sheet-inactive-color info1 center info-name-tiny" name="attr_cmbt_opts_used" value="0" readonly="true"/>
               </span>
             </div>
 
@@ -3735,35 +3739,27 @@
 
           <div class="thin-border padding">
 
-            <!--
             <div class="sheet-flex center">
               <input type="checkbox" class="sheet-max-prof-value-exceeded" name="attr_max_prof_numb_exceeded" value="0" hidden="true" checked="true"/>
               <span class="max-prof-value-exceeded-notify med-font italic-font">Weapon Proficiencies Allowed:
-                <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_prof_allowed" value="0" readonly="true"/>
+		&nbsp;
+                <input type="number" class="sheet-inactive-color center info1 info-name-tiny" name="attr_max_prof_allowed" value="0" readonly="true"/>
               </span>
-              <input type="checkbox" class="sheet-prof-value-underspent" name="attr_prof_underspent" value="0" hidden="true" checked="true"/>
-              <span class="sheet-prof-value-underspent-notify med-font italic-font">Weapon Proficiencies Used:
-                <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_prof_used" value="0" readonly="true"/>
-              </span>
-              <input type="checkbox" class="sheet-max-prof-level-exceeded" name="attr_max_prof_level_exceeded" value="0" hidden="true" checked="true"/>
-              <span class="max-prof-level-exceeded-notify med-font italic-font">Max Weapon Prof:
-                <input type="number" name="attr_max_prof_level_allowed" value="0" hidden="true"/>
-                <input type="text" class="sheet-inactive-color no-border align-left" name="attr_max_prof_level_name" value="Skilled" readonly="true"/>
-              </span>
-            </div>
 
-            <div class="sheet-flex">
-              <span class="sheet-attack-param-name sheet-rotate sheet-bold-font sheet-italic-font left-pad right-pad">Notches</span>
-              <span class="sheet-attack-param-name sheet-bold-font sheet-italic-font left-pad right-pad">Prof. Lvl</span>
-              <span class="sheet-attack-name sheet-bold-font">Name</span>
-              <span class="sheet-attack-param-name sheet-bold-font">Add. Bonus</span>
-              <span class="sheet-attack-param-long-name sheet-bold-font">Attk Type</span>
-              <span class="sheet-attack-param-name sheet-bold-font">Attk Bonus</span>
-              <span class="sheet-attack-param-select-name sheet-bold-font">Damage</span>
-              <span class="sheet-attack-param-long-name sheet-bold-font">Dam. Type</span>
-              <span class="sheet-attack-param-name sheet-bold-font">Dam Bon.</span>
+              <input type="checkbox" class="sheet-prof-value-underspent" name="attr_prof_underspent" value="0" hidden="true" checked="true"/>
+    	       &nbsp; &nbsp;
+              <span class="sheet-prof-value-underspent-notify med-font italic-font">Weapon Proficiencies Used:
+		&nbsp;
+                <input type="number" class="sheet-inactive-color center info1 info-name-tiny" name="attr_prof_used" value="0" readonly="true"/>
+              </span>
+
+              <input type="checkbox" class="sheet-max-prof-level-exceeded" name="attr_max_prof_level_exceeded" value="0" hidden="true" checked="true"/>
+              <span class="max-prof-level-exceeded-notify med-font italic-font">Max Prof Level:
+                <input type="number" name="attr_max_prof_level_allowed" value="0" hidden="true"/>
+                <!--input type="text" class="inactive-color no-border align-left" style="width: 10%;" name="attr_max_prof_level_name" value="Skilled" readonly="true"/-->
+                <input type="text" class="info3 align-left" name="attr_max_prof_level_name" value="Skilled" readonly="true"/>
+              </span>
             </div>
-            -->
 
             <!-- TODO -->
             <input type="hidden" class="ammoflag" name="attr_ammotracking">
