@@ -9743,7 +9743,7 @@ var handle_drop_monster = function(v) {
     if (data["data-Reactions"]) {
         update["npcreactionsflag"] = 1;
         let reactionsobj = {};
-       jsonparse(data["data-Reactions"]).forEach((val) => { reactionsobj[val.Name] = val.Desc; });
+        JSON.parse(data["data-Reactions"]).forEach((val) => { reactionsobj[val.Name] = val.Desc; });
         _.each(reactionsobj, (desc, name) => {
             newrowid = generateRowID();
             update[`repeating_npcreaction_${newrowid}_name`] = name + ".";
