@@ -9519,7 +9519,7 @@ on("change:drop_category", function(eventinfo)
 
     if(eventinfo.newValue === "Monsters") {
       console.debug("Drop monster reached")
-      getAttrs([...drop_monster_attrs, "npc"], function(vals) {
+      getAttrs(["drop_data", "drop_name", "npc"], function(vals) {
           if (vals.npc == "0") {
             console.log("CANNOT overwrite PC with NPC creature, ignoring drop");
           } else {
@@ -9560,13 +9560,11 @@ var handle_drop_monster = function(v) {
    var callbacks = [];
    var update = {};
    const data = JSON.parse(v.drop_data);
-   console.log(" Monster Data: "+v.drop_data);
-
-   // console.log(" Monster Content: "+v.drop_content);
+   // console.log(" Monster Data: "+v.drop_data);
 
    update["npc"] = "1";
-   if(v["drop_name"] && v["drop_name"] != "") {
-     update["character_name"] = v["drop_name"];
+   if(v["drop_name"] && v.drop_name != "") {
+     update["character_name"] = v.drop_name;
    }
 
    // token size
@@ -9689,63 +9687,6 @@ var handle_drop_monster = function(v) {
            });
     }
 
-    /*
-    if(v["drop_content"] && v["drop_content"] != "") {
-
-        // split out and parse items of interest from drop_content
-        var contentarray = v["drop_content"];
-
-        if(contentarray && contentarray.indexOf("Legendary Actions") > -1) {
-            if(contentarray.indexOf(/\n Legendary Actions\n/) > -1) {
-                temp = contentarray.split(/\n Legendary Actions\n/)
-            }
-            else {
-                temp = contentarray.split(/Legendary Actions\n/)
-            }
-            var legendaryactionsarray = temp[1];
-            contentarray = temp[0];
-        }
-
-        if(contentarray && contentarray.indexOf("Reactions") > -1) {
-            if(contentarray.indexOf(/\n Reactions\n/) > -1) {
-                temp = contentarray.split(/\n Reactions\n/)
-            }
-            else {
-                temp = contentarray.split(/Reactions\n/)
-            }
-            var reactionsarray = temp[1];
-            contentarray = temp[0];
-        }
-
-        if(contentarray && contentarray.indexOf("Actions") > -1) {
-            if(contentarray.indexOf("Lair Actions") > -1) {
-                contentarray = contentarray.replace("Lair Actions","Lair Action");
-            }
-            if(contentarray.indexOf(/\n Actions\n/) > -1) {
-                temp = contentarray.split(/\n Actions\n/)
-            }
-            else {
-                temp = contentarray.split(/Actions\n/)
-            }
-            var actionsarray = temp[1];
-            contentarray = temp[0];
-        }
-
-        if(contentarray && contentarray.indexOf("Traits") > -1) {
-            if(contentarray.indexOf("Lair Traits") > -1) {
-                contentarray = contentarray.replace("Lair Traits", "Lair Trait");
-            }
-            if(contentarray.indexOf(/\n Traits\n/) > -1) {
-                temp = contentarray.split(/\n Traits\n/)
-            }
-            else {
-                temp = contentarray.split(/Traits\n/)
-            }
-            var traitsarray = temp[1];
-            contentarray = temp[0];
-        }
-    */
-
      if (data['data-Traits']) {
        let traitsobj     = {};
        JSON.parse(data["data-Traits"]).forEach((val) => {
@@ -9780,7 +9721,6 @@ var handle_drop_monster = function(v) {
 
                 var dc = desc.match(/spell save DC (.*?)[,\)]/);
                 if (dc) {
-                  console.log("spellcasting DC:"+dc);
                   update["spellcasting_dc"] = parseInt(dc[1]) || -1;
                 }
                 else {
@@ -9822,10 +9762,8 @@ var handle_drop_monster = function(v) {
             const npcaction = (attr === "Actions") ? "npcactions" : "npcactions-l";
             let actionsobj = {};
             JSON.parse(data[`data-${attr}`]).forEach((val) => { actionsobj[val.Name] = val; });
-            console.log("Got "+JSON.stringify(actionsobj));
 
             _.each(actionsobj, (action, name) => {
-                console.log("Got "+attr+" "+name);
                 const repeating_npcaction = "repeating_" + npcaction + "_" + generateRowID();
 
                 // update[`repeating_${npcaction}_${newrowid}_npc_options-flag`] = "0";
@@ -9845,7 +9783,6 @@ var handle_drop_monster = function(v) {
                         if(action[attr]) {
                             var attributeName = (attr === "Hit Bonus") ? "tohit" : (attr === "Reach") ? "range" : attr.toLowerCase().replace(" ", "");
                             const fld_name = `${repeating_npcaction}_action_attack_${attributeName}`;
-                            console.log("Setting fldname;" + fld_name + " to " + action[attr]);
                             update[fld_name] = action[attr];
                         };
                     });
@@ -9998,7 +9935,7 @@ var handle_drop_monster = function(v) {
 
         // do something
 
-        // clean up and persist new spell
+        // clean up and persist new item 
         callbacks.push( function() {cleanup_drop_fields();} );
         setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
       });
@@ -10819,7 +10756,7 @@ var handle_drop_monster = function(v) {
 
   var cleanup_drop_fields = function() {
 
-    console.log("DROP FIELD CLEANUP Called");
+    // console.log("DROP FIELD CLEANUP Called");
 
     var update = {};
     drop_item_attrs.forEach((key, i) => update[key] = "");
