@@ -4033,7 +4033,7 @@
 
                           <input name="attr_attack_damage_msg" value="" hidden="true"/>
 
-			  <select name="attr_dmgtype" style="width: 80px;">
+			                    <select name="attr_dmgtype" style="width: 80px;">
                               <option selcted="selected" value="Bludgeoning">Bludgeon</option>
                               <option value="Piercing">Pierce</option>
                               <option value="Slashing">Slash</option>
@@ -4049,7 +4049,7 @@
                               <option value="Thunder">Thunder</option>
                           </select>
 
-			  <div>
+			                    <div>
                               <button type="roll" class="attack-button black-border" style="margin-left: 8px;"
                                       name="roll_attack" value=@{rollbase}"/>
                           </div>
@@ -4059,12 +4059,12 @@
 			  <input type="hidden" name="attr_rtype" value="{{always=1}} {{r2=[[@{d20}"/>
 
 			  <input type="hidden" name="attr_rollbase"
-					       value = "@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{spell=1}} {{charname=@{character_name}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} {{crit2=[[${crit2}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{level=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}"
+				 value="&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}"
 			  />
 
 			  <!--
-                                 value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-				 value="&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}"
+					       value = "@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{spell=1}} {{charname=@{character_name}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} {{crit2=[[${crit2}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{level=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}"
+
 
 				 value="&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}"
 
@@ -10245,11 +10245,11 @@ var handle_drop_monster = function(v) {
 
   const do_update_attack = (attack_array, source) => {
 
-      // console.debug("DO UPDATE ATTACK array:"+attack_array);
+      console.log("DO UPDATE ATTACK array:"+attack_array);
 
       let attack_attribs = ["level","d20","pb","pb_type","pbd_safe","strength_mod","dexterity_mod","constitution_mod","intelligence_mod","wisdom_mod","charisma_mod","spell_save_dc","spell_attack_mod", "spell_dc_mod" ];
       _.each(attack_array, (attackid) => {
-          ["atkflag","atkname","atkattr_base","atkmod","atkprofflag","atkmagic","dmgflag","dmgbase","dmgtype","dmg2flag","dmg2base","dmg2type","dmgcustcrit","dmg2custcrit","saveflag","savedc","saveeffect","saveflat","hldmg","spellid","spelllevel","atkrange","itemid","ammo",].forEach((attr) => {
+          ["attack_form", "atkflag", "atkattr_base","atkmod","atkprofflag","atkmagic","dmgflag","dmgbase","dmgtype","dmg2flag","dmg2base","dmg2type","dmgcustcrit","dmg2custcrit","saveflag","savedc","saveeffect","saveflat","hldmg","spellid","spelllevel","atkrange","itemid","ammo",].forEach((attr) => {
               attack_attribs.push(`repeating_attacks_${attackid}_${attr}`)
           });
       });
@@ -10274,6 +10274,9 @@ var handle_drop_monster = function(v) {
               const pbd_safe = v["pbd_safe"] || "";
 
               const character_name     = v.character_name;
+	      const attack_form        = v[repeating_attacks + "_attack_form"];
+
+	      console.log("ATTACK FORM:"+attack_form);
 
               //HIGHER LVL CAST DMG found in Spells for spells like Fireball
               const hldmgcrit = (v[`${repeating_attacks}_hldmg`] && v[`${repeating_attacks}_hldmg`] != "") ? v[`${repeating_attacks}_hldmg`].slice(0, 7) + "crit" + v[`${repeating_attacks}_hldmg`].slice(7) : "";
@@ -10474,7 +10477,11 @@ var handle_drop_monster = function(v) {
               //set in the GLOBAL DAMAGE MODIFIER section
 
               //Assemble Roll Templates
-	      rollbase = `@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{name=@{character_name}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
+	      if (attack_form == "spell") {
+	          rollbase = `@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{name=@{character_name}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
+	      } else {
+	          rollbase =`@{wtype}&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}`;
+	      }
 
               update[`${repeating_attacks}_rollbase_dmg`]  = `@{wtype}&{template:dmg} {{rname=@{atkname}}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} @{dmg2flag} {{dmg2=[[${hdmg2}]]}} {{dmg2type=${dmg2type}}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
 
