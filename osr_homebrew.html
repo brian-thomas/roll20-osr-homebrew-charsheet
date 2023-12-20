@@ -8728,7 +8728,7 @@
       let update = {};
       var callbacks = [];
 
-      console.log("UPDATE SPELLOUTPUT");
+      // console.log("UPDATE SPELLOUTPUT");
      /*
       if (higherlevels && higherlevels !== "") {
           for(i = 0; i < 10-lvl; i++) {
@@ -9976,7 +9976,9 @@ var handle_drop_monster = function(v) {
         }
 
         // Workaround: we treat cantrips as (cruddy) level 1 spells
-        var lvl = parseInt(data["Level"]) || 1;
+        var lvl = parseInt(data["Level"]) || 0;
+        const is_cantrip = lvl == 0 ? true : false;
+        lvl  = lvl > 0 ? lvl : 1;
 
         const spell_name = v.drop_name;
         const spell_level = parseInt(v.drop_level) || 0;
@@ -9988,6 +9990,10 @@ var handle_drop_monster = function(v) {
         update[repeating_source + "_spelllevel"] = lvl;
         update[repeating_source + "_spelloutput"] = "SPELLCARD";
         update[repeating_source + "_spelldescription"] = data["data-description"] ? data["data-description"] : v.drop_content;
+
+        if (is_cantrip) {
+           update[repeating_source + "_innate"] = "at-will";
+        }
 
         if(data["Ritual"]) {
           update[repeating_source + "_spellritual"] = "{{ritual=1}}"};
