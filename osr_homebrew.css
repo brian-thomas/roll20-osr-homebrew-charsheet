@@ -89,12 +89,10 @@ button.sheet-nod20:before {
 	font-size: 0px;
 }
 
-
 input[type=checkbox]:not(:checked).sheet-inactive-color,
 input[type=radio]:not(:checked).sheet-inactive-color
 {
 	@include inactive-color;
-	background-color: #ddd;
 }
 
 .sheet-active-color
@@ -1287,7 +1285,7 @@ button[type=roll]:hover *,
   margin-left: 2px;
   height: 25px;
   width: 32px;
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 .sheet-attacks button[type=roll].sheet-attack-button span,
@@ -2472,7 +2470,7 @@ By Miguel
 .sheet-rolltemplate-atk a[href^="~"]:visited {
   pointer-events: none; }
 
-.sheet-rolltemplate-spell .sheet-container 
+.sheet-rolltemplate-spell .sheet-container
 {
   background: url("https://raw.githubusercontent.com/mperes/Images-for-Roll20-5E-images/master/spellbg.jpg") center center;
   background-repeat: repeat;
