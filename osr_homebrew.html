@@ -3788,7 +3788,6 @@
                       <input type="checkbox" class="sheet-berserk_attack_enabled" name="attr_berserk_attack_enabled" value="1" hidden="true"/>
                       <input type="checkbox" class="sheet-charge_attack_enabled" name="attr_charge_attack_enabled" value="1" hidden="true"/>
                       <input type="checkbox" class="sheet-cleave_attack_enabled" name="attr_cleave_attack_enabled" value="1" hidden="true"/>
-                      <input type="checkbox" class="sheet-defense_attack_enabled" name="attr_defense_attack_enabled" value="1" hidden="true"/>
                       <input type="checkbox" class="sheet-disarm_attack_enabled" name="attr_disarm_attack_enabled" value="1" hidden="true"/>
                       <input type="checkbox" class="sheet-great_cleave_attack_enabled" name="attr_great_cleave_attack_enabled" value="1" hidden="true"/>
                       <input type="checkbox" class="sheet-feint_attack_enabled" name="attr_feint_attack_enabled" value="1" hidden="true"/>
@@ -3805,12 +3804,6 @@
                       <div class="sheet-charge_attack_section">
                         <span class="label" style="width: 30px; text-align: center; margin-left: 9px;" data-i18n="atk-charge-u">CHARGE ATK</span>
                       </div>
-
-                      <!--
-                      <div class="sheet-defense_attack_section">
-                        <span class="sheet-attack-param-attk-name sheet-bold-font">Defns. Attack</span>
-                      </div>
-                      -->
 
                       <div class="sheet-berserk_attack_section">
                         <span class="label" style="width: 30px; text-align: center; margin-left: 9px;" data-i18n="atk-berserk-u">BERSERK ATK</span>
@@ -3989,7 +3982,6 @@
                           <input type="checkbox" class="sheet-attack_berserk_attack_enabled" name="attr_attack_berserk_attack_enabled" value="1" hidden="true"/>
                           <input type="checkbox" class="sheet-attack_cleave_attack_enabled" name="attr_attack_cleave_attack_enabled" value="1" hidden="true"/>
                           <input type="checkbox" class="sheet-attack_charge_attack_enabled" name="attr_attack_charge_attack_enabled" value="1" hidden="true"/>
-                          <input type="checkbox" class="sheet-attack_defense_attack_enabled" name="attr_attack_defense_attack_enabled" value="1" hidden="true"/>
                           <input type="checkbox" class="sheet-attack_disarm_attack_enabled" name="attr_attack_disarm_attack_enabled" value="1" hidden="true"/>
                           <input type="checkbox" class="sheet-attack_great_cleave_attack_enabled" name="attr_attack_great_cleave_attack_enabled" value="1" hidden="true"/>
                           <input type="checkbox" class="sheet-attack_feint_attack_enabled" name="attr_attack_feint_attack_enabled" value="1" hidden="true"/>
@@ -9068,7 +9060,6 @@
               output['charge_attack_enabled'] = charge_attack;
               output['cleave_attack_enabled'] = cleave_attack && !great_cleave_attack;
               output['cleave_attack_enabled2'] = cleave_attack;
-              output['defense_attack_enabled'] = defensive_attack;
               output['disarm_attack_enabled'] = disarm_attack;
               output['great_cleave_attack_enabled'] = great_cleave_attack && cleave_attack;
               output['feint_attack_enabled'] = feint_attack;
@@ -9207,7 +9198,6 @@
                   output['repeating_attacks_' + id + '_attack_berserk_attack_enabled'] = berserk_attack;
                   output['repeating_attacks_' + id + '_attack_charge_attack_enabled'] = charge_attack;
                   output['repeating_attacks_' + id + '_attack_cleave_attack_enabled'] = cleave_attack && !great_cleave_attack;
-                  output['repeating_attacks_' + id + '_attack_defense_attack_enabled'] = defensive_attack;
                   output['repeating_attacks_' + id + '_attack_disarm_attack_enabled'] = disarm_attack;
                   output['repeating_attacks_' + id + '_attack_feint_attack_enabled'] = feint_attack;
                   output['repeating_attacks_' + id + '_attack_great_cleave_attack_enabled'] = great_cleave_attack && cleave_attack;
@@ -9233,7 +9223,6 @@
                   // even though we have the attack option, we still may not be able to use it because of the
                   // type of attack we have in hand and/or we lack proficiency
 
-                  output['repeating_attacks_' + id + '_attack_defense_attack_button_show'] = is_proficient && is_not_spell_or_grapple;
                   output['repeating_attacks_' + id + '_attack_disarm_attack_button_show'] = is_proficient && is_not_spell;
                   output['repeating_attacks_' + id + '_attack_feint_attack_button_show'] = is_proficient; // allow spells to be aimed if held
                   output['repeating_attacks_' + id + '_attack_lightning_attack_button_show'] = is_proficient && is_not_spell;
@@ -9250,7 +9239,7 @@
                   output['repeating_attacks_' + id + '_attack_stun_attack_button_show'] = is_proficient && is_not_spell_or_grapple
                          && (dmgtype === 'Bludgeoning' || dmgtype === 'Force') ? 1 : 0;
 
-                  // NO charge, defense or press attacks with ranged attacks
+                  // NO charge or press attacks with ranged attacks
                   output['repeating_attacks_' + id + '_attack_charge_attack_button_show'] = is_proficient && (is_ranged == 0) && is_not_spell_or_grapple;
                   output['repeating_attacks_' + id + '_attack_press_attack_button_show'] = is_proficient && (is_ranged == 0) && is_not_spell_or_grapple;
 
