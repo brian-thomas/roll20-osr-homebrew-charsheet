@@ -8625,7 +8625,7 @@
 
   function update_spells (update_id, src) {
 
-    console.log("Update spells update_id:"+update_id+ " src:"+src);
+    console.debug("Update spells update_id:"+update_id+ " src:"+src);
 
     if (update_id && update_id.substring(0,1) === "-" && update_id.length === 20) {
         const splvl = update_id.substring(17,18);
@@ -8636,19 +8636,17 @@
     } else {
 
         // update everything
-	console.log("Update spells (all)");
-  spell_levels.forEach( splvl=> {
-	    getSectionIDs(`repeating_spells-${splvl}`, function (idarray) {
-		      do_update_spells(idarray, `repeating_spells-${splvl}`);
-	    });
-	});
+        spell_levels.forEach( splvl=> {
+	        getSectionIDs(`repeating_spells-${splvl}`, function (idarray) {
+		        do_update_spells(idarray, `repeating_spells-${splvl}`);
+	        });
+	      });
     }
-
   };
 
   function do_update_spells (ids, repeating_source) {
 
-    console.log("DO update spells src:"+repeating_source+" ids:"+JSON.stringify(ids));
+    console.debug("DO update spells src:"+repeating_source+" ids:"+JSON.stringify(ids));
 
     const fieldnames = [];
     ids.forEach(id => {
@@ -9009,7 +9007,7 @@
   });
 
   function update_attacks2 () {
-      console.log("UPDATE ATTACKS2");
+      console.debug("UPDATE ATTACKS2");
 
       getSectionIDs('repeating_attacks', function (ids) {
 
@@ -9935,7 +9933,7 @@ var handle_drop_monster = function(v) {
 
         // do something
 
-        // clean up and persist new item 
+        // clean up and persist new item
         callbacks.push( function() {cleanup_drop_fields();} );
         setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
       });
@@ -10202,7 +10200,7 @@ var handle_drop_monster = function(v) {
 
   const update_attacks = (update_id, source) => {
 
-      console.log("UPDATE ATTACKS id:"+update_id+" src:"+source);
+      console.debug("UPDATE ATTACKS id:"+update_id+" src:"+source);
 
       // passed a attack row id, update single attack
       if (update_id && update_id.substring(0,1) === "-" && update_id.length === 20) {
@@ -10212,13 +10210,11 @@ var handle_drop_monster = function(v) {
           getSectionIDs("repeating_attacks", (idarray) => {
               if (update_id === "all") {
                   // check everything
-	          console.log("DO update attack (all)");
                   do_update_attack(idarray);
 
               } else if (update_id === "spells") {
                   // check spell-related attacks
 
-	          console.log("DO update attack (spells)");
                   let attack_attribs = [];
                   _.each(idarray, (id) => {
                       attack_attribs.push(`repeating_attacks_${id}_spellid`, `repeating_attacks_${id}_spelllevel`);
@@ -10259,7 +10255,7 @@ var handle_drop_monster = function(v) {
 
   const do_update_attack = (attack_array, source) => {
 
-      console.log("DO UPDATE ATTACK array:"+attack_array);
+      console.debug("DO UPDATE ATTACK array:"+attack_array);
 
       let attack_attribs = ["level","d20","pb","pb_type","pbd_safe","strength_mod","dexterity_mod","constitution_mod","intelligence_mod","wisdom_mod","charisma_mod","spell_save_dc","spell_attack_mod", "spell_dc_mod" ];
       _.each(attack_array, (attackid) => {
@@ -10500,8 +10496,9 @@ var handle_drop_monster = function(v) {
               if (v[`${repeating_attacks}_spellid`] && v[`${repeating_attacks}_spellid`] != "" && (!source || source && source != "spell") && v[`${repeating_attacks}_spellid`].length == 20) {
                   const spellid = v[`${repeating_attacks}_spellid`];
                   const lvl     = v[`${repeating_attacks}_spelllevel`];
-		  console.debug("UPDATE ATTACKS updating spell from attack calling");
-		  console.debug("  spellid:"+spellid+" attack_id:"+attackid);
+
+		              console.debug("UPDATE ATTACKS updating spell from attack calling");
+		              console.debug("  spellid:"+spellid+" attack_id:"+attackid);
                   callbacks.push(() => { update_spell_from_attack(lvl, spellid, 'repeating_attacks_'+attackid); });
               }
 
@@ -10523,28 +10520,19 @@ var handle_drop_monster = function(v) {
   //Update spells in the attack section
   const update_spell_from_attack = (lvl, spellid, attack_id) => {
 
-      console.log("Update spell from attack splvl:"+lvl+" sp_id:"+spellid+" attk_id:"+attack_id);
+      console.debug("Update spell from attack splvl:"+lvl+" sp_id:"+spellid+" attk_id:"+attack_id);
 
       // const repeating_attacks = `repeating_attacks_${attack_id}`;
       const repeating_attacks = attack_id;
       const repeating_spell = `repeating_spell-${lvl}_${spellid}`;
 
-      console.log(" using attk row id:"+repeating_attacks);
-      console.log(" using spell row id:"+repeating_spell);
-
       var attk_attribs = [];
       attack_properties.forEach( prop => {
-	  attk_attribs.push(repeating_attacks + "_" + prop);
+	       attk_attribs.push(repeating_attacks + "_" + prop);
       });
-
-      console.log("ATTACK FIELDS:"+attk_attribs);
 
       let update = {};
       getAttrs([...attk_attribs], (v) => {
-
-	  console.log("attack values grid: "+JSON.stringify(v));
-	  console.log("  repeating_attacks:"+repeating_attacks);
-	  console.log("  repeating_spell: "+repeating_spell);
 
           var dmgbase = v[`${repeating_attacks}_dmgbase`];
           // var dmg2base = v[`${repeating_attacks}_dmg2base`] || "";
@@ -10556,17 +10544,15 @@ var handle_drop_monster = function(v) {
           update[`${repeating_spell}_spellsavesuccess`] = v[`${repeating_attacks}_saveeffect`] || "";
 
           // check for healing or attack damage
-	  console.log("DAMAGES: db:"+dmgbase+" dt:"+dmgtype);
-	  if (dmgbase) {
+	        if (dmgbase) {
 
               update[`${repeating_spell}_spelldamage`] = dmgbase;
               if (dmgtype.toLowerCase() == "healing") {
                   update[`${repeating_spell}_spellhealing`] = dmgbase;
               } else {
-	          console.log("UPDATE SPELL DAMAGE & TYPE!");
                   update[`${repeating_spell}_spelldamage`] = dmgbase;
                   update[`${repeating_spell}_dmgtype`] = dmgtype;
-	      }
+	            }
           };
 
 	  // pick up healing on 2nd type of damage(?)
@@ -10583,7 +10569,7 @@ var handle_drop_monster = function(v) {
           update[`${repeating_spell}_spellsave`] =
 	      (v[`${repeating_attacks}_saveflag`] && v[`${repeating_attacks}_saveflag`] != "0") ? v[`${repeating_attacks}_saveattr`] : "";
 
-	  console.log("UPDATE Spell from attack using:"+JSON.stringify(update));
+	        //console.log("UPDATE Spell from attack using:"+JSON.stringify(update));
           setAttrs(update);
       });
   };
