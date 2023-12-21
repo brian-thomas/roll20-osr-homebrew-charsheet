@@ -3038,7 +3038,7 @@
              <span class="info-name bold-font" style="width: 150px;">Status</span>
              <span class="info-name-sm" style="width: 40px;">Buy %</span>
              <span class="info-name-sm" style="width: 40px;">Sell %</span>
-             <span class="info-name" style="width: 60px; text-align: center;">Max Cash</span>
+             <span class="info-name" style="width: 60px; text-align: center;">Max Savings</span>
              <span class="info-name" style="width: 310px;">Other</span>
           </div>
            <div class="inline-flex">
@@ -8851,7 +8851,7 @@
 
         const total_level = level + level2;
 
-        starting_status = total_level == 0 ? 2 : starting_status; // 0 level are 'beggar'
+        starting_status = total_level == 0 ? starting_status - 1 : starting_status; // 0 level are 'beggar'
 
         // set status and related fields
         var status = starting_status + perk_status_points + parseInt(total_level / 3);
