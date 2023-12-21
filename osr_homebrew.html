@@ -3044,12 +3044,12 @@
            <div class="inline-flex">
               <input type="number" name="attr_starting_status" value="3" hidden="true"/>
               <input type="text" class="info-name bold-font" style="text-align: center; border-color: #C7C7C7; background-color: #D7D7D7; width: 150px;"
-                     value="Slave" name="attr_status" readonly="true"/>
-              <input type="number" class="info-name inactive-color" style="text-align: right; width: 40px; border-color: #C7C7C7; background-color: #D7D7D7;"
-                    value="0" name="attr_buy_percent" readonly="true"/>
-              <input type="number" class="info-name inactive-color" style="text-align: right; width: 40px; border-color: #C7C7C7; background-color: #D7D7D7;"
-                    value="0" name="attr_sell_percent" readonly="true"/>
-              <input type="number" class="info-name inactive-color" style="text-align: right; width: 60px; border-color: #C7C7C7; background-color: #D7D7D7;"
+                     value="Slave" name="attr_status_title" readonly="true"/>
+              <input type="text" class="info-name inactive-color" style="text-align: right; width: 40px; border-color: #C7C7C7; background-color: #D7D7D7;"
+                    value="1" name="attr_buy_percent" readonly="true"/>
+              <input type="text" class="info-name inactive-color" style="text-align: right; width: 40px; border-color: #C7C7C7; background-color: #D7D7D7;"
+                    value="1" name="attr_sell_percent" readonly="true"/>
+              <input type="text" class="info-name inactive-color" style="text-align: right; width: 60px; border-color: #C7C7C7; background-color: #D7D7D7;"
                     value="10000" name="attr_max_savings" readonly="true"/>
               <input type="text" class="info-name inactive-color" style="width: 310px;  border-color: #C7C7C7; background-color: #D7D7D7;"
                     value="Slave" name="attr_status_other" readonly="true"/>
@@ -3772,7 +3772,7 @@
               <span class="max-prof-level-exceeded-notify med-font italic-font">Max Prof Level:
                 <input type="number" name="attr_max_prof_level_allowed" value="0" hidden="true"/>
                 <!--input type="text" class="inactive-color no-border align-left" style="width: 10%;" name="attr_max_prof_level_name" value="Skilled" readonly="true"/-->
-                <input type="text" class="info3 align-left inactive-color" name="attr_max_prof_level_name" value="Skilled" readonly="true"/>
+                <input type="text" class="info3 align-left" name="attr_max_prof_level_name" value="Skilled" readonly="true"/>
               </span>
             </div>
 
@@ -6669,7 +6669,7 @@
 
      <div class="sheet-section-perks">
        <span class="sheet-spacer">&nbsp;</span>
-        <div class="thick-border perks center" style="width:95%;">
+        <div class="thick-border perks" style="width:95%;">
           <h3>Perks</h3>
           <input type="checkbox" class="sheet-max-perks-overspent" name="attr_perks_overspent" value="0" hidden="true" checked="true"/>
           <input type="checkbox" class="sheet-perks-underspent" name="attr_perks_underspent" value="0" hidden="true" checked="true"/>
@@ -8094,25 +8094,6 @@
     return inventory_dex_ranks[effective_rank];
   };
 
-  // Status Titles and related fields
-  const status_title = ["Slave (-4)", "Outlaw (-3)", "Beggar (-2)", "Working Poor (-1)", "Commoner / Soldier (0)",
-                  "Craftsman / Merchant (1)", "Officer / Official (2)", "High Official (3)", "Lesser Noble (4)",
-                  "Greater Noble (5)", "Leader (6)"];
-  const status_sell_percent = [0,  20,  30,  40,  50,  60,   70,   80,    90,   100,    200 ];
-  const status_buy_percent  = [0, 200, 150, 100, 100, 100,  100,   90,    80,    70,     50 ];
-  const status_max_saving   = [0,   0,   0,  50, 100, 500, 1000, 5000, 10000, 50000, 100000 ];
-  const status_other = [ "not allowed rights or property or freedom", // slave
-                   "price on head; not allowed rights or property", // outlaw
-                   "minimal property and rights",  // beggar
-                   "may have savings", // poor
-                   "may own land", // Commoner
-                   "may own land & business", // craftsman / Merchant
-                   "minor legal immunity, own land/busi.", // official / officier
-                   "legal power, minor legal immun, own land/busi.", // High Official
-                   "legal power, major legal imm., own land/busi.", // Lesser Noble
-                   "legal power, legal imm., own land/busi.",
-                   "Makes laws, total legal imm. & power, 'owns everything'" // King
-                 ];
 
   // Ability modifiers
   const raceMods = { Human: "", Dwarf: "constitution", Halfling: "dexterity", Elven : "charisma:intelligence:dexterity" };
@@ -8120,8 +8101,8 @@
   const bonusNames = [ 'strength_bonus', 'dexterity_bonus', 'constitution_bonus', 'intelligence_bonus', 'wisdom_bonus', 'charisma_bonus' ];
   const armor_dex_mod_penalty = {'none': 0, 'padded': 0, 'leather': 0, 'studded_leather': 0, 'scale': 0, 'chain': 0, 'chainshirt':0, 'half_plate': -1, 'plate': -2};
   abilityNames.forEach( ability => {
-    on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:perk_status_points change:perk_skill_points change:perk_inventory_mod change:armor change:${ability} change:${ability}_bonus`, () => {
-          getAttrs([ability, ...bonusNames, 'armor', 'class', 'class2', 'race', 'level', 'level2', 'skill_points', 'starting_status', 'perk_status_points', 'perk_skill_points', 'perk_inventory_mod'], v => {
+    on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:perk_skill_points change:perk_inventory_mod change:armor change:${ability} change:${ability}_bonus`, () => {
+          getAttrs([ability, ...bonusNames, 'armor', 'class', 'class2', 'race', 'level', 'level2', 'skill_points', 'perk_skill_points', 'perk_inventory_mod'], v => {
               const setting = {};
 
               const ability_bonus_name = `${ability}_bonus`;
@@ -8131,9 +8112,8 @@
 
               const level = parseInt(v.level) || 0;
               const level2 = parseInt(v.level2) || 0;
+              const total_level = level + level2;
               const perk_skill_points = parseInt(v.perk_skill_points) || 0;
-              const perk_status_points = parseInt(v.perk_status_points) || 0;
-              const starting_status = parseInt(v.starting_status) || 0;
               const race = v.race.trim();
               const c_class = v.class.trim();
               const c_class2 = v.class2.trim();
@@ -8182,13 +8162,7 @@
 
                 var class_skill_points = class1_skill_points + class2_skill_points;
 
-                // set status and related fields
-                const status = starting_status + perk_status_points;
-                setting["status"] = status_title[status];
-                setting["buy_percent"] = status_buy_percent[status];
-                setting["sell_percent"] = status_sell_percent[status];
-                setting["max_savings"] = status_max_saving[status];
-                setting["status_other"] = status_other[status];
+
 
                 // always give 1 skill point per level
                 //if (class_skill_points < (level + level2)) {
@@ -8287,7 +8261,27 @@
     });
   });
 
-  // update ability modifiers
+  // Status Titles and related fields
+  const status_title = ["Slave (-4)", "Outlaw (-3)", "Beggar (-2)", "Working Poor (-1)", "Commoner / Soldier (0)",
+                  "Craftsman / Merchant (1)", "Officer / Official (2)", "High Official (3)", "Lesser Noble (4)",
+                  "Greater Noble (5)", "Leader (6)"];
+  const status_sell_percent = [0,  20,  30,  40,  50,  60,   70,   80,    90,   100,    200 ];
+  const status_buy_percent  = ["0", "200", "150", "100", "100", "100",  "100",   "90",    "80",    "70",     "50" ];
+  const status_max_saving   = [0,   0,   0,  50, 100, 500, 1000, 5000, 10000, 50000, 100000 ];
+  const status_other = [ "not allowed rights or property or freedom", // slave
+                   "price on head; not allowed rights or property", // outlaw
+                   "minimal property and rights",  // beggar
+                   "may have savings", // poor
+                   "may own land", // Commoner
+                   "may own land & business", // craftsman / Merchant
+                   "minor legal immunity, own land/busi.", // official / officier
+                   "legal power, minor legal immun, own land/busi.", // High Official
+                   "legal power, major legal imm., own land/busi.", // Lesser Noble
+                   "legal power, legal imm., own land/busi.",
+                   "Makes laws, total legal imm. & power, 'owns everything'" // King
+                 ];
+
+  // update ability modifiers, perk-related stuff
   const abilityCheck = { strength_mod: "fortitude", dexterity_mod: "dodge", constitution_mod: "health", intelligence_mod: "perception", wisdom_mod: "willpower", charisma_mod: "ego" };
   const perkAbility = { strength_mod: "perk_fortitude", dexterity_mod: "perk_dodge", constitution_mod: "perk_health", intelligence_mod: "perk_perception", wisdom_mod: "perk_willpower", charisma_mod: "perk_ego" };
   ['charisma_mod', 'constitution_mod', 'dexterity_mod', 'intelligence_mod', 'strength_mod', 'wisdom_mod', 'charisma_mod'].forEach(ability_mod => {
@@ -8297,12 +8291,14 @@
       const perk_ability_mod = perkAbility[ability_mod];
 
       getAttrs([perk_ability_mod, ability_mod, 'level', 'level2', 'perk_languages'], v => {
-        const setting = {};
         const score = parseInt(v[ability_mod]) || 0;
         const perk_score = parseInt(v[perk_ability_mod]) || 0;
         const level = parseInt(v.level) || 1;
         const level2 = parseInt(v.level2) || 0;
+
         const perk_languages = parseInt(v.perk_languages) || 0;
+
+        var setting = {};
 
         const checkName = abilityCheck[ability_mod];
         setting[checkName] = score + parseInt((level+level2)/2) + perk_score;
@@ -8395,7 +8391,6 @@
 
   const prof_names = ['Unskilled', 'Skilled', 'Proficient', 'Master', 'Grand Master'];
 
-  // General Class/Level stuff
   on(`sheet:opened change:class change:class2 change:level change:level2 change:race change:xp`, () => {
     getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race', 'xp' ], v => {
       const c_align = v.alignment.trim();
@@ -8414,6 +8409,8 @@
       const is_elf = (c_race === 'Elven');
 
       const setting = {};
+
+     // General Class/Level stuff
 
       // calculate next level xp
       const next_level_xp = level < 1 ? 100 : level > 8 ? 128000 * (level + level2 - 7) : 1000 * (2**(level + level2 - 1));
@@ -8512,6 +8509,9 @@
       setting['press_attack'] = is_fighter ? 1 : 0;
       setting['defensive_attack'] = is_fighter ? 1 : 0;
       setting['parry_attack'] = is_fighter ? 1 : 0;
+
+      // reset incase we messed with levels
+      setting['max_perks_allowed'] = 0;
 
       if (is_fighter) {
         const fighter_level = (c_class === 'fighter' ? level : level2);
@@ -8837,8 +8837,38 @@
       });
   };
 
+  // Keep status up to date
+  on(`change:perk_status_points change:level change:level2` , function () {
+      getAttrs(['level', 'level2', 'perk_status_points', 'starting_status'], v => {
+
+        var setting = {};
+
+        const level = parseInt(v.level) || 0;
+        const level2 = parseInt(v.level2) || 0;
+
+        const perk_status_points = parseInt(v.perk_status_points) || 0;
+        var starting_status = parseInt(v.starting_status) || 0;
+
+        const total_level = level + level2;
+
+        starting_status = total_level == 0 ? 2 : starting_status; // 0 level are 'beggar'
+
+        // set status and related fields
+        var status = starting_status + perk_status_points + parseInt(total_level / 3);
+        setting["status_title"] = status_title[status];
+        setting["buy_percent"] = status_buy_percent[status];
+        setting["sell_percent"] = status_sell_percent[status].toString();
+        setting["max_savings"] = status_max_saving[status].toString();
+        setting["status_other"] = status_other[status];
+
+        setAttrs(setting);
+
+      });
+    });
+
   // Keep perks up to date
   on(`change:repeating_perks remove:repeating_perks change:class change:class2 change:level change:level2` , function () {
+
     getSectionIDs('repeating_perks', function (ids) {
       const fieldnames = [];
       var perks_used = 0;
