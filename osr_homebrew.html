@@ -3035,7 +3035,7 @@
         <span style="text-align: center;">&nbsp;</span>
         <div class="block thin-border" style="padding: 2px; top-margin: 2px; background-color: #C7C7C7;">
           <div class="inline-flex">
-             <span class="info-name" style="width: 150px;">Status</span>
+             <span class="info-name bold-font" style="width: 150px;">Status</span>
              <span class="info-name-sm" style="width: 40px;">Buy %</span>
              <span class="info-name-sm" style="width: 40px;">Sell %</span>
              <span class="info-name" style="width: 60px; text-align: center;">Max Cash</span>
@@ -3043,7 +3043,7 @@
           </div>
            <div class="inline-flex">
               <input type="number" name="attr_starting_status" value="3" hidden="true"/>
-              <input type="text" class="info-name" style="text-align: center; border-color: #C7C7C7; background-color: #D7D7D7; width: 150px;"
+              <input type="text" class="info-name bold-font" style="text-align: center; border-color: #C7C7C7; background-color: #D7D7D7; width: 150px;"
                      value="Slave" name="attr_status" readonly="true"/>
               <input type="number" class="info-name inactive-color" style="text-align: right; width: 40px; border-color: #C7C7C7; background-color: #D7D7D7;"
                     value="0" name="attr_buy_percent" readonly="true"/>
@@ -3077,14 +3077,22 @@
     <div class="sheet-inline">
       <input type="radio" name="attr_tab" class="sheet-tab sheet-tab1" value="1" checked="checked" />
       <span class="sheet-tab sheet-tab1">Core Stats</span>
+
       <input type="radio" name="attr_tab" class="sheet-tab sheet-tab2" value="2" />
       <span class="sheet-tab sheet-tab2">Combat</span>
+
       <input type="radio" name="attr_tab" class="sheet-tab sheet-tab3" value="3" />
       <span class="sheet-tab sheet-tab3">Magic</span>
+
       <input type="radio" name="attr_tab" class="sheet-tab sheet-tab4" value="4" />
-      <span class="sheet-tab sheet-tab4">Inventory</span>
+      <span class="sheet-tab sheet-tab4">Perks</span>
+
       <input type="radio" name="attr_tab" class="sheet-tab sheet-tab5" value="5" />
-      <span class="sheet-tab sheet-tab5">Notes</span>
+      <span class="sheet-tab sheet-tab5">Inventory</span>
+
+      <input type="radio" name="attr_tab" class="sheet-tab sheet-tab6" value="6" />
+      <span class="sheet-tab sheet-tab6">Notes</span>
+
       <input type="radio" name="attr_tab" class="sheet-tab sheet-tab99" value="99" />
       <span class="sheet-tab sheet-tab99">Show All</span>
 
@@ -3535,39 +3543,8 @@
             </div>
           </div>
         </div>
-
-           <div class="sheet-thick-border sheet-perks">
-             <h3>Perks</h3>
-             <input type="checkbox" class="sheet-max-perks-overspent" name="attr_perks_overspent" value="0" hidden="true" checked="true"/>
-             <input type="checkbox" class="sheet-perks-underspent" name="attr_perks_underspent" value="0" hidden="true" checked="true"/>
-             <input type="number" name="attr_perk_known_languages" value="0" hidden="false"/>
-             <input type="number" name="attr_perk_status_points" value="0" hidden="false"/>
-             <input type="number" name="attr_perk_skill_points" value="0" hidden="false"/>
-             <label class="italic-font centered-label max-perks-exceeded-notify perks-underspent-notify"><span>Max perks allowed: </span><span name="attr_max_perks_allowed"/></label>
-             <fieldset class="repeating_perks">
-               <div class="sheet-block sheet-thin-border sheet-side-padding">
-                  <div class="sheet-perkcontainer sheet-side-padding">
-                     <select class="sheet-perk-name" name="attr_perk_type">
-                        <option selected="selected" value="none">-- Select Perk --</option>
-                        <option value="assassin">Assassin (Sneak Attack Combat Option, +1 Skill)</option>
-                        <option value="dual_weilder">Dual Wielder (Two Weapon Attack Combat Option, +1 Skill)</option>
-                        <option value="packer">Organized Packer (+1 step for ready items, +1 Skill)</option>
-                        <option value="status">Higher Status (+1 Status, +1 Skill)</option>
-                        <option value="skilled">Skilled (+3 Skills)</option>
-                        <option value="scholar">Scholar (+1 Lang, +2 Skills)</option>
-                        <option value="acrobat">Acrobat (+2 Dodge, +1 Skill)</option>
-                        <option value="bodybuilder">Bodybuilder (+2 Fortitdue, +1 Skill)</option>
-                        <option value="healthy">Healthy(+2 Health, +1 Skill)</option>
-                        <option value="perceptive">Perceptive (+2 Perception, +1 Skill)</option>
-                        <option value="strong_will">Strong Will (+2 Willpower, +1 Skill)</option>
-                        <option value="strong_personality">Strong Personality (+2 Ego, +1 Skill)</option>
-                     </select>
-                   </div>
-               </div>
-            </fieldset>
-          </div>
-
       </div>
+
 
       <div class="sheet-section-combat">
         <span class="sheet-spacer">&nbsp;</span>
@@ -3795,7 +3772,7 @@
               <span class="max-prof-level-exceeded-notify med-font italic-font">Max Prof Level:
                 <input type="number" name="attr_max_prof_level_allowed" value="0" hidden="true"/>
                 <!--input type="text" class="inactive-color no-border align-left" style="width: 10%;" name="attr_max_prof_level_name" value="Skilled" readonly="true"/-->
-                <input type="text" class="info3 align-left" name="attr_max_prof_level_name" value="Skilled" readonly="true"/>
+                <input type="text" class="info3 align-left inactive-color" name="attr_max_prof_level_name" value="Skilled" readonly="true"/>
               </span>
             </div>
 
@@ -6688,6 +6665,40 @@
               </div>
             </div>
           </div>
+     </div>
+
+     <div class="sheet-section-perks">
+       <span class="sheet-spacer">&nbsp;</span>
+        <div class="thick-border perks center" style="width:95%;">
+          <h3>Perks</h3>
+          <input type="checkbox" class="sheet-max-perks-overspent" name="attr_perks_overspent" value="0" hidden="true" checked="true"/>
+          <input type="checkbox" class="sheet-perks-underspent" name="attr_perks_underspent" value="0" hidden="true" checked="true"/>
+          <input type="number" name="attr_perk_known_languages" value="0" hidden="false"/>
+          <input type="number" name="attr_perk_status_points" value="0" hidden="false"/>
+          <input type="number" name="attr_perk_skill_points" value="0" hidden="false"/>
+          <label class="italic-font centered-label max-perks-exceeded-notify perks-underspent-notify"><span>Max perks allowed: </span><span name="attr_max_perks_allowed"/></label>
+          <fieldset class="repeating_perks">
+            <div class="sheet-block sheet-thin-border sheet-side-padding">
+               <div class="sheet-perkcontainer sheet-side-padding">
+                  <select class="sheet-perk-name" name="attr_perk_type">
+                     <option selected="selected" value="none">-- Select Perk --</option>
+                     <option value="assassin">Assassin (Sneak Attack Combat Option, +1 Skill)</option>
+                     <option value="dual_weilder">Dual Wielder (Two Weapon Attack Combat Option, +1 Skill)</option>
+                     <option value="packer">Organized Packer (+1 step for ready items, +1 Skill)</option>
+                     <option value="status">Higher Status (+1 Status, +1 Skill)</option>
+                     <option value="skilled">Skilled (+3 Skills)</option>
+                     <option value="scholar">Scholar (+1 Lang, +2 Skills)</option>
+                     <option value="acrobat">Acrobat (+2 Dodge, +1 Skill)</option>
+                     <option value="bodybuilder">Bodybuilder (+2 Fortitdue, +1 Skill)</option>
+                     <option value="healthy">Healthy(+2 Health, +1 Skill)</option>
+                     <option value="perceptive">Perceptive (+2 Perception, +1 Skill)</option>
+                     <option value="strong_will">Strong Will (+2 Willpower, +1 Skill)</option>
+                     <option value="strong_personality">Strong Personality (+2 Ego, +1 Skill)</option>
+                  </select>
+                </div>
+            </div>
+         </fieldset>
+       </div>
      </div>
 
      <div class="sheet-section-inventory">
