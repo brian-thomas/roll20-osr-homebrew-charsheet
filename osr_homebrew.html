@@ -10,8 +10,6 @@
 
 <div class="licensecontainer compendium-drop-target monsters" data-licensedsheet="attr_licensedsheet">
 
-  <span class="small-font">NPC</span>
-  <input type="checkbox" class="sheet-is_npc" name="attr_npc" value="1" checked="True"/>
   <input type="text" name="attr_token_size" value="1" placeholder="1" hidden="true"/>
 
    <!-- COMPENDIUM DROP CATCHERS -->
@@ -72,6 +70,8 @@
 
   <div class="compendium_warning"><span data-i18n="accepting-drop-u">ACCEPTING DROP FROM COMPENDIUM</span></div>
 
+  <span class="small-font">NPC</span>
+  <input type="checkbox" class="sheet-is_npc" name="attr_npc" value="1" checked="True"/>
   <div class="sheet-section-npc">
     <div class="block padding npc">
       <input type="text" class="align-left npc-name" name="attr_character_name"/>
@@ -2891,7 +2891,7 @@
        <span class="sheet-spacer">&nbsp;</span>
        <div class="thin-border block padding">
          <h3>Notes</h3>
-         <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
+         <textarea class="sheet-npc-notes" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes" accept="data"></textarea>
        </div>
      </div>
 
@@ -8389,8 +8389,11 @@
 ;
   }
 
-  const prof_names = ['Unskilled', 'Skilled', 'Proficient', 'Master', 'Grand Master'];
 
+  // safety to flush failed drops
+  on(`sheet:opened`, () => { cleanup_drop_fields(); });
+
+  const prof_names = ['Unskilled', 'Skilled', 'Proficient', 'Master', 'Grand Master'];
   on(`sheet:opened change:class change:class2 change:level change:level2 change:race change:xp`, () => {
     getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race', 'xp' ], v => {
       const c_align = v.alignment.trim();
@@ -8746,7 +8749,7 @@
         {
             if (!spellattackid || spellattackid === "") {
                 // undefined attack?? add one
-		create_attack_from_spell();
+		            create_attack_from_spell();
                 callbacks.push( function() { create_attack_from_spell(spelllevel, id, character_id); });
             }
             else
@@ -9606,7 +9609,6 @@ const drop_monster_attrs = ["drop_name","drop_weight","drop_properties",
 
 on("change:drop_category", function(eventinfo)
 {
-
     console.debug("Drop category reached:"+eventinfo+"\n event_new_val:"+eventinfo.newValue);
 
     if(eventinfo.newValue === "Monsters") {
@@ -9622,7 +9624,10 @@ on("change:drop_category", function(eventinfo)
     }
     else
     if(eventinfo.newValue === "Items") {
-      console.debug("Drop items (to inventory) reached -- NOT IMPLEMENTED YET")
+      getAttrs(["drop_data", "drop_name"], function(vals) {
+          var results = handle_drop_item(vals);
+          setAttrs(results.update, {silent: true}, function() { results.callbacks.forEach(function(callback) {callback(); })} );
+      });
     }
     else
     if(eventinfo.newValue === "Spells") {
@@ -10017,22 +10022,40 @@ var handle_drop_monster = function(v) {
   const drop_item_attrs = ["drop_name", "drop_level", "drop_properties",
                            "drop_content", "drop_data"];
 
-  var handle_drop_item = function(category, eventinfo) {
+
+  /*{"Damage":"1d6","Weight":"2","Category":"Items","Expansion":"7583",
+  "Item Type":"Weapon","Modifiers":"Melee Attacks +1, Melee Damage +1","data-List":"false",
+  "Properties":"Finesse, Light","Damage Type":"piercing","Item Rarity":"uncommon",
+  "data-description":"You have a bonus to attack and damage rolls made with this magic weapon. The bonus is determined by the weapon’s rarity.",
+  "blobs":{},"expansion":7583}
+  */
+
+  var handle_drop_item = function(v) {
     var callbacks = [];
     var update = {};
-    var id = generateRowID();
 
-    if(category === "Items") {
-      getAttrs(drop_item_attrs, function(v) {
-        console.log("Handle Drop Item called:"+v.drop_name);
+    const name = v.drop_name;
+    const data = JSON.parse(v.drop_data);
+    const item_type = data['Item Type'];
 
-        // do something
+    console.log("Handle Drop Item called (UNFINISHED!): "+name + " (" + item_type + ")");
+    console.log("   DATA: "+JSON.stringify(data));
 
-        // clean up and persist new item
-        callbacks.push( function() {cleanup_drop_fields();} );
-        setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
-      });
+    // TODO: Add item to inventory if we have room
+
+    // TODO: Other actions we may do based on item type
+    if (item_type == 'Melee Weapon') {
+      // add an attack if not present already
+      var attack = {name: name, attk_type: "melee", dam_die: data["Damage"], dam_type: data["Damage Type"]};
+      // callbacks.push( function () { add_attack_if_missing({name: name, attk_type: "melee", dam_die: data["Damage"], dam_type: data["Damage Type"]}); });
     }
+
+
+    // clean up
+    callbacks.push( function() {cleanup_drop_fields();} );
+
+    return { update: update, callbacks: callbacks }
+
   };
 
   const drop_spell_attrs = ["drop_name","drop_level","drop_properties",
