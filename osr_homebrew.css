@@ -7,13 +7,9 @@
     line-height: 18px;
 }
 
-@mixin inactive-color
+.sheet-inactive-color
 {
 	background-color: #ddd;
-}
-
-.sheet-inactive-color {
-	@include inactive-color;
 }
 
 img.sheet-small-image
@@ -99,7 +95,7 @@ input[type=text].sheet-inactive-color,
 input[type=checkbox]:not(:checked).sheet-inactive-color,
 input[type=radio]:not(:checked).sheet-inactive-color
 {
-	@include inactive-color;
+	background-color: #ddd;
 }
 
 .sheet-active-color
@@ -296,7 +292,6 @@ button[type=roll].sheet-button-sm {
 }
 
 button[type=roll].sheet-blank-roll-button {
-	@include inactive-color;
 	background: #ddd;
 	color: black;
 	border: 0px;
@@ -504,7 +499,7 @@ select.side-padding
 	flex-direction: column;
 }
 .sheet-logo {
-	width: 220px;
+	width: 200px;
   margin: 5px auto;
   display: block;
 }
