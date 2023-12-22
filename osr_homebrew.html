@@ -8393,6 +8393,7 @@
   // safety to flush failed drops
   on(`sheet:opened`, () => { cleanup_drop_fields(); });
 
+  // keep up proficiencies
   const prof_names = ['Unskilled', 'Skilled', 'Proficient', 'Master', 'Grand Master'];
   on(`sheet:opened change:class change:class2 change:level change:level2 change:race change:xp`, () => {
     getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race', 'xp' ], v => {
@@ -8423,6 +8424,9 @@
       // hitdice - : not quite right, if they change level its reset..
       setting['hit_dice'] =  level + level2;
       setting['hit_dice_max'] = level + level2;
+
+      // for npc characters
+      setting['npc_hpformula'] = level + "d8";
 
       // deal with sneak attack stuff
       //setting['sneak_attack_enabled'] = (c_class === 'specialist' ? 1 : (c_class2 === 'specialist' ? 1: 0));
