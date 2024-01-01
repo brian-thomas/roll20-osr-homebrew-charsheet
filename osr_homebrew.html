@@ -2927,7 +2927,7 @@
             <select class="sheet-info-name" name="attr_class">
                <option selected="selected" value="none">--</option>
                <option value="fighter">Fighter</option>
-               <option value="cleric">Cleric</option>
+               <!--option value="cleric">Cleric</option-->
                <option value="specialist">Specialist</option>
                <option value="wizard">Wizard</option>
              </select>
@@ -2975,7 +2975,7 @@
                <select class="sheet-info-name" name="attr_class2">
                  <option selected="selected" value="none">--</option>
                  <option value="fighter">Fighter</option>
-                 <option value="cleric">Cleric</option>
+                 <!--option value="cleric">Cleric</option-->
                  <option value="specialist">Specialist</option>
                  <option value="wizard">Wizard</option>
                </select>
@@ -8510,13 +8510,13 @@
       {
         const wizard_level = (c_class === 'wizard' ? level : level2);
         setting["spellcasting_type"] = "Arcane";
-        setting["alignment"] = "Chaotic";
+        // setting["alignment"] = "Chaotic";
       }
       else
       if (is_elf)
       {
         setting["spellcasting_type"] = "Arcane";
-        setting["alignment"] = "Chaotic";
+        // setting["alignment"] = "Chaotic";
       }
       else
       if (is_cleric)
