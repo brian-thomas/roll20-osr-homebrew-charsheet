@@ -3062,12 +3062,27 @@
           <img name="attr_character_token" class="logo"/>
        </div>
        <div class="inline-flex center">
-          <input type="text" name="attr_taint_level" value="0" hidden="true"/>
+         <span style="width: 60px;">Taint Level:</span>
+         <select name="attr_taint_level">
+            <option selcted="selected" value="0">0 - Untainted</option>
+            <option selcted="selected" value="1">1 - Untainted</option>
+            <option selcted="selected" value="2">2 - Untainted</option>
+            <option selcted="selected" value="3">3 - Mild Taint</option>
+            <option selcted="selected" value="4">4 - Mild Taint</option>
+            <option selcted="selected" value="5">5 - Tainted</option>
+            <option selcted="selected" value="6">6 - Tainted</option>
+            <option selcted="selected" value="7">7 - Severe Taint</option>
+            <option selcted="selected" value="8">8 - Severe Taint</option>
+            <option selcted="selected" value="9">9 - Blackened Soul</option>
+        </select>
+          <!--input type="text" name="attr_taint_level" value="0" hidden="true"/-->
           <input type="text" name="attr_exhaustion_level" value="0" hidden="true"/>
           <input type="text" name="attr_condition_msg" value="" hidden="true"/>
+          <!--
           <span name="attr_condition_msg" class="inactive-color"
                 style="text-align: center; border: 0px; font-size: 18px; height: 20px;  width: 290px;"
           />
+          -->
        </div>
     </div>
     </div>
@@ -6733,7 +6748,7 @@
                           <option value="studded_leather">Std. Leather / 1 Slot / +2 AC max DEX bonus</option>
                           <option value="scale">Scale / 1 Enc. Pts. / 1 Slot / +0 AC max DEX bonus</option>
                           <option value="chainshirt">Chain Shirt / 1 Enc. Pts. / 1 Slot / +2 AC max DEX bonus</option>
-                          <option value="chain">Chain / 1 Enc. Pts. / 1 Slot / +1 AC max DEX bonus</option>
+                          <option value="chain">Chain Suit / 1 Enc. Pts. / 1 Slot / +1 AC max DEX bonus</option>
                           <option value="half_plate">Half Plate/ 1 Enc. Pts. / 2 Slots / -1 Dex Mod penalty</option>
                           <option value="plate">Plate / 2 Enc. Pts. / 2 Slots / -2 Dex Mod penalty</option>
                         </select>
