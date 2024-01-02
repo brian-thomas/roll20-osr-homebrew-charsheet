@@ -3828,7 +3828,6 @@
               <input type="checkbox" class="sheet-max-prof-level-exceeded" name="attr_max_prof_level_exceeded" value="0" hidden="true" checked="true"/>
               <span class="max-prof-level-exceeded-notify med-font italic-font">Max Prof Level:
                 <input type="number" name="attr_max_prof_level_allowed" value="0" hidden="true"/>
-                <!--input type="text" class="inactive-color no-border align-left" style="width: 10%;" name="attr_max_prof_level_name" value="Skilled" readonly="true"/-->
                 <input type="text" class="info3 align-left" name="attr_max_prof_level_name" value="Skilled" readonly="true"/>
               </span>
             </div>
@@ -6742,10 +6741,11 @@
                      <option selected="selected" value="none">-- Select Perk --</option>
                      <option value="assassin">Assassin (Sneak Attack Combat Option, +1 Skill)</option>
                      <option value="dual_weilder">Dual Wielder (Two Weapon Attack Combat Option, +1 Skill)</option>
+                     <option value="duelist">Duelist (Aim/Feint Combat Option, +1 Skill)</option>
                      <option value="packer">Organized Packer (+1 step for ready items, +1 Skill)</option>
                      <option value="status">Higher Status (+1 Status, +1 Skill)</option>
-                     <option value="skilled">Skilled (+3 Skills)</option>
-                     <option value="scholar">Scholar (+1 Lang, +2 Skills)</option>
+                     <option value="skilled">Skilled (+4 Skills)</option>
+                     <option value="scholar">Scholar (+2 Lang, +2 Skills)</option>
                      <option value="acrobat">Acrobat (+2 Dodge, +1 Skill)</option>
                      <option value="bodybuilder">Bodybuilder (+2 Fortitdue, +1 Skill)</option>
                      <option value="healthy">Healthy(+2 Health, +1 Skill)</option>
@@ -9016,11 +9016,11 @@
           }
           else if (type === 'skilled')
           {
-            extra_skill_points += 3;
+            extra_skill_points += 4;
           }
           else if (type === 'scholar')
           {
-            extra_known_languages += 1;
+            extra_known_languages += 2;
             extra_skill_points += 2;
           }
           else
