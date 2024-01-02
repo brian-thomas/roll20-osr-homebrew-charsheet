@@ -3949,6 +3949,7 @@
                                 <input type="number" name="attr_attack_cmbt_option_ac_penalty" value="-4" hidden="true"/>
                                 <input type="number" name="attr_attack_crit_range_adj" value="0" hidden="true"/>
                                 <input type="number" name="attr_attack_crit_number" value="20" hidden="true"/>
+                                <input type="text" style="display: none;" name="attr_sneak_attack_dam" value="0" hidden="true"/>
 
                                 <span data-i18n="crit:-u">CRIT:</span>
                                 <input type="text" name="attr_dmgcustcrit" placeholder="1d6" style="width: 80px;">
@@ -4268,7 +4269,7 @@
                             <input type="checkbox" class="sheet-attack-sneak-attack-button-show" name="attr_attack_sneak_attack_button_show" value="1" hidden="true" checked="checked"/>
                             <div class="sheet-attack-sneak-attack-button-enabled">
                               <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_sneak_attack"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{atkname} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{attack_sneak_atkbonus}]] ]]}} {{critical=[[19 + @{attack_sneak_atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{attack_sneak_atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{attack_sneak_attack_dam}]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{attack_sneak_attack_dam} + @{attack_sneak_attack_dam} ]]}} {{math=1d20 + @{attack_sneak_atkbonus} [Attack], @{attack_dam} + @{attack_dam_bonus} + @{attack_sneak_attack_dam} [Dam] }}"></button>
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{atkname} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{sneak_atkbonus}]] ]]}} {{critical=[[19 + @{sneak_atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{sneak_atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} + @{sneak_attack_dam}]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} + @{sneak_attack_dam} + @{sneak_attack_dam} ]]}} {{math=1d20 + @{sneak_atkbonus} [Attack], @{attack_dam} + @{attack_dam_bonus} + @{sneak_attack_dam} [Dam] }}"></button>
                             </div>
                             <div class="sheet-attack-sneak-attack-button-disabled">
                               <button class="inactive-attack-button nod20" type="roll" name="roll_disabled_attack" value="" disabled="true"><span>X</span></button>
@@ -9166,7 +9167,7 @@
         const fieldnames = [];
         ids.forEach(id => {
               fieldnames.push('repeating_attacks_' + id + '_atkname');
-              fieldnames.push('repeating_attacks_' + id + '_attack_sneak_attack_dam');
+              fieldnames.push('repeating_attacks_' + id + '_sneak_attack_dam');
               fieldnames.push('repeating_attacks_' + id + '_dmgbase');
               fieldnames.push('repeating_attacks_' + id + '_dmgtype');
               fieldnames.push('repeating_attacks_' + id + '_attack_form');
@@ -9369,8 +9370,8 @@
                   output['repeating_attacks_' + id + '_attack_press_attack_enabled'] = press_attack;
                   output['repeating_attacks_' + id + '_attack_strong_attack_enabled'] = strong_attack;
                   output['repeating_attacks_' + id + '_attack_stun_attack_enabled'] = stun_attack;
-                  output['repeating_attacks_' + id + '_attack_sneak_attack_dam'] = sneak_dam;
                   output['repeating_attacks_' + id + '_attack_sneak_attack_enabled'] = sneak_attack;
+                  output['repeating_attacks_' + id + '_sneak_attack_dam'] = sneak_dam;
 
                   output['repeating_attacks_' + id + '_atkbonus'] = atkbonus;
                   output['repeating_attacks_' + id + '_attack_dam'] = attack_dam;
