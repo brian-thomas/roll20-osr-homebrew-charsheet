@@ -3117,7 +3117,7 @@
           <div class="sheet-col-left">
             <div class="sheet-flex-between">
               <div class="sheet-col-left-left sheet-thick-border">
-                <h3>Abilities</h3>
+                <h3 style="height: 40px;">Abilities</h3>
                 <div class="sheet-flex">
                   <div class="sheet-ability-column-value">
                     <span style="font-size: 18px;">STR</span>
@@ -3266,105 +3266,118 @@
               </div>
 
               <div class="sheet-col-left-right sheet-save-col sheet-thick-border-no-pad">
-                <h3>Checks</h3>
-                <div class="sheet-flex-between">
-                  <div class="sheet-ability-column-value">
-                    <span class="ability-check-label">Fortitude</span>
+                <h3 style="height: 30px;">Checks</h3>
+                <div class="block" style="height: 90px;">
+                  <div style="text-align: center;">
+                    <button class="blank-roll-button narrow-button" type="roll" name="roll_fortitude"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Fortitude Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{fortitude} + @{fort_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{fortitude}]] + [[@{fort_bonus}]] ]]}}">
+                            <span class="ability-check-label">Fortitude</span>
+                    </button>
                     <input name="attr_perk_fortitude" type="number" value="0" hidden="true"/>
-                    <input class="ability-check-value inactive-color" name="attr_fortitude" type="number" value="0" readonly="true"/>
                   </div>
-                  <div class="sheet-ability-column-value">
-                    <span class="ability-check-bonus-label">bonus</span>
-                    <input type="number" name="attr_fort_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
-                  </div>
-                  <div class="sheet-ability-column-roll sheet-flex">
-                    <button class="sheet-ability-button" type="roll" name="roll_fortitude"
-                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Fortitude Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{fortitude} + @{fort_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{fortitude}]] + [[@{fort_bonus}]] ]]}}"></button>
-                    </button>
+                  <div class="sheet-flex-between">
+                    <div class="sheet-ability-column-bonus">
+                      <input class="ability-check-value inactive-color" name="attr_fortitude" type="number" value="0" readonly="true"/>
+                    </div>
+                    <div style="height: 50px;" class="sheet-ability-column-value">
+                      <span class="ability-check-bonus-label">bonus</span>
+                      <input type="number" name="attr_fort_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
+                    </div>
                   </div>
                 </div>
-                <div class="sheet-flex-between">
-                  <div class="sheet-ability-column-value">
-                    <span class="ability-check-label">Dodge</span>
+
+                <div class="block" style="height: 90px;">
+                  <div style="text-align: center;">
+                    <button class="blank-roll-button narrow-button" type="roll" name="roll_dodge"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dodge Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{dodge} + @{dodge_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{dodge}]] + [[@{dodge_bonus}]] ]]}}">
+                            <span class="ability-check-label">Dodge</span>
+                    </button>
                     <input name="attr_perk_dodge" type="number" value="0" hidden="true"/>
-                    <input class="ability-check-value inactive-color" name="attr_dodge" type="number" value="0" readonly="true"/>
                   </div>
-                  <div class="sheet-ability-column-value">
-                    <span class="ability-check-bonus-label">bonus</span>
-                    <input type="number" name="attr_dodge_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
-                  </div>
-                  <div class="sheet-ability-column-roll sheet-flex">
-                    <button class="sheet-ability-button" type="roll" name="roll_dodge"
-                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Dodge Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{dodge} + @{dodge_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{dodge}]] + [[@{dodge_bonus}]] ]]}}"></button>
-                    </button>
+                  <div class="sheet-flex-between">
+                    <div class="sheet-ability-column-bonus">
+                        <input class="ability-check-value inactive-color" name="attr_dodge" type="number" value="0" readonly="true"/>
+                    </div>
+                    <div style="height: 50px;" class="sheet-ability-column-value">
+                        <span class="ability-check-bonus-label">bonus</span>
+                        <input type="number" name="attr_dodge_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
+                    </div>
                   </div>
                 </div>
 
-                <div class="sheet-flex-between">
-                  <div class="sheet-ability-column-value">
-                    <span class="ability-check-label">Health</span>
+                <div class="block" style="height: 90px;">
+                  <div style="text-align: center;">
+                    <button class="blank-roll-button narrow-button" type="roll" name="roll_health"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Health Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{health} +@{health_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{health}]] + [[@{health_bonus}]] ]]}}">
+                            <span class="ability-check-label">Health</span>
+                    </button>
                     <input name="attr_perk_health" type="number" value="0" hidden="true"/>
-                    <input class="ability-check-value inactive-color" name="attr_health" type="number" value="0" readonly="true"/>
                   </div>
-                  <div class="sheet-ability-column-value">
-                    <span class="ability-check-bonus-label">bonus</span>
-                    <input type="number" name="attr_health_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
-                  </div>
-                  <div class="sheet-ability-column-roll sheet-flex">
-                    <button class="sheet-ability-button" type="roll" name="roll_health"
-                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Health Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{health} +@{health_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{health}]] + [[@{health_bonus}]] ]]}}"></button>
-                    </button>
+                  <div class="sheet-flex-between">
+                    <div class="sheet-ability-column-bonus">
+                        <input class="ability-check-value inactive-color" name="attr_health" type="number" value="0" readonly="true"/>
+                    </div>
+                    <div style="height: 50px;" class="sheet-ability-column-value">
+                        <span class="ability-check-bonus-label">bonus</span>
+                        <input type="number" name="attr_health_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
+                    </div>
                   </div>
                 </div>
 
-                <div class="sheet-flex-between">
-                  <div class="sheet-ability-column-value">
-                    <span class="ability-check-label">Perception</span>
+                <div class="block" style="height: 90px;">
+                  <div style="text-align: center;">
+                    <button class="blank-roll-button narrow-button" type="roll" name="roll_perception"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Perception Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{perception} + @{per_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{perception}]] + [[@{per_bonus}]] ]]}}">
+                            <span class="ability-check-label">Perception</span>
+                    </button>
                     <input name="attr_perk_perception" type="number" value="0" hidden="true"/>
-                    <input class="ability-check-value inactive-color" name="attr_perception" type="number" value="0" readonly="true"/>
                   </div>
-                  <div class="sheet-ability-column-value">
-                    <span class="ability-check-bonus-label">bonus</span>
-                    <input type="number" name="attr_per_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
-                  </div>
-                  <div class="sheet-ability-column-roll sheet-flex">
-                    <button class="sheet-ability-button" type="roll" name="roll_perception"
-                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Perception Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{perception} + @{per_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{perception}]] + [[@{per_bonus}]] ]]}}"></button>
-                    </button>
+                  <div class="sheet-flex-between">
+                    <div class="sheet-ability-column-bonus">
+                        <input class="ability-check-value inactive-color" name="attr_perception" type="number" value="0" readonly="true"/>
+                    </div>
+                    <div style="height: 50px;" class="sheet-ability-column-value">
+                        <span class="ability-check-bonus-label">bonus</span>
+                        <input type="number" name="attr_per_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
+                    </div>
                   </div>
                 </div>
 
-                <div class="sheet-flex-between">
-                  <div class="sheet-ability-column-value">
-                    <span class="ability-check-label">Willpower</span>
+                <div class="block" style="height: 90px;">
+                  <div style="text-align: center;">
+                    <button class="blank-roll-button narrow-button" type="roll" name="roll_willpower"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Willpower Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{willpower} +@{will_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{willpower}]] +[[@{will_bonus}]] ]]}}">
+                            <span class="ability-check-label">Willpower</span>
+                    </button>
                     <input name="attr_perk_willpower" type="number" value="0" hidden="true"/>
-                    <input class="ability-check-value inactive-color" name="attr_willpower" type="number" value="0" readonly="true"/>
                   </div>
-                  <div class="sheet-ability-column-value">
-                    <span class="ability-check-bonus-label">bonus</span>
-                    <input type="number" name="attr_will_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
-                  </div>
-                  <div class="sheet-ability-column-roll sheet-flex">
-                    <button class="sheet-ability-button" type="roll" name="roll_willpower"
-                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Willpower Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{willpower} +@{will_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{willpower}]] +[[@{will_bonus}]] ]]}}"></button>
-                    </button>
+                  <div class="sheet-flex-between">
+                    <div class="sheet-ability-column-bonus">
+                        <input class="ability-check-value inactive-color" name="attr_willpower" type="number" value="0" readonly="true"/>
+                    </div>
+                    <div style="height: 50px;" class="sheet-ability-column-value">
+                        <span class="ability-check-bonus-label">bonus</span>
+                        <input type="number" name="attr_will_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
+                    </div>
                   </div>
                 </div>
 
-                <div class="sheet-flex-between">
-                  <div class="sheet-ability-column-value">
-                    <span class="ability-check-label">Ego</span>
-                    <input name="attr_perk_ego" type="number" value="0" hidden="true"/>
-                    <input class="ability-check-value inactive-color" name="attr_ego" type="number" value="0" readonly="true"/>
-                  </div>
-                  <div class="sheet-ability-column-value">
-                    <span class="ability-check-bonus-label">bonus</span>
-                    <input type="number" name="attr_ego_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
-                  </div>
-                  <div class="sheet-ability-column-roll sheet-flex">
-                    <button class="sheet-ability-button" type="roll" name="roll_ego"
-                    value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Ego Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{ego} +@{ego_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{ego}]] +[[@{ego_bonus}]] ]]}}"></button>
+                <div class="block" style="height: 90px;">
+                  <div style="text-align: center;">
+                    <button class="blank-roll-button narrow-button" type="roll" name="roll_ego"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Ego Check}} {{subheader=@{character_name}}} {{save=1}} {{math=roll: 1d20 + @{ego} + @{ego_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{ego}]] +[[@{ego_bonus}]] ]]}}">
+                            <span class="ability-check-label">Ego</span>
                     </button>
+                    <input name="attr_perk_ego" type="number" value="0" hidden="true"/>
+                  </div>
+                  <div class="sheet-flex-between">
+                    <div class="sheet-ability-column-bonus">
+                        <input class="ability-check-value inactive-color" name="attr_ego" type="number" value="0" readonly="true"/>
+                    </div>
+                    <div style="height: 50px;" class="sheet-ability-column-value">
+                        <span class="ability-check-bonus-label">bonus</span>
+                        <input type="number" name="attr_ego_bonus" class="sheet-ability-bonus-value sheet-purple-border" value="0"/>
+                    </div>
                   </div>
                 </div>
 

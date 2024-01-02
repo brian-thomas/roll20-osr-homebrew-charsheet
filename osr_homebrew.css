@@ -284,7 +284,6 @@ button[type=roll].sheet-narrow-button
 		height: 22px;
 }
 
-
 button[type=roll].sheet-button-sm {
 	background-color: transparent;
 	width: 20px;
@@ -484,7 +483,7 @@ select.side-padding
     width: 49%;
 }
 .sheet-col-left-left{
-	width: 63%;
+	width: 70%;
 	}
 .sheet-col-right-inv {
 	width: 62%;
@@ -493,7 +492,7 @@ select.side-padding
 	width: 37%;
 }
 .sheet-col-left-right {
-	width: 35%;
+	width: 28%;
 }
 .sheet-save-col {
 	flex-direction: column;
@@ -713,7 +712,6 @@ input.sheet-align-right
 .sheet-ability-column-value,
 .sheet-ability-column-bonus
 {
-	height: 90px;
 	text-align: center;
   font-weight: bold;
 }
@@ -820,7 +818,6 @@ input[type=number].sheet-ability-bonus-value
 {
 	width: 30px;
   height: 30px;
-  margin-top: 6px;
 }
 
 
@@ -889,9 +886,8 @@ input[type=number].sheet-ability-check-value-wide {
 
 .sheet-ability-check-bonus-label
 {
-    display: block;
     font-size: 10px;
-    margin-top: 11px;
+    margin-top: 8px;
     margin-bottom: 0px;
     padding: 0px;
 }
@@ -2102,7 +2098,6 @@ span.sheet-spellconcentration {
 			  width: 12px; }
 
 .charsheet .sheet-spell .sheet-display button[type=roll].sheet-spellcard {
-	                  border: 2px solid blue;
 			  width: calc(100% - 81px); }
 			  /* width: calc(100% - 21px); } */
 
