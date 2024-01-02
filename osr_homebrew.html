@@ -8569,17 +8569,18 @@
         const fighter_level = (c_class === 'fighter' ? level : level2);
         setting['berserk_attack_mod'] = 2 + parseInt(fighter_level/4)
         setting['max_cmbt_opts_allowed'] = 1 + parseInt(fighter_level/2);
-        setting['max_prof_allowed'] = 3 + fighter_level;
-        const max_prof_level = fighter_level > 4 ? 4 : fighter_level;
+        setting['max_prof_allowed'] = fighter_level > 0 ? 3 + fighter_level : 1;
+        const max_prof_level = fighter_level > 4 ? 4 : fighter_level > 0 ? fighter_level : 1;
         setting['max_prof_level_allowed'] = max_prof_level;
         setting['max_prof_level_name'] = prof_names[max_prof_level];
 
       } else if (is_specialist) {
         const specialist_level = (c_class === 'specialist' ? level : level2);
-        setting['max_prof_allowed'] = 3;
+        setting['max_prof_allowed'] = specialist_level > 0 ? 3 : 1;
         setting['max_perks_allowed'] = specialist_level;
+
       } else if (is_cleric) {
-        setting['max_prof_allowed'] = 2;
+        setting['max_prof_allowed'] = cleric_level > 0 ? 2 : 1;
       }
 
       setAttrs(setting);
