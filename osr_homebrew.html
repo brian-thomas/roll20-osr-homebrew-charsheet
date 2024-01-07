@@ -10170,6 +10170,8 @@ var handle_drop_monster = function(v) {
         update[repeating_source + "_spelloutput"] = "SPELLCARD";
         update[repeating_source + "_spelldescription"] = data["data-description"] ? data["data-description"] : v.drop_content;
 
+        update[repeating_source + "_includedesc"] = "on";
+
         if (is_cantrip) {
            update[repeating_source + "_innate"] = "at-will";
         }
