@@ -3846,6 +3846,7 @@
                         <span class="label" style="width: 42px; margin-left: 8px;" data-i18n="notch-u">NOTCHES</span>
                         <span class="label" style="width: 42px;" data-i18n="proflevel-u">PROF LVL</span>
                         <span class="label" style="width: 115px;" data-i18n="name-u">NAME</span>
+                        <span class="label" style="width: 30px;" data-i18n="magic-bonus-u">BONUS</span>
                         <span class="label" style="width: 65px; text-align: center;" data-i18n="atk-form-u">FORM</span>
                         <span class="label" style="width: 25px; text-align: center;" data-i19n="atk-bonus-u">ATK</span>
                         <span class="label" style="width: 55px; text-align: center;" data-i18n="atk-dmg-u">DAMAGE</span>
@@ -3925,19 +3926,29 @@
                                 <span style="margin-left: 17px;" data-i18n="range:-u">RANGE:</span>
                                 <input type="text" name="attr_atkrange" placeholder="Self (60-foot cone)" style="width: 170px;" data-i18n-placeholder="range-place">
                             </div>
+			    <!--
                             <div class="row">
                                 <span style="margin-left: 17px;" data-i18n="magic-bonus:-u">MAGIC BONUS:</span>
                                 <input type="number" class="num" name="attr_atkmagic" value="0" placeholder="0">
-			    <!--
                                 <span data-i18n="crit-range-u">CRIT RANGE:</span>
-			    -->
                             </div>
+			    -->
+                            <input name="attr_attack_dam" value="0" hidden="true"/>
+                            <!--
                             <div class="row">
                                 <input type="checkbox" name="attr_dmgflag" value="{{damage=1}} {{dmg1flag=1}}" checked="checked">
                                 <span data-i18n="damage:-u">DAMAGE:</span>
-                                <input name="attr_attack_dam" value="0" hidden="true"/>
                                 <input type="text" name="attr_dmgbase" placeholder="1d6" style="width: 50px;"/>
                             </div>
+                            -->
+
+                            <input type="number" name="attr_attack_proficiency_dam_bonus" value="0" hidden="true"/>
+                            <input type="number" name="attr_attack_cmbt_option_ac_penalty" value="-4" hidden="true"/>
+                            <input type="number" name="attr_attack_crit_range_adj" value="0" hidden="true"/>
+                            <input type="number" name="attr_attack_crit_number" value="20" hidden="true"/>
+                            <input type="text" style="display: none;" name="attr_sneak_attack_dam" value="0" hidden="true"/>
+
+                            <!--
                             <div class="row">
                                 <span style="margin-left: 17px;" data-i18n="type:-u">TYPE:</span>
                                 <select name="attr_dmgtype" style="width: 50px;">
@@ -3955,17 +3966,10 @@
                                   <option value="Radiant">Radiant</option>
                                   <option value="Thunder">Thunder</option>
                                 </select>
-
-                                <input type="number" name="attr_attack_proficiency_dam_bonus" value="0" hidden="true"/>
-                                <input type="number" name="attr_attack_cmbt_option_ac_penalty" value="-4" hidden="true"/>
-                                <input type="number" name="attr_attack_crit_range_adj" value="0" hidden="true"/>
-                                <input type="number" name="attr_attack_crit_number" value="20" hidden="true"/>
-                                <input type="text" style="display: none;" name="attr_sneak_attack_dam" value="0" hidden="true"/>
-
                                 <span data-i18n="crit:-u">CRIT:</span>
                                 <input type="text" name="attr_dmgcustcrit" placeholder="1d6" style="width: 80px;">
                             </div>
-			    <!--
+
                             <div class="row">
                                 <input type="checkbox" name="attr_dmg2flag" value="{{damage=1}} {{dmg2flag=1}}"/>
                                 <span data-i18n="damage2:-u">DAMAGE2:</span>
@@ -4094,6 +4098,7 @@
                                                value="[[@{strength_mod}+@{atkmagic}+@{attack_proficiency_dam_bonus}]]" disabled="true" hidden="true"/>
 
                           <input type="text" name="attr_atkname" style="width: 119px;">
+                          <input type="number" class="purple-border" name="attr_atkmagic" style="width: 30px; text-align: center;" value="0" placeholder="0">
                           <select name="attr_attack_form" style="width: 68px; font-size: 10px;">
                             <option selected="selected" value="melee">Melee</option>
                             <option value="ranged">Ranged</option>
@@ -4101,7 +4106,8 @@
                             <option value="spell">Spell</option>
                           </select>
                           <span name="attr_atkbonus" style="width: 25px; text-align: center;"></span>
-                          <span name="attr_attack_dam" style="width: 45px; text-align: center"></span>
+                          <!--span name="attr_attack_dam" style="width: 45px; text-align: center"></span-->
+                          <input type="text" name="attr_dmgbase" placeholder="0d6" style="width: 45px; text-align: center;"/>
 
                           <input name="attr_attack_damage_msg" value="" hidden="true"/>
 
@@ -9319,7 +9325,7 @@
                   var atkbonus = is_proficient ? attack_form_ab : attack_form_base_ab;
 
                   // tack in magic bonus
-		  atkbonus += attack_magic;
+		              atkbonus += attack_magic;
 
                   // increased proficiency provides benefits
                   var proficiency_dam_bonus = 0;
@@ -9367,10 +9373,12 @@
                   const sneak_dam = (sneak_dice * num_dam_die ) + 'd' + attack_dam_die_type;
                   var attack_dam = attack_dambase; // num_dam_die + 'd' + attack_dam_die_type;
 
-	          // add magic bonus to damage
-	          if (attack_magic != 0) {
-		          attack_dam = attack_dambase + '+' + attack_magic;
-	          }
+      	          // add magic bonus to damage
+                  /*
+      	          if (attack_magic != 0) {
+      		          attack_dam = attack_dambase + '+' + attack_magic;
+      	          }
+                  */
 
                   // apply new properties to attack
                   output['repeating_attacks_' + id + '_attack_berserk_attack_enabled'] = berserk_attack;
