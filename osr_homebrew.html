@@ -9352,14 +9352,12 @@
 
                   // final calculations
                   const sneak_dam = (sneak_dice * num_dam_die ) + 'd' + attack_dam_die_type;
-                  var attack_dam = attack_dambase; // num_dam_die + 'd' + attack_dam_die_type;
+                  var attack_dam = num_dam_die + 'd' + attack_dam_die_type;
 
-      	          // add magic bonus to damage
-                  /*
-      	          if (attack_magic != 0) {
-      		          attack_dam = attack_dambase + '+' + attack_magic;
-      	          }
-                  */
+                  var partsArray = attack_dambase.split('+');
+                  if (partsArray[1]) {
+                     attack_dam = attack_dam + " + " + partsArray[1];
+                  }
 
                   // apply new properties to attack
                   output['repeating_attacks_' + id + '_attack_berserk_attack_enabled'] = berserk_attack;
