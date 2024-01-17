@@ -3118,8 +3118,11 @@
               <div class="sheet-col-left-left sheet-thick-border">
                 <h3 style="height: 40px;">Abilities</h3>
                 <div class="sheet-flex">
-                  <div class="sheet-ability-column-value">
-                    <span style="font-size: 18px;">STR</span>
+                  <div style="text-align: center;">
+                    <button class="blank-roll-button narrow-button" type="roll" name="roll_str_check"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=STR Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{strength_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{strength_mod}]]}}">
+                            <span class="ability-check-label" style="font-size: 18px;">STR</span>
+                    </button>
                     <input class="ability-value" name="attr_strength" type="number" value="10"/>
                   </div>
                   <div class="sheet-ability-column-bonus">
@@ -3133,17 +3136,14 @@
                   <div class="sheet-ability-column-modifier sheet-flex-between">
                     <span class="noborder left-pad">Melee AB, Athletics, Open Doors, Encumbrance, Fortitude</span>
                   </div>
-                  <!--
-                  <div class="sheet-ability-column-roll sheet-flex">
-                    <button class="sheet-ability-button" type="roll" name="roll_str_check"
-                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=STR Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{strength_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{strength_mod}]]}}"></button>
-                  </div>
-                  -->
                 </div>
 
                 <div class="sheet-flex">
-                  <div class="sheet-ability-column-value">
-                    <span style="font-size: 18px;">DEX</span>
+                  <div style="text-align: center;">
+                    <button class="blank-roll-button narrow-button" type="roll" name="roll_dex_check"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=DEX Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{dexterity_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{dexterity_mod}]]}}">
+                       <span class="ability-check-label" style="font-size: 18px;">DEX</span>
+                    </button>
                     <input class="ability-value" name="attr_dexterity" type="number" value="10"/>
                   </div>
                   <div class="sheet-ability-column-bonus">
@@ -3158,17 +3158,14 @@
                   <div class="sheet-ability-column-modifier sheet-flex-between">
                     <span class="noborder left-pad">Ranged AB, Dodge, AC, Initiative, Stealth</span>
                   </div>
-                  <!--
-                  <div class="sheet-ability-column-roll sheet-flex">
-                    <button class="sheet-ability-button" type="roll" name="roll_dex_check"
-                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=DEX Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{dexterity_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{dexterity_mod}]] ]]}}"></button>
-                  </div>
-                  -->
                 </div>
 
                 <div class="sheet-flex">
-                  <div class="sheet-ability-column-value">
-                    <span style="font-size: 18px;">CON</span>
+                  <div style="text-align: center;">
+                    <button class="blank-roll-button narrow-button" type="roll" name="roll_con_check"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=CON Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{constitution_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{constitution_mod}]]}}">
+                      <span class="ability-check-label" style="font-size: 18px;">CON</span>
+                    </button>
                     <input class="ability-value" name="attr_constitution" type="number" value="10"/>
                   </div>
                   <div class="sheet-ability-column-bonus">
@@ -3182,18 +3179,14 @@
                   <div class="sheet-ability-column-modifier sheet-flex-between">
                     <span class="noborder left-pad">Health, Hit Points</span>
                   </div>
-                  <!--
-                  <div class="sheet-ability-column-roll sheet-flex">
-                    <button class="sheet-ability-button" type="roll" name="roll_con_check"
-                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=CON Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{constitution_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{constitution_mod}]] ]]}}"></button>
-
-                  </div>
-                  -->
                 </div>
 
                 <div class="sheet-flex">
-                  <div class="sheet-ability-column-value">
-                    <span style="font-size: 18px;">INT</span>
+                  <div style="text-align: center;">
+                    <button class="blank-roll-button narrow-button" type="roll" name="roll_int_check"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=INT Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{intelligence_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{intelligence_mod}]]}}">
+                      <span class="ability-check-label" style="font-size: 18px;">INT</span>
+                   </button>
                     <input class="ability-value" name="attr_intelligence" type="number" value="10"/>
                   </div>
                   <div class="sheet-ability-column-bonus">
@@ -3207,17 +3200,14 @@
                   <div class="sheet-ability-column-modifier sheet-flex-between">
                     <span class="noborder left-pad">Perception, Languages, Search, Magic Spell Casting, Skills </span>
                   </div>
-                  <!--
-                  <div class="sheet-ability-column-roll sheet-flex">
-                    <button class="sheet-ability-button" type="roll" name="roll_int_check"
-                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=INT Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{intelligence_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{intelligence_mod}]] ]]}}"></button>
-                  </div>
-                  -->
                 </div>
 
                 <div class="sheet-flex">
-                  <div class="sheet-ability-column-value">
-                    <span style="font-size: 18px;">WIS</span>
+                  <div style="text-align: center;">
+                    <button class="blank-roll-button narrow-button" type="roll" name="roll_wis_check"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=WIS Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{wisdom_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{wisdom_mod}]]}}">
+                      <span class="ability-check-label" style="font-size: 18px;">WIS</span>
+                    </button>
                     <input class="ability-value" name="attr_wisdom" type="number" value="10"/>
                   </div>
                   <div class="sheet-ability-column-bonus">
@@ -3231,17 +3221,14 @@
                   <div class="sheet-ability-column-modifier sheet-flex-between">
                     <span class="noborder left-pad">Willpower, Cleric Powers</span>
                   </div>
-                  <!--
-                  <div class="sheet-ability-column-roll sheet-flex">
-                    <button class="sheet-ability-button" type="roll" name="roll_wis_check"
-                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=WIS Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{wisdom_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{wisdom_mod}]] ]]}}"></button>
-                  </div>
-                  -->
                 </div>
 
                 <div class="sheet-flex">
-                  <div class="sheet-ability-column-value">
-                    <span style="font-size: 18px;">CHA</span>
+                  <div style="text-align: center;">
+                    <button class="blank-roll-button narrow-button" type="roll" name="roll_cha_check"
+                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=CHA Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{charisma_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + @{charisma_mod}]]}}">
+                      <span class="ability-check-label" style="font-size: 18px;">CHA</span>
+                    </button>
                     <input class="ability-value" name="attr_charisma" type="number" value="10"/>
                   </div>
                   <div class="sheet-ability-column-bonus">
@@ -3255,12 +3242,6 @@
                   <div class="sheet-ability-column-modifier sheet-flex-between">
                     <span class="noborder left-pad">Ego, Retainer Recruitment, Loyalty, Reaction, Social Skill</span>
                   </div>
-                  <!--
-                  <div class="sheet-ability-column-roll sheet-flex">
-                    <button class="sheet-ability-button" type="roll" name="roll_cha_check"
-                            value="&{template:roll_check} {{character_name=@{character_name}}} {{title=CHA Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{charisma_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{charisma_mod}]] ]]}}"></button>
-                  </div>
-                  -->
                 </div>
               </div>
 
