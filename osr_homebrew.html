@@ -514,41 +514,37 @@
         <div class="block thick-border">
           <h3>Spellcasting</h3>
           <div class="sheet-flex-between">
-            <div class="sheet-flex">
-              <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
-                <span>Spellcasting Type</span>
-              </div>
-              <div class="sheet-ability-column-modifier sheet-flex-between">
-                <select class="attack-param-long" name="attr_spellcasting_type">
-                  <option selected="selected" value="none">--</option>
-                  <option value="Arcane">Arcane</option>
-                  <option value="Divine">Divine</option>
+            <div class="col col1 block">
+              <div class="center"> <span class="bold-font">Spellcasting Type</span> </div>
+              <div class="center">
+                <select name="attr_spellcasting_type" style="width: 80px; text-alignment: center;">
+                    <option selected="selected" value="Arcane">Arcane</option>
+                    <option value="Divine">Divine</option>
                 </select>
               </div>
             </div>
-            <div class="sheet-flex">
-              <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
-                <span>Spellcasting Modifier</span>
+
+            <div class="col col2 block">
+              <div class="center">
+                 <input class="ability-check-value sheet-inactive-color center" name="attr_spellcasting_mod" type="number" value="0" readonly="true"/>
               </div>
-              <div class="sheet-ability-column-modifier sheet-flex-between">
-                <div class="sheet-thin-border sheet-flex sheet-side-padding">
-                  <input class="ability-value" name="attr_spellcasting_mod" type="number" value="0"/>
-                </div>
-              </div>
+              <div class="center"> <span class="bold-font">Spellcasting Modifier</span> </div>
             </div>
-            <div class="sheet-flex">
-              <div class="sheet-ability-column-modifier sheet-flex-between sheet-side-padding">
-                <span>Spell Save DC</span>
+
+            <div class="col col3 block">
+              <div class="center">
+                 <input class="ability-check-value sheet-inactive-color center" name="attr_spellcasting_dc" type="number" value="0" readonly="true"/>
               </div>
-              <div class="sheet-ability-column-modifier sheet-flex-between">
-                <div class="sheet-thin-border sheet-flex sheet-side-padding">
-                  <input class="ability-value" name="attr_spellcasting_dc" type="number" value="0"/>
-                </div>
+              <div class="center"> <span class="bold-font">Spell Save DC</span> </div>
+            </div>
+            <div class="col col4 block">
+              <div class="center">
+                 <input class="ability-check-value sheet-inactive-color center" style="background-color: white;" name="attr_spellcasting_fatigue" type="number" value="0"/>
+                 <input name="attr_spellcasting_fatigue_max" type="number" value="10" hidden="true"/>
               </div>
+              <div class="center"> <span class="bold-font">SpellCasting Fatigue</span> </div>
             </div>
           </div>
-
-          <button type="action" name="act_spellrest">Regain All Spellslots</button>
 
           <h4 class="bottom-line">Spells</h4>
           <div class="npc-traitcontainer sheet-spells">
@@ -678,7 +674,7 @@
                                             <input type="text" name="attr_spelldamage" style="width: 50px;">
                                             <span data-i18n="type:-u">TYPE:</span>
                                             <select name="attr_dmgtype" style="width: 103px;">
-                                                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
+                                                <option selected="selected" value="Bludgeoning">Bludgeon</option>
                                                 <option value="Piercing">Pierce</option>
                                                 <option value="Slashing">Slash</option>
                                                 <option value="Acid">Acid</option>
