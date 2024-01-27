@@ -1637,7 +1637,7 @@ button[type=roll]:hover *,
 .sheet-spell-level .sheet-difficulty-dc {
   background-color: #ddd;
   border-radius: 15px;
-  vertical-align: bottom; 
+  vertical-align: bottom;
   width: 30px;
 }
 
@@ -2100,7 +2100,7 @@ span.sheet-spellconcentration {
 			}
 			  /* width: calc(100% - 21px); } */
 
-.charsheet .sheet-spell .sheet-display button[type=roll].sheet-adhoc {
+.charsheet .sheet-spell .sheet-display button[type=roll].sheet-spell2 {
 			  width: calc(100% - 181px);
 			}
 
@@ -3128,8 +3128,8 @@ div.sheet-label
 
 /* Generic header */
 .sheet-rolltemplate-simple,
-.sheet-rolltemplate-roll_check .sheet-rt-header, 
-.sheet-rolltemplate-spell-adhoc .sheet-rt-header
+.sheet-rolltemplate-roll_check .sheet-rt-header,
+.sheet-rolltemplate-spell2 .sheet-rt-header
 {
         text-align: center;
         position: relative;
@@ -3309,7 +3309,7 @@ div.sheet-label
 }
 
 .sheet-rolltemplate-roll_check .sheet-rt-title,
-.sheet-rolltemplate-spell-adhoc .sheet-rt-title
+.sheet-rolltemplate-spell2 .sheet-rt-title
 {
    font-size: 1.0em;
    font-weight: bold;
@@ -3320,7 +3320,7 @@ div.sheet-label
 */
 
 .sheet-rolltemplate-roll_check .sheet-rt-subheader2,
-.sheet-rolltemplate-spell-adhoc .sheet-rt-subheader2
+.sheet-rolltemplate-spell2 .sheet-rt-subheader2
 {
   color: yellow;
 }

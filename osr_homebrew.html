@@ -577,8 +577,8 @@
                                <input type="hidden" name="attr_spell_dc"/>
                                <input type="hidden" name="attr_spell_dc_show"/>
                                <input type="hidden" name="attr_rollcontent"
-						                          value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}}
-                                             {{spellcasting_mod=@{spellcasting_mod} }} {{adhoc=[[1d20 + @{spellcasting_mod} ]]}} {{dc=[[@{spell_dc}]]}}
+						                          value="@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}}
+                                             {{spellcasting_mod=@{spellcasting_mod} }} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{dc=[[@{spell_dc}]]}}
                                              {{critical=[[19]]}} {{fumble=[[2]]}} {{innate=@{innate}}} {{description=@{spelldescription}}}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
@@ -4388,7 +4388,7 @@
                                <input type="hidden" name="attr_spell_dc"/>
                                <input type="hidden" name="attr_spell_dc_show"/>
                                <input type="hidden" name="attr_rollcontent"
-						                          value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{adhoc=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+			                                value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -4418,8 +4418,277 @@
                                         <input type="text" name="attr_spellname">
                                     </div>
                                     <div class="row">
+                                        <span data-i18n="school:-u">SCHOOL:</span>
+                                        <select name="attr_spellschool">
+                                            <option value="abjuration" data-i18n="abjuration">Abjuration</option>
+                                            <option value="conjuration" data-i18n="conjuration">Conjuration</option>
+                                            <option value="divination" data-i18n="divination">Divination</option>
+                                            <option value="enchantment" data-i18n="enchantment">Enchantment</option>
+                                            <option value="evocation" data-i18n="evocation">Evocation</option>
+                                            <option value="illusion" data-i18n="illusion">Illusion</option>
+                                            <option value="necromancy" data-i18n="necromancy">Necromancy</option>
+                                            <option value="transmutation" data-i18n="transmutation">Transmutation</option>
+                                        </select>
+                                        <!--
+                                        <input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
+                                        <span data-i18n="ritual-u">RITUAL</span>
+                                        -->
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="casting-time:-u">CASTING TIME:</span>
+                                        <input type="text" name="attr_spellcastingtime">
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="range:-u">RANGE:</span>
+                                        <input type="text" name="attr_spellrange">
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="target:-u">TARGET:</span>
+                                        <input type="text" name="attr_spelltarget">
+                                    </div>
+                                    <input type="hidden" name="attr_spellcomp">
+                                    <div class="row">
+                                        <span data-i18n="components:-u">COMPONENTS:</span>
+                                        <input type="checkbox" name="attr_spellcomp_v" value="{{v=1}}" checked="checked">
+                                        <span data-i18n="spell-component-verbal">V</span>
+                                        <input type="checkbox" name="attr_spellcomp_s" value="{{s=1}}" checked="checked">
+                                        <span data-i18n="spell-component-somatic">S</span>
+                                        <input type="checkbox" name="attr_spellcomp_m" value="{{m=1}}" checked="checked">
+                                        <span data-i18n="spell-component-material">M</span>
+                                        <input type="text" name="attr_spellcomp_materials" placeholder="ruby dust worth 50gp" data-i18n-placeholder="ruby-dust-place">
+                                    </div>
+                                    <div class="row">
+                                        <input type="checkbox" name="attr_spellconcentration" value="{{concentration=1}}">
+                                        <span data-i18n="concentration-u">CONCENTRATION</span>
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="duration:-u">DURATION:</span>
+                                        <input type="text" name="attr_spellduration">
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="innate:-u">INNATE:</span>
+                                        <input type="text" name="attr_innate" placeholder="1/day" value="">
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="output:-u">OUTPUT:</span>
+                                        <select name="attr_spelloutput">
+                                            <option value="SPELLCARD" data-i18n="spellcard-u">SPELLCARD</option>
+                                            <option value="ATTACK" data-i18n="attack-u">ATTACK</option>
+                                        </select>
+                                    </div>
+                                    <input type="hidden" class="spellattackinfoflag" name="attr_spelloutput">
+                                    <div class="spellattackinfo">
+                                        <div class="row">
+                                            <span data-i18n="spell-atk:-u">SPELL ATTACK:</span>
+                                            <select name="attr_spellattack">
+                                                <option value="None" data-i18n="none">None</option>
+                                                <option value="Melee" data-i18n="melee">Melee</option>
+                                                <option value="Ranged" data-i18n="ranged">Ranged</option>
+                                            </select>
+                                        </div>
+                                        <div class="row">
+                                            <span data-i18n="damage:-u">DAMAGE:</span>
+                                            <input type="text" name="attr_spelldamage" style="width: 50px;">
+                                            <span data-i18n="type:-u">TYPE:</span>
+					                                  <select name="attr_dmgtype" style="width: 103px;">
+                                                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
+                                                <option value="Piercing">Pierce</option>
+                                                <option value="Slashing">Slash</option>
+                                                <option value="Acid">Acid</option>
+                                                <option value="Cold">Cold</option>
+                                                <option value="Fire">Fire</option>
+                                                <option value="Force">Force</option>
+                                                <option value="Lightning">Lightning</option>
+                                                <option value="Necrotic">Necrotic</option>
+                                                <option value="Poison">Poison</option>
+                                                <option value="Psychic">Psychic</option>
+                                                <option value="Radiant">Radiant</option>
+                                                <option value="Thunder">Thunder</option>
+                                            </select>
+                                        </div>
+					<!--
+                                        <div class="row">
+                                            <span data-i18n="damage2:-u">DAMAGE2:</span>
+                                            <input type="text" name="attr_spelldamage2" style="width: 45px;">
+                                            <span data-i18n="type:-u">TYPE:</span>
+                                            <input type="text" name="attr_dmgtype2" style="width: 103px;">
+                                        </div>
+					-->
+                                        <div class="row">
+                                            <span data-i18n="healing:-u">HEALING:</span>
+                                            <input type="text" name="attr_spellhealing" style="width: 45px;">
+                                        </div>
+                                        <div class="row">
+                                            <span data-i18n="saving-throw:-u">SAVING THROW:</span>
+                                            <select name="attr_spellsave">
+                                                <option value="" selected="selected" data-i18n="none-u">NONE</option>
+                                                <option value="Strength" data-i18n="str-u">STR</option>
+                                                <option value="Dexterity" data-i18n="dex-u">DEX</option>
+                                                <option value="Constitution" data-i18n="con-u">CON</option>
+                                                <option value="Intelligence" data-i18n="int-u">INT</option>
+                                                <option value="Wisdom" data-i18n="wis-u">WIS</option>
+                                                <option value="Charisma" data-i18n="cha-u">CHA</option>
+                                            </select>
+                                            <span data-i18n="effect:-u">EFFECT:</span>
+                                            <input type="text" name="attr_spellsavesuccess" style="width: 78px;" placeholder="Half damage" data-i18n-placeholder="half-dmg-place">
+                                        </div>
+                                        <div class="row">
+                                            <span data-i18n="at-higher-lvl-dmg:-u">HIGHER LVL CAST DMG:</span>
+                                            <input type="text" name="attr_spellhldie" placeholder="1" style="width: 15px; text-align: right;">
+                                            <select name="attr_spellhldietype">
+                                                <option value="" selected="selected" data-i18n="none-u">NONE</option>
+                                                <option value="d4">d4</option>
+                                                <option value="d6">d6</option>
+                                                <option value="d8">d8</option>
+                                                <option value="d10">d10</option>
+                                                <option value="d12">d12</option>
+                                                <option value="d20">d20</option>
+                                            </select>
+                                            <span>+</span>
+                                            <input type="text" name="attr_spellhlbonus" placeholder="0" style="width: 15px; text-align: center;">
+                                        </div>
+                                        <div class="row">
+                                            <span data-i18n="include_spell_desc:-u">INCLUDE SPELL DESCRIPTION IN ATTACK:</span>
+                                            <select name="attr_includedesc">
+                                                <option value="off" selected="selected" data-i18n="off">Off</option>
+                                                <option value="partial" data-i18n="partial">Partial</option>
+                                                <option value="on" data-i18n="on">On</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="description:-u">DESCRIPTION:</span>
+                                    </div>
+                                    <div class="row">
+                                        <textarea name="attr_spelldescription"></textarea>
+                                    </div>
+                                    <div class="row">
                                         <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
-			                                  <input style="font-size: 8pt;" type="text" name="attr_casting_restrictions"/>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="font-size: 8pt; height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <textarea name="attr_spellathigherlevels" style="height: 36px; min-height: 36px;"></textarea>
+                                    </div>
+                                    <input type="hidden" name="attr_spellattackid">
+                                    <input type="hidden" name="attr_spelllevel" value="1">
+                                    <label class="options-done">
+                                        <input type="checkbox" name="attr_options-flag" checked="checked">
+                                        <span class="label" data-i18n="done">Done</span>
+                                    </label>
+                                </div>
+                                <div class="details">
+                                    <span class="row">
+                                        <span name="attr_spellname"></span>
+                                        <!--input class="innate_flag" type="hidden" name="attr_innate" value=""-->
+                                        <span class="innate" name="attr_innate"></span>
+                                    </span>
+                                    <div class="row italics">
+                                        <span name="attr_spellschool"></span>
+                                        <span name="attr_spelllevel"></span>
+                                        <input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
+                                        <span>(<span data-i18n="ritual-l">ritual</span>)</span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="bold" data-i18n="casting-time:">Casting Time:</span>
+                                        <span name="attr_spellcastingtime"></span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="bold" data-i18n="range:">Range:</span>
+                                        <span name="attr_spellrange"></span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="bold" data-i18n="target:">Target:</span>
+                                        <span name="attr_spelltarget"></span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="bold" data-i18n="components:">Components:</span>
+                                        <input type="checkbox" name="attr_spellcomp_v" value="{{v=1}}" checked="checked"><span data-i18n="spell-component-verbal">V</span><input type="checkbox" name="attr_spellcomp_s" value="{{s=1}}" checked="checked"><span data-i18n="spell-component-somatic">S</span><input type="checkbox" name="attr_spellcomp_m" value="{{m=1}}" checked="checked"><span class="spellcomp_m" data-i18n="spell-component-material">M</span>
+                                        <input type="hidden" name="attr_spellcomp_materials" value="">
+                                        <span>(<span name="attr_spellcomp_materials"></span>)</span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="bold" data-i18n="duration:">Duration:</span>
+                                        <input type="checkbox" name="attr_spellconcentration" value="{{concentration=1}}">
+                                        <span data-i18n="concentration">Concentration</span>
+                                        <span name="attr_spellduration"></span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="bold" data-i18n="description:">Description:</span>
+                                    </div>
+                                    <div class="row">
+                                        <span name="attr_spelldescription"></span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Spell Restrictions:</span>
+                                    </div>
+                                    <div class="row">
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
+                                    <input type="hidden" name="attr_spellathigherlevels" value="">
+                                    <div class="row">
+                                        <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels:</span>
+                                        <span name="attr_spellathigherlevels"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <hr/>
+                  </div>
+
+                  <div class="spell-labels">
+                     <span data-i18n="slots_total-u" style="margin-right: 17px; margin-left: 38px;">SLOTS TOTAL</span>
+                     <span data-i18n="slots_remaining-u">SLOTS REMAINING</span>
+                  </div>
+                  <div class="spell-level">
+                     <div class="level">
+                         <span class="label">4</span>
+                     </div>
+                     <div class="total">
+                         <span name="attr_lvl4_slots_total"></span>
+                     </div>
+                     <div class="expended">
+                         <input type="number" name="attr_lvl4_slots_expended" value="0">
+                     </div>
+                  </div>
+                  <div class="spell-container">
+                    <fieldset class="repeating_spells-4">
+                        <div class="spell">
+                            <div class="display">
+                                <input type="hidden" name="attr_rollcontent"
+                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
+                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
+                                    <span class="spellname" name="attr_spellname"></span>
+                                    <input class="innate_flag" type="hidden" name="attr_innate" value="">
+                                    <span class="innate" name="attr_innate"></span>
+                                </button>
+                                <input type="hidden" class="spellritual" name="attr_spellritual" value="0">
+                                <input type="hidden" class="spellconcentration" name="attr_spellconcentration" value="0">
+                                <input type="hidden" class="v" name="attr_spellcomp_v" value="{{v=1}}">
+                                <input type="hidden" class="s" name="attr_spellcomp_s" value="{{s=1}}">
+                                <input type="hidden" class="m" name="attr_spellcomp_m" value="{{m=1}}">
+                                <span class="spellritual" data-i18n="spell-ritual">R</span>
+                                <span class="spellconcentration" data-i18n="spell-concentration">C</span>
+                                <span class="componentscontainer">
+                                    <span class="v" data-i18n="spell-component-verbal">V</span>
+                                    <span class="s" data-i18n="spell-component-somatic">S</span>
+                                    <span class="m" data-i18n="spell-component-material">M</span>
+                                </span>
+                            </div>
+                            <input class="details-flag" type="checkbox" name="attr_details-flag" checked="checked"><span>i</span>
+                            <div class="wrapper">
+                                <input class="options-flag" type="checkbox" name="attr_options-flag" checked="checked"><span>y</span>
+                                <div class="options">
+                                    <div class="row">
+                                        <span data-i18n="name:-u">NAME:</span>
+                                        <input type="text" name="attr_spellname">
                                     </div>
                                     <div class="row">
                                         <span data-i18n="school:-u">SCHOOL:</span>
@@ -4565,262 +4834,10 @@
                                         <textarea name="attr_spelldescription"></textarea>
                                     </div>
                                     <div class="row">
-                                        <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
                                     </div>
                                     <div class="row">
-                                        <textarea name="attr_spellathigherlevels" style="height: 36px; min-height: 36px;"></textarea>
-                                    </div>
-                                    <input type="hidden" name="attr_spellattackid">
-                                    <input type="hidden" name="attr_spelllevel" value="1">
-                                    <label class="options-done">
-                                        <input type="checkbox" name="attr_options-flag" checked="checked">
-                                        <span class="label" data-i18n="done">Done</span>
-                                    </label>
-                                </div>
-                                <div class="details">
-                                    <span class="row">
-                                        <span name="attr_spellname"></span>
-                                        <!--input class="innate_flag" type="hidden" name="attr_innate" value=""-->
-                                        <span class="innate" name="attr_innate"></span>
-                                    </span>
-                                    <div class="row italics">
-                                        <span name="attr_spellschool"></span>
-                                        <span name="attr_spelllevel"></span>
-                                        <input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
-                                        <span>(<span data-i18n="ritual-l">ritual</span>)</span>
-                                    </div>
-                                    <div class="row">
-                                        <span class="bold" data-i18n="casting-time:">Casting Time:</span>
-                                        <span name="attr_spellcastingtime"></span>
-                                    </div>
-                                    <div class="row">
-                                        <span class="bold" data-i18n="range:">Range:</span>
-                                        <span name="attr_spellrange"></span>
-                                    </div>
-                                    <div class="row">
-                                        <span class="bold" data-i18n="target:">Target:</span>
-                                        <span name="attr_spelltarget"></span>
-                                    </div>
-                                    <div class="row">
-                                        <span class="bold" data-i18n="components:">Components:</span>
-                                        <input type="checkbox" name="attr_spellcomp_v" value="{{v=1}}" checked="checked"><span data-i18n="spell-component-verbal">V</span><input type="checkbox" name="attr_spellcomp_s" value="{{s=1}}" checked="checked"><span data-i18n="spell-component-somatic">S</span><input type="checkbox" name="attr_spellcomp_m" value="{{m=1}}" checked="checked"><span class="spellcomp_m" data-i18n="spell-component-material">M</span>
-                                        <input type="hidden" name="attr_spellcomp_materials" value="">
-                                        <span>(<span name="attr_spellcomp_materials"></span>)</span>
-                                    </div>
-                                    <div class="row">
-                                        <span class="bold" data-i18n="duration:">Duration:</span>
-                                        <input type="checkbox" name="attr_spellconcentration" value="{{concentration=1}}">
-                                        <span data-i18n="concentration">Concentration</span>
-                                        <span name="attr_spellduration"></span>
-                                    </div>
-                                    <div class="row">
-                                        <span class="bold" data-i18n="description:">Description:</span>
-                                    </div>
-                                    <div class="row">
-                                        <span name="attr_spelldescription"></span>
-                                    </div>
-                                    <input type="hidden" name="attr_spellathigherlevels" value="">
-                                    <div class="row">
-                                        <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
-                                        <span name="attr_spellathigherlevels"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <hr/>
-                  </div>
-
-                  <div class="spell-labels">
-                     <span data-i18n="slots_total-u" style="margin-right: 17px; margin-left: 38px;">SLOTS TOTAL</span>
-                     <span data-i18n="slots_remaining-u">SLOTS REMAINING</span>
-                  </div>
-                  <div class="spell-level">
-                     <div class="level">
-                         <span class="label">4</span>
-                     </div>
-                     <div class="total">
-                         <span name="attr_lvl4_slots_total"></span>
-                     </div>
-                     <div class="expended">
-                         <input type="number" name="attr_lvl4_slots_expended" value="0">
-                     </div>
-                  </div>
-                  <div class="spell-container">
-                    <fieldset class="repeating_spells-4">
-                        <div class="spell">
-                            <div class="display">
-                                <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
-                                <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
-                                    <span class="spellname" name="attr_spellname"></span>
-                                    <input class="innate_flag" type="hidden" name="attr_innate" value="">
-                                    <span class="innate" name="attr_innate"></span>
-                                </button>
-                                <input type="hidden" class="spellritual" name="attr_spellritual" value="0">
-                                <input type="hidden" class="spellconcentration" name="attr_spellconcentration" value="0">
-                                <input type="hidden" class="v" name="attr_spellcomp_v" value="{{v=1}}">
-                                <input type="hidden" class="s" name="attr_spellcomp_s" value="{{s=1}}">
-                                <input type="hidden" class="m" name="attr_spellcomp_m" value="{{m=1}}">
-                                <span class="spellritual" data-i18n="spell-ritual">R</span>
-                                <span class="spellconcentration" data-i18n="spell-concentration">C</span>
-                                <span class="componentscontainer">
-                                    <span class="v" data-i18n="spell-component-verbal">V</span>
-                                    <span class="s" data-i18n="spell-component-somatic">S</span>
-                                    <span class="m" data-i18n="spell-component-material">M</span>
-                                </span>
-                            </div>
-                            <input class="details-flag" type="checkbox" name="attr_details-flag" checked="checked"><span>i</span>
-                            <div class="wrapper">
-                                <input class="options-flag" type="checkbox" name="attr_options-flag" checked="checked"><span>y</span>
-                                <div class="options">
-                                    <div class="row">
-                                        <span data-i18n="name:-u">NAME:</span>
-                                        <input type="text" name="attr_spellname">
-                                    </div>
-                                    <div class="row">
-                                        <span data-i18n="school:-u">SCHOOL:</span>
-                                        <select name="attr_spellschool">
-                                            <option value="abjuration" data-i18n="abjuration">Abjuration</option>
-                                            <option value="conjuration" data-i18n="conjuration">Conjuration</option>
-                                            <option value="divination" data-i18n="divination">Divination</option>
-                                            <option value="enchantment" data-i18n="enchantment">Enchantment</option>
-                                            <option value="evocation" data-i18n="evocation">Evocation</option>
-                                            <option value="illusion" data-i18n="illusion">Illusion</option>
-                                            <option value="necromancy" data-i18n="necromancy">Necromancy</option>
-                                            <option value="transmutation" data-i18n="transmutation">Transmutation</option>
-                                        </select>
-                                        <input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
-                                        <span data-i18n="ritual-u">RITUAL</span>
-                                    </div>
-                                    <div class="row">
-                                        <span data-i18n="casting-time:-u">CASTING TIME:</span>
-                                        <input type="text" name="attr_spellcastingtime">
-                                    </div>
-                                    <div class="row">
-                                        <span data-i18n="range:-u">RANGE:</span>
-                                        <input type="text" name="attr_spellrange">
-                                    </div>
-                                    <div class="row">
-                                        <span data-i18n="target:-u">TARGET:</span>
-                                        <input type="text" name="attr_spelltarget">
-                                    </div>
-                                    <input type="hidden" name="attr_spellcomp">
-                                    <div class="row">
-                                        <span data-i18n="components:-u">COMPONENTS:</span>
-                                        <input type="checkbox" name="attr_spellcomp_v" value="{{v=1}}" checked="checked">
-                                        <span data-i18n="spell-component-verbal">V</span>
-                                        <input type="checkbox" name="attr_spellcomp_s" value="{{s=1}}" checked="checked">
-                                        <span data-i18n="spell-component-somatic">S</span>
-                                        <input type="checkbox" name="attr_spellcomp_m" value="{{m=1}}" checked="checked">
-                                        <span data-i18n="spell-component-material">M</span>
-                                        <input type="text" name="attr_spellcomp_materials" placeholder="ruby dust worth 50gp" data-i18n-placeholder="ruby-dust-place">
-                                    </div>
-                                    <div class="row">
-                                        <input type="checkbox" name="attr_spellconcentration" value="{{concentration=1}}">
-                                        <span data-i18n="concentration-u">CONCENTRATION</span>
-                                    </div>
-                                    <div class="row">
-                                        <span data-i18n="duration:-u">DURATION:</span>
-                                        <input type="text" name="attr_spellduration">
-                                    </div>
-                                    <div class="row">
-                                        <span data-i18n="innate:-u">INNATE:</span>
-                                        <input type="text" name="attr_innate" placeholder="1/day" value="">
-                                    </div>
-                                    <div class="row">
-                                        <span data-i18n="output:-u">OUTPUT:</span>
-                                        <select name="attr_spelloutput">
-                                            <option value="SPELLCARD" data-i18n="spellcard-u">SPELLCARD</option>
-                                            <option value="ATTACK" data-i18n="attack-u">ATTACK</option>
-                                        </select>
-                                    </div>
-                                    <input type="hidden" class="spellattackinfoflag" name="attr_spelloutput">
-                                    <div class="spellattackinfo">
-                                        <div class="row">
-                                            <span data-i18n="spell-atk:-u">SPELL ATTACK:</span>
-                                            <select name="attr_spellattack">
-                                                <option value="None" data-i18n="none">None</option>
-                                                <option value="Melee" data-i18n="melee">Melee</option>
-                                                <option value="Ranged" data-i18n="ranged">Ranged</option>
-                                            </select>
-                                        </div>
-                                        <div class="row">
-                                            <span data-i18n="damage:-u">DAMAGE:</span>
-                                            <input type="text" name="attr_spelldamage" style="width: 50px;">
-                                            <span data-i18n="type:-u">TYPE:</span>
-					    <select name="attr_dmgtype" style="width: 103px;">
-                                                <option selcted="selected" value="Bludgeoning">Bludgeon</option>
-                                                <option value="Piercing">Pierce</option>
-                                                <option value="Slashing">Slash</option>
-                                                <option value="Acid">Acid</option>
-                                                <option value="Cold">Cold</option>
-                                                <option value="Fire">Fire</option>
-                                                <option value="Force">Force</option>
-                                                <option value="Lightning">Lightning</option>
-                                                <option value="Necrotic">Necrotic</option>
-                                                <option value="Poison">Poison</option>
-                                                <option value="Psychic">Psychic</option>
-                                                <option value="Radiant">Radiant</option>
-                                                <option value="Thunder">Thunder</option>
-                                            </select>
-                                        </div>
-					<!--
-                                        <div class="row">
-                                            <span data-i18n="damage2:-u">DAMAGE2:</span>
-                                            <input type="text" name="attr_spelldamage2" style="width: 45px;">
-                                            <span data-i18n="type:-u">TYPE:</span>
-                                            <input type="text" name="attr_dmgtype2" style="width: 103px;">
-                                        </div>
-					-->
-                                        <div class="row">
-                                            <span data-i18n="healing:-u">HEALING:</span>
-                                            <input type="text" name="attr_spellhealing" style="width: 45px;">
-                                        </div>
-                                        <div class="row">
-                                            <span data-i18n="saving-throw:-u">SAVING THROW:</span>
-                                            <select name="attr_spellsave">
-                                                <option value="" selected="selected" data-i18n="none-u">NONE</option>
-                                                <option value="Strength" data-i18n="str-u">STR</option>
-                                                <option value="Dexterity" data-i18n="dex-u">DEX</option>
-                                                <option value="Constitution" data-i18n="con-u">CON</option>
-                                                <option value="Intelligence" data-i18n="int-u">INT</option>
-                                                <option value="Wisdom" data-i18n="wis-u">WIS</option>
-                                                <option value="Charisma" data-i18n="cha-u">CHA</option>
-                                            </select>
-                                            <span data-i18n="effect:-u">EFFECT:</span>
-                                            <input type="text" name="attr_spellsavesuccess" style="width: 78px;" placeholder="Half damage" data-i18n-placeholder="half-dmg-place">
-                                        </div>
-                                        <div class="row">
-                                            <span data-i18n="at-higher-lvl-dmg:-u">HIGHER LVL CAST DMG:</span>
-                                            <input type="text" name="attr_spellhldie" placeholder="1" style="width: 15px; text-align: right;">
-                                            <select name="attr_spellhldietype">
-                                                <option value="" selected="selected" data-i18n="none-u">NONE</option>
-                                                <option value="d4">d4</option>
-                                                <option value="d6">d6</option>
-                                                <option value="d8">d8</option>
-                                                <option value="d10">d10</option>
-                                                <option value="d12">d12</option>
-                                                <option value="d20">d20</option>
-                                            </select>
-                                            <span>+</span>
-                                            <input type="text" name="attr_spellhlbonus" placeholder="0" style="width: 15px; text-align: center;">
-                                        </div>
-                                        <div class="row">
-                                            <span data-i18n="include_spell_desc:-u">INCLUDE SPELL DESCRIPTION IN ATTACK:</span>
-                                            <select name="attr_includedesc">
-                                                <option value="off" selected="selected" data-i18n="off">Off</option>
-                                                <option value="partial" data-i18n="partial">Partial</option>
-                                                <option value="on" data-i18n="on">On</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <span data-i18n="description:-u">DESCRIPTION:</span>
-                                    </div>
-                                    <div class="row">
-                                        <textarea name="attr_spelldescription"></textarea>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
                                     </div>
                                     <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
@@ -7919,7 +7936,7 @@
     </div>
   </rolltemplate>
 
-<rolltemplate class="sheet-rolltemplate-spell-adhoc">
+<rolltemplate class="sheet-rolltemplate-spell2">
   <div class="sheet-rt-card">
     <div class="sheet-rt-header">
       <div class="sheet-rt-title">{{title}}</div>
@@ -7936,32 +7953,32 @@
 
         <div class="sheet-row">
           {{^innate}}
-	        <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><span style="font-size: 14px;">Casting Roll: {{adhoc}} vs DC {{casting_dc}}</span></div>
+	        <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><span style="font-size: 14px;">Casting Roll: {{roll1}} vs DC {{casting_dc}}</span></div>
 	        &nbsp;
 
-          {{#rollBetween() adhoc fumble critical}}
+          {{#rollBetween() roll1 fumble critical}}
 
-            {{#^rollLess() adhoc casting_dc}}
+            {{#^rollLess() roll1 casting_dc}}
             <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting Success.</b> Spell takes effect normally.</div>
-            {{/^rollLess() adhoc casting_dc}}
+            {{/^rollLess() roll1 casting_dc}}
 
-            {{#rollLess() adhoc casting_dc}}
+            {{#rollLess() roll1 casting_dc}}
             <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b><i>Casting failure!<i></b> Spell fails.</div>
             <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Increase Spell Fatigue.</div>
-            {{/rollLess() adhoc casting_dc}}
+            {{/rollLess() roll1 casting_dc}}
 
-          {{/rollBetween() adhoc fumble critical}}
+          {{/rollBetween() roll1 fumble critical}}
 
-          {{#rollWasCrit() adhoc}}
+          {{#rollWasCrit() roll1}}
           <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Critical!</h3></i> &dash; Casting critical success!</div>
           <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Roll Casting Critical Result.</div>
-          {{/rollWasCrit() adhoc}}
+          {{/rollWasCrit() roll1}}
 
-          {{#rollWasFumble() adhoc}}
+          {{#rollWasFumble() roll1}}
           <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Fumble!</h3></i> &dash; Automatic spell failure.</div>
           <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Increase Spell Fatigue.</div>
           <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Roll Casting Backfire Result.</div>
-          {{/rollWasFumble() adhoc}}
+          {{/rollWasFumble() roll1}}
 
           <div class="sheet-col-7-12 sheet-padr sheet-rt-value"> </div>
 
@@ -7989,7 +8006,7 @@
 
            {{^innate}}
 
-              {{#^rollLess() adhoc casting_dc}}
+              {{#^rollLess() roll1 casting_dc}}
               <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting Time:</b> {{castingtime}}</div>
               <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Range:</b> {{range}}</div>
               <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Target:</b> {{target}}</div>
@@ -7999,7 +8016,7 @@
 	             <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Duration:</b> {{#concentration}}Concentration{{/concentration}} {{duration}}</div>
 	              <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Spell Save DC:</b> {{spell_save_dc}}</div>
 
-              {{/^rollLess() adhoc casting_dc}}
+              {{/^rollLess() roll1 casting_dc}}
 
            {{/innate}}
 
@@ -8007,18 +8024,20 @@
 	&nbsp;
 
         {{^innate}}
-        {{#^rollLess() adhoc casting_dc}}
+        {{#^rollLess() roll1 casting_dc}}
           {{#description}}
           <div class="sheet-row">{{description}}</div>
           {{/description}}
+	        {{#casting_restrictions}}<div class="row"><b>Casting Restrictions.</b> {{casting_restrictions}}</div>{{/casting_restrictions}}
 	        {{#athigherlevels}}<div class="row"><b>At Higher Levels.</b> {{athigherlevels}}</div>{{/athigherlevels}}
-        {{/^rollLess() adhoc casting_dc}}
+        {{/^rollLess() roll1 casting_dc}}
         {{/innate}}
 
         {{#innate}}
           {{#description}}
           <div class="sheet-row">{{description}}</div>
           {{/description}}
+	        {{#casting_restrictions}}<div class="row"><b>Casting Restrictions.</b> {{casting_restrictions}}</div>{{/casting_restrictions}}
 	        {{#athigherlevels}}<div class="row"><b>At Higher Levels.</b> {{athigherlevels}}</div>{{/athigherlevels}}
         {{/innate}}
 
@@ -8699,7 +8718,7 @@
     getAttrs(["spellcasting_fatigue"], function(v) {
 	    const fatigue = parseInt(v["spellcasting_fatigue"]) || 0;
 
-			const rollcontent = "@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{adhoc=[[1d20 + @{spellcasting_mod}]]}} {{casting_dc=[[@{adhoc_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}";
+			const rollcontent = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}";
 
       //startRoll("&{template:cast-spell} {{name=@{character_name}}} {{roll1=[[1d20]]}}", (results) => {
       startRoll(rollcontent, (results) => {
@@ -8792,7 +8811,7 @@
       fieldnames.push(repeating_source + '_' + id + '_spelloutput');
       fieldnames.push(repeating_source + '_' + id + '_spellattackid');
       fieldnames.push(repeating_source + '_' + id + '_innate');
-      fieldnames.push(repeating_source + '_' + id + '_casting_restrictions');
+      fieldnames.push(repeating_source + '_' + id + '_casting_restrictions_desc');
     });
 
     getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod', 'spellcasting_fatigue', 'character_id'], function (values) {
@@ -8815,11 +8834,17 @@
         const spelldamage = values[repeating_source + '_' + id + '_spelldamage'];
         const spelloutput = values[repeating_source + '_' + id + '_spelloutput'];
         const spellattackid = values[repeating_source + '_' + id + '_spellattackid'];
-        const casting_restrictions = parseInt(values[repeating_source + '_' + id + '_casting_restrictions']) || 0;
+
+        const casting_restrictions_desc = values[repeating_source + '_' + id + '_casting_restrictions_desc'];
         const innate = values[repeating_source + '_' + id + '_innate'];
         const is_innate = innate && innate !== "" ? true : false;
 
-        console.log("INNATE: "+innate);
+        var casting_restrictions = 0;
+        // parse casting restrictions desc
+        if (casting_restrictions_desc && casting_restrictions_desc !== "") {
+           // number of restricitons is by lines
+           casting_restrictions = casting_restrictions_desc.split(/\r\n|\r|\n/).length;
+        }
 
         // handle sync between attack and spell
         if (spelloutput === "ATTACK")
@@ -8871,51 +8896,56 @@
   });
 
   const update_spelloutput = (higherlevels, lvl, spellid, repeating_source, spelloutput, licensedsheet)  => {
-      let spelllevel = "@{spelllevel}";
       let update = {};
       var callbacks = [];
 
-      // console.log("UPDATE SPELLOUTPUT");
-     /*
-      if (higherlevels && higherlevels !== "") {
-          for(i = 0; i < 10-lvl; i++) {
-              let tot = parseInt(i, 10) + parseInt(lvl, 10);
-              spelllevel = spelllevel + "|Level " + tot + "," + tot;
-          }
-          spelllevel = `?{Cast at what level? ${spelllevel}}`;
-      }
-      */
 
       getAttrs([`${repeating_source}_spellattackid`, "character_id"], (v) => {
-	const character_id = v.character_id;
-	const spellattackid = v[repeating_source + "_spellattackid"];
-        if (spelloutput === "SPELLCARD") {
+	       const character_id = v.character_id;
+	       const spellattackid = v[repeating_source + "_spellattackid"];
 
-          // default rollcontent for spellcard
-          update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
+         if (spelloutput === "SPELLCARD") {
 
-	  // see if we already had a spellattackid, if so delete the attack
-	  if (spellattackid !== "") {
+           if (higherlevels && higherlevels !== "") {
+               let spelllevel = "@{spelllevel}";
+               for(i = 0; i < 10-lvl; i++) {
+                   let tot = parseInt(i, 10) + parseInt(lvl, 10);
+                   spelllevel = spelllevel + "|Level " + tot + "," + parseInt(tot-1);
+               }
+               spelllevel = `?{Cast at what level? ${spelllevel}}`;
+
+               update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
+
+           }
+           else {
+               // does not scale to higher level
+               update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
+
+           }
+
+
+	         // see if we already had a spellattackid, if so delete the attack
+	         if (spellattackid !== "") {
              console.log("UPDATE SPELLOUTPUT -- ATTACK  attck_id: "+ spellattackid);
-	     console.log("UNLINK and delete attack for spell with preexisting attack id:"+repeating_source);
+	           console.log("UNLINK and delete attack for spell with preexisting attack id:"+repeating_source);
 
              // erase spell attack id
              update[repeating_source + "_spellattackid"] = "";
              callbacks.push( function() { remove_attack(spellattackid); });
 
-	  }
+	         }
 
-        } else {
+         } else {
 
            // spelloutput ATTACK
-	   // make a new attack
-	   console.log("CREATE new attack for spell ");
+	         // make a new attack
+	         console.log("CREATE new attack for spell ");
            callbacks.push( function() { create_attack_from_spell(lvl, spellid, character_id); });
 
-        }
+         }
 
-        console.log("ROLLCONTENT (before set attrs): "+update[repeating_source + "_rollcontent"]);
-        setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
+         console.log("ROLLCONTENT (before set attrs): "+update[repeating_source + "_rollcontent"]);
+         setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
       });
   };
 
@@ -10224,10 +10254,12 @@ var handle_drop_monster = function(v) {
                 spelllevel = spelllevel + "|Level " + (parseInt(i, 10) + parseInt(lvl, 10)) + "," + (parseInt(i, 10) + parseInt(lvl, 10));
             }
             spelllevel = spelllevel + "}";
-	    console.log("QUERY (sp): "+spelllevel);
+
+	          console.log("QUERY (sp): "+spelllevel);
 
 	          // console.log("Using rollcontent 1(higher spellslot)\n");
-            update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
+            update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
+            // update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
         };
 
         if(data["Spell Attack"]) {
