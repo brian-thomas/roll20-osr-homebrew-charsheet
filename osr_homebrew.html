@@ -4307,7 +4307,8 @@
 
                 <div class="col col4 block">
                   <div class="center">
-                     <input class="ability-check-value sheet-inactive-color center" name="attr_spellcasting_fatigue" type="number" value="0"/>
+                     <input class="ability-check-value sheet-inactive-color center" style="background-color: white;" name="attr_spellcasting_fatigue" type="number" value="0"/>
+                     <input name="attr_spellcasting_fatigue_max" type="number" value="10" hidden="true"/>
                   </div>
                   <div class="center"> <span class="bold-font">SpellCasting Fatigue</span> </div>
                 </div>
@@ -8216,7 +8217,7 @@
 
                 // arcane spellcasting
                 if (c_class === 'wizard') {
-                  setting["spellcasting_mod"] = base_int_mod + 1 + parseInt(level/2);
+                  setting["spellcasting_mod"] = base_int_mod + 1 + parseInt(level/2) + arcana / 4;
                   setting["spellcasting_dc"] = base_int_mod + 10 + parseInt(level/2);
                 }
                 else
@@ -8271,6 +8272,7 @@
                 setting["melee_base_ab"] = base_str_mod;
                 setting["melee_ab"] = base_str_mod + 1 + (c_class === 'fighter' ? parseInt((level+1)/2) : (c_class2 === 'fighter' ? parseInt((level2+1)/2) : 0));
                 setting["encumbrance_mod"] = base_str_mod + (race === 'Dwarf' ? 1 : 0);
+                setting["spellcasting_fatigue_max"] = score;
               }
 
               setAttrs(setting);
@@ -8810,7 +8812,7 @@
       const spellcasting_mod = parseInt(values.spellcasting_mod) || 0;
       const spellcasting_fatigue = parseInt(values.spellcasting_fatigue) || 0;
 
-      const arcana_adj = parseInt((arcana_skill + arcana_bonus) / 4);
+      const arcana_adj = parseInt((arcana_skill + arcana_bonus) / 4) || 0;
       const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard') ? 1 : 0;
 
       var settings = {};
@@ -8843,7 +8845,7 @@
         }
 
         // handle spell (difficulty) DC
-        var spell_dc = 10 + spelllevel - casting_restrictions + spellcasting_fatigue;
+        var spell_dc = 10 + spelllevel - casting_restrictions + spellcasting_fatigue - arcana_adj;
         if (spell_dc < 2) { spell_dc = 2; } // never lower than 2
 
         settings[repeating_source + '_' + id + '_spell_dc'] = spell_dc;
