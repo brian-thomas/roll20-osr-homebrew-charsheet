@@ -746,6 +746,13 @@
                                         <textarea name="attr_spelldescription"></textarea>
                                     </div>
                                     <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
+                                    </div>
+                                    <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
                                     </div>
                                     <div class="row">
@@ -802,6 +809,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -827,9 +839,11 @@
                     <fieldset class="repeating_spells-4">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -1002,6 +1016,13 @@
                                         <textarea name="attr_spelldescription"></textarea>
                                     </div>
                                     <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
+                                    </div>
+                                    <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
                                     </div>
                                     <div class="row">
@@ -1056,6 +1077,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -1081,9 +1107,11 @@
                     <fieldset class="repeating_spells-7">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -1258,6 +1286,13 @@
                                         <textarea name="attr_spelldescription"></textarea>
                                     </div>
                                     <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
+                                    </div>
+                                    <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
                                     </div>
                                     <div class="row">
@@ -1312,6 +1347,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -1338,9 +1378,11 @@
                     <fieldset class="repeating_spells-2">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -1511,6 +1553,13 @@
                                     </div>
                                     <div class="row">
                                         <textarea name="attr_spelldescription"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
                                     </div>
                                     <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
@@ -1567,6 +1616,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -1592,9 +1646,11 @@
                     <fieldset class="repeating_spells-5">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -1765,6 +1821,13 @@
                                     </div>
                                     <div class="row">
                                         <textarea name="attr_spelldescription"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
                                     </div>
                                     <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
@@ -1821,6 +1884,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -1846,9 +1914,11 @@
                     <fieldset class="repeating_spells-8">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -2019,6 +2089,13 @@
                                     </div>
                                     <div class="row">
                                         <textarea name="attr_spelldescription"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
                                     </div>
                                     <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
@@ -2075,6 +2152,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -2101,9 +2183,11 @@
                     <fieldset class="repeating_spells-3">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -2274,6 +2358,13 @@
                                     </div>
                                     <div class="row">
                                         <textarea name="attr_spelldescription"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
                                     </div>
                                     <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
@@ -2330,6 +2421,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -2355,9 +2451,11 @@
                     <fieldset class="repeating_spells-6">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -2528,6 +2626,13 @@
                                     </div>
                                     <div class="row">
                                         <textarea name="attr_spelldescription"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
                                     </div>
                                     <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
@@ -2584,6 +2689,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -2609,9 +2719,11 @@
                     <fieldset class="repeating_spells-9">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -2784,6 +2896,13 @@
                                         <textarea name="attr_spelldescription"></textarea>
                                     </div>
                                     <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
+                                    </div>
+                                    <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
                                     </div>
                                     <div class="row">
@@ -2837,6 +2956,11 @@
                                     </div>
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
+                                    </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
                                     </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
@@ -4549,7 +4673,7 @@
                                     </div>
                                     <div class="row">
                                         <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
-                                        <textarea style="font-size: 8pt; height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
                                     </div>
                                     <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
@@ -4607,10 +4731,9 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
                                     <div class="row">
                                         <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
-                                    </div>
-                                    <div class="row">
                                         <span name="attr_casting_restrictions_desc"></span>
                                     </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
@@ -4638,9 +4761,11 @@
                     <fieldset class="repeating_spells-4">
                         <div class="spell">
                             <div class="display">
-                                <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                              <input type="hidden" name="attr_spell_dc"/>
+                              <input type="hidden" name="attr_spell_dc_show"/>
+                              <input type="hidden" name="attr_rollcontent"
+                                     value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                               <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -4816,6 +4941,7 @@
                                         <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
                                     </div>
                                     <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
                                         <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
                                     </div>
                                     <div class="row">
@@ -4873,6 +4999,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -4898,9 +5029,11 @@
                     <fieldset class="repeating_spells-7">
                         <div class="spell">
                             <div class="display">
-                                <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                              <input type="hidden" name="attr_spell_dc"/>
+                              <input type="hidden" name="attr_spell_dc_show"/>
+                              <input type="hidden" name="attr_rollcontent"
+                                     value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                               <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -5071,6 +5204,13 @@
                                     </div>
                                     <div class="row">
                                         <textarea name="attr_spelldescription"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
                                     </div>
                                     <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
@@ -5127,6 +5267,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -5153,9 +5298,11 @@
                     <fieldset class="repeating_spells-2">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -5326,6 +5473,13 @@
                                     </div>
                                     <div class="row">
                                         <textarea name="attr_spelldescription"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
                                     </div>
                                     <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
@@ -5382,6 +5536,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -5407,9 +5566,11 @@
                     <fieldset class="repeating_spells-5">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -5582,6 +5743,13 @@
                                         <textarea name="attr_spelldescription"></textarea>
                                     </div>
                                     <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
+                                    </div>
+                                    <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
                                     </div>
                                     <div class="row">
@@ -5636,6 +5804,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -5661,9 +5834,11 @@
                     <fieldset class="repeating_spells-8">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -5836,6 +6011,13 @@
                                         <textarea name="attr_spelldescription"></textarea>
                                     </div>
                                     <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
+                                    </div>
+                                    <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
                                     </div>
                                     <div class="row">
@@ -5890,6 +6072,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -5916,9 +6103,11 @@
                     <fieldset class="repeating_spells-3">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -6089,6 +6278,13 @@
                                     </div>
                                     <div class="row">
                                         <textarea name="attr_spelldescription"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
                                     </div>
                                     <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
@@ -6145,6 +6341,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -6170,9 +6371,11 @@
                     <fieldset class="repeating_spells-6">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -6343,6 +6546,13 @@
                                     </div>
                                     <div class="row">
                                         <textarea name="attr_spelldescription"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
                                     </div>
                                     <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
@@ -6399,6 +6609,11 @@
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
                                     </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
+                                    </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
                                         <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>
@@ -6424,9 +6639,11 @@
                     <fieldset class="repeating_spells-9">
                         <div class="spell">
                             <div class="display">
+                                <input type="hidden" name="attr_spell_dc"/>
+                                <input type="hidden" name="attr_spell_dc_show"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -6599,6 +6816,13 @@
                                         <textarea name="attr_spelldescription"></textarea>
                                     </div>
                                     <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+                                    </div>
+                                    <div class="row">
+                                        <input type="number" name="attr_casting_restrictions" value="0" hidden="true"/>
+                                        <textarea style="height: 36px; min-height: 36px;" name="attr_casting_restrictions_desc"></textarea>
+                                    </div>
+                                    <div class="row">
                                         <span data-i18n="at-higher-lvl:-u">AT HIGHER LEVELS:</span>
                                     </div>
                                     <div class="row">
@@ -6652,6 +6876,11 @@
                                     </div>
                                     <div class="row">
                                         <span name="attr_spelldescription"></span>
+                                    </div>
+                                    <input type="hidden" name="attr_casting_restrictions_desc" value="">
+                                    <div class="row">
+                                        <span class="bold" data-i18n="spell_restrictions:">Restrictions:</span>
+                                        <span name="attr_casting_restrictions_desc"></span>
                                     </div>
                                     <input type="hidden" name="attr_spellathigherlevels" value="">
                                     <div class="row">
@@ -8877,7 +9106,7 @@
                let spelllevel = "@{spelllevel}";
                for(i = 0; i < 10-lvl; i++) {
                    let tot = parseInt(i, 10) + parseInt(lvl, 10);
-                   spelllevel = spelllevel + "|Level " + tot + "," + parseInt(tot-1);
+                   spelllevel = spelllevel + "|Level " + tot + "," + parseInt(i);
                }
                spelllevel = `?{Cast at what level? ${spelllevel}}`;
 
@@ -10218,14 +10447,13 @@ var handle_drop_monster = function(v) {
         else if(data["Higher Spell Slot Desc"] && data["Higher Spell Slot Desc"] != "") {
             var spelllevel = "?{Cast at what level?";
             for(i = 0; i < 10-lvl; i++) {
-                spelllevel = spelllevel + "|Level " + (parseInt(i, 10) + parseInt(lvl, 10)) + "," + (parseInt(i, 10) + parseInt(lvl, 10));
+                spelllevel = spelllevel + "|Level " + (parseInt(i, 10) + parseInt(lvl, 10)) + "," + parseInt(i, 10);
             }
             spelllevel = spelllevel + "}";
+	          //console.log("QUERY (sp): "+spelllevel);
 
-	          console.log("QUERY (sp): "+spelllevel);
-
-	          // console.log("Using rollcontent 1(higher spellslot)\n");
-            update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
+            update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
+            //update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
             // update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
         };
 

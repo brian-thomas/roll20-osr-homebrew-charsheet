@@ -1754,6 +1754,7 @@ button[type=roll]:hover *,
 	  color: #7e2d40; }
 
 	.sheet-spell .sheet-details input[name="attr_spellcomp_materials"][value=""] + span,
+	.sheet-spell .sheet-details input[name="attr_casting_restrictions_desc"][value=""] + div,
 	.sheet-spell .sheet-details input[name="attr_spellathigherlevels"][value=""] + div {
 	  display: none; }
 
@@ -2067,6 +2068,7 @@ span.sheet-spellconcentration {
 			  color: #7e2d40; }
 
 .sheet-spell .sheet-details input[name="attr_spellcomp_materials"][value=""] + span,
+.sheet-spell .sheet-details input[name="attr_casting_restrictions_desc"][value=""] + div,
 .sheet-spell .sheet-details input[name="attr_spellathigherlevels"][value=""] + div {
 			  display: none; }
 
