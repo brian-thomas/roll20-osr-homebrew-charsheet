@@ -574,10 +574,13 @@
                     <fieldset class="repeating_spells-1">
                         <div class="spell">
                             <div class="display">
+                               <input type="hidden" name="attr_spell_dc"/>
+                               <input type="hidden" name="attr_spell_dc_show"/>
                                <input type="hidden" name="attr_rollcontent"
-                                      value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
-                                <input type="hidden" name="attr_adhoc_dc" value="10"/>
+						                          value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}}
+                                             {{spellcasting_mod=@{spellcasting_mod} }} {{adhoc=[[1d20 + @{spellcasting_mod} ]]}} {{dc=[[@{spell_dc}]]}}
+                                             {{critical=[[19]]}} {{fumble=[[2]]}} {{innate=@{innate}}} {{description=@{spelldescription}}}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
                                     <input class="innate_flag" type="hidden" name="attr_innate" value="">
@@ -596,24 +599,6 @@
                                     <span class="m" data-i18n="spell-component-material">M</span>
                                 </span>
                             </div>
-  <!--
-                                value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{innate=@{innate}}} {{description=@{spelldescription}}}">
-
-                                value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
-  -->
-
-          <!--
-                            <input type="hidden" name="attr_adhoc_rollcontent"
-                                   value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
-
-                            <button class="adhoc-flag" type="roll" name="roll_adhoc_cast" value="@{adhoc_rollcontent}"><span>e</span></button>
-
-          <button class="adhoc-flag" type="roll" name="roll_adhoc_cast"
-                                    value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
-              <span>e</span>
-          </button>
-          <input class="adhoc-flag" type="checkbox" name="attr_adhoc-flag" checked="checked"><span>e</span></input>
-          -->
 
                             <input class="details-flag" type="checkbox" name="attr_details-flag" checked="checked"><span>i</span></input>
                             <div class="wrapper">
@@ -671,7 +656,7 @@
                                     </div>
                                     <div class="row">
                                         <span data-i18n="innate:-u">INNATE:</span>
-                                        <input type="text" name="attr_innate" placeholder="1/day" value="">
+                                        <input type="text" name="attr_innate" value="">
                                     </div>
                                     <div class="row">
                                         <span data-i18n="output:-u">OUTPUT:</span>
@@ -781,7 +766,9 @@
                                 </div>
                                 <div class="details">
                                     <span class="row">
-                                        <span name="attr_spellname"></span><input class="innate_flag" type="hidden" name="attr_innate" value=""><span class="innate" name="attr_innate"></span>
+                                        <span name="attr_spellname"></span>
+                                        <input class="innate_flag" type="hidden" name="attr_innate" value="">
+                                        <span class="innate" name="attr_innate"></span>
                                     </span>
                                     <div class="row italics">
                                         <span name="attr_spellschool"></span>
@@ -4317,11 +4304,19 @@
                   </div>
                   <div class="center"> <span class="bold-font">Spell Save DC</span> </div>
                 </div>
+
+                <div class="col col4 block">
+                  <div class="center">
+                     <input class="ability-check-value sheet-inactive-color center" name="attr_spellcasting_fatigue" type="number" value="0"/>
+                  </div>
+                  <div class="center"> <span class="bold-font">SpellCasting Fatigue</span> </div>
+                </div>
               </div>
             </div>
 
             <span class="sheet-spacer">&nbsp;</span>
 
+	    <!--
             <div class="sheet-thin-border sheet-bottom-padding">
               <h4>Powers</h4>
               <input type="checkbox" name="attr_has_cleric_powers" class="sheet-has-cleric-powers" value="1" hidden="True">
@@ -4367,54 +4362,44 @@
                 </div>
               </div>
             </div>
+	    -->
 
             <span class="sheet-spacer">&nbsp;</span>
             <div class="spells thin-border">
               <h4>Spellbook</h4>
 
-<!--
-                     <button class="sheet-cast-button nod20 sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
-                             value="@{wtype}&{template:spell} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
-                             <span name="attr_adhoc_dc"/></button>
- -->
-
               <input type="hidden" class="spellicon_flag" name="attr_spellicon_flag" value="all"/>
               <div class="body">
                 <div class="col col1">
-                  <div class="spell-labels">
-                     <span data-i18n="slots_total-u" style="margin-right: 17px; margin-left: 38px;">SLOTS TOTAL</span>
-                     <span data-i18n="slots_remaining-u">SLOTS REMAINING</span>
-                  </div>
                   <div class="spell-level">
                      <div class="level">
                          <span class="label">1</span>
                      </div>
-                     <div class="total">
-                         <span name="attr_lvl1_slots_total"></span>
-                     </div>
-                     <div class="expended">
-                         <input type="number" name="attr_lvl1_slots_expended" value="0">
-                     </div>
+                  </div>
+                  <div class="spell-labels">
+                     <span data-i18n="difficulty-class-abv" style="margin-left: 8px; margin-right: 8px;">DC</span>
+                     <span data-i18n="name-u">NAME</span>
                   </div>
                   <div class="spell-container">
                     <fieldset class="repeating_spells-1">
                         <div class="spell">
                             <div class="display">
+                               <input type="hidden" name="attr_spell_dc"/>
+                               <input type="hidden" name="attr_spell_dc_show"/>
                                <input type="hidden" name="attr_rollcontent"
-                                      value="@{wtype}&{template:spell} {{name=@{character_name}}} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}"/>
-                                <input type="checkbox" name="attr_spellprepared" value="1" class="sheet-prep-box"><span class="prep"></span>
-			                          <input type="hidden" name="attr_adhoc_dc" value="10"/>
+						                          value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{adhoc=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
-                                    <input class="innate_flag" type="hidden" name="attr_innate" value="">
+                                    <input class="innate_flag" type="hidden" name="attr_innate"/>
                                     <span class="innate" name="attr_innate"></span>
                                 </button>
-                                <input type="hidden" class="spellritual" name="attr_spellritual" value="0">
-                                <input type="hidden" class="spellconcentration" name="attr_spellconcentration" value="0">
-                                <input type="hidden" class="v" name="attr_spellcomp_v" value="{{v=1}}">
-                                <input type="hidden" class="s" name="attr_spellcomp_s" value="{{s=1}}">
-                                <input type="hidden" class="m" name="attr_spellcomp_m" value="{{m=1}}">
-                                <span class="spellritual" data-i18n="spell-ritual">R</span>
+                                <input type="hidden" class="spellritual" name="attr_spellritual" value="0"/>
+                                <input type="hidden" class="spellconcentration" name="attr_spellconcentration" value="0"/>
+                                <input type="hidden" class="v" name="attr_spellcomp_v" value="{{v=1}}"/>
+                                <input type="hidden" class="s" name="attr_spellcomp_s" value="{{s=1}}"/>
+                                <input type="hidden" class="m" name="attr_spellcomp_m" value="{{m=1}}"/>
+                                <!--span class="spellritual" data-i18n="spell-ritual">R</span-->
                                 <span class="spellconcentration" data-i18n="spell-concentration">C</span>
                                 <span class="componentscontainer">
                                     <span class="v" data-i18n="spell-component-verbal">V</span>
@@ -4422,24 +4407,6 @@
                                     <span class="m" data-i18n="spell-component-material">M</span>
                                 </span>
                             </div>
-<!--
-                                value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{innate=@{innate}}} {{description=@{spelldescription}}}">
-
-                                value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
--->
-
-			    <!--
-                            <input type="hidden" name="attr_adhoc_rollcontent"
-                                   value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
-
-                            <button class="adhoc-flag" type="roll" name="roll_adhoc_cast" value="@{adhoc_rollcontent}"><span>e</span></button>
-
-			    <button class="adhoc-flag" type="roll" name="roll_adhoc_cast"
-                                    value="@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{spellcasting_mod=@{spellcasting_mod}}} {{adhoc=[[1d20]]}} {{dc=[[@{adhoc_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}}">
-			        <span>e</span>
-			    </button>
-			    <input class="adhoc-flag" type="checkbox" name="attr_adhoc-flag" checked="checked"><span>e</span></input>
-			    -->
 
                             <input class="details-flag" type="checkbox" name="attr_details-flag" checked="checked"><span>i</span></input>
                             <div class="wrapper">
@@ -4448,6 +4415,10 @@
                                     <div class="row">
                                         <span data-i18n="name:-u">NAME:</span>
                                         <input type="text" name="attr_spellname">
+                                    </div>
+                                    <div class="row">
+                                        <span data-i18n="spell_restrictions:-u">RESTRICTIONS:</span>
+			                                  <input style="font-size: 8pt;" type="text" name="attr_casting_restrictions"/>
                                     </div>
                                     <div class="row">
                                         <span data-i18n="school:-u">SCHOOL:</span>
@@ -4607,7 +4578,9 @@
                                 </div>
                                 <div class="details">
                                     <span class="row">
-                                        <span name="attr_spellname"></span><input class="innate_flag" type="hidden" name="attr_innate" value=""><span class="innate" name="attr_innate"></span>
+                                        <span name="attr_spellname"></span>
+                                        <!--input class="innate_flag" type="hidden" name="attr_innate" value=""-->
+                                        <span class="innate" name="attr_innate"></span>
                                     </span>
                                     <div class="row italics">
                                         <span name="attr_spellschool"></span>
@@ -7935,9 +7908,19 @@
       </div>
   </rolltemplate>
 
+  <rolltemplate class="sheet-rolltemplate-cast-spell">
+    <div class="sheet-template-container">
+        <h1>{{name}}</h1>
+        <div class="sheet-results">
+            <h4>Result = {{roll1}}</h4>
+            <h4>Custom Result = {{computed::roll1}}</h4>
+        </div>
+    </div>
+  </rolltemplate>
+
 <rolltemplate class="sheet-rolltemplate-spell-adhoc">
   <div class="sheet-rt-card">
-    <div class="sheet-rt-header sheet-spell">
+    <div class="sheet-rt-header">
       <div class="sheet-rt-title">{{title}}</div>
       {{#subheader}}
       <div class="sheet-rt-subheader">{{subheader}}{{#subheaderright}} &bullet; {{subheaderright}}{{/subheaderright}}</div>
@@ -7951,78 +7934,92 @@
     <div class="sheet-main-content">
 
         <div class="sheet-row">
-          {{#adhoc}}
-          <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Adhoc Casting</div>
-          <div class="sheet-col-5-12 sheet-padr sheet-rt-value">DC: {{dc}}</div>
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Adhoc casting roll: {{adhoc}}</div>
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"> </div>
+          {{^innate}}
+	        <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><span style="font-size: 14px;">Casting Roll: {{adhoc}} vs DC {{casting_dc}}</span></div>
+	        &nbsp;
 
           {{#rollBetween() adhoc fumble critical}}
 
-            {{#rollGreater() adhoc dc}}
-            <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Adhoc casting success.</b></div>
-            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell takes effect normally.</div>
-            {{/rollGreater() adhoc dc}}
+            {{#^rollLess() adhoc casting_dc}}
+            <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting Success.</b> Spell takes effect normally.</div>
+            {{/^rollLess() adhoc casting_dc}}
 
-            {{#^rollGreater() adhoc dc}}
-            <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b><i>Adhoc casting failure!<i></b></div>
-            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Roll Adhoc casting failure result.</div>
-            {{/^rollGreater() adhoc dc}}
+            {{#rollLess() adhoc casting_dc}}
+            <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b><i>Casting failure!<i></b> Spell fails.</div>
+            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Increase Spell Fatigue.</div>
+            {{/rollLess() adhoc casting_dc}}
 
           {{/rollBetween() adhoc fumble critical}}
 
           {{#rollWasCrit() adhoc}}
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Critical!</h3></i> &dash; automatic casting success.</div>
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Critical!</h3></i> &dash; Casting critical success!</div>
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Roll Casting Critical Result.</div>
           {{/rollWasCrit() adhoc}}
 
           {{#rollWasFumble() adhoc}}
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Fumble!</h3></i> &dash; automatic spell failure.</div>
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Roll adhoc casting blowback result.</div>
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Fumble!</h3></i> &dash; Automatic spell failure.</div>
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Increase Spell Fatigue.</div>
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Roll Casting Backfire Result.</div>
           {{/rollWasFumble() adhoc}}
 
           <div class="sheet-col-7-12 sheet-padr sheet-rt-value"> </div>
 
-          {{/adhoc}}
+          {{/innate}}
 
-          {{#memorized}}
-          <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Casting memorized spell.</div>
-          {{/memorized}}
+          {{#innate}}
+          <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Casting an innate spell. Available {{innate}}</div>
+          {{/innate}}
 
         </div>
+	       &nbsp;
 
         <div class="sheet-row">
 
-              {{#memorized}}
-              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Save DC: {{spell_save_dc}}</div>
-              {{#spell_dice_enabled}}
-              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Dice Roll: {{roll1}}</div>
-              {{/spell_dice_enabled}}
-              {{/memorized}}
+          {{#innate}}
+	          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Spell Save DC:</b> {{spell_save_dc}}</div>
+	          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting Time:</b> {{castingtime}}</div>
+	          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Range:</b> {{range}}</div>
+	          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Target:</b> {{target}}</div>
+	          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Components:</b> {{#v}}V{{/v}} {{#s}}S{{/s}} {{#m}}M{{/m}}
+		           {{#material}} ({{material}}) {{/material}}
+	          </div>
+	          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Duration:</b> {{#concentration}}Concentration{{/concentration}} {{duration}}</div>
+          {{/innate}}
 
-              {{#adhoc}}
+           {{^innate}}
 
-              {{#rollGreater() adhoc dc}}
-              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Save DC: {{spell_save_dc}}</div>
-              {{#spell_dice_enabled}}
-              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">Spell Dice Roll: {{roll1}}</div>
-              {{/spell_dice_enabled}}
-              {{/rollGreater() adhoc dc}}
+              {{#^rollLess() adhoc casting_dc}}
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting Time:</b> {{castingtime}}</div>
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Range:</b> {{range}}</div>
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Target:</b> {{target}}</div>
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Components:</b> {{#v}}V{{/v}} {{#s}}S{{/s}} {{#m}}M{{/m}}
+                      {{#material}} ({{material}}) {{/material}}
+              </div>
+	             <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Duration:</b> {{#concentration}}Concentration{{/concentration}} {{duration}}</div>
+	              <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Spell Save DC:</b> {{spell_save_dc}}</div>
 
-              {{/adhoc}}
+              {{/^rollLess() adhoc casting_dc}}
+
+           {{/innate}}
 
         </div>
+	&nbsp;
 
-        {{#rollGreater() adhoc dc}}
+        {{^innate}}
+        {{#^rollLess() adhoc casting_dc}}
           {{#description}}
           <div class="sheet-row">{{description}}</div>
           {{/description}}
-        {{/rollGreater() adhoc dc}}
+	        {{#athigherlevels}}<div class="row"><b>At Higher Levels.</b> {{athigherlevels}}</div>{{/athigherlevels}}
+        {{/^rollLess() adhoc casting_dc}}
+        {{/innate}}
 
-        {{#memorized}}
+        {{#innate}}
           {{#description}}
           <div class="sheet-row">{{description}}</div>
           {{/description}}
-        {{/memorized}}
+	        {{#athigherlevels}}<div class="row"><b>At Higher Levels.</b> {{athigherlevels}}</div>{{/athigherlevels}}
+        {{/innate}}
 
     </div>
   </div>
@@ -8701,6 +8698,33 @@
     });
   });
 
+  // test custom roll parsing
+  on('clicked:castspell', (info) => {
+    console.log("CAST SPELL EVENT info:"+JSON.stringify(info));
+
+    getAttrs(["spellcasting_fatigue"], function(v) {
+	    const fatigue = parseInt(v["spellcasting_fatigue"]) || 0;
+
+			const rollcontent = "@{wtype}&{template:spell-adhoc} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{adhoc=[[1d20 + @{spellcasting_mod}]]}} {{casting_dc=[[@{adhoc_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}";
+
+      //startRoll("&{template:cast-spell} {{name=@{character_name}}} {{roll1=[[1d20]]}}", (results) => {
+      startRoll(rollcontent, (results) => {
+          console.log("RESULTS: " + JSON.stringify(results));
+          const total = results.results.roll1.result
+          const computed = total + 10;
+
+          finishRoll(
+              results.rollId,
+              {
+                  roll1: computed
+              }
+          );
+      });
+
+	    setAttrs({ spellcasting_fatigue : fatigue + 1 });
+    });
+  });
+
   // Keep spells up to date
   const spell_levels= [1,2,3,4,5,6,7,8,9];
   spell_levels.forEach( splvl => {
@@ -8708,7 +8732,7 @@
 
        if(eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {return;}
 
-       console.log("SPELLS change event:"+JSON.stringify(eventinfo));
+       //console.log("SPELLS change event:"+JSON.stringify(eventinfo));
 
        // argh, this is ugly but it works...
        var workstr = eventinfo.triggerName.split("repeating_spells-");
@@ -8737,7 +8761,7 @@
     });
   });
 
-  on(`change:arcana_skill change:arcana_bonus change:class change:class2`, function () {
+  on(`change:arcana_skill change:arcana_bonus change:spellcasting_fatigue change:class change:class2`, function () {
       // global changes to spells
       update_spells('all');
   });
@@ -8765,7 +8789,7 @@
 
   function do_update_spells (ids, repeating_source) {
 
-    // console.debug("DO update spells src:"+repeating_source+" ids:"+JSON.stringify(ids));
+    //console.log("DO update spells src:"+repeating_source+" ids:"+JSON.stringify(ids));
 
     const fieldnames = [];
     ids.forEach(id => {
@@ -8773,15 +8797,18 @@
       fieldnames.push(repeating_source + '_' + id + '_spelldamage');
       fieldnames.push(repeating_source + '_' + id + '_spelloutput');
       fieldnames.push(repeating_source + '_' + id + '_spellattackid');
+      fieldnames.push(repeating_source + '_' + id + '_innate');
+      fieldnames.push(repeating_source + '_' + id + '_casting_restrictions');
     });
 
-    getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod', 'character_id'], function (values) {
+    getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod', 'spellcasting_fatigue', 'character_id'], function (values) {
       const c_class = values.class.trim();
       const c_class2 = values.class2.trim();
       const character_id = values.character_id;
       const arcana_skill = parseInt(values.arcana_skill) || 0;
       const arcana_bonus = parseInt(values.arcana_bonus) || 0;
       const spellcasting_mod = parseInt(values.spellcasting_mod) || 0;
+      const spellcasting_fatigue = parseInt(values.spellcasting_fatigue) || 0;
 
       const arcana_adj = parseInt((arcana_skill + arcana_bonus) / 4);
       const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard') ? 1 : 0;
@@ -8794,6 +8821,11 @@
         const spelldamage = values[repeating_source + '_' + id + '_spelldamage'];
         const spelloutput = values[repeating_source + '_' + id + '_spelloutput'];
         const spellattackid = values[repeating_source + '_' + id + '_spellattackid'];
+        const casting_restrictions = parseInt(values[repeating_source + '_' + id + '_casting_restrictions']) || 0;
+        const innate = values[repeating_source + '_' + id + '_innate'];
+        const is_innate = innate && innate !== "" ? true : false;
+
+        console.log("INNATE: "+innate);
 
         // handle sync between attack and spell
         if (spelloutput === "ATTACK")
@@ -8810,12 +8842,14 @@
             }
         }
 
-        // handle ADHOC
-        const is_dice_enabled = (spelldamage === "") ? 0 : 1;
-        var adhoc_dc = 10 + spelllevel - spellcasting_mod - arcana_adj;
-        if (adhoc_dc < 2) { adhoc_dc = 2; } // never lower than 2
+        // handle spell (difficulty) DC
+        var spell_dc = 10 + spelllevel - casting_restrictions + spellcasting_fatigue;
+        if (spell_dc < 2) { spell_dc = 2; } // never lower than 2
 
-        settings[repeating_source + '_' + id + '_adhoc_dc'] = adhoc_dc;
+        settings[repeating_source + '_' + id + '_spell_dc'] = spell_dc;
+        settings[repeating_source + '_' + id + '_spell_dc_show'] = is_innate ? "" : spell_dc;
+
+        console.log("is_innate: "+is_innate);
 
       });
       setAttrs(settings, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
@@ -9162,7 +9196,7 @@
 
       getSectionIDs('repeating_attacks', function (ids) {
 
-        console.debug("Repeating attacks update called");
+        // console.debug("Repeating attacks update called");
 
         const fieldnames = [];
         ids.forEach(id => {
@@ -9987,7 +10021,6 @@ var handle_drop_monster = function(v) {
                 (spell[`${attr}`]) ? update[repeatingRow + "_" + suffix] = spell[`${attr}`] : false;
             });
 
-            // ["Add Casting Modifier", "Casting Time", "Concentration", "Damage Type", "Damage", "Duration", "Healing", "Material", "Range", "Ritual", "Save", "Save Success", "School", "Secondary Damage", "Secondary Damage Type", "Spell Attack", "Target"].forEach((attr) => {
             ["Casting Time", "Concentration", "Damage Type", "Damage", "Duration", "Healing", "Material", "Range", "Ritual", "Save", "Save Success", "School", "Spell Attack", "Target"].forEach((attr) => {
                 if (spell[`${attr}`]) {
                     //Adjust the array entry to match the attribute name in the HTML
@@ -10197,6 +10230,7 @@ var handle_drop_monster = function(v) {
                 spelllevel = spelllevel + "|Level " + (parseInt(i, 10) + parseInt(lvl, 10)) + "," + (parseInt(i, 10) + parseInt(lvl, 10));
             }
             spelllevel = spelllevel + "}";
+	    console.log("QUERY (sp): "+spelllevel);
 
 	          // console.log("Using rollcontent 1(higher spellslot)\n");
             update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
@@ -10335,6 +10369,7 @@ var handle_drop_monster = function(v) {
                   query = query + "|Level " + (parseInt(i, 10) + parseInt(spelllevel, 10)) + "," + i;
               }
               query = query + "}";
+	      console.log("QUERY (bsc): "+query);
               if(v[`${repeating_spell}_spellhlbonus`] && v[`${repeating_spell}_spellhlbonus`] != "") {
                   bonus = "+(" + v[`${repeating_spell}_spellhlbonus`] + "*" + query + ")";
               }
@@ -10432,7 +10467,7 @@ var handle_drop_monster = function(v) {
 
   const do_update_attack = (attack_array, source) => {
 
-      console.log("DO UPDATE ATTACK array:"+attack_array);
+      // console.log("DO UPDATE ATTACK array:"+attack_array);
 
       let attack_attribs = ["level","d20","pb","pb_type","pbd_safe","strength_mod","dexterity_mod","constitution_mod","intelligence_mod","wisdom_mod","charisma_mod","spell_save_dc","spell_attack_mod", "spell_dc_mod" ];
       _.each(attack_array, (attackid) => {
@@ -10462,8 +10497,6 @@ var handle_drop_monster = function(v) {
 
               const character_name     = v.character_name;
 	      const attack_form        = v[repeating_attacks + "_attack_form"];
-
-	      console.log("ATTACK FORM:"+attack_form);
 
               //HIGHER LVL CAST DMG found in Spells for spells like Fireball
               const hldmgcrit = (v[`${repeating_attacks}_hldmg`] && v[`${repeating_attacks}_hldmg`] != "") ? v[`${repeating_attacks}_hldmg`].slice(0, 7) + "crit" + v[`${repeating_attacks}_hldmg`].slice(7) : "";
