@@ -8190,28 +8190,22 @@
                 // skill points
                 // starting race skills; elves dont get any skill points to start
                 // BUT everyone gets 1 skill point for their background profession, so 1/6 for Elves/Non-Elves
-                var base_race_start_skills = (race === 'Elven' ? 1 : 6) + skill_int_mod;
+                var base_race_start_skills = (race === 'Elven' ? 1 : 4) + skill_int_mod;
                 if (base_race_start_skills < 0) {
                   // prevent negative totals
                   base_race_start_skills = 0;
                 }
 
                 // class skills
-                const base_start_class_skills = level > 0 ? (c_class === 'specialist' ?  10 : 5) : 0; // set by the first class chosen at 1st level
+                const base_start_class_skills = level > 0 ? (c_class === 'specialist' ?  8 : 4) : 0; // set by the first class chosen at 1st level
 
                 // class skills for levels beyond 1st
                 const class1_skill_points = level > 1 ? ((skill_int_mod + 2) * (level - 1)) : 0;
+
                 var class2_skill_points = (skill_int_mod + 2) * level2;
-                class2_skill_points += level2 > 0 ? (c_class2 === 'specialist' ? 8 : 3) : 0; // multi-class give the full skill points for 1st level
+                class2_skill_points += level2 > 0 ? (c_class2 === 'specialist' ? 6 : 2) : 0; // multi-class give the full skill points for 1st level
 
                 var class_skill_points = class1_skill_points + class2_skill_points;
-
-
-
-                // always give 1 skill point per level
-                //if (class_skill_points < (level + level2)) {
-                //    class_skill_points = level+level2;
-                //}
 
                 setting["skill_points"] = base_start_class_skills + base_race_start_skills + class_skill_points + perk_skill_points;
 
@@ -8474,8 +8468,6 @@
       setting['npc_hpformula'] = level + "d8";
 
       // deal with sneak attack stuff
-      //setting['sneak_attack_enabled'] = (c_class === 'specialist' ? 1 : (c_class2 === 'specialist' ? 1: 0));
-      // setting['sneak_attack_checkbox'] = (c_class === 'specialist' ? 1 : (c_class2 === 'specialist' ? 1: 0));
       setting['sneak_attack_dice'] = (c_class === 'specialist' ?  1 + parseInt((level-1)/2): (c_class2 === 'specialist' ?  1 + parseInt((level2-1)/2): 0));
 
       spellslots = get_spell_slots (is_wizard, is_elf, is_cleric, c_class, level, level2);
@@ -8681,7 +8673,7 @@
 
            // maximum skill value is betweeen 2 and 10 + int mod as modified by total level
            // check for max value being exceeded
-           var max_value_allowed = 2 + level + level2 + intelligence_mod;
+           var max_value_allowed = 2 + level + level2;
            if (max_value_allowed < 2) { max_value_allowed = 2; }
            if (max_value_allowed > 10 + intelligence_mod) { max_value_allowed = 10 + intelligence_mod; }
            const max_value_exceeded = max_skill_value > max_value_allowed ? 0 : 1;
