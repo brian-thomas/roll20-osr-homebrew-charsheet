@@ -520,6 +520,12 @@
     var charName = getAttrByName(charId, 'character_name');
     var hd = getAttr(charId, "hit_dice");
     var hp = getAttr(charId, "hp");
+    var fatigue = getAttr(charId, "spellcasting_fatigue");
+    var lvl = getAttr(charId, "level");
+    var cls = getAttr(charId, "class");
+    var lvl2 = getAttr(charId, "level2");
+    var cls2 = getAttr(charId, "class2");
+
 
     if (!verifiedCurAndMax(charName, hd, 'Hit dice')) { return; }
     if (!verifiedCurAndMax(charName, hp, 'Hit points')) { return; }
@@ -527,6 +533,20 @@
     var max_hp = Number(hp.get("max"));
     var cur_hp = Number(hp.get("current"));
     var cur_hd = Number(hd.get("current"));
+
+    var cur_fat = Number(fatigue.get("current"));
+    var cur_cls = String(cls.get("current"));
+    var cur_cls2 = cls2 ? String(cls2.get("current")) : "";
+
+    var reduce_fatigue = 0;
+    if (cur_cls === "wizard")
+    {
+        reduce_fatigue = Number(lvl.get("current"));
+    }
+    if (cur_cls2 === "wizard")
+    {
+        reduce_fatigue = Number(lvl2.get("current"));
+    }
 
     if (cur_hp < 1) {
       sendChat("Short rest for " + charName, "A character must have at least 1 hit point at the start of the rest to gain its benefits.<ul><li>Remember that a stable creature regains 1 hit point after 1d4 hours.</li></ul>");
@@ -544,6 +564,14 @@
       } else {
         suggestions.push(`Consider using hit dice (${cur_hd} left).`);
       }
+    }
+
+    if (cur_fat > 0) {
+       // prevent going negative
+       if (cur_fat - reduce_fatigue < 0) { reduce_fatigue = cur_fat; }
+       var new_fat = cur_fat - reduce_fatigue;
+       actions.push(`Spell fatigue is reduced by ${reduce_fatigue} to ${new_fat}.`);
+       fatigue.setWithWorker({current: new_fat});
     }
 
     // Warlock Pact Magic
@@ -579,9 +607,12 @@
     var charName = getAttrByName(charId, 'character_name');
     var hd = getAttr(charId, "hit_dice");
     var hp = getAttr(charId, "hp");
+    var fatigue = getAttr(charId, "spellcasting_fatigue");
 
     if (!verifiedCurAndMax(charName, hd, 'Hit dice')) { return; }
     if (!verifiedCurAndMax(charName, hp, 'Hit points')) { return; }
+
+    var cur_fat = Number(fatigue.get("current"));
 
     var max_hp = Number(hp.get("max"));
     var cur_hp = Number(hp.get("current"));
@@ -601,6 +632,13 @@
     if (cur_hp < max_hp) {
       hp.setWithWorker({ current: max_hp });
     }
+
+    if (cur_fat > 0) {
+	     actions.push(`You recover from all spell fatigue.`);
+	     fatigue.setWithWorker({current: 0});
+    }
+
+    // Reduce spell fatigue
 
     // Regain hit dice
     if(cur_hd < max_hd) {
@@ -714,8 +752,7 @@
       if (command === '!long-rest') { withSelectedChars(msg.selected, notifyAfter(longRest)); }
     });
 
-    log("5E OGL Resting in Style is ready! Select chars, then: !short-rest and !long-rest");
+    log("OSR Resting is ready! Select chars, then: !short-rest and !long-rest");
   });
 
 }());
-
