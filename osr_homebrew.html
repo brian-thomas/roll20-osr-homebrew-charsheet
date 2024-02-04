@@ -567,9 +567,7 @@
                                <input type="hidden" name="attr_spell_dc"/>
                                <input type="hidden" name="attr_spell_dc_show"/>
                                <input type="hidden" name="attr_rollcontent"
-						                          value="@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}}
-                                             {{spellcasting_mod=@{spellcasting_mod} }} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{dc=[[@{spell_dc}]]}}
-                                             {{critical=[[19]]}} {{fumble=[[2]]}} {{innate=@{innate}}} {{description=@{spelldescription}}}"/>
+                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll2=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -7756,6 +7754,7 @@
   </rolltemplate>
 
   <rolltemplate class="sheet-rolltemplate-atkdmg">
+    <h1>ATTACK DAMAGE - CUSTOM</h1>
       <div class="licensedsheet-flag-{{licensedsheet}}"></div>
       <div class="container">
       {{#attack}}
@@ -8593,57 +8592,6 @@
     });
   });
 
-  // Spell Slots
-  const arcane_spell_slots1 = [0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8];
-  const arcane_spell_slots2 = [0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7];
-  const arcane_spell_slots3 = [0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6];
-  const arcane_spell_slots4 = [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6];
-  const arcane_spell_slots5 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5];
-  const arcane_spell_slots6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4];
-  const arcane_spell_slots7 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4];
-  const arcane_spell_slots8 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3];
-  const arcane_spell_slots9 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2];
-
-  const divine_spell_slots1 = [0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 8];
-  const divine_spell_slots2 = [0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7];
-  const divine_spell_slots3 = [0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 7];
-  const divine_spell_slots4 = [0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 6];
-  const divine_spell_slots5 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5];
-  const divine_spell_slots6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4, 4, 5];
-  const divine_spell_slots7 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 4, 4];
-
-  function get_spell_slots (is_wizard, is_elf, is_cleric, c_class, level, level2) {
-
-    if (is_wizard)
-    {
-      const l = (c_class === 'wizard' ? level : level2);
-      return [arcane_spell_slots1[l], arcane_spell_slots2[l], arcane_spell_slots3[l],
-              arcane_spell_slots4[l], arcane_spell_slots5[l], arcane_spell_slots6[l],
-              arcane_spell_slots7[l], arcane_spell_slots8[l], arcane_spell_slots9[l]
-             ];
-    }
-    else
-    if (is_elf)
-    {
-      return [ 1 + parseInt((level + level2)/4), 0, 0, 0, 0, 0, 0, 0, 0 ];
-    }
-    else
-    if (is_cleric)
-    {
-      const l = (c_class === 'cleric' ? level : level2);
-      return [divine_spell_slots1[l], divine_spell_slots2[l], divine_spell_slots3[l],
-              divine_spell_slots4[l], divine_spell_slots5[l], divine_spell_slots6[l],
-              divine_spell_slots7[l], 0, 0
-             ];
-    }
-
-    // Not a spell caster, reset spell slots
-    return [0,0,0,0,0,0,0,0,0];
-
-;
-  }
-
-
   // safety to flush failed drops
   on(`sheet:opened`, () => { cleanup_drop_fields(); });
 
@@ -8685,34 +8633,6 @@
       // deal with sneak attack stuff
       setting['sneak_attack_dice'] = (c_class === 'specialist' ?  1 + parseInt((level-1)/2): (c_class2 === 'specialist' ?  1 + parseInt((level2-1)/2): 0));
 
-      spellslots = get_spell_slots (is_wizard, is_elf, is_cleric, c_class, level, level2);
-      setting["lvl1_slots_total"] = spellslots[0];
-      setting["lvl1_slots_expended"] = spellslots[0];
-
-      setting["lvl2_slots_total"] = spellslots[1];
-      setting["lvl2_slots_expended"] = spellslots[1];
-
-      setting["lvl3_slots_total"] = spellslots[2];
-      setting["lvl3_slots_expended"] = spellslots[2];
-
-      setting["lvl4_slots_total"] = spellslots[3];
-      setting["lvl4_slots_expended"] = spellslots[3];
-
-      setting["lvl5_slots_total"] = spellslots[4];
-      setting["lvl5_slots_expended"] = spellslots[4];
-
-      setting["lvl6_slots_total"] = spellslots[5];
-      setting["lvl6_slots_expended"] = spellslots[5];
-
-      setting["lvl7_slots_total"] = spellslots[6];
-      setting["lvl7_slots_expended"] = spellslots[6];
-
-      setting["lvl8_slots_total"] = spellslots[7];
-      setting["lvl8_slots_expended"] = spellslots[7];
-
-      setting["lvl9_slots_total"] = spellslots[8];
-      setting["lvl9_slots_expended"] = spellslots[8];
-
       if (is_wizard)
       {
         const wizard_level = (c_class === 'wizard' ? level : level2);
@@ -8742,21 +8662,6 @@
 
       setting["has_cleric_powers"] = is_cleric;
       setting["can_cast_magic"] = is_wizard || is_cleric || is_elf;
-
-      // Check that we have not gimped low level slots
-      // for elf multiclassed w/ wizard
-      if (is_elf && is_wizard) {
-        const wizard_level = (c_class === 'wizard' ? level : level2);
-        var elf_slots1 = 1 + parseInt((level + level2)/4);
-        if (arcane_spell_slots1[wizard_level] < elf_slots1) {
-           setting["lvl1_slots_total"] = elf_slots1;
-           setting["lvl1_slots_expended"] = elf_slots1;
-        }
-        else {
-           setting["lvl1_slots_total"] = arcane_spell_slots1[wizard_level];
-           setting["lvl1_slots_expended"] = arcane_spell_slots1[wizard_level];
-        }
-      }
 
       setting['max_cmbt_opts_allowed'] = 0;
       setting['max_prof_allowed'] = 1;
@@ -8793,63 +8698,6 @@
       setAttrs(setting);
     });
   });
-
-  function set_npc_spellslots (c_class) {
-
-    getAttrs(['level', 'race' ], v => {
-
-      //const c_class = v.class.trim();
-      const c_race = v.race.trim();
-      const level = parseInt(v.level) || 0;
-
-      const is_cleric = (c_class === 'cleric');
-      const is_wizard = (c_class === 'wizard');
-      const is_elf = (c_race === 'Elven');
-
-      var spellslots = get_spell_slots (is_wizard, is_elf, is_cleric, c_class, level, 0);
-
-      const setting = {};
-      setting["lvl1_slots_total"] = spellslots[0];
-      setting["lvl2_slots_total"] = spellslots[1];
-      setting["lvl3_slots_total"] = spellslots[2];
-      setting["lvl4_slots_total"] = spellslots[3];
-      setting["lvl5_slots_total"] = spellslots[4];
-      setting["lvl6_slots_total"] = spellslots[5];
-      setting["lvl7_slots_total"] = spellslots[6];
-      setting["lvl8_slots_total"] = spellslots[7];
-      setting["lvl9_slots_total"] = spellslots[8];
-
-      setAttrs(setting);
-
-    });
-
-  }
-
-  function npc_spellrest () {
-
-    getAttrs(['class', 'lvl1_slots_total', 'lvl2_slots_total', 'lvl3_slots_total', 'lvl4_slots_total', 'lvl5_slots_total',
-              'lvl6_slots_total', 'lvl7_slots_total', 'lvl8_slots_total', 'lvl9_slots_total' ], v => {
-
-      //failsafe
-      const c_class = v.class.trim();
-      set_npc_spellslots(c_class);
-
-      settings={};
-      settings["lvl1_slots_expended"] = parseInt(v.lvl1_slots_total) || 0;
-      settings["lvl2_slots_expended"] = parseInt(v.lvl2_slots_total) || 0;
-      settings["lvl3_slots_expended"] = parseInt(v.lvl3_slots_total) || 0;
-      settings["lvl4_slots_expended"] = parseInt(v.lvl4_slots_total) || 0;
-      settings["lvl5_slots_expended"] = parseInt(v.lvl5_slots_total) || 0;
-      settings["lvl6_slots_expended"] = parseInt(v.lvl6_slots_total) || 0;
-      settings["lvl7_slots_expended"] = parseInt(v.lvl7_slots_total) || 0;
-      settings["lvl8_slots_expended"] = parseInt(v.lvl8_slots_total) || 0;
-      settings["lvl9_slots_expended"] = parseInt(v.lvl9_slots_total) || 0;
-
-      setAttrs(settings);
-    });
-  }
-
-  on("clicked:spellrest", () => { npc_spellrest(); });
 
   // Checks for Skills, are they overspent? Have they underspent? Exceeded max bonus for a skill?
   const coreSkills = ['arcana_skill', 'architect_skill', 'armory_skill', 'athletics_skill', 'bushcraft_skill',
@@ -10136,7 +9984,6 @@ var handle_drop_monster = function(v) {
                   update["spellcasting_mod"] = 0;
                 }
 
-                callbacks.push( function() { npc_spellrest(); });
                 callbacks.push( function() { update_spells('all');} );
             }
 
@@ -10453,7 +10300,6 @@ var handle_drop_monster = function(v) {
 	          //console.log("QUERY (sp): "+spelllevel);
 
             update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
-            //update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
             // update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
         };
 
@@ -10590,7 +10436,7 @@ var handle_drop_monster = function(v) {
                   query = query + "|Level " + (parseInt(i, 10) + parseInt(spelllevel, 10)) + "," + i;
               }
               query = query + "}";
-	      console.log("QUERY (bsc): "+query);
+	            console.log("QUERY (bsc): "+query);
               if(v[`${repeating_spell}_spellhlbonus`] && v[`${repeating_spell}_spellhlbonus`] != "") {
                   bonus = "+(" + v[`${repeating_spell}_spellhlbonus`] + "*" + query + ")";
               }
@@ -10918,11 +10764,13 @@ var handle_drop_monster = function(v) {
               //set in the GLOBAL DAMAGE MODIFIER section
 
               //Assemble Roll Templates
-	      if (attack_form == "spell") {
-	          rollbase = `@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{name=@{character_name}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
-	      } else {
-	          rollbase =`@{wtype}&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}`;
-	      }
+    	      if (attack_form == "spell") {
+                // spell as an attack
+    	          rollbase = `@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{name=@{character_name}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
+    	      } else {
+                // regular attack
+    	          rollbase =`@{wtype}&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}`;
+    	      }
 
               update[`${repeating_attacks}_rollbase_dmg`]  = `@{wtype}&{template:dmg} {{rname=@{atkname}}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} @{dmg2flag} {{dmg2=[[${hdmg2}]]}} {{dmg2type=${dmg2type}}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
 
