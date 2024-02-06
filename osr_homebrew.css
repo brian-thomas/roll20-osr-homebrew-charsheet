@@ -2111,6 +2111,7 @@ span.sheet-spellconcentration {
 
 .sheet-rolltemplate-dmg,
 .sheet-rolltemplate-atk,
+.sheet-rolltemplate-spell2 .sheet-container,
 .sheet-rolltemplate-simple,
 .sheet-rolltemplate-atkdmg {
   width: 14em; }
@@ -2120,6 +2121,8 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-atkdmg .sheet-container.sheet-atk,
 .sheet-rolltemplate-dmg .sheet-atk,
 .sheet-rolltemplate-dmg .sheet-container,
+.sheet-rolltemplate-spell2 .sheet-atk,
+.sheet-rolltemplate-spell2 .sheet-container,
 .sheet-rolltemplate-atkdmg .sheet-container.sheet-damagetemplate {
   background-color: white;
   border: 1px solid black;
@@ -2136,18 +2139,22 @@ span.sheet-spellconcentration {
   border-top-right-radius: 0.8em; }
 
 .sheet-rolltemplate-dmg .sheet-container,
+.sheet-rolltemplate-spell2 .sheet-container,
 .sheet-rolltemplate-atkdmg .sheet-container.sheet-damagetemplate {
   border-bottom-left-radius: 0.8em;
   border-bottom-right-radius: 0.8em; }
 
 .sheet-rolltemplate-atkdmg .sheet-damagetemplate .sheet-result,
-.sheet-rolltemplate-dmg .sheet-damagetemplate .sheet-result {
+.sheet-rolltemplate-dmg .sheet-damagetemplate .sheet-result,
+.sheet-rolltemplate-spell2 .sheet-damagetemplate .sheet-result
+{
   min-height: 45px; }
 
 .sheet-rolltemplate-simple .sheet-adv,
 .sheet-rolltemplate-atk .sheet-adv,
 .sheet-rolltemplate-atkdmg .sheet-adv,
-.sheet-rolltemplate-dmg .sheet-adv {
+.sheet-rolltemplate-dmg .sheet-adv,
+.sheet-rolltemplate-spell2 .sheet-adv {
   display: inline-block;
   margin-top: 1em;
   text-align: center;
@@ -2157,13 +2164,17 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-simple .sheet-adv:first-child,
 .sheet-rolltemplate-atk .sheet-adv:first-child,
 .sheet-rolltemplate-atkdmg .sheet-adv:first-child,
-.sheet-rolltemplate-dmg .sheet-adv:first-child {
+.sheet-rolltemplate-dmg .sheet-adv:first-child,
+.sheet-rolltemplate-spell2 .sheet-adv:first-child
+{
   margin-left: 0.2em; }
 
 .sheet-rolltemplate-simple .sheet-adv:nth-child(3),
 .sheet-rolltemplate-atk .sheet-adv:nth-child(3),
 .sheet-rolltemplate-atkdmg .sheet-adv:nth-child(3),
-.sheet-rolltemplate-dmg .sheet-adv:nth-child(3) {
+.sheet-rolltemplate-dmg .sheet-adv:nth-child(3),
+.sheet-rolltemplate-spell2 .sheet-adv:nth-child(3)
+{
   margin-right: 8px;
   margin-left: -3px; }
 
@@ -2174,7 +2185,10 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-atkdmg .sheet-adv span,
 .sheet-rolltemplate-atkdmg .sheet-solo span,
 .sheet-rolltemplate-dmg .sheet-adv span,
-.sheet-rolltemplate-dmg .sheet-solo span {
+.sheet-rolltemplate-spell2 .sheet-adv span,
+.sheet-rolltemplate-dmg .sheet-solo span,
+.sheet-rolltemplate-spell2 .sheet-solo span
+{
   background-color: transparent;
   border: 0px;
   font-size: 1.2em;
@@ -2183,7 +2197,8 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-simple .sheet-advspacer,
 .sheet-rolltemplate-atk .sheet-advspacer,
 .sheet-rolltemplate-atkdmg .sheet-advspacer,
-.sheet-rolltemplate-dmg .sheet-advspacer {
+.sheet-rolltemplate-dmg .sheet-advspacer,
+.sheet-rolltemplate-spell2 .sheet-advspacer {
   border: 1px solid black;
   display: inline-block;
   height: 35px;
@@ -2192,7 +2207,9 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-simple .sheet-solo,
 .sheet-rolltemplate-atk .sheet-solo,
 .sheet-rolltemplate-atkdmg .sheet-solo,
-.sheet-rolltemplate-dmg .sheet-solo {
+.sheet-rolltemplate-dmg .sheet-solo,
+.sheet-rolltemplate-spell2 .sheet-solo
+{
   height: auto;
   padding-bottom: 0.5em;
   padding-top: 1em;
@@ -2203,6 +2220,7 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-atk span,
 .sheet-rolltemplate-atkdmg span,
 .sheet-rolltemplate-dmg span,
+.sheet-rolltemplate-spell2 span,
 .sheet-rolltemplate-desc span {
   font-size: 12px;
   font-weight: bold;
@@ -2231,6 +2249,7 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-atkdmg .sheet-grey .inlinerollresult.fullfail,
 .sheet-rolltemplate-atkdmg .sheet-grey .inlinerollresult.importantroll,
 .sheet-rolltemplate-dmg .sheet-label span span,
+.sheet-rolltemplate-spell2 .sheet-label span span,
 .sheet-rolltemplate-dmg .sheet-grey,
 .sheet-rolltemplate-dmg .sheet-grey .inlinerollresult.fullcrit,
 .sheet-rolltemplate-dmg .sheet-grey .inlinerollresult.fullfail,
@@ -2254,7 +2273,8 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-simple .sheet-label,
 .sheet-rolltemplate-atk .sheet-label,
 .sheet-rolltemplate-atkdmg .sheet-label,
-.sheet-rolltemplate-dmg .sheet-label {
+.sheet-rolltemplate-dmg .sheet-label,
+.sheet-rolltemplate-spell2 .sheet-label {
   margin-top: -3px;
   padding: 0.25em;
   text-align: center; }
@@ -2262,7 +2282,8 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-simple .sheet-label span span,
 .sheet-rolltemplate-atk .sheet-label span span,
 .sheet-rolltemplate-atkdmg .sheet-label span span,
-.sheet-rolltemplate-dmg .sheet-label span span {
+.sheet-rolltemplate-dmg .sheet-label span span,
+.sheet-rolltemplate-spell2 .sheet-label span span {
   padding: 0px;
   border: 0px;
   background-color: transparent;
@@ -2271,21 +2292,24 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-simple .inlinerollresult.fullcrit,
 .sheet-rolltemplate-atk .inlinerollresult.fullcrit,
 .sheet-rolltemplate-atkdmg .inlinerollresult.fullcrit,
-.sheet-rolltemplate-dmg .inlinerollresult.fullcrit {
+.sheet-rolltemplate-dmg .inlinerollresult.fullcrit,
+.sheet-rolltemplate-spell2 .inlinerollresult.fullcrit {
   color: #3FB315;
   border: 0px; }
 
 .sheet-rolltemplate-simple .inlinerollresult.fullfail,
 .sheet-rolltemplate-atk .inlinerollresult.fullfail,
 .sheet-rolltemplate-atkdmg .inlinerollresult.fullfail,
-.sheet-rolltemplate-dmg .inlinerollresult.fullfail {
+.sheet-rolltemplate-dmg .inlinerollresult.fullfail,
+.sheet-rolltemplate-spell2 .inlinerollresult.fullfail {
   color: #B31515;
   border: 0px; }
 
 .sheet-rolltemplate-simple .inlinerollresult.importantroll,
 .sheet-rolltemplate-atk .inlinerollresult.importantroll,
 .sheet-rolltemplate-atkdmg .inlinerollresult.importantroll,
-.sheet-rolltemplate-dmg .inlinerollresult.importantroll {
+.sheet-rolltemplate-dmg .inlinerollresult.importantroll,
+.sheet-rolltemplate-spell2 .inlinerollresult.importantroll {
   color: #4A57ED;
   border: 0px; }
 
@@ -2295,6 +2319,9 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-dmg .sheet-damagetemplate .inlinerollresult.fullcrit,
 .sheet-rolltemplate-dmg .sheet-damagetemplate .inlinerollresult.fullfail,
 .sheet-rolltemplate-dmg .sheet-damagetemplate .inlinerollresult.importantroll,
+.sheet-rolltemplate-spell2 .sheet-damagetemplate .inlinerollresult.fullcrit,
+.sheet-rolltemplate-spell2 .sheet-damagetemplate .inlinerollresult.fullfail,
+.sheet-rolltemplate-spell2 .sheet-damagetemplate .inlinerollresult.importantroll,
 .sheet-rolltemplate-npcaction .sheet-damagetemplate .inlinerollresult.fullcrit,
 .sheet-rolltemplate-npcaction .sheet-damagetemplate .inlinerollresult.fullfail,
 .sheet-rolltemplate-npcaction .sheet-damagetemplate .inlinerollresult.importantroll,
@@ -2321,6 +2348,7 @@ span.sheet-spellconcentration {
 
 .sheet-rolltemplate-atk .sheet-save .sheet-savedc,
 .sheet-rolltemplate-dmg .sheet-save .sheet-savedc,
+.sheet-rolltemplate-spell2 .sheet-save .sheet-savedc,
 .sheet-rolltemplate-atkdmg .sheet-save .sheet-savedc {
   padding-bottom: 5px;
   padding-top: 15px;
@@ -2328,12 +2356,14 @@ span.sheet-spellconcentration {
 
 .sheet-rolltemplate-atk .sheet-save .sheet-savedc span,
 .sheet-rolltemplate-dmg .sheet-save .sheet-savedc span,
+.sheet-rolltemplate-spell2 .sheet-save .sheet-savedc span,
 .sheet-rolltemplate-atkdmg .sheet-save .sheet-savedc span {
   font-size: 15px;
   font-weight: bold; }
 
 .sheet-rolltemplate-atk .sheet-save .sheet-label span,
 .sheet-rolltemplate-dmg .sheet-save .sheet-label span,
+.sheet-rolltemplate-spell2 .sheet-save .sheet-label span,
 .sheet-rolltemplate-atkdmg .sheet-save .sheet-label span {
   font-weight: bold; }
 
@@ -2344,6 +2374,7 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-mancerhproll .inlinerollresult,
 .sheet-rolltemplate-atk .sheet-save .inlinerollresult,
 .sheet-rolltemplate-dmg .sheet-save .inlinerollresult,
+.sheet-rolltemplate-spell2 .sheet-save .inlinerollresult,
 .sheet-rolltemplate-atkdmg .sheet-save .inlinerollresult {
   background-color: transparent;
   border: 0px;
@@ -2352,6 +2383,7 @@ span.sheet-spellconcentration {
 
 .sheet-rolltemplate-atk .sheet-save .inlinerollresult,
 .sheet-rolltemplate-dmg .sheet-save .inlinerollresult,
+.sheet-rolltemplate-spell2 .sheet-save .inlinerollresult,
 .sheet-rolltemplate-atkdmg .sheet-save .inlinerollresult {
   padding: 0px; }
 
@@ -2370,6 +2402,7 @@ span.sheet-spellconcentration {
 
 .sheet-rolltemplate-atk .sheet-save span,
 .sheet-rolltemplate-dmg .sheet-save span,
+.sheet-rolltemplate-spell2 .sheet-save span,
 .sheet-rolltemplate-atkdmg .sheet-save span {
   font-weight: normal;
   line-height: 12px;
@@ -2377,13 +2410,15 @@ span.sheet-spellconcentration {
 
 .sheet-rolltemplate-atk .sheet-save span.sheet-bold,
 .sheet-rolltemplate-dmg .sheet-save span.sheet-bold,
+.sheet-rolltemplate-spell2 .sheet-save span.sheet-bold,
 .sheet-rolltemplate-atkdmg .sheet-save span.sheet-bold {
   font-weight: bold;
   display: inline-block; }
 
 .sheet-rolltemplate-atk .sheet-sublabel,
 .sheet-rolltemplate-atkdmg .sheet-sublabel,
-.sheet-rolltemplate-dmg .sheet-sublabel {
+.sheet-rolltemplate-dmg .sheet-sublabel,
+.sheet-rolltemplate-spell2 .sheet-sublabel {
   text-align: center;
   font-style: italic;
   margin-top: -2px;
@@ -2431,18 +2466,21 @@ By Miguel
 
 .sheet-rolltemplate-atk .sheet-info span,
 .sheet-rolltemplate-atkdmg .sheet-info span,
-.sheet-rolltemplate-dmg .sheet-info span {
+.sheet-rolltemplate-dmg .sheet-info span,
+.sheet-rolltemplate-spell2 .sheet-info span {
   text-align: left;
   padding: 0px 5px 0px 5px; }
 
 .sheet-rolltemplate-atk .sheet-info .inlinerollresult,
 .sheet-rolltemplate-atkdmg .sheet-info .inlinerollresult,
-.sheet-rolltemplate-dmg .sheet-info .inlinerollresult {
+.sheet-rolltemplate-dmg .sheet-info .inlinerollresult,
+.sheet-rolltemplate-spell2 .sheet-info .inlinerollresult {
   font-size: inherit;
   padding: 0px; }
 
 .sheet-rolltemplate-atkdmg .sheet-damagetemplate .sheet-sublabel,
 .sheet-rolltemplate-dmg .sheet-damagetemplate .sheet-sublabel,
+.sheet-rolltemplate-spell2 .sheet-damagetemplate .sheet-sublabel,
 .sheet-rolltemplate-atkdmg .sheet-desc .sheet-sublabel,
 .sheet-rolltemplate-dmg .sheet-desc .sheet-sublabel {
   color: #A0A0A0;
@@ -2453,13 +2491,15 @@ By Miguel
 
 .sheet-rolltemplate-atk .sheet-sublabel span,
 .sheet-rolltemplate-atkdmg .sheet-sublabel span,
-.sheet-rolltemplate-dmg .sheet-sublabel span {
+.sheet-rolltemplate-dmg .sheet-sublabel span,
+.sheet-rolltemplate-spell2 .sheet-sublabel span {
   font-weight: normal;
   color: black; }
 
 .sheet-rolltemplate-atk .sheet-spacer,
 .sheet-rolltemplate-atkdmg .sheet-spacer,
-.sheet-rolltemplate-dmg .sheet-spacer {
+.sheet-rolltemplate-dmg .sheet-spacer,
+.sheet-rolltemplate-spell2 .sheet-spacer {
   height: 10px; }
 
 .sheet-rolltemplate-atk a[href^="~"] {
@@ -3156,6 +3196,7 @@ div.sheet-label
 .sheet-rolltemplate-atk,
 .sheet-rolltemplate-atkdmg,
 .sheet-rolltemplate-dmg,
+.sheet-rolltemplate-spell2,
 .sheet-rolltemplate-desc {
   image-rendering: -webkit-optimize-contrast; }
 
