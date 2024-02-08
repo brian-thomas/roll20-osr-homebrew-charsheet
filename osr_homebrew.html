@@ -566,8 +566,9 @@
                             <div class="display">
                                <input type="hidden" name="attr_spell_dc"/>
                                <input type="hidden" name="attr_spell_dc_show"/>
+                               <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                <input type="hidden" name="attr_rollcontent"
-                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll2=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -839,8 +840,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -1107,8 +1109,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -1378,8 +1381,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -1646,8 +1650,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -1914,8 +1919,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -2183,8 +2189,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -2451,8 +2458,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -2719,8 +2727,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -4147,13 +4156,6 @@
 			  />
 
 			  <!--
-					       value = "@{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{spell=1}} {{charname=@{character_name}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} {{crit2=[[${crit2}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{level=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}"
-
-
-				 value="&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}"
-
-			  @{wtype}&{template:atkdmg} {{mod=@{atkbonus}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} {{crit2=[[${crit2}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}"
-
 
                           <input type="hidden" name="attr_rollbase_dmg"/>
                           <input type="hidden" name="attr_rollbase_crit"/>
@@ -4173,7 +4175,6 @@
                           <input type="hidden" name="attr_spellid"/>
                           <input type="hidden" name="attr_spell_innate" value=""/>
                           <input type="hidden" name="attr_versatile_alt"/>
-                          <input type="text" class="num" name="attr_atkcritrange" value="20" hidden="True">
 
                           <div class="sheet-attack_press_attack_section">
                             <input type="checkbox" class="sheet-attack-press-attack-button-show" name="attr_attack_press_attack_button_show" value="1" hidden="true" checked="checked"/>
@@ -4434,8 +4435,10 @@
                             <div class="display">
                                <input type="hidden" name="attr_spell_dc"/>
                                <input type="hidden" name="attr_spell_dc_show"/>
+                               <input type="hidden" name="attr_spellcritrange" value="20"/>
+                               <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                <input type="hidden" name="attr_rollcontent"
-			                                value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -4704,8 +4707,9 @@
                             <div class="display">
                               <input type="hidden" name="attr_spell_dc"/>
                               <input type="hidden" name="attr_spell_dc_show"/>
+                              <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                               <input type="hidden" name="attr_rollcontent"
-                                     value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                      value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -4972,8 +4976,9 @@
                             <div class="display">
                               <input type="hidden" name="attr_spell_dc"/>
                               <input type="hidden" name="attr_spell_dc_show"/>
+                              <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                               <input type="hidden" name="attr_rollcontent"
-                                     value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                     value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -5241,8 +5246,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                     value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -5509,8 +5515,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -5777,8 +5784,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -6046,8 +6054,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -6314,8 +6323,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -6582,8 +6592,9 @@
                             <div class="display">
                                 <input type="hidden" name="attr_spell_dc"/>
                                 <input type="hidden" name="attr_spell_dc_show"/>
+                                <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                 <input type="hidden" name="attr_rollcontent"
-                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
+                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
                                 <button class="spellcard" type="roll" name="roll_cast_spell" value="@{rollcontent}">
                                     <span class="spellname" name="attr_spellname"></span>
@@ -7476,7 +7487,6 @@
 <div class="rolltemplates">
 
   <rolltemplate class="sheet-rolltemplate-atk">
-    <h1>ATTAKC TMPLATE</h1>
       <div class="licensedsheet-flag-{{licensedsheet}}"></div>
       <div class="container">
           <div class="result">
@@ -8088,29 +8098,29 @@
           {{^innate}}
 	        <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><span style="font-size: 14px;">Casting Roll: {{roll1}} vs DC {{casting_dc}}</span></div>
 	        &nbsp;
-
           {{#rollBetween() roll1 fumble critical}}
 
-            {{#^rollLess() roll1 casting_dc}}
-            <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting Success.</b> Spell takes effect normally.</div>
-            {{/^rollLess() roll1 casting_dc}}
+              {{#^rollLess() roll1 casting_dc}}
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting Success.</b> Spell takes effect normally.</div>
+              {{/^rollLess() roll1 casting_dc}}
 
-            {{#rollLess() roll1 casting_dc}}
-            <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b><i>Casting failure!<i></b> Spell fails.</div>
-            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Increase Spell Fatigue.</div>
-            {{/rollLess() roll1 casting_dc}}
+              {{#rollLess() roll1 casting_dc}}
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b><i>Casting failure!<i></b> Spell fails.</div>
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Increase Spell Fatigue.</div>
+              {{/rollLess() roll1 casting_dc}}
 
           {{/rollBetween() roll1 fumble critical}}
 
+
           {{#rollWasCrit() roll1}}
           <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Critical!</h3></i> &dash; Casting critical success!</div>
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Roll Casting Critical Result.</div>
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Roll Casting critical result.</div>
           {{/rollWasCrit() roll1}}
 
           {{#rollWasFumble() roll1}}
           <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Fumble!</h3></i> &dash; Automatic spell failure.</div>
           <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Increase Spell Fatigue.</div>
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Roll Casting Backfire Result.</div>
+          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Roll casting backfire result.</div>
           {{/rollWasFumble() roll1}}
 
           <div class="sheet-col-7-12 sheet-padr sheet-rt-value"> </div>
@@ -8830,33 +8840,6 @@
     });
   });
 
-  // test custom roll parsing
-  on('clicked:castspell', (info) => {
-    console.log("CAST SPELL EVENT info:"+JSON.stringify(info));
-
-    getAttrs(["spellcasting_fatigue"], function(v) {
-	    const fatigue = parseInt(v["spellcasting_fatigue"]) || 0;
-
-			const rollcontent = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}";
-
-      //startRoll("&{template:cast-spell} {{name=@{character_name}}} {{roll1=[[1d20]]}}", (results) => {
-      startRoll(rollcontent, (results) => {
-          console.log("RESULTS: " + JSON.stringify(results));
-          const total = results.results.roll1.result
-          const computed = total + 10;
-
-          finishRoll(
-              results.rollId,
-              {
-                  roll1: computed
-              }
-          );
-      });
-
-	    setAttrs({ spellcasting_fatigue : fatigue + 1 });
-    });
-  });
-
   // Keep spells up to date
   const spell_levels= [1,2,3,4,5,6,7,8,9];
   spell_levels.forEach( splvl => {
@@ -8984,6 +8967,8 @@
         var spell_dc = 10 + spelllevel - casting_restrictions + spellcasting_fatigue - arcana_adj;
         if (spell_dc < 2) { spell_dc = 2; } // never lower than 2
 
+        settings[repeating_source + '_' + id + '_spellcritrange'] = 20 - casting_restrictions;
+        settings[repeating_source + '_' + id + '_spellfumblerange'] = 1 + spellcasting_fatigue;
         settings[repeating_source + '_' + id + '_spell_dc'] = spell_dc;
         settings[repeating_source + '_' + id + '_spell_dc_show'] = is_innate ? "" : spell_dc;
 
@@ -9033,12 +9018,12 @@
                }
                spelllevel = `?{Cast at what level? ${spelllevel}}`;
 
-               update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
+               update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf>@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange} + 1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
 
            }
            else {
                // does not scale to higher level
-               update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
+               update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf>@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange} - 1]]}} {{fumble=[[@{spellfumblerange} + 1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
 
            }
 
@@ -10350,8 +10335,7 @@ var handle_drop_monster = function(v) {
             spelllevel = spelllevel + "}";
 	          //console.log("QUERY (sp): "+spelllevel);
 
-            update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
-            // update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell} {{level=@{spellschool} ${spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
+            update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf>@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
         };
 
         if(data["Spell Attack"]) {
@@ -10835,9 +10819,7 @@ var handle_drop_monster = function(v) {
     	      if (attack_form == "spell") {
                 // spell as an attack
                 // FOOBAR
-              //rollbase = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
-    	        //  rollbase = `@{wtype}&{template:dmg} {{mod=@{atkbonus}}} {{name=@{character_name}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spelllevel}]] + [[@{spellcasting_fatigue}]] ]]}} {{cast_critical=[[19]]}} {{cast_fumble=[[2]]}} {{casting_restrictions=@{casting_restrictions_desc}}}`;
-              rollbase = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{atkname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20 + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc}]]}} {{critical=[[19]]}} {{fumble=[[2]]}} {{description=@{atk_desc}}} {{castingtime=@{spellcastingtime}}} {{range=@{atkrange}}} {{target=@{atk_target}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=}} @{spellconcentration} {{mod=@{atkbonus}}} {{rname=@{atkname}}} {{r1=[[${r1}cs>@{atkcritrange}${hbonus}]]}} ${r2}cs>@{atkcritrange}${hbonus}]]}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}} {{spell_save_dc=@{spellcasting_dc}}}`;
+              rollbase = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{atkname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf>@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc}]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{atk_desc}}} {{castingtime=@{spellcastingtime}}} {{range=@{atkrange}}} {{target=@{atk_target}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=}} @{spellconcentration} {{mod=@{atkbonus}}} {{rname=@{atkname}}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}} {{spell_save_dc=@{spellcasting_dc}}}`;
     	      } else {
                 // regular attack
     	          rollbase =`@{wtype}&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel=@{spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}`;
