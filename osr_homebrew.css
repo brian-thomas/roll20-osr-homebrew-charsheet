@@ -2289,27 +2289,30 @@ span.sheet-spellconcentration {
   background-color: transparent;
   font-size: 12px; }
 
+.sheet-rolltemplate-spell2 .inlinerollresult.fullcrit,
 .sheet-rolltemplate-simple .inlinerollresult.fullcrit,
 .sheet-rolltemplate-atk .inlinerollresult.fullcrit,
 .sheet-rolltemplate-atkdmg .inlinerollresult.fullcrit,
-.sheet-rolltemplate-dmg .inlinerollresult.fullcrit,
-.sheet-rolltemplate-spell2 .inlinerollresult.fullcrit {
+.sheet-rolltemplate-dmg .inlinerollresult.fullcrit
+{
   color: #3FB315;
   border: 0px; }
 
+.sheet-rolltemplate-spell2 .inlinerollresult.fullfail,
 .sheet-rolltemplate-simple .inlinerollresult.fullfail,
 .sheet-rolltemplate-atk .inlinerollresult.fullfail,
 .sheet-rolltemplate-atkdmg .inlinerollresult.fullfail,
-.sheet-rolltemplate-dmg .inlinerollresult.fullfail,
-.sheet-rolltemplate-spell2 .inlinerollresult.fullfail {
+.sheet-rolltemplate-dmg .inlinerollresult.fullfail
+{
   color: #B31515;
   border: 0px; }
 
+.sheet-rolltemplate-spell2 .inlinerollresult.importantroll,
 .sheet-rolltemplate-simple .inlinerollresult.importantroll,
 .sheet-rolltemplate-atk .inlinerollresult.importantroll,
 .sheet-rolltemplate-atkdmg .inlinerollresult.importantroll,
-.sheet-rolltemplate-dmg .inlinerollresult.importantroll,
-.sheet-rolltemplate-spell2 .inlinerollresult.importantroll {
+.sheet-rolltemplate-dmg .inlinerollresult.importantroll
+{
   color: #4A57ED;
   border: 0px; }
 
@@ -2367,6 +2370,10 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-atkdmg .sheet-save .sheet-label span {
   font-weight: bold; }
 
+	/*
+.sheet-rolltemplate-spell2 .sheet-desc .inlinerollresult,
+.sheet-rolltemplate-spell2 .sheet-save .inlinerollresult,
+*/
 .sheet-rolltemplate-dmg .sheet-desc .inlinerollresult,
 .sheet-rolltemplate-atkdmg .sheet-desc .inlinerollresult,
 .sheet-rolltemplate-atk .sheet-desc .inlinerollresult,
@@ -2374,7 +2381,6 @@ span.sheet-spellconcentration {
 .sheet-rolltemplate-mancerhproll .inlinerollresult,
 .sheet-rolltemplate-atk .sheet-save .inlinerollresult,
 .sheet-rolltemplate-dmg .sheet-save .inlinerollresult,
-.sheet-rolltemplate-spell2 .sheet-save .inlinerollresult,
 .sheet-rolltemplate-atkdmg .sheet-save .inlinerollresult {
   background-color: transparent;
   border: 0px;
@@ -2471,10 +2477,12 @@ By Miguel
   text-align: left;
   padding: 0px 5px 0px 5px; }
 
+/*.sheet-rolltemplate-spell2 .sheet-info .inlinerollresult {
+*/
+
 .sheet-rolltemplate-atk .sheet-info .inlinerollresult,
 .sheet-rolltemplate-atkdmg .sheet-info .inlinerollresult,
-.sheet-rolltemplate-dmg .sheet-info .inlinerollresult,
-.sheet-rolltemplate-spell2 .sheet-info .inlinerollresult {
+.sheet-rolltemplate-dmg .sheet-info .inlinerollresult {
   font-size: inherit;
   padding: 0px; }
 
@@ -3358,9 +3366,7 @@ div.sheet-label
    font-weight: bold;
 }
 
-/*
 .sheet-rolltemplate-roll_check .sheet-rt-subheader { }
-*/
 
 .sheet-rolltemplate-roll_check .sheet-rt-subheader2,
 .sheet-rolltemplate-spell2 .sheet-rt-subheader2

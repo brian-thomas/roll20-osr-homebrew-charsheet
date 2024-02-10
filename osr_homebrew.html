@@ -566,7 +566,8 @@
                             <div class="display">
                                <input type="hidden" name="attr_spell_dc"/>
                                <input type="hidden" name="attr_spell_dc_show"/>
-                               <input type="hidden" name="attr_spellcritrange" value="20"/> <input type="hidden" name="attr_spellfumblerange" value="1"/>
+                               <input type="hidden" name="attr_spellcritrange" value="20"/>
+                               <input type="hidden" name="attr_spellfumblerange" value="1"/>
                                <input type="hidden" name="attr_rollcontent"
                                       value = "@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf<@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}"/>
                                 <span name="attr_spell_dc_show" style="width: 20px; margin-right: 4px; font-size: 12px; font-color: black;"></span>
@@ -4015,6 +4016,11 @@
                             </div>
 			    -->
                             <input name="attr_attack_dam" value="0" hidden="true"/>
+                            <input name="attr_atk_target" hidden="true"/>
+                            <input name="attr_spellduration" type="text" hidden="true"/>
+                            <input name="attr_spellathigherlevels" type="text" hidden="true"/>
+                            <input type="text" name="attr_spellcastingtime" hidden="true"/>
+                            <input type="hidden" class="spellconcentration" name="attr_spellconcentration" value="0"/>
                             <input type="checkbox" name="attr_dmgflag" value="{{damage=1}} {{dmg1flag=1}}" checked="checked">
           <!--
                             <div class="row">
@@ -4155,16 +4161,16 @@
 				 value="&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel={@spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}"
 			  />
 
-			  <!--
 
                           <input type="hidden" name="attr_rollbase_dmg"/>
                           <input type="hidden" name="attr_rollbase_crit"/>
-			  -->
 
                           <input type="hidden" name="attr_hldmg"/>
                           <input type="hidden" name="attr_spelllevel"/>
                           <input type="hidden" name="attr_spell_save_dc"/>
                           <input type="hidden" name="attr_spell_dc"/>
+                          <input type="hidden" name="attr_spellcritrange"/>
+                          <input type="hidden" name="attr_spellfumblerange"/>
                           <input type="hidden" name="attr_spellcomp_v"/>
                           <input type="hidden" name="attr_spellcomp_s"/>
                           <input type="hidden" name="attr_spellcomp_m"/>
@@ -4309,10 +4315,8 @@
 
                         </div>
 
-                        <!--
                         <button type="roll" name="roll_attack_dmg" style="display: none;" value="@{rollbase_dmg}"></button>
                         <button type="roll" name="roll_attack_crit" style="display: none;" value="@{rollbase_crit}"></button>
-                        -->
 
                     </div>
 
@@ -8104,24 +8108,25 @@
               <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting Success.</b> Spell takes effect normally.</div>
               {{/^rollLess() roll1 casting_dc}}
 
-              {{#rollLess() roll1 casting_dc}}
-              <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b><i>Casting failure!<i></b> Spell fails.</div>
-              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Increase Spell Fatigue.</div>
-              {{/rollLess() roll1 casting_dc}}
-
           {{/rollBetween() roll1 fumble critical}}
 
+          {{#rollGreater() roll1 critical}}
+            {{#^rollLess() roll1 casting_dc}}
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3 style="color: #3FB315;">Critical!</h3></i> &dash; Casting critical success!</div>
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Roll Casting critical result.</div>
+            {{/^rollLess() roll1 casting_dc}}
+          {{/rollGreater() roll1 critical}}
 
-          {{#rollWasCrit() roll1}}
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Critical!</h3></i> &dash; Casting critical success!</div>
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Roll Casting critical result.</div>
-          {{/rollWasCrit() roll1}}
-
-          {{#rollWasFumble() roll1}}
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Fumble!</h3></i> &dash; Automatic spell failure.</div>
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Increase Spell Fatigue.</div>
-          <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Roll casting backfire result.</div>
-          {{/rollWasFumble() roll1}}
+          {{#rollLess() roll1 casting_dc}}
+              {{#rollLess() roll1 fumble}}
+                  <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3 style="color: #B31515;">Fumble!</h3> &dash; Automatic spell failure!</i></div>
+                  <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Roll casting backfire result.</div>
+              {{/rollLess() roll1 fumble}}
+              {{#^rollLess() roll1 fumble}}
+                  <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b><i>Casting failure!<i></b> Spell fails.</div>
+              {{/^rollLess() roll1 fumble}}
+              <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&dash; Increase Spell Fatigue.</div>
+          {{/rollLess() roll1 casting_dc}}
 
           <div class="sheet-col-7-12 sheet-padr sheet-rt-value"> </div>
 
@@ -8147,7 +8152,7 @@
 	          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Duration:</b> {{#concentration}}Concentration{{/concentration}} {{duration}}</div>
           {{/innate}}
 
-           {{^innate}}
+          {{^innate}}
 
               {{#^rollLess() roll1 casting_dc}}
               <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting Time:</b> {{castingtime}}</div>
@@ -8161,7 +8166,7 @@
 
               {{/^rollLess() roll1 casting_dc}}
 
-           {{/innate}}
+          {{/innate}}
 
         </div>
 	      &nbsp;
@@ -8270,7 +8275,7 @@
               </div>
           {{/range}}
           <div class="label">
-              <span>{{rname}}</span>{{#innate}}<span class="grey">, {{innate}}</span>{{/innate}}
+              <span>{{rname}}</span>
           </div>
       {{/attack}}
   </div>
@@ -8317,7 +8322,7 @@
               </div>
           {{/range}}
           <div class="label">
-              <span>{{rname}}</span>{{#innate}}<span class="grey">, {{innate}}</span>{{/innate}}
+              <span>{{rname}}</span><span class="grey">, {{innate}}</span>
           </div>
       {{/attack}}
   </div>
@@ -8325,7 +8330,6 @@
 </rolltemplate>
 
   <rolltemplate class="sheet-rolltemplate-roll_check">
-    <h1>ROLLCHECK</h1>
     <div class="sheet-rt-card">
      <div class="sheet-rt-header{{#attack}} sheet-attackmsg{{/attack}}{{#skill}} sheet-skill{{/skill}} {{#initiative}} sheet-initiative{{/initiative}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#deathsave}} sheet-deathsave{{/deathsave}}">
         <div class="sheet-rt-title">{{title}}</div>
@@ -8344,7 +8348,7 @@
                   <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Attack</div>
                   <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{attack}} vs AC</div>
                   {{#rollWasCrit() attack}}
-                  <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Critical Hit!</h3></i></div>
+                  <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3 style="font-color: #3FB315;">Critical Hit!</h3></i></div>
                   {{/rollWasCrit() attack}}
                   {{#rollWasFumble() attack}}
                   <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><i><h3>Fumble!</h3></i></div>
@@ -10290,6 +10294,8 @@ var handle_drop_monster = function(v) {
 
         update[repeating_source + "_spellname"] = data["Name"];
         update[repeating_source + "_spelllevel"] = lvl;
+        update[repeating_source + "_spellcritrange"] = 20;
+        update[repeating_source + "_spellfumblerange"] = 1;
         update[repeating_source + "_spelloutput"] = "SPELLCARD";
         update[repeating_source + "_spelldescription"] = data["data-description"] ? data["data-description"] : v.drop_content;
 
@@ -10327,15 +10333,16 @@ var handle_drop_monster = function(v) {
             update[repeating_source + "_spelloutput"] = "ATTACK";
             callbacks.push( function() { create_attack_from_spell(lvl, id, v.character_id); });
         }
-        else if(data["Higher Spell Slot Desc"] && data["Higher Spell Slot Desc"] != "") {
-            var spelllevel = "?{Cast at what level?";
-            for(i = 0; i < 10-lvl; i++) {
-                spelllevel = spelllevel + "|Level " + (parseInt(i, 10) + parseInt(lvl, 10)) + "," + parseInt(i, 10);
-            }
-            spelllevel = spelllevel + "}";
-	          //console.log("QUERY (sp): "+spelllevel);
+        else
+        if(data["Higher Spell Slot Desc"] && data["Higher Spell Slot Desc"] != "") {
+              var spelllevel = "?{Cast at what level?";
+              for(i = 0; i < 10-lvl; i++) {
+                  spelllevel = spelllevel + "|Level " + (parseInt(i, 10) + parseInt(lvl, 10)) + "," + parseInt(i, 10);
+              }
+              spelllevel = spelllevel + "}";
+  	          console.log("QUERY (sp): "+spelllevel);
 
-            update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf>@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
+              update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf>@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
         };
 
         if(data["Spell Attack"]) {
@@ -10418,7 +10425,9 @@ var handle_drop_monster = function(v) {
       ["spellname", "spellrange", "spelltarget", "spellattack", "spelldamage", "spelldamage2", "dmgtype", "dmgtype2", "spellhealing",
       "spellsave", "spellsavesuccess", "spellhldie", "spellhldietype", "spellhlbonus", "spelllevel", "includedesc", "spelldescription",
       "spellathigherlevels", "_spell_damage_progression", "innate", "spell_dc", "casting_restrictions", "casting_restrictions_desc",
-      "spellcastingtime", "spellcomp_v", "spellcomp_s", "spellcomp_m", "spellcomp_materials", "spellduration", "spellconcentration"].forEach ((attr) => {
+      "spellcastingtime", "spellcomp_v", "spellcomp_s", "spellcomp_m", "spellcomp_materials", "spellduration", "spellconcentration",
+      "spellcritrange", "spellfumblerange"
+      ].forEach ((attr) => {
         spell_attribs.push(`${repeating_spell}_${attr}`)
       });
 
@@ -10440,10 +10449,11 @@ var handle_drop_monster = function(v) {
           ["spellcomp_v", "spellcomp_s", "spellcomp_m", "spellcomp_materials", "spellduration", "spellconcentration", "spellcastingtime",
           "casting_restrictions_desc"]
           .forEach((attr) => {
-              if (v[`${repeating_spell}_${attr}`] && v[`${repeating_spell}_${attr}`] != "") {
-                update[`${repeating_attacks}_${attr}`] = v[`${repeating_spell}_${attr}`];
-              }
+              update[`${repeating_attacks}_${attr}`] = v[`${repeating_spell}_${attr}`];
           });
+
+          update[`${repeating_attacks}_spellcritrange`] = parseInt(v[`${repeating_spell}_spellcritrange`]) || 0;
+          update[`${repeating_attacks}_spellfumblerange`] = parseInt(v[`${repeating_spell}_spellfumblerange`]) || 0;
 
           update[`${repeating_attacks}_atk_target`] = v[`${repeating_spell}_spelltarget`];
           update[`${repeating_attacks}_atkflag`] = (!v[`${repeating_spell}_spellattack`] || v[`${repeating_spell}_spellattack`] === "None") ? "0" : "{{attack=1}}";
@@ -10816,14 +10826,15 @@ var handle_drop_monster = function(v) {
               //set in the GLOBAL DAMAGE MODIFIER section
 
               //Assemble Roll Templates
-    	      if (attack_form == "spell") {
-                // spell as an attack
-                // FOOBAR
-              rollbase = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{atkname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf>@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc}]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{atk_desc}}} {{castingtime=@{spellcastingtime}}} {{range=@{atkrange}}} {{target=@{atk_target}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=}} @{spellconcentration} {{mod=@{atkbonus}}} {{rname=@{atkname}}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1}[CRIT]]]}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} innate=@{spell_innate}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}} {{spell_save_dc=@{spellcasting_dc}}}`;
-    	      } else {
-                // regular attack
-    	          rollbase =`@{wtype}&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel=@{spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}`;
-    	      }
+      	      if (attack_form == "spell") {
+                  // spell as an attack
+                  // FOOBAR
+                  rollbase = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{atkname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf>@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{desc=@{atk_desc}}} {{castingtime=@{spellcastingtime}}} {{range=@{atkrange}}} {{target=@{atk_target}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{spell_innate}}} @{spellconcentration} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit=1}} {{crit1=[[${crit1} [CRIT]]]}} @{saveflag} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
+
+      	      } else {
+                  // regular attack
+      	          rollbase =`@{wtype}&{template:roll_check} {{character_name=@{character_name}}} ammo=@{ammo} {{name=@{atkname}}} {{innate=}} {{spelllevel=@{spelllevel}}} {{title=@{atkname} <b>Attack</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] ]]}} {{critical=[[19 + @{atkbonus} - @{attack_crit_range_adj}]]}} {{fumble=[[2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=}}`;
+      	      }
 
               // Not used?
               //update[`${repeating_attacks}_rollbase_dmg`]  = `@{wtype}&{template:dmg} {{rname=@{atkname}}} @{atkflag} {{range=@{atkrange}}} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} @{dmg2flag} {{dmg2=[[${hdmg2}]]}} {{dmg2type=${dmg2type}}} @{saveflag} {{desc=@{atk_desc}}} @{hldmg} {{spelllevel=@{spelllevel}}} {{innate=@{spell_innate}}} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
