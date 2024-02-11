@@ -3134,52 +3134,32 @@
              </div>
           </div>
         </div>
-        <span style="text-align: center;">&nbsp;</span>
-        <div class="block thin-border" style="padding: 2px; top-margin: 2px; background-color: #C7C7C7;">
-          <div class="inline-flex">
-             <span class="info-name bold-font" style="width: 150px;">Social Status</span>
-             <span class="info-name-sm" style="width: 40px;">Buy %</span>
-             <span class="info-name-sm" style="width: 40px;">Sell %</span>
-             <span class="info-name" style="width: 60px; text-align: center;">Max Savings</span>
-             <span class="info-name" style="width: 310px;">Other</span>
-          </div>
-           <div class="inline-flex">
-              <input type="number" name="attr_starting_status" value="3" hidden="true"/>
-              <input type="text" class="info-name bold-font" style="text-align: center; border-color: #C7C7C7; background-color: #D7D7D7; width: 150px;"
-                     value="Slave" name="attr_status_title" readonly="true"/>
-              <input type="text" class="info-name inactive-color" style="text-align: right; width: 40px; border-color: #C7C7C7; background-color: #D7D7D7;"
-                    value="1" name="attr_buy_percent" readonly="true"/>
-              <input type="text" class="info-name inactive-color" style="text-align: right; width: 40px; border-color: #C7C7C7; background-color: #D7D7D7;"
-                    value="1" name="attr_sell_percent" readonly="true"/>
-              <input type="text" class="info-name inactive-color" style="text-align: right; width: 60px; border-color: #C7C7C7; background-color: #D7D7D7;"
-                    value="10000" name="attr_max_savings" readonly="true"/>
-              <input type="text" class="info-name inactive-color" style="width: 310px;  border-color: #C7C7C7; background-color: #D7D7D7;"
-                    value="Slave" name="attr_status_other" readonly="true"/>
-           </div>
-        </div>
     </div>
 
     <div class="sheet-header-right sheet-noborder">
        <div class="block">
          <div class="inline-flex">
-           <div class="block" style="text-align: center; align-content: center; margin-right: 150px;">
+           <div class="block" style="text-align: center; width: 50px; align-content: center; margin-right: 140px;">
                <input class="ability-modifier" type="number" name="attr_hp"/>
                <span class="bold-font">HP</span>
            </div>
-           <div class="center">
+           <div class="center" style="width: 50px;">
                <input class="ability-modifier inactive-color" type="number" name="attr_ac" readonly="true"/>
                <span class="bold-font">AC</span>
            </div>
          </div>
-         <div style="margin-top: -30px;">
+         <div style="margin-top: -60px; max-width: 245px;">
             <img name="attr_character_token" class="logo"/>
          </div>
          <div class="inline-flex" style="margin-top: -80px;">
-           <div class="block" style="text-align: center; align-content: center; margin-right: 150px;">
+           <div class="block" style="text-align: center; width: 50px; margin-right: 20px; align-content: center;">
              <input class="ability-modifier" type="number" name="attr_spellcasting_fatigue"/>
              <span class="bold-font">Fatigue</span>
            </div>
-           <div class="center">
+           <div class="block" style="text-align: center; align-content: center; margin-top: 20px; margin-right: 20px;">
+             <span name="attr_status_title" style="min-width: 140px;"></span>
+           </div>
+           <div class="center" style="width: 50px;">
              <input class="ability-modifier inactive-color" type="number" name="attr_encumbrance" readonly="true"/>
              <span class="bold-font">Encumb</span>
            </div>
@@ -7507,6 +7487,29 @@
 
       <div class="sheet-section-notes">
         <span class="sheet-spacer">&nbsp;</span>
+        <div class="block thin-border" style="padding: 2px; top-margin: 2px; background-color: #C7C7C7;">
+          <div class="inline-flex">
+             <span class="info-name bold-font" style="width: 150px;">Social Status</span>
+             <span class="info-name-sm" style="width: 40px;">Buy %</span>
+             <span class="info-name-sm" style="width: 40px;">Sell %</span>
+             <span class="info-name" style="width: 60px; text-align: center;">Max Savings</span>
+             <span class="info-name" style="width: 310px;">Other</span>
+          </div>
+           <div class="inline-flex">
+              <input type="number" name="attr_starting_status" value="3" hidden="true"/>
+              <input type="text" class="info-name bold-font" style="text-align: center; border-color: #C7C7C7; background-color: #D7D7D7; width: 150px;"
+                     value="Slave" name="attr_status_title" readonly="true"/>
+              <input type="text" class="info-name inactive-color" style="text-align: right; width: 40px; border-color: #C7C7C7; background-color: #D7D7D7;"
+                    value="1" name="attr_buy_percent" readonly="true"/>
+              <input type="text" class="info-name inactive-color" style="text-align: right; width: 40px; border-color: #C7C7C7; background-color: #D7D7D7;"
+                    value="1" name="attr_sell_percent" readonly="true"/>
+              <input type="text" class="info-name inactive-color" style="text-align: right; width: 60px; border-color: #C7C7C7; background-color: #D7D7D7;"
+                    value="10000" name="attr_max_savings" readonly="true"/>
+              <input type="text" class="info-name inactive-color" style="width: 310px;  border-color: #C7C7C7; background-color: #D7D7D7;"
+                    value="Slave" name="attr_status_other" readonly="true"/>
+           </div>
+        </div>
+        <span style="text-align: center;">&nbsp;</span>
         <div class="sheet-thick-border">
           <h3>Notes</h3>
           <textarea class="sheet-fill-width" spellcheck="false" name="attr_notes" data-i18n-placeholder="notes"></textarea>
