@@ -3161,14 +3161,28 @@
 
     <div class="sheet-header-right sheet-noborder">
        <div class="block">
-         <div class="col1">
-           <span name="attr_hp"/>
+         <div class="inline-flex">
+           <div class="block" style="text-align: center; align-content: center; margin-right: 150px;">
+               <input class="ability-modifier" type="number" name="attr_hp"/>
+               <span class="bold-font">HP</span>
+           </div>
+           <div class="center">
+               <input class="ability-modifier inactive-color" type="number" name="attr_ac" readonly="true"/>
+               <span class="bold-font">AC</span>
+           </div>
          </div>
-         <div class="col2">
+         <div style="margin-top: -30px;">
             <img name="attr_character_token" class="logo"/>
          </div>
-         <div class="col3">
-           <span name="attr_encumberance"/>
+         <div class="inline-flex" style="margin-top: -80px;">
+           <div class="block" style="text-align: center; align-content: center; margin-right: 150px;">
+             <input class="ability-modifier" type="number" name="attr_spellcasting_fatigue"/>
+             <span class="bold-font">Fatigue</span>
+           </div>
+           <div class="center">
+             <input class="ability-modifier inactive-color" type="number" name="attr_encumbrance" readonly="true"/>
+             <span class="bold-font">Encumb</span>
+           </div>
          </div>
        </div>
        <!--
