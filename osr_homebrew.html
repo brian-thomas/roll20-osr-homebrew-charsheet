@@ -8057,61 +8057,6 @@
       </div>
   </rolltemplate>
 
-  <!--
-  <rolltemplate class="sheet-rolltemplate-spell">
-    <h1>SPELL TEMPLATE</h1>
-      <div class="licensedsheet-flag-{{licensedsheet}}"></div>
-      <div class="container">
-          <div class="title row">
-              <span>{{name}}</span>{{#innate}}<span class="grey">, {{innate}}</span>{{/innate}}
-          </div>
-          <div class="italics row">
-              <span>{{level}}{{#ritual}} (<span data-i18n="ritual-l"></span>){{/ritual}}</span>
-          </div>
-          <div class="spacer"></div>
-          {{#castingtime}}
-          <div class="row">
-              <span class="bold" data-i18n="casting-time:">Casting Time:</span> <span>{{castingtime}}</span>
-          </div>
-          {{/castingtime}}
-          {{#range}}
-          <div class="row">
-              <span class="bold" data-i18n="range:">Range:</span> <span>{{range}}</span>
-          </div>
-          {{/range}}
-          {{#target}}
-          <div class="row">
-              <span class="bold" data-i18n="target:">Target:</span> <span>{{target}}</span>
-          </div>
-          {{/target}}
-          <div class="row">
-              <span class="bold" data-i18n="components:">Components:</span>
-              <span>
-                  {{#v}}V{{#s}}, {{/s}}{{^s}}{{#m}}, {{/m}}{{/s}}{{/v}}
-                  {{#s}}S{{#m}}, {{/m}}{{/s}}
-                  {{#m}}M {{#material}}({{material}}){{/material}}{{/m}}
-              </span>
-          </div>
-          {{#duration}}
-          <div class="row">
-              <span class="bold" data-i18n="duration:">Duration:</span> <span>{{#concentration}}<span data-i18n="concentration">Concentration</span> {{/concentration}}{{duration}}</span>
-          </div>
-          {{/duration}}
-          <div class="spacer"></div>
-          {{#description}}
-          <div class="row">
-              <span class="description">{{description}}</span>
-          </div>
-          {{/description}}
-          {{#athigherlevels}}
-          <div class="row">
-              <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>. <span class="description">{{athigherlevels}}</span>
-          </div>
-          {{/athigherlevels}}
-      </div>
-  </rolltemplate>
-  -->
-
 <rolltemplate class="sheet-rolltemplate-spell2">
   <div class="sheet-rt-card">
     <div class="sheet-rt-header">
@@ -8270,7 +8215,8 @@
           {{#dmg1flag}}
               {{^dmg2flag}}
                   <div class="solo">
-                      <span class="damage">{{dmg1}}{{#crit}} + {{crit1}}{{/crit}}</span>
+                      <!--span class="damage">{{dmg1}}{{#crit}} + {{crit1}}{{/crit}}</span-->
+                      <span class="damage">{{dmg1}}{{#rollGreater() roll1 critical}} + {{crit1}}{{/rollGreater() roll1 critical}}</span>
                       <span class="sublabel">{{dmg1type}}</span>
                   </div>
               {{/dmg2flag}}
@@ -8278,7 +8224,7 @@
           {{#dmg2flag}}
               {{^dmg1flag}}
                   <div class="solo">
-                      <span class="damage">{{dmg2}}{{#crit}} + {{crit2}}{{/crit}}</span>
+                      <span class="damage">{{dmg2}}{{#rollGreater() roll1 critical}} + {{crit2}}{{/rollGreater() roll1 critical}}</span>
                       <span class="sublabel">{{dmg2type}}</span>
                   </div>
               {{/dmg1flag}}
@@ -8286,12 +8232,12 @@
           {{#dmg1flag}}
               {{#dmg2flag}}
                   <div class="adv">
-                      <span class="damage">{{dmg1}}{{#crit}} + {{crit1}}{{/crit}}</span>
+                      <span class="damage">{{dmg1}}{{#rollGreater() roll1 critical}} + {{crit1}}{{/rollGreater() roll1 critical}}</span>
                       <span class="sublabel">{{dmg1type}}</span>
                   </div>
                   <div class="advspacer"></div>
                   <div class="adv">
-                      <span class="damage">{{dmg2}}{{#crit}} + {{crit2}}{{/crit}}</span>
+                      <span class="damage">{{dmg2}}{{#rollGreater() roll1 critical}} + {{crit2}}{{/rollGreater() roll1 critical}}</span>
                       <span class="sublabel">{{dmg2type}}</span>
                   </div>
               {{/dmg2flag}}
@@ -10855,8 +10801,7 @@ var handle_drop_monster = function(v) {
               //Assemble Roll Templates
       	      if (attack_form == "spell") {
                   // spell as an attack
-                  // FOOBAR
-                  rollbase = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{atkname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf>@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc}]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{desc=@{atk_desc}}} {{castingtime=@{spellcastingtime}}} {{range=@{atkrange}}} {{target=@{atk_target}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{spell_innate}}} @{spellconcentration} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit=1}} {{crit1=[[${crit1} [CRIT]]]}} @{saveflag} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
+                  rollbase = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{atkname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf>@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc}]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{desc=@{atk_desc}}} {{castingtime=@{spellcastingtime}}} {{range=@{atkrange}}} {{target=@{atk_target}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{spell_innate}}} @{spellconcentration} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1} [CRIT]]]}} @{saveflag} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
 
       	      } else {
                   // regular attack
