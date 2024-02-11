@@ -8976,8 +8976,6 @@
         settings[repeating_source + '_' + id + '_spell_dc'] = spell_dc;
         settings[repeating_source + '_' + id + '_spell_dc_show'] = is_innate ? "" : spell_dc;
 
-        console.log("is_innate: "+is_innate);
-
       });
       setAttrs(settings, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
 
@@ -10340,7 +10338,7 @@ var handle_drop_monster = function(v) {
                   spelllevel = spelllevel + "|Level " + (parseInt(i, 10) + parseInt(lvl, 10)) + "," + parseInt(i, 10);
               }
               spelllevel = spelllevel + "}";
-  	          console.log("QUERY (sp): "+spelllevel);
+  	          //console.log("QUERY (sp): "+spelllevel);
 
               update[repeating_source + "_rollcontent"] = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{spellname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf>@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc} + ${spelllevel} + [[@{spellcasting_fatigue}]] ]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{description=@{spelldescription}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{innate}}} @{spellconcentration}`;
         };
@@ -10498,7 +10496,7 @@ var handle_drop_monster = function(v) {
                   query = query + "|Level " + (parseInt(i, 10) + parseInt(spelllevel, 10)) + "," + i;
               }
               query = query + "}";
-	            console.log("QUERY (bsc): "+query);
+	            //console.log("QUERY (dmg): "+query);
               if(v[`${repeating_spell}_spellhlbonus`] && v[`${repeating_spell}_spellhlbonus`] != "") {
                   bonus = "+(" + v[`${repeating_spell}_spellhlbonus`] + "*" + query + ")";
               }
