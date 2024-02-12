@@ -3776,7 +3776,7 @@
             <div class="sheet-flex-between">
               <div class="sheet-inline sheet-side-padding">
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_stnd_attack" value="1" checked="checked" readonly="true"/>
+                  <input type="checkbox" class="cmbopt" name="attr_stnd_attack" value="1" checked="checked" readonly="true"/>
                   <span class="ability-check-label">Stnd</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+0 AC+0)</span>
                 </div>
@@ -3794,17 +3794,23 @@
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_charge_attack" value="1" readonly="true"/>
-                  <span class="ability-check-label">Charge</span>
-                  <div class="sheet-block">
+                  <div>
+                    <input type="checkbox" name="attr_charge_attack" value="1" readonly="true"/>
+                  </div>
+                  <div class="flex">
+                    <span class="ability-check-label">Charge</span>
                     <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2, 2x dam, must move full move to target. Braced targets may cause 2x dam to attacker.)</span>
                   </div>
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input type="checkbox" name="attr_press_attack" value="1" readonly="true"/>
-                  <span class="ability-check-label">Press</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2, Fort save vs dam+10 or force 1 step retreat. AC penalty.)</span>
+                  <div>
+                    <input type="checkbox" name="attr_press_attack" value="1" readonly="true"/>
+                  </div>
+                  <div class="flex">
+                    <span class="ability-check-label">Press</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2, Fort save vs dam+10 or force 1 step retreat. AC penalty.)</span>
+                  </div>
                 </div>
 
                 <div class="sheet-thin-border sheet-flex-between">
@@ -3825,34 +3831,54 @@
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input class="sheet-add-cmbt-opt" class="sheet-add-cmbt-opt" type="checkbox" name="attr_berserk_attack" value="1"/>
-                  <span class="ability-check-label">Berserk</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2+Fghtr/4, Dam+2+Fghtr/4, No retreat, Will to Stop, AC pen.)</span>
+                  <div>
+                    <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_berserk_attack" value="1"/>
+                  </div>
+                  <div class="flex">
+                    <span class="ability-check-label">Berserk</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB+2+Fghtr/4, Dam+2+Fghtr/4, No retreat, Will to Stop, AC pen.)</span>
+                  </div>
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_cleave_attack" value="1"/>
-                  <span class="ability-check-label">Cleave</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB/2 -&gt; Dam, Attack adj foe on kill, AC penalty)</span>
+                  <div>
+                     <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_cleave_attack" value="1"/>
+                  </div>
+                  <div class="flex">
+                    <span class="ability-check-label">Cleave</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB/2 -&gt; Dam, Attack adj foe on kill, AC penalty)</span>
+                  </div>
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input class="sheet-add-cmbt-opt" class="sheet-add-cmbt-opt" type="checkbox" name="attr_disarm_attack" value="1"/>
-                  <span class="ability-check-label">Disarm</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Target Fort save vs dam+10 or drop held item, AB-4, AC penalty)</span>
+                  <div>
+                    <input class="sheet-add-cmbt-opt" class="sheet-add-cmbt-opt" type="checkbox" name="attr_disarm_attack" value="1"/>
+                  </div>
+                  <div class="flex">
+                    <span class="ability-check-label">Disarm</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Target Fort save vs dam+10 or drop held item, AB-4, AC penalty)</span>
+                  </div>
                 </div>
 
                 <input type="checkbox" class="sheet-cleave_attack_enabled2" name="attr_cleave_attack_enabled2" value="1" hidden="true"/>
                 <div class="sheet-section-great_cleave sheet-flex sheet-bottom-padding">
-                  <input class="sheet-add-cmbt-opt" class="sheet-add-cmbt-opt" type="checkbox" name="attr_great_cleave_attack" value="1"/>
-                  <span class="ability-check-label">Great Cleave</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB -&gt; Dam, Attack adj foe on kill, AC penalty)</span>
+                  <div>
+                    <input class="sheet-add-cmbt-opt" class="sheet-add-cmbt-opt" type="checkbox" name="attr_great_cleave_attack" value="1"/>
+                  </div>
+                  <div class="flex">
+                    <span class="ability-check-label">Great Cleave</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB -&gt; Dam, Attack adj foe on kill, AC penalty)</span>
+                  </div>
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input class="sheet-add-cmbt-opt" class="sheet-add-cmbt-opt" type="checkbox" name="attr_lightning_attack" value="1"/>
-                  <span class="ability-check-label">Lightning Strike</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(-4 AB, +4 Init, AC penalty)</span>
+                  <div>
+                    <input class="sheet-add-cmbt-opt" class="sheet-add-cmbt-opt" type="checkbox" name="attr_lightning_attack" value="1"/>
+                  </div>
+                  <div class="flex">
+                    <span class="ability-check-label">Lightning Strike</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(-4 AB, +4 Init, AC penalty)</span>
+                  </div>
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
@@ -3864,6 +3890,7 @@
               </div>
 
               <div class="sheet-inline sheet-side-padding">
+
                 <div class="sheet-flex sheet-bottom-padding">
                   <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_rapid_shot_attack1" value="1"/>
                   <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_rapid_shot_attack2" value="1"/>
@@ -3872,30 +3899,50 @@
                 </div>
 
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_shield_bash_attack" value="1"/>
-                  <span class="ability-check-label">Shield Bash</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(May make a 2nd attack w/ shield which may knock down or push back opponent.)</span>
+                  <div>
+                    <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_shield_bash_attack" value="1"/>
+                  </div>
+                  <div class="flex">
+                    <span class="ability-check-label">Shield Bash</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(May make a 2nd attack w/ shield which may knock down or push back opponent.)</span>
+                  </div>
                 </div>
+
                 <div class="sheet-flex sheet-bottom-padding">
                   <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_strong_attack" value="1"/>
                   <span class="ability-check-label">Strong</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Dam x2, AB-4, AC penalty)</span>
                 </div>
+
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_stun_attack" value="1"/>
-                  <span class="ability-check-label">Stun</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB-4, AC penalty, target Fort save vs dam+10 or stun)</span>
+                  <div>
+                    <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_stun_attack" value="1"/>
+                  </div>
+                  <div class="flex">
+                    <span class="ability-check-label">Stun</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB-4, AC penalty, target Fort save vs dam+10 or stun)</span>
+                  </div>
                 </div>
+
                 <div class="sheet-flex sheet-bottom-padding">
-                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_two_attack_attack" value="1"/>
-                  <span class="ability-check-label">Two Weapon Attack</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(2nd Attk w/ small offhand weapon or AC+1)</span>
+                  <div>
+                    <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_two_attack_attack" value="1"/>
+                  </div>
+                  <div class="flex">
+                    <span class="ability-check-label">2 Weapon Attack</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(2nd Attk w/ small offhand weapon or AC+1)</span>
+                  </div>
                 </div>
+
                 <input type="checkbox" class="sheet-two_attack_attack_enabled"  name="attr_two_attack_attack_enabled" value="1" hidden="true"/>
                 <div class="sheet-section-two_attack_master sheet-flex sheet-bottom-padding">
-                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_two_attack_master_attack" value="1"/>
-                  <span class="ability-check-label">Two Weapon Master</span>
-                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(2nd Attk with offhand weapon or AC+2)</span>
+                  <div>
+                    <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_two_attack_master_attack" value="1"/>
+                  </div>
+                  <div class="flex">
+                    <span class="ability-check-label">2 Weapon Master</span>
+                    <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(2nd Attk with offhand weapon or AC+2)</span>
+                  </div>
                 </div>
               </div>
 
