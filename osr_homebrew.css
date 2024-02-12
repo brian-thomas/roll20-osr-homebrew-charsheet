@@ -1,7 +1,7 @@
 
 .charsheet {
 	  background-color: #ddd;
-    width: 942px !important;
+    width: 842px !important;
     min-width: 842px; /* Set the min-width so that when the window is resized the look will stay consistant */
     margin: 0 auto !important;
     line-height: 18px;
@@ -67,7 +67,7 @@ h4 {
 
 .sheet-body {
 	/* THIS width same as charsheet above */
-  width: 942px;
+  width: 842px;
   margin-top: 22px; }
 
 .sheet-body-spells {
@@ -156,8 +156,9 @@ span.sheet-bold-font
 	padding-right: 10px
 }
 .sheet-tiny-textarea {
-	height: 50px;
-	width:  180px;
+	height: 78px; 
+	width:  90%;
+	margin-left: 2px;
 }
 .sheet-npc-notes {
 	height:  241px;
@@ -397,7 +398,6 @@ span.sheet-center
 .sheet-inline {
 	display: inline;
 	align-items: start;
-	padding: 1px;
 }
 
 .sheet-inline-flex {
@@ -430,7 +430,11 @@ span.sheet-center
 		padding: 0px;
 		margin: 0px;
 }
-.sheet-col-1, .sheet-col-2, .sheet-thick-border, .sheet-thin-border, .sheet-thin-border-no-pad .sheet-noborder, .sheet-thick-border-no-pad {
+.sheet-col-1,
+.sheet-col-2,
+.sheet-thick-border,
+.sheet-thin-border,
+.sheet-noborder {
 	box-sizing: border-box;
 }
 .sheet-thin-border-no-pad,
@@ -445,13 +449,13 @@ input[type=number].sheet-thin-border
 .sheet-thin-border {
 	padding-top: 5px;
 }
-.sheet-thick-border, .sheet-thick-border-no-pad {
+
+.sheet-thick-border {
 	border: 4px solid;
 	overflow: auto;
 	margin-bottom: 10px;
 }
-.sheet-noborder,
-.sheet-thick-border,
+
 .sheet-side-padding,
 input.side-padding,
 select.side-padding
@@ -467,7 +471,7 @@ select.side-padding
 	border-bottom-color: #000;
 }
 
-.sheet-bottom-padding, .sheet-noborder, .sheet-thick-border {
+.sheet-bottom-padding {
 	padding-bottom: 5px;
 }
 .sheet-header-left {
@@ -1018,10 +1022,17 @@ input.sheet-prof-value-underspent[value="0"]:checked ~ span.sheet-prof-value-und
     color: white;
 }
 
+input[type=number].sheet-skill-value
+{
+    height: 25px;
+    width: 25px;
+		align-content: center;
+}
+
 input[type=number].sheet-skill-bonus-value
 {
     height: 22px;
-    width: 30px;
+    width: 22px;
 }
 /* NPCs */
 .sheet-npc .repitem {
@@ -1117,6 +1128,31 @@ div.sheet-show-spellbook
 input.sheet-can-cast-magic:checked ~ div.sheet-show-spellbook
 {
   display: block;
+}
+
+.sheet-added-skills .repitem {
+    width: 48%;
+    margin: 0;
+    display: block;
+}
+
+.sheet-skillcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+    align-items: center;
+		/*
+    border: 2px solid black;
+		*/
+    padding: 2px;
+    justify-content: flex-start;
+    align-content: start;
+}
+
+.sheet-added-skills .repcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .sheet-perks .repitem {

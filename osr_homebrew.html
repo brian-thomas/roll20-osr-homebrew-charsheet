@@ -3002,7 +3002,7 @@
   </div> <!-- NPC End -->
 
   <input type="checkbox" class="sheet-pc_header_enabled" name="attr_pc_header_enabled" value="1" hidden="True"/>
-  <div class="sheet-section-pc body">
+  <div class="section-pc body">
 
     <!-- Used by OGL Companion API Script -->
     <input type="text" name="attr_wtype" value="" hidden="true"/>
@@ -3019,7 +3019,7 @@
             <input type="checkbox" class="sheet-move-rate-heavy-enc" name="attr_move_rate_heavy_enc" value="0" hidden="true" checked="true"/>
             <input type="checkbox" class="sheet-move-rate-med-enc" name="attr_move_rate_med_enc" value="0" hidden="true" checked="true"/>
             <input type="checkbox" class="sheet-move-rate-light-enc" name="attr_move_rate_light_enc" value="0" hidden="true" checked="true"/>
-            <span class="sheet-bold-font centered-label left-pad right-pad move-rate-light-enc-notify move-rate-med-enc-notify move-rate-heavy-enc-notify move-rate-stop-notify">Movement Rate:</span>
+            <span class="sheet-bold-font centered-label left-pad right-pad move-rate-light-enc-notify move-rate-med-enc-notify move-rate-heavy-enc-notify move-rate-stop-notify">Move Rate:</span>
             <input type="number" name="attr_movement_rate" class="sheet-inactive-color sm-stat right-pad" value="40" readonly="true"/>
             <span class="bold-font big-font centred-label left-pad right-pad">/</span>
             <input type="number" name="attr_base_movement_rate" class="sheet-inactive-color sm-stat" value="40" readonly="true"/>
@@ -3125,12 +3125,12 @@
                   <option value="Elven">Elven</option>
                   <option value="Halfling">Halfling</option>
                </select>
-               <input type="text" class="info-name" style="width: 315px;" name="attr_background"/>
+               <input type="text" class="info-name" style="width: 215px;" name="attr_background"/>
              </div>
              <div class="sheet-inline-flex">
                <span class="sheet-info-name">Alignment</span>
                <span class="sheet-info-name">Race</span>
-               <span class="info-name" style="margin-left: 90px;">Background</span>
+               <span class="info-name" style="margin-left: 40px;">Background</span>
              </div>
           </div>
         </div>
@@ -3349,7 +3349,7 @@
                 </div>
               </div>
 
-              <div class="sheet-col-left-right sheet-save-col sheet-thick-border-no-pad">
+              <div class="sheet-col-left-right sheet-save-col sheet-thick-border">
                 <h3 style="height: 30px;">Checks</h3>
                 <div class="block" style="height: 90px;">
                   <div style="text-align: center;">
@@ -3477,166 +3477,177 @@
               <div class="sheet-thick-border">
                 <h3>Skills</h3>
                 <div class="sheet-bold-font center">
-                  <span class="med-small-font">Points Available:
-                    <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_skill_points" value="0" readonly="true"/>
+                  <span class="med-small-font">Points Allowed:
+                    <input type="number" class="sheet-inactive-color no-border info-name-tiny" style="width: 30px;" name="attr_skill_points" value="0" readonly="true"/>
                   </span>
                   <input type="checkbox" class="sheet-skill-points-overspent" name="attr_skill_points_overspent" value="0" hidden="true" checked="true"/>
                   <input type="checkbox" class="sheet-skill-points-underspent" name="attr_skill_points_underspent" value="0" hidden="true" checked="true"/>
                   <span class="sheet-skill-points-overspend-notify sheet-skill-points-underspent-notify med-small-font">Points Spent:
-                    <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_skill_points_used" value="0" readonly="true"/>
+                    <input type="number" class="sheet-inactive-color no-border info-name-tiny" style="width: 30px;" name="attr_skill_points_used" value="0" readonly="true"/>
                   </span>
                   <input type="checkbox" class="sheet-max-skill-value-exceeded" name="attr_max_skill_value_exceeded" value="0" hidden="true" checked="true"/>
                   <span class="sheet-max-skill-value-exceeded-notify med-small-font">Max Skill Value:
-                    <input type="number" class="sheet-inactive-color no-border info-name-tiny" name="attr_max_skill_value_allowed" value="0" readonly="true"/>
+                    <input type="number" class="sheet-inactive-color no-border info-name-tiny" style="width: 30px;" name="attr_max_skill_value_allowed" value="0" readonly="true"/>
                   </span>
                 </div>
                 <div class="sheet-block">
                   <div class="sheet-block">
                     <div class="sheet-thin-border sheet-bottom-padding">
-                      <h4>Skills</h4>
+                      <h4>Basic Skills</h4>
                       <div class="sheet-flex-between">
                         <div class="sheet-block sheet-side-padding">
 
                           <div class="sheet-block-between">
-                            <div class="sheet-align-right">
-                              <span class="sheet-bold-font">Arcana</span>
-                              <input type="number" name="attr_arcana_skill" class="sheet-bold-font" value="0"/>
-                              <input type="number" name="attr_arcana_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_arcana"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Arcana Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{arcana_skill} + @{arcana_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{arcana_skill}]] +[[@{arcana_bonus}]]]]}}"></button>
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_arcana"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Arcana Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{arcana_skill} + @{arcana_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{arcana_skill}]] +[[@{arcana_bonus}]]]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Arcana</span>
+                              </button>
+                              <input type="number" name="attr_arcana_skill" class="bold-font skill-value" value="0"/>
+                              <input type="number" name="attr_arcana_bonus" class="skill-bonus-value purple-border" value="0"/>
                             </div>
                           </div>
 
                           <div class="sheet-block-between">
-                            <div class="sheet-align-right">
-                              <span class="sheet-bold-font">Architect</span>
-                              <input type="number" name="attr_architect_skill" class="sheet-bold-font" value="0"/>
-                              <input type="number" name="attr_architect_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_architect"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Architect Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{architect_skill} + @{architect_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{architect_skill}]] + [[@{architect_bonus}]]]]}}"></button>
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_architect"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Architect Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{architect_skill} + @{architect_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{architect_skill}]] + [[@{architect_bonus}]]]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Architect</span>
+                              </button>
+                              <input type="number" name="attr_architect_skill" class="bold-font skill-value" value="0"/>
+                              <input type="number" name="attr_architect_bonus" class="skill-bonus-value sheet-purple-border" value="0"/>
                             </div>
                           </div>
 
                           <div class="sheet-block-between">
-                            <div class="sheet-align-right">
-                              <span class="sheet-bold-font">Armory</span>
-                              <input type="number" name="attr_armory_skill" class="sheet-bold-font" value="0"/>
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_armory"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Armory Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{armory_skill} + @{armory_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{armory_skill}]] + [[@{armory_bonus}]]]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Armory</span>
+                              </button>
+                              <input type="number" name="attr_armory_skill" class="sheet-bold-font skill-value" value="0"/>
                               <input type="number" name="attr_armory_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_armory"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Armory Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{armory_skill} + @{armory_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{armory_skill}]] + [[@{armory_bonus}]]]]}}"></button>
                             </div>
                           </div>
 
-                          <div class="sheet-block">
-                            <div class="sheet-align-right">
-                              <span class="sheet-bold-font">Athletics</span>
+                          <div class="sheet-block-between">
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_athletics"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Athletics Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{athletics_skill} + (@{athletics_bonus} bonus) + (@{athletics_skill_mod} STR/DEX mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{athletics_skill} + @{athletics_bonus} + @{athletics_skill_mod}]] ]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Athletics</span>
+                              </button>
                               <input type="hidden" name="attr_athletics_skill_mod" value="0"/>
-                              <input type="number" name="attr_athletics_skill" class="sheet-bold-font" value="0"/>
+                              <input type="number" name="attr_athletics_skill" class="sheet-bold-font skill-value" value="0"/>
                               <input type="number" name="attr_athletics_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_athletics"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Athletics Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{athletics_skill} + (@{athletics_bonus} bonus) + (@{athletics_skill_mod} STR/DEX mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{athletics_skill} + @{athletics_bonus} + @{athletics_skill_mod}]] ]]}}"></button>
                             </div>
                           </div>
 
-                          <div class="sheet-block">
-                            <div class="sheet-align-right">
-                              <span class="sheet-bold-font">Bushcraft</span>
-                              <input type="number" name="attr_bushcraft_skill" class="sheet-bold-font" value="0"/>
+                          <div class="sheet-block-between">
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_bushcraft"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Bushcraft Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{bushcraft_skill} +@{bushcraft_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{bushcraft_skill}]] + [[@{bushcraft_bonus}]]]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Bushcraft</span>
+                              </button>
+                              <input type="number" name="attr_bushcraft_skill" class="sheet-bold-font skill-value" value="0"/>
                               <input type="number" name="attr_bushcraft_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_bushcraft"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Bushcraft Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{bushcraft_skill} +@{bushcraft_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{bushcraft_skill}]] + [[@{bushcraft_bonus}]]]]}}"></button>
                             </div>
                           </div>
 
-                          <div class="sheet-block">
-                            <div class="sheet-align-right">
-                              <span class="sheet-bold-font">Languages</span>
-                              <input type="number" name="attr_languages_skill" class="sheet-bold-font" value="0"/>
+                          <div class="sheet-block-between">
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_languagues"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Languages Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{languages_skill} + (@{languages_bonus} bonus) + (@{intelligence_mod} INT mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{languages_skill} + @{languages_bonus} + @{intelligence_mod}]] ]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Languages</span>
+                              </button>
+                              <input type="number" name="attr_languages_skill" class="sheet-bold-font skill-value" value="0"/>
                               <input type="number" name="attr_languages_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_languagues"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Languages Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{languages_skill} + (@{languages_bonus} bonus) + (@{intelligence_mod} INT mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{languages_skill} + @{languages_bonus} + @{intelligence_mod}]] ]]}}"></button>
                             </div>
                           </div>
 
-                          <div class="sheet-block">
-                            <div class="sheet-align-right">
-                              <span class="sheet-bold-font">Open&nbsp;Doors</span>
-                              <input type="number" name="attr_open_door_skill" class="sheet-bold-font" value="0"/>
+                          <div class="sheet-block-between">
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_opendoor"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Open Doors Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{open_door_skill} + @{open_door_bonus} bonus +(@{strength_mod} STR mod) }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{open_door_skill} + @{open_door_bonus} @{strength_mod}]] ]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Open&nbsp;Doors</span>
+                              </button>
+                              <input type="number" name="attr_open_door_skill" class="sheet-bold-font skill-value" value="0"/>
                               <input type="number" name="attr_open_door_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_opendoor"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Open Doors Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{open_door_skill} + @{open_door_bonus} bonus +(@{strength_mod} STR mod) }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{open_door_skill} + @{open_door_bonus} @{strength_mod}]] ]]}}"></button>
                             </div>
                           </div>
                         </div>
 
-                        <div class="sheet-block sheet-side-padding">
-                          <div class="sheet-block">
-                            <div class="sheet-align-right">
-                              <span class="sheet-bold-font">Search</span>
-                              <input type="number" name="attr_search_skill" class="sheet-bold-font" value="0"/>
+                        <div class="sheet-block" style="margin-right: 0px;">
+                          <div class="sheet-block-between">
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_search"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Search Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{search_skill} + @{search_bonus} bonus + (@{intelligence_mod} INT mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{search_skill} + @{search_bonus} +@{intelligence_mod}]] ]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Search</span>
+                              </button>
+                              <input type="number" name="attr_search_skill" class="sheet-bold-font skill-value" value="0"/>
                               <input type="number" name="attr_search_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_search"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Search Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{search_skill} + @{search_bonus} bonus + (@{intelligence_mod} INT mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{search_skill} + @{search_bonus} +@{intelligence_mod}]] ]]}}"></button>
                             </div>
                           </div>
 
-                          <div class="sheet-block">
-                            <div class="sheet-align-right">
-                              <span class="sheet-bold-font">Sleight of Hand</span>
-                              <input type="number" name="attr_sleight_skill" class="sheet-bold-font" value="0"/>
+                          <div class="sheet-block-between">
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_sleight"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Sleight of Hand Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{sleight_skill} +@{sleight_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{sleight_skill}]] +@{sleight_bonus}]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Slight of Hand</span>
+                              </button>
+                              <input type="number" name="attr_sleight_skill" class="sheet-bold-font skill-value" value="0"/>
                               <input type="number" name="attr_sleight_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_sleight"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Sleight of Hand Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{sleight_skill} +@{sleight_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{sleight_skill}]] +@{sleight_bonus}]]}}"></button>
                             </div>
                           </div>
 
-                          <div class="sheet-block">
-                            <div class="sheet-align-left">
-                              <span class="sheet-bold-font">&nbsp;&nbsp;&nbsp; Sneak Attack</span>
-                              <input type="number" name="attr_sneak_attack_skill" class="sheet-bold-font" value="0"/>
+                          <div class="sheet-block-between">
+                            <div class="sheet-align-right padding">
+                              <span class="sheet-bold-font inactive-color">Sneak Attack</span>
+                              <input type="number" name="attr_sneak_attack_skill" class="sheet-bold-font skill-value" value="0"/>
                               <input type="number" name="attr_sneak_atkbonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-    		                      <span>&nbsp;&nbsp;</span>
-    		                      <span>&nbsp;&nbsp;</span>
                             </div>
                           </div>
 
-                          <div class="sheet-block">
-                            <div class="sheet-align-right">
-                              <span class="sheet-bold-font">Stealth</span>
-                              <input type="number" name="attr_stealth_skill" class="sheet-bold-font" value="0"/>
-                              <input type="number" name="attr_stealth_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_stealth"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Stealth Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{stealth_skill} + @{stealth_bonus} bonus + (@{dexterity_mod} DEX mod) }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{stealth_skill} + @{stealth_bonus} +@{dexterity_mod}]] ]]}}"></button>
-                            </div>
-                          </div>
-
-                          <div class="sheet-block">
-                            <div class="sheet-align-right">
-                              <input type="text" class="sheet-primary-skill-name" name="attr_social_skill_name" value="" data-i18n-placeholder="Social (rename)"/>
-                              <input type="number" name="attr_social_skill" class="sheet-bold-font" value="0"/>
+                          <div class="sheet-block-between">
+                            <div class="center padding">
+                              <input type="text" class="sheet-primary-skill-name" name="attr_social_skill_name" style="width: 90px;" style="font-size: 10pt;" value="" data-i18n-placeholder="Social (rename)"/>
+                              <input type="number" name="attr_social_skill" class="sheet-bold-font skill-value" value="0"/>
                               <input type="number" name="attr_social_skill_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_stealth"
+                              <button class="skill-button"  style="width: 20px;" type="roll" name="roll_primary_social"
                                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{social_skill_name} Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{social_skill} + @{social_skill_bonus} bonus + (@{charisma_mod} CHA mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{social_skill} + @{social_skill_bonus} + @{charisma_mod}]] ]]}}"></button>
                             </div>
                           </div>
 
-                          <div class="sheet-block">
-                            <div class="sheet-align-right">
-                              <span class="sheet-bold-font">Theology</span>
-                              <input type="number" name="attr_theology_skill" class="sheet-bold-font" value="0"/>
-                              <input type="number" name="attr_theology_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_theology"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Theology Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{theology_skill} + @{theology_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{theology_skill}]] + [[@{theology_bonus}]] ]]}}"></button>
+                          <div class="sheet-block-between">
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_stealth"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Stealth Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{stealth_skill} + @{stealth_bonus} bonus + (@{dexterity_mod} DEX mod) }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{stealth_skill} + @{stealth_bonus} +@{dexterity_mod}]] ]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Stealth</span>
+                              </button>
+                              <input type="number" name="attr_stealth_skill" class="sheet-bold-font skill-value" value="0"/>
+                              <input type="number" name="attr_stealth_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
                             </div>
                           </div>
 
-                          <div class="sheet-block">
-                            <div class="sheet-align-right">
-                              <span class="sheet-bold-font">Tinker</span>
-                              <input type="number" name="attr_tinker_skill" class="sheet-bold-font" value="0"/>
+
+                          <div class="sheet-block-between">
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_theology"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Theology Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{theology_skill} + @{theology_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{theology_skill}]] + [[@{theology_bonus}]] ]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Theology</span>
+                              </button>
+                              <input type="number" name="attr_theology_skill" class="sheet-bold-font skill-value" value="0"/>
+                              <input type="number" name="attr_theology_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
+                            </div>
+                          </div>
+
+                          <div class="sheet-block-between">
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_tinker"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Tinker Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{tinker_skill} +@{tinker_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{tinker_skill}]] +[[@{tinker_bonus}]] ]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Tinker</span>
+                              </button>
+                              <input type="number" name="attr_tinker_skill" class="sheet-bold-font skill-value" value="0"/>
                               <input type="number" name="attr_tinker_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                              <button class="sheet-skill-button" type="roll" name="roll_tinker"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Tinker Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{tinker_skill} +@{tinker_bonus}}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{tinker_skill}]] +[[@{tinker_bonus}]] ]]}}"></button>
                             </div>
                           </div>
 
@@ -3646,15 +3657,16 @@
                     </div>
                   </div>
 
-                  <div class="sheet-thin-border">
+                  <div class="sheet-thin-border added-skills">
                     <h4>Additional Skills</h4>
                     <fieldset class="repeating_skills">
-                      <div class="sheet-block sheet-thin-border sheet-side-padding">
-                        <div class="sheet-align-right">
-                          <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname"/>
-                          <input type="number" name="attr_skillvalue" class="sheet-bold-font" value="1"/>
+                      <div class="skillcontainer">
+                        <div class="sheet-block-between">
+                          <!--input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname"/-->
+                          <input type="text" class="sheet-primary-skill-name" name="attr_skillname" style="width: 90px;" style="font-size: 10pt;" value="" data-i18n-placeholder="Skillname"/>
+                          <input type="number" name="attr_skillvalue" class="sheet-bold-font skill-value" value="1"/>
                           <input type="number" name="attr_skill_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
-                          <button class="sheet-skill-button" type="roll" name="roll_skill"
+                          <button class="skill-button" type="roll" name="roll_skill"
                                   value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{skillname} Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{skillvalue} +@{skill_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{skillvalue}]] +[[@{skill_bonus}]] ]]}}"></button>
                         </div>
                       </div>
@@ -3664,19 +3676,19 @@
              </div>
 
              <div class="sheet-inline">
-               <div class="sheet-thick-border">
-                 <h3>Languages</h3>
-                 <div class="center">
+               <div class="sheet-thick-border" style="align-items: center;">
+                 <h3 class="center" style="width: 99%;">Languages</h3>
+                 <div class="center" style="width: 90%;">
                     <label class="italic-font centered-label"><span>Max known lanaguages allowed: </span><span name="attr_max_languages_allowed"/></label>
                     &nbsp;
                  </div>
                  <div class="sheet-flex-between">
-                   <div class="sheet-col-right">
-                     <h4>Known Languages</h4>
+                   <div class="sheet-col-right" style="width: 90%;">
+                     <h4 style="width: 97%;">Known Languages</h4>
                      <textarea class="sheet-tiny-textarea" spellcheck="false" name="attr_known_lang" data-i18n-placeholder="known_lang"></textarea>
                    </div>
-                   <div class="sheet-col-left">
-                     <h4>Not Known Languages</h4>
+                   <div class="sheet-col-left" style="width: 90%;">
+                     <h4 style="width: 97%;">Not Known Languages</h4>
                      <textarea class="sheet-tiny-textarea" spellcheck="false" name="attr_not_known_lang" data-i18n-placeholder="not_known_lang"></textarea>
                    </div>
                  </div>
@@ -3691,7 +3703,7 @@
       <div class="sheet-section-combat">
         <span class="sheet-spacer">&nbsp;</span>
 
-        <div class="sheet-thick-border-no-pad">
+        <div class="sheet-thick-border">
           <h3>Combat</h3>
           <span class="sheet-spacer">&nbsp;</span>
 
