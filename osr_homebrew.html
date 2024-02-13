@@ -3601,7 +3601,7 @@
 
                           <div class="sheet-block-between">
                             <div class="sheet-align-right padding">
-                              <span class="sheet-bold-font inactive-color">Sneak Attack</span>
+                              <span class="sheet-bold-font" style="color: #555555;">Sneak Attack</span>
                               <input type="number" name="attr_sneak_attack_skill" class="sheet-bold-font skill-value" value="0"/>
                               <input type="number" name="attr_sneak_atkbonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
                             </div>
@@ -3609,11 +3609,12 @@
 
                           <div class="sheet-block-between">
                             <div class="center padding">
-                              <input type="text" class="sheet-primary-skill-name" name="attr_social_skill_name" style="width: 90px;" style="font-size: 10pt;" value="" data-i18n-placeholder="Social (rename)"/>
-                              <input type="number" name="attr_social_skill" class="sheet-bold-font skill-value" value="0"/>
-                              <input type="number" name="attr_social_skill_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
                               <button class="skill-button"  style="width: 20px;" type="roll" name="roll_primary_social"
                                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{social_skill_name} Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{social_skill} + @{social_skill_bonus} bonus + (@{charisma_mod} CHA mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{social_skill} + @{social_skill_bonus} + @{charisma_mod}]] ]]}}"></button>
+                              <input type="text" class="sheet-primary-skill-name" name="attr_social_skill_name" style="width: 90px;"
+                                     style="font-size: 8pt;" value="" data-i18n-placeholder="Social (rename)"/>
+                              <input type="number" name="attr_social_skill" class="sheet-bold-font skill-value" value="0"/>
+                              <input type="number" name="attr_social_skill_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
                             </div>
                           </div>
 
