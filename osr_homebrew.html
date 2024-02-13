@@ -110,7 +110,7 @@
     </div>
     <hr/>
 
-    <div class="sheet-inline">
+    <div class="inline">
       <input type="radio" name="attr_npctab" class="sheet-tab sheet-tab1" value="1" checked="checked" />
       <span class="sheet-tab sheet-tab1">Core Stats</span>
       <input type="radio" name="attr_npctab" class="sheet-tab sheet-tab3" value="3" />
@@ -3711,10 +3711,10 @@
           <div class="sheet-thin-border padding">
             <div class="sheet-flex left-pad bottom-padding">
               <div class="sheet-ability-column-value">
-                <div class="sheet-thin-border sheet-flex left-pad">
+                <div class="sheet-thin-border sheet-flex">
       	           <button type="roll" class="sheet-initiative" name="roll_initiative"
       			               value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative_bonus} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
-                  <input class="ability-check-value-wide inactive-color" name="attr_initiative_bonus" type="number" value="0" readonly="true"/>
+                  <input style="width: 60px; margin-top: -1px; margin-right: 2px;" class="ability-check-value-wide inactive-color" name="attr_initiative_bonus" type="number" value="0" readonly="true"/>
                 </div>
                 <span class="ability-check-label">Initiative Bonus</span>
               </div>
@@ -3723,9 +3723,9 @@
                 <span class="ability-check-label">AC</span>
               </div>
               <div class="sheet-ability-column-value">
-                <div class="sheet-flex sheet-thin-border sheet-right-pad">
+                <div class="sheet-flex sheet-thin-border">
                   <input class="ability-check-value" name="attr_hp" type="number" value="1"/>
-                  /
+                  <span style="font-size: 30pt; margin-top: 18px;">/</span>
                   <input class="ability-check-value" name="attr_hp_max" type="number" value="1"/>
                 </div>
                 <span class="ability-check-label">HP / Max HP</span>
@@ -3758,23 +3758,22 @@
           <div class="sheet-bottom-padding"><h4 class="bold-font">Combat Options</h4></div>
 
           <div class="sheet-thin-border padding">
-            <div class="sheet-flex center">
+            <div class="sheet-flex center bottom-padding">
               <input type="checkbox" class="sheet-max-copts-value-exceeded" name="attr_max_cmbt_opts_exceeded" value="0" hidden="true" checked="true"/>
               <span class="max-copts-value-exceeded-notify med-font italic-font">Additional Combat Options Allowed:
-		      &nbsp;
-                <input type="number" class="sheet-inactive-color info1 center info-name-tiny" name="attr_max_cmbt_opts_allowed" value="0" readonly="true"/>
+                <input type="number" style="width: 30px;" class="sheet-inactive-color info1 center info-name-tiny" name="attr_max_cmbt_opts_allowed" value="0" readonly="true"/>
               </span>
+		      &nbsp;
 		      &nbsp;
 		      &nbsp;
               <input type="checkbox" class="sheet-copts-value-underspent" name="attr_cmbt_opts_underspent" value="0" hidden="true" checked="true"/>
               <span class="sheet-copts-value-underspent-notify med-font italic-font">Additional Combat Options Used:
-		      &nbsp;
-               <input type="number" class="sheet-inactive-color info1 center info-name-tiny" name="attr_cmbt_opts_used" value="0" readonly="true"/>
+               <input type="number" style="width: 30px;" class="inactive-color info1 center info-name-tiny" name="attr_cmbt_opts_used" value="0" readonly="true"/>
               </span>
             </div>
 
             <div class="sheet-flex-between">
-              <div class="sheet-inline sheet-side-padding">
+              <div class="inline side-padding" style="width: 40%;">
                 <div class="sheet-flex sheet-bottom-padding">
                   <input type="checkbox" class="cmbopt" name="attr_stnd_attack" value="1" checked="checked" readonly="true"/>
                   <span class="ability-check-label">Stnd</span>
@@ -3813,11 +3812,12 @@
                   </div>
                 </div>
 
-                <div class="sheet-thin-border sheet-flex-between">
+                <div class="thin-border flex" style="align-content: flex-start;">
                   <input type="checkbox" name="attr_sneak_attack_checkbox" value="1" readonly="true"/>
-                  <span class="ability-check-label centered-label right-pad">Sneak Attack</span>
-                  <span class="sheet-italic-font centered-label right-pad">Extra Dam. Dice</span>
-                  <input class="sheet-inactive-color sheet-ability-check-sm-value" name="attr_sneak_attack_dice" type="number" value="0" readonly="true"/>
+                  <span class="ability-check-label right-pad">Sneak Attack</span>
+                  <span class="sheet-italic-font" style="font-size: 8pt;">Extra Dam. Dice</span>
+                  <input style="width: 30px; margin-top: -3px;" class="inactive-color ability-check-sm-value"
+                         name="attr_sneak_attack_dice" type="number" value="0" readonly="true"/>
                 </div>
 
               </div>
@@ -3861,7 +3861,7 @@
                 </div>
 
                 <input type="checkbox" class="sheet-cleave_attack_enabled2" name="attr_cleave_attack_enabled2" value="1" hidden="true"/>
-                <div class="sheet-section-great_cleave sheet-flex sheet-bottom-padding">
+                <div class="sheet-section-great_cleave flex bottom-padding">
                   <div>
                     <input class="sheet-add-cmbt-opt" class="sheet-add-cmbt-opt" type="checkbox" name="attr_great_cleave_attack" value="1"/>
                   </div>
@@ -3956,24 +3956,29 @@
           <div class="thin-border padding">
 
             <div class="sheet-flex center">
-              <input type="checkbox" class="sheet-max-prof-value-exceeded" name="attr_max_prof_numb_exceeded" value="0" hidden="true" checked="true"/>
-              <span class="max-prof-value-exceeded-notify med-font italic-font">Weapon Proficiencies Allowed:
-		&nbsp;
-                <input type="number" class="sheet-inactive-color center info1 info-name-tiny" name="attr_max_prof_allowed" value="0" readonly="true"/>
-              </span>
+              <div>
+                <input type="checkbox" class="sheet-max-prof-value-exceeded" name="attr_max_prof_numb_exceeded" value="0" hidden="true" checked="true"/>
+                <span class="max-prof-value-exceeded-notify med-font italic-font">Weapon Proficiencies Allowed:
+                  <input type="number" style="width: 30px;" class="sheet-inactive-color center info1 info-name-tiny" name="attr_max_prof_allowed" value="0" readonly="true"/>
+                </span>
+              </div>
 
-              <input type="checkbox" class="sheet-prof-value-underspent" name="attr_prof_underspent" value="0" hidden="true" checked="true"/>
-    	       &nbsp; &nbsp;
-              <span class="sheet-prof-value-underspent-notify med-font italic-font">Weapon Proficiencies Used:
-		&nbsp;
-                <input type="number" class="sheet-inactive-color center info1 info-name-tiny" name="attr_prof_used" value="0" readonly="true"/>
-              </span>
+              <div>
+                <input type="checkbox" class="sheet-prof-value-underspent" name="attr_prof_underspent" value="0" hidden="true" checked="true"/>
+      	       &nbsp; &nbsp; &nbsp;
+                <span class="prof-value-underspent-notify med-font right-pad italic-font">Weapon Proficiencies Used:
+                  <input type="number" style="width: 30px;" class="sheet-inactive-color center info1 info-name-tiny" name="attr_prof_used" value="0" readonly="true"/>
+                </span>
+              </div>
 
-              <input type="checkbox" class="sheet-max-prof-level-exceeded" name="attr_max_prof_level_exceeded" value="0" hidden="true" checked="true"/>
-              <span class="max-prof-level-exceeded-notify med-font italic-font">Max Prof Level:
+              <div>
                 <input type="number" name="attr_max_prof_level_allowed" value="0" hidden="true"/>
-                <input type="text" class="info3 align-left" name="attr_max_prof_level_name" value="Skilled" readonly="true"/>
-              </span>
+                <input type="checkbox" class="sheet-max-prof-level-exceeded" name="attr_max_prof_level_exceeded" value="0" hidden="true" checked="true"/>
+                <span class="max-prof-level-exceeded-notify med-font italic-font">Max Prof Level:
+                  <input type="text" style="width: 120px; border: 0px;" class="info3 align-left inactive-color"
+                         name="attr_max_prof_level_name" value="Skilled" readonly="true"/>
+                </span>
+              </div>
             </div>
 
             <!-- TODO -->
