@@ -10311,8 +10311,8 @@ var handle_drop_monster = function(v) {
 
         //console.log(`%c SPELL: ${page.name} dropped`, "color: purple; font-weight:14px;");
         console.log("Handle Drop Spell called:"+v.drop_name+ " char:"+v.character_id);
-        // console.log(" data:"+v.drop_data);
-        // console.debug("content: "+v.drop_content);
+        console.log(" data:"+v.drop_data);
+        console.debug("content: "+v.drop_content);
         //console.log(" properites:"+v.drop_properties);
 
         var data = {};
@@ -10333,7 +10333,7 @@ var handle_drop_monster = function(v) {
         const id = generateRowID();
         const repeating_source = `repeating_spells-${lvl}_${id}`;
 
-        update[repeating_source + "_spellname"] = data["Name"];
+        update[repeating_source + "_spellname"] = spell_name;
         update[repeating_source + "_spelllevel"] = lvl;
         update[repeating_source + "_spellcritrange"] = 20;
         update[repeating_source + "_spellfumblerange"] = 1;
@@ -10421,8 +10421,8 @@ var handle_drop_monster = function(v) {
         update[repeating_source + "_options-flag"] = "0";
 
         // set callbacks to update new spells and clean up
-        callbacks.push( function() { update_spells('all');} );
         callbacks.push( function() { cleanup_drop_fields();} );
+        callbacks.push( function() { update_spells('all');} );
 
         // persist new attributes
         setAttrs(update, {silent: true}, function() {callbacks.forEach(function(callback) {callback(); })} );
