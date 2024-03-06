@@ -175,6 +175,7 @@
                 <div class="block padding center">
                   <div class="sheet-block sheet-padding sheet-center">
                     <input class="ability-check-value" name="attr_initiative_bonus" type="number" value="0"/>
+                    <input name="attr_initiative_bonus_tiebreaker" type="number" value="0" hidden="true"/>
                     <button type="roll" class="sheet-npc-ability-button" name="roll_initiative"
                             value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative_bonus} [Initiative Mod] &{tracker} ]]}}">
                             Init.
@@ -3713,8 +3714,9 @@
             <div class="sheet-flex left-pad bottom-padding">
               <div class="sheet-ability-column-value">
                 <div class="sheet-thin-border sheet-flex">
+                   <input name="attr_initiative_bonus_tiebreaker" type="number" value="0" hidden="true"/>
       	           <button type="roll" class="sheet-initiative" name="roll_initiative"
-      			               value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative_bonus} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
+      			               value="&{template:roll_check} {{title=Initiative}} {{subheader=@{character_name}}} {{initiative=1}} {{rollname=Initiative}} {{roll=[[ 1d20 + @{initiative_bonus} + @{initiative_bonus_tiebreaker} [Initiative Mod] &{tracker} ]]}}">Roll Init.</button>
                   <input style="width: 60px; margin-top: -1px; margin-right: 2px;" class="ability-check-value-wide inactive-color" name="attr_initiative_bonus" type="number" value="0" readonly="true"/>
                 </div>
                 <span class="ability-check-label">Initiative Bonus</span>
@@ -4083,13 +4085,15 @@
                                 <span data-i18n="crit-range-u">CRIT RANGE:</span>
                             </div>
 			    -->
-                            <input name="attr_attack_dam" value="0" hidden="true"/>
-                            <input name="attr_atk_target" hidden="true"/>
-                            <input name="attr_spellduration" type="text" hidden="true"/>
-                            <input name="attr_spellathigherlevels" type="text" hidden="true"/>
-                            <input type="text" name="attr_spellcastingtime" hidden="true"/>
-                            <input type="hidden" class="spellconcentration" name="attr_spellconcentration" value="0"/>
-                            <input type="checkbox" name="attr_dmgflag" value="{{damage=1}} {{dmg1flag=1}}" checked="checked">
+                            <div class="row" style="display: none;">
+                              <input name="attr_attack_dam" value="0" hidden="true"/>
+                              <input name="attr_atk_target" hidden="true"/>
+                              <input name="attr_spellconcentration" value="0" hidden="true"/>
+                              <input name="attr_spellduration" type="text" hidden="true"/>
+                              <input name="attr_spellathigherlevels" type="text" hidden="true"/>
+                              <input name="attr_spellcastingtime" type="text" hidden="true"/>
+                              <input type="checkbox" name="attr_dmgflag" value="{{damage=1}} {{dmg1flag=1}}" checked="checked" hidden="true"/>
+                            </div>
           <!--
                             <div class="row">
                                 <span data-i18n="damage:-u">DAMAGE:</span>
@@ -4104,7 +4108,7 @@
                             <input type="text" style="display: none;" name="attr_sneak_attack_dam" value="0" hidden="true"/>
 
                             <div class="row">
-                                <input type="checkbox" name="attr_saveflag" value="{{save=1}} {{saveattr=@{saveattr}}} {{savedesc=@{saveeffect}}} {{savedc=[[[[@{savedc}]][SAVE]]]}}">
+                                <input type="checkbox" name="attr_saveflag" value="{{save=1}} {{saveattr=@{saveattr}}} {{savedesc=@{saveeffect}}} {{savedc=[[[[@{savedc}]][SAVE]]]}}"/>
                                 <span data-i18n="saving-throw:-u">SAVING THROW:</span>
                                 <select name="attr_saveattr">
                                     <option value="Strength" selected="selected" data-i18n="str-u">STR</option>
@@ -8596,7 +8600,8 @@
                 const base_dex_f = parseFloat(v[ability]) * 0.01;
                 const perk_inventory_mod = parseInt(v['perk_inventory_mod']) || 0;
 
-                setting["initiative_bonus"] = base_dex_mod + base_dex_f;
+                setting["initiative_bonus"] = base_dex_mod;
+                setting["initiative_bonus_tiebreaker"] = base_dex_f;
                 setting["ranged_base_ab"] = base_dex_mod;
 
                 var ranged_ab = base_dex_mod + 1 + (c_class === 'fighter' ? parseInt((level+1)/2) : (c_class2 === 'fighter' ? parseInt((level2+1)/2) : 0));
