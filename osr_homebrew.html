@@ -3023,6 +3023,7 @@
             <input type="number" name="attr_movement_rate" class="sheet-inactive-color sm-stat right-pad" value="40" readonly="true"/>
             <span class="bold-font big-font centred-label left-pad right-pad">/</span>
             <input type="number" name="attr_base_movement_rate" class="sheet-inactive-color sm-stat" value="40" readonly="true"/>
+            <input name="attr_perk_move" type="number" value="0" hidden="true"/>
           </div>
 
           <div class="block" style="background-color: #C7C7C7;">
@@ -3727,6 +3728,7 @@
               <div class="sheet-ability-column-value">
                 <div class="sheet-flex sheet-thin-border">
                   <input class="ability-check-value" name="attr_hp" type="number" value="1"/>
+                  <input name="attr_perk_hp" type="number" value="0" hidden="true"/>
                   <span style="font-size: 30pt; margin-top: 18px;">/</span>
                   <input class="ability-check-value" name="attr_hp_max" type="number" value="1"/>
                 </div>
@@ -6946,19 +6948,29 @@
                <div class="sheet-perkcontainer sheet-side-padding">
                   <select class="sheet-perk-name" name="attr_perk_type">
                      <option selected="selected" value="none">-- Select Perk --</option>
-                     <option value="assassin">Assassin (Sneak Attack Combat Option, +1 Skill)</option>
-                     <option value="dual_weilder">Dual Wielder (Two Weapon Attack Combat Option, +1 Skill)</option>
-                     <option value="duelist">Duelist (Aim/Feint Combat Option, +1 Skill)</option>
-                     <option value="packer">Organized Packer (+1 step for ready items, +1 Skill)</option>
-                     <option value="status">Higher Status (+1 Status, +1 Skill)</option>
-                     <option value="skilled">Skilled (+4 Skills)</option>
-                     <option value="scholar">Scholar (+2 Lang, +2 Skills)</option>
+                     <option value="alert">Alert (+5 init. Cannot be surprised or attacked by unseen with adv.)</option>
                      <option value="acrobat">Acrobat (+2 Dodge, +1 Skill)</option>
+                     <option value="actor">Actor (+1 Ego. +1 skill. Mimic speech & sounds. Adv on impersonization.)</option>
+                     <option value="assassin">Assassin (Sneak Attack combat option, +1 Skill)</option>
                      <option value="bodybuilder">Bodybuilder (+2 Fortitdue, +1 Skill)</option>
+                     <option value="contacts">Contacts (Gain 3 minor allies)</option>
+                     <option value="courtier">Courtier (+1 Status. Member of court. Minor law immune.)</option>
+                     <option value="dual_weilder">Dual Wielder (Two Weapon Attack combat option, +1 Skill)</option>
+                     <option value="duelist">Duelist (Aim/Feint combat option, +1 Skill)</option>
+                     <option value="eidetic">Eidetic Mind (+1 Perception. Knows direction and time. Recall events accurately)</option>
+                     <option value="status">Higher Status (+1 Status, +1 Skill)</option>
+                     <option value="healer">Healer (Always 'crit' medical checks to bind wounds. +2 Skill)</option>
                      <option value="healthy">Healthy(+2 Health, +1 Skill)</option>
+                     <option value="leader">Leader (+1 Ego, +1 Skill, Adv on leadership skill.)</option>
+                     <option value="healthy">Lucky (3/day reroll d20 skill, ability or attack)</option>
+                     <option value="packer">Organized Packer (+1 step for ready items, +1 Skill)</option>
                      <option value="perceptive">Perceptive (+2 Perception, +1 Skill)</option>
+                     <option value="scholar">Scholar (+2 Lang, +2 Skills)</option>
+                     <option value="skilled">Skilled (+4 Skills)</option>
+                     <option value="sprinter">Sprinter (+10 ft/rnd movement)</option>
                      <option value="strong_will">Strong Will (+2 Willpower, +1 Skill)</option>
                      <option value="strong_personality">Strong Personality (+2 Ego, +1 Skill)</option>
+                     <option value="tough">Tough (+2 HP/level)</option>
                   </select>
                 </div>
             </div>
@@ -8493,8 +8505,8 @@
   const bonusNames = [ 'strength_bonus', 'dexterity_bonus', 'constitution_bonus', 'intelligence_bonus', 'wisdom_bonus', 'charisma_bonus' ];
   const armor_dex_mod_penalty = {'none': 0, 'padded': 0, 'leather': 0, 'studded_leather': 0, 'scale': 0, 'chain': 0, 'chainshirt':0, 'half_plate': -1, 'plate': -2};
   abilityNames.forEach( ability => {
-    on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:perk_skill_points change:perk_inventory_mod change:armor change:fatigue change:${ability} change:${ability}_bonus`, () => {
-          getAttrs([ability, ...bonusNames, 'armor', 'class', 'class2', 'race', 'level', 'level2', 'skill_points', 'perk_skill_points', 'perk_inventory_mod', 'fatigue'], v => {
+    on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:perk_skill_points change:perk_init change:perk_inventory_mod change:armor change:fatigue change:${ability} change:${ability}_bonus`, () => {
+          getAttrs([ability, ...bonusNames, 'armor', 'class', 'class2', 'race', 'level', 'level2', 'skill_points', 'perk_skill_points', 'perk_init', 'perk_inventory_mod', 'fatigue'], v => {
               const setting = {};
 
               const ability_bonus_name = `${ability}_bonus`;
@@ -8601,8 +8613,9 @@
                 const base_dex_mod = setting[ability_mod];
                 const base_dex_f = parseFloat(v[ability]) * 0.01;
                 const perk_inventory_mod = parseInt(v['perk_inventory_mod']) || 0;
+                const perk_init = parseInt(v['perk_init']) || 0;
 
-                setting["initiative_bonus"] = base_dex_mod;
+                setting["initiative_bonus"] = base_dex_mod + perk_init;
                 setting["initiative_bonus_tiebreaker"] = base_dex_f;
                 setting["ranged_base_ab"] = base_dex_mod;
 
@@ -9153,12 +9166,15 @@
         settings['perks_overspent'] = perks_used > max_perks ? 0 : 1;
         settings['perks_underspent'] = perks_used < max_perks ? 0 : 1;
 
+        var extra_init = 0;
+        var extra_hp = 0;
         var extra_dodge = 0;
         var extra_fortitude = 0;
         var extra_health = 0;
         var extra_perception = 0;
         var extra_willpower = 0;
         var extra_ego = 0;
+        var extra_movement = 0;
 
         var extra_known_languages = 0;
         var extra_inventory = 0;
@@ -9169,11 +9185,32 @@
         ids.forEach(id => {
           const type = values['repeating_perks_' + id + '_perk_type'];
 
-          // add up additional perk-based skill points
-          if (type === 'assassin')
+          // add up additional perk-based advantages
+          if (type === 'alert')
+          {
+             extra_init = 5; // does NOT co-add
+          }
+          else if (type === 'actor')
+          {
+             extra_ego += 1;
+             extra_skill_points += 1;
+          }
+          else if (type === 'assassin')
           {
              sneak_attack_enabled = 1;
              extra_skill_points += 1;
+          }
+          else if (type === 'courtier')
+          {
+             extra_status_points += 1;
+          }
+          else if (type === 'eidetic')
+          {
+            extra_perception += 1;
+          }
+          else if (type === 'healer')
+          {
+             extra_skill_points += 2;
           }
           else if (type === 'packer')
           {
@@ -9184,6 +9221,15 @@
           {
              extra_status_points += 1;
              extra_skill_points += 1;
+          }
+          else if (type === 'leader')
+          {
+            extra_ego += 1;
+            extra_skill_points += 1;
+          }
+          else if (type === 'sprinter')
+          {
+            extra_movement += 10;
           }
           else if (type === 'acrobat')
           {
@@ -9224,6 +9270,10 @@
             extra_known_languages += 2;
             extra_skill_points += 2;
           }
+          else if (type === 'tough')
+          {
+             extra_hp = 2;
+          }
           else
           {
             console.log("ERROR: Unimplemented Perk! "+type);
@@ -9231,6 +9281,11 @@
 
         });
 
+
+        // limit init and movement gains to keep playbalance
+        settings['perk_init'] = extra_init > 5 ? 5 : extra_init;
+        settings['perk_move'] = extra_movement > 20 ? 10 : extra_movement;
+        settings['perk_hp'] = extra_hp;
 
         settings['perk_dodge'] = extra_dodge;
         settings['perk_fortitude'] = extra_fortitude;
@@ -9683,8 +9738,8 @@
   const readySlots = islots9.concat(islots13.concat(islots16.concat(islots18)));
 
   readySlots.forEach(ready_slot => {
-    on(`change:${ready_slot} change:race change:encumbrance_mod change:armor change:shield change:container_1_type change:container_2_type change:container_3_type`, () => {
-      getAttrs(readySlots.concat(['encumbrance_mod', 'race', 'armor', 'shield', 'container_1_type',
+    on(`change:${ready_slot} change:race change:encumbrance_mod change:armor change:shield change:perk_move change:container_1_type change:container_2_type change:container_3_type`, () => {
+      getAttrs(readySlots.concat(['encumbrance_mod', 'race', 'armor', 'shield', 'perk_move', 'container_1_type',
                                   'container_2_type', 'container_3_type']), v => {
         // ugh. seems like there should be a better way to do this
         const enc_points9 = islots9.reduce((m, w) => (m + (v[w] !== "" ? 1 : 0 )), 0) > 0 ? 1 : 0;
@@ -9712,7 +9767,9 @@
 
         // TODO: Calculate movement
         const enc_move_factor = enc > 1 ? enc : 0;
-        const base_move_rate = (v.race === 'Dwarf' || v.race === 'Halfling') ? 35 : 40;
+        var base_move_rate = (v.race === 'Dwarf' || v.race === 'Halfling') ? 35 : 40;
+        base_move_rate += parseInt(v['perk_move']);
+
         var move_rate = base_move_rate;
         move_rate -= enc_move_factor > 0 ? (enc_move_factor -1) * 10 : 0;
         move_rate = move_rate > 0 ? move_rate : 0;
