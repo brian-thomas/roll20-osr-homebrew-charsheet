@@ -540,9 +540,8 @@
             </div>
             <div class="col col4 block">
               <div class="center">
-                 <input class="ability-check-value sheet-inactive-color center" style="background-color: white;" name="attr_spellcasting_fatigue" type="number" value="0"/>
-                 <input class="ability-check-value sheet-inactive-color center" style="background-color: white;" name="attr_spellcasting_fatigue_max" type="number" value="0" readonly="true"/>
-                 <!--input name="attr_spellcasting_fatigue_max" type="number" value="10" hidden="true"/-->
+                 <input class="ability-check-value sheet-inactive-color center" style="background-color: white;" name="attr_fatigue" type="number" value="0"/>
+                 <input class="ability-check-value sheet-inactive-color center" style="background-color: white;" name="attr_fatigue_max" type="number" value="0" readonly="true"/>
               </div>
               <div class="center"> <span class="bold-font">SpellCasting Fatigue</span> </div>
             </div>
@@ -3154,7 +3153,7 @@
          </div>
          <div class="inline-flex" style="margin-top: -80px;">
            <div class="block" style="text-align: center; width: 50px; margin-right: 20px; align-content: center;">
-             <input class="ability-modifier" type="number" name="attr_spellcasting_fatigue"/>
+             <input class="ability-modifier" type="number" name="attr_fatigue"/>
              <span class="bold-font">Fatigue</span>
            </div>
            <div class="block" style="width: 100px; text-align: center; align-content: center; margin-top: 15px; margin-right: 20px;">
@@ -4431,15 +4430,15 @@
 
                 <div class="col col4 block">
                   <div class="center">
-                     <input class="ability-check-value sheet-inactive-color center" style="background-color: white;" name="attr_spellcasting_fatigue" type="number" value="0"/>
-                     <input name="attr_spellcasting_fatigue_max" type="number" value="10" hidden="true"/>
+                     <input class="ability-check-value sheet-inactive-color center" style="background-color: white;" name="attr_fatigue" type="number" value="0"/>
+                     <input name="attr_fatigue_max" type="number" value="10" hidden="true"/>
                   </div>
                   <div class="center">
-                    <span class="bold-font">SpellCasting Fatigue</span>
+                    <span class="bold-font">Fatigue</span>
                   </div>
                   <div class="center">
                     <span class="bold-font">max: </span>
-                    <span class="bold-font" name="attr_spellcasting_fatigue_max"/>
+                    <span class="bold-font" name="attr_fatigue_max"/>
                   </div>
                 </div>
               </div>
@@ -8494,8 +8493,8 @@
   const bonusNames = [ 'strength_bonus', 'dexterity_bonus', 'constitution_bonus', 'intelligence_bonus', 'wisdom_bonus', 'charisma_bonus' ];
   const armor_dex_mod_penalty = {'none': 0, 'padded': 0, 'leather': 0, 'studded_leather': 0, 'scale': 0, 'chain': 0, 'chainshirt':0, 'half_plate': -1, 'plate': -2};
   abilityNames.forEach( ability => {
-    on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:perk_skill_points change:perk_inventory_mod change:armor change:${ability} change:${ability}_bonus`, () => {
-          getAttrs([ability, ...bonusNames, 'armor', 'class', 'class2', 'race', 'level', 'level2', 'skill_points', 'perk_skill_points', 'perk_inventory_mod'], v => {
+    on(`sheet:opened change:class change:class2 change:race change:level change:level2 change:perk_skill_points change:perk_inventory_mod change:armor change:fatigue change:${ability} change:${ability}_bonus`, () => {
+          getAttrs([ability, ...bonusNames, 'armor', 'class', 'class2', 'race', 'level', 'level2', 'skill_points', 'perk_skill_points', 'perk_inventory_mod', 'fatigue'], v => {
               const setting = {};
 
               const ability_bonus_name = `${ability}_bonus`;
@@ -8505,11 +8504,14 @@
 
               const level = parseInt(v.level) || 0;
               const level2 = parseInt(v.level2) || 0;
+              const fatigue = parseInt(v.fatigue) || 0;
               const total_level = level + level2;
               const perk_skill_points = parseInt(v.perk_skill_points) || 0;
               const race = v.race.trim();
               const c_class = v.class.trim();
               const c_class2 = v.class2.trim();
+
+	      console.log("FATIGUE: "+fatigue);
 
               const ability_mod = `${ability}_mod`;
               setting[ability_mod] = (statrank === -1 ? 4 : statrank -4) + ((raceMods[race] || '').indexOf(ability) !== -1 ? 1 : 0);
@@ -8604,7 +8606,7 @@
                 setting["initiative_bonus_tiebreaker"] = base_dex_f;
                 setting["ranged_base_ab"] = base_dex_mod;
 
-                var ranged_ab = base_dex_mod + 1 + (c_class === 'fighter' ? parseInt((level+1)/2) : (c_class2 === 'fighter' ? parseInt((level2+1)/2) : 0));
+                var ranged_ab = base_dex_mod + 1 - fatigue + (c_class === 'fighter' ? parseInt((level+1)/2) : (c_class2 === 'fighter' ? parseInt((level2+1)/2) : 0));
                 // halflings get +2 ranged AB
                 setting["ranged_ab"] = ranged_ab + (race === 'Halfling' ? 1 : 0);
 
@@ -8615,9 +8617,9 @@
               if (ability === 'strength') {
                 const base_str_mod = setting[ability_mod]
                 setting["melee_base_ab"] = base_str_mod;
-                setting["melee_ab"] = base_str_mod + 1 + (c_class === 'fighter' ? parseInt((level+1)/2) : (c_class2 === 'fighter' ? parseInt((level2+1)/2) : 0));
+                setting["melee_ab"] = base_str_mod + 1 - fatigue + (c_class === 'fighter' ? parseInt((level+1)/2) : (c_class2 === 'fighter' ? parseInt((level2+1)/2) : 0));
                 setting["encumbrance_mod"] = base_str_mod + (race === 'Dwarf' ? 1 : 0);
-                setting["spellcasting_fatigue_max"] = parseInt(score / 2);
+                setting["fatigue_max"] = parseInt(score / 2);
               }
 
               setAttrs(setting);
@@ -8628,7 +8630,7 @@
   // determine which attribute contributes the bonus for Athletics skill
   // also set unarmed AB here too
   on(`change:strength_mod change:dexterity_mod change:strength_bonus change:dexterity_bonus change:melee_ab change:ranged_ab`, () => {
-    getAttrs(['strength_mod', 'dexterity_mod', 'athletics_skill_mod', 'melee_ab', 'melee_base_ab', 'ranged_ab', 'ranged_base_ab', 'unarmed_ab', 'unarmed_base_ab'], v => {
+    getAttrs(['strength_mod', 'dexterity_mod', 'athletics_skill_mod', 'melee_ab', 'melee_base_ab', 'ranged_ab', 'ranged_base_ab', 'unarmed_ab', 'unarmed_base_ab', 'fatigue'], v => {
       const str_mod = parseInt(v.strength_mod);
       const dex_mod = parseInt(v.dexterity_mod);
       const melee_ab = parseInt(v.melee_ab);
@@ -8928,7 +8930,7 @@
     });
   });
 
-  on(`change:arcana_skill change:arcana_bonus change:spellcasting_fatigue change:class change:class2`, function () {
+  on(`change:arcana_skill change:arcana_bonus change:fatigue change:class change:class2`, function () {
       // global changes to spells
       update_spells('all');
   });
@@ -8968,14 +8970,14 @@
       fieldnames.push(repeating_source + '_' + id + '_casting_restrictions_desc');
     });
 
-    getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod', 'spellcasting_fatigue', 'character_id'], function (values) {
+    getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod', 'fatigue', 'character_id'], function (values) {
       const c_class = values.class.trim();
       const c_class2 = values.class2.trim();
       const character_id = values.character_id;
       const arcana_skill = parseInt(values.arcana_skill) || 0;
       const arcana_bonus = parseInt(values.arcana_bonus) || 0;
       const spellcasting_mod = parseInt(values.spellcasting_mod) || 0;
-      const spellcasting_fatigue = parseInt(values.spellcasting_fatigue) || 0;
+      const fatigue = parseInt(values.fatigue) || 0;
 
       const arcana_adj = parseInt((arcana_skill + arcana_bonus) / 4) || 0;
       const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard') ? 1 : 0;
@@ -9016,11 +9018,11 @@
         }
 
         // handle spell (difficulty) DC
-        var spell_dc = 10 + spelllevel - casting_restrictions + spellcasting_fatigue - arcana_adj;
+        var spell_dc = 10 + spelllevel - casting_restrictions + fatigue - arcana_adj;
         if (spell_dc < 2) { spell_dc = 2; } // never lower than 2
 
         settings[repeating_source + '_' + id + '_spellcritrange'] = 20 - casting_restrictions;
-        settings[repeating_source + '_' + id + '_spellfumblerange'] = 1 + spellcasting_fatigue;
+        settings[repeating_source + '_' + id + '_spellfumblerange'] = 1 + fatigue;
         settings[repeating_source + '_' + id + '_spell_dc'] = spell_dc;
         settings[repeating_source + '_' + id + '_spell_dc_show'] = is_innate ? "" : spell_dc;
 
@@ -10587,7 +10589,7 @@ var handle_drop_monster = function(v) {
 
   const update_attacks = (update_id, source) => {
 
-      console.debug("UPDATE ATTACKS id:"+update_id+" src:"+source);
+      //console.debug("UPDATE ATTACKS id:"+update_id+" src:"+source);
 
       // passed a attack row id, update single attack
       if (update_id && update_id.substring(0,1) === "-" && update_id.length === 20) {
@@ -10642,7 +10644,7 @@ var handle_drop_monster = function(v) {
 
   const do_update_attack = (attack_array, source) => {
 
-      // console.log("DO UPDATE ATTACK array:"+attack_array);
+      console.log("DO UPDATE ATTACK array:"+attack_array);
 
       let attack_attribs = ["level","d20","pb","pb_type","pbd_safe","strength_mod","dexterity_mod","constitution_mod","intelligence_mod","wisdom_mod","charisma_mod","spell_save_dc","spell_attack_mod", "spell_dc_mod" ];
       _.each(attack_array, (attackid) => {
@@ -10671,7 +10673,7 @@ var handle_drop_monster = function(v) {
               const pbd_safe = v["pbd_safe"] || "";
 
               const character_name     = v.character_name;
-	            const attack_form        = v[repeating_attacks + "_attack_form"];
+	      const attack_form        = v[repeating_attacks + "_attack_form"];
 
               //HIGHER LVL CAST DMG found in Spells for spells like Fireball
               const hldmgcrit = (v[`${repeating_attacks}_hldmg`] && v[`${repeating_attacks}_hldmg`] != "") ? v[`${repeating_attacks}_hldmg`].slice(0, 7) + "crit" + v[`${repeating_attacks}_hldmg`].slice(7) : "";
