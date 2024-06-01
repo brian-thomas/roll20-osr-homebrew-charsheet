@@ -10588,7 +10588,7 @@ var handle_drop_monster = function(v) {
           // update[`${repeating_attacks}_dmg2type`] = (v[`${repeating_spell}_dmgtype2`]) ? v[`${repeating_spell}_dmgtype2`] : "";
 
           update[`${repeating_attacks}_atkrange`] = (v[`${repeating_spell}_spellrange`]) ? v[`${repeating_spell}_spellrange`] : "";
-          update[`${repeating_attacks}_saveflag`] = (v[`${repeating_spell}_spellsave`]) ? "{{save=1}} {{saveattr=@{saveattr}}} {{savedesc=@{saveeffect}}} {{savedc=[[[[@{savedc}]][SAVE]]]}}" : "0";
+          update[`${repeating_attacks}_saveflag`] = (v[`${repeating_spell}_spellsave`]) ? "{{save=1}} {{saveattr=@{saveattr}}} {{savedesc=@{saveeffect}}} {{savedc=[[[[@{spell_dc}]][SAVE]]]}}" : "0";
           update[`${repeating_attacks}_saveeffect`] = (v[`${repeating_spell}_spellsavesuccess`]) ? v[`${repeating_spell}_spellsavesuccess`] : "";
 
           if(v[`${repeating_spell}_spellsave`]) {
@@ -10934,6 +10934,7 @@ var handle_drop_monster = function(v) {
       	      if (attack_form == "spell") {
                   // spell as an attack
                   rollbase = `@{wtype}&{template:spell2} {{charname=@{character_name}}} {{title=@{atkname}}} {{subheader=@{character_name}}} {{spell_save_dc=@{spellcasting_dc}}} {{roll1=[[1d20cs>@{spellcritrange}cf>@{spellfumblerange} + @{spellcasting_mod} ]]}} {{casting_dc=[[@{spell_dc}]]}} {{critical=[[@{spellcritrange}-1]]}} {{fumble=[[@{spellfumblerange}+1]]}} {{desc=@{atk_desc}}} {{castingtime=@{spellcastingtime}}} {{range=@{atkrange}}} {{target=@{atk_target}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{casting_restrictions=@{casting_restrictions_desc}}} {{athigherlevels=@{spellathigherlevels}}} {{innate=@{spell_innate}}} @{spellconcentration} @{dmgflag} {{dmg1=[[${hdmg1}]]}} {{dmg1type=${dmgtype}}} {{crit1=[[${crit1} [CRIT]]]}} @{saveflag} @{hldmg} ${hldmgcrit} {{spelllevel=@{spelllevel}}} ammo=@{ammo} @{charname_output} {{licensedsheet=@{licensedsheet}}}`;
+		  // console.log("Create spelll attack command rollbase:\n"+rollbase);
 
       	      } else {
                   // regular attack
@@ -11020,10 +11021,9 @@ var handle_drop_monster = function(v) {
           // };
 
           //SAVING THROW checkbox inside settings for the repeating attack
-          update[`${repeating_spell}_spellsave`] =
-	      (v[`${repeating_attacks}_saveflag`] && v[`${repeating_attacks}_saveflag`] != "0") ? v[`${repeating_attacks}_saveattr`] : "";
+          update[`${repeating_spell}_spellsave`] = (v[`${repeating_attacks}_saveflag`] && v[`${repeating_attacks}_saveflag`] != "0") ? v[`${repeating_attacks}_saveattr`] : "";
 
-	        //console.log("UPDATE Spell from attack using:"+JSON.stringify(update));
+	        console.log("UPDATE Spell from attack using:"+JSON.stringify(update));
           setAttrs(update);
       });
   };
