@@ -8296,6 +8296,7 @@
                   {{#rollWasFumble() attack}}
                   <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&bull; Roll Fumble Effect</div>
                   <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&bull; Notch Weapon</div>
+                  <div class="sheet-col-7-12 sheet-padr sheet-rt-value">&bull; Increase Fatigue</div>
                   {{/rollWasFumble() attack}}
           </div>
           {{/damage}}
@@ -8380,8 +8381,6 @@
               const race = v.race.trim();
               const c_class = v.class.trim();
               const c_class2 = v.class2.trim();
-
-	      console.log("FATIGUE: "+fatigue);
 
               const ability_mod = `${ability}_mod`;
               setting[ability_mod] = (statrank === -1 ? 4 : statrank -4) + ((raceMods[race] || '').indexOf(ability) !== -1 ? 1 : 0);
