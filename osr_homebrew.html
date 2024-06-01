@@ -8013,7 +8013,7 @@
 
         <div class="sheet-row">
           {{^innate}}
-	        <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><span style="font-size: 14px;">Casting Roll: {{roll1}} vs DC {{casting_dc}}</span></div>
+	        <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><span style="font-size: 14px;">Casting Roll: {{roll1}} vs casting DC {{casting_dc}}</span></div>
 	        &nbsp;
           {{#rollBetween() roll1 fumble critical}}
 
@@ -8055,7 +8055,7 @@
         <div class="sheet-row">
 
           {{#innate}}
-	          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Spell Save DC:</b> {{spell_save_dc}}</div>
+	          <!--div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Spell Save DC:</b> {{spell_save_dc}}</div-->
 	          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Casting Time:</b> {{castingtime}}</div>
 	          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Range:</b> {{range}}</div>
 	          <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Target:</b> {{target}}</div>
@@ -8074,8 +8074,8 @@
               <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Components:</b> {{#v}}V{{/v}} {{#s}}S{{/s}} {{#m}}M{{/m}}
                       {{#material}} ({{material}}) {{/material}}
               </div>
-	             <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Duration:</b> {{#concentration}}Concentration{{/concentration}} {{duration}}</div>
-	              <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Spell Save DC:</b> {{spell_save_dc}}</div>
+	      <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Duration:</b> {{#concentration}}Concentration{{/concentration}} {{duration}}</div>
+	      <!--div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Spell Save DC:</b> {{spell_save_dc}}</div-->
 
               {{/^rollLess() roll1 casting_dc}}
 
@@ -8106,6 +8106,7 @@
     </div>
   </div>
   {{#save}}
+    {{#^rollLess() roll1 casting_dc}}
       {{#attack}}
           <div class="desc save">
       {{/attack}}
@@ -8113,7 +8114,7 @@
           <div class="atk save">
       {{/attack}}
           <div class="savedc">
-              <span class="rolltemplate-inline" data-i18n="difficulty-class-abv">DC</span><span class="rolltemplate-inline">{{savedc}}</span>
+	       <span>Resist DC {{spell_save_dc}}</span>
           </div>
           {{#savedesc}}
               <div class="sublabel">
@@ -8124,6 +8125,7 @@
               <span class="rolltemplate-inline">{{saveattr}}</span> <span class="rolltemplate-inline" data-i18n="save">Save</span>
           </div>
       </div>
+    {{/^rollLess() roll1 casting_dc}}
   {{/save}}
   <!--
   {{^attack}}
