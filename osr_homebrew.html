@@ -6818,7 +6818,7 @@
                      <option value="status">Higher Status (+1 Status, +1 Skill)</option>
                      <option value="healer">Healer (Always 'crit' medical checks to bind wounds. +2 Skill)</option>
                      <option value="healthy">Healthy(+2 Health, +1 Skill)</option>
-                     <option value="indominible">Indominible (1/day may change HP below 1 to 1 HP)</option>
+                     <option value="indomitable">Indomitable (1/day may change HP below 1 to 1 HP)</option>
                      <option value="leader">Leader (+1 Ego, +1 Skill, Adv on leadership skill)</option>
                      <option value="healthy">Lucky (3/day reroll d20 skill, ability or attack)</option>
                      <option value="multi_backgrnd">Multiple Backgrounds (Gain +1 background of choice. Only on 1st level)</option>
@@ -8700,12 +8700,14 @@
         setting['max_prof_level_allowed'] = max_prof_level;
         setting['max_prof_level_name'] = prof_names[max_prof_level];
 
-      } else if (is_specialist) {
+      }
+      if (is_specialist) {
         const specialist_level = (c_class === 'specialist' ? level : level2);
         setting['max_prof_allowed'] = specialist_level > 0 ? 3 : 1;
         setting['max_perks_allowed'] = specialist_level;
 
-      } else if (is_cleric) {
+      }
+      if (is_cleric) {
         setting['max_prof_allowed'] = cleric_level > 0 ? 2 : 1;
       }
 
