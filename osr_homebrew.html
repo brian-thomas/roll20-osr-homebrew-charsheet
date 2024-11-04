@@ -583,7 +583,7 @@
                                 <input type="hidden" class="s" name="attr_spellcomp_s" value="{{s=1}}">
                                 <input type="hidden" class="m" name="attr_spellcomp_m" value="{{m=1}}">
                                 <!--
-                                <span class="spellritual" data-i18n="spell-ritual">R</span>
+                                <span class="spellritual" data-i19n="spell-ritual">R</span>
                                 -->
                                 <span class="spellconcentration" data-i18n="spell-concentration">C</span>
                                 <span class="componentscontainer">
@@ -8845,6 +8845,9 @@
       fieldnames.push(repeating_source + '_' + id + '_spellattackid');
       fieldnames.push(repeating_source + '_' + id + '_innate');
       fieldnames.push(repeating_source + '_' + id + '_casting_restrictions_desc');
+      fieldnames.push(repeating_source + '_' + id + '_spellcomp_v');
+      fieldnames.push(repeating_source + '_' + id + '_spellcomp_s');
+      fieldnames.push(repeating_source + '_' + id + '_spellcomp_m');
     });
 
     getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod', 'fatigue', 'character_id'], function (values) {
@@ -8867,6 +8870,17 @@
         const spelldamage = values[repeating_source + '_' + id + '_spelldamage'];
         const spelloutput = values[repeating_source + '_' + id + '_spelloutput'];
         const spellattackid = values[repeating_source + '_' + id + '_spellattackid'];
+
+        // V, S, M spell components make it easier to cast, IF they are missing (value is zero)
+        // then we add a penalty
+        var comp_v = values[repeating_source + '_' + id + '_spellcomp_v'];
+        if (comp_v === '{{v=1}}') { comp_v = 0; } else { comp_v = 1; }
+
+        var comp_s = values[repeating_source + '_' + id + '_spellcomp_s'];
+        if (comp_s === '{{s=1}}') { comp_s = 0; } else { comp_s = 1; }
+
+        var comp_m = values[repeating_source + '_' + id + '_spellcomp_m'];
+        if (comp_m === '{{m=1}}') { comp_m = 0; } else { comp_m = 1; }
 
         const casting_restrictions_desc = values[repeating_source + '_' + id + '_casting_restrictions_desc'];
         const innate = values[repeating_source + '_' + id + '_innate'];
@@ -8895,8 +8909,8 @@
         }
 
         // handle spell (difficulty) DC
-        var spell_dc = 10 + spelllevel - casting_restrictions + fatigue - arcana_adj - spellcasting_mod;
-        if (spell_dc < 2) { spell_dc = 2; } // never lower than 2
+        var spell_dc = 10 + spelllevel - casting_restrictions + fatigue - arcana_adj - spellcasting_mod + comp_v + comp_s + comp_m;
+        if (spell_dc < 2) { spell_dc = 2 + comp_v + comp_s + comp_m; } // never lower than 2 + comp_*
 
         settings[repeating_source + '_' + id + '_spellcritrange'] = 20 - casting_restrictions;
         settings[repeating_source + '_' + id + '_spellfumblerange'] = 1 + fatigue;
