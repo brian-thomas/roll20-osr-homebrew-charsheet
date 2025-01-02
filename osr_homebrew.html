@@ -8691,6 +8691,12 @@
       // reset incase we messed with levels
       setting['max_perks_allowed'] = 0;
 
+      // handle perks
+      if (is_specialist) {
+        setting['max_perks_allowed'] = specialist_level;
+      }
+
+      // handle combat prof and opts
       if (is_fighter) {
         const fighter_level = (c_class === 'fighter' ? level : level2);
         setting['berserk_attack_mod'] = 2 + parseInt(fighter_level/4)
@@ -8701,20 +8707,20 @@
         setting['max_prof_level_name'] = prof_names[max_prof_level];
 
       }
-      else 
+      else
       {
         // non-multiclassed, non-fighters proficiencies go here (they are fixed)
         if (is_specialist) {
           const specialist_level = (c_class === 'specialist' ? level : level2);
           setting['max_prof_allowed'] = specialist_level > 0 ? 3 : 1;
-          setting['max_perks_allowed'] = specialist_level;
         }
-        else if (is_cleric) 
-	{
+        else if (is_cleric)
+	      {
 	  // its in an 'else if' w/ specialist in case we have multiclassed w/ specialist
           setting['max_prof_allowed'] = cleric_level > 0 ? 2 : 1;
         }
       }
+
 
       setAttrs(setting);
     });
