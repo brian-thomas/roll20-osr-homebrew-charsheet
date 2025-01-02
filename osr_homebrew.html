@@ -8693,6 +8693,7 @@
 
       // handle perks
       if (is_specialist) {
+        const specialist_level = (c_class === 'specialist' ? level : level2);
         setting['max_perks_allowed'] = specialist_level;
       }
 
@@ -8711,7 +8712,6 @@
       {
         // non-multiclassed, non-fighters proficiencies go here (they are fixed)
         if (is_specialist) {
-          const specialist_level = (c_class === 'specialist' ? level : level2);
           setting['max_prof_allowed'] = specialist_level > 0 ? 3 : 1;
         }
         else if (is_cleric)
