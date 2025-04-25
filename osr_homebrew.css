@@ -617,7 +617,7 @@ input.sheet-info-name-long
 .sheet-info-name-med,
 span.sheet-info-name-med,
 input.sheet-info-name-med,
-select.sheet-info-name-med,
+select.sheet-info-name-med
 {
 	width: 100px;
 }
@@ -626,7 +626,7 @@ select.sheet-info-name-med,
 span.sheet-info-name-sm,
 input.sheet-info-name-sm,
 select.sheet-info-name-med-sm,
-select.sheet-info-name-sm,
+select.sheet-info-name-sm
 {
 	width: 45px;
 }
