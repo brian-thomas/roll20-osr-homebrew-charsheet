@@ -9072,7 +9072,11 @@
           const type = values['repeating_perks_' + id + '_perk_type'];
 
           // add up additional perk-based advantages
-          if (type === 'alert')
+          if (type === 'absolute_direction')
+          {
+             extra_skill_points += 2;
+          }
+          else if (type === 'alert')
           {
              extra_init = 3; // does NOT co-add
           }
