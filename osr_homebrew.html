@@ -3234,7 +3234,7 @@
                     <input name="attr_intelligence_mod" type="number" value="0" class="sheet-ability-modifier inactive-color" readonly="true"/>
                   </div>
                   <div class="sheet-ability-column-modifier sheet-flex-between">
-                    <span class="noborder left-pad italic-font" style="font-size: 9pt;">Perception, Languages, Search, Magic Spell Casting, Skills </span>
+                    <span class="noborder left-pad italic-font" style="font-size: 9pt;">Perception, History, Lang., Search, Spell Casting, Skill Pts. </span>
                   </div>
                 </div>
 
@@ -3475,6 +3475,17 @@
                               <input type="number" name="attr_bushcraft_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
                             </div>
                           </div> 
+
+                          <div class="sheet-block-between">
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_history"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=History Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{history_skill} + (@{history_bonus} bonus) + (@{intelligence_mod} INT mod)}} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{history_skill} + @{history_bonus} + @{intelligence_mod}]] ]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">History</span>
+                              </button>
+                              <input type="number" name="attr_history_skill" class="sheet-bold-font skill-value" value="0"/>
+                              <input type="number" name="attr_history_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
+                            </div>
+                          </div>
 
                           <div class="sheet-block-between">
                             <div class="sheet-align-right padding">
@@ -8755,7 +8766,7 @@
   });
 
   // Checks for Skills, are they overspent? Have they underspent? Exceeded max bonus for a skill?
-  const coreSkills = ['arcana_skill', 'architect_skill', 'armory_skill', 'athletics_skill', 'bushcraft_skill', 'insight_skill',
+  const coreSkills = ['arcana_skill', 'architect_skill', 'armory_skill', 'athletics_skill', 'bushcraft_skill', 'history_skill', 'insight_skill',
                       'languages_skill', 'leadership_skill', 'open_door_skill', 'search_skill', 'sleight_skill', 'sneak_attack_skill',
                       'stealth_skill', 'social_skill', 'theology_skill', 'tinker_skill'];
 
