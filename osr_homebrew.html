@@ -6807,7 +6807,8 @@
                <div class="sheet-perkcontainer sheet-side-padding">
                   <select class="sheet-perk-name" name="attr_perk_type">
                      <option selected="selected" value="none">-- Select Perk --</option>
-                     <option value="alert">Alert (+5 init. Cannot be surprised or attacked by unseen with adv.)</option>
+                     <option value="absolute_direction">Absolute Direction (Always know time and direction north, +2 Skill)</option>
+                     <option value="alert">Alert (+3 init. Cannot be surprised or attacked by unseen with adv.)</option>
                      <option value="acrobat">Acrobat (+2 Dodge, +1 Skill)</option>
                      <option value="actor">Actor (+1 Ego. +1 skill. Mimic speech & sounds. Adv on impersonization.)</option>
                      <option value="assassin">Assassin (Sneak Attack combat option, +1 Skill)</option>
@@ -6815,11 +6816,7 @@
                      <option value="bodybuilder">Bodybuilder (+2 Fortitdue, +1 Skill)</option>
                      <option value="contacts">Contacts (Gain 3 minor allies)</option>
                      <option value="courtier">Courtier (+1 Status. Member of court. Minor law immune.)</option>
-                     <!--
-                     <option value="dual_wielder">Dual Wielder (Two Weapon Attack combat option, +1 Skill)</option>
-                     <option value="duelist">Duelist (Aim/Feint combat option, +1 Skill)</option>
-                     -->
-                     <option value="eidetic">Eidetic Mind (+1 Perception. Knows direction and time. Recall events accurately)</option>
+                     <option value="eidetic">Eidetic Mind (+1 Perception. Recall events accurately)</option>
                      <option value="status">Higher Status (+1 Status, +1 Skill)</option>
                      <option value="healer">Healer (Always 'crit' medical checks to bind wounds. +2 Skill)</option>
                      <option value="healthy">Healthy(+2 Health, +1 Skill)</option>
@@ -9068,8 +9065,6 @@
         var extra_inventory = 0;
         var extra_skill_points = 0;
         var extra_status_points = 0;
-        var aim_feint_attack_enabled = 0;
-        var dual_attack_enabled = 0;
         var sneak_attack_enabled = 0;
         var add_cmbt_opts_allowed = 0;
 
@@ -9079,7 +9074,7 @@
           // add up additional perk-based advantages
           if (type === 'alert')
           {
-             extra_init = 5; // does NOT co-add
+             extra_init = 3; // does NOT co-add
           }
           else if (type === 'actor')
           {
@@ -9094,18 +9089,6 @@
           else if (type === 'courtier')
           {
              extra_status_points += 1;
-          }
-          else if (type === 'dual_wielder')
-          {
-             extra_skill_points += 1;
-             add_cmbt_opts_allowed += 1;
-             dual_attack_enabled = 1;
-          }
-          else if (type === 'duelist')
-          {
-             extra_skill_points += 1;
-             aim_feint_attack_enabled = 1;
-             add_cmbt_opts_allowed += 1;
           }
           else if (type === 'eidetic')
           {
@@ -9207,12 +9190,6 @@
         settings['perk_inventory_mod'] = extra_inventory;
 
         settings['perk_cmbt_options'] = add_cmbt_opts_allowed;
-
-        settings['aim_feint_attack_enabled'] = aim_feint_attack_enabled;
-        settings['feint_attack'] = aim_feint_attack_enabled;
-
-        settings['two_attack_enabled'] = dual_attack_enabled;
-        settings['two_attack_attack'] = dual_attack_enabled;
 
         settings['sneak_attack_enabled'] = sneak_attack_enabled;
         settings['sneak_attack_checkbox'] = sneak_attack_enabled;
