@@ -3050,9 +3050,11 @@
                </select>
                <select class="sheet-info-name" name="attr_race">
                   <option selected="selected" value="Human">Human</option>
+                  <!--
                   <option value="Dwarf">Dwarf</option>
                   <option value="Elven">Elven</option>
                   <option value="Halfling">Halfling</option>
+                  -->
                </select>
                <input type="text" class="info-name" style="width: 265px;" name="attr_background"/>
              </div>
@@ -8444,10 +8446,10 @@
                 // class skills
                 const base_start_class_skills = level > 0 ? (c_class === 'specialist' ?  6 : 3) : 0; // set by the first class chosen at 1st level
 
-                // class skills for levels beyond 1st
+                // class skills for levels beyond 1st 
                 const class1_skill_points = level > 1 ? ((skill_int_mod + 2) * (level - 1)) : 0;
 
-                var class2_skill_points = (skill_int_mod + 2) * level2;
+                var class2_skill_points = level2 > 1 ? ((skill_int_mod + 2) * (level2 -1)) : 0;
                 class2_skill_points += level2 > 0 ? (c_class2 === 'specialist' ? 6 : 3) : 0; // multi-class give the full skill points for 1st level
 
                 var class_skill_points = class1_skill_points + class2_skill_points;
