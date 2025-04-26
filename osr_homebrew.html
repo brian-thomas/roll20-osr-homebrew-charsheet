@@ -6855,7 +6855,7 @@
                      <option value="ritual_caster">Ritual Magician (May cast spells as rituals, use magic tools, +1 Skill, +1 Lang.)</option>
                      <option value="scholar">Scholar (+2 Lang, +2 Skills)</option>
                      <option value="silver_tongue">Silver Tongue (Adv. on rolls to lie, persuade or bargain)</option>
-                     <option value="skilled">Skilled (+4 Skills)</option>
+                     <option value="skilled">Skilled (+3 Skills)</option>
                      <option value="sprinter">Sprinter (+10 ft/rnd movement)</option>
                      <option value="strong_will">Strong Will (+2 Willpower, +1 Skill)</option>
                      <option value="strong_personality">Strong Personality (+2 Ego, +1 Skill)</option>
@@ -8791,7 +8791,7 @@
 
            // maximum skill value is betweeen 2 and 10 + int mod as modified by total level
            // check for max value being exceeded
-           var max_value_allowed = 2 + level + level2;
+           var max_value_allowed = 2 + parseInt((level + level2)/2) + intelligence_mod;
            if (max_value_allowed < 2) { max_value_allowed = 2; }
            if (max_value_allowed > 10 + intelligence_mod) { max_value_allowed = 10 + intelligence_mod; }
            const max_value_exceeded = max_skill_value > max_value_allowed ? 0 : 1;
@@ -9190,7 +9190,7 @@
           }
           else if (type === 'skilled')
           {
-            extra_skill_points += 4;
+            extra_skill_points += 3;
           }
           else if (type === 'scholar')
           {
