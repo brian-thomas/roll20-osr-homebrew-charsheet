@@ -2960,7 +2960,7 @@
                <option value="fighter">Fighter</option>
                <!--option value="cleric">Cleric</option-->
                <option value="specialist">Specialist</option>
-               <option value="wizard">Wizard</option>
+               <option value="wizard">Warlock/Witch</option>
              </select>
              <select class="sheet-info-name-sm" name="attr_level">
                <option selected="selected" value="0">0</option>
@@ -3008,7 +3008,7 @@
                  <option value="fighter">Fighter</option>
                  <!--option value="cleric">Cleric</option-->
                  <option value="specialist">Specialist</option>
-                 <option value="wizard">Wizard</option>
+                 <option value="wizard">Warlock/Witch</option>
                </select>
                <select class="sheet-info-name-sm" name="attr_level2">
                  <option value="0" selected="selected">--</option>
@@ -3427,16 +3427,7 @@
                       <div class="sheet-flex-between">
                         <div class="sheet-block sheet-side-padding">
 
-                          <div class="sheet-block-between">
-                            <div class="sheet-align-right padding">
-                              <button class="blank-roll-button narrow-button" type="roll" name="roll_arcana"
-                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Arcana Skill Check}} {{subheader=@{character_name}}} {{skill=1}} {{math=roll: 1d20 + @{arcana_skill} + @{arcana_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{arcana_skill}]] +[[@{arcana_bonus}]]]]}}">
-                                      <span class="bold-font" style="font-size: 10pt;">Arcana</span>
-                              </button>
-                              <input type="number" name="attr_arcana_skill" class="bold-font skill-value" value="0"/>
-                              <input type="number" name="attr_arcana_bonus" class="skill-bonus-value purple-border" value="0"/>
-                            </div>
-                          </div>
+
 
                           <div class="sheet-block-between">
                             <div class="sheet-align-right padding">
@@ -3491,6 +3482,17 @@
                               </button>
                               <input type="number" name="attr_languages_skill" class="sheet-bold-font skill-value" value="0"/>
                               <input type="number" name="attr_languages_bonus" class="sheet-skill-bonus-value sheet-purple-border" value="0"/>
+                            </div>
+                          </div>
+                            
+                          <div class="sheet-block-between">
+                            <div class="sheet-align-right padding">
+                              <button class="blank-roll-button narrow-button" type="roll" name="roll_arcana"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Occult Skill Check}} {{subheader=@{character_name}}} {{skill=0}} {{math=roll: 1d20 + @{arcana_skill} + @{arcana_bonus} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{arcana_skill}]] +[[@{arcana_bonus}]]]]}}">
+                                      <span class="bold-font" style="font-size: 10pt;">Occult</span>
+                              </button>
+                              <input type="number" name="attr_arcana_skill" class="bold-font skill-value" value="0"/>
+                              <input type="number" name="attr_arcana_bonus" class="skill-bonus-value purple-border" value="0"/>
                             </div>
                           </div>
 
@@ -6813,8 +6815,10 @@
                      <option value="bodybuilder">Bodybuilder (+2 Fortitdue, +1 Skill)</option>
                      <option value="contacts">Contacts (Gain 3 minor allies)</option>
                      <option value="courtier">Courtier (+1 Status. Member of court. Minor law immune.)</option>
+                     <!--
                      <option value="dual_wielder">Dual Wielder (Two Weapon Attack combat option, +1 Skill)</option>
                      <option value="duelist">Duelist (Aim/Feint combat option, +1 Skill)</option>
+                     -->
                      <option value="eidetic">Eidetic Mind (+1 Perception. Knows direction and time. Recall events accurately)</option>
                      <option value="status">Higher Status (+1 Status, +1 Skill)</option>
                      <option value="healer">Healer (Always 'crit' medical checks to bind wounds. +2 Skill)</option>
@@ -7432,7 +7436,6 @@
         <div class="block thin-border" style="padding: 2px; top-margin: 2px; background-color: #C7C7C7;">
           <div class="inline-flex">
              <span class="info-name bold-font" style="width: 150px;">Social Status</span>
-             <span class="info-name-sm" style="width: 40px;">Buy %</span>
              <span class="info-name-sm" style="width: 40px;">Sell %</span>
              <span class="info-name" style="width: 60px; text-align: center;">Max Savings</span>
              <span class="info-name" style="width: 310px;">Other</span>
@@ -7441,8 +7444,6 @@
               <input type="number" name="attr_starting_status" value="3" hidden="true"/>
               <input type="text" class="info-name bold-font" style="text-align: center; border-color: #C7C7C7; background-color: #D7D7D7; width: 150px;"
                      value="Slave" name="attr_status_title" readonly="true"/>
-              <input type="text" class="info-name inactive-color" style="text-align: right; width: 40px; border-color: #C7C7C7; background-color: #D7D7D7;"
-                    value="1" name="attr_buy_percent" readonly="true"/>
               <input type="text" class="info-name inactive-color" style="text-align: right; width: 40px; border-color: #C7C7C7; background-color: #D7D7D7;"
                     value="1" name="attr_sell_percent" readonly="true"/>
               <input type="text" class="info-name inactive-color" style="text-align: right; width: 60px; border-color: #C7C7C7; background-color: #D7D7D7;"
@@ -8080,13 +8081,9 @@
               <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Components:</b> {{#v}}V{{/v}} {{#s}}S{{/s}} {{#m}}M{{/m}}
                       {{#material}} ({{material}}) {{/material}}
               </div>
-	      <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Duration:</b> {{#concentration}}Concentration{{/concentration}} {{duration}}</div>
-	      <!--div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Spell Save DC:</b> {{spell_save_dc}}</div-->
-
+	            <div class="sheet-col-7-12 sheet-padr sheet-rt-value"><b>Duration:</b> {{#concentration}}Concentration{{/concentration}} {{duration}}</div>
               {{/^rollLess() roll1 casting_dc}}
-
           {{/innate}}
-
         </div>
 	      &nbsp;
 
@@ -8095,7 +8092,7 @@
           {{#description}}
           <div class="sheet-row">{{description}}</div>
           {{/description}}
-	        {{#casting_restrictions}}<div class="row"><b>Casting Restrictions.</b> {{casting_restrictions}}</div>{{/casting_restrictions}}
+	        {{#casting_restrictions}}<div class="row"><b>Other Restrictions.</b> {{casting_restrictions}}</div>{{/casting_restrictions}}
 	        {{#athigherlevels}}<div class="row"><b>At Higher Levels.</b> {{athigherlevels}}</div>{{/athigherlevels}}
 
         {{/^rollLess() roll1 casting_dc}}
@@ -8105,7 +8102,7 @@
           {{#description}}
           <div class="sheet-row">{{description}}</div>
           {{/description}}
-	        {{#casting_restrictions}}<div class="row"><b>Casting Restrictions.</b> {{casting_restrictions}}</div>{{/casting_restrictions}}
+	        {{#casting_restrictions}}<div class="row"><b>Other Restrictions.</b> {{casting_restrictions}}</div>{{/casting_restrictions}}
 	        {{#athigherlevels}}<div class="row"><b>At Higher Levels.</b> {{athigherlevels}}</div>{{/athigherlevels}}
         {{/innate}}
 
@@ -8534,7 +8531,6 @@
                   "Craftsman / Merchant (1)", "Officer / Official (2)", "High Official (3)", "Lesser Noble (4)",
                   "Greater Noble (5)", "Leader (6)"];
   const status_sell_percent = [0,  20,  30,  40,  50,  60,   70,   80,    90,   100,    200 ];
-  const status_buy_percent  = ["0", "200", "150", "100", "100", "100",  "100",   "90",    "80",    "70",     "50" ];
   const status_max_saving   = [0,   0,   0,  50, 100, 500, 1000, 5000, 10000, 50000, 100000 ];
   const status_other = [ "not allowed rights or property or freedom", // slave
                    "price on head; not allowed rights or property", // outlaw
@@ -8612,6 +8608,8 @@
 
   // keep up proficiencies
   const prof_names = ['Unskilled', 'Skilled', 'Proficient', 'Master', 'Grand Master'];
+  const max_prof_level_allowed_fighter = [1, 1, 1, 2, 2, 3, 3, 4,];
+
   on(`sheet:opened change:class change:class2 change:level change:level2 change:race change:xp change:perk_cmbt_options`, () => {
     getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race', 'xp', 'perk_cmbt_options' ], v => {
       const c_align = v.alignment.trim();
@@ -8706,7 +8704,8 @@
         setting['berserk_attack_mod'] = 2 + parseInt(fighter_level/4)
         setting['max_cmbt_opts_allowed'] = 1 + parseInt(fighter_level/2);
         setting['max_prof_allowed'] = fighter_level > 0 ? 3 + fighter_level : 1;
-        const max_prof_level = fighter_level > 4 ? 4 : fighter_level > 0 ? fighter_level : 1;
+        // max prof increases at fighter levels 1, 3, 5, 7 
+        const max_prof_level = fighter_level > 7 ? 4 : max_prof_level_allowed_fighter[fighter_level];
         setting['max_prof_level_allowed'] = max_prof_level;
         setting['max_prof_level_name'] = prof_names[max_prof_level];
 
@@ -8876,7 +8875,6 @@
       const spellcasting_mod = parseInt(values.spellcasting_mod) || 0;
       const fatigue = parseInt(values.fatigue) || 0;
 
-      const arcana_adj = parseInt((arcana_skill + arcana_bonus) / 4) || 0;
       const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard') ? 1 : 0;
 
       var settings = {};
@@ -8926,7 +8924,7 @@
         }
 
         // handle spell (difficulty) DC
-        var spell_dc = 10 + spelllevel - casting_restrictions + fatigue - arcana_adj - spellcasting_mod + comp_v + comp_s + comp_m;
+        var spell_dc = 15 + spelllevel - casting_restrictions + fatigue - spellcasting_mod + comp_v + comp_s + comp_m;
         if (spell_dc < 2) { spell_dc = 2 + comp_v + comp_s + comp_m; } // never lower than 2 + comp_*
 
         settings[repeating_source + '_' + id + '_spellcritrange'] = 20 - casting_restrictions;
@@ -9028,7 +9026,6 @@
         // set status and related fields
         var status = starting_status + perk_status_points + parseInt(total_level / 3);
         setting["status_title"] = status_title[status];
-        setting["buy_percent"] = status_buy_percent[status];
         setting["sell_percent"] = status_sell_percent[status].toString();
         setting["max_savings"] = status_max_saving[status].toString();
         setting["status_other"] = status_other[status];
@@ -9481,7 +9478,7 @@
                     // grand master
                     atkbonus += 1;
                     proficiency_dam_bonus = 2;
-                    cmbt_opt_ac_penalty = 0;
+                    cmbt_opt_ac_penalty = -1;
                     crit_range_adj = 2; // Crit 18-20
                   }
                   else if (attack_proficiency_level > 2)
@@ -9489,14 +9486,14 @@
                     // master
                     atkbonus += 1;
                     proficiency_dam_bonus = 1;
-                    cmbt_opt_ac_penalty = -1;
+                    cmbt_opt_ac_penalty = -2;
                     crit_range_adj = 1; // Crit 19-20
                   }
                   else if (attack_proficiency_level > 1)
                   {
                     // proficient
                     atkbonus += 1;
-                    cmbt_opt_ac_penalty = -2;
+                    cmbt_opt_ac_penalty = -3;
                   }
 
                   // damaged weapons reduce attack bonus

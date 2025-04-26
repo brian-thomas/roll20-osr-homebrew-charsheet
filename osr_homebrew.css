@@ -2761,7 +2761,7 @@ button.sheet-purple-border
 }
 
 .sheet-black-border,
-button[type=roll].sheet-black-border,
+button[type=roll].sheet-black-border
 {
     border: 2px solid black;
 }
@@ -2977,7 +2977,7 @@ input.sheet-dex-show-slots[value="16"] ~ div.sheet-no-dex4slots,
 input.sheet-dex-show-slots[value="17"] ~ div.sheet-no-dex4slots,
 input.sheet-dex-show-slots[value="18"] ~ div.sheet-no-dex4slots,
 input.sheet-dex-show-slots[value="19"] ~ div.sheet-no-dex4slots,
-input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex4slots,
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex4slots
 {
 	display: none;
 }
@@ -2996,7 +2996,7 @@ input.sheet-dex-show-slots[value="16"] ~ div.sheet-no-dex6slots,
 input.sheet-dex-show-slots[value="17"] ~ div.sheet-no-dex6slots,
 input.sheet-dex-show-slots[value="18"] ~ div.sheet-no-dex6slots,
 input.sheet-dex-show-slots[value="19"] ~ div.sheet-no-dex6slots,
-input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex6slots,
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex6slots
 {
 	display: none;
 }
@@ -3012,7 +3012,7 @@ input.sheet-dex-show-slots[value="16"] ~ div.sheet-no-dex9slots,
 input.sheet-dex-show-slots[value="17"] ~ div.sheet-no-dex9slots,
 input.sheet-dex-show-slots[value="18"] ~ div.sheet-no-dex9slots,
 input.sheet-dex-show-slots[value="19"] ~ div.sheet-no-dex9slots,
-input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex9slots,
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex9slots
 {
 	display: none;
 }
@@ -3024,7 +3024,7 @@ input.sheet-dex-show-slots[value="16"] ~ div.sheet-no-dex13slots,
 input.sheet-dex-show-slots[value="17"] ~ div.sheet-no-dex13slots,
 input.sheet-dex-show-slots[value="18"] ~ div.sheet-no-dex13slots,
 input.sheet-dex-show-slots[value="19"] ~ div.sheet-no-dex13slots,
-input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex13slots,
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex13slots
 {
 	display: none;
 }
@@ -3033,7 +3033,7 @@ input.sheet-dex-show-slots[value="16"] ~ div.sheet-no-dex16slots,
 input.sheet-dex-show-slots[value="17"] ~ div.sheet-no-dex16slots,
 input.sheet-dex-show-slots[value="18"] ~ div.sheet-no-dex16slots,
 input.sheet-dex-show-slots[value="19"] ~ div.sheet-no-dex16slots,
-input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex16slots,
+input.sheet-dex-show-slots[value="20"] ~ div.sheet-no-dex16slots
 {
 	display: none;
 }
@@ -3155,7 +3155,6 @@ div.sheet-label
 {
         display: inline-block;
         zoom: 1;
-        *display: inline;
         letter-spacing: normal;
         word-spacing: normal;
         vertical-align: top;
@@ -3633,7 +3632,7 @@ input.sheet-primary-skill-name {
         font-size: 1em;
 }
 
-.sheet-rolltemplate-roll_check .sheet-rt-value .sheet-no-roll-highlight .inlinerollresult .fullfail . .sheet-rolltemplate-roll_check .sheet-rt-value .sheet-no-roll-highlight .inlinerollresult .fullcrit
+.sheet-rolltemplate-roll_check .sheet-rt-value .sheet-no-roll-highlight .inlinerollresult .fullfail .sheet-rolltemplate-roll_check .sheet-rt-value .sheet-no-roll-highlight .inlinerollresult .fullcrit
 {
         border: 0;
 }
