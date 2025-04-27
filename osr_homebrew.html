@@ -8961,7 +8961,7 @@
         var spell_dc = 15 + spelllevel - casting_restrictions + fatigue - spellcasting_mod + comp_v + comp_s + comp_m;
         if (spell_dc < 2) { spell_dc = 2 + comp_v + comp_s + comp_m; } // never lower than 2 + comp_*
 
-        settings[repeating_source + '_' + id + '_spellcritrange'] = 20 - casting_restrictions;
+        settings[repeating_source + '_' + id + '_spellcritrange'] = 20; // - casting_restrictions;
         settings[repeating_source + '_' + id + '_spellfumblerange'] = 1 + fatigue;
         settings[repeating_source + '_' + id + '_spell_dc'] = spell_dc;
         settings[repeating_source + '_' + id + '_spell_dc_show'] = is_innate ? "" : spell_dc;
