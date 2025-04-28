@@ -696,11 +696,24 @@ select.sheet-info-name
 
 input[type=checkbox].sheet-add-cmbt-opt
 {
-	height: 15px;
-	width: 15px;
+  -ms-transform: scale(1.0); /* IE */
+  -moz-transform: scale(1.0); /* FF */
+  -webkit-transform: scale(1.0); /* Safari and Chrome */
+  -o-transform: scale(1.0); /* Opera */
+  transform: scale(1.0);
 }
 
-input[type=checkbox]:checked.sheet-add-cmbt-opt
+input[type=checkbox].sheet-add-cmbt-opt-lrg 
+{
+  -ms-transform: scale(1.4); /* IE */
+  -moz-transform: scale(1.4); /* FF */
+  -webkit-transform: scale(1.4); /* Safari and Chrome */
+  -o-transform: scale(1.4); /* Opera */
+  transform: scale(1.4);
+}
+
+input[type=checkbox]:checked.sheet-add-cmbt-opt,
+input[type=checkbox]:checked.sheet-add-cmbt-opt-lrg
 {
 	accent-color: green;
 }
