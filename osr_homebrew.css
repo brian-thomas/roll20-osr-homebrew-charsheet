@@ -2705,6 +2705,7 @@ div.sheet-attack-press-attack-button-enabled,
 div.sheet-attack-sneak-attack-button-enabled,
 div.sheet-attack-strong-attack-button-enabled,
 div.sheet-attack-stun-attack-button-enabled,
+div.sheet-attack-sweep-attack-button-enabled,
 div.sheet-attack-great-cleave-attack-button-enabled,
 div.sheet-attack-berserk-attack-button-disabled,
 div.sheet-attack-charge-attack-button-disabled,
@@ -2717,6 +2718,7 @@ div.sheet-attack-press-attack-button-disabled,
 div.sheet-attack-sneak-attack-button-disabled,
 div.sheet-attack-strong-attack-button-disabled,
 div.sheet-attack-stun-attack-button-disabled,
+div.sheet-attack-sweep-attack-button-disabled,
 div.sheet-attack-great-cleave-attack-button-disabled
 {
 	display: none;
@@ -2735,6 +2737,7 @@ input.sheet-attack-great-cleave-attack-button-show:checked ~ div.sheet-attack-gr
 input.sheet-attack-sneak-attack-button-show:checked ~ div.sheet-attack-sneak-attack-button-enabled,
 input.sheet-attack-strong-attack-button-show:checked ~ div.sheet-attack-strong-attack-button-enabled,
 input.sheet-attack-stun-attack-button-show:checked ~ div.sheet-attack-stun-attack-button-enabled,
+input.sheet-attack-sweep-attack-button-show:checked ~ div.sheet-attack-sweep-attack-button-enabled,
 input.sheet-attack-berserk-attack-button-show:not(:checked) ~ div.sheet-attack-berserk-attack-button-disabled,
 input.sheet-attack-charge-attack-button-show:not(:checked) ~ div.sheet-attack-charge-attack-button-disabled,
 input.sheet-attack-cleave-attack-button-show:not(:checked) ~ div.sheet-attack-cleave-attack-button-disabled,
@@ -2746,6 +2749,7 @@ input.sheet-attack-press-attack-button-show:not(:checked) ~ div.sheet-attack-pre
 input.sheet-attack-sneak-attack-button-show:not(:checked) ~ div.sheet-attack-sneak-attack-button-disabled,
 input.sheet-attack-strong-attack-button-show:not(:checked) ~ div.sheet-attack-strong-attack-button-disabled,
 input.sheet-attack-stun-attack-button-show:not(:checked) ~ div.sheet-attack-stun-attack-button-disabled,
+input.sheet-attack-sweep-attack-button-show:not(:checked) ~ div.sheet-attack-sweep-attack-button-disabled,
 input.sheet-attack-great-cleave-attack-button-show:not(:checked) ~ div.sheet-attack-great-cleave-attack-button-disabled
 {
 	display: block;
@@ -2808,6 +2812,7 @@ div.sheet-lightning_attack_section,
 div.sheet-lunge_attack_section,
 div.sheet-strong_attack_section,
 div.sheet-stun_attack_section,
+div.sheet-sweep_attack_section,
 div.sheet-sneak_attack_section,
 div.sheet-attack_charge_attack_section,
 div.sheet-attack_press_attack_section,
@@ -2820,7 +2825,8 @@ div.sheet-attack_lightning_attack_section,
 div.sheet-attack_lunge_attack_section,
 div.sheet-attack_sneak_attack_section,
 div.sheet-attack_strong_attack_section,
-div.sheet-attack_stun_attack_section
+div.sheet-attack_stun_attack_section,
+div.sheet-attack_sweep_attack_section
 {
 	display: none;
 }
@@ -2837,6 +2843,7 @@ input.sheet-lunge_attack_enabled:checked ~ div.sheet-lunge_attack_section,
 input.sheet-sneak_attack_enabled:checked ~ div.sheet-sneak_attack_section,
 input.sheet-strong_attack_enabled:checked ~ div.sheet-strong_attack_section,
 input.sheet-stun_attack_enabled:checked ~ div.sheet-stun_attack_section,
+input.sheet-sweep_attack_enabled:checked ~ div.sheet-sweep_attack_section,
 input.sheet-attack_charge_attack_enabled:checked ~ div.sheet-attack_charge_attack_section,
 input.sheet-attack_press_attack_enabled:checked ~ div.sheet-attack_press_attack_section,
 input.sheet-attack_berserk_attack_enabled:checked ~ div.sheet-attack_berserk_attack_section,
@@ -2848,7 +2855,8 @@ input.sheet-attack_lightning_attack_enabled:checked ~ div.sheet-attack_lightning
 input.sheet-attack_lunge_attack_enabled:checked ~ div.sheet-attack_lunge_attack_section,
 input.sheet-attack_sneak_attack_enabled:checked ~ div.sheet-attack_sneak_attack_section,
 input.sheet-attack_strong_attack_enabled:checked ~ div.sheet-attack_strong_attack_section,
-input.sheet-attack_stun_attack_enabled:checked ~ div.sheet-attack_stun_attack_section
+input.sheet-attack_stun_attack_enabled:checked ~ div.sheet-attack_stun_attack_section,
+input.sheet-attack_sweep_attack_enabled:checked ~ div.sheet-attack_sweep_attack_section
 {
   display: block;
 }
