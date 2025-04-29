@@ -3792,6 +3792,12 @@
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(+4 AB, -4 Init, AC pen.)</span>
                 </div>
 
+                <div class="sheet-flex sheet-bottom-padding">
+                  <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_fly_attack" value="1"/>
+                  <span class="ability-check-label">Attack & Fly</span>
+                  <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(-4 AB, Execute retreat if successfull, AC pen.)</span>
+                </div>
+
                 <!--
                 <div class="sheet-flex sheet-bottom-padding">
                   <div>
@@ -3834,8 +3840,6 @@
                     <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(AB -&gt; Dam, Attack adj foe on kill, AC pen.)</span>
                   </div>
                 </div>
-              </div>
-              <div class="sheet-inline sheet-side-padding">
 
                 <div class="sheet-flex sheet-bottom-padding">
                   <div>
@@ -3856,6 +3860,8 @@
                     <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(-4 AB, +4 Init, AC penalty)</span>
                   </div>
                 </div>
+
+              </div><div class="sheet-inline sheet-side-padding">
 
                 <div class="sheet-flex sheet-bottom-padding">
                   <div>
@@ -3894,14 +3900,14 @@
                 </div>
               -->
 
-              </div>
-              <div class="sheet-inline sheet-side-padding">
-
                 <div class="sheet-flex sheet-bottom-padding">
                   <input class="sheet-add-cmbt-opt" type="checkbox" name="attr_strong_attack" value="1"/>
                   <span class="ability-check-label">Strong</span>
                   <span class="sheet-small-font sheet-italic-font sheet-flex-between">&nbsp;(Dam x2, AB-4, AC penalty)</span>
                 </div>
+
+              </div>
+              <div class="sheet-inline sheet-side-padding">
 
                 <div class="sheet-flex sheet-bottom-padding">
                   <div>
@@ -4011,6 +4017,7 @@
                       <input type="checkbox" class="sheet-disarm_attack_enabled" name="attr_disarm_attack_enabled" value="1" hidden="true"/>
                       <input type="checkbox" class="sheet-great_cleave_attack_enabled" name="attr_great_cleave_attack_enabled" value="1" hidden="true"/>
                       <input type="checkbox" class="sheet-feint_attack_enabled" name="attr_feint_attack_enabled" value="1" hidden="true"/>
+                      <input type="checkbox" class="sheet-fly_attack_enabled" name="attr_fly_attack_enabled" value="1" hidden="true"/>
                       <input type="checkbox" class="sheet-press_attack_enabled" name="attr_press_attack_enabled" value="1" hidden="true"/>
                       <input type="checkbox" class="sheet-lightning_attack_enabled" name="attr_lightning_attack_enabled" value="1" hidden="true"/>
                       <input type="checkbox" class="sheet-strong_attack_enabled" name="attr_strong_attack_enabled" value="1" hidden="true"/>
@@ -4045,6 +4052,10 @@
 
                       <div class="sheet-feint_attack_section">
                         <span class="label" style="width: 30px; text-align: center; margin-left: 9px;" data-i18n="atk-aim-u">AIM/FEINT ATK</span>
+                      </div>
+
+                      <div class="sheet-fly_attack_section">
+                        <span class="label" style="width: 30px; text-align: center; margin-left: 9px;" data-i18n="atk-fly-u">FLY ATK</span>
                       </div>
 
                       <div class="sheet-lightning_attack_section">
@@ -4160,6 +4171,7 @@
                           <input type="checkbox" class="sheet-attack_disarm_attack_enabled" name="attr_attack_disarm_attack_enabled" value="1" hidden="true"/>
                           <input type="checkbox" class="sheet-attack_great_cleave_attack_enabled" name="attr_attack_great_cleave_attack_enabled" value="1" hidden="true"/>
                           <input type="checkbox" class="sheet-attack_feint_attack_enabled" name="attr_attack_feint_attack_enabled" value="1" hidden="true"/>
+                          <input type="checkbox" class="sheet-attack_fly_attack_enabled" name="attr_attack_fly_attack_enabled" value="1" hidden="true"/>
                           <input type="checkbox" class="sheet-attack_press_attack_enabled" name="attr_attack_press_attack_enabled" value="1" hidden="true"/>
                           <input type="checkbox" class="sheet-attack_lightning_attack_enabled" name="attr_attack_lightning_attack_enabled" value="1" hidden="true"/>
                           <input type="checkbox" class="sheet-attack_sneak_attack_enabled" name="attr_attack_sneak_attack_enabled" value="1" hidden="true"/>
@@ -4342,6 +4354,18 @@
                                     <span name="attr_attack_cmbt_option_ac_penalty"/></button>
                             </div>
                             <div class="sheet-attack-feint-attack-button-disabled">
+                              <button class="inactive-attack-button nod20" type="roll" name="roll_disabled_attack" value="" disabled="true"><span>X</span></button>
+                            </div>
+                          </div>
+
+                          <div class="sheet-attack_fly_attack_section">
+                            <input type="checkbox" class="sheet-attack-fly-attack-button-show" name="attr_attack_fly_attack_button_show" value="1" hidden="true" checked="checked"/>
+                            <div class="sheet-attack-fly-attack-button-enabled">
+                              <button class="attack-button nod20 sheet-blue-border" type="roll" name="roll_fly_attack"
+                                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{atkname} <b>Attack & Fly</b>}} {{subheader=@{character_name}}} {{subheader2=@{attack_damage_msg}}} {{attack=1}} {{attack=[[1d20cs>@{attack_crit_number} + [[@{atkbonus}]] - 4 ]]}} {{critical=[[15 + @{atkbonus}-@{attack_crit_range_adj}]]}} {{fumble=[[-2+@{atkbonus}]] }} {{damage=[[@{attack_dam} + @{attack_dam_bonus} ]]}} {{damagetype=@{dmgtype}}} {{critdamage=[[@{attack_dam} + @{attack_dam} + @{attack_dam_bonus} ]]}} {{math=1d20 + [[@{atkbonus}]] - 4 [Attack], @{attack_dam} + @{attack_dam_bonus} [@{dmgtype} Damage] }} {{description=Attack and retreat if successful. @{attack_cmbt_option_ac_penalty} AC penalty for next round.}}">
+                                    <span name="attr_attack_cmbt_option_ac_penalty"/></button>
+                            </div>
+                            <div class="sheet-attack-fly-attack-button-disabled">
                               <button class="inactive-attack-button nod20" type="roll" name="roll_disabled_attack" value="" disabled="true"><span>X</span></button>
                             </div>
                           </div>
@@ -9357,7 +9381,7 @@
   const weapon_damage_msg = ["", "Slightly Damaged Weapon", "Damaged Weapon", "Badly Damaged Weapon"];
 
   // Keep attacks up to date
-  const combatOpts = ['press_attack', 'defensive_attack', 'berserk_attack', 'charge_attack', 'cleave_attack', 'disarm_attack', 'feint_attack',
+  const combatOpts = ['press_attack', 'defensive_attack', 'berserk_attack', 'charge_attack', 'cleave_attack', 'disarm_attack', 'feint_attack', 'fly_attack',
                       'great_cleave_attack', 'lightning_attack', 'lunge_attack', 'rapid_strike_attack1', 'rapid_strike_attack2', 'rapid_shot_attack1', 'rapid_shot_attack2',
                       'shield_bash_attack', 'strong_attack', 'stun_attack', 'sweep_attack', 'two_attack_attack', 'two_attack_master_attack' ];
 
@@ -9453,6 +9477,7 @@
               const defensive_attack = parseInt(values.defensive_attack) || 0;
               const disarm_attack = parseInt(values.disarm_attack) || 0;
               const feint_attack = parseInt(values.feint_attack) || 0;
+              const fly_attack = parseInt(values.fly_attack) || 0;
               const great_cleave_attack = parseInt(values.great_cleave_attack) || 0;
               const lightning_attack = parseInt(values.lightning_attack) || 0;
               const lunge_attack = parseInt(values.lunge_attack) || 0;
@@ -9480,6 +9505,7 @@
               output['disarm_attack_enabled'] = disarm_attack;
               output['great_cleave_attack_enabled'] = great_cleave_attack && cleave_attack;
               output['feint_attack_enabled'] = feint_attack;
+              output['fly_attack_enabled'] = fly_attack;
               output['lightning_attack_enabled'] = lightning_attack;
               output['lunge_attack_enabled'] = lunge_attack;
               output['press_attack_enabled'] = press_attack;
@@ -9489,7 +9515,7 @@
               output['two_attack_attack_enabled'] = two_attack_attack;
               output['two_attack_master_attack_enabled'] = two_attack_master_attack;
 
-              var cmbt_opts_used = berserk_attack + charge_attack + cleave_attack + great_cleave_attack + disarm_attack + feint_attack + lightning_attack
+              var cmbt_opts_used = berserk_attack + charge_attack + cleave_attack + great_cleave_attack + disarm_attack + feint_attack + fly_attack + lightning_attack
                                        + lunge_attack + rapid_shot_attack1 + rapid_shot_attack2 + rapid_strike_attack1 + rapid_strike_attack2
                                        + shield_bash_attack + strong_attack + stun_attack + sweep_attack + two_attack_attack + two_attack_master_attack;
 
@@ -9618,6 +9644,7 @@
                   output['repeating_attacks_' + id + '_attack_cleave_attack_enabled'] = cleave_attack && !great_cleave_attack;
                   output['repeating_attacks_' + id + '_attack_disarm_attack_enabled'] = disarm_attack;
                   output['repeating_attacks_' + id + '_attack_feint_attack_enabled'] = feint_attack;
+                  output['repeating_attacks_' + id + '_attack_fly_attack_enabled'] = fly_attack;
                   output['repeating_attacks_' + id + '_attack_great_cleave_attack_enabled'] = great_cleave_attack && cleave_attack;
                   output['repeating_attacks_' + id + '_attack_lightning_attack_enabled'] = lightning_attack;
                   output['repeating_attacks_' + id + '_attack_lunge_attack_enabled'] = lunge_attack;
@@ -9645,6 +9672,7 @@
 
                   output['repeating_attacks_' + id + '_attack_disarm_attack_button_show'] = is_proficient && is_not_spell;
                   output['repeating_attacks_' + id + '_attack_feint_attack_button_show'] = is_proficient; // allow spells to be aimed if held
+                  output['repeating_attacks_' + id + '_attack_fly_attack_button_show'] = is_proficient; // allow spells
                   output['repeating_attacks_' + id + '_attack_lightning_attack_button_show'] = is_proficient && is_not_spell;
                   output['repeating_attacks_' + id + '_attack_sneak_attack_button_show'] = is_proficient && is_not_spell_or_grapple;
                   output['repeating_attacks_' + id + '_attack_strong_attack_button_show'] = is_proficient && is_not_spell_or_grapple;
