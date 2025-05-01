@@ -4084,80 +4084,7 @@
                 <fieldset class="repeating_attacks">
 
                     <div class="attack">
-                        <input class="options-flag" type="checkbox" name="attr_options-flag" checked="checked"><span>y</span>
-                        <div class="options">
-                            <input type="checkbox" name="attr_atkflag" value="{{attack=1}}" checked="checked" hidden="True"/>
-                            <div class="row">
-                                <span style="margin-left: 17px;" data-i18n="range:-u">RANGE:</span>
-                                <input type="text" name="attr_atkrange" placeholder="Self (60-foot cone)" style="width: 170px;" data-i18n-placeholder="range-place">
-                            </div>
-			    <!--
-                            <div class="row">
-                                <span style="margin-left: 17px;" data-i18n="magic-bonus:-u">MAGIC BONUS:</span>
-                                <input type="number" class="num" name="attr_atkmagic" value="0" placeholder="0">
-                                <span data-i18n="crit-range-u">CRIT RANGE:</span>
-                            </div>
-			    -->
-                            <div class="row" style="display: none;">
-                              <input name="attr_attack_dam" value="0" hidden="true"/>
-                              <input name="attr_atk_target" hidden="true"/>
-                              <input name="attr_spellconcentration" value="0" hidden="true"/>
-                              <input name="attr_spellduration" type="text" hidden="true"/>
-                              <input name="attr_spellathigherlevels" type="text" hidden="true"/>
-                              <input name="attr_spellcastingtime" type="text" hidden="true"/>
-                              <input type="checkbox" name="attr_dmgflag" value="{{damage=1}} {{dmg1flag=1}}" checked="checked" hidden="true"/>
-                            </div>
-          <!--
-                            <div class="row">
-                                <span data-i18n="damage:-u">DAMAGE:</span>
-                                <input type="text" name="attr_dmgbase" placeholder="1d6" style="width: 50px;"/>
-                            </div>
-          -->
 
-                            <input type="number" name="attr_attack_proficiency_dam_bonus" value="0" hidden="true"/>
-                            <input type="number" name="attr_attack_cmbt_option_ac_penalty" value="-4" hidden="true"/>
-                            <input type="number" name="attr_attack_crit_range_adj" value="0" hidden="true"/>
-                            <input type="number" name="attr_attack_crit_number" value="20" hidden="true"/>
-                            <input type="text" style="display: none;" name="attr_sneak_attack_dam" value="0" hidden="true"/>
-
-                            <div class="row">
-                                <input type="checkbox" name="attr_saveflag" value="{{save=1}} {{saveattr=@{saveattr}}} {{savedesc=@{saveeffect}}} {{savedc=[[[[@{savedc}]][SAVE]]]}}"/>
-                                <span data-i18n="saving-throw:-u">SAVING THROW:</span>
-                                <select name="attr_saveattr">
-                                    <option value="Strength" selected="selected" data-i18n="str-u">STR</option>
-                                    <option value="Dexterity" data-i18n="dex-u">DEX</option>
-                                    <option value="Constitution" data-i18n="con-u">CON</option>
-                                    <option value="Intelligence" data-i18n="int-u">INT</option>
-                                    <option value="Wisdom" data-i18n="wis-u">WIS</option>
-                                    <option value="Charisma" data-i18n="cha-u">CHA</option>
-                                </select>
-                                <span data-i18n="vs-dc:-u">VS DC:</span>
-                                <select name="attr_savedc">
-                                    <option value="(@{spell_save_dc})" selected="selected" data-i18n="spell-u">SPELL</option>
-                                    <option value="(@{strength_mod}+8+@{spell_dc_mod}+@{pb})" data-i18n="str-u">STR</option>
-                                    <option value="(@{dexterity_mod}+8+@{spell_dc_mod}+@{pb})" data-i18n="dex-u">DEX</option>
-                                    <option value="(@{constitution_mod}+8+@{spell_dc_mod}+@{pb})" data-i18n="con-u">CON</option>
-                                    <option value="(@{intelligence_mod}+8+@{spell_dc_mod}+@{pb})" data-i18n="int-u">INT</option>
-                                    <option value="(@{wisdom_mod}+8+@{spell_dc_mod}+@{pb})" data-i18n="wis-u">WIS</option>
-                                    <option value="(@{charisma_mod}+8+@{spell_dc_mod}+@{pb})" data-i18n="cha-u">CHA</option>
-                                    <option value="(@{saveflat})" data-i18n="flat-u">FLAT</option>
-                                </select>
-                                <input class="flatflag" type="hidden" name="attr_savedc">
-                                <input class="num flat" type="text" name="attr_saveflat" placeholder="10" value="10">
-                            </div>
-                            <div class="row">
-                                <span data-i18n="save-effect:-u">SAVE EFFECT:</span>
-                                <input type="text" name="attr_saveeffect" placeholder="half damage" style="width: 160px;" data-i18n-placeholder="save-effect-place">
-                            </div>
-                            <div class="row ammo">
-                                <span data-i18n="ammunition:-u">AMMUNITION:</span>
-                                <input type="text" name="attr_ammo" placeholder="Arrows" style="width: 160px;" data-i18n-placeholder="ammunition-place">
-                            </div>
-                            <div class="row">
-                                <span data-i18n="description:-u">DESCRIPTION:</span>
-                                <textarea name="attr_atk_desc" style="width: 90%;" placeholder="Up to 2 creatures within 5 feet" data-i18n-placeholder="description-place"></textarea>
-                            </div>
-                        </div>
 
                         <div class="display">
 
@@ -4437,6 +4364,80 @@
                             </div>
                           </div>
 
+                        </div>
+
+                        <input class="options-flag" type="checkbox" name="attr_options-flag" checked="0"><span>y</span>
+                        <div class="options">
+                            <input type="checkbox" name="attr_atkflag" value="{{attack=1}}" checked="checked" hidden="True"/>
+                            <div class="row">
+                                <span style="margin-left: 17px;" data-i18n="range:-u">RANGE:</span>
+                                <input type="text" name="attr_atkrange" placeholder="Self (60-foot cone)" style="width: 170px;" data-i18n-placeholder="range-place">
+                            </div>
+			    <!--
+                            <div class="row">
+                                <span style="margin-left: 17px;" data-i18n="magic-bonus:-u">MAGIC BONUS:</span>
+                                <input type="number" class="num" name="attr_atkmagic" value="0" placeholder="0">
+                                <span data-i18n="crit-range-u">CRIT RANGE:</span>
+                            </div>
+			    -->
+                            <div class="row" style="display: none;">
+                              <input name="attr_attack_dam" value="0" hidden="true"/>
+                              <input name="attr_atk_target" hidden="true"/>
+                              <input name="attr_spellconcentration" value="0" hidden="true"/>
+                              <input name="attr_spellduration" type="text" hidden="true"/>
+                              <input name="attr_spellathigherlevels" type="text" hidden="true"/>
+                              <input name="attr_spellcastingtime" type="text" hidden="true"/>
+                              <input type="checkbox" name="attr_dmgflag" value="{{damage=1}} {{dmg1flag=1}}" checked="checked" hidden="true"/>
+                            </div>
+          <!--
+                            <div class="row">
+                                <span data-i18n="damage:-u">DAMAGE:</span>
+                                <input type="text" name="attr_dmgbase" placeholder="1d6" style="width: 50px;"/>
+                            </div>
+          -->
+                            <input type="number" name="attr_attack_proficiency_dam_bonus" value="0" hidden="true"/>
+                            <input type="number" name="attr_attack_cmbt_option_ac_penalty" value="-4" hidden="true"/>
+                            <input type="number" name="attr_attack_crit_range_adj" value="0" hidden="true"/>
+                            <input type="number" name="attr_attack_crit_number" value="20" hidden="true"/>
+                            <input type="text" style="display: none;" name="attr_sneak_attack_dam" value="0" hidden="true"/>
+
+                            <div class="row">
+                                <input type="checkbox" name="attr_saveflag" value="{{save=1}} {{saveattr=@{saveattr}}} {{savedesc=@{saveeffect}}} {{savedc=[[[[@{savedc}]][SAVE]]]}}"/>
+                                <span data-i18n="saving-throw:-u">SAVING THROW:</span>
+                                <select name="attr_saveattr">
+                                    <option value="Strength" selected="selected" data-i18n="str-u">STR</option>
+                                    <option value="Dexterity" data-i18n="dex-u">DEX</option>
+                                    <option value="Constitution" data-i18n="con-u">CON</option>
+                                    <option value="Intelligence" data-i18n="int-u">INT</option>
+                                    <option value="Wisdom" data-i18n="wis-u">WIS</option>
+                                    <option value="Charisma" data-i18n="cha-u">CHA</option>
+                                </select>
+                                <span data-i18n="vs-dc:-u">VS DC:</span>
+                                <select name="attr_savedc">
+                                    <option value="(@{spell_save_dc})" selected="selected" data-i18n="spell-u">SPELL</option>
+                                    <option value="(@{strength_mod}+8+@{spell_dc_mod}+@{pb})" data-i18n="str-u">STR</option>
+                                    <option value="(@{dexterity_mod}+8+@{spell_dc_mod}+@{pb})" data-i18n="dex-u">DEX</option>
+                                    <option value="(@{constitution_mod}+8+@{spell_dc_mod}+@{pb})" data-i18n="con-u">CON</option>
+                                    <option value="(@{intelligence_mod}+8+@{spell_dc_mod}+@{pb})" data-i18n="int-u">INT</option>
+                                    <option value="(@{wisdom_mod}+8+@{spell_dc_mod}+@{pb})" data-i18n="wis-u">WIS</option>
+                                    <option value="(@{charisma_mod}+8+@{spell_dc_mod}+@{pb})" data-i18n="cha-u">CHA</option>
+                                    <option value="(@{saveflat})" data-i18n="flat-u">FLAT</option>
+                                </select>
+                                <input class="flatflag" type="hidden" name="attr_savedc">
+                                <input class="num flat" type="text" name="attr_saveflat" placeholder="10" value="10">
+                            </div>
+                            <div class="row">
+                                <span data-i18n="save-effect:-u">SAVE EFFECT:</span>
+                                <input type="text" name="attr_saveeffect" placeholder="half damage" style="width: 160px;" data-i18n-placeholder="save-effect-place">
+                            </div>
+                            <div class="row ammo">
+                                <span data-i18n="ammunition:-u">AMMUNITION:</span>
+                                <input type="text" name="attr_ammo" placeholder="Arrows" style="width: 160px;" data-i18n-placeholder="ammunition-place">
+                            </div>
+                            <div class="row">
+                                <span data-i18n="description:-u">DESCRIPTION:</span>
+                                <textarea name="attr_atk_desc" style="width: 90%;" placeholder="Up to 2 creatures within 5 feet" data-i18n-placeholder="description-place"></textarea>
+                            </div>
                         </div>
 
                         <button type="roll" name="roll_attack_dmg" style="display: none;" value="@{rollbase_dmg}"></button>
@@ -9393,7 +9394,7 @@
   });
 
   function update_attacks2 () {
-      // console.debug("UPDATE ATTACKS2");
+      console.debug("UPDATE ATTACKS2");
 
       getSectionIDs('repeating_attacks', function (ids) {
 
