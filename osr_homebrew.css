@@ -1615,7 +1615,9 @@ button[type=roll]:hover *,
 .sheet-spell .sheet-options
 {
 		  display: none;
-		  border-top: 2px dashed gold; }
+		  border-top: 2px dashed gold; 
+		  border-bottom: 2px dashed gold; 
+}
 
 .sheet-spell-level {
 		  position: relative;
