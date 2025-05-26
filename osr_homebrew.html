@@ -3130,7 +3130,7 @@
       <span class="sheet-tab sheet-tab3">Magic</span>
 
       <input type="radio" name="attr_tab" class="sheet-tab sheet-tab4" value="4" />
-      <span class="sheet-tab sheet-tab4">Perks</span>
+      <span class="sheet-tab sheet-tab4">Perks/Limits</span>
 
       <input type="radio" name="attr_tab" class="sheet-tab sheet-tab5" value="5" />
       <span class="sheet-tab sheet-tab5">Inventory</span>
@@ -6926,6 +6926,58 @@
             </div>
          </fieldset>
        </div>
+       <div class="thick-border perks">
+          <h3>Limits</h3>
+          <input type="number" name="attr_limits_used" value="0" hidden="true"/>
+          <fieldset class="repeating_limits">
+            <div class="sheet-block sheet-thin-border sheet-side-padding">
+               <div class="sheet-perkcontainer sheet-side-padding">
+                  <select class="sheet-perk-name" name="attr_limit_type">
+                     <option selected="selected" value="none">-- Select Limit --</option>
+                     <option value="addiction">Addiction: Alcohol &amp; Tobacco (DC 10 Will to avoid consumption. Suffer withdrawl if you dont.)</option>
+                     <option value="bad_temper">Bad Temper (DC 10 Will or lose temper when stressed.)</option>
+                     <option value="bully">Bully (DC 10 Will or be aggressive vs equals or weaker people.)</option>
+                     <option value="clumsy">Clumsy (-2 Dodge Check)</option>
+                     <option value="code_of_honor_chivalrous">Code of Honor: Chivalrous (Never break word, ignore an insult (you, your lady or lord) or ignore a challenge to duel by an equal or greater.)</option>
+                     <option value="code_of_honor_gaelic">Code of Honor: Gaelic (Never ignore an insult (clan, religion or bard). Challenge and attack if no appology. Obey truces.)</option>
+                     <option value="code_of_honor_gentleman">Code of Honor: Gentlemans (Never break word, ignore an insult (you, lady or flag) or take unfair advantage of an opponent.)</option>
+                     <option value="code_of_honor_pirate">Code of Honor: Pirate (Avenge insults. Never unfairly attack a fellow pirate. Obey rules of parley.)</option>
+                     <option value="compulsive_liar">Compulsive Liar (DC 10 Will to avoid 'coloring' the facts. Negative reaction to you if known.)</option>
+                     <option value="cowerdice">Cowardice (DC 10 Will to act in risky situations. Negative reaction to you if known.)</option>
+                     <option value="delusion_gent">Delusion: Genteel Proficiency (Character has 1/3 fewer proficiencies and combat options allowed. Mages may not take.)</option>
+                     <option value="fainthearted">Fainthearted (-2 Fortitude check)</option>
+                     <option value="fragile">Fragile (-2 HP/level)</option>
+                     <option value="generous">Generous (Pay 25% more for goods and services. Savings is one level less.)</option>
+                     <option value="greed">Greed (DC 10 Will to avoid taking more than your share in wealth. Negative reaction to you if known.)</option>
+                     <option value="honest">Honest &amp; Truthful (DC 10 Will to knowningly break law or lie.)</option>
+                     <option value="impulsive">Impulsive (DC 10 Will to think things through or listen to others plans.)</option>
+                     <option value="inattentive">Inattentive (-3 Initiative)</option>
+                     <option value="lecherous">Lecherous (DC 10 Will to avoid attempts to seduce/romance opposite sex.)</option>
+                     <option value="low_self_esteem">Low Self Esteem (-2 Ego).</option>
+                     <option value="low_status">Low Status (2 levels lower status than allowed).</option>
+                     <option value="odious_habit_braggart">Odious Habit: Braggart (DC 10 Will to avoid boasting about yourself. DC 10 Int to avoid proving its true if challenged.)</option>
+                     <option value="overconfident">Overconfident (DC 10 Int check to be cautious in any situation.)</option>
+                     <option value="one_eye">One Eye (-2 ranged attack bonus. -1 perception and search skill.)</option>
+                     <option value="one_hand">One Hand (Only may use one handed tools and weapons. -2 situational penality to Athletics skill.)</option>
+                     <option value="one_leg">One Leg (Move at 1/2 speed and require crutch or peg leg. -2 situational penality to Athletics skill.)</option>
+                     <option value="pacifist">Pacifist (Self defense only. May only combat if attacked first.)</option>
+                     <option value="phobia_dark">Phobia: Darkness (DC 10 Will to act when presented with phobia. Breakdown, flee or otherwise avoid it if fail.)</option>
+                     <option value="phobia_death">Phobia: Death (DC 10 Will to act when presented with phobia. Breakdown, flee or otherwise avoid it if fail.)</option>
+                     <option value="phobia_dirt">Phobia: Dirt/Filth (DC 10 Will to act when presented with phobia. Breakdown, flee or otherwise avoid it if fail.)</option>
+                     <option value="phobia_enclosed">Phobia: Enclosed Spaces (DC 10 Will to act when presented with phobia. Breakdown, flee or otherwise avoid it if fail.)</option>
+                     <option value="phobia_heights">Phobia: Heights (DC 10 Will to act when presented with phobia. Breakdown, flee or otherwise avoid it if fail.)</option>
+                     <option value="phobia_insects">Phobia: Insects (DC 10 Will to act when presented with phobia. Breakdown, flee or otherwise avoid it if fail.)</option>
+                     <option value="poor_health">Poor Health (-2 Health check)</option>
+                     <option value="weak_willed">Weak Willed (-2 Will check)</option>
+                     <option value="unperceptive">Unperceptive (-2 Perception check)</option>
+                     <option value="vow_no_guns">Vow : No Firearms (DC 15 Will to violate your vow.)</option>
+                     <option value="vow_no_edged">Vow : No Edged Weapons (DC 15 Will to violate your vow.)</option>
+                     <option value="vow_no_steal">Vow : No Stealing (DC 15 Will to violate your vow.)</option>
+                  </select>
+                </div>
+            </div>
+         </fieldset>
+       </div>
      </div>
 
      <div class="sheet-section-inventory">
@@ -8694,14 +8746,15 @@
   const prof_names = ['Unskilled', 'Skilled', 'Proficient', 'Master', 'Grand Master'];
   const max_prof_level_allowed_fighter = [1, 1, 1, 2, 2, 3, 3, 4,];
 
-  on(`sheet:opened change:class change:class2 change:level change:level2 change:race change:xp change:perk_cmbt_options`, () => {
-    getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race', 'xp', 'perk_cmbt_options' ], v => {
+  on(`sheet:opened change:class change:class2 change:level change:level2 change:race change:xp change:limits_used change:perk_cmbt_options`, () => {
+    getAttrs(['class', 'class2', 'level', 'level2', 'alignment', 'race', 'xp', 'perk_cmbt_options', 'limits_used' ], v => {
       const c_align = v.alignment.trim();
       const c_class = v.class.trim();
       const c_class2 = v.class2.trim();
       const c_race = v.race.trim();
       const level = parseInt(v.level) || 0;
       const level2 = parseInt(v.level2) || 0;
+      const limits_used = parseInt(v.limits_used) || 0;
       const xp = parseInt(v.xp) || 0;
       const perk_cmbt_options = parseInt(v.perk_cmbt_options) || 0;
 
@@ -8709,6 +8762,7 @@
       const is_fighter = (c_class === 'fighter' || c_class2 === 'fighter');
       const is_specialist = (c_class === 'specialist' || c_class2 === 'specialist');
       const is_wizard = (c_class === 'wizard' || c_class2 === 'wizard');
+      const base_max_perks_allowed = limits_used > 0 ? 1 : 0;
 
       const is_elf = (c_race === 'Elven');
 
@@ -8772,13 +8826,13 @@
       setting['parry_attack'] = is_fighter ? 1 : 0;
 
       // reset incase we messed with levels
-      setting['max_perks_allowed'] = 0;
+      setting['max_perks_allowed'] = base_max_perks_allowed;
 
       // handle perks
       var specialist_level = 0;
       if (is_specialist) {
         specialist_level = (c_class === 'specialist' ? level : level2);
-        setting['max_perks_allowed'] = specialist_level;
+        setting['max_perks_allowed'] = specialist_level + base_max_perks_allowed;
       }
 
       // handle combat prof and opts
@@ -8947,6 +9001,7 @@
       fieldnames.push(repeating_source + '_' + id + '_spellcomp_v');
       fieldnames.push(repeating_source + '_' + id + '_spellcomp_s');
       fieldnames.push(repeating_source + '_' + id + '_spellcomp_m');
+      fieldnames.push(repeating_source + '_' + id + '_spellritual');
     });
 
     getAttrs([...fieldnames, 'class', 'class2', 'arcana_skill', 'arcana_bonus', 'spellcasting_mod', 'fatigue', 'character_id'], function (values) {
@@ -8980,6 +9035,9 @@
         var comp_m = values[repeating_source + '_' + id + '_spellcomp_m'];
         if (comp_m === '{{m=1}}') { comp_m = 0; } else { comp_m = 1; }
 
+        var comp_ritual = values[repeating_source + '_' + id + '_spellritual'];
+        if (comp_ritual === '{{ritual=1}}') { comp_ritual = 0; } else { comp_ritual = 5; }
+
         const casting_restrictions_desc = values[repeating_source + '_' + id + '_casting_restrictions_desc'];
         const innate = values[repeating_source + '_' + id + '_innate'];
         const is_innate = innate && innate !== "" ? true : false;
@@ -9007,7 +9065,7 @@
         }
 
         // handle spell (difficulty) DC
-        var spell_dc = 15 + spelllevel - casting_restrictions + fatigue - spellcasting_mod + comp_v + comp_s + comp_m;
+        var spell_dc = 10 + spelllevel - casting_restrictions + fatigue - spellcasting_mod + comp_v + comp_s + comp_m + comp_ritual;
         if (spell_dc < 2) { spell_dc = 2 + comp_v + comp_s + comp_m; } // never lower than 2 + comp_*
 
         settings[repeating_source + '_' + id + '_spellcritrange'] = 20; // - casting_restrictions;
@@ -9118,8 +9176,108 @@
       });
     });
 
+  // check on limits_used
+  on(`change:repeating_limits remove:repeating_limits` , function () {
+    getSectionIDs('repeating_limits', function (ids) {
+
+      var limits_used = 0;
+      const fieldnames = [];
+
+      ids.forEach(id => {
+        fieldnames.push('repeating_limits_' + id + '_perk_type');
+        limits_used += 1; 
+      });
+
+      getAttrs([...fieldnames], function (values) {
+        settings = {};
+
+        ids.forEach(id => { 
+
+          // mods from limits here
+          const type = values['repeating_limits_' + id + '_limit_type'];
+
+          var extra_init = 0;
+          var extra_hp = 0;
+
+          var extra_dodge = 0;
+          var extra_fortitude = 0;
+          var extra_health = 0;
+          var extra_perception = 0;
+          var extra_willpower = 0;
+          var extra_ego = 0;
+
+          var extra_movement = 0;
+          var extra_status = 0;
+
+          var ranged_attack_bonus = 0;
+          var athletic_skill_bonus = 0;
+          var search_skill_bonus = 0;
+
+          // add up additional limit-based mods
+          if (type === 'clumsy')
+          {
+            extra_dodge -= 2;
+          }
+          else if (type === 'fainthearted')
+          {
+            extra_fortitude -= 2;
+          }
+          else if (type === 'fragile')
+          {
+            extra_hp -= 2;
+          }
+          else if (type === 'inattentive')
+          { 
+            extra_init -= 3; 
+          }
+          else if (type === 'low_self_esteem')
+          {
+            extra_ego -= 2;
+          }
+          else if (type === 'low_status')
+          {
+            extra_status -= 2;
+          }
+          else if (type === 'one_eye')
+          {
+            ranged_attack_bonus -= 2; 
+            search_skill_bonus -= 2; 
+            extra_perception -= 1; 
+          } 
+          else if (type === 'one_hand')
+          {
+            athletic_skill_bonus -= 2; 
+          }
+          else if (type === 'one_leg')
+          {
+            extra_movement -= 20;
+            athletic_skill_bonus -= 2; 
+          }
+          else if (type === 'poor_health')
+          {
+            extra_health -= 2; 
+          }
+          else if (type === 'weak_willed')
+          {
+            extra_willpower -= 2; 
+          }
+          else if (type === 'unperceptive')
+          {
+            extra_perception -= 2; 
+          }
+
+        });
+
+        settings['limits_used'] = limits_used;
+
+        setAttrs(settings);
+      });
+
+    });
+  });
+
   // Keep perks up to date
-  on(`change:repeating_perks remove:repeating_perks change:class change:class2 change:level change:level2` , function () {
+  on(`change:repeating_perks remove:repeating_perks change:max_perks_allowed change:class change:class2 change:level change:level2` , function () {
 
     getSectionIDs('repeating_perks', function (ids) {
       const fieldnames = [];
@@ -9130,10 +9288,13 @@
         perks_used += 1;
       });
 
-      getAttrs([...fieldnames, 'class', 'class2', 'max_perks_allowed'], function (values) {
+      getAttrs([...fieldnames, 'class', 'class2', 'max_perks_allowed' ], function (values) {
         settings = {};
-        const max_perks = parseInt(values.max_perks_allowed) || 0;
+        var max_perks = parseInt(values.max_perks_allowed) || 0;
 
+        console.log("Perks used: "+perks_used+" max_perks: "+max_perks);
+
+        // check if we have too many perks
         settings['perks_overspent'] = perks_used > max_perks ? 0 : 1;
         settings['perks_underspent'] = perks_used < max_perks ? 0 : 1;
 
